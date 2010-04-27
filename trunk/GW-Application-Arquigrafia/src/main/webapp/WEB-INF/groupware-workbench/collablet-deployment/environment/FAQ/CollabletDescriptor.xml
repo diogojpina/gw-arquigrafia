@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<collablet>
+	<ComponentClass>br.org.groupware_workbench.collablet.faq.internal.FaqMgrComponent</ComponentClass>
+
+	<!-- Collablet Descriptor: Information for the Component Framework -->
+	<collablet-description>
+		<!-- The component Id is the folder name -->
+
+		<collablet-name>FAQ Principal</collablet-name>
+		<collablet-description>Frequently Asked Project</collablet-description>
+		<subordinate-collablets>
+			<collablet groupName="communication-collablets" collabletName="FAQ01" />
+			<collablet groupName="communication-collablets" collabletName="FAQ02" />
+		</subordinate-collablets>
+	</collablet-description>
+
+	<!-- Component specific configuration -->
+	<specific-configuration />
+
+	<!-- Collaboration Components Used -->
+	<collabElements>
+  		<collabElement id="br.org.groupware_workbench.collabElement.coord.UserMgr" receiveFromParent="false">
+			<user>
+				<login>admin</login>
+				<password>123</password>
+				<name>Administrador</name>
+			</user>
+			<user>
+				<login>user01</login>
+				<password>111</password>
+				<name>Usuario01</name>
+			</user>
+			<user>
+				<login>user02</login>
+				<password>222</password>
+				<name>Usuario02</name>
+			</user>
+		</collabElement>
+		<collabElement id="br.org.groupware_workbench.collabElement.communic.UploadMgr" receiveFromParent="false" />
+		<collabElement id="br.org.groupware_workbench.collabElement.communic.TagMgr" receiveFromParent="false" />
+		<collabElement id="br.org.groupware_workbench.collabElement.coord.RoleMgr" receiveFromParent="false">
+			<role name="Administrador" defaultAssignment="false">
+				<entity entity="br.org.groupware_workbench.collabElement.coord.userMgr.api.User" param="admin" />
+			</role>
+			<role name="User" defaultAssignment="true">
+		 		<entity entity="br.org.groupware_workbench.collabElement.coord.userMgr.api.User" param="user01" />
+			</role>
+			<role name="Revisor" defaultAssignment="false" />
+		</collabElement>
+		<collabElement id="br.org.groupware_workbench.collabElement.coord.ProfileMgr" />
+		<collabElement id="br.org.groupware_workbench.collabElement.coord.CollabletMgr" />
+		<collabElement id="br.org.groupware_workbench.collabElement.coop.BinomialMgr" receiveFromParent="false" />
+	</collabElements>
+</collablet>

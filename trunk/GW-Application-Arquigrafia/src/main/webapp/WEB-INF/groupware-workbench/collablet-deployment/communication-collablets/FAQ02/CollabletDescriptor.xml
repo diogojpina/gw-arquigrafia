@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<collablet>
+	<ComponentClass>br.org.groupware_workbench.collablet.faq.internal.FaqMgrComponent</ComponentClass>
+
+	<!-- Collablet Descriptor: Information for the Component Framework -->
+	<collablet-description>
+		<!-- The component Id is the folder name -->
+
+		<collablet-name>FAQ 02</collablet-name>
+		<collablet-description>Frequently Asked Project</collablet-description>
+		<subordinate-collablets />
+	</collablet-description>
+
+	<!-- Component specific configuration -->
+	<specific-configuration />
+
+	<!-- Collaboration Components Used -->
+	<collabElements>
+  		<collabElement id="br.org.groupware_workbench.collabElement.coord.UserMgr" receiveFromParent="true" />
+		<collabElement id="br.org.groupware_workbench.collabElement.communic.TagMgr" receiveFromParent="false" />
+		<collabElement id="br.org.groupware_workbench.collabElement.coord.RoleMgr" receiveFromParent="true" />
+		<collabElement id="br.org.groupware_workbench.collabElement.coord.CollabletMgr" />
+	</collabElements>
+</collablet>
