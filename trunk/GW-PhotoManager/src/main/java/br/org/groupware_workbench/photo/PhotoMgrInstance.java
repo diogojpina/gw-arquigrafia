@@ -33,13 +33,16 @@ public class PhotoMgrInstance extends CollabletInstance {
 	public void destroy() {
 		//TODO modify this according with the objectDAO, ask victor or geiser
 		//this.dao.deleteByIdInstance(this.getId());
+		this.dao.deleteByField("idInstance", this.getId());
+		
 	}
 	
+	public void delete(long photoId){
+		dao.deleteById(photoId);
+	}
 	
 	public void save(Photo photoRegister) {
-		photoRegister.setIdInstance(this.getId());
-		
-		//TODO modify this according with the objectDAO, ask victor or geiser
+		photoRegister.setIdInstance(this.getId());				
 		this.dao.save(photoRegister,true);
 	}
 
@@ -59,8 +62,7 @@ public class PhotoMgrInstance extends CollabletInstance {
 		return this.dao.findById(idPhoto);		
 	}
 	
-	public List<Photo> listaTodaPhoto(){
-		//TODO deve listar so de uma instancia so
+	public List<Photo> listaTodaPhoto(){		
 		return dao.listAll();	
 	}
 	

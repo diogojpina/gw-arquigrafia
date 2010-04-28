@@ -16,6 +16,7 @@ import java.util.Map;
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 
+import br.com.caelum.vraptor.Delete;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
@@ -234,8 +235,14 @@ public class PhotoController {
 	}
 	
 	
-	private void addIncludes() {
-		
+	@Delete
+	@Path(value = "/groupware-workbench/{photoInstance}/photo/show/{idPhoto}")	
+	public void delete(PhotoMgrInstance photoInstance, long idPhoto){
+		if(idPhoto<1){
+			validator.add(new ValidationMessage("Não é uma entidade valida","Erro"));
+			return;
+		}		
+		photoInstance.delete(idPhoto);		
 	}
 	
 
