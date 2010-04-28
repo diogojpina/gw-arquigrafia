@@ -31,7 +31,7 @@
 	 	</td>
 	 	<td>
 	 		<c:if test="${binomialMgr!=null}">	 			
-				<binomialMgr:SetBinomial idObject="${idPhoto}" binomialMgr="${binomialMgr}" user="${sessionScope.user}"/> 
+				<binomialMgr:SetBinomial idObject="${idPhoto}" binomialMgr="${binomialMgr}" user="${sessionScope.userLogin}"/> 
 			</c:if>	 	
 	 	</td>	 	
 	</tr>	
