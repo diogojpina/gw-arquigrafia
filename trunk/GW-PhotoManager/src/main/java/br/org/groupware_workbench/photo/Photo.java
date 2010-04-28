@@ -57,8 +57,8 @@ public class Photo extends GenericEntity {
 	public String getDescricao() {
 		return descricao;
 	}
-	public void setDescricao(String descriçao) {
-		this.descricao = descriçao;
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 	public String getLugar() {
 		return lugar;
