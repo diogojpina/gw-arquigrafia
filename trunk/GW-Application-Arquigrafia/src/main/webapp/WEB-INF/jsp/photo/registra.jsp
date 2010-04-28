@@ -11,14 +11,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link href="${pageContext.request.contextPath}/css/novo.css" rel="stylesheet" type="text/css" />
-<link type="text/css"
-	href="${pageContext.request.contextPath}/css/jquery-ui-1.8.custom.css"
-	rel="Stylesheet" />
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/js/jquery.js"></script>
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/js/jquery-ui-1.8.custom.min.js"></script>
+
+<link href="${pageContext.request.contextPath}/css/reset.css" rel="stylesheet" type="text/css" />
+<link href="${pageContext.request.contextPath}/css/common.css" rel="stylesheet" type="text/css" />
+<link href="${pageContext.request.contextPath}/css/page_content.css" rel="stylesheet" type="text/css" />
+
+<link type="text/css" href="${pageContext.request.contextPath}/css/jquery-ui-1.8.custom.css" rel="Stylesheet" />
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-ui-1.8.custom.min.js"></script>
 </head>
 
 

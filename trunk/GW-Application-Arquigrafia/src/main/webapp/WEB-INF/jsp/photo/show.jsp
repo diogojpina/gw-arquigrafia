@@ -8,19 +8,19 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<binomialMgr:ScriptBinomial/>
-		<link href="${pageContext.request.contextPath}/css/novo.css" rel="stylesheet" type="text/css" />
-
+		
+		<link href="${pageContext.request.contextPath}/css/reset.css" rel="stylesheet" type="text/css" />
+		<link href="${pageContext.request.contextPath}/css/common.css" rel="stylesheet" type="text/css" />
+		<link href="${pageContext.request.contextPath}/css/page_content.css" rel="stylesheet" type="text/css" />
+		
 		<link type="text/css" href="${pageContext.request.contextPath}/css/jquery-ui-1.8.custom.css" rel="Stylesheet" />
 		<!--script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"/-->
 		
-		<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-ui-1.8.custom.min.js"></script>
-		
-		<script type="text/javascript" src="${pageContext.request.contextPath}/js/fancybox/jquery.mousewheel-3.0.2.pack.js"></script>
-		
-		<script type="text/javascript" src="${pageContext.request.contextPath}/js/fancybox/jquery.fancybox-1.3.1.js"></script>
-				
+		<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-ui-1.8.custom.min.js"></script>		
+		<script type="text/javascript" src="${pageContext.request.contextPath}/js/fancybox/jquery.mousewheel-3.0.2.pack.js"></script>		
+		<script type="text/javascript" src="${pageContext.request.contextPath}/js/fancybox/jquery.fancybox-1.3.1.js"></script>				
 		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/js/fancybox/jquery.fancybox-1.3.1.css" media="screen" />
-						
+					
 	</head>
 	<body>
 	
