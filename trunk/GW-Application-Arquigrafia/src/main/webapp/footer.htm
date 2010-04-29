@@ -2,8 +2,12 @@
     <div style="float: left">
     	<img src="images/footer_left_top.png" width="667" height="44"/>
     </div>
-    <div style="float: right">
-    	<img src="images/footer_right_top.png" width="293" height="204"/>
+    <div id="tag_cloud">
+    	<!--  modelo para inserção de tags aqui -->
+    	<!-- <a href="#" class="cloud0">tag1</a> -->
+        <c:if test="${tagMgr != null}">
+        	<TagMgr:TagCloud tagMgr="${tagMgr}"/>
+        </c:if>
     </div>
     <div id="footer_carrousel_wrap">
     <br>
@@ -15,27 +19,9 @@
                     <div id="footer_scroll_left" class="scrollingHotSpotLeft"></div>
                     <div id="footer_scroll_right" class="scrollingHotSpotRight"></div>
                     <div class="scrollWrapper">
-                        <div class="scrollableArea" >
-                            <a class="vlightbox" href="images/pictures/images/278196684_5d283d2937.jpg" title="278196684_5d283d2937"><img src="images/pictures/thumbnails/278196684_5d283d2937.jpg" alt="278196684_5d283d2937"/></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a class="vlightbox" href="images/pictures/images/3146028811_1fbe96a29c.jpg" title="3146028811_1fbe96a29c"><img src="images/pictures/thumbnails/3146028811_1fbe96a29c.jpg" alt="3146028811_1fbe96a29c"/></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a class="vlightbox" href="images/pictures/images/251483645_59f1619155.jpg" title="251483645_59f1619155"><img src="images/pictures/thumbnails/251483645_59f1619155.jpg" alt="251483645_59f1619155"/></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a class="vlightbox" href="images/pictures/images/2601157725_8c19db3196.jpg" title="2601157725_8c19db3196"><img src="images/pictures/thumbnails/2601157725_8c19db3196.jpg" alt="2601157725_8c19db3196"/></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a class="vlightbox" href="images/pictures/images/465206650_9aeb8095dc.jpg" title="465206650_9aeb8095dc"><img src="images/pictures/thumbnails/465206650_9aeb8095dc.jpg" alt="465206650_9aeb8095dc"/></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a class="vlightbox" href="images/pictures/images/3173961499_f91e17ceaf.jpg" title="3173961499_f91e17ceaf"><img src="images/pictures/thumbnails/3173961499_f91e17ceaf.jpg" alt="3173961499_f91e17ceaf"/></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a class="vlightbox" href="images/pictures/images/2217733162_b3c27298b4.jpg" title="2217733162_b3c27298b4"><img src="images/pictures/thumbnails/2217733162_b3c27298b4.jpg" alt="2217733162_b3c27298b4"/></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a class="vlightbox" href="images/pictures/images/208506826_3e8bef5206_b.jpg" title="208506826_3e8bef5206_b"><img src="images/pictures/thumbnails/208506826_3e8bef5206_b.jpg" alt="208506826_3e8bef5206_b"/></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a class="vlightbox" href="images/pictures/images/66688920_5a534d7487.jpg" title="Senado e Camara dos Deputados (Old pictures)"><img src="images/pictures/thumbnails/66688920.jpg" alt="Senado e Camara dos Deputados (Old pictures)"/></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a class="vlightbox" href="images/pictures/images/450512525_bf9d2c7879.jpg" title="BrasÃ­lia - Itamaraty"><img src="images/pictures/thumbnails/450512525.jpg" alt="BrasÃ­lia - Itamaraty"/></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a class="vlightbox" href="images/pictures/images/448901070_0c77aad483.jpg" title="Universidade de BrasÃ­lia"><img src="images/pictures/thumbnails/448901070.jpg" alt="Universidade de BrasÃ­lia"/></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a class="vlightbox" href="images/pictures/images/506159280_c8d3b5e8b1.jpg" title="Biblioteca Nacional - Brasilia - DF"><img src="images/pictures/thumbnails/506159280.jpg" alt="Biblioteca Nacional - Brasilia - DF"/></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a class="vlightbox" href="images/pictures/images/2034873075_1ae7b8aed3.jpg" title="2034873075_1ae7b8aed3"><img src="images/pictures/thumbnails/2034873075_1ae7b8aed3.jpg" alt="2034873075_1ae7b8aed3"/></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a class="vlightbox" href="images/pictures/images/508635349_f4a9665c8e.jpg" title="National Museum - Brasilia - Brasil"><img src="images/pictures/thumbnails/508635349.jpg" alt="National Museum - Brasilia - Brasil"/></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        
-                        <a class="vlightbox" href="images/pictures/images/3090210469_18e71fb3c4.jpg" title="3090210469_18e71fb3c4"><img src="images/pictures/thumbnails/3090210469_18e71fb3c4.jpg" alt="3090210469_18e71fb3c4"/></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a class="vlightbox" href="images/pictures/images/5120501_ff35c18020.jpg" title="National Congress"><img src="images/pictures/thumbnails/5120501.jpg" alt="National Congress"/></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a class="vlightbox" href="images/pictures/images/10572618_0d3de638bd.jpg" title="Teatro Nacional"><img src="images/pictures/thumbnails/10572618.jpg" alt="Teatro Nacional"/></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a class="vlightbox" href="images/pictures/images/8379767_79ae74f079.jpg" title="Supremo Tribunal Federal"><img src="images/pictures/thumbnails/8379767.jpg" alt="Supremo Tribunal Federal"/></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a class="vlightbox" href="images/pictures/images/3463984860_110b9675f8.jpg" title="3463984860_110b9675f8"><img src="images/pictures/thumbnails/3463984860_110b9675f8.jpg" alt="3463984860_110b9675f8"/></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <div id="footer_scroll_list" class="scrollableArea" >
+                        	<!-- modelo para iserção de imagens aqui -->
+                            <a class="vlightbox" href="images/pictures/images/278196684_5d283d2937.jpg" title="278196684_5d283d2937"><img src="images/pictures/thumbnails/278196684_5d283d2937.jpg" alt="278196684_5d283d2937"/></a>
                         </div>
                   </div>
                 </div>

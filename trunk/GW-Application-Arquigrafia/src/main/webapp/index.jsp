@@ -1,9 +1,14 @@
-<%@ page contentType="text/html; charset=utf-8" language="java" import="java.sql.*" errorPage="" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://www.groupwareworkbench.org.br/widgets/commons" prefix="Widgets" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.groupwareworkbench.org.br/widgets/tag" prefix="TagMgr" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
 <head>
 <link rel="stylesheet" media="screen" href="css/reset.css" />
-<link rel="stylesheet" media="screen" href="css/arq-common.css"  />
+<link rel="stylesheet" media="screen" href="css/arq-common.css" />
 <style type="text/css">#vlightbox a#vlb{display:none}</style> 
 <link rel="stylesheet" href="plugins/visual_lightbox/engine/css/visuallightbox.css" type="text/css" media="screen" /> 
 <link rel="stylesheet" href="plugins/visual_lightbox/engine/css/vlightbox.css" type="text/css" media="screen" />
@@ -18,10 +23,11 @@ $(function() {
 	
 });
 </script> 
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Arquigrafia Brasil</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Arquigrafia Brasil - Início</title>
 </head>
 <body>
+<h1>Bem-vindo a Arquigrafia</h1>
 	<!-- cabeçalho: provavelmente melhor tratar com tags -->
     <!-- carrossel principal de imagens, seguir o modelo para montar cada uma das linhas -->
     <!-- rodapé, seguir o modelo para inserir imagens e tags -->
