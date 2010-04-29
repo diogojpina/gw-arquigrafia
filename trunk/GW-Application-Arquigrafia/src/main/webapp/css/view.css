@@ -1,0 +1,107 @@
+@charset "utf-8";
+/* CSS Document */
+#wrap {
+	min-width: 960px;
+}
+#main_section {
+	margin-top: 20px;
+	margin-left: 26px;
+}
+#albuns {
+	float: right;
+	padding-right: 6px;
+	padding-left: 10px;
+	background-color: #FFF;
+}
+#albun_carrousel {
+	width: 100%;
+}
+#albun_carrousel_lft {
+	float: left;
+	width: 10px;
+	height: 120px;
+	background-image: url(../images/albun_carrousel_left.gif);
+	background-repeat: no-repeat;
+	background-attachment: scroll;
+}
+#albun_carrousel_rgt {
+	float: right;
+	width: 10px;
+	height: 120px;
+	background-image: url(../images/albun_carrousel_right.gif);
+	background-repeat: no-repeat;
+	background-attachment: scroll;
+}
+#albun_carrousel_bg {
+	width: 100%;
+	height: 120px;
+	background-image: url(../images/albun_carrousel_bg.png);
+	background-attachment: scroll;
+	background-repeat: repeat-x;
+}
+#albun_show_all {
+	float: right;
+	margin-top: 12px;
+}
+#albun_carrousel_ttl {
+	float: left;
+	margin-top: 12px;
+}
+#pic_title {
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+#pic_info {
+	float: right;
+	padding-right: 6px;
+	padding-left: 10px;
+	background-color: #FFF;
+}
+#picture {
+	float: left;
+}
+#attributes {
+	margin-top: 95px;
+	height: 250px;
+	background-image: url(../images/attributes_bg.gif);
+	background-repeat: repeat-x;
+	background-attachment: scroll;
+}
+.input_range {
+	width: 30px;
+	margin-right: 12px;
+	float: right;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #999;
+}
+#attributes_title {
+	padding-top: 8px;
+	padding-bottom: 8px;
+	padding-left: 10px;
+}
+#comment_area {
+	float: left;
+}
+#comment_lft {
+	float: left;
+	width: 10px;
+	height: 35px;
+	background-image: url(../images/view_comment_lft.png);
+	background-attachment: scroll;
+	background-repeat: no-repeat;
+}
+#comment_rgt {
+	float: right;
+	width: 10xpx;
+	height: 35px;
+	background-image: url(../images/view_comment_rgt.png);
+	background-attachment: scroll;
+	background-repeat: no-repeat;
+}
+#comment_bg {
+	width: 100%;
+	height: 35px;
+	background-image: url(../images/view_comment_bg.png);
+	background-attachment: scroll;
+	background-repeat: repeat-x;
