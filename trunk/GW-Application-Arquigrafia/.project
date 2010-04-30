@@ -9,6 +9,7 @@
 		<project>GW-core</project>
 		<project>GW-Libs</project>
 		<project>GW-PhotoManager</project>
+		<project>GW-ExternalSiteManager</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

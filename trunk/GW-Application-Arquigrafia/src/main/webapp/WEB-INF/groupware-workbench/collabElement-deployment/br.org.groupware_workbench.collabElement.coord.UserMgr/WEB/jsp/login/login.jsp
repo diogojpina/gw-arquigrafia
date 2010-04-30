@@ -2,6 +2,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://www.groupwareworkbench.org.br/widgets/commons" prefix="Widgets" %>
 <%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.groupwareworkbench.org.br/widgets/tag" prefix="TagMgr" %>
 <%-- TODO: Reformatar essa página. --%>
 <html>
     <head>
@@ -10,6 +12,22 @@
         <meta http-equiv="cache-control" content="no-cache">
         <link href="${pageContext.request.contextPath}/css/reset.css" rel="stylesheet" type="text/css" />
         <link href="${pageContext.request.contextPath}/css/login.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" media="screen" href="${pageContext.request.contextPath}/css/arq-common.css" />
+		<style type="text/css">#vlightbox a#vlb{display:none}</style> 
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/visual_lightbox/engine/css/visuallightbox.css" type="text/css" media="screen" /> 
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/visual_lightbox/engine/css/vlightbox.css" type="text/css" media="screen" />
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/sds/css/smoothDivScroll.css" type="text/css" media="screen" />
+		<link rel="stylesheet" media="screen" href="${pageContext.request.contextPath}/css/footer.css" />
+		<script type="text/javascript" src="${pageContext.request.contextPath}/scripts/jquery.min.js"></script>
+		<script src="${pageContext.request.contextPath}/plugins/sds/js/jquery.smoothDivScroll-0.9-min.js" type="text/javascript"></script>
+		<script src="${pageContext.request.contextPath}/plugins/sds/js/scroll.js" type="text/javascript"></script>
+		<script type="text/javascript">
+		$(function() {
+			$("div#makeMeScrollable").smoothDivScroll({scrollingSpeed: 12, mouseDownSpeedBooster: 3, visibleHotSpots: "always", startAtElementId: "startAtMe"});
+			
+		});
+		</script> 
+		        
     </head>
     <body>
     <form id="usuariosForm" method="post" name="loginForm" action='<c:url value="/groupware-workbench/${collablet.id}/userMgr/${userMgr.id}/login" />'>
@@ -20,16 +38,16 @@
     			<div id="lb_fields_1">
 	    			<ul>
 	    				<li><span class="style3">Login</span></li>
-	    				<li><input name="user.login" type="text" class="box" id="login" size="15" maxlength="30" /></li>
+	    				<li><input tabindex=1 name="user.login" type="text" class="box" id="login" size="15" maxlength="30" /></li>
 	    			</ul>
     			</div>
     			<div id="lb_fields_3">
-    				<input name="Submit" type="submit" class="botao" id="Submit" value="Entrar" />
+    				<input tabindex=3 name="Submit" type="submit" class="botao" id="Submit" value="Entrar" />
     			</div>
     			<div id="lb_fields_2">
     				<ul>
     					<li><span class="style3">Senha</span></li>
-    					<li><input name="user.password" type="password" class="box" id="senha" size="15" maxlength="30" /></li>
+    					<li><input tabindex=2 name="user.password" type="password" class="box" id="senha" size="15" maxlength="30" /></li>
     				</ul>
     			</div>
     		</div>
@@ -45,6 +63,6 @@
                 </c:if>
     		</div>
     	</div>
-              </form>
+        </form>
     </body>
 </html>

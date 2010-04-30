@@ -40,6 +40,7 @@
                             <c:if test="${tagMgr != null}">
                                 Tags clique em uma das tags abaixo para adicion&aacute;-la ao FAQ.
                                 <br />
+                                   <TagMgr:TagCloud tagMgr="${tagMgr}"/>
                                 <TagMgr:SelectTags tagMgr="${tagMgr}" />
                                 <TagMgr:SetTags tagMgr="${tagMgr}" idObject="${faq.id}" />
                             </c:if>

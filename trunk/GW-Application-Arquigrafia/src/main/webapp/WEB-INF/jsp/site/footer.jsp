@@ -1,12 +1,12 @@
 <div id="footer_wrap">
     <div style="float: left">
-    	<img src="images/footer_left_top.png" width="667" height="44"/>
+    	<img src="${pageContext.request.contextPath}/images/footer_left_top.png" width="667" height="44"/>
     </div>
     <div id="tag_cloud">
     	<!--  modelo para inserção de tags aqui -->
     	<!-- <a href="#" class="cloud0">tag1</a> -->
         <c:if test="${tagMgr != null}">
-        	<TagMgr:TagCloud tagMgr="${tagMgr}"/>
+        	<TagMgr:TagCloud tagMgr="${tagMgr}" />
         </c:if>
     </div>
     <div id="footer_carrousel_wrap">
@@ -21,7 +21,9 @@
                     <div class="scrollWrapper">
                         <div id="footer_scroll_list" class="scrollableArea" >
                         	<!-- modelo para iserção de imagens aqui -->
-                            <a class="vlightbox" href="images/pictures/images/278196684_5d283d2937.jpg" title="278196684_5d283d2937"><img src="images/pictures/thumbnails/278196684_5d283d2937.jpg" alt="278196684_5d283d2937"/></a>
+                        	<c:if test="${environment_photo != null}">
+                        		<photo:listAllClean linkClass="vlightbox" photoInstance="${environment_photo}"/>
+                       		</c:if>
                         </div>
                   </div>
                 </div>
