@@ -32,5 +32,10 @@ xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns
     <name>listAll</name>
     <path>/META-INF/tags/listAll.tag</path>
  </tag-file>
+ 
+  <tag-file>
+    <name>listAllClean</name>
+    <path>/META-INF/tags/listAllClean.tag</path>
+ </tag-file>
   
 </taglib>
