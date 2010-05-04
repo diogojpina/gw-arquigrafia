@@ -6,7 +6,7 @@
     	<!--  modelo para inserção de tags aqui -->
     	<!-- <a href="#" class="cloud0">tag1</a> -->
         <c:if test="${tagMgr != null}">
-        	<TagMgr:TagCloud tagMgr="${tagMgr}" collabletInstance="${siteInstance}" />
+        	<TagMgr:TagCloud tagMgr="${tagMgr}" collabletInstance="${siteInstance}"/>
         </c:if>
     </div>
     <div id="footer_carrousel_wrap">
@@ -22,7 +22,7 @@
                         <div id="footer_scroll_list" class="scrollableArea" >
                         	<!-- modelo para iserção de imagens aqui -->
                         	<c:if test="${environment_photo != null}">
-                        		<photo:listAllClean linkClass="vlightbox" photoInstance="${environment_photo}"/>
+                        		<photo:listAll linkClass="vlightbox" photoInstance="${environment_photo}" keepRatio="true"/>
                        		</c:if>
                         </div>
                   </div>
