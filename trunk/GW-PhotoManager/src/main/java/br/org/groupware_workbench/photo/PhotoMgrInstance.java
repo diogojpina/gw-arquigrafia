@@ -14,6 +14,7 @@ import br.org.groupware_workbench.photo.internal.PhotoDAO;
 public class PhotoMgrInstance extends CollabletInstance {
 	private PhotoDAO dao = DAOFactory.get(PhotoDAO.class);;
 	private String dirImagesRelativo = "images";
+	private String cropPrefix = "crop_";
 	private	String thumbPrefix="thumb_";
 	private String mostraPrefix="mostra_";
 	private  String dirImagesAbsoluto = null;		
@@ -21,6 +22,7 @@ public class PhotoMgrInstance extends CollabletInstance {
 	public PhotoMgrInstance() {		
 		super();
 		this.thumbPrefix="thumb_";
+		this.setCropPrefix("crop_");
 		this.mostraPrefix="mostra_";		
 	}
 
@@ -95,5 +97,13 @@ public class PhotoMgrInstance extends CollabletInstance {
 
 	public String getDirImagesAbsoluto() {
 		return dirImagesAbsoluto;
+	}
+
+	public void setCropPrefix(String cropPrefix) {
+		this.cropPrefix = cropPrefix;
+	}
+
+	public String getCropPrefix() {
+		return cropPrefix;
 	}	
 }

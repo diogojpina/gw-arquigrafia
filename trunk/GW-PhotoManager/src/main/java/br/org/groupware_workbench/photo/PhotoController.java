@@ -1,6 +1,7 @@
 package br.org.groupware_workbench.photo;
 
 import java.awt.Dimension;
+import java.awt.Point;
 import java.io.InputStream;
 import java.util.Date;
 import java.util.HashMap;
@@ -96,6 +97,7 @@ public class PhotoController {
 		
 		result.include("fotos",resultFotosBusca);
 		result.include("thumbPrefix", photoInstance.getThumbPrefix());
+		result.include("cropPrefix", photoInstance.getCropPrefix());
 		result.include("mostraPrefix",photoInstance.getMostraPrefix());
 		result.include("dirImagem", photoInstance.getDirImagesRelativo());
 		result.use(Results.logic()).redirectTo(PhotoController.class).busca(photoInstance);
@@ -128,6 +130,7 @@ public class PhotoController {
 		resultFotosBusca=photoInstance.buscaFotoAvancada(nome,lugar,descricao,date);			
 		result.include("fotos",resultFotosBusca);
 		result.include("thumbPrefix", photoInstance.getThumbPrefix());
+		result.include("cropPrefix", photoInstance.getCropPrefix());
 		result.include("dirImagem", photoInstance.getDirImagesRelativo());
 		result.use(Results.logic()).redirectTo(PhotoController.class).busca(photoInstance);		
 	}
@@ -174,14 +177,17 @@ public class PhotoController {
 
 		InputStream imagenOriginal=null;
 		InputStream imagenThumb=null;
+		InputStream imagenCropped = null;
 		InputStream imagenMostra=null;
 
 		try {
 			imagenOriginal = foto.getFile();
 			imagenMostra = ImageUtils.createThumbnail(new Dimension(800, 600), imagenOriginal);
 			imagenOriginal.reset();
-			imagenMostra = ImageUtils.createThumbnail(new Dimension(100, 100), imagenOriginal);
-			imagenOriginal.reset();		
+			imagenThumb = ImageUtils.createThumbnail(new Dimension(100, 100), imagenOriginal);
+			imagenOriginal.reset();
+			imagenCropped = ImageUtils.cropImage(ImageUtils.calcSqrThumbCropPoint(imagenOriginal), 
+													new Dimension(100,100), imagenOriginal);
 		} catch (Exception e) {
 			//e.printStackTrace();
 			validator.add(new ValidationMessage("Não foi possivel escalar a imagen","Erro"));
@@ -192,7 +198,7 @@ public class PhotoController {
 		try{			
 		photoInstance.save(photoRegister);				
 		photoInstance.saveImage(imagenOriginal, nomeArquivo);
-		
+		photoInstance.saveImage(imagenCropped, photoInstance.getCropPrefix() + nomeArquivo);
 		photoInstance.saveImage(imagenThumb,photoInstance.getThumbPrefix()+nomeArquivo);			
 		photoInstance.saveImage(imagenMostra,photoInstance.getMostraPrefix()+nomeArquivo);
 		

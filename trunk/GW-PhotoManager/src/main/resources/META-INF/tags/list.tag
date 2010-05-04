@@ -11,6 +11,11 @@
 	type="br.org.groupware_workbench.photo.PhotoMgrInstance"%>
 <%@ attribute name="photos" required="true" rtexprvalue="true"
 	type="java.util.List"%>
+<%@ attribute name="linkClass" required="false" type="String" %>
+<%@ attribute name="showName" required="false" type="Boolean" rtexprvalue="false" %>
+<%@ attribute name="showLocation" required="false" type="Boolean" rtexprvalue="false" %>
+<%@ attribute name="nameClass" required="false" type="String" %>
+<%@ attribute name="locationclass" required="false" type="String" %>
 
 <r:callMethod methodName="getDirImagesRelativo"
 	instance="${photoInstance}" var="dirImagen" />
@@ -18,26 +23,32 @@
 	var="thumbPrefix" />
 <r:callMethod methodName="getMostraPrefix" instance="${photoInstance}"
 	var="showPrefix" />
-		
-<table>
-	<thead>
-		<tr>
-			<td><b>Imagem</b></td>
-			<td><b>Nome</b></td>
-			<td><b>Lugar</b></td>
-		</tr>
-	</thead>
 
 	<c:forEach var="foto" items="${photos}">
-		<tr>
-			<td><a rel="linkimage"
-				href="<c:url value="/groupware-workbench/${photoInstance.id}/photo/show/${foto.id}"/>">
-											
+		<c:if test="${showName} || ${showLocattion}">
+			<div><div>
+		</c:if>
+		<a class="${linkClass}" rel="linkimage"
+				href="<c:url value="/groupware-workbench/${photoInstance.id}/photo/show/${foto.id}"/>">							
 			<img
-				src="${pageContext.request.contextPath}/${dirImagen}/${thumbPrefix}${foto.nomeArquivo}" />
-			</a></td>
-			<td>${foto.nome}</td>
-			<td>${foto.lugar}</td>
+				src="${pageContext.request.contextPath}/${dirImagen}/${thumbPrefix}${foto.nomeArquivo}" alt="${foto.nome}"/>
+			</a>
+			<c:if test="${showName} || ${showLocattion}">
+				</div>
+			</c:if>
+			<c:if test="${showName}">
+				<div class="${nameClass}">
+					${foto.nome}
+				</div>
+			</c:if>
+			<c:if test="${showLocation}">
+				<div class="${locationClass}" >
+					${foto.lugar}
+				</div>
+			</c:if>
+			<c:if test="${showName} || ${showLocattion}">
+				</div>
+			</c:if>
 		</tr>
 	</c:forEach>
 </table>

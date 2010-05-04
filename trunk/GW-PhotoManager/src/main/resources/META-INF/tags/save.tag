@@ -6,6 +6,12 @@
 <%@ attribute name="photoRegister" required="true" rtexprvalue="true" type="br.org.groupware_workbench.photo.Photo" %>
 <%@ attribute name="photoInstance" required="true" rtexprvalue="true" type="br.org.groupware_workbench.photo.PhotoMgrInstance" %>
 <%@ attribute name="tagMgr" required="true" rtexprvalue="true" type="br.org.groupware_workbench.collabElement.communic.tagMgr.api.TagMgrInstance" %>
+<%@ attribute name="formClass" required="false" type="String"%>
+<%@ attribute name="formLineClass" required="false" type="String" %>
+<%@ attribute name="formLabelClass" required="false" type="String"%>
+<%@ attribute name="formInputClass" required="false" type="String" %>
+<%@ attribute name="formLineBtClass" required="false" type="String"%>
+<%@ attribute name="formSubmitBtClass" required="false" type="String" %>
 
 
 
@@ -29,41 +35,38 @@
 
 
 <input type="hidden" name="photoRegister.id" value="<c:out value="${photoRegister.id}" />" />
-<table>
-	<tr>
-		<!--td colspan="2">Registrar uma foto</td-->
-	</tr>
-	<tr>
-		<td>Nome:</td>
-		<td><input type="text" name="photoRegister.nome"></td>
-	</tr>
-	<tr>
-		<td>Descrição:</td>
-		<td><textarea rows="3" name="photoRegister.descricao"></textarea></td>
-	</tr>
-	<tr>
-		<td>Lugar onde foi tirada</td>
-		<td><input type="text" name="photoRegister.lugar"></td>
-	</tr>
-	<tr style="vertical-align: top">
-		<td>Tags:</td>
-		<td>
+<div class="${formClass}" id="image_save_form">
+	<ul class="${formLineClass}">
+		<li class="${formLabelClass}"><span>Nome*:</span></li>
+		<li class="${formInputClass}"><input type="text" name="photoRegister.nome"></li>
+	</ul>
+	<ul class="${formLineClass}">
+		<li class="${formLabelClass}"><span>Descrição:</span></li>
+		<li class="${formInputClass}"><textarea rows="3" name="photoRegister.descricao"></textarea></li>
+	</ul>
+	<ul class="${formLineClass}">
+		<li class="${formLabelClass}"><span>Lugar onde foi tirada</span></li>
+		<li class="${formInputClass}"><input type="text" name="photoRegister.lugar"></li>
+	</ul>
+	<ul class="${formLineClass}" style="vertical-align: top">
+		<li class="${formLabelClass}"><span>Tags:</span></li>
+		<li class="${formInputClass}">
 			<c:if test="${tagMgr != null}">                                
 	            <TagMgr:SelectTags tagMgr="${tagMgr}" />
 	            <TagMgr:SetTags tagMgr="${tagMgr}" idObject="${photoRegister.id}" />
 			</c:if>		
-		</td>
-	</tr>	
-	<tr>
-		<td>Data</td>
-		<td><input type="text" id="datepicker" name=photoRegister.data>
-		</td>
-	</tr>
-	<tr>
-		<td>Arquivo:</td>
-		<td><input type="file" name="foto"></td>
-	</tr>
-	<tr>
-		<td colspan="2"><input type="submit" value="Salvar"></td>
-	</tr>
-</table>
+		</li>
+	</ul>	
+	<ul class="${formLineClass}">
+		<li class="${formLabelClass}"><span>Data:</span></li>
+		<li class="${formInputClass}"><input type="text" id="datepicker" name=photoRegister.data>
+		</li>
+	</ul>
+	<ul class="${formLineClass}">
+		<li class="${formLabelClass}"><span>Arquivo*:</span></li>
+		<li class="${formInputClass}"><input type="file" name="foto"></li>
+	</ul>
+	 <ul class="${formLineBtClass}">
+     	<li class="${formSubmitBtClass}"><input type="submit" value="Salvar"></li>
+	</ul>
+</div>

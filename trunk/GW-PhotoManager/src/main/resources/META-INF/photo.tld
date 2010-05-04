@@ -19,23 +19,28 @@ xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns
  </tag-file>
  
  <tag-file>
+ 	<name>simpleSearch</name>
+ 	<path>/META-INF/tags/simpleSearch.tag</path>
+ </tag-file>
+ 
+ <tag-file>
+ 	<name>advancedSearch</name>
+ 	<path>/META-INF/tags/advancedSearch.tag</path>
+ </tag-file>
+ 
+ <tag-file>
     <name>list</name>
     <path>/META-INF/tags/list.tag</path>
  </tag-file>
  
  <tag-file>
-    <name>mostra</name>
-    <path>/META-INF/tags/mostra.tag</path>
+    <name>show</name>
+    <path>/META-INF/tags/show.tag</path>
  </tag-file>
   
  <tag-file>
     <name>listAll</name>
     <path>/META-INF/tags/listAll.tag</path>
- </tag-file>
- 
-  <tag-file>
-    <name>listAllClean</name>
-    <path>/META-INF/tags/listAllClean.tag</path>
  </tag-file>
   
 </taglib>
