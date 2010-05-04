@@ -48,6 +48,21 @@ $(function() {
 <body>
 <div id="wrap">
 	<%@ include file="header.jsp" %>
+	
+    <div id="main_section">
+		<div id="makeMeScrollable"  style="border-style: solid; border-width: thin; border-color: #666;padding-left: 0px; height: 510px">
+                    <div class="scrollingHotSpotLeft" style=" height: 510px;"></div>
+                    <div class="scrollingHotSpotRight" style="height: 510px"></div>
+                    <div class="scrollWrapper">
+                        <div class="scrollableArea">
+                        
+                		<script type="text/javascript" src="plugins/visual_lightbox/engine/js/visuallightbox.js" ></script>
+                    </div>
+                    </div>
+                    </div>
+    	</div>
+	</div>
+	<%@ include file="know_more.jsp" %>
 	<div style="height: 30px;"></div>
 	<%@ include file="footer.jsp" %>
 </div>

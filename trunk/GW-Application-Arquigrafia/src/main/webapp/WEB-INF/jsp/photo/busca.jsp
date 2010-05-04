@@ -48,20 +48,18 @@
 <br/>
 <br />
 
-
-<table width="100%">
-<tr style="vertical-align: top">
-<td>
-	<h1>Busca Fotos</h1>
+<div>
+	<h1>Busca de Fotos</h1>
 	<photo:search photoInstance="${photoInstance}"/>
-	<photo:list photos="${fotos}" photoInstance="${photoInstance}"/>
-</td>
-<td>
+</div>
+<div>
+	<photo:list photos="${fotos}" photoInstance="${photoInstance}" 
+				showName="true" showLocation="true"/>
+</div>
+<div>
 	<h1>Lista Fotos</h1>
-	<photo:listAll photoInstance="${photoInstance}"/>	
-</td>
-</tr>
-</table>
+	<photo:listAll photoInstance="${photoInstance}" keepRatio="true"/>	
+</div>
 
 <c:forEach var="error" items="${errors}">
 	${error.category} - ${error.message} <br />

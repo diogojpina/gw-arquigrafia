@@ -27,7 +27,7 @@
 	<table>
 	<tr style="vertical-align: top">
 	 	<td>
-	 		<photo:mostra idPhoto="${idPhoto}"  photoInstance="${photoInstance}"/>
+	 		<photo:show idPhoto="${idPhoto}"  photoInstance="${photoInstance}"/>
 	 	</td>
 	 	<td>
 	 		<c:if test="${binomialMgr!=null}">	 			
