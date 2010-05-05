@@ -101,10 +101,9 @@ public class PhotoController {
 
     @Post
     @Path(value = "/groupware-workbench/{photoInstance}/photo/buscaA")
-    public void buscaFotoAvanzada(String nome, String descricao, String lugar, Date date,PhotoMgrInstance photoInstance ){
+    public void buscaFotoAvancada(String nome, String descricao, String lugar, Date date, PhotoMgrInstance photoInstance) {
         if (nome.isEmpty() && descricao.isEmpty() && lugar.isEmpty() && date == null) {
             validator.add(new ValidationMessage("Nenhum campo foi preenchido.", "Erro"));
-            //validator.onErrorUse(Results.page()).redirect("/groupware-workbench/"+idCollabletInstance+"/photo");
             validator.onErrorUse(Results.logic()).redirectTo(PhotoController.class).busca(photoInstance);
             return;
         }

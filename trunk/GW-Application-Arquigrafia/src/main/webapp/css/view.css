@@ -93,7 +93,7 @@
 }
 #comment_rgt {
 	float: right;
-	width: 10xpx;
+	width: 10px;
 	height: 35px;
 	background-image: url(../images/view_comment_rgt.png);
 	background-attachment: scroll;
@@ -105,3 +105,4 @@
 	background-image: url(../images/view_comment_bg.png);
 	background-attachment: scroll;
 	background-repeat: repeat-x;
+}

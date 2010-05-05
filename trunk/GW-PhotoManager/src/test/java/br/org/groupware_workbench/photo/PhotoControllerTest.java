@@ -18,185 +18,172 @@ import br.com.caelum.vraptor.util.test.MockValidator;
 import br.com.caelum.vraptor.validator.Message;
 import br.com.caelum.vraptor.validator.ValidationException;
 import br.com.caelum.vraptor.view.LogicResult;
-import br.org.groupware_workbench.collabElement.mock.MockResult;
+import br.com.caelum.vraptor.util.test.MockResult;
 import br.org.groupware_workbench.collabElementFw.facade.CollabElementInstance;
 
 public class PhotoControllerTest {
-	private PhotoController controller;
-	private PhotoMgrInstance photoInstance;
-	private MockValidator validator;
-	private MockResult result;
-	private LogicResult view;
-	private RequestInfo requestInfo;
-	private HttpServletRequest httpServletRequest;
-	private List<Photo> photos;
 
-	@Before
-	public void setUp() {
-		view = mock(LogicResult.class);
-		result = new MockResult(view);
+    private PhotoController controller;
+    private PhotoMgrInstance photoInstance;
+    private MockValidator validator;
+    private MockResult result;
+    private LogicResult view;
+    private RequestInfo requestInfo;
+    private HttpServletRequest httpServletRequest;
+    private List<Photo> photos;
 
-		requestInfo = mock(RequestInfo.class);
-		httpServletRequest = mock(HttpServletRequest.class);
-		photoInstance = mock(PhotoMgrInstance.class);
+    @Before
+    public void setUp() {
+        view = mock(LogicResult.class);
+        result = new MockResult();
 
-		photos = new ArrayList<Photo>();
+        requestInfo = mock(RequestInfo.class);
+        httpServletRequest = mock(HttpServletRequest.class);
+        photoInstance = mock(PhotoMgrInstance.class);
 
-		Photo um = new Photo();
-		um.setId(1);
-		um.setIdInstance(1);
-		um.setNome("foto Um");
-		um.setNomeArquivo("fotoum.jpg");
+        controller = new PhotoController(result, new MockValidator(), httpServletRequest, requestInfo);
+        when(view.redirectTo(PhotoController.class)).thenReturn(controller);
 
-		Photo dois = new Photo();
-		dois.setId(2);
-		dois.setIdInstance(1);
-		dois.setNome("foto Dois");
-		dois.setNomeArquivo("fotodois.jpg");
+        photos = new ArrayList<Photo>();
 
-		photos.add(um);
-		photos.add(dois);
-	}
+        Photo um = new Photo();
+        um.setId(1);
+        um.setIdInstance(1);
+        um.setNome("foto Um");
+        um.setNomeArquivo("fotoum.jpg");
 
-	@Test
-	public void shouldBuscarFotosByString() {
-		controller = new PhotoController(result, new MockValidator(),
-				httpServletRequest, requestInfo);
+        Photo dois = new Photo();
+        dois.setId(2);
+        dois.setIdInstance(1);
+        dois.setNome("foto Dois");
+        dois.setNomeArquivo("fotodois.jpg");
 
-		when(photoInstance.getCollabElementInstances()).thenReturn(
-				new ArrayList<CollabElementInstance>());
-		when(view.redirectTo(PhotoController.class)).thenReturn(controller);
-		when(photoInstance.buscaFoto("fo")).thenReturn(null);
+        photos.add(um);
+        photos.add(dois);
+    }
 
-		try {
-			controller.buscaFoto("fo", photoInstance);
-		} catch (ValidationException e) {
-			List<Message> errors = e.getErrors();
-		}
+    @Test
+    public void shouldBuscarFotosByString() {
+        when(photoInstance.getCollabElementInstances()).thenReturn(new ArrayList<CollabElementInstance>());
+        when(photoInstance.buscaFoto("fo")).thenReturn(null);
 
-		when(photoInstance.buscaFoto("fot")).thenReturn(photos);
-		controller.buscaFoto("fot", photoInstance);
+        try {
+            controller.buscaFoto("fo", photoInstance);
+            Assert.fail();
+        } catch (ValidationException e) {
+            List<Message> errors = e.getErrors();
+        }
 
-		Photo um = new Photo();
-		um.setId(1);
-		um.setIdInstance(1);
-		um.setNome("foto Um");
-		um.setNomeArquivo("fotoum.jpg");
+        when(photoInstance.buscaFoto("fot")).thenReturn(photos);
+        controller.buscaFoto("fot", photoInstance);
 
-		Photo dois = new Photo();
-		dois.setId(2);
-		dois.setIdInstance(1);
-		dois.setNome("foto Dois");
-		dois.setNomeArquivo("fotodois.jpg");
+        Photo um = new Photo();
+        um.setId(1);
+        um.setIdInstance(1);
+        um.setNome("foto Um");
+        um.setNomeArquivo("fotoum.jpg");
 
-		Photo[] fotos = { um, dois };
+        Photo dois = new Photo();
+        dois.setId(2);
+        dois.setIdInstance(1);
+        dois.setNome("foto Dois");
+        dois.setNomeArquivo("fotodois.jpg");
 
-		List<Photo> fotosResult = (List<Photo>) result.get("fotos");
-		Assert.assertArrayEquals(fotosResult.toArray(), fotos);
+        Photo[] fotos = {um, dois};
 
-	}
+        List<Photo> fotosResult = (List<Photo>) result.included("fotos");
+        Assert.assertArrayEquals(fotosResult.toArray(), fotos);
 
-	@Test
-	public void shouldFazerBuscaAvanzada() {
-		controller = new PhotoController(result, new MockValidator(),
-				httpServletRequest, requestInfo);
+    }
 
-		when(photoInstance.getCollabElementInstances()).thenReturn(
-				new ArrayList<CollabElementInstance>());
-		when(view.redirectTo(PhotoController.class)).thenReturn(controller);
-		
+    @Test
+    public void shouldFazerBuscaAvancada() {
+        when(photoInstance.getCollabElementInstances()).thenReturn(new ArrayList<CollabElementInstance>());
 
-		try {
-			controller.buscaFotoAvanzada("", "", "", null, photoInstance); 
-		} catch (ValidationException e) {
-			List<Message> errors = e.getErrors();
-			Assert.assertEquals(1, errors.size());
-			Assert.assertEquals("Nenhum campo prechido", errors.get(0).getMessage());
-		}
+        try {
+            controller.buscaFotoAvancada("", "", "", null, photoInstance);
+            Assert.fail();
+        } catch (ValidationException e) {
+            List<Message> errors = e.getErrors();
+            Assert.assertEquals(1, errors.size());
+            Assert.assertEquals("Nenhum campo prechido", errors.get(0).getMessage());
+        }
 
-		when(photoInstance.buscaFotoAvancada("fotoun", "", "", null)).thenReturn(photos); 
-		controller.buscaFotoAvanzada("fotoun", "", "", null, photoInstance);
+        when(photoInstance.buscaFotoAvancada("fotoun", "", "", null)).thenReturn(photos);
+        controller.buscaFotoAvancada("fotoun", "", "", null, photoInstance);
 
-		Photo um = new Photo();
-		um.setId(1);
-		um.setIdInstance(1);
-		um.setNome("foto Um");
-		um.setNomeArquivo("fotoum.jpg");
+        Photo um = new Photo();
+        um.setId(1);
+        um.setIdInstance(1);
+        um.setNome("foto Um");
+        um.setNomeArquivo("fotoum.jpg");
 
-		Photo dois = new Photo();
-		dois.setId(2);
-		dois.setIdInstance(1);
-		dois.setNome("foto Dois");
-		dois.setNomeArquivo("fotodois.jpg");
+        Photo dois = new Photo();
+        dois.setId(2);
+        dois.setIdInstance(1);
+        dois.setNome("foto Dois");
+        dois.setNomeArquivo("fotodois.jpg");
 
-		Photo[] fotos = { um, dois };
+        Photo[] fotos = {um, dois};
 
-		List<Photo> fotosResult = (List<Photo>) result.get("fotos");
-		Assert.assertArrayEquals(fotosResult.toArray(), fotos);
+        List<Photo> fotosResult = (List<Photo>) result.included("fotos");
+        Assert.assertArrayEquals(fotosResult.toArray(), fotos);
+    }
 
-	}
+    @Test
+    public void shouldSave() {
+        Photo um = new Photo();
+        um.setIdInstance(1);
+        um.setNome("");
 
-	@Test
-	public void shouldSave() {
-		controller = new PhotoController(result, new MockValidator(),
-				httpServletRequest, requestInfo);
-		when(view.redirectTo(PhotoController.class)).thenReturn(controller);
+        String[] mesagens = {"O nome é obrigatório.", "Uma imagem é obrigatória.", "Não foi possível redimensionar a imagem."};
+        try {
+            controller.save(um, null, photoInstance);
+            Assert.fail();
+        } catch (ValidationException e) {
+            List<Message> erros = e.getErrors();
+            List<String> outMesagens = new ArrayList<String>();
+            for (Message message : erros) {
+                outMesagens.add(message.getMessage());
+            }
+            Assert.assertEquals(2, erros.size());
+            Assert.assertTrue(outMesagens.contains(mesagens[0]));
+            Assert.assertTrue(outMesagens.contains(mesagens[1]));
+        }
 
-		Photo um = new Photo();
-		um.setIdInstance(1);
-		um.setNome("");
+        um.setNome("foto Um");
+        um.setNomeArquivo("fotoum.jpg");
 
-		String[] mesagens = { "O nome é obrigatorio",
-				"Uma imagem é obrigatoria", "Não foi possivel escalar a imagen" };
-		try {
-			controller.save(um, null, photoInstance);
-		} catch (ValidationException e) {
-			List<Message> erros = e.getErrors();
-			List<String> outMesagens = new ArrayList<String>();
-			for (Message message : erros) {
-				outMesagens.add(message.getMessage());
-			}
-			Assert.assertEquals(2, erros.size());
-			Assert.assertTrue(outMesagens.contains(mesagens[0]));
-			Assert.assertTrue(outMesagens.contains(mesagens[1]));
-		}
+        try {
+            controller.save(um, null, photoInstance);
+            Assert.fail();
+        } catch (ValidationException e) {
+            List<Message> erros = e.getErrors();
+            List<String> outMesagens = new ArrayList<String>();
+            for (Message message : erros) {
+                outMesagens.add(message.getMessage());
+            }
+            Assert.assertEquals(1, erros.size());
+            Assert.assertTrue(outMesagens.contains(mesagens[1]));
+        }
 
-		um.setNome("foto Um");
-		um.setNomeArquivo("fotoum.jpg");
+        UploadedFile file = mock(UploadedFile.class);
+        um.setNomeArquivo("fotoum.jpg");
 
-		controller = new PhotoController(result, new MockValidator(),
-				httpServletRequest, requestInfo);
-		when(view.redirectTo(PhotoController.class)).thenReturn(controller);
+        controller = new PhotoController(result, new MockValidator(), httpServletRequest, requestInfo);
+        when(view.redirectTo(PhotoController.class)).thenReturn(controller);
 
-		try {
-			controller.save(um, null, photoInstance);
-		} catch (ValidationException e) {
-			List<Message> erros = e.getErrors();
-			List<String> outMesagens = new ArrayList<String>();
-			for (Message message : erros) {
-				outMesagens.add(message.getMessage());
-			}
-			Assert.assertEquals(1, erros.size());
-			Assert.assertTrue(outMesagens.contains(mesagens[1]));
-		}
-
-		UploadedFile file = mock(UploadedFile.class);
-		um.setNomeArquivo("fotoum.jpg");
-
-		controller = new PhotoController(result, new MockValidator(),
-				httpServletRequest, requestInfo);
-		when(view.redirectTo(PhotoController.class)).thenReturn(controller);
-
-		try {
-			controller.save(um, file, photoInstance);
-		} catch (ValidationException e) {
-			List<Message> erros = e.getErrors();
-			List<String> outMesagens = new ArrayList<String>();
-			for (Message message : erros) {
-				outMesagens.add(message.getMessage());
-			}
-			Assert.assertEquals(1, erros.size());
-			Assert.assertTrue(outMesagens.contains(mesagens[2]));
-		}
-	}
+        try {
+            controller.save(um, file, photoInstance);
+            Assert.fail();
+        } catch (ValidationException e) {
+            List<Message> erros = e.getErrors();
+            List<String> outMesagens = new ArrayList<String>();
+            for (Message message : erros) {
+                outMesagens.add(message.getMessage());
+            }
+            Assert.assertEquals(1, erros.size());
+            Assert.assertTrue(outMesagens.contains(mesagens[2]));
+        }
+    }
 }
