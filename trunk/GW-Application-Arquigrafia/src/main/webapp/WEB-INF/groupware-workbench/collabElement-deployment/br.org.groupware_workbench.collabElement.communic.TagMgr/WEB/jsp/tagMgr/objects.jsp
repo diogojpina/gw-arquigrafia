@@ -6,18 +6,19 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta http-equiv="cache-control" content="no-cache">
-        <title>Obejetos Tagueados</title>
-        <link href="${pageContext.request.contextPath}/css/novo.css" rel="stylesheet" type="text/css" />
+        <title>Objetos Tagueados</title>
+        <link href="${pageContext.request.contextPath}/css/reset.css" rel="stylesheet" type="text/css" />
+        <link href="${pageContext.request.contextPath}/css/common.css" rel="stylesheet" type="text/css" />
     </head>
     <body>
         <Widgets:Topo collabletInstance="${collabletInstance}" />
-        <Widgets:ConteudoPagina titulo="Obejetos Tagueados">            
-	        <c:forEach items="${geList}" var="genericEntity">
-	            <a href="${pageContext.request.contextPath}${urlComponent}/${genericEntity.id}">${urlComponent}/${genericEntity.id}</a>
-	            <br/>
-	        </c:forEach>
-	        <br/>
-	    <Widgets:Voltar collabletInstance="${collabletInstance}" isCollabElement="true" />
+        <Widgets:ConteudoPagina titulo="Objetos Tagueados">
+            <c:forEach items="${geList}" var="genericEntity">
+                <a href="<c:url value="${Widgets:urlIdCollablet(urlComponent, genericEntity.idInstance)}/${genericEntity.id}" />" ><c:url value="${Widgets:urlIdCollablet(urlComponent, genericEntity.idInstance)}/${genericEntity.id}" /></a>
+                <br/>
+            </c:forEach>
+            <br/>
+        <Widgets:Voltar collabletInstance="${collabletInstance}" isCollabElement="true" />
         </Widgets:ConteudoPagina>
     </body>
 </html>

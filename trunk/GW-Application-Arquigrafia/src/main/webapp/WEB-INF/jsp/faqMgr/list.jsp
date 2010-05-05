@@ -1,4 +1,6 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ taglib uri="http://www.groupwareworkbench.org.br/widgets/commons" prefix="Widgets" %>
+<%@ taglib uri="http://www.groupwareworkbench.org.br/widgets/collections" prefix="coll" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <html>
@@ -10,97 +12,38 @@
         <link href="${pageContext.request.contextPath}/css/page_content.css" rel="stylesheet" type="text/css" />
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/listagem.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
-        <script type="text/javascript">
-            function incluir() {
-                window.location.href = "<c:url value="/groupware-workbench/${faqMgr.id}/faq/0" />";
-            }
-
-            function deletar(url) {
-                $.post(url,
-                    { _method: 'DELETE'},
-                    function(data) {
-                        window.open('<c:url value="/groupware-workbench/${faqMgr.id}/faq" />', '_self');
-                        window.location.reload(true);
-                        return false;
-                    }
-                );
-            }
-        </script>
+        <Widgets:Tabela baseUrl="/groupware-workbench/${faqMgr.id}/faq"
+                        msgAdd="Adicionar nova pergunta"
+                        msgDelete="Tem certeza que deseja excluir a pergunta?"
+                        msgVazio="Não há perguntas no FAQ."
+                        target="tabela-perguntas"
+                        titles="${coll:asList1('Pergunta')}"
+                        columns="${coll:asList1('pergunta')}"
+                        elements="${faqList}" />
     </head>
     <body>
         <Widgets:Topo collabletInstance="${faqMgr}" />
 
         <Widgets:ConteudoPagina titulo="Faq">
-            <br />
-            Lista de perguntas e respostas frequentes
-            <br />
-            <!-- --------- Configuração --------------  -->
+
             <div id="subtitle_1">
-           		<Widgets:Configuracao collabletInstance="${faqMgr}" />
-           	</div>
-
-			<div id="subtitle_2">
-            	<span class="subTitulo">Perguntas frequentes</span>
+                <span class="subTitulo">Configura&ccedil;&atilde;o</span>
+                <Widgets:Configuracao collabletInstance="${faqMgr}" />
             </div>
-            <c:choose>
-                <c:when test="${empty faqList}">
-                    <br />
-                    N&atilde;o h&aacute; perguntas no FAQ.
-                    <br />
-                    <br />
-                </c:when>
 
-                <c:otherwise>
-                    <script type="text/javascript">
-                        var tabFaq = new Tabela('tabFaq');
-                        tabFaq.addColuna('Perguntas', 'left', true);
-                        tabFaq.addColuna('Opções', 'left', false);
-                    </script>
-                    <div>
-                        <c:forEach var="faq" items="${faqList}">
-                            <script type="text/javascript">
-                                tabFaq.addCelula('<c:out value="${faq.pergunta}" />', '<c:out value="${faq.pergunta}" />');
+            <div id="subtitle_2">
+                <span class="subTitulo">Lista de perguntas e respostas frequentes</span>
+                <div id="tabela-perguntas"></div>
+            </div>
 
-                                var options =
-                                    '<a href="<c:url value="/groupware-workbench/${faqMgr.id}/faq/${faq.id}" />">' +
-                                        '<img src="${pageContext.request.contextPath}/images/icon/edit.gif" border="0" alt="Editar">' +
-                                    '</a> | ';
-
-                                options +=
-                                    "<a href=\"#\" onclick=\"deletar('<c:url value="/groupware-workbench/${faqMgr.id}/faq/${faq.id}" />');\">" +
-                                        "<img src='${pageContext.request.contextPath}/images/icon/delete.gif' border='0' alt='delete' />" +
-                                    "</a>";
-
-                                tabFaq.addCelula(options, '<c:out value="${faq.id}" />');
-                            </script>
-                        </c:forEach>
-                        <script type="text/javascript">
-                            tabFaq.mostraListagem();
-                        </script>
-                    </div>
-                </c:otherwise>
-            </c:choose>
-
-            <div style="clear: both; padding-top: 8px;">
-                <input type="button" class="botao" onclick="incluir()" value="Adicionar nova pergunta" />
-
-                <br />
-                <br />
-
-                <!-- --------- Collablets -------------- -->
-                <c:if test="${!empty faqMgr.subordinatedInstances}">
-                	<div id="subtitle_3">
-                    	<span class="subTitulo">Collablets</span>
-                    </div>
-                    <br />
-
+            <c:if test="${not empty faqMgr.subordinatedInstances}">
+                <div id="subtitle_3">
+                    <span class="subTitulo">Collablets</span>
                     <Widgets:MenuFerramentas collabletInstance="${faqMgr}" groups="${groups}" />
-                    <br />
-                    <br />
-                    <br />
-                </c:if>
-                <Widgets:Voltar collabletInstance="${faqMgr}" />
-            </div>
+                </div>
+            </c:if>
+
+            <Widgets:Voltar collabletInstance="${faqMgr}" />
         </Widgets:ConteudoPagina>
     </body>
 </html>

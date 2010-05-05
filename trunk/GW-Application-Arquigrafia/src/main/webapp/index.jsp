@@ -9,7 +9,6 @@
         </script>
     </head>
     <body>
-    
         <p>Redirecting, please wait...</p>
     </body>
 </html>

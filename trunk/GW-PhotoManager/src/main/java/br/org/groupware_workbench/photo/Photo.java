@@ -6,74 +6,76 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 
 import br.org.groupware_workbench.coreutils.GenericEntity;
-
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Photo extends GenericEntity {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -4757949223957140519L;
-	
-	@Column(name="nome",unique=true, nullable=false)
-	private String nome;
-	
-	@Column(name="nome_arquivo",unique=true, nullable=false)	
-	private String nomeArquivo;	
-		
-	private String descricao;
-	private String lugar;
-	private Date data;
-	
-		
-	//TODO Falta a Imagen e os TAGs		
-	public String getNomeArquivo() {
-		return nomeArquivo;
-	}
 
-	public void setNomeArquivo(String nomeArquivo) {
-		this.nomeArquivo = nomeArquivo;
-	}
+    private static final long serialVersionUID = -4757949223957140519L;
 
-	@Override
-	public boolean equals(Object o) {
-		if (!(o instanceof Photo)) return false;
-		Photo other = (Photo) o;
-		return other.getNome().equals(this.getNome());
-	}
+    @Column(name="nome", unique=true, nullable=false)
+    private String nome;
 
-	@Override
-	public int hashCode() {
-		return nome == null ? 0 : nome.hashCode();
-	}
-	
-		
-	public String getNome() {
-		return nome;
-	}
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-	public String getDescricao() {
-		return descricao;
-	}
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
-	public String getLugar() {
-		return lugar;
-	}
-	public void setLugar(String lugar) {
-		this.lugar = lugar;
-	}
-	public Date getData() {
-		return data;
-	}
-	public void setData(Date data) {
-		this.data = data;
-	}
-	
-	
-	
+    @Column(name="nome_arquivo", unique=true, nullable=false)
+    private String nomeArquivo;
 
+    private String descricao;
+    private String lugar;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date data;
+
+    //TODO Falta a Imagem e os TAGs.
+    public String getNomeArquivo() {
+        return nomeArquivo;
+    }
+
+    public void setNomeArquivo(String nomeArquivo) {
+        this.nomeArquivo = nomeArquivo;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Photo)) return false;
+        Photo other = (Photo) o;
+        return other.getNome().equals(this.getNome());
+    }
+
+    @Override
+    public int hashCode() {
+        return nome == null ? 0 : nome.hashCode();
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public String getLugar() {
+        return lugar;
+    }
+
+    public void setLugar(String lugar) {
+        this.lugar = lugar;
+    }
+
+    public Date getData() {
+        return data;
+    }
+
+    public void setData(Date data) {
+        this.data = data;
+    }
 }

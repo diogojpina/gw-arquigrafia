@@ -14,20 +14,20 @@
         <Widgets:Topo collabletInstance="${collabletInstance}" />
         <Widgets:ConteudoPagina titulo="Papel">
             <br/>
-            <form name="dados" method="POST" action='<c:url value="/groupware-workbench/${param.collablet}/roleMgr/${param.roleMgr}" />' accept-charset="UTF-8" >
+            <form name="dados" method="POST" action='<c:url value="/groupware-workbench/${collabletInstance.id}/roleMgr/${roleMgr.id}" />' accept-charset="UTF-8">
                 <input type="hidden" name="role.id" value="<c:out value="${role.id}" />" />
-                <input type="hidden" name="role.idInstance" value="<c:out value="${param.roleMgr}" />" />
+                <input type="hidden" name="role.idInstance" value="<c:out value="${roleMgr.id}" />" />
                 <div class="form_1" id="role_retrieve_f1">
-                	<ul class="field_line_f1">
-                		<li class="label_f1"><span>Nome</span></li>
-                		<li class="input_f1"><input type="text" name="role.name" value="<c:out value="${role.name}" />" /></li>
-                	</ul>
+                    <ul class="field_line_f1">
+                        <li class="label_f1"><span>Nome</span></li>
+                        <li class="input_f1"><input type="text" name="role.name" value="<c:out value="${role.name}" />" /></li>
+                    </ul>
                 </div>
                 <div class="form_1">
-                	<ul class="bt_line_f1">
-                		<li class="bt_cell_submit"><input type="submit" class="botao" value="Ok"></li>
-                		<li class="bt_cell_submit"><input type="button" class="botao" value="Cancela" onclick="history.back()"></li>
-                	</ul>
+                    <ul class="bt_line_f1">
+                        <li class="bt_cell_submit"><input type="submit" class="botao" value="Ok" /></li>
+                        <li class="bt_cell_submit"><input type="button" class="botao" value="Cancela" onclick="history.back()" /></li>
+                    </ul>
                 </div>
             </form>
             <br />

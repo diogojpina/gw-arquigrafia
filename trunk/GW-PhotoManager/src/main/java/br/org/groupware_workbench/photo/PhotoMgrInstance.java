@@ -12,12 +12,14 @@ import br.org.groupware_workbench.coreutils.DAOFactory;
 import br.org.groupware_workbench.photo.internal.PhotoDAO;
 
 public class PhotoMgrInstance extends CollabletInstance {
-	private PhotoDAO dao = DAOFactory.get(PhotoDAO.class);;
+
+	private final PhotoDAO dao = DAOFactory.get(PhotoDAO.class);
+
 	private String dirImagesRelativo = "images";
 	private String cropPrefix = "crop_";
 	private	String thumbPrefix="thumb_";
 	private String mostraPrefix="mostra_";
-	private  String dirImagesAbsoluto = null;		
+	private String dirImagesAbsoluto = null;		
 
 	public PhotoMgrInstance() {		
 		super();
@@ -27,10 +29,9 @@ public class PhotoMgrInstance extends CollabletInstance {
 	}
 
 	public void setRequestInfo(RequestInfo info){
-		dirImagesAbsoluto=info.getServletContext().getRealPath("/")+dirImagesRelativo+File.separator;		
+		dirImagesAbsoluto = info.getServletContext().getRealPath("/") + dirImagesRelativo + File.separator;
 	}
-	
-	
+
 	@Override
 	public void destroy() {
 		//TODO modify this according with the objectDAO, ask victor or geiser
@@ -67,10 +68,7 @@ public class PhotoMgrInstance extends CollabletInstance {
 	public List<Photo> listaTodaPhoto(){		
 		return dao.listAll();	
 	}
-	
-	
-	
-	
+
 	public String getDirImagesRelativo() {
 		return dirImagesRelativo;
 	}

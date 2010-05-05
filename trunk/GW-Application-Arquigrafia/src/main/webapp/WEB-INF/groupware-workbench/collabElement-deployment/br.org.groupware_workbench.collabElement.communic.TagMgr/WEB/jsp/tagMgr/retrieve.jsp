@@ -17,16 +17,16 @@
             <form name="dados" method="post" action="<c:url value="/groupware-workbench/${collabletInstance.id}/tagMgr/${tag.idInstance}" />">
                 <input type="hidden" name="tag.id" value="<c:out value="${tag.id}" />" />
                 <div class="form_1" id="tag_retrieve_f1">
-                	<ul class="field_line_f1">
-                		<li class="label_f1"><span>Nome</span></li>
-                		<li class="input_f1"><input type="text" name="tag.name" value="<c:out value="${tag.name}" />" /></li>
-                	</ul>
+                    <ul class="field_line_f1">
+                        <li class="label_f1"><span>Nome</span></li>
+                        <li class="input_f1"><input type="text" name="tag.name" value="<c:out value="${tag.name}" />" /></li>
+                    </ul>
                 </div>
                 <div class="form_1">
-                	<ul class="bt_line_f1">
-                		<li class="bt_cell_submit"><input type="submit" class="botao" value="Ok" /></li>
-                		<li class="bt_cell_submit"><input type="button" class="botao" value="Cancela" onclick="history.back()" /></li>
-                	</ul>
+                    <ul class="bt_line_f1">
+                        <li class="bt_cell_submit"><input type="submit" class="botao" value="Ok" /></li>
+                        <li class="bt_cell_submit"><input type="button" class="botao" value="Cancela" onclick="history.back()" /></li>
+                    </ul>
                 </div>
             </form>
             <br />

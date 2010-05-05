@@ -25,6 +25,7 @@
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 100px;
+	background-color: white;
 }
 #lb_title {
 	width: 100%;
@@ -47,5 +48,5 @@
 	float: right;
 }
 body {
-	background-image: url(<%=request.getContextPath()%>/images/BG_LISTRADO.gif);
+	background-image: url(../images/BG_LISTRADO.gif);
 }

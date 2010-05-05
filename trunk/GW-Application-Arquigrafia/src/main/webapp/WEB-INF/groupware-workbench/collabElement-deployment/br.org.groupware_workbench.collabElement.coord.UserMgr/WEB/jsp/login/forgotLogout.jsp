@@ -12,6 +12,11 @@
         <link href="${pageContext.request.contextPath}/css/login.css" rel="stylesheet" type="text/css" />
     </head>
     <body>
+        <%--
+            TODO: Reformatar essa página.
+            Utilizar Tableless. Ou seja: NÃO FAZER LAYOUT POR TABELAS!
+            Ass: Victor Williams Stafusa da Silva
+        --%>
         <table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
   <tr>
     <td valign="middle"><table width="60%" border="1" align="center" cellpadding="0" cellspacing="0" bordercolor="#CCCCCC">
@@ -22,7 +27,6 @@
             </tr>
             <tr>
               <td><form id="usuariosForm" method="post" name="loginForm" action='<c:url value="/groupware-workbench/${collablet.id}/userMgr/${userMgr.id}/getPassword" />'>
-
                   <table width="100%" border="0" align="center" bordercolor="#9B9B9B">
                     <tr>
                       <td><table border="0" align="center" bordercolor="#9B9B9B">
@@ -51,7 +55,7 @@
                               <c:when test="${env != null and not env}">
                               <tr>
                                 <td colspan="4"><div align="right"><span class="style8">E-mail não encontrado</span></div></td>
-                              </tr> 
+                              </tr>
                                <tr>
                                  <td colspan="4"><div align="left"><span class="style8"><a href="<c:url value="/groupware-workbench/${collablet.id}/userMgr/login"/>">Voltar</a></span></div></td>
                                </tr>
@@ -59,7 +63,7 @@
                             <c:when test="${env}">
                               <tr>
                                 <td colspan="4"><div align="right"><span class="style8">E-mail enviado com sucesso! </span></div></td>
-                              </tr> 
+                              </tr>
                                <tr>
                                  <td colspan="4"><div align="left"><span class="style8"><a href="<c:url value="/groupware-workbench/${collablet.id}/userMgr/login"/>">Voltar</a></span></div></td>
                                </tr>

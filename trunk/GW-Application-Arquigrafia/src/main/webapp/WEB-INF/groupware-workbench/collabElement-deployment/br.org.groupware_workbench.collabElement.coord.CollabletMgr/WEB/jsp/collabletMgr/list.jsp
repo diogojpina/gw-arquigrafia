@@ -22,23 +22,24 @@
                         <br />
                         <input type="hidden" name="collabletComponentCods" value="" />
                         <input type="hidden" name="collabletComponentCods" value="<c:out value="${collabletInstance.component.cod}" />" />
-                        <table border="1" bordercolor="black" cellpadding="3" cellspacing="0">
+                        <%-- TODO: Rever a formatação. --%>
+                        <table cellpadding="3" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <th><b>Habilitado</b></th>
-                                    <th><b>Ferramenta</b></th>
-                                    <th><b>Grupo</b></th>
-                                    <th><b>Descri&ccedil;&atilde;o</b></th>
+                                    <th style="border-color: black; border-width: 1px; border-style: solid; ">Habilitado</th>
+                                    <th style="border-color: black; border-width: 1px; border-style: solid; ">Ferramenta</th>
+                                    <th style="border-color: black; border-width: 1px; border-style: solid; ">Grupo</th>
+                                    <th style="border-color: black; border-width: 1px; border-style: solid; ">Descri&ccedil;&atilde;o</th>
                                 </tr>
                             </thead>
                             <c:forEach var="instance" items="${collabletInstanceList}">
                                 <tr>
-                                    <td>
+                                    <td style="border-color: black; border-width: 1px; border-style: solid;">
                                         <input type="checkbox" name="collabletComponentCods" value="<c:out value="${instance.component.cod}" />" <c:if test="${instance.enabled}">checked="checked"</c:if> />
                                     </td>
-                                    <td><c:out value="${instance.component.name}" /></td>
-                                    <td><c:out value="${instance.component.cod}" /></td>
-                                    <td><c:out value="${instance.component.description}" /></td>
+                                    <td style="border-color: black; border-width: 1px; border-style: solid; "><c:out value="${instance.component.name}" /></td>
+                                    <td style="border-color: black; border-width: 1px; border-style: solid; "><c:out value="${instance.component.cod}" /></td>
+                                    <td style="border-color: black; border-width: 1px; border-style: solid; "><c:out value="${instance.component.description}" /></td>
                                 </tr>
                             </c:forEach>
                         </table>
