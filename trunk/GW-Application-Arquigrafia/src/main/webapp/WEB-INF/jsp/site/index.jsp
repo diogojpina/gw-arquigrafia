@@ -50,14 +50,31 @@
             <%@ include file="header.jsp" %>
 
             <div id="main_section">
-                <div id="makeMeScrollable"  style="border-style: solid; border-width: thin; border-color: #666;padding-left: 0px; height: 510px">
-                    <div class="scrollingHotSpotLeft" style=" height: 510px;"></div>
-                    <div class="scrollingHotSpotRight" style="height: 510px"></div>
+				<div id="makeMeScrollable"  style="border-style: solid; border-width: thin; border-color: #666;padding-left: 0px; height: 500px">
+                    <div class="scrollingHotSpotLeft" style=" height: 500px;"></div>
+                    <div class="scrollingHotSpotRight" style="height: 500px"></div>
                     <div class="scrollWrapper">
-                        <div class="scrollableArea"></div>
-                    </div>
-                </div>
-            </div>
+                        <div class="scrollableArea">
+	                        <div class="image_line">
+	                        	<div class="image_placeholder" id="1"><img src="${pageContext.request.contextPath}/images/ajax-loader.gif" alt="loading"></img></div>
+	                        </div>
+	                        <div class="image_line">
+	                        	<div class="image_placeholder" id="2"><img src="${pageContext.request.contextPath}/images/ajax-loader.gif" alt="loading"></img></div>
+	                        </div>
+	                        <div class="image_line">
+	                        	<div class="image_placeholder" id="3"><img src="${pageContext.request.contextPath}/images/ajax-loader.gif" alt="loading"></img></div>
+	                        </div>
+	                        <div class="image_line">
+	                        	<div class="image_placeholder" id="4"><img src="${pageContext.request.contextPath}/images/ajax-loader.gif" alt="loading"></img></div>
+	                        </div>
+	                        <div class="image_line">
+	                        	<div class="image_placeholder" id="5"><img src="${pageContext.request.contextPath}/images/ajax-loader.gif" alt="loading"></img></div>
+	                        </div>
+	                		<script type="text/javascript" src="plugins/visual_lightbox/engine/js/visuallightbox.js" ></script>
+                    	</div>
+                   </div>
+                 </div>
+  			</div>
             <%@ include file="know_more.jsp" %>
             <div style="height: 30px;"></div>
             <%@ include file="footer.jsp" %>
