@@ -14,10 +14,10 @@ public class Photo extends GenericEntity {
 
     private static final long serialVersionUID = -4757949223957140519L;
 
-    @Column(name="nome", unique=true, nullable=false)
+    @Column(name="nome", unique=false, nullable=false)
     private String nome;
 
-    @Column(name="nome_arquivo", unique=true, nullable=false)
+    @Column(name="nome_arquivo", unique=false, nullable=false)
     private String nomeArquivo;
 
     private String descricao;
@@ -26,7 +26,7 @@ public class Photo extends GenericEntity {
     @Temporal(TemporalType.TIMESTAMP)
     private Date data;
 
-    //TODO Falta a Imagem e os TAGs.
+    
     public String getNomeArquivo() {
         return nomeArquivo;
     }

@@ -20,6 +20,13 @@ public class PhotoDAO extends ObjectDAO<Photo, Long> {
     public PhotoDAO() {
         super(Photo.class);
     }
+    
+    @Override
+    public void save(Photo photo,boolean isInsertion){
+       super.save(photo, isInsertion);
+       photo.setNomeArquivo(photo.getId()+photo.getNomeArquivo());
+       super.update(photo);
+    }
 
     public void saveImage(InputStream foto, String nome, String pasta) throws IOException {
         File file = new File(pasta, nome);

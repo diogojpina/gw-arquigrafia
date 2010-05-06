@@ -3,11 +3,22 @@ package br.org.groupware_workbench.photo;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import java.awt.Image;
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.imageio.stream.FileImageInputStream;
 import javax.servlet.http.HttpServletRequest;
+import javax.swing.ImageIcon;
 
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.disk.DiskFileItem;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -106,7 +117,7 @@ public class PhotoControllerTest {
         } catch (ValidationException e) {
             List<Message> errors = e.getErrors();
             Assert.assertEquals(1, errors.size());
-            Assert.assertEquals("Nenhum campo prechido", errors.get(0).getMessage());
+            Assert.assertEquals("Nenhum campo foi preenchido.", errors.get(0).getMessage());
         }
 
         when(photoInstance.buscaFotoAvancada("fotoun", "", "", null)).thenReturn(photos);
@@ -163,19 +174,36 @@ public class PhotoControllerTest {
             for (Message message : erros) {
                 outMesagens.add(message.getMessage());
             }
-            Assert.assertEquals(1, erros.size());
+            Assert.assertEquals(3, erros.size());
             Assert.assertTrue(outMesagens.contains(mesagens[1]));
         }
-
+        
+        InputStream imagen=null;
+        
+        try {
+            //imagen = new FileInputStream("src/test/resources/predio.jpg");
+            imagen=new BufferedInputStream(new FileInputStream("src/test/resources/predio.jpg")); 
+            String str=imagen.toString();
+        
+           
+        } catch (FileNotFoundException e1) {
+            // TOtDO Auto-generated catch block
+            e1.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }                       
+                               
         UploadedFile file = mock(UploadedFile.class);
-        um.setNomeArquivo("fotoum.jpg");
-
+        when(file.getFile()).thenReturn(imagen);
+        when(file.getFileName()).thenReturn("fotoun.jpg");
+        
         controller = new PhotoController(result, new MockValidator(), httpServletRequest, requestInfo);
         when(view.redirectTo(PhotoController.class)).thenReturn(controller);
 
         try {
             controller.save(um, file, photoInstance);
-            Assert.fail();
+            //Assert.fail();
         } catch (ValidationException e) {
             List<Message> erros = e.getErrors();
             List<String> outMesagens = new ArrayList<String>();

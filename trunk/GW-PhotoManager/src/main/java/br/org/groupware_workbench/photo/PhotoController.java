@@ -1,6 +1,8 @@
 package br.org.groupware_workbench.photo;
 
 import java.awt.Dimension;
+import java.io.BufferedInputStream;
+import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.Date;
 import java.util.HashMap;
@@ -8,6 +10,8 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+
+import com.sun.xml.internal.messaging.saaj.util.ByteInputStream;
 
 import br.com.caelum.vraptor.Delete;
 import br.com.caelum.vraptor.Get;
@@ -165,20 +169,21 @@ public class PhotoController {
 
         String nomeArquivo = foto.getFileName();
         photoRegister.setNomeArquivo(nomeArquivo);
-
-        InputStream imagemOriginal = null;
+        byte []rawphoto=null;             
+        InputStream imagemOriginal = null;        
         InputStream imagemThumb = null;
         InputStream imagemCropped = null;
         InputStream imagemMostra = null;
-
+        
         try {
-            imagemOriginal = foto.getFile();
-            imagemMostra = ImageUtils.createThumbnail(new Dimension(800, 600), imagemOriginal);
-            imagemOriginal.reset();
-            imagemThumb = ImageUtils.createThumbnail(new Dimension(100, 100), imagemOriginal);
-            imagemOriginal.reset();
-            imagemCropped = ImageUtils.cropImage(ImageUtils.calcSqrThumbCropPoint(imagemOriginal), new Dimension(100 ,100), imagemOriginal);
+            rawphoto=new byte[foto.getFile().available()];
+            foto.getFile().read(rawphoto); 
+            imagemOriginal=new ByteArrayInputStream(rawphoto);
+            imagemMostra = ImageUtils.createThumbnail(new Dimension(800, 600), new ByteArrayInputStream(rawphoto));            
+            imagemThumb = ImageUtils.createThumbnail(new Dimension(100, 100), new ByteArrayInputStream(rawphoto));            
+            imagemCropped = ImageUtils.cropImage(ImageUtils.calcSqrThumbCropPoint(imagemOriginal), new Dimension(100 ,100), new ByteArrayInputStream(rawphoto));
         } catch (IOException e) {
+            e.printStackTrace();
             validator.add(new ValidationMessage("Não foi possível redimensionar a imagem.", "Erro"));
             validator.onErrorUse(Results.logic()).redirectTo(PhotoController.class).registra(photoInstance);
             return;
@@ -186,7 +191,8 @@ public class PhotoController {
 
         try {
             photoInstance.save(photoRegister);
-            photoInstance.saveImage(imagemOriginal, nomeArquivo);
+            nomeArquivo=photoRegister.getNomeArquivo(); //para ter um solo nome do arquivo
+            photoInstance.saveImage(imagemOriginal, nomeArquivo);  
             photoInstance.saveImage(imagemCropped, photoInstance.getCropPrefix() + nomeArquivo);
             photoInstance.saveImage(imagemThumb, photoInstance.getThumbPrefix() + nomeArquivo);
             photoInstance.saveImage(imagemMostra, photoInstance.getMostraPrefix() + nomeArquivo);
