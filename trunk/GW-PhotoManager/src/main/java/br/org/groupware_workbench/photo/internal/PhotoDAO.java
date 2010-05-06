@@ -61,4 +61,19 @@ public class PhotoDAO extends ObjectDAO<Photo, Long> {
 
         return result;
     }
+    
+    /*
+     * Returns the n-esima page of photos with size: pageSize 
+     * @param pageSize the size of the page (page=10 , 100 elements), pageSize>=0 
+     * @param pageNumber the number of the page, pageNumber>=0
+     */
+    public List<Photo> listPhotoByPage(int pageSize, int pageNumber){
+        String querySentence="select p from Photo p";
+        Query query=getEntityManager().createQuery(querySentence);
+        int firstElement=pageNumber*pageSize;
+        query.setFirstResult(firstElement);
+        query.setMaxResults(pageSize);
+        List<Photo> result = (List<Photo>) query.getResultList();
+        return result;
+    }
 }
