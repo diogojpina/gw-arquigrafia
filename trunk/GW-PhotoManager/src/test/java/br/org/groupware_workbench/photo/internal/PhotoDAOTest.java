@@ -17,187 +17,219 @@ import br.org.groupware_workbench.coreutils.DAOFactory;
 import br.org.groupware_workbench.photo.Photo;
 
 public class PhotoDAOTest {
-	private PhotoDAO dao;
-		
-	@Before
-	public void setUp(){
-		EntityManager em = Persistence.createEntityManagerFactory("EntidadesPU2").createEntityManager();
+
+    private PhotoDAO dao;
+    private Photo photo1;
+    private Photo photo2;
+    private Photo photo3;
+    private Photo photo4;
+    private Photo photo5;
+    private Photo photo6;
+    private Photo photo7;
+    private Photo photo8;
+    private Photo photo9;
+    private Photo photo10;
+    private Date date;
+
+    @Before
+    public void setUp() {
+        EntityManager em = Persistence.createEntityManagerFactory("EntidadesPU2").createEntityManager();
         EntityManagerProvider.setEntityManager(em);
         dao = DAOFactory.get(PhotoDAO.class);
-	}
-	
-	@Test
-	public void testFindPhotoByNome(){
-		Photo um = new Photo();
-		//um.setId();;
-		um.setIdInstance(1);
-		um.setNome("foto Um");
-		um.setNomeArquivo("fotoum.jpg");
+        date = Calendar.getInstance().getTime();
+        populateDatabase();
+    }
 
-		Photo dois = new Photo();
-		//dois.setId();
-		dois.setIdInstance(1);
-		dois.setNome("foto Dois");
-		dois.setNomeArquivo("fotodois.jpg");
-		
-		dao.save(um , true);
-		dao.save(dois, true);
-		
-		List<Photo> ret=dao.busca("ois", 1L);
-		
-		Assert.assertEquals(1, ret.size());
-		Assert.assertEquals("foto Dois", ret.get(0).getNome() );
-		Assert.assertNotNull(ret.get(0).getId());
-				
-	}
-	
-	public void populateDataBase(Date date){
-	    Photo um = new Photo();
-        //um.setId();;       
-        um.setIdInstance(1);
-        um.setNome("foto Um");
-        um.setLugar("usp");
-        um.setDescricao("teste da foto um");
-        um.setData(date);
-        um.setNomeArquivo("fotoum.jpg");
+    private void populateDatabase() {
+        photo1 = new Photo();
+        photo1.setIdInstance(1);
+        photo1.setNome("foto Um");
+        photo1.setLugar("usp");
+        photo1.setDescricao("teste da foto um");
+        photo1.setData(date);
+        photo1.setNomeArquivo("fotoum.jpg");
 
-        Photo dois = new Photo();
-        //dois.setId();
-        dois.setIdInstance(1);
-        dois.setNome("foto Dois");
-        dois.setLugar("wherever");
-        dois.setDescricao("this is a short description");
-        dois.setData(date);
-        dois.setNomeArquivo("fotodois.jpg");       
-        
-        
-        Photo tres = new Photo();
-        //dois.setId();
-        tres.setIdInstance(1);
-        tres.setNome("foto Tres");
-        tres.setLugar("wherever");
-        tres.setDescricao("this is a short description");
-        tres.setData(date);
-        tres.setNomeArquivo("fototres.jpg");
-        
-        
-        Photo quatro = new Photo();
-        //dois.setId();
-        quatro.setIdInstance(1);
-        quatro.setNome("foto Quatro");
-        quatro.setLugar("wherever");
-        quatro.setDescricao("this is a short description");
-        quatro.setData(date);
-        quatro.setNomeArquivo("fotoquatro.jpg");
-        
-        
-        Photo cinco = new Photo();
-        //dois.setId();
-        cinco.setIdInstance(1);
-        cinco.setNome("foto Cinco");
-        cinco.setLugar("wherever");
-        cinco.setDescricao("this is a short description");
-        cinco.setData(date);
-        cinco.setNomeArquivo("fotocinco.jpg");
-        
-        
-        Photo seis = new Photo();
-        //dois.setId();
-        seis.setIdInstance(1);
-        seis.setNome("foto Seis");
-        seis.setLugar("wherever");
-        seis.setDescricao("this is a short description");
-        seis.setData(date);
-        seis.setNomeArquivo("fotoseis.jpg");
-        
-        Photo sete = new Photo();
-        //dois.setId();
-        sete.setIdInstance(1);
-        sete.setNome("foto Sete");
-        sete.setLugar("wherever");
-        sete.setDescricao("this is a short description");
-        sete.setData(date);
-        sete.setNomeArquivo("fotosete.jpg");
-        
-        Photo oito = new Photo();
-        //dois.setId();
-        oito.setIdInstance(1);
-        oito.setNome("foto Oito");
-        oito.setLugar("wherever");
-        oito.setDescricao("this is a short description");
-        oito.setData(date);
-        oito.setNomeArquivo("fotooito.jpg");
-        
-        
-        Photo nove = new Photo();
-        //dois.setId();
-        nove.setIdInstance(1);
-        nove.setNome("foto Nove");
-        nove.setLugar("wherever");
-        nove.setDescricao("this is a short description");
-        nove.setData(date);
-        nove.setNomeArquivo("fotonove.jpg");
-        
-        Photo dez = new Photo();
-        //dois.setId();
-        dez.setIdInstance(1);
-        dez.setNome("foto Dez");
-        dez.setLugar("wherever");
-        dez.setDescricao("this is a short description");
-        dez.setData(date);
-        dez.setNomeArquivo("fotodez.jpg");
-        
-        dao.save(um , true);
-        dao.save(dois, true);
-        dao.save(tres, true);
-        dao.save(quatro , true);
-        dao.save(cinco , true);
-        dao.save(seis , true);
-        dao.save(sete , true);
-        dao.save(oito , true);
-        dao.save(nove , true);
-        dao.save(dez , true);
-	}
+        photo2 = new Photo();
+        photo2.setIdInstance(1);
+        photo2.setNome("foto Dois");
+        photo2.setLugar("wherever");
+        photo2.setDescricao("this is a short description");
+        photo2.setData(date);
+        photo2.setNomeArquivo("fotodois.jpg");
 
-	@Test
-	public void testFindPhotoByNomeOuLugarDescricaoData(){
-	    Date date=Calendar.getInstance().getTime();
-	    populateDataBase(date);
-		
-		List<Photo> ret=dao.busca("ois", "", "", null, 1L);		
-		Assert.assertEquals(1, ret.size());
-		Assert.assertEquals("foto Dois", ret.get(0).getNome() );
-		Assert.assertNotNull(ret.get(0).getId());
-		
-		
-		ret=dao.busca("", "usp", "", null, 1L);		
-		Assert.assertEquals(1, ret.size());
-		Assert.assertEquals("foto Um", ret.get(0).getNome() );
-		Assert.assertNotNull(ret.get(0).getId());
-		
-		ret=dao.busca("", "", "this is a short", null, 1L);		
-		Assert.assertEquals(9, ret.size());
-		Assert.assertEquals("foto Dois", ret.get(0).getNome() );
-		Assert.assertNotNull(ret.get(0).getId());
-		
-		ret=dao.busca("", "usp", "", date, 1L);		
-		Assert.assertEquals(1, ret.size());	
-		
-		ret=dao.busca("", "", "this is a", date, 1L);		
-		Assert.assertEquals(9, ret.size());
-		
-		ret=dao.busca("", "", "", date, 1L);		
-		Assert.assertEquals(10, ret.size());			
-	}
-	
-	
-	@Test
-	public void listPhotoByPageTest(){
-	    Date date=Calendar.getInstance().getTime();
-	    populateDataBase(date);	    	    
-	    List<Photo> answer=dao.listPhotoByPage(3, 1);
-	    Assert.assertEquals(3, answer.size());
-	    Assert.assertEquals("foto Quatro", answer.get(0).getNome());
-	}
-	
+        photo3 = new Photo();
+        photo3.setIdInstance(1);
+        photo3.setNome("foto Tres");
+        photo3.setLugar("wherever");
+        photo3.setDescricao("this is a short description");
+        photo3.setData(date);
+        photo3.setNomeArquivo("fototres.jpg");
+
+        photo4 = new Photo();
+        photo4.setIdInstance(1);
+        photo4.setNome("foto Quatro");
+        photo4.setLugar("wherever");
+        photo4.setDescricao("this is a short description");
+        photo4.setData(date);
+        photo4.setNomeArquivo("fotoquatro.jpg");
+
+        photo5 = new Photo();
+        photo5.setIdInstance(1);
+        photo5.setNome("foto Cinco");
+        photo5.setLugar("wherever");
+        photo5.setDescricao("this is a short description");
+        photo5.setData(date);
+        photo5.setNomeArquivo("fotocinco.jpg");
+
+        photo6 = new Photo();
+        photo6.setIdInstance(1);
+        photo6.setNome("foto Seis");
+        photo6.setLugar("wherever");
+        photo6.setDescricao("this is a short description");
+        photo6.setData(date);
+        photo6.setNomeArquivo("fotoseis.jpg");
+
+        photo7 = new Photo();
+        photo7.setIdInstance(1);
+        photo7.setNome("foto Sete");
+        photo7.setLugar("wherever");
+        photo7.setDescricao("this is a short description");
+        photo7.setData(date);
+        photo7.setNomeArquivo("fotosete.jpg");
+
+        photo8 = new Photo();
+        photo8.setIdInstance(1);
+        photo8.setNome("foto Oito");
+        photo8.setLugar("wherever");
+        photo8.setDescricao("this is a short description");
+        photo8.setData(date);
+        photo8.setNomeArquivo("fotooito.jpg");
+
+        photo9 = new Photo();
+        photo9.setIdInstance(1);
+        photo9.setNome("foto Nove");
+        photo9.setLugar("wherever");
+        photo9.setDescricao("this is a short description");
+        photo9.setData(date);
+        photo9.setNomeArquivo("fotonove.jpg");
+
+        photo10 = new Photo();
+        photo10.setIdInstance(1);
+        photo10.setNome("foto Dez");
+        photo10.setLugar("wherever");
+        photo10.setDescricao("this is a short description");
+        photo10.setData(date);
+        photo10.setNomeArquivo("fotodez.jpg");
+
+        dao.save(photo1, true);
+        dao.save(photo2, true);
+        dao.save(photo3, true);
+        dao.save(photo4, true);
+        dao.save(photo5, true);
+        dao.save(photo6, true);
+        dao.save(photo7, true);
+        dao.save(photo8, true);
+        dao.save(photo9, true);
+        dao.save(photo10, true);
+    }
+
+    @Test
+    public void testFindPhotoByNome() {
+        List<Photo> ret = dao.busca("ois", 1L);
+
+        Assert.assertEquals(1, ret.size());
+        Assert.assertEquals(photo2, ret.get(0));
+        Assert.assertNotNull(ret.get(0).getId());
+    }
+
+    @Test
+    public void testFindPhotoByNomeOuLugarDescricaoData() {
+        List<Photo> ret = dao.busca("ois", "", "", null, 1L);
+        Assert.assertEquals(1, ret.size());
+        Assert.assertEquals(photo2, ret.get(0));
+        Assert.assertNotNull(ret.get(0).getId());
+    }
+
+    @Test
+    public void testFindPhotoByLugar() {
+        List<Photo> ret = dao.busca("", "usp", "", null, 1L);
+        Assert.assertEquals(1, ret.size());
+        Assert.assertEquals(photo1, ret.get(0));
+        Assert.assertNotNull(ret.get(0).getId());
+    }
+
+    @Test
+    public void testFindPhotoByDescricao() {
+        List<Photo> ret = dao.busca("", "", "this is a short", null, 1L);
+        Assert.assertEquals(9, ret.size());
+        Assert.assertFalse(ret.contains(photo1));
+        Assert.assertTrue(ret.contains(photo2));
+        Assert.assertTrue(ret.contains(photo3));
+        Assert.assertTrue(ret.contains(photo4));
+        Assert.assertTrue(ret.contains(photo5));
+        Assert.assertTrue(ret.contains(photo6));
+        Assert.assertTrue(ret.contains(photo7));
+        Assert.assertTrue(ret.contains(photo8));
+        Assert.assertTrue(ret.contains(photo9));
+        Assert.assertTrue(ret.contains(photo10));
+        for (Photo p : ret) {
+            Assert.assertNotNull(p.getId());
+        }
+    }
+
+    @Test
+    public void testFindPhotoByLugarEData() {
+        List<Photo> ret = dao.busca("", "usp", "", date, 1L);
+        Assert.assertEquals(1, ret.size());
+        Assert.assertEquals(1, ret.size());
+        Assert.assertEquals(photo1, ret.get(0));
+        Assert.assertNotNull(ret.get(0).getId());
+    }
+
+    @Test
+    public void testFindPhotoByDescricaoEData() {
+        List<Photo> ret = dao.busca("", "", "this is a", date, 1L);
+        Assert.assertEquals(9, ret.size());
+        Assert.assertFalse(ret.contains(photo1));
+        Assert.assertTrue(ret.contains(photo2));
+        Assert.assertTrue(ret.contains(photo3));
+        Assert.assertTrue(ret.contains(photo4));
+        Assert.assertTrue(ret.contains(photo5));
+        Assert.assertTrue(ret.contains(photo6));
+        Assert.assertTrue(ret.contains(photo7));
+        Assert.assertTrue(ret.contains(photo8));
+        Assert.assertTrue(ret.contains(photo9));
+        Assert.assertTrue(ret.contains(photo10));
+        for (Photo p : ret) {
+            Assert.assertNotNull(p.getId());
+        }
+    }
+
+    @Test
+    public void testFindPhotoByData() {
+        List<Photo> ret = dao.busca("", "", "", date, 1L);
+        Assert.assertEquals(10, ret.size());
+        Assert.assertTrue(ret.contains(photo1));
+        Assert.assertTrue(ret.contains(photo2));
+        Assert.assertTrue(ret.contains(photo3));
+        Assert.assertTrue(ret.contains(photo4));
+        Assert.assertTrue(ret.contains(photo5));
+        Assert.assertTrue(ret.contains(photo6));
+        Assert.assertTrue(ret.contains(photo7));
+        Assert.assertTrue(ret.contains(photo8));
+        Assert.assertTrue(ret.contains(photo9));
+        Assert.assertTrue(ret.contains(photo10));
+        for (Photo p : ret) {
+            Assert.assertNotNull(p.getId());
+        }
+    }
+
+    @Test
+    public void listPhotoByPageTest() {
+        List<Photo> ret = dao.listPhotoByPage(3, 1);
+        Assert.assertEquals(3, ret.size());
+        Assert.assertEquals(photo4, ret.get(0));
+        Assert.assertEquals(photo5, ret.get(1));
+        Assert.assertEquals(photo6, ret.get(2));
+    }
 }

@@ -19,16 +19,16 @@ public class PhotoMgrInstance extends CollabletInstance {
 	private String cropPrefix = "crop_";
 	private	String thumbPrefix="thumb_";
 	private String mostraPrefix="mostra_";
-	private String dirImagesAbsoluto = null;		
+	private String dirImagesAbsoluto = null;
 
-	public PhotoMgrInstance() {		
+	public PhotoMgrInstance() {
 		super();
-		this.thumbPrefix="thumb_";
+		this.thumbPrefix = "thumb_";
 		this.setCropPrefix("crop_");
-		this.mostraPrefix="mostra_";		
+		this.mostraPrefix = "mostra_";
 	}
 
-	public void setRequestInfo(RequestInfo info){
+	public void setRequestInfo(RequestInfo info) {
 		dirImagesAbsoluto = info.getServletContext().getRealPath("/") + dirImagesRelativo + File.separator;
 	}
 
@@ -37,36 +37,35 @@ public class PhotoMgrInstance extends CollabletInstance {
 		//TODO modify this according with the objectDAO, ask victor or geiser
 		//this.dao.deleteByIdInstance(this.getId());
 		this.dao.deleteByField("idInstance", this.getId());
-		
-	}
-	
-	public void delete(long photoId){
-		dao.deleteById(photoId);
-	}
-	
-	public void save(Photo photoRegister) {
-		photoRegister.setIdInstance(this.getId());				
-		this.dao.save(photoRegister,true);
 	}
 
-	public void saveImage(InputStream foto, String nome)throws IOException {
-		this.dao.saveImage(foto, nome, dirImagesAbsoluto);	
+	public void delete(long photoId) {
+		dao.deleteById(photoId);
+	}
+
+	public void save(Photo photoRegister) {
+		photoRegister.setIdInstance(this.getId());
+		this.dao.save(photoRegister, true);
+	}
+
+	public void saveImage(InputStream foto, String nome) throws IOException {
+		this.dao.saveImage(foto, nome, dirImagesAbsoluto);
 	}
 
 	public List<Photo> buscaFoto(String busca) {
-		return this.dao.busca(busca,this.getId());							
+		return this.dao.busca(busca,this.getId());
 	}
-	
+
 	public List<Photo> buscaFotoAvancada(String nome, String descricao, String lugar, Date date) {
-		return this.dao.busca(nome,lugar,descricao,date,this.getId());							
+		return this.dao.busca(nome, lugar, descricao, date, this.getId());
 	}
-	
-	public Photo buscaPhotoById(long idPhoto){
-		return this.dao.findById(idPhoto);		
+
+	public Photo buscaPhotoById(long idPhoto) {
+		return this.dao.findById(idPhoto);
 	}
-	
-	public List<Photo> listaTodaPhoto(){		
-		return dao.listAll();	
+
+	public List<Photo> listaTodaPhoto() {
+		return dao.listAll();
 	}
 
 	public String getDirImagesRelativo() {
@@ -103,5 +102,5 @@ public class PhotoMgrInstance extends CollabletInstance {
 
 	public String getCropPrefix() {
 		return cropPrefix;
-	}	
+	}
 }

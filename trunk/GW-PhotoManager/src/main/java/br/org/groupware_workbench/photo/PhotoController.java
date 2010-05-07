@@ -1,7 +1,6 @@
 package br.org.groupware_workbench.photo;
 
 import java.awt.Dimension;
-import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.Date;
@@ -10,8 +9,6 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-
-import com.sun.xml.internal.messaging.saaj.util.ByteInputStream;
 
 import br.com.caelum.vraptor.Delete;
 import br.com.caelum.vraptor.Get;
@@ -32,7 +29,15 @@ import java.io.IOException;
 @RequestScoped
 @Resource
 public class PhotoController {
-	
+
+    public static final String MSG_MIN_3_LETRAS = "Você deve digitar no mínimo 3 letras.";
+    public static final String MSG_NENHUM_CAMPO_PREENCHIDO = "Nenhum campo foi preenchido.";
+    public static final String MSG_NOME_OBRIGATORIO = "O nome é obrigatório.";
+    public static final String MSG_IMAGEM_OBRIGATORIA = "Uma imagem é obrigatória.";
+    public static final String MSG_NAO_FOI_POSSIVEL_REDIMENSIONAR = "Não foi possível redimensionar a imagem.";
+    public static final String MSG_FALHA_NO_UPLOAD = "Falha ao fazer o upload da imagem.";
+    public static final String MSG_ENTIDADE_INVALIDA = "Não é uma entidade válida";
+
     private final Result result;
     private final HttpServletRequest request;
     private final Validator validator;
@@ -76,7 +81,7 @@ public class PhotoController {
     @Path(value = "/groupware-workbench/{photoInstance}/photo/busca")
     public void buscaFoto(String busca, PhotoMgrInstance photoInstance){
         if (busca.length() < 3) {
-            validator.add(new ValidationMessage("Você deve digitar no mínimo 3 letras.", "Erro"));
+            validator.add(new ValidationMessage(MSG_MIN_3_LETRAS, "Erro"));
             validator.onErrorUse(Results.logic()).redirectTo(PhotoController.class).busca(photoInstance);
             return;
         }
@@ -107,7 +112,7 @@ public class PhotoController {
     @Path(value = "/groupware-workbench/{photoInstance}/photo/buscaA")
     public void buscaFotoAvancada(String nome, String descricao, String lugar, Date date, PhotoMgrInstance photoInstance) {
         if (nome.isEmpty() && descricao.isEmpty() && lugar.isEmpty() && date == null) {
-            validator.add(new ValidationMessage("Nenhum campo foi preenchido.", "Erro"));
+            validator.add(new ValidationMessage(MSG_NENHUM_CAMPO_PREENCHIDO, "Erro"));
             validator.onErrorUse(Results.logic()).redirectTo(PhotoController.class).busca(photoInstance);
             return;
         }
@@ -148,15 +153,16 @@ public class PhotoController {
     @Post
     @Path(value = "/groupware-workbench/{photoInstance}/photo/registra")
     public void save(Photo photoRegister, UploadedFile foto, PhotoMgrInstance photoInstance) {
+
         // Validações:
         photoInstance.setRequestInfo(info);
         boolean erro = false;
         if (photoRegister.getNome().isEmpty()) {
-            validator.add(new ValidationMessage("O nome é obrigatório.", "Erro"));
+            validator.add(new ValidationMessage(MSG_NOME_OBRIGATORIO, "Erro"));
             erro = true;
         }
         if (foto == null) {
-            validator.add(new ValidationMessage("Uma imagem é obrigatória.", "Erro"));
+            validator.add(new ValidationMessage(MSG_IMAGEM_OBRIGATORIA, "Erro"));
             erro = true;
         }
         if (erro) {
@@ -169,22 +175,21 @@ public class PhotoController {
 
         String nomeArquivo = foto.getFileName();
         photoRegister.setNomeArquivo(nomeArquivo);
-        byte []rawphoto=null;             
-        InputStream imagemOriginal = null;        
+        byte[] rawphoto = null;
+        InputStream imagemOriginal = null;
         InputStream imagemThumb = null;
         InputStream imagemCropped = null;
         InputStream imagemMostra = null;
         
         try {
-            rawphoto=new byte[foto.getFile().available()];
+            rawphoto = new byte[foto.getFile().available()];
             foto.getFile().read(rawphoto); 
             imagemOriginal=new ByteArrayInputStream(rawphoto);
-            imagemMostra = ImageUtils.createThumbnail(new Dimension(800, 600), new ByteArrayInputStream(rawphoto));            
-            imagemThumb = ImageUtils.createThumbnail(new Dimension(100, 100), new ByteArrayInputStream(rawphoto));            
-            imagemCropped = ImageUtils.cropImage(ImageUtils.calcSqrThumbCropPoint(imagemOriginal), new Dimension(100 ,100), new ByteArrayInputStream(rawphoto));
+            imagemMostra = ImageUtils.createThumbnail(new Dimension(800, 600), new ByteArrayInputStream(rawphoto));
+            imagemThumb = ImageUtils.createThumbnail(new Dimension(100, 100), new ByteArrayInputStream(rawphoto));
+            imagemCropped = ImageUtils.cropImage(ImageUtils.calcSqrThumbCropPoint(imagemOriginal), new Dimension(100, 100), new ByteArrayInputStream(rawphoto));
         } catch (IOException e) {
-            e.printStackTrace();
-            validator.add(new ValidationMessage("Não foi possível redimensionar a imagem.", "Erro"));
+            validator.add(new ValidationMessage(MSG_NAO_FOI_POSSIVEL_REDIMENSIONAR, "Erro"));
             validator.onErrorUse(Results.logic()).redirectTo(PhotoController.class).registra(photoInstance);
             return;
         }
@@ -198,9 +203,7 @@ public class PhotoController {
             photoInstance.saveImage(imagemMostra, photoInstance.getMostraPrefix() + nomeArquivo);
 
         } catch (IOException e) {
-            e.printStackTrace();
-            validator.add(new ValidationMessage("Falha ao fazer o upload da imagem.", "Erro"));
-            //validator.onErrorUse(Results.page()).redirect("/groupware-workbench/"+idCollabletInstance+"/photo/registra");
+            validator.add(new ValidationMessage(MSG_FALHA_NO_UPLOAD, "Erro"));
             validator.onErrorUse(Results.logic()).redirectTo(PhotoController.class).registra(photoInstance);
             return;
         }
@@ -226,7 +229,7 @@ public class PhotoController {
     @Path(value = "/groupware-workbench/{photoInstance}/photo/show/{idPhoto}")
     public void delete(PhotoMgrInstance photoInstance, long idPhoto) {
         if (idPhoto < 1) {
-            validator.add(new ValidationMessage("Não é uma entidade válida", "Erro"));
+            validator.add(new ValidationMessage(MSG_ENTIDADE_INVALIDA, "Erro"));
             return;
         }
         photoInstance.delete(idPhoto);

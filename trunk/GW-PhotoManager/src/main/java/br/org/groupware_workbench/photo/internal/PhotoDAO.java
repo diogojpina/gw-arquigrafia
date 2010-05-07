@@ -16,16 +16,15 @@ import br.org.groupware_workbench.photo.Photo;
 
 //public class PhotoRegisterDAO extends GenericDAO<PhotoRegister> {
 public class PhotoDAO extends ObjectDAO<Photo, Long> {	
-	
+
     public PhotoDAO() {
         super(Photo.class);
     }
-    
+
     @Override
-    public void save(Photo photo,boolean isInsertion){
+    public void save(Photo photo, boolean isInsertion) {
+       photo.setNomeArquivo(photo.getId() + photo.getNomeArquivo());
        super.save(photo, isInsertion);
-       photo.setNomeArquivo(photo.getId()+photo.getNomeArquivo());
-       super.update(photo);
     }
 
     public void saveImage(InputStream foto, String nome, String pasta) throws IOException {
@@ -34,28 +33,28 @@ public class PhotoDAO extends ObjectDAO<Photo, Long> {
         IOUtils.copy(foto, new FileOutputStream(file));
     }
 
-    @SuppressWarnings("unchecked")
     public List<Photo> busca(String busca, Long idInstance) {
-        String query="SELECT p FROM Photo p WHERE p.idInstance=:idInstance AND upper(p.nome) LIKE :nome";
-        Query consulta=getEntityManager().createQuery(query);
+        String query = "SELECT p FROM " + Photo.class.getSimpleName() + " p WHERE p.idInstance=:idInstance AND upper(p.nome) LIKE :nome";
+        Query consulta = getEntityManager().createQuery(query);
         consulta.setParameter("idInstance", idInstance);
-        consulta.setParameter("nome", "%"+busca.toUpperCase()+"%");
+        consulta.setParameter("nome", "%" + busca.toUpperCase() + "%");
         //consulta.setParameter("lugar", "%"+busca.toUpperCase()+"%");
         //consulta.setParameter("descricao", "%"+busca.toUpperCase()+"%");
-        List<Photo> result=(List<Photo>)consulta.getResultList();
+
+        @SuppressWarnings("unchecked")
+        List<Photo> result = (List<Photo>) consulta.getResultList();
 
         return result;
     }
 
-    @SuppressWarnings("unchecked")
     public List<Photo> busca(String nome, String lugar, String descricao, Date date, Long idInstance) {
         String query;
         Query consulta;
         if (date == null) {
-            query = "SELECT p FROM Photo p WHERE p.idInstance = :idInstance AND (upper(p.nome) LIKE :nome AND upper(p.lugar) LIKE :lugar AND upper(p.descricao) LIKE :descricao)";
+            query = "SELECT p FROM " + Photo.class.getSimpleName() + " p WHERE p.idInstance = :idInstance AND (upper(p.nome) LIKE :nome AND upper(p.lugar) LIKE :lugar AND upper(p.descricao) LIKE :descricao)";
             consulta = getEntityManager().createQuery(query);
         } else {
-            query = "SELECT p FROM Photo p WHERE p.idInstance = :idInstance AND (upper(p.nome) LIKE :nome AND upper(p.lugar) LIKE :lugar AND upper(p.descricao) LIKE :descricao AND p.data = :date)";
+            query = "SELECT p FROM " + Photo.class.getSimpleName() + " p WHERE p.idInstance = :idInstance AND (upper(p.nome) LIKE :nome AND upper(p.lugar) LIKE :lugar AND upper(p.descricao) LIKE :descricao AND p.data = :date)";
             consulta = getEntityManager().createQuery(query);
             consulta.setParameter("date", date);
         }
@@ -64,23 +63,27 @@ public class PhotoDAO extends ObjectDAO<Photo, Long> {
         consulta.setParameter("lugar", "%" + lugar.toUpperCase() + "%");
         consulta.setParameter("descricao", "%" + descricao.toUpperCase() + "%");
 
+        @SuppressWarnings("unchecked")
         List<Photo> result = (List<Photo>) consulta.getResultList();
 
         return result;
     }
-    
+
     /*
-     * Returns the n-esima page of photos with size: pageSize 
-     * @param pageSize the size of the page (page=10 , 100 elements), pageSize>=0 
-     * @param pageNumber the number of the page, pageNumber>=0
+     * Returns the n-th page of photos with size: pageSize
+     * @param pageSize the size of the page (page = 10, 100 elements), pageSize >=0
+     * @param pageNumber the number of the page, pageNumber >= 0
      */
-    public List<Photo> listPhotoByPage(int pageSize, int pageNumber){
-        String querySentence="select p from Photo p";
-        Query query=getEntityManager().createQuery(querySentence);
-        int firstElement=pageNumber*pageSize;
+    public List<Photo> listPhotoByPage(int pageSize, int pageNumber) {
+        String querySentence = "SELECT p FROM " + Photo.class.getSimpleName() + " p";
+        Query query = getEntityManager().createQuery(querySentence);
+        int firstElement = pageNumber * pageSize;
         query.setFirstResult(firstElement);
         query.setMaxResults(pageSize);
+
+        @SuppressWarnings("unchecked")
         List<Photo> result = (List<Photo>) query.getResultList();
+
         return result;
     }
 }

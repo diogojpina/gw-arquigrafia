@@ -3,9 +3,7 @@ package br.org.groupware_workbench.photo;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-import java.awt.Image;
 import java.io.BufferedInputStream;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -13,12 +11,8 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.imageio.stream.FileImageInputStream;
 import javax.servlet.http.HttpServletRequest;
-import javax.swing.ImageIcon;
 
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.disk.DiskFileItem;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -30,18 +24,18 @@ import br.com.caelum.vraptor.validator.Message;
 import br.com.caelum.vraptor.validator.ValidationException;
 import br.com.caelum.vraptor.view.LogicResult;
 import br.com.caelum.vraptor.util.test.MockResult;
-import br.org.groupware_workbench.collabElementFw.facade.CollabElementInstance;
 
 public class PhotoControllerTest {
 
     private PhotoController controller;
     private PhotoMgrInstance photoInstance;
-    private MockValidator validator;
     private MockResult result;
     private LogicResult view;
     private RequestInfo requestInfo;
     private HttpServletRequest httpServletRequest;
     private List<Photo> photos;
+    private Photo photo1;
+    private Photo photo2;
 
     @Before
     public void setUp() {
@@ -57,111 +51,117 @@ public class PhotoControllerTest {
 
         photos = new ArrayList<Photo>();
 
-        Photo um = new Photo();
-        um.setId(1);
-        um.setIdInstance(1);
-        um.setNome("foto Um");
-        um.setNomeArquivo("fotoum.jpg");
+        photo1 = new Photo();
+        photo1.setId(1);
+        photo1.setIdInstance(1);
+        photo1.setNome("foto Um");
+        photo1.setNomeArquivo("fotoum.jpg");
+        photos.add(photo1);
 
-        Photo dois = new Photo();
-        dois.setId(2);
-        dois.setIdInstance(1);
-        dois.setNome("foto Dois");
-        dois.setNomeArquivo("fotodois.jpg");
+        photo2 = new Photo();
+        photo2.setId(2);
+        photo2.setIdInstance(1);
+        photo2.setNome("foto Dois");
+        photo2.setNomeArquivo("fotodois.jpg");
+        photos.add(photo2);
+    }
 
-        photos.add(um);
-        photos.add(dois);
+    private UploadedFile getImage() {
+        InputStream imagem = null;
+
+        try {
+            imagem = new BufferedInputStream(new FileInputStream("src/test/resources/predio.jpg"));
+        } catch (FileNotFoundException e) {
+            Assert.fail();
+        } catch (IOException e) {
+            Assert.fail();
+        }
+
+        UploadedFile file = mock(UploadedFile.class);
+        when(file.getFile()).thenReturn(imagem);
+        when(file.getFileName()).thenReturn("fotoum.jpg");
+
+        return file;
     }
 
     @Test
-    public void shouldBuscarFotosByString() {
-        when(photoInstance.getCollabElementInstances()).thenReturn(new ArrayList<CollabElementInstance>());
-        when(photoInstance.buscaFoto("fo")).thenReturn(null);
+    public void testPhotoSearchWithShortString() {
+        when(photoInstance.buscaFoto("fo")).thenThrow(new AssertionError());
 
         try {
             controller.buscaFoto("fo", photoInstance);
             Assert.fail();
         } catch (ValidationException e) {
             List<Message> errors = e.getErrors();
+            Assert.assertEquals(1, errors.size());
+            Assert.assertEquals(PhotoController.MSG_MIN_3_LETRAS, errors.get(0).getMessage());
         }
-
-        when(photoInstance.buscaFoto("fot")).thenReturn(photos);
-        controller.buscaFoto("fot", photoInstance);
-
-        Photo um = new Photo();
-        um.setId(1);
-        um.setIdInstance(1);
-        um.setNome("foto Um");
-        um.setNomeArquivo("fotoum.jpg");
-
-        Photo dois = new Photo();
-        dois.setId(2);
-        dois.setIdInstance(1);
-        dois.setNome("foto Dois");
-        dois.setNomeArquivo("fotodois.jpg");
-
-        Photo[] fotos = {um, dois};
-
-        List<Photo> fotosResult = (List<Photo>) result.included("fotos");
-        Assert.assertArrayEquals(fotosResult.toArray(), fotos);
-
     }
 
     @Test
-    public void shouldFazerBuscaAvancada() {
-        when(photoInstance.getCollabElementInstances()).thenReturn(new ArrayList<CollabElementInstance>());
+    public void testPhotoSearchWithLongEnoughString() {
+        when(photoInstance.buscaFoto("fot")).thenReturn(photos);
+        controller.buscaFoto("fot", photoInstance);
 
+        @SuppressWarnings("unchecked")
+        List<Photo> fotosResult = (List<Photo>) result.included("fotos");
+
+        Assert.assertEquals(2, fotosResult.size());
+        Assert.assertTrue(fotosResult.contains(photo1));
+        Assert.assertTrue(fotosResult.contains(photo2));
+    }
+
+    @Test
+    public void testAdvancedSearchWithoutAnyFields() {
         try {
             controller.buscaFotoAvancada("", "", "", null, photoInstance);
             Assert.fail();
         } catch (ValidationException e) {
             List<Message> errors = e.getErrors();
             Assert.assertEquals(1, errors.size());
-            Assert.assertEquals("Nenhum campo foi preenchido.", errors.get(0).getMessage());
+            Assert.assertEquals(PhotoController.MSG_NENHUM_CAMPO_PREENCHIDO, errors.get(0).getMessage());
         }
-
-        when(photoInstance.buscaFotoAvancada("fotoun", "", "", null)).thenReturn(photos);
-        controller.buscaFotoAvancada("fotoun", "", "", null, photoInstance);
-
-        Photo um = new Photo();
-        um.setId(1);
-        um.setIdInstance(1);
-        um.setNome("foto Um");
-        um.setNomeArquivo("fotoum.jpg");
-
-        Photo dois = new Photo();
-        dois.setId(2);
-        dois.setIdInstance(1);
-        dois.setNome("foto Dois");
-        dois.setNomeArquivo("fotodois.jpg");
-
-        Photo[] fotos = {um, dois};
-
-        List<Photo> fotosResult = (List<Photo>) result.included("fotos");
-        Assert.assertArrayEquals(fotosResult.toArray(), fotos);
     }
 
     @Test
-    public void shouldSave() {
+    public void testAdvancedSeachByName() {
+        when(photoInstance.buscaFotoAvancada("fotoum", "", "", null)).thenReturn(photos);
+        controller.buscaFotoAvancada("fotoum", "", "", null, photoInstance);
+
+        @SuppressWarnings("unchecked")
+        List<Photo> fotosResult = (List<Photo>) result.included("fotos");
+
+        Assert.assertEquals(2, fotosResult.size());
+        Assert.assertTrue(fotosResult.contains(photo1));
+        Assert.assertTrue(fotosResult.contains(photo2));
+    }
+
+    @Test
+    public void testSaveWithoutNameNorImage() {
         Photo um = new Photo();
         um.setIdInstance(1);
         um.setNome("");
 
-        String[] mesagens = {"O nome é obrigatório.", "Uma imagem é obrigatória.", "Não foi possível redimensionar a imagem."};
         try {
             controller.save(um, null, photoInstance);
             Assert.fail();
         } catch (ValidationException e) {
-            List<Message> erros = e.getErrors();
-            List<String> outMesagens = new ArrayList<String>();
-            for (Message message : erros) {
+            List<Message> errors = e.getErrors();
+            Assert.assertEquals(2, errors.size());
+
+            List<String> outMesagens = new ArrayList<String>(2);
+            for (Message message : errors) {
                 outMesagens.add(message.getMessage());
             }
-            Assert.assertEquals(2, erros.size());
-            Assert.assertTrue(outMesagens.contains(mesagens[0]));
-            Assert.assertTrue(outMesagens.contains(mesagens[1]));
+            Assert.assertTrue(outMesagens.contains(PhotoController.MSG_NOME_OBRIGATORIO));
+            Assert.assertTrue(outMesagens.contains(PhotoController.MSG_IMAGEM_OBRIGATORIA));
         }
+    }
 
+    @Test
+    public void testSaveWithoutImage() {
+        Photo um = new Photo();
+        um.setIdInstance(1);
         um.setNome("foto Um");
         um.setNomeArquivo("fotoum.jpg");
 
@@ -169,49 +169,29 @@ public class PhotoControllerTest {
             controller.save(um, null, photoInstance);
             Assert.fail();
         } catch (ValidationException e) {
-            List<Message> erros = e.getErrors();
-            List<String> outMesagens = new ArrayList<String>();
-            for (Message message : erros) {
+            List<Message> errors = e.getErrors();
+            Assert.assertEquals(1, errors.size());
+
+            List<String> outMesagens = new ArrayList<String>(2);
+            for (Message message : errors) {
                 outMesagens.add(message.getMessage());
             }
-            Assert.assertEquals(3, erros.size());
-            Assert.assertTrue(outMesagens.contains(mesagens[1]));
+            Assert.assertEquals(PhotoController.MSG_IMAGEM_OBRIGATORIA, errors.get(0).getMessage());
         }
-        
-        InputStream imagen=null;
-        
-        try {
-            //imagen = new FileInputStream("src/test/resources/predio.jpg");
-            imagen=new BufferedInputStream(new FileInputStream("src/test/resources/predio.jpg")); 
-            String str=imagen.toString();
-        
-           
-        } catch (FileNotFoundException e1) {
-            // TOtDO Auto-generated catch block
-            e1.printStackTrace();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }                       
-                               
-        UploadedFile file = mock(UploadedFile.class);
-        when(file.getFile()).thenReturn(imagen);
-        when(file.getFileName()).thenReturn("fotoun.jpg");
-        
+    }
+
+    @Test
+    public void testSucessfulSave() throws ValidationException {
+        Photo um = new Photo();
+        um.setIdInstance(1);
+        um.setNome("foto Um");
+        um.setNomeArquivo("fotoum.jpg");
+
+        UploadedFile file = getImage();
+
         controller = new PhotoController(result, new MockValidator(), httpServletRequest, requestInfo);
         when(view.redirectTo(PhotoController.class)).thenReturn(controller);
 
-        try {
-            controller.save(um, file, photoInstance);
-            //Assert.fail();
-        } catch (ValidationException e) {
-            List<Message> erros = e.getErrors();
-            List<String> outMesagens = new ArrayList<String>();
-            for (Message message : erros) {
-                outMesagens.add(message.getMessage());
-            }
-            Assert.assertEquals(1, erros.size());
-            Assert.assertTrue(outMesagens.contains(mesagens[2]));
-        }
+        controller.save(um, file, photoInstance);
     }
 }

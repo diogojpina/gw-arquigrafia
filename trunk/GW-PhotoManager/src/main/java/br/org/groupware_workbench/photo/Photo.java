@@ -26,7 +26,6 @@ public class Photo extends GenericEntity {
     @Temporal(TemporalType.TIMESTAMP)
     private Date data;
 
-    
     public String getNomeArquivo() {
         return nomeArquivo;
     }
