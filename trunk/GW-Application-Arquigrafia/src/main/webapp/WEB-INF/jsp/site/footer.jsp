@@ -1,11 +1,10 @@
 <div id="footer_wrap">
     <div style="float: left">
-    	<img src="${pageContext.request.contextPath}/images/footer_left_top.png" width="667" height="44" alt="&Uacute;ltimas fotos" />
+        <img src="${pageContext.request.contextPath}/images/footer_left_top.png" width="667" height="44" alt="&Uacute;ltimas fotos" />
     </div>
 
     <div id="tag_cloud">
         <!--  modelo para inserção de tags aqui -->
-        <!-- <a href="#" class="cloud0">tag1</a> -->
         <c:if test="${tagMgr != null}">
             <TagMgr:TagCloud tagMgr="${tagMgr}" collabletInstance="${siteInstance}"/>
         </c:if>

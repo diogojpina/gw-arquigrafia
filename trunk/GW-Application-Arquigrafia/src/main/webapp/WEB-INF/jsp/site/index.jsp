@@ -14,12 +14,13 @@
         <link href="${pageContext.request.contextPath}/css/arq-common.css" rel="stylesheet" type="text/css" />
         <link href="${pageContext.request.contextPath}/css/min-header.css" rel="stylesheet" type="text/css" />
         <link href="${pageContext.request.contextPath}/css/know_more.css" rel="stylesheet" type="text/css" />
-        <style type="text/css">#vlightbox a#vlb{display:none}</style>
+        <style type="text/css">#vlightbox a#vlb {display: none; }</style>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/visual_lightbox/engine/css/visuallightbox.css" type="text/css" media="screen" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/visual_lightbox/engine/css/vlightbox.css" type="text/css" media="screen" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/sds/css/smoothDivScroll.css" type="text/css" media="screen" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bay.css" type="text/css" media="screen" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" type="text/css" media="screen" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/tagcloud.css" type="text/css" />
         <script type="text/javascript" src="${pageContext.request.contextPath}/plugins/visual_lightbox/engine/js/visuallightbox.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/plugins/sds/js/jquery.smoothDivScroll-0.9-min.js"></script>
