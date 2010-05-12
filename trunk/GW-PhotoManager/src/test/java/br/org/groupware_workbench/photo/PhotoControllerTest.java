@@ -4,6 +4,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.io.BufferedInputStream;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -70,7 +71,7 @@ public class PhotoControllerTest {
         InputStream imagem = null;
 
         try {
-            imagem = new BufferedInputStream(new FileInputStream("src/test/resources/predio.jpg"));
+            imagem = new BufferedInputStream(new FileInputStream(new File(this.getClass().getResource("fotoum.jpg").getFile())));
         } catch (FileNotFoundException e) {
             Assert.fail();
         } catch (IOException e) {

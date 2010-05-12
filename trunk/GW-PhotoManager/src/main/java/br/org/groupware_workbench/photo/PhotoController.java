@@ -1,7 +1,9 @@
 package br.org.groupware_workbench.photo;
 
 import java.awt.Dimension;
+import java.awt.Point;
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.Date;
 import java.util.HashMap;
@@ -24,7 +26,6 @@ import br.com.caelum.vraptor.validator.ValidationMessage;
 import br.com.caelum.vraptor.view.Results;
 import br.org.groupware_workbench.collabElementFw.facade.CollabElementInstance;
 import br.org.groupware_workbench.commons.util.ImageUtils;
-import java.io.IOException;
 
 @RequestScoped
 @Resource
@@ -185,9 +186,14 @@ public class PhotoController {
             rawphoto = new byte[foto.getFile().available()];
             foto.getFile().read(rawphoto); 
             imagemOriginal=new ByteArrayInputStream(rawphoto);
-            imagemMostra = ImageUtils.createThumbnail(new Dimension(800, 600), new ByteArrayInputStream(rawphoto));
-            imagemThumb = ImageUtils.createThumbnail(new Dimension(100, 100), new ByteArrayInputStream(rawphoto));
-            imagemCropped = ImageUtils.cropImage(ImageUtils.calcSqrThumbCropPoint(imagemOriginal), new Dimension(100, 100), new ByteArrayInputStream(rawphoto));
+            imagemMostra = ImageUtils.createThumbnail(600, imagemOriginal);
+            imagemOriginal.reset();
+            imagemThumb = ImageUtils.createThumbnail(100, imagemOriginal);
+            imagemThumb.reset();
+            Point cropPoint = ImageUtils.calcSqrThumbCropPoint(imagemThumb);
+            imagemThumb.reset();
+            imagemCropped = ImageUtils.cropImage(cropPoint, new Dimension(100 ,100), imagemThumb);
+            imagemThumb.reset();
         } catch (IOException e) {
             validator.add(new ValidationMessage(MSG_NAO_FOI_POSSIVEL_REDIMENSIONAR, "Erro"));
             validator.onErrorUse(Results.logic()).redirectTo(PhotoController.class).registra(photoInstance);
