@@ -10,7 +10,8 @@
         <link href="${pageContext.request.contextPath}/css/reset.css" rel="stylesheet" type="text/css" />
         <link href="${pageContext.request.contextPath}/css/arq-common.css" rel="stylesheet" type="text/css" />
         <link href="${pageContext.request.contextPath}/css/header.css" rel="stylesheet" type="text/css" />
-                <link href="${pageContext.request.contextPath}/css/show.css" rel="stylesheet" type="text/css" />
+        <link href="${pageContext.request.contextPath}/css/forms.css" rel="stylesheet" type="text/css" />
+		<link href="${pageContext.request.contextPath}/css/show.css" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/sds/css/smoothDivScroll.css" type="text/css" media="screen" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bay.css" type="text/css" media="screen" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" type="text/css" media="screen" />
@@ -53,6 +54,9 @@
                     	</c:if>
                     	<c:if test="${photoResolution != null}">
                     		<div>Resolução: ${photoResolution}</div>
+                    	</c:if>
+                    	<c:if test="${photoLocation != null}">
+                    		<div>Local: ${photoLocation}</div>
                     	</c:if>
                     	<c:if test="${photoDescription != null}">
                     		<div>

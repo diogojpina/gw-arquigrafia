@@ -25,6 +25,9 @@
                         <c:if test="${environment_photo != null}">
                             <photo:listAll linkClass="vlightbox" photoInstance="${environment_photo}" keepRatio="true"/>
                         </c:if>
+                        <c:if test="${photoInstance != null}">
+                            <photo:listAll linkClass="vlightbox" photoInstance="${photoInstance}" keepRatio="true"/>
+                        </c:if>
                     </div>
                 </div>
           </div>
@@ -32,6 +35,14 @@
 	</div>
 <div id="footer_bottom">
     <div id="footer_bottom_text">
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat.
+		Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat.
     </div>
+</div>
+<div id="footer_links">
+	<c:if test="${environment_photo != null}">
+		<a href="${pageContext.request.contextPath}/groupware-workbench/${environment_photo.id}/photo/registra">administração</a>
+	</c:if>
+	<c:if test="${photoInstance != null}">
+		<a href="${pageContext.request.contextPath}/groupware-workbench/${photoInstance.id}/photo/registra">administração</a>
+	</c:if>
 </div>

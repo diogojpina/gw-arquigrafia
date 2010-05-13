@@ -12,7 +12,7 @@
         </div>
 		<div id="header_top_right">
         	<div id="user_top_links">
-            	<a href="#" class="black_link">gustavo.henrick@gmail.com</a>
+            	<a href="#" class="black_link"></a>
                 &nbsp;&nbsp;
                 <a href="#" class="gray_link">sair</a>
             </div>
@@ -35,15 +35,40 @@
        	  <div id="search_input">
        	  		<ul style="list-style: none">
        	  			<li style="display: inline">
-       	  			<photo:simpleSearch photoInstance="${environment_photo}" ></photo:simpleSearch>
+       	  			<c:if test="${environment_photo != null}">
+       	  				<photo:simpleSearch photoInstance="${environment_photo}" ></photo:simpleSearch>
+       	  			</c:if>
+       	  			<c:if test="${photoInstance != null}">
+       	  				<photo:simpleSearch photoInstance="${photoInstance}" ></photo:simpleSearch>
+       	  			</c:if>
        	  			</li>
        	  			<li style="display: inline">
-                	<div id="search_options">
+                	<div id="search_options1">
           				<span class="option_on">Texto</span><span class="fat_separator">|</span><span class="option_off">Tags</span><br />
-           	 			<a href="#" class="orange_link">Busca Avançada >></a>
+           	 			<span id="advancedSearch"><a href="#" class="orange_link">Busca Avançada >></a></span>
+           	 	    </div>
+    	 	        <div id="search_options2">
+          				<span class="option_on">Texto</span><span class="fat_separator">|</span><span class="option_off">Tags</span><br />
+           	 			<span id="simpleSearch"><a href="#" class="orange_link">Busca Simples >> </a></span>
+           	 	    </div>
            	 		</li>
            	 	</ul>
           </div>
-          </div>
 	</div>
+	<div id="advancedSearchField">
+		<c:if test="${environment_photo != null}">
+			<photo:advancedSearch photoInstance="${environment_photo}" formClass="form1" formLineClass="field_line_f1" formLabelClass="label_f1" formInputClass="input_f1" 
+					formLineBtClass="bt_line_f1" formSubmitBtClass="bt_cell_submit" />
+		</c:if>
+		<c:if test="${photoInstance != null}">
+			<photo:advancedSearch photoInstance="${photoInstance}" formClass="form1" formLineClass="field_line_f1" formLabelClass="label_f1" formInputClass="input_f1" 
+					formLineBtClass="bt_line_f1" formSubmitBtClass="bt_cell_submit" />
+		</c:if>
+	</div>
+	    <script type="text/javascript">
+    	$("#search_options2").hide();
+    	$("#advancedSearchField").hide();
+    	$("#simpleSearch").click(function() { $("#search_options1").show(); $("#search_options2").hide(); $("#advancedSearchField").hide();});
+    	$("#advancedSearch").click(function() { $("#search_options2").show(); $("#search_options1").hide(); $("#advancedSearchField").show();});
+	</script>
 </div>

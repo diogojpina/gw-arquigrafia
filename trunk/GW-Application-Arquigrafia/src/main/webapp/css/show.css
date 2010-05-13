@@ -62,6 +62,14 @@
 	font-weight: bold;
 	color: #6A8A9A;
 }
+#caracteristics div{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #6A8A9A;
+	line-height: 20px;
+	position: relative;
+	left: 10px;
+}
 #tags_left {
 	float: left;
 	width: 57px;

@@ -10,6 +10,7 @@
         <link href="${pageContext.request.contextPath}/css/reset.css" rel="stylesheet" type="text/css" />
         <link href="${pageContext.request.contextPath}/css/arq-common.css" rel="stylesheet" type="text/css" />
         <link href="${pageContext.request.contextPath}/css/header.css" rel="stylesheet" type="text/css" />
+        <link href="${pageContext.request.contextPath}/css/forms.css" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/sds/css/smoothDivScroll.css" type="text/css" media="screen" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bay.css" type="text/css" media="screen" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" type="text/css" media="screen" />
@@ -30,12 +31,15 @@
 
 </head>
 <body>
+<%@ include file="../site/header2.jsp" %>
 <Widgets:Topo collabletInstance="${photoInstance}" />
 <Widgets:ConteudoPagina titulo="Registrar foto">
 <form name="photoRegisterForm" method="post"
 	enctype="multipart/form-data"
 	action="<c:url value="/groupware-workbench/${photoInstance.id}/photo/registra"/>" />
-	<photo:save photoRegister="${photoRegister}" photoInstance="${photoInstance}" tagMgr="${tagMgr}"/>		
+	<photo:save photoRegister="${photoRegister}" photoInstance="${photoInstance}" tagMgr="${tagMgr}"
+					formClass="form1" formLineClass="field_line_f1" formLabelClass="label_f1" formInputClass="input_f1" 
+					formLineBtClass="bt_line_f1" formSubmitBtClass="bt_cell_submit"/>		
 </form>	
 <br/>
 <c:forEach var="error" items="${errors}">
@@ -45,6 +49,8 @@
 
 <Widgets:Voltar collabletInstance="${photoInstance}" />
 </Widgets:ConteudoPagina>
+<div style="height: 30px; width: 100%"></div>
+<%@ include file="../site/footer.jsp" %>
 </body>
 
 

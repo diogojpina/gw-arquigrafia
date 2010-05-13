@@ -10,6 +10,7 @@
         <link href="${pageContext.request.contextPath}/css/arq-common.css" rel="stylesheet" type="text/css" />
         <link href="${pageContext.request.contextPath}/css/header.css" rel="stylesheet" type="text/css" />
         <link href="${pageContext.request.contextPath}/css/search.css" rel="stylesheet" type="text/css" />
+        <link href="${pageContext.request.contextPath}/css/forms.css" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/sds/css/smoothDivScroll.css" type="text/css" media="screen" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bay.css" type="text/css" media="screen" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" type="text/css" media="screen" />
