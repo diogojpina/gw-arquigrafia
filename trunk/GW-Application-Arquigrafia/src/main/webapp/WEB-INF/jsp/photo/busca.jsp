@@ -3,59 +3,47 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://www.groupwareworkbench.org.br/widgets/commons" prefix="Widgets" %>
 <%@ taglib uri="http://www.groupwareworkbench.org.br/widgets/photomanager" prefix="photo" %>
-<%@ taglib uri="http://www.groupwareworkbench.org.br/widgets/binomial" prefix="binomialMgr" %>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Foto Busca</title>
-        <link type="text/css" href="${pageContext.request.contextPath}/css/jquery-ui-1.8.custom.css" rel="Stylesheet" />
         <link href="${pageContext.request.contextPath}/css/reset.css" rel="stylesheet" type="text/css" />
-        <link href="${pageContext.request.contextPath}/css/common.css" rel="stylesheet" type="text/css" />
-        <link href="${pageContext.request.contextPath}/css/page_content.css" rel="stylesheet" type="text/css" />
-        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/js/fancybox/jquery.fancybox-1.3.1.css" media="screen" />
-        <script type="text/javascript" src="${pageContext.request.contextPath}/js/listagem.js"></script>
-        <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
+        <link href="${pageContext.request.contextPath}/css/arq-common.css" rel="stylesheet" type="text/css" />
+        <link href="${pageContext.request.contextPath}/css/header.css" rel="stylesheet" type="text/css" />
+        <link href="${pageContext.request.contextPath}/css/search.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/sds/css/smoothDivScroll.css" type="text/css" media="screen" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bay.css" type="text/css" media="screen" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" type="text/css" media="screen" />
+        <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"/></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-ui-1.8.custom.min.js"></script>
-        <script type="text/javascript" src="${pageContext.request.contextPath}/js/fancybox/jquery.mousewheel-3.0.2.pack.js"></script>
-        <script type="text/javascript" src="${pageContext.request.contextPath}/js/fancybox/jquery.fancybox-1.3.1.js"></script>
-    </head>
-    <body>
-        <Widgets:Topo collabletInstance="${photoInstance}" />
-        <Widgets:ConteudoPagina titulo="Busca Fotos">
-
-            <div id="subtitle_1">
-                <span class="subTitulo">Configura&ccedil;&atilde;o</span>
-                <Widgets:Configuracao collabletInstance="${photoInstance}" />
-            </div>
-
-            <c:if test="${not empty photoInstance.subordinatedInstances}">
-                <div id="subtitle_3">
-                    <span class="subTitulo">Collablets</span>
-                    <Widgets:MenuFerramentas collabletInstance="${photoInstance}" groups="${groups}" />
-                </div>
-            </c:if>
-
-            <div>
-                <a href="<c:url value="/groupware-workbench/${photoInstance.id}/photo/registra"/>">Registrar uma nova foto</a>
-            </div>
-
-            <div>
-                <h1>Busca de Fotos</h1>
-                <photo:search photoInstance="${photoInstance}"/>
-            </div>
-            <div>
-                <photo:list photos="${fotos}" photoInstance="${photoInstance}" showName="true" showLocation="true"/>
-            </div>
-            <div>
-                <h1>Lista Fotos</h1>
-                <photo:listAll photoInstance="${photoInstance}" keepRatio="true"/>
-            </div>
-
-            <c:forEach var="error" items="${errors}">
-                <c:out value="${error.category}" /> - <c:out value="${error.message}" />
-                <br />
-            </c:forEach>
-            <Widgets:Voltar collabletInstance="${photoInstance}" />
-        </Widgets:ConteudoPagina>
-    </body>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/plugins/sds/js/jquery.smoothDivScroll-0.9-min.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/plugins/sds/js/scroll.js"></script>
+        <script type="text/javascript">
+            $(function() {
+                $("div#makeMeScrollable").smoothDivScroll({scrollingSpeed: 12, mouseDownSpeedBooster: 3, visibleHotSpots: "always", startAtElementId: "startAtMe"});
+            });
+        </script>
+        <script src="${pageContext.request.contextPath}/scripts/chili-1.7.pack.js" type="text/javascript" ></script>
+        <script src="${pageContext.request.contextPath}/scripts/jquery.easing.js" type="text/javascript"></script>
+        <script src="${pageContext.request.contextPath}/scripts/jquery.dimensions.js" type="text/javascript"></script>
+        <script src="${pageContext.request.contextPath}/scripts/jquery.accordion.js" type="text/javascript"></script>
+        <script src="${pageContext.request.contextPath}/scripts/bay.js" type="text/javascript"></script>
+     </head>
+     <body>
+     	<%@ include file="../site/header2.jsp" %>
+     	<div id="search_statistics">
+     		Você Buscou: ${searchTerm}
+     		<span id="resultCount"> (${numResults} resultados)</span>
+     		<br/>
+     		<c:forEach var="error" items="${errors}">
+				${error.category} - ${error.message} <br />
+			</c:forEach>
+     	</div>
+     	<br />
+     	<div id="seach_refinement"></div>
+     	<div id="search_scroll">
+     			<photo:list photos="${fotos}" photoInstance="${photoInstance}" 
+				showName="true" showLocation="true"/>
+     	</div>
+     	<%@ include file="../site/footer.jsp" %>
+     </body>
 </html>
