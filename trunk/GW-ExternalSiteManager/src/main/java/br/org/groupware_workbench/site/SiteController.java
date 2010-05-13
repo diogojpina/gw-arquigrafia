@@ -20,7 +20,7 @@ public class SiteController {
     }
 
     @Get
-    @Path(value = "/groupware-workbench/{siteInstance}/pages")
+    @Path(value = "/groupware-workbench/{siteInstance}/site")
     public void index(SiteInstance siteInstance) {
         //addIncludes();
         result.include("siteInstance", siteInstance);
@@ -42,4 +42,5 @@ public class SiteController {
             System.out.println("O componente " + collabComponentInstance.getComponent().getCod() + " foi adicionado na requisição com o nome " + nomeComponente);
         }
     }
+   
 }
