@@ -57,6 +57,7 @@ public class PhotoController {
     public void show(PhotoMgrInstance photoInstance, long idPhoto){
         photoInstance.setRequestInfo(info);
         result.include("idPhoto", idPhoto);
+        Photo photo = photoInstance.buscaPhotoById(idPhoto);
         //addIncludes();
         result.include("photoInstance", photoInstance);
         for (CollabElementInstance collabComponentInstance : photoInstance.getCollabElementInstances()) {
@@ -106,6 +107,8 @@ public class PhotoController {
         result.include("cropPrefix", photoInstance.getCropPrefix());
         result.include("mostraPrefix", photoInstance.getMostraPrefix());
         result.include("dirImagem", photoInstance.getDirImagesRelativo());
+        result.include("searchTerm", busca);
+        result.include("numResults", resultFotosBusca.size());
         result.use(Results.logic()).redirectTo(PhotoController.class).busca(photoInstance);
     }
 
