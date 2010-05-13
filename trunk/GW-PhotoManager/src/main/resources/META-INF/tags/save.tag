@@ -35,7 +35,7 @@
         <li class="${formLabelClass}"><span>Nome*:</span></li>
         <li class="${formInputClass}"><input type="text" name="photoRegister.nome"></li>
     </ul>
-    <ul class="${formLineClass}">
+    <ul class="${formLineClass}" style="height:90px">
         <li class="${formLabelClass}"><span>Descri&ccedil;&atilde;o:</span></li>
         <li class="${formInputClass}"><textarea rows="3" name="photoRegister.descricao"></textarea></li>
     </ul>
@@ -43,7 +43,7 @@
         <li class="${formLabelClass}"><span>Lugar onde foi tirada</span></li>
         <li class="${formInputClass}"><input type="text" name="photoRegister.lugar"></li>
     </ul>
-    <ul class="${formLineClass}" style="vertical-align: top">
+    <ul class="${formLineClass}" style="vertical-align: top; height:100px">
         <li class="${formLabelClass}"><span>Tags:</span></li>
         <li class="${formInputClass}">
             <c:if test="${tagMgr != null}">

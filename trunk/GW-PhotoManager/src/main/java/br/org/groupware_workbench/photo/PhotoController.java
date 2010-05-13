@@ -5,6 +5,7 @@ import java.awt.Point;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.DateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -60,6 +61,10 @@ public class PhotoController {
         Photo photo = photoInstance.buscaPhotoById(idPhoto);
         //addIncludes();
         result.include("photoInstance", photoInstance);
+        result.include("photoTitle", photo.getNome());
+        result.include("photoDescription", photo.getDescricao());
+        result.include("photoDate", DateFormat.getInstance().format(photo.getData()));
+        result.include("photoLocation", photo.getLugar());
         for (CollabElementInstance collabComponentInstance : photoInstance.getCollabElementInstances()) {
             String nomeComponente = collabComponentInstance.getName();
             result.include(nomeComponente, collabComponentInstance);
