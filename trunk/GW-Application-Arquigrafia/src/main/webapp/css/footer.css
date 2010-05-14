@@ -54,7 +54,7 @@
 #footer_scroll_list a{
 	margin-right: 50px;
 }
-#tag_cloud {
+.tag_cloud {
 	text-align: center;
 	float: right;
 	width: 293px;

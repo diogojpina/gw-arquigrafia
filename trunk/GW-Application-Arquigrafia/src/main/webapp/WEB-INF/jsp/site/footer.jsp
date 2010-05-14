@@ -6,12 +6,9 @@
         <img src="${pageContext.request.contextPath}/images/footer_left_top.png" width="667" height="44" alt="&Uacute;ltimas fotos" />
     </div>
 
-    <div id="tag_cloud">
-        <!--  modelo para inserção de tags aqui -->
-        <c:if test="${tagMgr != null}">
-            <TagMgr:TagCloud tagMgr="${tagMgr}" collabletInstance="${siteInstance}"/>
-        </c:if>
-    </div>
+    <c:if test="${tagMgr != null}">
+        <TagMgr:TagCloud tagMgr="${tagMgr}" collabletInstance="${siteInstance}"/>
+    </c:if>
 
     <div id="footer_carrousel_wrap">
         <br />
