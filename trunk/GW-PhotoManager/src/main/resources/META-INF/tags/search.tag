@@ -36,7 +36,7 @@
 </div>
 
 <div id="form2">
-    <form name="formBuscaAvanzada" action="<c:url value="/groupware-workbench/${photoInstance.id}/photo/buscaA"/>" method="post">
+    <form name="formBuscaAvancada" action="<c:url value="/groupware-workbench/${photoInstance.id}/photo/buscaA"/>" method="post">
         <%-- TODO: Tableless! --%>
         <table>
             <tr>

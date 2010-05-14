@@ -8,9 +8,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <html>
     <head>
-        <title>Faq</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta http-equiv="cache-control" content="no-cache">
+        <title>Faq</title>
         <link href="${pageContext.request.contextPath}/css/reset.css" rel="stylesheet" type="text/css" />
         <link href="${pageContext.request.contextPath}/css/common.css" rel="stylesheet" type="text/css" />
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/listagem.js"></script>
@@ -26,6 +26,7 @@
             <br />
             <form name="dados" method="post" action="<c:url value="/groupware-workbench/${faqMgr.id}/faq" />">
                 <input type="hidden" name="faq.id" value="<c:out value="${faq.id}" />" />
+                <%-- TODO: Tableless! --%>
                 <table cellpadding="3">
                     <c:if test="${categoryMgr != null}">
                         <tr>

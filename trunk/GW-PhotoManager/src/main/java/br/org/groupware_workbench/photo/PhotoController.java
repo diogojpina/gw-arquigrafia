@@ -193,7 +193,7 @@ public class PhotoController {
         try {
             rawphoto = new byte[foto.getFile().available()];
             foto.getFile().read(rawphoto); 
-            imagemOriginal=new ByteArrayInputStream(rawphoto);
+            imagemOriginal = new ByteArrayInputStream(rawphoto);
             imagemMostra = ImageUtils.createThumbnail(600, imagemOriginal);
             imagemOriginal.reset();
             imagemThumb = ImageUtils.createThumbnail(100, imagemOriginal);
@@ -210,7 +210,7 @@ public class PhotoController {
 
         try {
             photoInstance.save(photoRegister);
-            nomeArquivo=photoRegister.getNomeArquivo(); //para ter um solo nome do arquivo
+            nomeArquivo = photoRegister.getNomeArquivo(); // Para ter um só nome do arquivo.
             photoInstance.saveImage(imagemOriginal, nomeArquivo);  
             photoInstance.saveImage(imagemCropped, photoInstance.getCropPrefix() + nomeArquivo);
             photoInstance.saveImage(imagemThumb, photoInstance.getThumbPrefix() + nomeArquivo);

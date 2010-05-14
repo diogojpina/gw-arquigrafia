@@ -15,10 +15,11 @@
         <link href="${pageContext.request.contextPath}/css/forms.css" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/sds/css/smoothDivScroll.css" type="text/css" media="screen" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bay.css" type="text/css" media="screen" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/tagcloud.css" type="text/css" media="screen" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" type="text/css" media="screen" />
-        <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"/></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-ui-1.8.custom.min.js"></script>
-		<script type="text/javascript" src="${pageContext.request.contextPath}/plugins/sds/js/jquery.smoothDivScroll-0.9-min.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/plugins/sds/js/jquery.smoothDivScroll-0.9-min.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/plugins/sds/js/scroll.js"></script>
         <script type="text/javascript">
             $(function() {
@@ -32,21 +33,21 @@
         <script src="${pageContext.request.contextPath}/scripts/bay.js" type="text/javascript"></script>
      </head>
      <body>
-     	<%@ include file="../site/header2.jsp" %>
-     	<div id="search_statistics">
-     		Você Buscou: ${searchTerm}
-     		<span id="resultCount"> (${numResults} resultados)</span>
-     		<br/>
-     		<c:forEach var="error" items="${errors}">
-				${error.category} - ${error.message} <br />
-			</c:forEach>
-     	</div>
-     	<br />
-     	<div id="seach_refinement"></div>
-     	<div id="search_scroll">
-     			<photo:list photos="${fotos}" photoInstance="${photoInstance}" 
-				showName="true" showLocation="true"/>
-     	</div>
-     	<%@ include file="../site/footer.jsp" %>
+         <%@ include file="../site/header2.jsp" %>
+         <div id="search_statistics">
+             Voc&ecirc; Buscou: <c:out value="${searchTerm}" />
+             <span id="resultCount"> (<c:out value="${numResults}" /> resultados)</span>
+             <br/>
+             <c:forEach var="error" items="${errors}">
+                 <c:out value="${error.category}" /> - <c:out value="${error.message}" />
+                 <br />
+             </c:forEach>
+         </div>
+         <br />
+         <div id="seach_refinement"></div>
+         <div id="search_scroll">
+             <photo:list photos="${fotos}" photoInstance="${photoInstance}" showName="true" showLocation="true" />
+         </div>
+         <%@ include file="../site/footer.jsp" %>
      </body>
 </html>

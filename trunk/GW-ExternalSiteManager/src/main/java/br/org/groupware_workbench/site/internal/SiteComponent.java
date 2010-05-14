@@ -7,7 +7,7 @@ import br.org.groupware_workbench.site.SiteInstance;
 
 @ComponentInfo(instanceType=SiteInstance.class, 
     version="0.1",
-    configurationURL = "/groupware-workbench/{siteInstance}/site"
+    configurationURL="/groupware-workbench/{siteInstance}/site"
 )
 public class SiteComponent extends Collablet {
 

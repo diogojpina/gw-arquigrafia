@@ -1,10 +1,13 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <div id="footer_wrap">
     <div style="float: left">
         <img src="${pageContext.request.contextPath}/images/footer_left_top.png" width="667" height="44" alt="&Uacute;ltimas fotos" />
     </div>
 
     <div id="tag_cloud">
-        <!--  modelo para inserção de tags aqui -->
+        <!--  modelo para inserÃ§Ã£o de tags aqui -->
         <c:if test="${tagMgr != null}">
             <TagMgr:TagCloud tagMgr="${tagMgr}" collabletInstance="${siteInstance}"/>
         </c:if>
@@ -21,28 +24,29 @@
                 <div id="footer_scroll_right" class="scrollingHotSpotRight"></div>
                 <div class="scrollWrapper">
                     <div id="footer_scroll_list" class="scrollableArea" >
-                        <!-- modelo para iserção de imagens aqui -->
+                        <!-- modelo para inserÃ§Ã£o de imagens aqui -->
                         <c:if test="${environment_photo != null}">
-                            <photo:listAll linkClass="vlightbox" photoInstance="${environment_photo}" keepRatio="true"/>
+                            <photo:listAll linkClass="vlightbox" photoInstance="${environment_photo}" keepRatio="true" />
                         </c:if>
                         <c:if test="${photoInstance != null}">
-                            <photo:listAll linkClass="vlightbox" photoInstance="${photoInstance}" keepRatio="true"/>
+                            <photo:listAll linkClass="vlightbox" photoInstance="${photoInstance}" keepRatio="true" />
                         </c:if>
                     </div>
                 </div>
-          </div>
+             </div>
+        </div>
     </div>
-	</div>
-<div id="footer_bottom">
-    <div id="footer_bottom_text">
-		Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat.
+    <div id="footer_bottom">
+        <div id="footer_bottom_text">
+            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat.
+        </div>
     </div>
-</div>
-<div id="footer_links">
-	<c:if test="${environment_photo != null}">
-		<a href="${pageContext.request.contextPath}/groupware-workbench/${environment_photo.id}/photo/registra">administração</a>
-	</c:if>
-	<c:if test="${photoInstance != null}">
-		<a href="${pageContext.request.contextPath}/groupware-workbench/${photoInstance.id}/photo/registra">administração</a>
-	</c:if>
+    <div id="footer_links">
+        <c:if test="${environment_photo != null}">
+            <a href="${pageContext.request.contextPath}/groupware-workbench/${environment_photo.id}/photo/registra">administra&ccedil;&atilde;o</a>
+        </c:if>
+        <c:if test="${photoInstance != null}">
+            <a href="${pageContext.request.contextPath}/groupware-workbench/${photoInstance.id}/photo/registra">administra&ccedil;&atilde;o</a>
+        </c:if>
+    </div>
 </div>

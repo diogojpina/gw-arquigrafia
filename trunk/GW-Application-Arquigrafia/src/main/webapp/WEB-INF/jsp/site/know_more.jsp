@@ -1,6 +1,6 @@
 <div id="know_more">
     <div id="know_more_1">
-    <img src="${pageContext.request.contextPath}/images/know_more_1.jpg" width="148" height="140" alt="compartilhe" />
+        <img src="${pageContext.request.contextPath}/images/know_more_1.jpg" width="148" height="140" alt="compartilhe" />
         <h3>Compartilhe</h3>
         <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
     </div>
