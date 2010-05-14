@@ -43,7 +43,7 @@
         <li class="${formLabelClass}"><span>Lugar onde foi tirada</span></li>
         <li class="${formInputClass}"><input type="text" name="photoRegister.lugar"></li>
     </ul>
-    <ul class="${formLineClass}" style="vertical-align: top; height:100px">
+    <ul class="${formLineClass}" style="vertical-align: top; height:120px">
         <li class="${formLabelClass}"><span>Tags:</span></li>
         <li class="${formInputClass}">
             <c:if test="${tagMgr != null}">
@@ -54,8 +54,9 @@
     </ul>
     <ul class="${formLineClass}">
         <li class="${formLabelClass}"><span>Data:</span></li>
-        <li class="${formInputClass}"><input type="text" id="datepicker" name="photoRegister.data" /></li>
+        <li class="${formInputClass}"></li>
     </ul>
+    <input type="text" id="datepicker" name="photoRegister.data" />
     <ul class="${formLineClass}">
         <li class="${formLabelClass}"><span>Arquivo*:</span></li>
         <li class="${formInputClass}"><input type="file" name="foto" /></li>
