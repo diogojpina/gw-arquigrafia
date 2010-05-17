@@ -43,7 +43,6 @@ public class PhotoController {
     private final Result result;
     private final HttpServletRequest request;
     private final Validator validator;
-    private List<Photo> resultFotosBusca;
     private final RequestInfo info;
 
     public PhotoController(Result result, Validator validator, HttpServletRequest request, RequestInfo info) {
@@ -70,6 +69,7 @@ public class PhotoController {
             result.include(nomeComponente, collabComponentInstance);
             System.out.println("O componente " + collabComponentInstance.getComponent().getCod() + " foi adicionado na requisição com o nome " + nomeComponente);
         }
+        result.use(Results.representation()).from(photo).serialize();
     }
 
     @Get
@@ -105,7 +105,7 @@ public class PhotoController {
             }
         }
 
-        resultFotosBusca = photoInstance.buscaFoto(busca);
+        List<Photo> resultFotosBusca = photoInstance.buscaFoto(busca);
 
         result.include("fotos", resultFotosBusca);
         result.include("thumbPrefix", photoInstance.getThumbPrefix());
@@ -138,7 +138,7 @@ public class PhotoController {
             }
         }
 
-        resultFotosBusca = photoInstance.buscaFotoAvancada(nome, lugar, descricao, date);
+        List<Photo> resultFotosBusca = photoInstance.buscaFotoAvancada(nome, lugar, descricao, date);
         result.include("fotos", resultFotosBusca);
         result.include("thumbPrefix", photoInstance.getThumbPrefix());
         result.include("cropPrefix", photoInstance.getCropPrefix());
