@@ -22,9 +22,8 @@ public class PhotoDAO extends ObjectDAO<Photo, Long> {
     }
 
     @Override
-    public void save(Photo photo, boolean isInsertion) {
-       photo.setNomeArquivo(photo.getId() + photo.getNomeArquivo());
-       super.save(photo, isInsertion);
+    public void save(Photo photo, boolean isInsertion) {       
+       super.save(photo, isInsertion);       
     }
 
     public void saveImage(InputStream foto, String nome, String pasta) throws IOException {

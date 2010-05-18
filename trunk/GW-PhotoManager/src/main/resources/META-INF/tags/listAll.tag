@@ -20,6 +20,6 @@
 </c:choose>
 <c:forEach var="fotoA" items="${fotosA}">
     <a class="${linkClass}" rel="linkimage" href="<c:url value="/groupware-workbench/${photoInstance.id}/photo/show/${fotoA.id}"/>">
-        <img src="${pageContext.request.contextPath}/${dirImagemA}/${thumbPrefix}${fotoA.nomeArquivo}" />
+        <img src="${pageContext.request.contextPath}/${dirImagemA}/${thumbPrefix}${fotoA.nomeArquivoUnico}" />
     </a>
 </c:forEach>

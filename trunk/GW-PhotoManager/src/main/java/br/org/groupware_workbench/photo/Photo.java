@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Transient;
 
 import br.org.groupware_workbench.coreutils.GenericEntity;
 import javax.persistence.Temporal;
@@ -25,6 +26,12 @@ public class Photo extends GenericEntity {
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date data;
+    
+    
+    @Transient
+    public String getNomeArquivoUnico(){
+        return this.getId()+this.getNomeArquivo();
+    }
 
     public String getNomeArquivo() {
         return nomeArquivo;

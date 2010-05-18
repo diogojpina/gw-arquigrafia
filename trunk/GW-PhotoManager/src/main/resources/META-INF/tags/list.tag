@@ -17,8 +17,8 @@
 <r:callMethod methodName="getMostraPrefix" instance="${photoInstance}" var="showPrefix" />
 
 <%--
-    TODO: Evitar inserir <div> que não fecham de forma óbvia pois dependem de análise sensível ao contexto para
-    garantir que são bem formadas.
+    TODO: Evitar inserir <div> que nï¿½o fecham de forma ï¿½bvia pois dependem de anï¿½lise sensï¿½vel ao contexto para
+    garantir que sï¿½o bem formadas.
 --%>
 <c:forEach var="foto" items="${photos}">
     <c:if test="${showName || showLocation}">
@@ -26,7 +26,7 @@
             <div>
     </c:if>
     <a class="${linkClass}" rel="linkimage" href="<c:url value="/groupware-workbench/${photoInstance.id}/photo/show/${foto.id}"/>">
-        <img src="${pageContext.request.contextPath}/${dirImagem}/${thumbPrefix}${foto.nomeArquivo}" alt="${foto.nome}"/>
+        <img src="${pageContext.request.contextPath}/${dirImagem}/${thumbPrefix}${foto.nomeArquivoUnico}" alt="${foto.nome}"/>
     </a>
     <c:if test="${showName || showLocation}">
         </div>

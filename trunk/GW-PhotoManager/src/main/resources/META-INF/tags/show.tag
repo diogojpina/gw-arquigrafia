@@ -28,5 +28,5 @@
             <img alt="${foto.nome}" src="${pageContext.request.contextPath}/${dirImagem}/${showPrefix}${foto.nomeArquivo}" />
         </a>
     -->
-    <img alt="${foto.nome}" src="${pageContext.request.contextPath}/${dirImagem}/${showPrefix}${foto.nomeArquivo}" />
+    <img alt="${foto.nome}" src="${pageContext.request.contextPath}/${dirImagem}/${showPrefix}${foto.nomeArquivoUnico}" />
 </div>

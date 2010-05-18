@@ -20,7 +20,7 @@
             "changeMonth": true,
             "changeYear": true,
             "width": 15,
-            "dateFormat": "dd/mm/yyyy",
+            "dateFormat": "dd/mm/yy",
             "buttonImage": "${pageContext.request.contextPath}/images/calendar.gif",
             "buttonImageOnly": true
         });
