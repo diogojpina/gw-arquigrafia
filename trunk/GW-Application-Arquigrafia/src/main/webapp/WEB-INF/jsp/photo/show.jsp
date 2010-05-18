@@ -13,14 +13,14 @@
         <link href="${pageContext.request.contextPath}/css/arq-common.css" rel="stylesheet" type="text/css" />
         <link href="${pageContext.request.contextPath}/css/header.css" rel="stylesheet" type="text/css" />
         <link href="${pageContext.request.contextPath}/css/forms.css" rel="stylesheet" type="text/css" />
-        <link href="${pageContext.request.contextPath}/css/show.css" rel="stylesheet" type="text/css" />
+		<link href="${pageContext.request.contextPath}/css/show.css" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/sds/css/smoothDivScroll.css" type="text/css" media="screen" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bay.css" type="text/css" media="screen" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/tagcloud.css" type="text/css" media="screen" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" type="text/css" media="screen" />
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-ui-1.8.custom.min.js"></script>
-        <script type="text/javascript" src="${pageContext.request.contextPath}/plugins/sds/js/jquery.smoothDivScroll-0.9-min.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/plugins/sds/js/jquery.smoothDivScroll-0.9-min.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/plugins/sds/js/scroll.js"></script>
         <script type="text/javascript">
             $(function() {
@@ -38,57 +38,60 @@
     	<%@ include file="../site/header2.jsp" %>
     	<div id="photoTitle"><c:out value="${photoTitle}" /></div>
         <div id="photoAndBin">
-            <div id="photoArea">
-                <photo:show idPhoto="${idPhoto}" photoInstance="${photoInstance}" />
-            </div>
-            <div id="binArea">
-                <div id="internalBinArea">
-                    <span id="binTitle">Medidores</span>
-                    <br />
-                    <c:if test="${binomialMgr!=null}">
-                        <binomialMgr:SetBinomial idObject="${idPhoto}" binomialMgr="${binomialMgr}" user="${sessionScope.userLogin}"
-                            binLabelClass="binLabelClass" binValueClass="binValueClass" binWrapClass="binWrapClass"/>
-                    </c:if>
-                </div>
-                <div id="caracteristics">
-                    <h3>Caracter&iacute;sticas</h3>
-                    <c:if test="${photoDate != null}">
-                        <div>Tirada em: <c:out value="${photoDate}" /></div>
-                    </c:if>
-                    <c:if test="${photoResolution != null}">
-                        <div>Resolu&ccedil;&atilde;o: <c:out value="${photoResolution}" /></div>
-                    </c:if>
-                    <c:if test="${photoLocation != null}">
-                        <div>Local: <c:out value="${photoLocation}" /></div>
-                    </c:if>
-                    <c:if test="${photoDescription != null}">
-                        <div>
+        	<div id="photoArea">
+                    <photo:show idPhoto="${idPhoto}" photoInstance="${photoInstance}" />
+			</div>
+			<div id="binArea">
+					<div id="internalBinArea">
+						<span id="binTitle">Medidores</span>
+						<br />
+	                    <c:if test="${binomialMgr!=null}">
+	                        <binomialMgr:SetBinomial idObject="${idPhoto}" binomialMgr="${binomialMgr}" user="${sessionScope.userLogin}"
+	                        		binLabelClass="binLabelClass" binValueClass="binValueClass" binWrapClass="binWrapClass"/>
+	                    </c:if>
+                    </div>
+                    <div id="caracteristics">
+                    	<h3>Caracter&iacute;sticas</h3>
+                    	<c:if test="${photoDate != null}">
+                    		<div>Tirada em: <c:out value="${photoDate}" /></div>
+                    	</c:if>
+                    	<c:if test="${photoResolution != null}">
+                    		<div>Resolu&ccedil;&atilde;o: <c:out value="${photoResolution}" /></div>
+                    	</c:if>
+                    	<c:if test="${photoLocation != null}">
+                    		<div>Local: <c:out value="${photoLocation}" /></div>
+                    	</c:if>
+                    	<c:if test="${photoDescription != null}">
+                    		<div>
                             <h4>Descri&ccedil;&atilde;o</h4>
                             <p><c:out value="${photoDescription}" /></p>
-                        </div>
-                    </c:if>
-                </div>
-            </div>
-        </div>
-        <div id="tagsAndEval">
-            <div id="evalAndAdd">
-                <div id="eval">
-                    <img src="${pageContext.request.contextPath}/images/evaluation_mock.png" alt="" />
-                </div>
-                <div id="add">
-                    <a href="#"><img src="${pageContext.request.contextPath}/images/add_tag.png" alt="" /></a>
-                </div>
-            </div>
-            <div id="tags">
-                <div id="tags_left">
-                </div>
-                <div id="tags_content">
-                    kjlj
-                </div>
-                <div id="tags_right">
-                </div>
-            </div>
-        </div>
+                    		</div>
+                    	</c:if>
+                    </div>
+			</div>
+		</div>
+		<div id="tagsAndEval">
+			<div id="evalAndAdd">
+				<div id="eval">
+					<img src="${pageContext.request.contextPath}/images/evaluation_mock.png" alt="" />
+				</div>
+				<div id="add">
+					<a href="#"><img src="${pageContext.request.contextPath}/images/add_tag.png" alt="" /></a>
+				</div>
+			</div>
+			<div id="tags">
+				<div id="tags_left">
+				</div>
+				<div id="tags_content">
+					<TagMgr:GetTags tagMgr="${tagMgr}" idObject="${idPhoto}"></TagMgr:GetTags>
+				</div>
+				<div id="tags_right">
+				</div>
+			</div>
+		</div>
+		<div style="position:absolute; z-index: 9999; background-color: #000; margin-top: 20px; margin-left: 160px">
+		sd<TagMgr:SetTags tagMgr="${tagMgr}" idObject="${idPhoto}" />
+		</div>
         <div style="height: 30px; width: 100%"></div>
        	<%@ include file="../site/footer.jsp" %>
     </body>
