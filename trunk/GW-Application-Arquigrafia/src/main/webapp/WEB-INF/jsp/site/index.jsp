@@ -38,34 +38,44 @@
             <%@ include file="header2.jsp" %>
 
             <div id="main_section">
-				<div id="makeMeScrollable"  style="border-style: solid; border-width: thin; border-color: #666;padding-left: 0px; height: 500px">
+                <div id="makeMeScrollable" style="border-style: solid; border-width: thin; border-color: #666;padding-left: 0px; height: 500px">
                     <div class="scrollingHotSpotLeft" style=" height: 500px;"></div>
                     <div class="scrollingHotSpotRight" style="height: 500px"></div>
                     <div class="scrollWrapper">
                         <div class="scrollableArea">
-	                        <div class="image_line">
-     	                        <c:if test="${environment_photo != null}">
-                        			<photo:listAll linkClass="" photoInstance="${environment_photo}" keepRatio="false"/>
-                       			</c:if>
-	                        	<div class="image_placeholder" id="1"><img src="${pageContext.request.contextPath}/images/ajax-loader.gif" alt="loading"></img></div>
-	                        </div>
-	                        <div class="image_line">
-	                        	<div class="image_placeholder" id="2"><img src="${pageContext.request.contextPath}/images/ajax-loader.gif" alt="loading"></img></div>
-	                        </div>
-	                        <div class="image_line">
-	                        	<div class="image_placeholder" id="3"><img src="${pageContext.request.contextPath}/images/ajax-loader.gif" alt="loading"></img></div>
-	                        </div>
-	                        <div class="image_line">
-	                        	<div class="image_placeholder" id="4"><img src="${pageContext.request.contextPath}/images/ajax-loader.gif" alt="loading"></img></div>
-	                        </div>
-	                        <div class="image_line">
-	                        	<div class="image_placeholder" id="5"><img src="${pageContext.request.contextPath}/images/ajax-loader.gif" alt="loading"></img></div>
-	                        </div>
-	                		<script type="text/javascript" src="plugins/visual_lightbox/engine/js/visuallightbox.js" ></script>
-                    	</div>
-                   </div>
-                 </div>
-  			</div>
+                            <div class="image_line">
+                                <c:if test="${environment_photo != null}">
+                                    <photo:listAll linkClass="" photoInstance="${environment_photo}" keepRatio="false" />
+                                </c:if>
+                                <div class="image_placeholder" id="1">
+                                    <img src="${pageContext.request.contextPath}/images/ajax-loader.gif" alt="loading" />
+                                </div>
+                            </div>
+                            <div class="image_line">
+                                <div class="image_placeholder" id="2">
+                                    <img src="${pageContext.request.contextPath}/images/ajax-loader.gif" alt="loading" />
+                                </div>
+                            </div>
+                            <div class="image_line">
+                                <div class="image_placeholder" id="3">
+                                    <img src="${pageContext.request.contextPath}/images/ajax-loader.gif" alt="loading" />
+                                </div>
+                            </div>
+                            <div class="image_line">
+                                <div class="image_placeholder" id="4">
+                                    <img src="${pageContext.request.contextPath}/images/ajax-loader.gif" alt="loading" />
+                                </div>
+                            </div>
+                            <div class="image_line">
+                                <div class="image_placeholder" id="5">
+                                    <img src="${pageContext.request.contextPath}/images/ajax-loader.gif" alt="loading" />
+                                </div>
+                            </div>
+                            <script type="text/javascript" src="plugins/visual_lightbox/engine/js/visuallightbox.js" ></script>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <%@ include file="know_more.jsp" %>
             <div style="height: 30px;"></div>
             <%@ include file="footer.jsp" %>

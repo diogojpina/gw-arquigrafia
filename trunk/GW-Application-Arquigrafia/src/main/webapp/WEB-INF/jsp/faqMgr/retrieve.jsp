@@ -64,8 +64,6 @@
                         <td></td>
                         <td>
                             <input type="submit" class="botao" value="Ok" />
-                            &nbsp;&nbsp;
-                            <input type="button" class="botao" value="Cancela" onclick="history.back();" />
                         </td>
                     </tr>
                 </table>
@@ -73,6 +71,9 @@
                 <br />
                 <br />
             </form>
+            <div class="barra_botoes">
+                <Widgets:Voltar collabletInstance="${faqMgr}" />
+            </div>
         </Widgets:ConteudoPagina>
     </body>
 </html>

@@ -1,55 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <collablet>
-	<ComponentClass>br.org.groupware_workbench.photo.internal.PhotoMgrComponent</ComponentClass>
-
-	<!-- Collablet Descriptor: Information for the Component Framework -->
-	<collablet-description>
-		<!-- The component Id is the folder name -->
-
-		<collablet-name>Photo Register</collablet-name>
-		<collablet-description>photoInstance</collablet-description>
-		
-		
-		<!--subordinate-collablets>
-			<collablet-group>communication-collablets</collablet-group>
-		</subordinate-collablets-->
-		<!-- Collablet View -->			
-	</collablet-description>
-
-	<!-- Component specific configuration -->
-	<specific-configuration />
-
-	<!-- Collaboration Components Used -->
-	<collabElements>
-  		<collabElement id="br.org.groupware_workbench.collabElement.coord.UserMgr" receiveFromParent="false">
-			<user>
-				<login>admin</login>
-				<password>123</password>
-				<name>Administrador</name>
-			</user>
-			<user>
-				<login>user01</login>
-				<password>111</password>
-				<name>Usuario01</name>
-			</user>
-			<user>
-				<login>user02</login>
-				<password>222</password>
-				<name>Usuario02</name>
-			</user>
-		</collabElement>
-		<collabElement id="br.org.groupware_workbench.collabElement.communic.TagMgr" receiveFromParent="false" />
-		
-		<collabElement id="br.org.groupware_workbench.collabElement.coord.RoleMgr" receiveFromParent="false">
-			<role name="Administrador" defaultAssigment="false">
-				<entity entity="br.org.groupware_workbench.collabElement.coord.userMgr.api.User" param="admin" />
-			</role>
-			<role name="User" defaultAssigment="true">
-		 		<entity entity="br.org.groupware_workbench.collabElement.coord.userMgr.api.User" param="user01" />
-			</role>
-			<role name="Revisor" defaultAssigment="false" />
-		</collabElement>
-		<collabElement id="br.org.groupware_workbench.collabElement.coop.BinomialMgr"></collabElement>
-	    <collabElement id="br.org.groupware_workbench.collabElement.communic.CommentMgr" />	
-	</collabElements>
+    <ComponentClass>br.org.groupware_workbench.photo.internal.PhotoMgrComponent</ComponentClass>
+    <collablet-description>
+        <collablet-name>Photo Register</collablet-name>
+        <collablet-description>photoInstance</collablet-description>
+        <!--subordinate-collablets>
+            <collablet-group>communication-collablets</collablet-group>
+        </subordinate-collablets-->
+    </collablet-description>
+    <specific-configuration />
+    <collabElements>
+        <collabElement id="br.org.groupware_workbench.collabElement.coord.UserMgr" receiveFromParent="false">
+            <user>
+                <login>admin</login>
+                <password>123</password>
+                <name>Administrador</name>
+            </user>
+            <user>
+                <login>user01</login>
+                <password>111</password>
+                <name>Usuario01</name>
+            </user>
+            <user>
+                <login>user02</login>
+                <password>222</password>
+                <name>Usuario02</name>
+            </user>
+        </collabElement>
+        <collabElement id="br.org.groupware_workbench.collabElement.communic.TagMgr" receiveFromParent="false" />
+        <collabElement id="br.org.groupware_workbench.collabElement.coord.RoleMgr" receiveFromParent="false">
+            <role name="Administrador" defaultAssigment="false">
+                <entity entity="br.org.groupware_workbench.collabElement.coord.userMgr.api.User" param="admin" />
+            </role>
+            <role name="User" defaultAssigment="true">
+                <entity entity="br.org.groupware_workbench.collabElement.coord.userMgr.api.User" param="user01" />
+            </role>
+            <role name="Revisor" defaultAssigment="false" />
+        </collabElement>
+        <collabElement id="br.org.groupware_workbench.collabElement.coop.BinomialMgr"></collabElement>
+        <collabElement id="br.org.groupware_workbench.collabElement.communic.CommentMgr" />
+    </collabElements>
 </collablet>

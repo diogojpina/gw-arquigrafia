@@ -86,7 +86,7 @@ public class PhotoController {
 
     @Post
     @Path(value = "/groupware-workbench/{photoInstance}/photo/busca")
-    public void buscaFoto(String busca, PhotoMgrInstance photoInstance){
+    public void buscaFoto(String busca, PhotoMgrInstance photoInstance) {
         if (busca.length() < 3) {
             validator.add(new ValidationMessage(MSG_MIN_3_LETRAS, "Erro"));
             validator.onErrorUse(Results.logic()).redirectTo(PhotoController.class).busca(photoInstance);

@@ -21,7 +21,7 @@
                 <div id="footer_scroll_right" class="scrollingHotSpotRight"></div>
                 <div class="scrollWrapper">
                     <div id="footer_scroll_list" class="scrollableArea" >
-                        <!-- modelo para inserção de imagens aqui -->
+                        <%-- Modelo para inserção de imagens aqui. --%>
                         <c:if test="${environment_photo != null}">
                             <photo:listAll showInDiv="true" divClass="carrosselImage" linkClass="" photoInstance="${environment_photo}" keepRatio="true" />
                         </c:if>

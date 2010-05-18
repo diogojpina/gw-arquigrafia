@@ -51,7 +51,9 @@
                 <br />
             </c:forEach>
 
-            <Widgets:Voltar collabletInstance="${photoInstance}" />
+            <div class="barra_botoes">
+                <Widgets:Voltar collabletInstance="${photoInstance.parent}" />
+            </div>
         </Widgets:ConteudoPagina>
     </body>
 </html>

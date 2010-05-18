@@ -43,7 +43,9 @@
                 </div>
             </c:if>
 
-            <Widgets:Voltar collabletInstance="${faqMgr}" />
+            <div class="barra_botoes">
+                <Widgets:Voltar collabletInstance="${faqMgr.parent}" />
+            </div>
         </Widgets:ConteudoPagina>
     </body>
 </html>
