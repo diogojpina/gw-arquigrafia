@@ -20,8 +20,10 @@
                         Abaixo est&atilde;o as Ferramentas que podem ser usados neste contexto.
                         <br />
                         <br />
-                        <input type="hidden" name="collabletComponentCods" value="" />
-                        <input type="hidden" name="collabletComponentCods" value="<c:out value="${collabletInstance.component.cod}" />" />
+                        <input type="hidden" name="allCollabletComponentCods" value="" />
+                        <input type="hidden" name="allCollabletComponentCods" value="<c:out value="${collabletInstance.component.cod}" />" />
+                        <input type="hidden" name="checkedCollabletComponentCods" value="" />
+                        <input type="hidden" name="checkedCollabletComponentCods" value="<c:out value="${collabletInstance.component.cod}" />" />
                         <%-- TODO: Rever a formatação. --%>
                         <table cellpadding="3" cellspacing="0">
                             <thead>
@@ -35,7 +37,9 @@
                             <c:forEach var="instance" items="${collabletInstanceList}">
                                 <tr>
                                     <td style="border-color: black; border-width: 1px; border-style: solid;">
-                                        <input type="checkbox" name="collabletComponentCods" value="<c:out value="${instance.component.cod}" />" <c:if test="${instance.enabled}">checked="checked"</c:if> />
+                                        <input type="hidden" name="allCollabletComponentCods" value="<c:out value="${instance.component.cod}" />" />
+                                        <input type="checkbox" name="checkedCollabletComponentCods" value="<c:out value="${instance.component.cod}" />"
+                                        <c:if test="${instance.enabled}">checked="checked"</c:if> />
                                     </td>
                                     <td style="border-color: black; border-width: 1px; border-style: solid; "><c:out value="${instance.component.name}" /></td>
                                     <td style="border-color: black; border-width: 1px; border-style: solid; "><c:out value="${instance.component.cod}" /></td>
@@ -55,7 +59,9 @@
                     <input class="botao" type="submit" name="Ok" value="Ok - Refresh" />
                 </div>
             </form>
-            <Widgets:Voltar collabletInstance="${collabletInstance}" isCollabElement="true" />
+            <div class="barra_botoes">
+                <Widgets:Voltar collabletInstance="${collabletInstance}" />
+            </div>
         </Widgets:ConteudoPagina>
     </body>
 </html>

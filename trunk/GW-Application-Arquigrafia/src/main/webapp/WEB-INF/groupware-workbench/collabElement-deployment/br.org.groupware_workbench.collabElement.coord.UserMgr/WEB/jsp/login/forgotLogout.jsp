@@ -57,7 +57,7 @@
                                 <td colspan="4"><div align="right"><span class="style8">E-mail não encontrado</span></div></td>
                               </tr>
                                <tr>
-                                 <td colspan="4"><div align="left"><span class="style8"><a href="<c:url value="/groupware-workbench/${collablet.id}/userMgr/login"/>">Voltar</a></span></div></td>
+                                 <td colspan="4"><div align="left"><span class="style8"><a href="<c:url value="/groupware-workbench/${collablet.id}/userMgr/${userMgr.id}/login"/>">Voltar</a></span></div></td>
                                </tr>
                           </c:when>
                             <c:when test="${env}">
@@ -65,13 +65,13 @@
                                 <td colspan="4"><div align="right"><span class="style8">E-mail enviado com sucesso! </span></div></td>
                               </tr>
                                <tr>
-                                 <td colspan="4"><div align="left"><span class="style8"><a href="<c:url value="/groupware-workbench/${collablet.id}/userMgr/login"/>">Voltar</a></span></div></td>
+                                 <td colspan="4"><div align="left"><span class="style8"><a href="<c:url value="/groupware-workbench/${collablet.id}/userMgr/${userMgr.id}/login"/>">Voltar</a></span></div></td>
                                </tr>
                           </c:when>
 
                            <c:otherwise>
                               <tr>
-                                <td colspan="4"><div align="left"><span class="style8"><a href="<c:url value="/groupware-workbench/${collablet.id}/userMgr/logout"/>">Voltar</a></span></div></td>
+                                <td colspan="4"><div align="left"><span class="style8"><a href="<c:url value="/groupware-workbench/${collablet.id}/userMgr/${userMgr.id}/logout"/>">Voltar</a></span></div></td>
                               </tr>
                            </c:otherwise>
 					</c:choose>

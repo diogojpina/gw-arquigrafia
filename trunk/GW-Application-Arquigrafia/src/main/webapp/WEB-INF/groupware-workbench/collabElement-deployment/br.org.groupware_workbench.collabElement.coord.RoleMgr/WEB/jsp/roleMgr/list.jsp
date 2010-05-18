@@ -7,7 +7,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Pap&eacute;is</title>
+        <title>Pap&eacute;is</title>
         <link href="${pageContext.request.contextPath}/css/reset.css" rel="stylesheet" type="text/css" />
         <link href="${pageContext.request.contextPath}/css/common.css" rel="stylesheet" type="text/css" />
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/listagem.js"></script>
@@ -24,7 +24,9 @@
         <Widgets:Topo collabletInstance="${collabletInstance}" />
         <Widgets:ConteudoPagina titulo="Pap&eacute;is">
             <div id="tabela-roles"></div>
-            <Widgets:Voltar collabletInstance="${collabletInstance}" isCollabElement="true" />
+            <div class="barra_botoes">
+                <Widgets:Voltar collabletInstance="${collabletInstance}" />
+            </div>
         </Widgets:ConteudoPagina>
     </body>
 </html>

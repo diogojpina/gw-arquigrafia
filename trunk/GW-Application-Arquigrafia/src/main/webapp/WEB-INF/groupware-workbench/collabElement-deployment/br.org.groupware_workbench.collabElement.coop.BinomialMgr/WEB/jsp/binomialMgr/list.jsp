@@ -23,7 +23,9 @@
         <Widgets:Topo collabletInstance="${collabletInstance}" />
         <Widgets:ConteudoPagina titulo="Bin&ocirc;mios">
             <div id="tabela-binomials"></div>
-            <Widgets:Voltar collabletInstance="${collabletInstance}" isCollabElement="true" />
+            <div class="barra_botoes">
+                <Widgets:Voltar collabletInstance="${collabletInstance}" />
+            </div>
         </Widgets:ConteudoPagina>
     </body>
 </html>

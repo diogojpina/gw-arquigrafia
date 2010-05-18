@@ -40,13 +40,13 @@
                             <li class="bt_cell_submit">
                                 <input type="submit" class="botao" value="Ok" />
                             </li>
-                            <li class="bt_cell_submit">
-                                <input type="button" class="botao" value="Cancela" onclick="history.back()" />
-                            </li>
                         </ul>
                     </div>
                 </div>
             </form>
+            <div class="barra_botoes">
+                <Widgets:Voltar collabletInstance="${collabletInstance}" />
+            </div>
         </Widgets:ConteudoPagina>
     </body>
 </html>

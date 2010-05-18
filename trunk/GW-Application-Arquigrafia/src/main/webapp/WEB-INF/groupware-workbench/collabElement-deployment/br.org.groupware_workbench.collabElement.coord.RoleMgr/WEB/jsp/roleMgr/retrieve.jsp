@@ -13,7 +13,7 @@
     <body>
         <Widgets:Topo collabletInstance="${collabletInstance}" />
         <Widgets:ConteudoPagina titulo="Papel">
-            <br/>
+            <br />
             <form name="dados" method="POST" action='<c:url value="/groupware-workbench/${collabletInstance.id}/roleMgr/${roleMgr.id}" />' accept-charset="UTF-8">
                 <input type="hidden" name="role.id" value="<c:out value="${role.id}" />" />
                 <input type="hidden" name="role.idInstance" value="<c:out value="${roleMgr.id}" />" />
@@ -26,11 +26,12 @@
                 <div class="form_1">
                     <ul class="bt_line_f1">
                         <li class="bt_cell_submit"><input type="submit" class="botao" value="Ok" /></li>
-                        <li class="bt_cell_submit"><input type="button" class="botao" value="Cancela" onclick="history.back()" /></li>
                     </ul>
                 </div>
             </form>
-            <br />
+            <div class="barra_botoes">
+                <Widgets:Voltar collabletInstance="${collabletInstance}" />
+            </div>
         </Widgets:ConteudoPagina>
     </body>
 </html>

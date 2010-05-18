@@ -15,10 +15,11 @@
         <Widgets:ConteudoPagina titulo="Objetos Tagueados">
             <c:forEach items="${geList}" var="genericEntity">
                 <a href="<c:url value="${Widgets:urlIdCollablet(urlComponent, genericEntity.idInstance)}/${genericEntity.id}" />" ><c:url value="${Widgets:urlIdCollablet(urlComponent, genericEntity.idInstance)}/${genericEntity.id}" /></a>
-                <br/>
+                <br />
             </c:forEach>
-            <br/>
-        <Widgets:Voltar collabletInstance="${collabletInstance}" isCollabElement="true" />
+            <div class="barra_botoes">
+                <Widgets:Voltar collabletInstance="${collabletInstance}" />
+            </div>
         </Widgets:ConteudoPagina>
     </body>
 </html>

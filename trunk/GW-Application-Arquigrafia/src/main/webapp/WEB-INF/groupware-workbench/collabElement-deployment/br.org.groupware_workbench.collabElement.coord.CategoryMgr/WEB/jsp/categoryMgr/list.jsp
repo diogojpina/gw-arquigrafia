@@ -22,7 +22,9 @@
         <Widgets:Topo collabletInstance="${collabletInstance}" />
         <Widgets:ConteudoPagina titulo="Categorias">
             <div id="tabela-categoria"></div>
-            <Widgets:Voltar collabletInstance="${collabletInstance}" isCollabElement="true" />
+            <div class="barra_botoes">
+                <Widgets:Voltar collabletInstance="${collabletInstance}" />
+            </div>
         </Widgets:ConteudoPagina>
     </body>
 </html>

@@ -44,7 +44,9 @@
         <Widgets:Topo collabletInstance="${collabletInstance}" />
         <Widgets:ConteudoPagina titulo="Tags">
             <div id="tabela-tags"></div>
-            <Widgets:Voltar collabletInstance="${collabletInstance}" isCollabElement="true" />
+            <div class="barra_botoes">
+                <Widgets:Voltar collabletInstance="${collabletInstance}" />
+            </div>
         </Widgets:ConteudoPagina>
     </body>
 </html>

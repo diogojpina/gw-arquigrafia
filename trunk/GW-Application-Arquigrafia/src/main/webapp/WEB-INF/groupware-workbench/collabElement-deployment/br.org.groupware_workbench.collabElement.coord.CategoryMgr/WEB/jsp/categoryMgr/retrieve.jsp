@@ -15,22 +15,20 @@
         <Widgets:ConteudoPagina titulo="Categoria">
             <br/>
             <ul>
-            <c:forEach var="error" items="${errors}">
-                <li><c:out value="${error.message}" /> - <c:out value="${error.category}" /></li>
-            </c:forEach>
+                <c:forEach var="error" items="${errors}">
+                    <li><c:out value="${error.message}" /> - <c:out value="${error.category}" /></li>
+                </c:forEach>
             </ul>
 
-            <center>
-                <form id="dados" class="cmxform" name="dados" method="POST" action="<c:url value="/groupware-workbench/${param.collablet}/categoryMgr/${param.categoryMgr}" />" accept-charset="UTF-8">
-                    <input type="hidden" name="category.id" value="<c:out value="${category.id}" />" />
-                    <br/>
-                    Nome: <input type="text" name="category.name" value="${category.name}" />
-                    <br/>
-                    <input type="submit" class="botao" value="Ok">
-                    &nbsp; &nbsp;
-                    <input type="button" class="botao" value="Cancela" onclick="history.back()">
-                </form>
-            </center>
+            <form id="dados" class="cmxform" name="dados" method="POST" action="<c:url value="/groupware-workbench/${param.collablet}/categoryMgr/${param.categoryMgr}" />" accept-charset="UTF-8">
+                <input type="hidden" name="category.id" value="<c:out value="${category.id}" />" />
+                <br/>
+                Nome: <input type="text" name="category.name" value="${category.name}" />
+                <br/>
+                <input type="submit" class="botao" value="Ok">
+                &nbsp; &nbsp;
+                <Widgets:Voltar collabletInstance="${collabletInstance}" />
+            </form>
         </Widgets:ConteudoPagina>
     </body>
 </html>
