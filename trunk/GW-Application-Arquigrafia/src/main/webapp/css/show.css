@@ -16,11 +16,12 @@
 	-moz-border-radius: 5px;
 }
 #binArea {
-	position:relative;
+	position: relative;
 	top: 20px;
 	left: 20px;
 }
 .binWrapClass {
+	float: left;
 	margin-right: 10px;
 	margin-bottom: 10px;
 }
@@ -56,13 +57,13 @@
 	position: relative;
 	top: 10px;
 }
-#caracteristics h3{
+#caracteristics h3 {
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 14px;
 	font-weight: bold;
 	color: #6A8A9A;
 }
-#caracteristics div{
+#caracteristics div {
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 12px;
 	color: #6A8A9A;
