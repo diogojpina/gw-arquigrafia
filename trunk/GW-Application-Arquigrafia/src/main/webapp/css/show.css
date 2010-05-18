@@ -96,6 +96,19 @@
 }
 #tags {
 }
+#tagsAdd {
+	position:absolute;
+	z-index: 9999;
+	margin-top: 20px;
+	margin-left: 160px;
+	background-color: #DEE2E4;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #B9C1C6;
+	padding: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+}
 #evalAndAdd {
 	float: left;
 }
@@ -107,7 +120,16 @@
 	padding-left: 30px;
 	background-color: #fff;
 }
+#add2 {
+	float: left;
+	padding-left: 30px;
+	background-color: #fff;
+}
 #tagsAndEval {
 	margin-left: 30px;
 	clear: both;
 }
+#comments {
+
+}
+	

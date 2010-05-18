@@ -65,7 +65,7 @@
 					formLineBtClass="bt_line_f1" formSubmitBtClass="bt_cell_submit" />
 		</c:if>
 	</div>
-	    <script type="text/javascript">
+	<script type="text/javascript">
     	$("#search_options2").hide();
     	$("#advancedSearchField").hide();
     	$("#simpleSearch").click(function() { $("#search_options1").show(); $("#search_options2").hide(); $("#advancedSearchField").hide();});
