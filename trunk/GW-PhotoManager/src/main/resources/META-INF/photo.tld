@@ -34,6 +34,10 @@
         <name>listAll</name>
         <path>/META-INF/tags/listAll.tag</path>
     </tag-file>
+    <tag-file>
+        <name>listFirstHundred</name>
+        <path>/META-INF/tags/listFirstHundred.tag</path>
+    </tag-file>
     <function>
         <name>listGenericEntityIdByTagName</name>
         <function-class>br.org.groupware_workbench.collabElement.communic.tagMgr.api.TagMgrInstance</function-class>

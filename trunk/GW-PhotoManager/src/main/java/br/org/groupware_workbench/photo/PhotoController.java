@@ -6,7 +6,9 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -238,6 +240,8 @@ public class PhotoController {
         }
 
         try {
+            GregorianCalendar calendar = new GregorianCalendar();
+            photoRegister.setDataCriacao(calendar.getTime());
             photoInstance.save(photoRegister);
             nomeArquivo = photoRegister.getNomeArquivoUnico(); // Para ter um só nome do arquivo.
             photoInstance.saveImage(imagemOriginal, nomeArquivo);  

@@ -27,6 +27,8 @@ public class Photo extends GenericEntity {
     @Temporal(TemporalType.TIMESTAMP)
     private Date data;
     
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dataCriacao;
     
     @Transient
     public String getNomeArquivoUnico(){
@@ -83,5 +85,13 @@ public class Photo extends GenericEntity {
 
     public void setData(Date data) {
         this.data = data;
+    }
+
+    public Date getDataCriacao() {
+        return dataCriacao;
+    }
+
+    public void setDataCriacao(Date dataCricao) {
+        this.dataCriacao = dataCricao;
     }
 }

@@ -92,4 +92,17 @@ public class PhotoDAO extends ObjectDAO<Photo, Long> {
 
         return result;
     }
+    
+    public List<Photo> listPhotoByPageAndOrder(int pageSize, int pageNumber) {
+        String querySentence = "SELECT p FROM " + Photo.class.getSimpleName() + " p ORDER BY  p.dataCriacao DESC";
+        Query query = getEntityManager().createQuery(querySentence);
+        int firstElement = pageNumber * pageSize;
+        query.setFirstResult(firstElement);
+        query.setMaxResults(pageSize);
+
+        @SuppressWarnings("unchecked")
+        List<Photo> result = (List<Photo>) query.getResultList();
+
+        return result;
+    }
 }
