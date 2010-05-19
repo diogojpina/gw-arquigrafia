@@ -210,7 +210,7 @@ public class PhotoController {
 
         try {
             photoInstance.save(photoRegister);
-            nomeArquivo = photoRegister.getNomeArquivo(); // Para ter um só nome do arquivo.
+            nomeArquivo = photoRegister.getNomeArquivoUnico(); // Para ter um só nome do arquivo.
             photoInstance.saveImage(imagemOriginal, nomeArquivo);  
             photoInstance.saveImage(imagemCropped, photoInstance.getCropPrefix() + nomeArquivo);
             photoInstance.saveImage(imagemThumb, photoInstance.getThumbPrefix() + nomeArquivo);
