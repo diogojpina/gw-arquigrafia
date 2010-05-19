@@ -34,6 +34,13 @@
         <a href="privacy.htm">Privacidade</a>
         &nbsp;|&nbsp;
         <a href="legal.htm">Legal</a>
+        &nbsp;|&nbsp;
+        <c:if test="${environment_photo != null}">
+            <a href="${pageContext.request.contextPath}/groupware-workbench/${environment_photo.id}/photo/registra">Administra&ccedil;&atilde;o</a>
+        </c:if>
+        <c:if test="${photoInstance != null}">
+            <a href="${pageContext.request.contextPath}/groupware-workbench/${photoInstance.id}/photo/registra">Administra&ccedil;&atilde;o</a>
+        </c:if>
     </div>
     <div id="search_field">
         <img src="${pageContext.request.contextPath}/images/head1_left2_top.png" width="99" height="100" alt="campo de busca" />
@@ -54,7 +61,7 @@
                         <span class="option_off">Tags</span>
                         <br />
                         <span id="advancedSearch">
-                            <a href="#" class="orange_link">Busca Avan&acute;ada &gt;&gt;</a>
+                            <a href="#" class="orange_link">Busca Avançada &gt;&gt;</a>
                         </span>
                     </div>
                     <div id="search_options2">
@@ -70,15 +77,20 @@
             </ul>
         </div>
     </div>
-    <div id="advancedSearchField">
-        <c:if test="${environment_photo != null}">
-            <photo:advancedSearch photoInstance="${environment_photo}" formClass="form1" formLineClass="field_line_f1" formLabelClass="label_f1" formInputClass="input_f1"
-                formLineBtClass="bt_line_f1" formSubmitBtClass="bt_cell_submit" />
-        </c:if>
-        <c:if test="${photoInstance != null}">
-            <photo:advancedSearch photoInstance="${photoInstance}" formClass="form1" formLineClass="field_line_f1" formLabelClass="label_f1" formInputClass="input_f1"
-                formLineBtClass="bt_line_f1" formSubmitBtClass="bt_cell_submit" />
-        </c:if>
+    <div id="advancedSearchField" class="mid_blue_text">
+    	<div>
+	        <c:if test="${environment_photo != null}">
+	            <photo:advancedSearch photoInstance="${environment_photo}" formClass="form1" formLineClass="field_line_f1" formLabelClass="label_f1" formInputClass="input_f1"
+	                formLineBtClass="bt_line_f1" formSubmitBtClass="bt_cell_submit" />
+	        </c:if>
+        </div>
+        <div>
+	        <c:if test="${photoInstance != null}">
+	            <photo:advancedSearch photoInstance="${photoInstance}" formClass="form1" formLineClass="field_line_f1" formLabelClass="label_f1" formInputClass="input_f1"
+	                formLineBtClass="bt_line_f1" formSubmitBtClass="bt_cell_submit" />
+	        </c:if>
+        </div>
+        <div style="clear: both"></div>
     </div>
     <script type="text/javascript">
         $("#search_options2").hide();

@@ -38,12 +38,4 @@
             Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat.
         </div>
     </div>
-    <div id="footer_links">
-        <c:if test="${environment_photo != null}">
-            <a href="${pageContext.request.contextPath}/groupware-workbench/${environment_photo.id}/photo/registra">administra&ccedil;&atilde;o</a>
-        </c:if>
-        <c:if test="${photoInstance != null}">
-            <a href="${pageContext.request.contextPath}/groupware-workbench/${photoInstance.id}/photo/registra">administra&ccedil;&atilde;o</a>
-        </c:if>
-    </div>
 </div>

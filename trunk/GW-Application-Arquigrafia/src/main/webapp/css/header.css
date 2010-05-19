@@ -63,13 +63,13 @@ body {
 	position: relative;
 	float: right;
 	left: 140px;
-	top: -25px;
+	top: -30px;
 }
 #search_options2 {
 	position: relative;
 	float: right;
 	left: 140px;
-	top: -25px;
+	top: -30px;
 }
 #header_top_right {
 	float: right;
@@ -107,4 +107,9 @@ body {
 }
 #drop_plus {
 	float: right;
+}
+#advancedSearchField {
+	margin-left: 30px;
+	background-color: #fff;
+	opacity: 0.8;
 }
