@@ -21,13 +21,13 @@
     </c:otherwise>
 </c:choose>
 <c:forEach var="fotoA" items="${fotosA}">
-	<c:if test="${showInDiv}">
-		<div class="<c:out value="${divClass}" />">
-	</c:if>
+    <c:if test="${showInDiv}">
+        <div class="<c:out value="${divClass}" />">
+    </c:if>
     <a class="${linkClass}" rel="linkimage" href="<c:url value="/groupware-workbench/${photoInstance.id}/photo/show/${fotoA.id}"/>">
         <img src="${pageContext.request.contextPath}/${dirImagemA}/${thumbPrefix}${fotoA.nomeArquivoUnico}" />
     </a>
     <c:if test="${showInDiv}">
-    	</div>
+        </div>
     </c:if>
 </c:forEach>
