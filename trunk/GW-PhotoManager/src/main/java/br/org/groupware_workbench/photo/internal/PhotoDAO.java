@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -12,6 +13,7 @@ import javax.persistence.Query;
 import org.apache.commons.io.IOUtils;
 
 import br.org.groupware_workbench.commons.bd.jpa.ObjectDAO;
+import br.org.groupware_workbench.coreutils.GenericEntity;
 import br.org.groupware_workbench.photo.Photo;
 
 //public class PhotoRegisterDAO extends GenericDAO<PhotoRegister> {
@@ -27,8 +29,13 @@ public class PhotoDAO extends ObjectDAO<Photo, Long> {
         IOUtils.copy(foto, new FileOutputStream(file));
     }
 
-    public List<Photo> buscaPorID(List<Long> photoIDs, Long idInstance) {
-        String listAsString = photoIDs.toString();
+    public List<Photo> buscaPorID(List<GenericEntity> photos, Long idInstance) {
+        List<Long> photoIds = new ArrayList<Long>();
+        for (GenericEntity entity : photos) {
+            photoIds.add(entity.getId());
+        }
+        String listAsString = photoIds.toString().replace("[", "");
+        listAsString = listAsString.replace("]", "");
         String queryText = "Select p FROM " + Photo.class.getSimpleName() + " p WHERE p.idInstance=:idInstance AND p.id IN (" + listAsString + ")";
         Query query = getEntityManager().createQuery(queryText);
         query.setParameter("idInstance", idInstance);

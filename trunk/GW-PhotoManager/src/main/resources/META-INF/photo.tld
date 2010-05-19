@@ -35,12 +35,11 @@
         <path>/META-INF/tags/listAll.tag</path>
     </tag-file>
     <tag-file>
+    	<name>searchByTag</name>
+    	<path>/META-INF/tags/searchByTag.tag</path>
+    </tag-file>
+    <tag-file>
         <name>listFirstHundred</name>
         <path>/META-INF/tags/listFirstHundred.tag</path>
     </tag-file>
-    <function>
-        <name>listGenericEntityIdByTagName</name>
-        <function-class>br.org.groupware_workbench.collabElement.communic.tagMgr.api.TagMgrInstance</function-class>
-        <function-signature>java.util.Collection listGenericEntityIdByTagName(java.lang.String)</function-signature>
-    </function>
 </taglib>

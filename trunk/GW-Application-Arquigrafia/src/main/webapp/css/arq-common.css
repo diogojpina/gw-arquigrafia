@@ -69,6 +69,12 @@
 	font-weight: bold;
 	color: #FFF;
 }
+.big_blue_title {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	font-weight: bold;
+	color: #6A8A9B;
+}
 .mid_blue_title {
 	color: #6A8A9A;
 	font-family: Arial, Helvetica, sans-serif;

@@ -29,6 +29,7 @@ import br.com.caelum.vraptor.validator.ValidationMessage;
 import br.com.caelum.vraptor.view.Results;
 import br.org.groupware_workbench.collabElementFw.facade.CollabElementInstance;
 import br.org.groupware_workbench.commons.util.ImageUtils;
+import br.org.groupware_workbench.coreutils.GenericEntity;
 
 @RequestScoped
 @Resource
@@ -102,8 +103,8 @@ public class PhotoController {
 
     @Post
     @Path(value = "/groupware-workbench/{photoInstance}/photo/buscaTag/{tagName}")
-    public void buscaFotoPorId(String tagName, List<Long> photoIds, PhotoMgrInstance photoInstance) {
-        List<Photo> resultFotosBusca = photoInstance.buscaFotoPorListaId(photoIds);
+    public void buscaFotoPorId(String tagName, List<GenericEntity> photos, PhotoMgrInstance photoInstance) {
+        List<Photo> resultFotosBusca = photoInstance.buscaFotoPorListaId(photos);
 
         result.include("fotos", resultFotosBusca);
         result.include("thumbPrefix", photoInstance.getThumbPrefix());

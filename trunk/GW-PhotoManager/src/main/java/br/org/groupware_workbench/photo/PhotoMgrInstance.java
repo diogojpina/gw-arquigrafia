@@ -9,6 +9,7 @@ import java.util.List;
 import br.com.caelum.vraptor.core.RequestInfo;
 import br.org.groupware_workbench.collabletFw.facade.CollabletInstance;
 import br.org.groupware_workbench.coreutils.DAOFactory;
+import br.org.groupware_workbench.coreutils.GenericEntity;
 import br.org.groupware_workbench.photo.internal.PhotoDAO;
 
 public class PhotoMgrInstance extends CollabletInstance {
@@ -66,7 +67,7 @@ public class PhotoMgrInstance extends CollabletInstance {
 		return this.dao.findById(idPhoto);
 	}
 
-	public List<Photo> buscaFotoPorListaId(List<Long> idList) {
+	public List<Photo> buscaFotoPorListaId(List<GenericEntity> idList) {
 	    return this.dao.buscaPorID(idList, this.getId());
 	}
 

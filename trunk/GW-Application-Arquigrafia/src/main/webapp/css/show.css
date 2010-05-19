@@ -4,9 +4,11 @@
 	margin-left: 30px;
 	margin-right: 30px;
 }
-#photoArea {
+#photoAndTagArea {
 	max-width: 60%;
 	float: left;
+}
+#photoArea {
 	padding: 5px;
 	background-color: #DEE2E5;
 	border-style: solid;
@@ -125,7 +127,7 @@
 	position:absolute;
 	z-index: 9999;
 	margin-top: 20px;
-	margin-left: 160px;
+	margin-left: 130px;
 	background-color: #DEE2E4;
 	border-style: solid;
 	border-width: 1px;
@@ -151,7 +153,6 @@
 	background-color: #fff;
 }
 #tagsAndEval {
-	margin-left: 30px;
 	clear: both;
 }
 #comments {

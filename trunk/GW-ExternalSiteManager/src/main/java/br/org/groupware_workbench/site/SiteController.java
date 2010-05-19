@@ -1,5 +1,7 @@
 package br.org.groupware_workbench.site;
 
+import javax.servlet.http.HttpServletRequest;
+
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Resource;
@@ -14,9 +16,11 @@ import br.org.groupware_workbench.groupwareComponentFwFw.facade.ComponentInstanc
 public class SiteController {
 
     private final Result result;
+    private final HttpServletRequest request;
 
-    public SiteController(Result result) {
+    public SiteController(Result result, HttpServletRequest request) {
         this.result = result;
+        this.request = request;
     }
 
     @Get
@@ -34,11 +38,13 @@ public class SiteController {
                 componentInstance = component.makeNewInstance(); // TODO: Não fazer isso. Esse método deveria ser privado do core.
             }
             result.include(componentName, componentInstance);
+            this.request.getSession().setAttribute(componentName, componentInstance);
             System.out.println("Adicionado " + componentName);
         }
         for (CollabElementInstance collabComponentInstance : siteInstance.getCollabElementInstances()) {
             String nomeComponente = collabComponentInstance.getName();
             result.include(nomeComponente, collabComponentInstance);
+            this.request.getSession().setAttribute(nomeComponente, collabComponentInstance);
             System.out.println("O componente " + collabComponentInstance.getComponent().getCod() + " foi adicionado na requisição com o nome " + nomeComponente);
         }
     }

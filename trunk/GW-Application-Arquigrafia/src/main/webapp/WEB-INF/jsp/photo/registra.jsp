@@ -19,6 +19,7 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/tagcloud.css" type="text/css" media="screen" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" type="text/css" media="screen" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/jquery.css" type="text/css" media="screen" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/register.css" type="text/css" media="screen" />
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-ui-1.8.custom.min.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/plugins/sds/js/jquery.smoothDivScroll-0.9-min.js"></script>
@@ -36,8 +37,13 @@
     </head>
     <body>
         <%@ include file="../site/header2.jsp" %>
-        <Widgets:ConteudoPagina titulo="Registrar foto">
-            <div style="margin-left: 30px; background-color: #fff;">
+        <div id="internal_wrap">
+        <div class="big_black_title" id="register_title">
+        	Registrar Foto
+        </div>
+        <br />
+        <br />
+            <div class="mid_blue_text" style="margin-left: 30px; background-color: #fff;">
                 <form name="photoRegisterForm" method="post" enctype="multipart/form-data" action="<c:url value="/groupware-workbench/${photoInstance.id}/photo/registra" />">
                     <photo:save photoRegister="${photoRegister}" photoInstance="${photoInstance}" tagMgr="${tagMgr}"
                         formClass="form1" formLineClass="field_line_f1" formLabelClass="label_f1" formInputClass="input_f1"
@@ -49,11 +55,11 @@
                 <c:out value="${error.category}" /> - <c:out value="${error.message}" />
                 <br />
             </c:forEach>
-
-            <div class="barra_botoes">
+			<br />
+            <div>
                 <Widgets:Voltar collabletInstance="${photoInstance}" />
             </div>
-        </Widgets:ConteudoPagina>
+        </div>
         <div style="height: 30px; width: 100%"></div>
         <%@ include file="../site/footer.jsp" %>
     </body>

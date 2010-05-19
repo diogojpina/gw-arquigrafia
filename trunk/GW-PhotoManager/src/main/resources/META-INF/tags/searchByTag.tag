@@ -2,16 +2,50 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.groupwareworkbench.org.br/taglibs/reflection" prefix="r" %>
 <%@ taglib uri="http://www.groupwareworkbench.org.br/widgets/tag" prefix="TagMgr" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<%@ attribute name="tagName" required="true" rtexprvalue="true" type="java.lang.String" %>
 <%@ attribute name="photoInstance" required="true" rtexprvalue="true" type="br.org.groupware_workbench.photo.PhotoMgrInstance" %>
-<%@ attribute name="tagMgr" required="true" rtexprvalue="true" type="br.org.groupware_workbench.collabElement.communic.tagMgr.api.TagMgrInstance" %>
+<%@ attribute name="linkClass" required="false" type="java.lang.String" %>
+<%@ attribute name="showName" required="false" type="java.lang.Boolean" rtexprvalue="false" %>
+<%@ attribute name="showLocation" required="false" type="java.lang.Boolean" rtexprvalue="false" %>
+<%@ attribute name="nameClass" required="false" type="java.lang.String" %>
+<%@ attribute name="locationClass" required="false" type="java.lang.String" %>
+<%@ attribute name="idList" required="true" type="java.util.Collection" %>
 
+<r:callMethod methodName="getDirImagesRelativo"	instance="${photoInstance}" var="dirImagem" />
+<r:callMethod methodName="getThumbPrefix" instance="${photoInstance}" var="thumbPrefix" />
+<r:callMethod methodName="getMostraPrefix" instance="${photoInstance}" var="showPrefix" />
+<r:callMethod methodName="buscaFotoPorListaId" instance="${photoInstance}" var="photos">
+	    <r:param type="java.util.List" value="${idList}" />
+</r:callMethod>        
+        
 <%--
-    TODO: Isto não tem o efeito desejado, pois a variável ids será colocada no escopoda tag, o que fará com que esta
-    chamada não tenha nenhum efeito externamente. Além disso, este tipo de coisa não é apropriada para tag-files, e sim
-    para taglibs, pois aqui está sendo feita uma chamada a API java. [Victor]
+    TODO: Evitar inserir <div> que nï¿½o fecham de forma ï¿½bvia pois dependem de anï¿½lise sensï¿½vel ao contexto para
+    garantir que sï¿½o bem formadas.
 --%>
-<r:callMethod methodName="listGenericEntityIdByTagName" instance="${tagMgr}" var="ids">
-    <r:param type="java.lang.String" value="${tagName}" />
-</r:callMethod>
+<c:forEach var="foto" items="${photos}">
+    <c:if test="${showName || showLocation}">
+        <div style="float: left">
+            <div>
+    </c:if>
+    <a class="${linkClass}" rel="linkimage" href="<c:url value="/groupware-workbench/${photoInstance.id}/photo/show/${foto.id}"/>">
+        <img src="${pageContext.request.contextPath}/${dirImagem}/${thumbPrefix}${foto.nomeArquivoUnico}" alt="${foto.nome}"/>
+    </a>
+    <c:if test="${showName || showLocation}">
+        </div>
+    </c:if>
+    <c:if test="${showName}">
+        <div class="${nameClass}">
+            <c:out value="${foto.nome}" />
+        </div>
+    </c:if>
+    <c:if test="${showLocation}">
+        <div class="${locationClass}" >
+            <c:out value="${foto.lugar}" />
+        </div>
+    </c:if>
+    <c:if test="${showName || showLocation}">
+        </div>
+    </c:if>
+</c:forEach>
+
