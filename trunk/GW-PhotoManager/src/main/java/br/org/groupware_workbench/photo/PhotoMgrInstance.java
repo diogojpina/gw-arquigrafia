@@ -64,6 +64,11 @@ public class PhotoMgrInstance extends CollabletInstance {
 		return this.dao.findById(idPhoto);
 	}
 
+	public List<Photo> buscaFotoPorListaId(List<Long> idList) {
+	    return this.dao.buscaPorID(idList, this.getId());
+	}
+	
+	
 	public List<Photo> listaTodaPhoto() {
 		return dao.listAll();
 	}

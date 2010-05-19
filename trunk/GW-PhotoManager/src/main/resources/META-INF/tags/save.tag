@@ -27,7 +27,7 @@
     });
 </script>
 
-<TagMgr:ScriptTags/>
+<TagMgr:ScriptTags />
 
 <input type="hidden" name="photoRegister.id" value="<c:out value="${photoRegister.id}" />" />
 <div class="${formClass}" id="image_save_form">
@@ -54,9 +54,8 @@
     </ul>
     <ul class="${formLineClass}">
         <li class="${formLabelClass}"><span>Data:</span></li>
-        <li class="${formInputClass}"></li>
+        <li class="${formInputClass}">    <input type="text" id="datepicker" name="photoRegister.data" /></li>
     </ul>
-    <input type="text" id="datepicker" name="photoRegister.data" />
     <ul class="${formLineClass}">
         <li class="${formLabelClass}"><span>Arquivo*:</span></li>
         <li class="${formInputClass}"><input type="file" name="foto" /></li>
