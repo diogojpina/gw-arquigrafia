@@ -4,6 +4,7 @@
 <%@ taglib uri="http://www.groupwareworkbench.org.br/widgets/photomanager" prefix="photo" %>
 <%@ taglib uri="http://www.groupwareworkbench.org.br/widgets/binomial" prefix="binomialMgr" %>
 <%@ taglib uri="http://www.groupwareworkbench.org.br/widgets/tag" prefix="TagMgr" %>	
+<%@ taglib uri="http://www.groupwareworkbench.org.br/widgets/comment" prefix="CommentMgr" %>
  
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -33,42 +34,52 @@
         <script src="${pageContext.request.contextPath}/scripts/jquery.accordion.js" type="text/javascript"></script>
         <script src="${pageContext.request.contextPath}/scripts/bay.js" type="text/javascript"></script>
         <binomialMgr:ScriptBinomial/>
+       	<TagMgr:ScriptTags />
     </head>
     <body>
     	<%@ include file="../site/header2.jsp" %>
+    	<form name="tags" method="post" enctype="multipart/form-data" action="<c:url value="/groupware-workbench/${photoInstance.id}/photo/show/${idPhoto}" />">
     	<div id="photoTitle"><c:out value="${photoTitle}" /></div>
         <div id="photoAndBin">
+        	<div id="binArea">
+				<div id="internalBinArea">
+					<span id="binTitle">Medidores</span>
+					<br />
+					<br />
+                    <c:if test="${binomialMgr!=null}">
+                        <binomialMgr:SetBinomial idObject="${idPhoto}" binomialMgr="${binomialMgr}" user="${sessionScope.userLogin}"
+                        		binLabelClass="binLabelClass" binValueClass="binValueClass" binWrapClass="binWrapClass"/>
+                    </c:if>
+                   </div>
+                   <div id="binomialSubmit" style="clear:both">
+                   	<input type="submit" name="saveBinomial" value="salvar" />
+                   </div>
+           			<div class="blueTextBox" id="caracteristics">
+	                   	<h3>Caracter&iacute;sticas</h3>
+	                   	<c:if test="${photoDate != null}">
+	                   		<div>Tirada em: <c:out value="${photoDate}" /></div>
+	                   	</c:if>
+	                   	<c:if test="${photoResolution != null}">
+	                   		<div>Resolu&ccedil;&atilde;o: <c:out value="${photoResolution}" /></div>
+	                   	</c:if>
+	                   	<c:if test="${photoLocation != null}">
+	                   		<div>Local: <c:out value="${photoLocation}" /></div>
+	                   	</c:if>
+                   </div>
+                   
+                   <div class="blueTextBox" id="description">
+      	            	<c:if test="${photoDescription != null}">
+                          <h4>Descri&ccedil;&atilde;o</h4>
+                          <p><c:out value="${photoDescription}" /></p>
+                  		</c:if>
+                  	</div>
+                  	
+			</div>
+			
         	<div id="photoArea">
                     <photo:show idPhoto="${idPhoto}" photoInstance="${photoInstance}" />
 			</div>
-			<div id="binArea">
-					<div id="internalBinArea">
-						<span id="binTitle">Medidores</span>
-						<br />
-	                    <c:if test="${binomialMgr!=null}">
-	                        <binomialMgr:SetBinomial idObject="${idPhoto}" binomialMgr="${binomialMgr}" user="${sessionScope.userLogin}"
-	                        		binLabelClass="binLabelClass" binValueClass="binValueClass" binWrapClass="binWrapClass"/>
-	                    </c:if>
-                    </div>
-                    <div id="caracteristics">
-                    	<h3>Caracter&iacute;sticas</h3>
-                    	<c:if test="${photoDate != null}">
-                    		<div>Tirada em: <c:out value="${photoDate}" /></div>
-                    	</c:if>
-                    	<c:if test="${photoResolution != null}">
-                    		<div>Resolu&ccedil;&atilde;o: <c:out value="${photoResolution}" /></div>
-                    	</c:if>
-                    	<c:if test="${photoLocation != null}">
-                    		<div>Local: <c:out value="${photoLocation}" /></div>
-                    	</c:if>
-                    	<c:if test="${photoDescription != null}">
-                    		<div>
-                            <h4>Descri&ccedil;&atilde;o</h4>
-                            <p><c:out value="${photoDescription}" /></p>
-                    		</div>
-                    	</c:if>
-                    </div>
-			</div>
+			
 		</div>
 		<div id="tagsAndEval">
 			<div id="evalAndAdd">
@@ -76,7 +87,10 @@
 					<img src="${pageContext.request.contextPath}/images/evaluation_mock.png" alt="" />
 				</div>
 				<div id="add">
-					<a href="#"><img src="${pageContext.request.contextPath}/images/add_tag.png" alt="" /></a>
+					<a><img src="${pageContext.request.contextPath}/images/add_tag.png" alt="adicionar ou remover tag" /></a>
+				</div>
+				<div id="add2">
+					<a><img src="${pageContext.request.contextPath}/images/add_tag2.png" alt="adicionar ou remover tag" /></a>
 				</div>
 			</div>
 			<div id="tags">
@@ -89,10 +103,39 @@
 				</div>
 			</div>
 		</div>
-		<div style="position:absolute; z-index: 9999; background-color: #000; margin-top: 20px; margin-left: 160px">
-		sd<TagMgr:SetTags tagMgr="${tagMgr}" idObject="${idPhoto}" />
+		<div id="tagsAdd">
+	 			<TagMgr:SelectTags tagMgr="${tagMgr}" />
+				<TagMgr:SetTags tagMgr="${tagMgr}" idObject="${idPhoto}" tagsEditorClass="mid_black_text" />
+				<input type="submit" name="adicionar" value="Adicionar"/>
+		</div>
+		<script type="text/javascript">
+    		$("#add2").hide();
+    		$("#tagsAdd").hide();
+    		$("#add").click(function() { $("#add2").show(); $("#add").hide(); $("#tagsAdd").show();});
+    		$("#add2").click(function() { $("#add").show(); $("#add2").hide(); $("#tagsAdd").hide();});
+		</script>
+		<div style="height: 10px; width: 100%; clear: both"></div>
+		<div id="comments_bar">
+			<div id="comments_bar_left"></div>
+			<div id="comments_bar_bg">
+				<div id="comments_bar_title" class="big_white_title">Comentários</div>
+				<div id="comments_bar_link" class="white_link"><a>adicionar comentário</a></div>
+			</div>
+			<div id="comments_bar_right"></div>
+		</div>
+		<div style="height: 10px; width: 100%; clear: both"></div>
+		<div id="comments_create" style="height: 110px;">
+			<c:if test="${commentMgr != null}">
+				<CommentMgr:AddComment commentMgr="${commentMgr}" idObject="${idPhoto}" user="${sessionScope.userLogin}"/>
+			</c:if>
+		</div>
+		<div id="comments_show">
+        	<c:if test="${commentMgr != null}">
+           		<CommentMgr:GetComments commentMgr="${commentMgr}" idObject="${idPhoto}" />
+            </c:if>
 		</div>
         <div style="height: 30px; width: 100%"></div>
+        </form>
        	<%@ include file="../site/footer.jsp" %>
     </body>
 </html>
