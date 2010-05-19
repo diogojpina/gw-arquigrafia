@@ -61,7 +61,7 @@
                         <span class="option_off">Tags</span>
                         <br />
                         <span id="advancedSearch">
-                            <a href="#" class="orange_link">Busca Avançada &gt;&gt;</a>
+                            <a href="#" class="orange_link">Busca Avan&ccedil;ada &gt;&gt;</a>
                         </span>
                     </div>
                     <div id="search_options2">
@@ -78,17 +78,17 @@
         </div>
     </div>
     <div id="advancedSearchField" class="mid_blue_text">
-    	<div>
-	        <c:if test="${environment_photo != null}">
-	            <photo:advancedSearch photoInstance="${environment_photo}" formClass="form1" formLineClass="field_line_f1" formLabelClass="label_f1" formInputClass="input_f1"
-	                formLineBtClass="bt_line_f1" formSubmitBtClass="bt_cell_submit" />
-	        </c:if>
+        <div>
+            <c:if test="${environment_photo != null}">
+                <photo:advancedSearch photoInstance="${environment_photo}" formClass="form1" formLineClass="field_line_f1" formLabelClass="label_f1" formInputClass="input_f1"
+                    formLineBtClass="bt_line_f1" formSubmitBtClass="bt_cell_submit" />
+            </c:if>
         </div>
         <div>
-	        <c:if test="${photoInstance != null}">
-	            <photo:advancedSearch photoInstance="${photoInstance}" formClass="form1" formLineClass="field_line_f1" formLabelClass="label_f1" formInputClass="input_f1"
-	                formLineBtClass="bt_line_f1" formSubmitBtClass="bt_cell_submit" />
-	        </c:if>
+            <c:if test="${photoInstance != null}">
+                <photo:advancedSearch photoInstance="${photoInstance}" formClass="form1" formLineClass="field_line_f1" formLabelClass="label_f1" formInputClass="input_f1"
+                    formLineBtClass="bt_line_f1" formSubmitBtClass="bt_cell_submit" />
+            </c:if>
         </div>
         <div style="clear: both"></div>
     </div>
