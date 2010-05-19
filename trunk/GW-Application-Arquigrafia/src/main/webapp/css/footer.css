@@ -7,19 +7,22 @@
 	border-left-width: thin;
 	border-right-width: thin;
 }
-.footer_scroll {
+.footer_scroll {	
+	
 	height: 80px;
-	margin-right: 320px;
+	margin-right: 320px;	
 }
 
 #footer_scroll_left {
-	margin-left: 35px;
+	min-width: 35px;
+	margin-left: 40px;
 	height: 80px;
 }
 
 #footer_scroll_right {
-	height: 80px;
+	min-width: 35px;
 	margin-right: 320px;
+	height: 80px;
 }
 
 #footer_bottom {
@@ -55,8 +58,12 @@
 	float: left;
 	height: 204px;
 }
-#footer_scroll_list a{
-	margin-right: 50px;
+#footer_scroll_list img{
+	display: block;
+	position: relative;
+	float: left;
+	padding: 0;
+	margin: 0px 10px 0px 10px;
 }
 .tag_cloud {
 	text-align: center;

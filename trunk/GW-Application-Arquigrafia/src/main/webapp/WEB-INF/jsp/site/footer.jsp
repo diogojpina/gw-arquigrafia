@@ -23,10 +23,10 @@
                     <div id="footer_scroll_list" class="scrollableArea" >
                         <%-- Modelo para inserção de imagens aqui. --%>
                         <c:if test="${environment_photo != null}">
-                            <photo:listAll showInDiv="true" divClass="carrosselImage" linkClass="" photoInstance="${environment_photo}" keepRatio="true" />
+                            <photo:listAll   linkClass="" photoInstance="${environment_photo}" keepRatio="true" />
                         </c:if>
                         <c:if test="${photoInstance != null}">
-                            <photo:listAll showInDiv="true" divClass="carrosselImage" linkClass="" photoInstance="${photoInstance}" keepRatio="true" />
+                            <photo:listAll   linkClass="" photoInstance="${photoInstance}" keepRatio="true" />
                         </c:if>
                     </div>
                 </div>
