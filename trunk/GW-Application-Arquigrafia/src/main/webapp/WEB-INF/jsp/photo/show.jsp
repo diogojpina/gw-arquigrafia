@@ -119,26 +119,52 @@
                     $("#tagsAdd").hide();
                 });
             </script>
-            <div style="height: 10px; width: 100%; clear: both"></div>
-            <div id="comments_bar">
-                <div id="comments_bar_left"></div>
-                <div id="comments_bar_bg">
-                    <div id="comments_bar_title" class="big_white_title">Comentários</div>
-                    <div id="comments_bar_link" class="white_link"><a>adicionar comentário</a></div>
-                </div>
-                <div id="comments_bar_right"></div>
-            </div>
-            <div style="height: 10px; width: 100%; clear: both"></div>
-            <div id="comments_create" style="height: 110px;">
-                <c:if test="${commentMgr != null}">
-                    <CommentMgr:AddComment commentMgr="${commentMgr}" idObject="${idPhoto}" user="${sessionScope.userLogin}" />
-                </c:if>
-            </div>
-            <div id="comments_show">
-                <c:if test="${commentMgr != null}">
-                    <CommentMgr:GetComments commentMgr="${commentMgr}" idObject="${idPhoto}" />
-                </c:if>
-            </div>
+            <c:if test="${commentMgr != null}">
+	            <div style="height: 10px; width: 100%; clear: both"></div>
+	            <div id="comments_bar">
+	                <div id="comments_bar_left"></div>
+	                <div id="comments_bar_bg">
+	                    <div id="comments_bar_title" class="big_white_title">Comentários</div>
+	                    <div id="comments_bar_title2" class="big_white_title">Comentários</div>
+	                    <div id="comments_bar_link" class="comments_link"><a class="white_link">adicionar comentário</a></div>
+	                    <div id="comments_bar_link2" class="comments_link"><a class="white_link">adicionar comentário</a></div>
+	                </div>
+	                <div id="comments_bar_right"></div>
+	            </div>
+	            <div style="height: 10px; width: 100%; clear: both"></div>
+	            <div id="comments_create" style="height: 130px;">
+	                <CommentMgr:AddComment commentMgr="${commentMgr}" idObject="${idPhoto}" user="${sessionScope.userLogin}" editorClass="editorClass" wrapClass="comments_create_internal"/>
+	                <input name="commentAdd" value="Adicionar" type="submit" />
+	            </div>
+	            <div id="comments_show">
+	                <CommentMgr:GetComments commentMgr="${commentMgr}" idObject="${idPhoto}" wrapClass="comments_show_internal" />
+	            </div>
+				<script type="text/javascript">
+                	$("#comments_create").hide();
+                	$("#comments_bar_link2").hide();
+                	$("#comments_bar_title2").hide();
+                	$("#comments_bar_link").click(function() {
+                    	$("#comments_create").show();
+                    	$("#comments_bar_link").hide();
+                    	$("#comments_bar_link2").show();
+                	});
+                	$("#comments_bar_link2").click(function() {
+                    	$("#comments_create").hide();
+                    	$("#comments_bar_link2").hide();
+                    	$("#comments_bar_link").show();
+                	});
+                	$("#comments_bar_title").click(function() {
+                    	$("#comments_bar_title").hide();
+                    	$("#comments_bar_title2").show();
+                    	$("#comments_show").hide();
+                	});
+                	$("#comments_bar_title2").click(function() {
+                    	$("#comments_bar_title2").hide();
+                    	$("#comments_bar_title").show();
+                    	$("#comments_show").show();
+                	});
+            	</script>
+            </c:if>
             <div style="height: 30px; width: 100%"></div>
         </form>
         <%@ include file="../site/footer.jsp" %>
