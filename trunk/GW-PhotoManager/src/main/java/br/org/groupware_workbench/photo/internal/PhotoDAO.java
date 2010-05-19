@@ -21,26 +21,24 @@ public class PhotoDAO extends ObjectDAO<Photo, Long> {
         super(Photo.class);
     }
 
-    @Override
-    public void save(Photo photo, boolean isInsertion) {       
-       super.save(photo, isInsertion);       
-    }
-
     public void saveImage(InputStream foto, String nome, String pasta) throws IOException {
         File file = new File(pasta, nome);
         file.createNewFile();
         IOUtils.copy(foto, new FileOutputStream(file));
     }
 
-    @SuppressWarnings("cast")
     public List<Photo> buscaPorID(List<Long> photoIDs, Long idInstance) {
         String listAsString = photoIDs.toString();
         String queryText = "Select p FROM " + Photo.class.getSimpleName() + " p WHERE p.idInstance=:idInstance AND p.id IN (" + listAsString + ")";
         Query query = getEntityManager().createQuery(queryText);
         query.setParameter("idInstance", idInstance);
+
+        @SuppressWarnings("unchecked")
         List<Photo> result = (List<Photo>) query.getResultList();
+
         return result;
     }
+
     public List<Photo> busca(String busca, Long idInstance) {
         String query = "SELECT p FROM " + Photo.class.getSimpleName() + " p WHERE p.idInstance=:idInstance AND upper(p.nome) LIKE :nome";
         Query consulta = getEntityManager().createQuery(query);

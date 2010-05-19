@@ -15,10 +15,12 @@ public class PhotoMgrInstance extends CollabletInstance {
 
 	private final PhotoDAO dao = DAOFactory.get(PhotoDAO.class);
 
+	// TODO: Não deve haver estado mutável transiente nesta classe, visto que ela é compartilhada entre diferentes
+	// Threads.
 	private String dirImagesRelativo = "images";
 	private String cropPrefix = "crop_";
-	private	String thumbPrefix="thumb_";
-	private String mostraPrefix="mostra_";
+	private	String thumbPrefix = "thumb_";
+	private String mostraPrefix = "mostra_";
 	private String dirImagesAbsoluto = null;
 
 	public PhotoMgrInstance() {
@@ -67,8 +69,7 @@ public class PhotoMgrInstance extends CollabletInstance {
 	public List<Photo> buscaFotoPorListaId(List<Long> idList) {
 	    return this.dao.buscaPorID(idList, this.getId());
 	}
-	
-	
+
 	public List<Photo> listaTodaPhoto() {
 		return dao.listAll();
 	}

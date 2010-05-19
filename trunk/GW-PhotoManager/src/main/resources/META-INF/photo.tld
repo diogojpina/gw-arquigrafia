@@ -37,6 +37,6 @@
     <function>
         <name>listGenericEntityIdByTagName</name>
         <function-class>br.org.groupware_workbench.collabElement.communic.tagMgr.api.TagMgrInstance</function-class>
-    <function-signature>java.util.Collection listGenericEntityIdByTagName(java.lang.String)</function-signature>
-  </function>
-  </taglib>
+        <function-signature>java.util.Collection listGenericEntityIdByTagName(java.lang.String)</function-signature>
+    </function>
+</taglib>

@@ -66,6 +66,12 @@
 
 <script type="text/javascript">
     $("#form2").hide();
-    $("#simpleSearch").click(function() { $("#form1").show(); $("#form2").hide(); });
-    $("#avancedSearch").click(function() { $("#form2").show(); $("#form1").hide(); });
+    $("#simpleSearch").click(function() {
+        $("#form1").show();
+        $("#form2").hide();
+    });
+    $("#avancedSearch").click(function() {
+        $("#form2").show();
+        $("#form1").hide();
+    });
 </script>

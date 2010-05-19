@@ -5,7 +5,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <%@ attribute name="photoInstance" required="true" rtexprvalue="true" type="br.org.groupware_workbench.photo.PhotoMgrInstance" %>
-<%@ attribute name="photos" required="true" rtexprvalue="true" type="java.util.List"%>
+<%@ attribute name="photos" required="true" rtexprvalue="true" type="java.util.List" %>
 <%@ attribute name="linkClass" required="false" type="java.lang.String" %>
 <%@ attribute name="showName" required="false" type="java.lang.Boolean" rtexprvalue="false" %>
 <%@ attribute name="showLocation" required="false" type="java.lang.Boolean" rtexprvalue="false" %>
@@ -17,8 +17,8 @@
 <r:callMethod methodName="getMostraPrefix" instance="${photoInstance}" var="showPrefix" />
 
 <%--
-    TODO: Evitar inserir <div> que nï¿½o fecham de forma ï¿½bvia pois dependem de anï¿½lise sensï¿½vel ao contexto para
-    garantir que sï¿½o bem formadas.
+    TODO: Evitar inserir <div> que não fecham de forma óbvia pois dependem de análise sensível ao contexto para
+    garantir que são bem formadas.
 --%>
 <c:forEach var="foto" items="${photos}">
     <c:if test="${showName || showLocation}">

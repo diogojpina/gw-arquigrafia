@@ -54,7 +54,7 @@
     </ul>
     <ul class="${formLineClass}">
         <li class="${formLabelClass}"><span>Data:</span></li>
-        <li class="${formInputClass}">    <input type="text" id="datepicker" name="photoRegister.data" /></li>
+        <li class="${formInputClass}"><input type="text" id="datepicker" name="photoRegister.data" /></li>
     </ul>
     <ul class="${formLineClass}">
         <li class="${formLabelClass}"><span>Arquivo*:</span></li>

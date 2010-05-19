@@ -43,7 +43,6 @@ public class PhotoController {
     private final Result result;
     private final HttpServletRequest request;
     private final Validator validator;
-    private List<Photo> resultFotosBusca;
     private final RequestInfo info;
 
     public PhotoController(Result result, Validator validator, HttpServletRequest request, RequestInfo info) {
@@ -52,11 +51,11 @@ public class PhotoController {
         this.request = request;
         this.info = info;
     }
-    
+
     @Post
     @Get
     @Path(value = "/groupware-workbench/{photoInstance}/photo/show/{idPhoto}")
-    public void show(PhotoMgrInstance photoInstance, long idPhoto){
+    public void show(PhotoMgrInstance photoInstance, long idPhoto) {
         photoInstance.setRequestInfo(info);
         result.include("idPhoto", idPhoto);
         Photo photo = photoInstance.buscaPhotoById(idPhoto);
@@ -71,7 +70,7 @@ public class PhotoController {
             result.include(nomeComponente, collabComponentInstance);
             System.out.println("O componente " + collabComponentInstance.getComponent().getCod() + " foi adicionado na requisição com o nome " + nomeComponente);
         }
-        
+
         @SuppressWarnings("unchecked") // Cast desnecessário no Java EE 6. Necessário no Java EE 5.
         Map<String, String[]> params = (Map<String, String[]>) request.getParameterMap();
 
@@ -89,7 +88,7 @@ public class PhotoController {
 
     @Get
     @Path(value = "/groupware-workbench/{photoInstance}/photo")
-    public void busca(PhotoMgrInstance photoInstance){
+    public void busca(PhotoMgrInstance photoInstance) {
         //addIncludes();
         result.include("photoInstance", photoInstance);
         for (CollabElementInstance collabComponentInstance : photoInstance.getCollabElementInstances()) {
@@ -102,7 +101,7 @@ public class PhotoController {
     @Post
     @Path(value = "/groupware-workbench/{photoInstance}/photo/buscaTag/{tagName}")
     public void buscaFotoPorId(String tagName, List<Long> photoIds, PhotoMgrInstance photoInstance) {
-        resultFotosBusca = photoInstance.buscaFotoPorListaId(photoIds);
+        List<Photo> resultFotosBusca = photoInstance.buscaFotoPorListaId(photoIds);
 
         result.include("fotos", resultFotosBusca);
         result.include("thumbPrefix", photoInstance.getThumbPrefix());
@@ -113,10 +112,10 @@ public class PhotoController {
         result.include("numResults", resultFotosBusca.size());
         result.use(Results.logic()).redirectTo(PhotoController.class).busca(photoInstance);
     }
-    
+
     @Post
     @Path(value = "/groupware-workbench/{photoInstance}/photo/busca")
-    public void buscaFoto(String busca, PhotoMgrInstance photoInstance){
+    public void buscaFoto(String busca, PhotoMgrInstance photoInstance) {
         if (busca.length() < 3) {
             validator.add(new ValidationMessage(MSG_MIN_3_LETRAS, "Erro"));
             validator.onErrorUse(Results.logic()).redirectTo(PhotoController.class).busca(photoInstance);
@@ -135,7 +134,7 @@ public class PhotoController {
             }
         }
 
-        resultFotosBusca = photoInstance.buscaFoto(busca);
+        List<Photo> resultFotosBusca = photoInstance.buscaFoto(busca);
 
         result.include("fotos", resultFotosBusca);
         result.include("thumbPrefix", photoInstance.getThumbPrefix());
@@ -168,7 +167,7 @@ public class PhotoController {
             }
         }
 
-        resultFotosBusca = photoInstance.buscaFotoAvancada(nome, lugar, descricao, date);
+        List<Photo> resultFotosBusca = photoInstance.buscaFotoAvancada(nome, lugar, descricao, date);
         result.include("fotos", resultFotosBusca);
         result.include("thumbPrefix", photoInstance.getThumbPrefix());
         result.include("cropPrefix", photoInstance.getCropPrefix());
@@ -219,7 +218,7 @@ public class PhotoController {
         InputStream imagemThumb = null;
         InputStream imagemCropped = null;
         InputStream imagemMostra = null;
-        
+
         try {
             rawphoto = new byte[foto.getFile().available()];
             foto.getFile().read(rawphoto); 
@@ -245,7 +244,6 @@ public class PhotoController {
             photoInstance.saveImage(imagemCropped, photoInstance.getCropPrefix() + nomeArquivo);
             photoInstance.saveImage(imagemThumb, photoInstance.getThumbPrefix() + nomeArquivo);
             photoInstance.saveImage(imagemMostra, photoInstance.getMostraPrefix() + nomeArquivo);
-
         } catch (IOException e) {
             validator.add(new ValidationMessage(MSG_FALHA_NO_UPLOAD, "Erro"));
             validator.onErrorUse(Results.logic()).redirectTo(PhotoController.class).registra(photoInstance);
