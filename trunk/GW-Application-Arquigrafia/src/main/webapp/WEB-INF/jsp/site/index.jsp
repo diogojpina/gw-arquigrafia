@@ -43,7 +43,7 @@
                     <div class="scrollingHotSpotLeft" style=" height: 500px;"></div>
                     <div class="scrollingHotSpotRight" style="height: 500px"></div>
                     <div class="scrollWrapper">
-                        <div class="scrollableArea">
+                        <div class="scrollableArea" style="width: 2200px">
                             <div class="image_line">
                                 <c:if test="${environment_photo != null}">
                                     <photo:listAll linkClass="" photoInstance="${environment_photo}" keepRatio="false" />

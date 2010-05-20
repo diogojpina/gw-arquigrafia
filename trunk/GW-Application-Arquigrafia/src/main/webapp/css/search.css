@@ -1,23 +1,49 @@
 @charset "utf-8";
 /* CSS Document */
-#seach_refinement {
-	width: 100px;
+#search_refinement {
+	float: left;
+	widht: 165px;
+	min-height: 600px;
 }
 #search_scroll {
-	width: 100%;
 	min-height: 300px;
 	max-height: 600px;
-	overflow: hidden;
+	overflow: scroll;
+	border-style: solid;
+	border-color: #ccc;
+	border-width: 1px;
+	background-color: #fff;
+	text-align: center;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #6A8A9B;
+	
+}
+#search_scroll img {
+	padding: 2px;
+	margin: 8px;
+	border-style: solid;
+	border-width: thin;
+	border-color: #ccc;
 }
 
 #search_statistics {
+	margin-top: 10px;
+	padding-left: 30px;
+	background-color: #fff;
+	opacity: 0.6;
+	height: 30px;
 	font-family: Arial, Helvetica, sans-serif;
-	font-size: 12px;
+	font-size: 14px;
+}
+
+#resultTerm {
+    font-weight: bold;    
 }
 
 #resultCount {
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 12px;
-	color: #999;
+	color: #111;
 	font-style: italic;
 }

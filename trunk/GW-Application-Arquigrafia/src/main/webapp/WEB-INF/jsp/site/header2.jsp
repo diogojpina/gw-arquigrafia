@@ -36,7 +36,7 @@
         <a href="legal.htm">Legal</a>
         &nbsp;|&nbsp;
         <c:if test="${environment_photo != null}">
-            <a href="${pageContext.request.contextPath}/groupware-workbench/${environment_photo.id}/photo/registra">Administra&ccedil;&atilde;o</a>
+            <a href="${pageContext.request.contextPath}/groupware-workbench/${environment_photo.id}/photo/registra">Upload de fotos</a>
         </c:if>
     </div>
     <div id="search_field">

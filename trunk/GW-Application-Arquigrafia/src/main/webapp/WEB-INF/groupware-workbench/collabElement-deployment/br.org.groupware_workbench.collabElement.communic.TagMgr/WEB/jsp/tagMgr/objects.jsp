@@ -35,8 +35,8 @@
      </head>
      <body>
          <%@ include file="../../../../../../jsp/site/header2.jsp" %>
-         <div id="search_statistics">
-             Voc&ecirc; Buscou: <c:out value="${searchTerm}" />
+                 <div id="search_statistics">
+             <span id="resultTerm">Voc&ecirc; Buscou: <c:out value="${searchTerm}" /></span>
              <span id="resultCount"> (<c:out value="${numResults}" /> resultados)</span>
              <br/>
              <c:forEach var="error" items="${errors}">
@@ -45,12 +45,15 @@
              </c:forEach>
          </div>
          <br />
-         <div id="seach_refinement"></div>
+         <div id="search_refinement">
+         	<img src="${pageContext.request.contextPath}/images/filtragem.png" alt="" />
+         </div>
          <div id="search_scroll">
            	<c:if test="${sessionScope.environment_photo != null}">
                 <photo:searchByTag photoInstance="${sessionScope.environment_photo}" idList="${geList}" />
             </c:if>
-           </div>
+         </div>
+         <div style="height: 30px; clear: both"></div>
          <%@ include file="../../../../../../jsp/site/footer.jsp" %>
      </body>
 </html>
