@@ -25,9 +25,6 @@
                         <c:if test="${environment_photo != null}">
                             <photo:listFirstHundred linkClass="" photoInstance="${environment_photo}" keepRatio="true" />
                         </c:if>
-                        <c:if test="${photoInstance != null}">
-                            <photo:listFirstHundred linkClass="" photoInstance="${photoInstance}" keepRatio="true" />
-                        </c:if>
                     </div>
                 </div>
              </div>
