@@ -12,12 +12,11 @@ import javax.persistence.Query;
 
 import org.apache.commons.io.IOUtils;
 
-import br.org.groupware_workbench.commons.bd.jpa.ObjectDAO;
+import br.org.groupware_workbench.coreutils.GenericDAO;
 import br.org.groupware_workbench.coreutils.GenericEntity;
 import br.org.groupware_workbench.photo.Photo;
 
-//public class PhotoRegisterDAO extends GenericDAO<PhotoRegister> {
-public class PhotoDAO extends ObjectDAO<Photo, Long> {	
+public class PhotoDAO extends GenericDAO<Photo> {
 
     public PhotoDAO() {
         super(Photo.class);
@@ -29,6 +28,7 @@ public class PhotoDAO extends ObjectDAO<Photo, Long> {
         IOUtils.copy(foto, new FileOutputStream(file));
     }
 
+    // TODO: Refatorar isso para não usar uma de lista de GenericEntity.
     public List<Photo> buscaPorID(List<GenericEntity> photos, Long idInstance) {
         List<Long> photoIds = new ArrayList<Long>();
         for (GenericEntity entity : photos) {
@@ -36,7 +36,7 @@ public class PhotoDAO extends ObjectDAO<Photo, Long> {
         }
         String listAsString = photoIds.toString().replace("[", "");
         listAsString = listAsString.replace("]", "");
-        String queryText = "Select p FROM " + Photo.class.getSimpleName() + " p WHERE p.idInstance=:idInstance AND p.id IN (" + listAsString + ")";
+        String queryText = "SELECT p FROM " + Photo.class.getSimpleName() + " p WHERE p.idInstance = :idInstance AND p.id IN (" + listAsString + ")";
         Query query = getEntityManager().createQuery(queryText);
         query.setParameter("idInstance", idInstance);
 
@@ -47,7 +47,7 @@ public class PhotoDAO extends ObjectDAO<Photo, Long> {
     }
 
     public List<Photo> busca(String busca, Long idInstance) {
-        String query = "SELECT p FROM " + Photo.class.getSimpleName() + " p WHERE p.idInstance=:idInstance AND upper(p.nome) LIKE :nome";
+        String query = "SELECT p FROM " + Photo.class.getSimpleName() + " p WHERE p.idInstance = :idInstance AND UPPER(p.nome) LIKE :nome";
         Query consulta = getEntityManager().createQuery(query);
         consulta.setParameter("idInstance", idInstance);
         consulta.setParameter("nome", "%" + busca.toUpperCase() + "%");
@@ -64,10 +64,10 @@ public class PhotoDAO extends ObjectDAO<Photo, Long> {
         String query;
         Query consulta;
         if (date == null) {
-            query = "SELECT p FROM " + Photo.class.getSimpleName() + " p WHERE p.idInstance = :idInstance AND (upper(p.nome) LIKE :nome AND upper(p.lugar) LIKE :lugar AND upper(p.descricao) LIKE :descricao)";
+            query = "SELECT p FROM " + Photo.class.getSimpleName() + " p WHERE p.idInstance = :idInstance AND (UPPER(p.nome) LIKE :nome AND UPPER(p.lugar) LIKE :lugar AND UPPER(p.descricao) LIKE :descricao)";
             consulta = getEntityManager().createQuery(query);
         } else {
-            query = "SELECT p FROM " + Photo.class.getSimpleName() + " p WHERE p.idInstance = :idInstance AND (upper(p.nome) LIKE :nome AND upper(p.lugar) LIKE :lugar AND upper(p.descricao) LIKE :descricao AND p.data = :date)";
+            query = "SELECT p FROM " + Photo.class.getSimpleName() + " p WHERE p.idInstance = :idInstance AND (UPPER(p.nome) LIKE :nome AND UPPER(p.lugar) LIKE :lugar AND UPPER(p.descricao) LIKE :descricao AND p.data = :date)";
             consulta = getEntityManager().createQuery(query);
             consulta.setParameter("date", date);
         }
@@ -101,7 +101,7 @@ public class PhotoDAO extends ObjectDAO<Photo, Long> {
     }
     
     public List<Photo> listPhotoByPageAndOrder(int pageSize, int pageNumber) {
-        String querySentence = "SELECT p FROM " + Photo.class.getSimpleName() + " p ORDER BY  p.dataCriacao DESC";
+        String querySentence = "SELECT p FROM " + Photo.class.getSimpleName() + " p ORDER BY p.dataCriacao DESC";
         Query query = getEntityManager().createQuery(querySentence);
         int firstElement = pageNumber * pageSize;
         query.setFirstResult(firstElement);

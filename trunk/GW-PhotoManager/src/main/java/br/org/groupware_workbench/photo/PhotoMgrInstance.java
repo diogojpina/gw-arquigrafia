@@ -37,9 +37,7 @@ public class PhotoMgrInstance extends CollabletInstance {
 
 	@Override
 	public void destroy() {
-		//TODO modify this according with the objectDAO, ask victor or geiser
-		//this.dao.deleteByIdInstance(this.getId());
-		this.dao.deleteByField("idInstance", this.getId());
+		this.dao.deleteByIdInstance(this.getId());
 	}
 
 	public void delete(long photoId) {
