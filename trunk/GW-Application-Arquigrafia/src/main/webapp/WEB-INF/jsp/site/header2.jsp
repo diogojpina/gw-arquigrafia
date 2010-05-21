@@ -8,7 +8,7 @@
 </div>
 <div id="header">
     <div id="title">
-        <a href="${pageContext.request.contextPath}/groupware-workbench/${siteInstance.id}/site"><img src="${pageContext.request.contextPath}/images/head1_left_top.png" width="350" height="100" alt="Arquigrafia Brasil" /></a>
+        <a href="${pageContext.request.contextPath}/groupware-workbench/1/site"><img src="${pageContext.request.contextPath}/images/head1_left_top.png" width="350" height="100" alt="Arquigrafia Brasil" /></a>
     </div>
     <div id="header_top_right">
         <div id="user_top_links">
@@ -27,7 +27,7 @@
         </div>
     </div>
     <div id="top_links" class="blue_link">
-        <a href="${pageContext.request.contextPath}/groupware-workbench/${siteInstance.id}/site">In&iacute;cio</a>
+        <a href="${pageContext.request.contextPath}/groupware-workbench/1/site">In&iacute;cio</a>
         &nbsp;|&nbsp;
         <a href="help.htm">Ajuda</a>
         &nbsp;|&nbsp;
