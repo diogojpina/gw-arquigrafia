@@ -7,7 +7,7 @@
     </div>
 
     <c:if test="${tagMgr != null}">
-        <TagMgr:TagCloud tagMgr="${tagMgr}" collabletInstance="${siteInstance}"/>
+        <TagMgr:TagCloud tagMgr="${tagMgr}" collabletInstance="${sessionScope.siteInstance}"/>
     </c:if>
 
     <div id="footer_carrousel_wrap">

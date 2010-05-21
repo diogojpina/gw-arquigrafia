@@ -57,7 +57,7 @@
             </c:forEach>
 			<br />
             <div>
-                <Widgets:Voltar collabletInstance="${photoInstance}" />
+                <Widgets:Voltar collabletInstance="${sessionScope.siteInstance}" />
             </div>
         </div>
         <div style="height: 30px; width: 100%"></div>

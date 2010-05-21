@@ -36,7 +36,7 @@
      <body>
          <%@ include file="../site/header2.jsp" %>
          <div id="search_statistics">
-             <span id="resultTerm">Voc&ecirc; Buscou: <c:out value="${searchTerm}" /></span>
+             <span id="resultTerm">Voc&ecirc; buscou: <c:out value="${searchTerm}" /></span>
              <span id="resultCount"> (<c:out value="${numResults}" /> resultados)</span>
              <br/>
              <c:forEach var="error" items="${errors}">

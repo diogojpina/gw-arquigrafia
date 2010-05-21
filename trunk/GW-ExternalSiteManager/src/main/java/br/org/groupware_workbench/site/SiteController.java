@@ -28,6 +28,7 @@ public class SiteController {
     public void index(SiteInstance siteInstance) {
         //addIncludes();
         result.include("siteInstance", siteInstance);
+        this.request.getSession().setAttribute("siteInstance", siteInstance);
         for (Component component : siteInstance.getComponent().getGroup().getComponents()) {
             String componentName = component.getCod();
             componentName = componentName.replaceAll("/", "_").toLowerCase();
