@@ -29,7 +29,6 @@ import br.com.caelum.vraptor.validator.ValidationMessage;
 import br.com.caelum.vraptor.view.Results;
 import br.org.groupware_workbench.collabElementFw.facade.CollabElementInstance;
 import br.org.groupware_workbench.commons.util.ImageUtils;
-import br.org.groupware_workbench.coreutils.Centralizer;
 import br.org.groupware_workbench.coreutils.GenericEntity;
 
 @RequestScoped
@@ -64,15 +63,17 @@ public class PhotoController {
         result.include("idPhoto", idPhoto);
         Photo photo = photoInstance.buscaPhotoById(idPhoto);
         //addIncludes();
-
-        // Provisório. Refatorar.
-        result.include("siteInstance", Centralizer.getCollabletManager().getComponent("environment/Default").getInstances().iterator().next());
-
         result.include("photoInstance", photoInstance);
         result.include("photoTitle", photo.getNome());
-        result.include("photoDescription", photo.getDescricao());
-        result.include("photoDate", DateFormat.getInstance().format(photo.getData()));
-        result.include("photoLocation", photo.getLugar());
+        if (photo.getDescricao() != null && !photo.getDescricao().isEmpty()) {
+            result.include("photoDescription", photo.getDescricao());
+        }
+        if (photo.getData() != null) {
+            result.include("photoDate", DateFormat.getInstance().format(photo.getData()));
+        }
+        if (photo.getLugar() != null && !photo.getLugar().isEmpty()) {
+            result.include("photoLocation", photo.getLugar());
+        }
         for (CollabElementInstance collabComponentInstance : photoInstance.getCollabElementInstances()) {
             String nomeComponente = collabComponentInstance.getName();
             result.include(nomeComponente, collabComponentInstance);
