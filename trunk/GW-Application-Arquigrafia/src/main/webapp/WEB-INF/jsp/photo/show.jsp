@@ -34,13 +34,14 @@
         <script src="${pageContext.request.contextPath}/scripts/jquery.dimensions.js" type="text/javascript"></script>
         <script src="${pageContext.request.contextPath}/scripts/jquery.accordion.js" type="text/javascript"></script>
         <script src="${pageContext.request.contextPath}/scripts/bay.js" type="text/javascript"></script>
+		<script src="${pageContext.request.contextPath}/scripts/curvycorners.src.js" type="text/javascript"></script>
         <binomialMgr:ScriptBinomial/>
        	<TagMgr:ScriptTags />
     </head>
     <body>
         <%@ include file="../site/header2.jsp" %>
         <form name="tags" method="post" enctype="multipart/form-data" action="<c:url value="/groupware-workbench/${photoInstance.id}/photo/show/${idPhoto}" />">
-            <div id="photoTitle"><c:out value="${photoTitle}" /></div>
+	        <div id="photoTitle"><c:out value="${photoTitle}" /></div>
             <div id="photoAndBin">
                 <div id="binArea">
                     <div id="internalBinArea">

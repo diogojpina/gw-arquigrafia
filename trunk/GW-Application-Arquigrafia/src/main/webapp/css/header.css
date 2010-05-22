@@ -10,6 +10,12 @@ body {
 	background-image: url(../images/head1_bg.png);
 	background-repeat: repeat-x;
 	background-attachment: scroll;
+	border-style: solid;
+	border-width: thin;
+	border-color: #666;
+	border-top: none;
+	border-left: none;
+	border-right: none;
 }
 
 #title {
@@ -112,4 +118,5 @@ body {
 	margin-left: 30px;
 	background-color: #fff;
 	opacity: 0.8;
+	filter:alpha(opacity=80);
 }

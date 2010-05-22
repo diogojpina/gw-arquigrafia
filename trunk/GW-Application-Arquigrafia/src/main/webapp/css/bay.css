@@ -25,6 +25,7 @@
 	width: 100%;
 	background-color: #000;
 	opacity: 0.96;
+	filter:alpha(opacity=96);
 }
 #big_bay_banner {
 	margin-top: 5px;

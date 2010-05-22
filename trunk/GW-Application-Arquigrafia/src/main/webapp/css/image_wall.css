@@ -1,9 +1,8 @@
 @charset "utf-8";
 /* CSS Document */
 .image_line {
-	width: 100%;
+	width: 2200px;
+	background-color: #FFF;
 }
 .image_placeholder {
-	width: 100px;
-	height: 100px;
 }

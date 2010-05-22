@@ -17,6 +17,8 @@
 	overflow: hidden;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
+	-moz-box-shadow: 3px 3px 5px #888;
+  	-webkit-box-shadow: 3px 3px 5px #666;
 }
 #binArea {
 	max-width: 34%;
@@ -44,15 +46,27 @@
 	float: left;
 }
 #photoTitle {
+	height: 25px;
+	width: 30%;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	margin-left: 30px;
+	background-color: #666;
+	opacity: 0.7;
+	filter:alpha(opacity=70);
+	border-style: double;
+	border-width: 1px;
+	border-color: #DDF;
+	-webkit-border-radius: 7px;
+	-moz-border-radius: 7px;
+	padding-top: 2px;
+	padding-left: 20px;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 22px;
 	font-weight: bold;
-	margin-top: 20px;
-	margin-bottom: 5px;
-	margin-left: 30px;
-	background-color: #fff;
-	opacity: 0.6;
+	color: #fff;
 }
+
 #binTitle {
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 14px;
@@ -225,6 +239,7 @@
 	border-color: #CBCEE7;
 	-webkit-border-radius: 10px;
 	-moz-border-radius: 10px;
+	
 }
 .comments_show_internal span {
 	font-family: Arial, Helvetica, sans-serif;
@@ -253,7 +268,7 @@
 }
 #comments_show {
 	margin-top: 3px;
-	margin-left: 35px;
+	margin-left: 30px;
 	width: 70%;
 }
 .editorClass {

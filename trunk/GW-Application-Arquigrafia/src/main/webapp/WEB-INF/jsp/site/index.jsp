@@ -20,6 +20,7 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" type="text/css" media="screen" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/jquery.css" type="text/css" media="screen" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/tagcloud.css" type="text/css" media="screen" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/image_wall.css" type="text/css" media="screen" />
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/plugins/sds/js/jquery.smoothDivScroll-0.9-min.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/plugins/sds/js/scroll.js"></script>
@@ -42,8 +43,8 @@
                 <div id="makeMeScrollable" style="border-style: solid; border-width: thin; border-color: #666;padding-left: 0px; height: 500px">
                     <div class="scrollingHotSpotLeft" style=" height: 500px;"></div>
                     <div class="scrollingHotSpotRight" style="height: 500px"></div>
-                    <div class="scrollWrapper">
-                        <div class="scrollableArea" style="width: 2200px">
+                    <div class="scrollWrapper" id="images_scrollable">
+                        <div class="scrollableArea">
                             <div class="image_line">
                                 <c:if test="${environment_photo != null}">
                                     <photo:listAll linkClass="" photoInstance="${environment_photo}" keepRatio="false" />
