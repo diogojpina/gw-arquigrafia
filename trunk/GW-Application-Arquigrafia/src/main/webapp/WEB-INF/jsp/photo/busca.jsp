@@ -46,7 +46,7 @@
          </div>
          <br />
          <div id="search_refinement">
-         	<img src="${pageContext.request.contextPath}/images/filtragem.png" alt="" />
+             <img src="${pageContext.request.contextPath}/images/filtragem.png" alt="Filtragem" />
          </div>
          <div id="search_scroll">
              <photo:list photos="${fotos}" photoInstance="${photoInstance}" showName="true" showLocation="false" />

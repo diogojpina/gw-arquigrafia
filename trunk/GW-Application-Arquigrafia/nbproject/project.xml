@@ -6,7 +6,7 @@
             <name>GW-Application-Arquigrafia</name>
             <minimum-ant-version>1.6.5</minimum-ant-version>
             <web-module-libraries>
-                 <library dirs="200">
+                <library dirs="200">
                     <file>${file.reference.antlr-2.7.6.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
@@ -266,6 +266,10 @@
                 </library>
                 <library dirs="200">
                     <file>${reference.GW-collabElement.jar}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library dirs="200">
+                    <file>${reference.GW-collablet.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">

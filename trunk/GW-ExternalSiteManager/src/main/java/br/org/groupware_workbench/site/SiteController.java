@@ -39,13 +39,13 @@ public class SiteController {
                 componentInstance = component.makeNewInstance(); // TODO: Não fazer isso. Esse método deveria ser privado do core.
             }
             result.include(componentName, componentInstance);
-            this.request.getSession().setAttribute(componentName, componentInstance);
+            this.request.getSession().setAttribute(componentName, componentInstance); // TODO: Não fazer isso, apenas oculta bugs.
             System.out.println("Adicionado " + componentName);
         }
         for (CollabElementInstance collabComponentInstance : siteInstance.getCollabElementInstances()) {
             String nomeComponente = collabComponentInstance.getName();
             result.include(nomeComponente, collabComponentInstance);
-            this.request.getSession().setAttribute(nomeComponente, collabComponentInstance);
+            this.request.getSession().setAttribute(nomeComponente, collabComponentInstance); // TODO: Não fazer isso, apenas oculta bugs.
             System.out.println("O componente " + collabComponentInstance.getComponent().getCod() + " foi adicionado na requisição com o nome " + nomeComponente);
         }
     }

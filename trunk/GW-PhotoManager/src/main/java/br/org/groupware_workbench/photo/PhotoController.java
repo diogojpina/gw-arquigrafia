@@ -6,7 +6,6 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
@@ -238,7 +237,7 @@ public class PhotoController {
             imagemThumb.reset();
             Point cropPoint = ImageUtils.calcSqrThumbCropPoint(imagemThumb);
             imagemThumb.reset();
-            imagemCropped = ImageUtils.cropImage(cropPoint, new Dimension(100 ,100), imagemThumb);
+            imagemCropped = ImageUtils.cropImage(cropPoint, new Dimension(100, 100), imagemThumb);
             imagemThumb.reset();
         } catch (IOException e) {
             validator.add(new ValidationMessage(MSG_NAO_FOI_POSSIVEL_REDIMENSIONAR, "Erro"));

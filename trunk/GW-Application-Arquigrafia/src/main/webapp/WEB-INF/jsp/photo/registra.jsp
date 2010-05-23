@@ -39,7 +39,7 @@
         <%@ include file="../site/header2.jsp" %>
         <div id="internal_wrap">
         <div class="big_black_title" id="register_title">
-        	Registrar Foto
+            Registrar Foto
         </div>
         <br />
         <br />
@@ -55,7 +55,7 @@
                 <c:out value="${error.category}" /> - <c:out value="${error.message}" />
                 <br />
             </c:forEach>
-			<br />
+            <br />
             <div>
                 <Widgets:Voltar collabletInstance="${sessionScope.siteInstance}" />
             </div>

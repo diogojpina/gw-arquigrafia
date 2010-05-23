@@ -5,7 +5,7 @@
 <%@ taglib uri="http://www.groupwareworkbench.org.br/widgets/binomial" prefix="binomialMgr" %>
 <%@ taglib uri="http://www.groupwareworkbench.org.br/widgets/tag" prefix="TagMgr" %>	
 <%@ taglib uri="http://www.groupwareworkbench.org.br/widgets/comment" prefix="CommentMgr" %>
- 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <head>
@@ -34,14 +34,14 @@
         <script src="${pageContext.request.contextPath}/scripts/jquery.dimensions.js" type="text/javascript"></script>
         <script src="${pageContext.request.contextPath}/scripts/jquery.accordion.js" type="text/javascript"></script>
         <script src="${pageContext.request.contextPath}/scripts/bay.js" type="text/javascript"></script>
-		<script src="${pageContext.request.contextPath}/scripts/curvycorners.src.js" type="text/javascript"></script>
+        <script src="${pageContext.request.contextPath}/scripts/curvycorners.src.js" type="text/javascript"></script>
         <binomialMgr:ScriptBinomial/>
-       	<TagMgr:ScriptTags />
+        <TagMgr:ScriptTags />
     </head>
     <body>
         <%@ include file="../site/header2.jsp" %>
         <form name="tags" method="post" enctype="multipart/form-data" action="<c:url value="/groupware-workbench/${photoInstance.id}/photo/show/${idPhoto}" />">
-	        <div id="photoTitle"><c:out value="${photoTitle}" /></div>
+            <div id="photoTitle"><c:out value="${photoTitle}" /></div>
             <div id="photoAndBin">
                 <div id="binArea">
                     <div id="internalBinArea">
@@ -81,94 +81,94 @@
                         <photo:show idPhoto="${idPhoto}" photoInstance="${photoInstance}" />
                     </div>
                    <div id="tagsAndEval">
-	                <div id="evalAndAdd">
-	                    <div id="eval">
-	                        <img src="${pageContext.request.contextPath}/images/evaluation_mock.png" alt="" />
-	                    </div>
-	                    <div id="add">
-	                        <a><img src="${pageContext.request.contextPath}/images/add_tag.png" alt="adicionar ou remover tag" /></a>
-	                    </div>
-	                    <div id="add2">
-	                        <a><img src="${pageContext.request.contextPath}/images/add_tag2.png" alt="adicionar ou remover tag" /></a>
-	                    </div>
-	                </div>
-	                <div id="tags">
-	                    <div id="tags_left">
-	                    </div>
-	                    <div id="tags_content">
-	                        <TagMgr:GetTags tagMgr="${tagMgr}" idObject="${idPhoto}" />
-	                    </div>
-	                    <div id="tags_right">
-	                    </div>
-	                </div>
-	            </div>
-	            <div id="tagsAdd">
-	                <TagMgr:SelectTags tagMgr="${tagMgr}" />
-	                <TagMgr:SetTags tagMgr="${tagMgr}" idObject="${idPhoto}" tagsEditorClass="mid_black_text" />
-	                <input type="submit" name="adicionar" value="Adicionar" />
-	            </div>
-	            <script type="text/javascript">
-	                $("#add2").hide();
-	                $("#tagsAdd").hide();
-	                $("#add").click(function() {
-	                    $("#add2").show();
-	                    $("#add").hide();
-	                    $("#tagsAdd").show();
-	                });
-	                $("#add2").click(function() {
-	                    $("#add").show();
-	                    $("#add2").hide();
-	                    $("#tagsAdd").hide();
-	                });
-	            </script>
+                        <div id="evalAndAdd">
+                            <div id="eval">
+                                <img src="${pageContext.request.contextPath}/images/evaluation_mock.png" alt="" />
+                            </div>
+                            <div id="add">
+                                <a><img src="${pageContext.request.contextPath}/images/add_tag.png" alt="adicionar ou remover tag" /></a>
+                            </div>
+                            <div id="add2">
+                                <a><img src="${pageContext.request.contextPath}/images/add_tag2.png" alt="adicionar ou remover tag" /></a>
+                            </div>
+                        </div>
+                        <div id="tags">
+                            <div id="tags_left">
+                            </div>
+                            <div id="tags_content">
+                                <TagMgr:GetTags tagMgr="${tagMgr}" idObject="${idPhoto}" />
+                            </div>
+                            <div id="tags_right">
+                            </div>
+                        </div>
+                    </div>
+                    <div id="tagsAdd">
+                        <TagMgr:SelectTags tagMgr="${tagMgr}" />
+                        <TagMgr:SetTags tagMgr="${tagMgr}" idObject="${idPhoto}" tagsEditorClass="mid_black_text" />
+                        <input type="submit" name="adicionar" value="Adicionar" />
+                    </div>
+                    <script type="text/javascript">
+                        $("#add2").hide();
+                        $("#tagsAdd").hide();
+                        $("#add").click(function() {
+                            $("#add2").show();
+                            $("#add").hide();
+                            $("#tagsAdd").show();
+                        });
+                        $("#add2").click(function() {
+                            $("#add").show();
+                            $("#add2").hide();
+                            $("#tagsAdd").hide();
+                        });
+                    </script>
                 </div>
             </div>
 
             <c:if test="${commentMgr != null}">
-	            <div style="height: 10px; width: 100%; clear: both"></div>
-	            <div id="comments_bar">
-	                <div id="comments_bar_left"></div>
-	                <div id="comments_bar_bg">
-	                    <div id="comments_bar_title" class="big_white_title">Comentários</div>
-	                    <div id="comments_bar_title2" class="big_white_title">Comentários</div>
-	                    <div id="comments_bar_link" class="comments_link"><a class="white_link">adicionar comentário</a></div>
-	                    <div id="comments_bar_link2" class="comments_link"><a class="white_link">adicionar comentário</a></div>
-	                </div>
-	                <div id="comments_bar_right"></div>
-	            </div>
-	            <div style="height: 10px; width: 100%; clear: both"></div>
-	            <div id="comments_create" style="height: 130px;">
-	                <CommentMgr:AddComment commentMgr="${commentMgr}" idObject="${idPhoto}" user="${sessionScope.userLogin}" editorClass="editorClass" wrapClass="comments_create_internal"/>
-	                <input name="commentAdd" value="Adicionar" type="submit" />
-	            </div>
-	            <div id="comments_show">
-	                <CommentMgr:GetComments commentMgr="${commentMgr}" idObject="${idPhoto}" wrapClass="comments_show_internal" />
-	            </div>
-				<script type="text/javascript">
-                	$("#comments_create").hide();
-                	$("#comments_bar_link2").hide();
-                	$("#comments_bar_title2").hide();
-                	$("#comments_bar_link").click(function() {
-                    	$("#comments_create").show();
-                    	$("#comments_bar_link").hide();
-                    	$("#comments_bar_link2").show();
-                	});
-                	$("#comments_bar_link2").click(function() {
-                    	$("#comments_create").hide();
-                    	$("#comments_bar_link2").hide();
-                    	$("#comments_bar_link").show();
-                	});
-                	$("#comments_bar_title").click(function() {
-                    	$("#comments_bar_title").hide();
-                    	$("#comments_bar_title2").show();
-                    	$("#comments_show").hide();
-                	});
-                	$("#comments_bar_title2").click(function() {
-                    	$("#comments_bar_title2").hide();
-                    	$("#comments_bar_title").show();
-                    	$("#comments_show").show();
-                	});
-            	</script>
+                <div style="height: 10px; width: 100%; clear: both"></div>
+                <div id="comments_bar">
+                    <div id="comments_bar_left"></div>
+                    <div id="comments_bar_bg">
+                        <div id="comments_bar_title" class="big_white_title">Coment&aacute;rios</div>
+                        <div id="comments_bar_title2" class="big_white_title">Coment&aacute;rios</div>
+                        <div id="comments_bar_link" class="comments_link"><a class="white_link">adicionar coment&aacute;rio</a></div>
+                        <div id="comments_bar_link2" class="comments_link"><a class="white_link">adicionar coment&aacute;rio</a></div>
+                    </div>
+                    <div id="comments_bar_right"></div>
+                </div>
+                <div style="height: 10px; width: 100%; clear: both"></div>
+                <div id="comments_create" style="height: 130px;">
+                    <CommentMgr:AddComment commentMgr="${commentMgr}" idObject="${idPhoto}" user="${sessionScope.userLogin}" editorClass="editorClass" wrapClass="comments_create_internal"/>
+                    <input name="commentAdd" value="Adicionar" type="submit" />
+                </div>
+                <div id="comments_show">
+                    <CommentMgr:GetComments commentMgr="${commentMgr}" idObject="${idPhoto}" wrapClass="comments_show_internal" />
+                </div>
+                <script type="text/javascript">
+                    $("#comments_create").hide();
+                    $("#comments_bar_link2").hide();
+                    $("#comments_bar_title2").hide();
+                    $("#comments_bar_link").click(function() {
+                        $("#comments_create").show();
+                        $("#comments_bar_link").hide();
+                        $("#comments_bar_link2").show();
+                    });
+                    $("#comments_bar_link2").click(function() {
+                        $("#comments_create").hide();
+                        $("#comments_bar_link2").hide();
+                        $("#comments_bar_link").show();
+                    });
+                    $("#comments_bar_title").click(function() {
+                        $("#comments_bar_title").hide();
+                        $("#comments_bar_title2").show();
+                        $("#comments_show").hide();
+                    });
+                    $("#comments_bar_title2").click(function() {
+                        $("#comments_bar_title2").hide();
+                        $("#comments_bar_title").show();
+                        $("#comments_show").show();
+                    });
+                </script>
             </c:if>
             <div style="height: 30px; width: 100%"></div>
         </form>

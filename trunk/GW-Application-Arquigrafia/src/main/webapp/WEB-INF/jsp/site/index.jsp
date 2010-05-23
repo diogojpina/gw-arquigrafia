@@ -3,7 +3,7 @@
 <%@ taglib uri="http://www.groupwareworkbench.org.br/widgets/commons" prefix="Widgets" %>
 <%@ taglib uri="http://www.groupwareworkbench.org.br/widgets/photomanager" prefix="photo" %>
 <%@ taglib uri="http://www.groupwareworkbench.org.br/widgets/binomial" prefix="binomialMgr" %>
-<%@ taglib uri="http://www.groupwareworkbench.org.br/widgets/tag" prefix="TagMgr" %>	
+<%@ taglib uri="http://www.groupwareworkbench.org.br/widgets/tag" prefix="TagMgr" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -26,7 +26,12 @@
         <script type="text/javascript" src="${pageContext.request.contextPath}/plugins/sds/js/scroll.js"></script>
         <script type="text/javascript">
             $(function() {
-                $("div#makeMeScrollable").smoothDivScroll({scrollingSpeed: 12, mouseDownSpeedBooster: 3, visibleHotSpots: "always", startAtElementId: "startAtMe"});
+                $("div#makeMeScrollable").smoothDivScroll({
+                    scrollingSpeed: 12,
+                    mouseDownSpeedBooster: 3,
+                    visibleHotSpots: "always",
+                    startAtElementId: "startAtMe"
+                });
             });
         </script>
         <script src="${pageContext.request.contextPath}/scripts/chili-1.7.pack.js" type="text/javascript" ></script>
@@ -40,9 +45,9 @@
             <%@ include file="header2.jsp" %>
 
             <div id="main_section">
-                <div id="makeMeScrollable" style="border-style: solid; border-width: thin; border-color: #666;padding-left: 0px; height: 500px">
+                <div id="makeMeScrollable" style="border-style: solid; border-width: thin; border-color: #666; padding-left: 0px; height: 500px;">
                     <div class="scrollingHotSpotLeft" style=" height: 500px;"></div>
-                    <div class="scrollingHotSpotRight" style="height: 500px"></div>
+                    <div class="scrollingHotSpotRight" style="height: 500px;"></div>
                     <div class="scrollWrapper" id="images_scrollable">
                         <div class="scrollableArea">
                             <div class="image_line">
