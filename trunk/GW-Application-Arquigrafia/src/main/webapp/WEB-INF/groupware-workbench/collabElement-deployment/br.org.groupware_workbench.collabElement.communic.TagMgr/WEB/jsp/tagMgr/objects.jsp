@@ -4,6 +4,7 @@
 <%@ taglib uri="http://www.groupwareworkbench.org.br/widgets/commons" prefix="Widgets" %>
 <%@ taglib uri="http://www.groupwareworkbench.org.br/widgets/photomanager" prefix="photo" %>
 <%@ taglib uri="http://www.groupwareworkbench.org.br/widgets/tag" prefix="TagMgr" %>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="arq" %>
 
 <html>
     <head>
@@ -34,7 +35,7 @@
         <script src="${pageContext.request.contextPath}/scripts/bay.js" type="text/javascript"></script>
      </head>
      <body>
-         <%@ include file="../../../../../../jsp/site/header2.jsp" %>
+         <arq:header2 photoInstance="${sessionScope.environment_photo}" siteInstance="${sessionScope.siteInstance}" />
                  <div id="search_statistics">
              <span id="resultTerm">Voc&ecirc; buscou por objetos com a tag: <c:out value="${tagName}" /></span>
              <span id="resultCount"> (<c:out value="${tagAssignmentsNum}" /> resultados)</span>
@@ -54,6 +55,6 @@
             </c:if>
          </div>
          <div style="height: 30px; clear: both"></div>
-         <%@ include file="../../../../../../jsp/site/footer.jsp" %>
+         <arq:footer photoInstance="${sessionScope.environment_photo}" siteInstance="${sessionScope.siteInstance}" />
      </body>
 </html>

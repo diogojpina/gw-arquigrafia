@@ -4,7 +4,7 @@
 <%@ taglib uri="http://www.groupwareworkbench.org.br/widgets/commons" prefix="Widgets" %>
 <%@ taglib uri="http://www.groupwareworkbench.org.br/widgets/photomanager" prefix="photo" %>
 <%@ taglib uri="http://www.groupwareworkbench.org.br/widgets/tag" prefix="TagMgr" %>
-<%@ taglib tagdir="/WEB-INF/tags/" prefix="arq" %>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="arq" %>
 
 <html>
     <head>
