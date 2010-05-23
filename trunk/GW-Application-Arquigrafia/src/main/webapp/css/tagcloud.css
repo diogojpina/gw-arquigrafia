@@ -4,12 +4,12 @@
     text-decoration: none;
 }
 
-.cloud0 .cloud1, .cloud2, .cloud3, .cloud4, .cloud5, .cloud6, .cloud7, .cloud8, .cloud9 {
+.cloud0, .cloud1, .cloud2, .cloud3, .cloud4, .cloud5, .cloud6, .cloud7, .cloud8, .cloud9 {
     font-family: Arial, Helvetica, sans-serif;
     color: white;
 }
 
-.cloud0 { font-size: 0.40em; }
+.cloud0 { font-size: 0.35em; }
 .cloud1 { font-size: 0.50em; }
 .cloud2 { font-size: 0.65em; }
 .cloud3 { font-size: 0.80em; }
