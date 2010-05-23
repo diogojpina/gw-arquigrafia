@@ -4,6 +4,7 @@
 <%@ taglib uri="http://www.groupwareworkbench.org.br/widgets/commons" prefix="Widgets" %>
 <%@ taglib uri="http://www.groupwareworkbench.org.br/widgets/photomanager" prefix="photo" %>
 <%@ taglib uri="http://www.groupwareworkbench.org.br/widgets/tag" prefix="TagMgr" %>
+<%@ taglib tagdir="/WEB-INF/tags/" prefix="arq" %>
 
 <html>
     <head>
@@ -34,7 +35,7 @@
         <script src="${pageContext.request.contextPath}/scripts/bay.js" type="text/javascript"></script>
      </head>
      <body>
-         <%@ include file="../site/header2.jsp" %>
+         <arq:header2 photoInstance="${photoInstance}" siteInstance="${siteInstance}" />
          <div id="search_statistics">
              <span id="resultTerm">Voc&ecirc; buscou: <c:out value="${searchTerm}" /></span>
              <span id="resultCount"> (<c:out value="${numResults}" /> resultados)</span>
@@ -52,6 +53,6 @@
              <photo:list photos="${fotos}" photoInstance="${photoInstance}" showName="true" showLocation="false" />
          </div>
          <div style="height: 30px; clear: both"></div>
-         <%@ include file="../site/footer.jsp" %>
+         <arq:footer photoInstance="${photoInstance}" siteInstance="${siteInstance}" />
      </body>
 </html>

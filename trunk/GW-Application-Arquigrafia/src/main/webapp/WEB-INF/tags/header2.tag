@@ -1,3 +1,12 @@
+<%@ tag body-content="empty" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.groupwareworkbench.org.br/widgets/tag" prefix="TagMgr" %>
+<%@ taglib uri="http://www.groupwareworkbench.org.br/widgets/commons" prefix="Widgets" %>
+<%@ taglib uri="http://www.groupwareworkbench.org.br/widgets/photomanager" prefix="photo" %>
+
+<%@ attribute name="photoInstance" required="true" rtexprvalue="true" type="br.org.groupware_workbench.photo.PhotoMgrInstance" %>
+<%@ attribute name="siteInstance" required="true" rtexprvalue="true" type="br.org.groupware_workbench.site.SiteInstance" %>
+
 <div id="bay"> 
     <div> 
         <div class="bay_title">Compartilhar | Coletar</div> 
@@ -8,7 +17,9 @@
 </div>
 <div id="header">
     <div id="title">
-        <a href="${pageContext.request.contextPath}/groupware-workbench/1/site"><img src="${pageContext.request.contextPath}/images/head1_left_top.png" width="350" height="100" alt="Arquigrafia Brasil" /></a>
+        <a href="${pageContext.request.contextPath}/groupware-workbench/${siteInstance.id}/site">
+            <img src="${pageContext.request.contextPath}/images/head1_left_top.png" width="350" height="100" alt="Arquigrafia Brasil" />
+        </a>
     </div>
     <div id="header_top_right">
         <div id="user_top_links">
@@ -27,7 +38,7 @@
         </div>
     </div>
     <div id="top_links" class="blue_link">
-        <a href="${pageContext.request.contextPath}/groupware-workbench/1/site">In&iacute;cio</a>
+        <a href="${pageContext.request.contextPath}/groupware-workbench/${siteInstance.id}/site">In&iacute;cio</a>
         &nbsp;|&nbsp;
         <a href="help.htm">Ajuda</a>
         &nbsp;|&nbsp;
@@ -35,8 +46,8 @@
         &nbsp;|&nbsp;
         <a href="legal.htm">Legal</a>
         &nbsp;|&nbsp;
-        <c:if test="${environment_photo != null}">
-            <a href="${pageContext.request.contextPath}/groupware-workbench/${environment_photo.id}/photo/registra">Upload de fotos</a>
+        <c:if test="${photoInstance != null}">
+            <a href="${pageContext.request.contextPath}/groupware-workbench/${photoInstance.id}/photo/registra">Upload de fotos</a>
         </c:if>
     </div>
     <div id="search_field">
@@ -44,8 +55,8 @@
         <div id="search_input">
             <ul style="list-style: none">
                 <li style="display: inline">
-                    <c:if test="${environment_photo != null}">
-                        <photo:simpleSearch photoInstance="${environment_photo}" />
+                    <c:if test="${photoInstance != null}">
+                        <photo:simpleSearch photoInstance="${photoInstance}" />
                     </c:if>
                 </li>
                 <li style="display: inline">
@@ -73,8 +84,8 @@
     </div>
     <div id="advancedSearchField" class="mid_blue_text">
         <div>
-            <c:if test="${environment_photo != null}">
-                <photo:advancedSearch photoInstance="${environment_photo}" formClass="form1" formLineClass="field_line_f1" formLabelClass="label_f1" formInputClass="input_f1"
+            <c:if test="${photoInstance != null}">
+                <photo:advancedSearch photoInstance="${photoInstance}" formClass="form1" formLineClass="field_line_f1" formLabelClass="label_f1" formInputClass="input_f1"
                     formLineBtClass="bt_line_f1" formSubmitBtClass="bt_cell_submit" />
             </c:if>
         </div>

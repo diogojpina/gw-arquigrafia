@@ -3,8 +3,9 @@
 <%@ taglib uri="http://www.groupwareworkbench.org.br/widgets/commons" prefix="Widgets" %>
 <%@ taglib uri="http://www.groupwareworkbench.org.br/widgets/photomanager" prefix="photo" %>
 <%@ taglib uri="http://www.groupwareworkbench.org.br/widgets/binomial" prefix="binomialMgr" %>
-<%@ taglib uri="http://www.groupwareworkbench.org.br/widgets/tag" prefix="TagMgr" %>	
+<%@ taglib uri="http://www.groupwareworkbench.org.br/widgets/tag" prefix="TagMgr" %>
 <%@ taglib uri="http://www.groupwareworkbench.org.br/widgets/comment" prefix="CommentMgr" %>
+<%@ taglib tagdir="/WEB-INF/tags/" prefix="arq" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -39,7 +40,7 @@
         <TagMgr:ScriptTags />
     </head>
     <body>
-        <%@ include file="../site/header2.jsp" %>
+        <arq:header2 photoInstance="${photoInstance}" siteInstance="${siteInstance}" />
         <form name="tags" method="post" enctype="multipart/form-data" action="<c:url value="/groupware-workbench/${photoInstance.id}/photo/show/${idPhoto}" />">
             <div id="photoTitle"><c:out value="${photoTitle}" /></div>
             <div id="photoAndBin">
@@ -172,6 +173,6 @@
             </c:if>
             <div style="height: 30px; width: 100%"></div>
         </form>
-        <%@ include file="../site/footer.jsp" %>
+        <arq:footer photoInstance="${photoInstance}" siteInstance="${siteInstance}" />
     </body>
 </html>

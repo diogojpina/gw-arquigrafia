@@ -1,6 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ tag body-content="empty" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.groupwareworkbench.org.br/widgets/tag" prefix="TagMgr" %>
+<%@ taglib uri="http://www.groupwareworkbench.org.br/widgets/commons" prefix="Widgets" %>
 <%@ taglib uri="http://www.groupwareworkbench.org.br/widgets/photomanager" prefix="photo" %>
+
+<%@ attribute name="photoInstance" required="true" rtexprvalue="true" type="br.org.groupware_workbench.photo.PhotoMgrInstance" %>
 
 <div class="backgrounded_bay" id="bay">
     <div>
@@ -32,4 +36,4 @@
         <a href="#know_more"><span>Registrar-se</span></a>
     </div>
 </div>
-<photo:simpleSearch photoInstance="${environment_photo}" />
+<photo:simpleSearch photoInstance="${photoInstance}" />

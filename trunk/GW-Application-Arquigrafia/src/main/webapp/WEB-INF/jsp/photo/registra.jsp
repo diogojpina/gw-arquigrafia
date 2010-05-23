@@ -4,6 +4,7 @@
 <%@ taglib uri="http://www.groupwareworkbench.org.br/widgets/photomanager" prefix="photo" %>
 <%@ taglib uri="http://www.groupwareworkbench.org.br/widgets/binomial" prefix="binomialMgr" %>
 <%@ taglib uri="http://www.groupwareworkbench.org.br/widgets/tag" prefix="TagMgr" %>
+<%@ taglib tagdir="/WEB-INF/tags/" prefix="arq" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -36,7 +37,7 @@
         <script src="${pageContext.request.contextPath}/scripts/bay.js" type="text/javascript"></script></head>
     </head>
     <body>
-        <%@ include file="../site/header2.jsp" %>
+        <arq:header2 photoInstance="${photoInstance}" siteInstance="${sessionScope.siteInstance}" />
         <div id="internal_wrap">
         <div class="big_black_title" id="register_title">
             Registrar Foto
@@ -61,6 +62,6 @@
             </div>
         </div>
         <div style="height: 30px; width: 100%"></div>
-        <%@ include file="../site/footer.jsp" %>
+        <arq:footer photoInstance="${photoInstance}" siteInstance="${sessionScope.siteInstance}" />
     </body>
 </html>

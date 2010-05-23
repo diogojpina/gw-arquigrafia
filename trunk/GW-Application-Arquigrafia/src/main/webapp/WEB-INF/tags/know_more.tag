@@ -1,3 +1,6 @@
+<%@ tag body-content="empty" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <div id="know_more">
     <div id="know_more_1">
         <img src="${pageContext.request.contextPath}/images/know_more_1.jpg" width="148" height="140" alt="compartilhe" />

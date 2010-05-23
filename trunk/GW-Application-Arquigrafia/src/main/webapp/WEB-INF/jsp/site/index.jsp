@@ -4,6 +4,7 @@
 <%@ taglib uri="http://www.groupwareworkbench.org.br/widgets/photomanager" prefix="photo" %>
 <%@ taglib uri="http://www.groupwareworkbench.org.br/widgets/binomial" prefix="binomialMgr" %>
 <%@ taglib uri="http://www.groupwareworkbench.org.br/widgets/tag" prefix="TagMgr" %>
+<%@ taglib tagdir="/WEB-INF/tags/" prefix="arq" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -42,7 +43,7 @@
     </head>
     <body>
         <div id="wrap">
-            <%@ include file="header2.jsp" %>
+            <arq:header2 photoInstance="${environment_photo}" siteInstance="${siteInstance}" />
 
             <div id="main_section">
                 <div id="makeMeScrollable" style="border-style: solid; border-width: thin; border-color: #666; padding-left: 0px; height: 500px;">
@@ -83,9 +84,9 @@
                     </div>
                 </div>
             </div>
-            <%@ include file="know_more.jsp" %>
+            <arq:know_more />
             <div style="height: 30px;"></div>
-            <%@ include file="footer.jsp" %>
+            <arq:footer photoInstance="${environment_photo}" siteInstance="${siteInstance}" />
         </div>
     </body>
 </html>

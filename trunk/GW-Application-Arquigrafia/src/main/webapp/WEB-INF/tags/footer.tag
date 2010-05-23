@@ -1,5 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ tag body-content="empty" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.groupwareworkbench.org.br/widgets/tag" prefix="TagMgr" %>
+<%@ taglib uri="http://www.groupwareworkbench.org.br/widgets/commons" prefix="Widgets" %>
+<%@ taglib uri="http://www.groupwareworkbench.org.br/widgets/photomanager" prefix="photo" %>
+
+<%@ attribute name="photoInstance" required="true" rtexprvalue="true" type="br.org.groupware_workbench.photo.PhotoMgrInstance" %>
+<%@ attribute name="siteInstance" required="true" rtexprvalue="true" type="br.org.groupware_workbench.site.SiteInstance" %>
 
 <div id="footer_wrap">
     <div style="float: left">
@@ -7,7 +13,7 @@
     </div>
 
     <c:if test="${tagMgr != null}">
-        <TagMgr:TagCloud tagMgr="${tagMgr}" collabletInstance="${sessionScope.siteInstance}"/>
+        <TagMgr:TagCloud tagMgr="${tagMgr}" collabletInstance="${siteInstance}"/>
     </c:if>
 
     <div id="footer_carrousel_wrap">
@@ -22,8 +28,8 @@
                 <div class="scrollWrapper">
                     <div id="footer_scroll_list" class="scrollableArea" >
                         <%-- Modelo para inserção de imagens aqui. --%>
-                        <c:if test="${environment_photo != null}">
-                            <photo:listFirstHundred linkClass="" photoInstance="${environment_photo}" keepRatio="true" />
+                        <c:if test="${photoInstance != null}">
+                            <photo:listFirstHundred linkClass="" photoInstance="${photoInstance}" keepRatio="true" />
                         </c:if>
                     </div>
                 </div>
