@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.1//EN" "http://java.sun.com/j2ee/dtds/web-jsptaglibrary_1_1.dtd">
+<taglib>
+	<!--
+            DEPRECIADO! Remover este arquivo em breve.
+            As taglibs deste arquivo não existem ainda, e mesmo se existissem seriam substitituídas por tag files.
+        -->
+	<tlibversion>1.0</tlibversion>
+	<jspversion>1.1</jspversion>
+	<shortname>TaskMgr</shortname>
+	<uri>br.org.groupware_workbench.collabElement.coord.taskMgr.widgets</uri>
+	<tag>
+		<name>SelectTaskByRole</name>
+		<tagclass>br.org.groupware_workbench.collabElement.coord.taskMgr.widget.WidgetSelectTaskByRole</tagclass>
+		<bodycontent>empty</bodycontent>
+		<info>
+		</info>
+		<!-- Optional attributes  -->
+		<!-- personalized name -->
+		<attribute>
+			<name>idRole</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>taskMgr</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	<tag>
+		<name>SelectRole</name>
+		<tagclass>br.org.groupware_workbench.collabElement.coord.taskMgr.widget.WidgetSelectRole</tagclass>
+		<bodycontent>empty</bodycontent>
+		<info>
+		</info>
+		<!-- Optional attributes  -->
+		<!-- personalized name -->
+		<attribute>
+			<name>taskMgr</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>idTask</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	<tag>
+		<name>SelectTaskByUser</name>
+		<tagclass>br.org.groupware_workbench.collabElement.coord.taskMgr.widget.WidgetSelectTaskByUser</tagclass>
+		<bodycontent>empty</bodycontent>
+		<info>
+		</info>
+		<!-- Optional attributes  -->
+		<!-- personalized name -->
+		<attribute>
+			<name>taskMgr</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>idUser</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	<tag>
+		<name>SelectFlow</name>
+		<tagclass>br.org.groupware_workbench.collabElement.coord.taskMgr.widget.WidgetSelectFlow</tagclass>
+		<bodycontent>empty</bodycontent>
+		<info>
+		</info>
+		<!-- Optional attributes  -->
+		<!-- personalized name -->
+		<attribute>
+			<name>taskMgr</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>idTask</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+</taglib>

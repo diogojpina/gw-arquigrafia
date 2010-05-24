@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<collabElement xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="ComponentDescriptor.xsd">
+
+	<ComponentClass>br.org.groupware_workbench.collabElement.coord.roleMgr.internal.RoleMgrComponent</ComponentClass>
+
+	<collabElement-description>
+		<collabElement-name>RoleMgr</collabElement-name>
+		<collabElement-description>Gerenciar papéis</collabElement-description>
+	</collabElement-description>
+
+	<!-- Specific configuration -->
+	<specific-configuration />
+</collabElement>

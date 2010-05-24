@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema id="collabElement" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="collabElement">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="ComponentClass" type="xs:string" />
+				<xs:element name="collabElement-description">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="collabElement-name" type="xs:string" />
+							<xs:element name="collabElement-description" type="xs:string" />							
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="specific-configuration " type="xs:string" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

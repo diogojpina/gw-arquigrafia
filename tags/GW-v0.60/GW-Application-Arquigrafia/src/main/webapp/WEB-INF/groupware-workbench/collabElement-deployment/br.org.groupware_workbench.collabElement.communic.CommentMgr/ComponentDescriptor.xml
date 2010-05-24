@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<collabElement xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="ComponentDescriptor.xsd">
+
+    <ComponentClass>br.org.groupware_workbench.collabElement.communic.commentMgr.internal.CommentMgrComponent</ComponentClass>
+
+    <collabElement-description>
+        <collabElement-name>CommentMgr</collabElement-name>
+        <collabElement-description>Gerenciar Comentários</collabElement-description>
+    </collabElement-description>
+
+    <specific-configuration />
+</collabElement>
