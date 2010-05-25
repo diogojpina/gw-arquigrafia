@@ -34,44 +34,55 @@ function Coluna(titulo, esquerda, comparador, icone) {
     };
 }
 
-function ColunaOpcoes(titulo, icone, msgDelete, targetDelete, srcImgEdit, srcImgDelete) {
-    this.titulo = titulo;
-    this.icone = icone;
-    this.srcImgEdit = srcImgEdit;
-    this.srcImgDelete = srcImgDelete;
-    this.msgDelete = msgDelete;
-    this.targetDelete = targetDelete;
-    this.comparador = null;
+function ColunaOpcoes(titulo, icone, msgDelete, targetDelete, srcImgEdit, srcImgDelete, textImgEdit, textImgDelete) {
+    // Importante, pois às vezes o "this" pode apontar para objetos inesperados (em especial com o jQuery).
+    var eu = this;
 
-    this.renderizar = function(elem, clickCallback) {
-        if (this.icone != null) {
+    eu.titulo = titulo;
+    eu.icone = icone;
+    eu.srcImgEdit = srcImgEdit;
+    eu.srcImgDelete = srcImgDelete;
+    eu.msgDelete = msgDelete;
+    eu.targetDelete = targetDelete;
+    eu.textImgEdit = textImgEdit;
+    eu.textImgDelete = textImgDelete;
+    eu.comparador = null;
+
+    eu.renderizar = function(elem, clickCallback) {
+        if (eu.icone != null) {
             var iconeImg = $("<img></img>");
             elem.append(iconeImg);
-            iconeImg.attr("src", this.icone);
-            iconeImg.attr("alt", this.titulo);
+            iconeImg.attr("src", eu.icone);
+            iconeImg.attr("alt", eu.titulo);
         }
 
         var inner = $("<span></span>");
         elem.append(inner);
-        inner.html(this.titulo);
+        inner.html(eu.titulo);
     };
 }
 
 function Celula(exibicao, valor) {
-    this.exibicao = exibicao;
-    this.valor = valor;
+    // Importante, pois às vezes o "this" pode apontar para objetos inesperados (em especial com o jQuery).
+    var eu = this;
 
-    this.renderizar = function(coluna, elem) {
+    eu.exibicao = exibicao;
+    eu.valor = valor;
+
+    eu.renderizar = function(coluna, elem) {
         elem.css({"text-align": coluna.esquerda ? "left" : "right"});
-        elem.html(this.exibicao);
+        elem.html(eu.exibicao);
     };
 }
 
 function CelulaCallback(callback) {
-    this.callback = callback;
+    // Importante, pois às vezes o "this" pode apontar para objetos inesperados (em especial com o jQuery).
+    var eu = this;
 
-    this.renderizar = function(coluna, elem) {
-        this.callback(this, coluna, elem);
+    eu.callback = callback;
+
+    eu.renderizar = function(coluna, elem) {
+        eu.callback(eu, coluna, elem);
     };
 }
 
@@ -98,6 +109,7 @@ function CelulaOpcoes(hrefEdit, hrefDelete) {
     eu.renderizar = function(coluna, elem) {
         var linkEdit = $("<a></a>");
         linkEdit.attr("href", eu.hrefEdit);
+        linkEdit.addClass("coluna-opcoes-icone-editar");
         elem.append(linkEdit);
         elem.append(" | ");
 
@@ -105,13 +117,14 @@ function CelulaOpcoes(hrefEdit, hrefDelete) {
             var iconeEdit = $("<img></img>");
             linkEdit.append(iconeEdit);
             iconeEdit.attr("src", coluna.srcImgEdit);
-            iconeEdit.attr("alt", "editar");
+            iconeEdit.attr("alt", coluna.textImgEdit);
         } else {
-            linkEdit.html("Editar");
+            linkEdit.html(coluna.textImgEdit);
         }
 
         var linkDelete = $("<a></a>");
         linkDelete.attr("href", "javascript:void(0); ");
+        linkDelete.addClass("coluna-opcoes-icone-eexcluir");
         linkDelete.click(function() { remover(coluna); });
         elem.append(linkDelete);
 
@@ -119,9 +132,9 @@ function CelulaOpcoes(hrefEdit, hrefDelete) {
             var iconeDelete = $("<img></img>");
             linkDelete.append(iconeDelete);
             iconeDelete.attr("src", coluna.srcImgDelete);
-            iconeDelete.attr("alt", "deletar");
+            iconeDelete.attr("alt", coluna.textImgDelete);
         } else {
-            linkDelete.html("Excluir");
+            linkDelete.html(coluna.textImgDelete);
         }
     };
 }
@@ -174,8 +187,8 @@ function Tabela(config) {
         }
     };
 
-    eu.addColunaOpcoes = function(titulo, icone, msgDelete, targetDelete, srcImgEdit, srcImgDelete) {
-        eu.colunas[eu.colunas.length] = new ColunaOpcoes(titulo, icone, msgDelete, targetDelete, srcImgEdit, srcImgDelete);
+    eu.addColunaOpcoes = function(titulo, icone, msgDelete, targetDelete, srcImgEdit, srcImgDelete, textImgEdit, textImgDelete) {
+        eu.colunas[eu.colunas.length] = new ColunaOpcoes(titulo, icone, msgDelete, targetDelete, srcImgEdit, srcImgDelete, textImgEdit, textImgDelete);
     };
 
     eu.addCelula = function(exibicao) {
