@@ -79,19 +79,7 @@ public class PhotoController {
             System.out.println("O componente " + collabComponentInstance.getComponent().getCod() + " foi adicionado na requisição com o nome " + nomeComponente);
         }
 
-        @SuppressWarnings("unchecked") // Cast desnecessário no Java EE 6. Necessário no Java EE 5.
-        Map<String, String[]> params = (Map<String, String[]>) request.getParameterMap();
-
-        for (CollabElementInstance instance : photoInstance.getCollabElementInstances()) {
-            String nome = instance.getName();
-            Map<String, String[]> collabParams = new HashMap<String, String[]>();
-            for (Map.Entry<String, String[]> param : params.entrySet()) {
-                String paramName = param.getKey();
-                if (!paramName.startsWith(nome + ".")) continue;
-                collabParams.put(paramName.substring(nome.length() + 1), param.getValue());
-            }
-            instance.saveWidgets(collabParams, idPhoto);
-        }
+        photoInstance.processWidgets(request, photo);
     }
 
     @Get
@@ -260,19 +248,7 @@ public class PhotoController {
             return;
         }
 
-        @SuppressWarnings("unchecked") // Cast desnecessário no Java EE 6. Necessário no Java EE 5.
-        Map<String, String[]> params = (Map<String, String[]>) request.getParameterMap();
-
-        for (CollabElementInstance instance : photoInstance.getCollabElementInstances()) {
-            String nome = instance.getName();
-            Map<String, String[]> collabParams = new HashMap<String, String[]>();
-            for (Map.Entry<String, String[]> param : params.entrySet()) {
-                String paramName = param.getKey();
-                if (!paramName.startsWith(nome + ".")) continue;
-                collabParams.put(paramName.substring(nome.length() + 1), param.getValue());
-            }
-            instance.saveWidgets(collabParams, photoRegister.getId());
-        }
+        photoInstance.processWidgets(request, photoRegister);
 
         result.use(Results.logic()).redirectTo(PhotoController.class).registra(photoInstance);
     }
