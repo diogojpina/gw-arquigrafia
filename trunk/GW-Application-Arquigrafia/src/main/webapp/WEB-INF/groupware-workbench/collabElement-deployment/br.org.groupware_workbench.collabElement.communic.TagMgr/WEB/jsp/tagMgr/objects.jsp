@@ -51,7 +51,7 @@
          </div>
          <div id="search_scroll">
            	<c:if test="${sessionScope.environment_photo != null}">
-                <photo:searchByTag photoInstance="${sessionScope.environment_photo}" idList="${geList}" showName="true" showLocation="false" />
+                <photo:searchByTag photoInstance="${sessionScope.environment_photo}" idList="${geList}" showName="true" showLocation="false" lineClass="search_line"/>
             </c:if>
          </div>
          <div style="height: 30px; clear: both"></div>

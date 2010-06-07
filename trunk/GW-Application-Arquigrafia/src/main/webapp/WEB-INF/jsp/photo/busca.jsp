@@ -50,7 +50,7 @@
              <img src="${pageContext.request.contextPath}/images/filtragem.png" alt="Filtragem" />
          </div>
          <div id="search_scroll">
-             <photo:list photos="${fotos}" photoInstance="${photoInstance}" showName="true" showLocation="false" />
+             <photo:list photos="${fotos}" photoInstance="${photoInstance}" showName="true" showLocation="false" lineClass="search_line"/>
          </div>
          <div style="height: 30px; clear: both"></div>
          <arq:footer photoInstance="${photoInstance}" siteInstance="${siteInstance}" />

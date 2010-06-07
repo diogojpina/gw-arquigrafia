@@ -26,6 +26,10 @@
 	border-width: thin;
 	border-color: #ccc;
 }
+.search_line {
+	height: 150px;
+	overflow: hidden;
+}
 
 #search_statistics {
 	margin-top: 10px;

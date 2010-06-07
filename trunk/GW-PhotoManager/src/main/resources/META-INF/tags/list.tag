@@ -11,18 +11,19 @@
 <%@ attribute name="showLocation" required="false" type="java.lang.Boolean" rtexprvalue="false" %>
 <%@ attribute name="nameClass" required="false" type="java.lang.String" %>
 <%@ attribute name="locationClass" required="false" type="java.lang.String" %>
+<%@ attribute name="lineClass" required="false" type="java.lang.String" %>
 
 <r:callMethod methodName="getDirImagesRelativo"	instance="${photoInstance}" var="dirImagem" />
 <r:callMethod methodName="getThumbPrefix" instance="${photoInstance}" var="thumbPrefix" />
 <r:callMethod methodName="getMostraPrefix" instance="${photoInstance}" var="showPrefix" />
 
 <%--
-    TODO: Evitar inserir <div> que não fecham de forma óbvia pois dependem de análise sensível ao contexto para
-    garantir que são bem formadas.
+    TODO: Evitar inserir <div> que nï¿½o fecham de forma ï¿½bvia pois dependem de anï¿½lise sensï¿½vel ao contexto para
+    garantir que sï¿½o bem formadas.
 --%>
 <c:forEach var="foto" items="${photos}">
+	<div class="${lineClass}" style="float: left">
     <c:if test="${showName || showLocation}">
-        <div style="float: left">
             <div>
     </c:if>
     <a class="${linkClass}" rel="linkimage" href="<c:url value="/groupware-workbench/${photoInstance.id}/photo/show/${foto.id}"/>">
@@ -41,7 +42,5 @@
             <c:out value="${foto.lugar}" />
         </div>
     </c:if>
-    <c:if test="${showName || showLocation}">
-        </div>
-    </c:if>
+    </div>
 </c:forEach>

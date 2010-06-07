@@ -11,6 +11,7 @@
 <%@ attribute name="nameClass" required="false" type="java.lang.String" %>
 <%@ attribute name="locationClass" required="false" type="java.lang.String" %>
 <%@ attribute name="idList" required="true" type="java.util.Collection" %>
+<%@ attribute name="lineClass" required="false" type="java.lang.String" %>
 
 <r:callMethod methodName="getDirImagesRelativo"	instance="${photoInstance}" var="dirImagem" />
 <r:callMethod methodName="getThumbPrefix" instance="${photoInstance}" var="thumbPrefix" />
@@ -24,8 +25,8 @@
     garantir que s�o bem formadas.
 --%>
 <c:forEach var="foto" items="${photos}">
+    <div class="${lineClass}" style="float: left">
     <c:if test="${showName || showLocation}">
-        <div style="float: left">
             <div>
     </c:if>
     <a class="${linkClass}" rel="linkimage" href="<c:url value="/groupware-workbench/${photoInstance.id}/photo/show/${foto.id}"/>">
@@ -44,8 +45,6 @@
             <c:out value="${foto.lugar}" />
         </div>
     </c:if>
-    <c:if test="${showName || showLocation}">
-        </div>
-    </c:if>
+   </div>
 </c:forEach>
 

@@ -212,6 +212,7 @@ public class PhotoController {
         byte[] rawphoto = null;
         InputStream imagemOriginal = null;
         InputStream imagemThumb = null;
+        InputStream imagemThumb2 = null;
         InputStream imagemCropped = null;
         InputStream imagemMostra = null;
 
@@ -219,14 +220,15 @@ public class PhotoController {
             rawphoto = new byte[foto.getFile().available()];
             foto.getFile().read(rawphoto); 
             imagemOriginal = new ByteArrayInputStream(rawphoto);
-            imagemMostra = ImageUtils.createThumbnail(600, imagemOriginal);
+            imagemMostra = ImageUtils.createThumbnailIfNecessary(800, imagemOriginal, true);
             imagemOriginal.reset();
-            imagemThumb = ImageUtils.createThumbnail(100, imagemOriginal);
-            imagemThumb.reset();
-            Point cropPoint = ImageUtils.calcSqrThumbCropPoint(imagemThumb);
-            imagemThumb.reset();
-            imagemCropped = ImageUtils.cropImage(cropPoint, new Dimension(100, 100), imagemThumb);
-            imagemThumb.reset();
+            imagemThumb = ImageUtils.createThumbnailIfNecessary(100, imagemOriginal, true);
+            imagemOriginal.reset();
+            imagemThumb2 = ImageUtils.createThumbnailIfNecessary(100, imagemOriginal, false);
+            imagemThumb2.reset();
+            Point cropPoint = ImageUtils.calcSqrThumbCropPoint(imagemThumb2);
+            imagemThumb2.reset();
+            imagemCropped = ImageUtils.cropImage(cropPoint, new Dimension(100, 100), imagemThumb2);
         } catch (IOException e) {
             validator.add(new ValidationMessage(MSG_NAO_FOI_POSSIVEL_REDIMENSIONAR, "Erro"));
             validator.onErrorUse(Results.logic()).redirectTo(PhotoController.class).registra(photoInstance);
