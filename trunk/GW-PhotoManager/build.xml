@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project basedir="." default="build-project" name="GW-Application-Arquigrafia">
-	<echo message="=====  GW-Application-Arquigrafia  ======"/>
+<project basedir="." default="build-project" name="GW-PhotoManager">
+	<echo message="=====  GW-PhotoManager  ======"/>
 	<property environment="env" />
 	<!--  Location of referenced projects  -->
 	<property name="GW-Libs.location" value="../GW-Libs" />
-	<property name="GW-collabElement.location" value="../GW-collabElement" />
-	<property name="GW-commons-widgets..location" value="../GW-commons-widgets" />
-    <property name="GW-collablet.location" value="../GW-collablet"/>
-	<property name="GW-PhotoManager.location" value="../GW-PhotoManager"/>
+	<property name="GW-Application-Arquigrafia.location" value="../GW-Application-Arquigrafia" />
 	<property name="GW-ExternalSiteManager.location" value="../GW-ExternalSiteManager"/>
+	<property name="GW-commons-widgets.location" value="../GW-commons-widgets" />
+    <property name="GW-collablet.location" value="../GW-collablet"/>
+	<property name="GW-collablElement.location" value="../GW-collabElement"/>
 	<property name="GW-core.location" value="../GW-core" />
     	
 	<!--  Build Properties  -->
@@ -22,8 +22,8 @@
 	<property name="dist.dir"  location="dist" />
 	<property name="javadoc.dir" value="${target.dir}/javadoc" />
 	<property name="src.dir" value="src" />
-	<property name="build.dir" value="build" />
-	<property name="build.dest.dir" value="${build.dir}/classes" />
+	<property name="build.dir" value="bin" />
+	<property name="build.dest.dir" value="${build.dir}" />
 	<!--<property name="build.dest.dir" value="${build.dir}/classes" /> -->
 		
 	   
@@ -37,7 +37,7 @@
         <include name="**/*.jar"/>
 	    <exclude name="junit*.jar"/>
 		<exclude name="mockito*.jar"/>
-	    <exclude name="org.hamcrest.core*.jar"/>
+	    <!--<exclude name="org.hamcrest.core*.jar"/> -->
 	</fileset>
 	
 	<!-- libraries for testing compile -->
@@ -47,17 +47,10 @@
 		<include name="org.hamcrest.core*.jar"/>
 	</fileset>
 	
-	<!-- classpath Application-Arquigrafia -->
-	<path id="GW-Application-Arquigrafia.classpath" >
+	<!-- classpath GW-collabElement -->
+	<path id="GW-PhotoManager.classpath" >
 		<pathelement location="${build.dest.dir}" />
 		<pathelement location="${GW-core.location}/bin"/>
-		<pathelement location="${GW-collabElement.location}/bin"/>
-		<pathelement location="${GW-collablet.location}/bin"/>
-		<pathelement location="${GW-commons-widgets.location}/bin"/>
-		<pathelement location="${GW-PhotoManager.location}/bin"/>
-		<pathelement location="${GW-ExternalSiteManager.location}/bin"/>
-		
-		
 		<pathelement location="${src.dir}" />
 		<fileset refid="fileset.lib.compile"/>
 		<pathelement location="${src.dir}/main/resources" />
@@ -69,7 +62,7 @@
 		<fileset refid="fileset.lib.compile.test"/>
 		<pathelement location="${test.build.dir}" />
 		<pathelement location="${build.dest.dir}" />
-		<path refid="GW-Application-Arquigrafia.classpath" />
+		<path refid="GW-PhotoManager.classpath" />
 		<pathelement location="${src.dir}/test/resources" />
 	</path>
 	
@@ -90,7 +83,7 @@
 		<mkdir dir="${test.build.dir}" />
 		<mkdir dir="${test.reports.dir}" />
 
-		<copy includeemptydirs="false" todir="${build.dest.dir}">
+		<copy includeemptydirs="false" todir="${build.dir}">
             <fileset dir="${src.dir}/main/java">
                 <exclude name="**/*.launch"/>
                 <exclude name="**/*.java"/>
@@ -109,10 +102,6 @@
                 <exclude name="**/*.launch"/>
                 <exclude name="**/*.java"/>
             </fileset>
-        	<fileset dir="${src.dir}/test/integration">
-                <exclude name="**/*.launch"/>
-                <exclude name="**/*.java"/>
-            </fileset>
         </copy>
     </target>
 	
@@ -124,22 +113,12 @@
 
     <target depends="clean" name="cleanall">
         <ant antfile="${GW-core.location}/build.xml" dir="${GW-core.location}" inheritAll="false" target="clean"/>
-        <ant antfile="${GW-commons-widgets.location}/build.xml" dir="${GW-commons-widgets.location}" inheritAll="false" target="clean"/>
-        <ant antfile="${GW-collabElement.location}/build.xml" dir="${GW-collabElement.location}" inheritAll="false" target="clean"/>
-        <ant antfile="${GW-collablet.location}/build.xml" dir="${GW-collablet.location}" inheritAll="false" target="clean"/>
-    	<ant antfile="${GW-PhotoManager.location}/build.xml" dir="${GW-PhotoManager.location}" inheritAll="false" target="clean"/>
-        <ant antfile="${GW-GW-ExternalSiteManager.location}/build.xml" dir="${GW-ExternalSiteManager.location}" inheritAll="false" target="clean"/>
     </target>
 	
     <target depends="build-subprojects,build-project" name="build"/>
     
 	<target name="build-subprojects">
         <ant antfile="${GW-core.location}/build.xml" dir="${GW-core.location}" inheritAll="false" target="build-project" />
-        <ant antfile="${GW-commons-widgets.location}/build.xml" dir="${GW-commons-widgets.location}" inheritAll="false" target="build-project"/>
-        <ant antfile="${GW-collabElement.location}/build.xml" dir="${GW-collabElement.location}" inheritAll="false" target="build-project"/>
-        <ant antfile="${GW-collablet.location}/build.xml" dir="${GW-collablet.location}" inheritAll="false" target="build-project"/>
-		<ant antfile="${GW-PhotoManager.location}/build.xml" dir="${GW-PhotoManager.location}" inheritAll="false" target="clean"/>
-        <ant antfile="${GW-collablet.location}/build.xml" dir="${GW-collablet.location}" inheritAll="false" target="clean"/>
     </target>
 		
     <target depends="init" name="build-project">
@@ -152,7 +131,7 @@
 		</javac>-->
 		<javac debug="true" debuglevel="${debuglevel}" encoding="${build.encoding}" destdir="${build.dest.dir}" source="${source}" target="${target}" nowarn="true">
 			<src refid="src.compile"/>
-			<classpath refid="GW-Application-Arquigrafia.classpath" />
+			<classpath refid="GW-PhotoManager.classpath" />
 		</javac>	
     	
 		<!--  test compiling -->
@@ -162,7 +141,10 @@
 		</javac>
     </target>
 		
-    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects" />
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects">
+        <ant antfile="${GW-Application-Arquigrafia.location}/build.xml" dir="${GW-Application-Arquigrafia.location}" inheritAll="false" target="clean"/>
+        <ant antfile="${GW-Application-Arquigrafia.location}/build.xml" dir="${GW-Application-Arquigrafia.location}" inheritAll="false" target="build"/>
+    </target>
         	
     <!--<target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
         <copy todir="${ant.library.dir}">
