@@ -73,8 +73,8 @@ public class PhotoMgrInstance extends CollabletInstance {
 		return dao.listAll();
 	}
 	
-	public List<Photo> listaPrimeirasCem() {
-        return dao.listPhotoByPageAndOrder(100,0);
+	public List<Photo> listaPhotoPorPaginaEOrdem(int tamanho, int pagina) {
+        return dao.listPhotoByPageAndOrder(tamanho,pagina);
     }
 
 	public String getDirImagesRelativo() {

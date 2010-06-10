@@ -7,11 +7,18 @@
 <%@ attribute name="keepRatio" required="true" rtexprvalue="true" type="java.lang.Boolean" %>
 <%@ attribute name="showInDiv" required="false" rtexprvalue="true" type="java.lang.Boolean" %>
 <%@ attribute name="divClass" required="false" rtexprvalue="true" type="java.lang.String" %>
+<%@ attribute name="pageSize" required="true" rtexprvalue="true" type="java.lang.Integer" %>
+<%@ attribute name="pageNumber" required="true" rtexprvalue="true" type="java.lang.Integer" %>
+<%@ attribute name="wrapClass" required="false" rtexprvalue="true" type="java.lang.String" %>
 
-<r:callMethod methodName="listaPrimeirasCem" instance="${photoInstance}" var="fotosA" />
+<r:callMethod methodName="listaPhotoPorPaginaEOrdem" instance="${photoInstance}" var="fotosA">
+	<r:param type="int" value="${pageSize}" />
+    <r:param type="int" value="${pageNumber}" />
+</r:callMethod>
 <c:set var="dirImagemA" value="${photoInstance.dirImagesRelativo}" />
 <c:set var="showPrefixA" value="${photoInstance.mostraPrefix}" />
 
+<div class="${wrapClass}">
 <c:choose>
     <c:when test="${keepRatio}">
         <c:set var="thumbPrefix" value="${photoInstance.thumbPrefix}" />
@@ -31,3 +38,4 @@
         </div>
     </c:if>
 </c:forEach>
+</div>

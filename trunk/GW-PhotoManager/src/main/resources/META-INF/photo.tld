@@ -39,7 +39,7 @@
     	<path>/META-INF/tags/searchByTag.tag</path>
     </tag-file>
     <tag-file>
-        <name>listFirstHundred</name>
-        <path>/META-INF/tags/listFirstHundred.tag</path>
+        <name>listPage</name>
+        <path>/META-INF/tags/listPage.tag</path>
     </tag-file>
 </taglib>

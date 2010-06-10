@@ -7,11 +7,13 @@
 <%@ attribute name="keepRatio" required="true" rtexprvalue="true" type="java.lang.Boolean" %>
 <%@ attribute name="showInDiv" required="false" rtexprvalue="true" type="java.lang.Boolean" %>
 <%@ attribute name="divClass" required="false" rtexprvalue="true" type="java.lang.String" %>
+<%@ attribute name="wrapClass" required="false" rtexprvalue="true" type="java.lang.String" %>
 
 <r:callMethod methodName="listaTodaPhoto" instance="${photoInstance}" var="fotosA" />
 <c:set var="dirImagemA" value="${photoInstance.dirImagesRelativo}" />
 <c:set var="showPrefixA" value="${photoInstance.mostraPrefix}" />
 
+<div class="wrapClass">
 <c:choose>
     <c:when test="${keepRatio}">
         <c:set var="thumbPrefix" value="${photoInstance.thumbPrefix}" />
@@ -31,3 +33,4 @@
         </div>
     </c:if>
 </c:forEach>
+</div>

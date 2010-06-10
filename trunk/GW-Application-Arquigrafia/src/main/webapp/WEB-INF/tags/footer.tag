@@ -29,7 +29,7 @@
                     <div id="footer_scroll_list" class="scrollableArea" >
                         <%-- Modelo para inserção de imagens aqui. --%>
                         <c:if test="${photoInstance != null}">
-                            <photo:listFirstHundred linkClass="" photoInstance="${photoInstance}" keepRatio="true" />
+                            <photo:listPage linkClass="" photoInstance="${photoInstance}" keepRatio="true" pageSize="100" pageNumber="0"/>
                         </c:if>
                     </div>
                 </div>
