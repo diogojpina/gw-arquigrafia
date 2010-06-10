@@ -29,7 +29,7 @@
 	   
 	<!--  Testing properties  -->
 	<!-- <property name="test.build.dir" value="${build.dir}/test" /> -->
-	<property name="test.build.dir" value="${build.dir}" />
+	<property name="test.build.dir" value="${build.dir}/test" />
 	<property name="test.reports.dir" value="${build.dir}/reports/junit" />
 
 	<!-- libraries for compile -->	
