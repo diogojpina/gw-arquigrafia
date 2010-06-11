@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project basedir="." default="build" name="GW">
+<property environment="env"/>
+
+    <property name="GW-Application-Arquigrafia.location" value="GW-Application-Arquigrafia"/>
+    <property name="GW.location" value="../../GroupwareWorkbench"/>
+
+
+    <property name="GW-Libs.location" value="${GW.location}/GW-Libs"/>
+    <property name="GW-core.location" value="${GW.location}/GW-core"/>
+    <property name="GW-collabElement.location" value="${GW.location}/GW-collabElement"/>
+    <property name="GW-collablet.location" value="${GW.location}/GW-collablet"/>
+    <property name="GW-commons-widgets.location" value="${GW.location}/GW-commons-widgets"/>
+
+    <property name="GW-PhotoManager.location" value="GW-PhotoManager"/>
+    <property name="GW-ExternalSiteManager.location" value="GW-ExternalSiteManager"/>
+
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.6"/>
+    <property name="source" value="1.6"/>
+	
+	<target description="Build all projects . Useful to propagate changes." name="build" >
+		<!--<property name="build.compiler" value="false"/> -->
+		<property name="build.sysclasspath" value="ignore"/>
+		<ant antfile="${GW-core.location}/build.xml" inheritAll="true" target="clean"/>
+		<ant antfile="${GW-core.location}/build.xml"  inheritAll="true" target="build-project"/>
+		<ant antfile="${GW-collabElement.location}/build.xml"  inheritAll="true" target="clean"/>
+		<ant antfile="${GW-collabElement.location}/build.xml"  inheritAll="true" target="build-project"/>
+		<ant antfile="${GW-collablet.location}/build.xml"  inheritAll="true" target="clean"/>
+		<ant antfile="${GW-collablet.location}/build.xml"  inheritAll="true" target="build-project"/>
+		<ant antfile="${GW-commons-widgets.location}/build.xml"  inheritAll="true" target="clean"/>
+		<ant antfile="${GW-commons-widgets.location}/build.xml"  inheritAll="true" target="build-project"/>
+		
+		<ant antfile="${GW-PhotoManager.location}/build.xml"  inheritAll="true" target="clean"/>
+		<ant antfile="${GW-PhotoManager.location}/build.xml"  inheritAll="true" target="build-project" />
+		<ant antfile="${GW-ExternalSiteManager.location}/build.xml"  inheritAll="true" target="clean"/>
+		<ant antfile="${GW-ExternalSiteManager.location}/build.xml"  inheritAll="true" target="build-project" />
+		<ant antfile="${GW-Application-Arquigrafia.location}/build.xml"  inheritAll="true" target="clean"/>
+		<ant antfile="${GW-Application-Arquigrafia.location}/build.xml"  inheritAll="true" target="build-project" />
+
+
+	</target>
+</project>
