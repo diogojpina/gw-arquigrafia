@@ -8,7 +8,14 @@
             <collablet-group>communication-collablets</collablet-group>
         </subordinate-collablets-->
     </collablet-description>
-    <specific-configuration />
+    
+    <specific-configuration>
+    	<image-directory value="photos"/>
+    	<show-prefix value="mostra_"/>
+    	<crop-prefix value="crop_"/>
+    	<thumbnail-prefix value="thumb_"/>
+    </specific-configuration>
+    
     <collabElements>
         <collabElement id="br.org.groupware_workbench.collabElement.coord.UserMgr" receiveFromParent="false">
             <user>
