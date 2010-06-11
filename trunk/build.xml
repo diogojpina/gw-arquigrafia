@@ -4,13 +4,14 @@
 
     <property name="GW-Application-Arquigrafia.location" value="GW-Application-Arquigrafia"/>
     <property name="GW.location" value="../../../GroupwareWorkbench/workspace"/>
+    <property name="GW.this.location" value="../../GroupwareWorkbench/workspace"/>
 
 
-    <property name="GW-Libs.location" value="${GW.location}/GW-Libs"/>
-    <property name="GW-core.location" value="${GW.location}/GW-core"/>
-    <property name="GW-collabElement.location" value="${GW.location}/GW-collabElement"/>
-    <property name="GW-collablet.location" value="${GW.location}/GW-collablet"/>
-    <property name="GW-commons-widgets.location" value="${GW.location}/GW-commons-widgets"/>
+    <property name="GW-Libs.location" value="${GW.this.location}/GW-Libs"/>
+    <property name="GW-core.location" value="${GW.this.location}/GW-core"/>
+    <property name="GW-collabElement.location" value="${GW.this.location}/GW-collabElement"/>
+    <property name="GW-collablet.location" value="${GW.this.location}/GW-collablet"/>
+    <property name="GW-commons-widgets.location" value="${GW.this.location}/GW-commons-widgets"/>
 
     <property name="GW-PhotoManager.location" value="GW-PhotoManager"/>
     <property name="GW-ExternalSiteManager.location" value="GW-ExternalSiteManager"/>
