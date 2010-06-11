@@ -3,6 +3,7 @@
 	<echo message="=====  GW-ExternalSiteManager  ======"/>
 	<property environment="env" />
     <property name="GW.location" value=".."/>
+	<property name="GW-ExternalSiteManager.location" value="."/>
 	<!--  Location of referenced projects  -->
 	<property name="GW-Libs.location" value="${GW.location}/GW-Libs" />
 	<property name="GW-Application-Arquigrafia.location" value="../GW-Application-Arquigrafia" />
@@ -21,9 +22,9 @@
 	 <!-- <property name="src.classes.dir" value="${target.dir}/classes" />
 	 <property name="test.classes.dir" value="${target.dir}/test-classes" /> -->
 	<property name="dist.dir"  location="dist" />
-	<property name="javadoc.dir" value="${target.dir}/javadoc" />
-	<property name="src.dir" value="src" />
-	<property name="build.dir" value="bin" />
+	<!-- <property name="javadoc.dir" value="${target.dir}/javadoc" /> -->
+	<property name="src.dir" value="${GW-ExternalSiteManager.location}/src" />
+	<property name="build.dir" value="${GW-ExternalSiteManager.location}/bin" />
 	<property name="build.dest.dir" value="${build.dir}" />
 	<!--<property name="build.dest.dir" value="${build.dir}/classes" /> -->
 		

@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <project basedir="." default="build-project" name="GW-PhotoManager">
-	<echo message="=====  GW-PhotoManager  ======"/>
+	<echo message="=====  GW-PhotoManager  ====== "/>
 	<property environment="env" />
 	<property name="GW.location" value=".."/>
+	<property name="GW-PhotoManager.location" value="."/>
+	
+	<echo message="GW.location: ${GW.location}"/>
+	<echo message="GW-PhotoManager.location : ${GW-PhotoManager.location}"/>
 	<!--  Location of referenced projects  -->
 	<property name="GW-Libs.location" value="${GW.location}/GW-Libs" />
 	<property name="GW-Application-Arquigrafia.location" value="../GW-Application-Arquigrafia" />
@@ -22,8 +26,8 @@
 	 <property name="test.classes.dir" value="${target.dir}/test-classes" /> -->
 	<property name="dist.dir"  location="dist" />
 	<property name="javadoc.dir" value="${target.dir}/javadoc" />
-	<property name="src.dir" value="src" />
-	<property name="build.dir" value="bin" />
+	<property name="src.dir" value="${GW-PhotoManager.location}/src" />
+	<property name="build.dir" value="${GW-PhotoManager.location}/bin" />
 	<property name="build.dest.dir" value="${build.dir}" />
 	<!--<property name="build.dest.dir" value="${build.dir}/classes" /> -->
 		

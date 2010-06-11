@@ -3,6 +3,8 @@
 	<echo message="=====  GW-Application-Arquigrafia  ======"/>
 	<property environment="env" />
 	<property name="GW.location" value=".."/>
+    <property name="GW-Application-Arquigrafia.location" value="."/>
+	<echo message="GW.location: ${GW.location}" />
 	<!--  Location of referenced projects  -->
 	<property name="GW-Libs.location" value="${GW.location}/GW-Libs" />
 	<property name="GW-collabElement.location" value="${GW.location}/GW-collabElement" />
@@ -21,9 +23,9 @@
 	 <!-- <property name="src.classes.dir" value="${target.dir}/classes" />
 	 <property name="test.classes.dir" value="${target.dir}/test-classes" /> -->
 	<property name="dist.dir"  location="dist" />
-	<property name="javadoc.dir" value="${target.dir}/javadoc" />
-	<property name="src.dir" value="src" />
-	<property name="build.dir" value="build" />
+	<!-- <property name="javadoc.dir" value="${target.dir}/javadoc" /> -->
+	<property name="src.dir" value="${GW-Application-Arquigrafia.location}/src" />
+	<property name="build.dir" value="${GW-Application-Arquigrafia.location}/build" />
 	<property name="build.dest.dir" value="${build.dir}/classes" />
 	<!--<property name="build.dest.dir" value="${build.dir}/classes" /> -->
 		
