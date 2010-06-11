@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project basedir="." default="build-project" name="GW-PhotoManager">
+	<echo message="=====  GW-PhotoManager  ======"/>
+	<property environment="env" />
+	<property name="GW.location" value=".."/>
+	<!--  Location of referenced projects  -->
+	<property name="GW-Libs.location" value="${GW.location}/GW-Libs" />
+	<property name="GW-Application-Arquigrafia.location" value="../GW-Application-Arquigrafia" />
+	<property name="GW-ExternalSiteManager.location" value="../GW-ExternalSiteManager"/>
+	<property name="GW-commons-widgets.location" value="${GW.location}/GW-commons-widgets" />
+    <property name="GW-collablet.location" value="${GW.location}/GW-collablet"/>
+	<property name="GW-collablElement.location" value="${GW.location}/GW-collabElement"/>
+	<property name="GW-core.location" value="${GW.location}/GW-core" />
+    	
+	<!--  Build Properties  -->
+	<property name="ECLIPSE_HOME" value="/opt/eclipse" />
+	<property name="debuglevel" value="source,lines,vars" />
+	<property name="target" value="1.6" />
+	<property name="source" value="1.6" />
+	<property name="build.encoding" value="UTF-8" />
+	 <!-- <property name="src.classes.dir" value="${target.dir}/classes" />
+	 <property name="test.classes.dir" value="${target.dir}/test-classes" /> -->
+	<property name="dist.dir"  location="dist" />
+	<property name="javadoc.dir" value="${target.dir}/javadoc" />
+	<property name="src.dir" value="src" />
+	<property name="build.dir" value="bin" />
+	<property name="build.dest.dir" value="${build.dir}" />
+	<!--<property name="build.dest.dir" value="${build.dir}/classes" /> -->
+		
+	   
+	<!--  Testing properties  -->
+	<!-- <property name="test.build.dir" value="${build.dir}/test" /> -->
+	<property name="test.build.dir" value="${build.dir}" />
+	<property name="test.reports.dir" value="${build.dir}/reports/junit" />
+
+	<!-- libraries for compile -->	
+	<fileset id="fileset.lib.compile" dir="${GW-Libs.location}/lib" >
+        <include name="**/*.jar"/>
+	    <exclude name="junit*.jar"/>
+		<exclude name="mockito*.jar"/>
+	    <!--<exclude name="org.hamcrest.core*.jar"/> -->
+	</fileset>
+	
+	<!-- libraries for testing compile -->
+	<fileset id="fileset.lib.compile.test" dir="${GW-Libs.location}/lib">
+		<include name="junit*.jar"/>
+		<include name="mockito*.jar"/>
+		<include name="org.hamcrest.core*.jar"/>
+	</fileset>
+	
+	<!-- classpath GW-collabElement -->
+	<path id="GW-PhotoManager.classpath" >
+		<pathelement location="${build.dest.dir}" />
+		<pathelement location="${GW-core.location}/bin"/>
+		<pathelement location="${src.dir}" />
+		<fileset refid="fileset.lib.compile"/>
+		<pathelement location="${src.dir}/main/resources" />
+		<!-- <pathelement location="/antlr-2.7.6.jar" /> -->
+	</path>
+
+	<!-- test classpath -->
+	<path id="test.classpath">
+		<fileset refid="fileset.lib.compile.test"/>
+		<pathelement location="${test.build.dir}" />
+		<pathelement location="${build.dest.dir}" />
+		<path refid="GW-PhotoManager.classpath" />
+		<pathelement location="${src.dir}/test/resources" />
+	</path>
+	
+	<!-- source directories -->
+	<path id="src.compile">
+		<pathelement location="${src.dir}/main/java"/>
+	</path>
+	
+	<!-- testing source directories -->
+	<path id="test.src.compile">
+		<pathelement location="${src.dir}/test/java"/>
+	</path>
+
+	
+	<target name="init">
+		<mkdir dir="${build.dir}"/>
+		<mkdir dir="${build.dest.dir}" />
+		<mkdir dir="${test.build.dir}" />
+		<mkdir dir="${test.reports.dir}" />
+
+		<copy includeemptydirs="false" todir="${build.dir}">
+            <fileset dir="${src.dir}/main/java">
+                <exclude name="**/*.launch"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+			<fileset dir="${src.dir}/main/resources">
+			    <exclude name="**/*.launch"/>
+				<exclude name="**/*.java"/>
+			</fileset>
+        </copy>
+        <copy includeemptydirs="false" todir="${test.build.dir}">
+            <fileset dir="${src.dir}/test/java">
+                <exclude name="**/*.launch"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+        	<fileset dir="${src.dir}/test/resources">
+                <exclude name="**/*.launch"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+	
+	<target name="clean">
+		<delete dir="${build.dest.dir}" />
+		<delete dir="${test.build.dir}" />
+		<delete dir="${test.reports.dir}" />
+	</target>
+
+    <target depends="clean" name="cleanall">
+        <ant antfile="${GW-core.location}/build.xml" dir="${GW-core.location}" inheritAll="false" target="clean"/>
+    </target>
+	
+    <target depends="build-subprojects,build-project" name="build"/>
+    
+	<target name="build-subprojects">
+        <ant antfile="${GW-core.location}/build.xml" dir="${GW-core.location}" inheritAll="false" target="build-project" />
+    </target>
+		
+    <target depends="init" name="build-project">
+		<echo message="Compiling..." />
+        <echo message="${ant.project.name}: ${ant.file}"/>
+    	<property name="build.sysclasspath" value="ignore"/>
+    	<!-- <javac debug="true" debuglevel="${debuglevel}" encoding="${build.encoding}" destdir="${build.dest.dir}" source="${source}" target="${target}" nowarn="true">
+			<src path="${src.dir}" />
+			<classpath refid="GW-collablet.classpath" />
+		</javac>-->
+		<javac debug="true" debuglevel="${debuglevel}" encoding="${build.encoding}" destdir="${build.dest.dir}" source="${source}" target="${target}" nowarn="true">
+			<src refid="src.compile"/>
+			<classpath refid="GW-PhotoManager.classpath" />
+		</javac>	
+    	
+		<!--  test compiling -->
+		<javac debug="true" debuglevel="${debuglevel}" encoding="${build.encoding}" destdir="${test.build.dir}" source="${source}" target="${target}">
+			<src refid="test.src.compile" />
+			<classpath refid="test.classpath" />
+		</javac>
+    </target>
+		
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects">
+        <ant antfile="${GW-Application-Arquigrafia.location}/build.xml" dir="${GW-Application-Arquigrafia.location}" inheritAll="false" target="clean"/>
+        <ant antfile="${GW-Application-Arquigrafia.location}/build.xml" dir="${GW-Application-Arquigrafia.location}" inheritAll="false" target="build"/>
+    </target>
+        	
+    <!--<target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
+        <copy todir="${ant.library.dir}">
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </copy>
+        <unzip dest="${ant.library.dir}">
+            <patternset includes="jdtCompilerAdapter.jar"/>
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </unzip>
+    </target>
+    <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
+        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+        <antcall target="build"/>
+    </target> -->
+	
+	<target description="Testing..." name="test">
+			<echo message="Testing..." />
+			<junit printsummary="yes" haltonfailure="yes">
+				<classpath refid="test.classpath">
+					<!-- <pathelement location="${build.tests}"/> -->
+				</classpath>
+
+				<formatter type="plain" />
+				<!-- <test name="my.test.TestCase" haltonfailure="no" outfile="result">
+			   			 <formatter type="xml"/>
+			         </test> 
+			    -->
+
+				<batchtest todir="${test.reports.dir}" haltonfailure="off" >
+					<!-- <fileset refid="test.src.compile"/> -->
+					<fileset dir="${test.build.dir}">
+						<include name="**/*Test*.class"/>
+		      			<!--<exclude name="**/AllTests.java"/> -->
+					</fileset>
+				</batchtest>
+			</junit>
+	</target>
+</project>
