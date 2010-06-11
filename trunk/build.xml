@@ -7,11 +7,11 @@
     <property name="GW.this.location" value="../../GroupwareWorkbench/workspace"/>
 
 
-    <property name="GW-Libs.location" value="${GW.this.location}/GW-Libs"/>
-    <property name="GW-core.location" value="${GW.this.location}/GW-core"/>
-    <property name="GW-collabElement.location" value="${GW.this.location}/GW-collabElement"/>
-    <property name="GW-collablet.location" value="${GW.this.location}/GW-collablet"/>
-    <property name="GW-commons-widgets.location" value="${GW.this.location}/GW-commons-widgets"/>
+    <property name="GW-Libs.this.location" value="${GW.this.location}/GW-Libs"/>
+    <property name="GW-core.this.location" value="${GW.this.location}/GW-core"/>
+    <property name="GW-collabElement.this.location" value="${GW.this.location}/GW-collabElement"/>
+    <property name="GW-collablet.this.location" value="${GW.this.location}/GW-collablet"/>
+    <property name="GW-commons-widgets.this.location" value="${GW.this.location}/GW-commons-widgets"/>
 
     <property name="GW-PhotoManager.location" value="GW-PhotoManager"/>
     <property name="GW-ExternalSiteManager.location" value="GW-ExternalSiteManager"/>
@@ -23,14 +23,14 @@
 	<target description="Build all projects . Useful to propagate changes." name="build" >
 		<!--<property name="build.compiler" value="false"/> -->
 		<property name="build.sysclasspath" value="ignore"/>
-		<ant antfile="${GW-core.location}/build.xml" inheritAll="true" target="clean"/>
-		<ant antfile="${GW-core.location}/build.xml"  inheritAll="true" target="build-project"/>
-		<ant antfile="${GW-collabElement.location}/build.xml"  inheritAll="true" target="clean"/>
-		<ant antfile="${GW-collabElement.location}/build.xml"  inheritAll="true" target="build-project"/>
-		<ant antfile="${GW-collablet.location}/build.xml"  inheritAll="true" target="clean"/>
-		<ant antfile="${GW-collablet.location}/build.xml"  inheritAll="true" target="build-project"/>
-		<ant antfile="${GW-commons-widgets.location}/build.xml"  inheritAll="true" target="clean"/>
-		<ant antfile="${GW-commons-widgets.location}/build.xml"  inheritAll="true" target="build-project"/>
+		<ant antfile="${GW-core.this.location}/build.xml" inheritAll="true" target="clean"/>
+		<ant antfile="${GW-core.this.location}/build.xml"  inheritAll="true" target="build-project"/>
+		<ant antfile="${GW-collabElement.this.location}/build.xml"  inheritAll="true" target="clean"/>
+		<ant antfile="${GW-collabElement.this.location}/build.xml"  inheritAll="true" target="build-project"/>
+		<ant antfile="${GW-collablet.this.location}/build.xml"  inheritAll="true" target="clean"/>
+		<ant antfile="${GW-collablet.this.location}/build.xml"  inheritAll="true" target="build-project"/>
+		<ant antfile="${GW-commons-widgets.this.location}/build.xml"  inheritAll="true" target="clean"/>
+		<ant antfile="${GW-commons-widgets.this.location}/build.xml"  inheritAll="true" target="build-project"/>
 		
 		<ant antfile="${GW-PhotoManager.location}/build.xml"  inheritAll="true" target="clean"/>
 		<ant antfile="${GW-PhotoManager.location}/build.xml"  inheritAll="true" target="build-project" />
