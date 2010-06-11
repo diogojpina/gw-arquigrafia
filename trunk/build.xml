@@ -3,7 +3,7 @@
 <property environment="env"/>
 
     <property name="GW-Application-Arquigrafia.location" value="GW-Application-Arquigrafia"/>
-    <property name="GW.location" value="../../GroupwareWorkbench/workspace"/>
+    <property name="GW.location" value="../../../GroupwareWorkbench/workspace"/>
 
 
     <property name="GW-Libs.location" value="${GW.location}/GW-Libs"/>
