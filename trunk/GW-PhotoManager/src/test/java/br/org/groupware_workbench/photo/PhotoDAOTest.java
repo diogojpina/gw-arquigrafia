@@ -1,4 +1,4 @@
-package br.org.groupware_workbench.photo.internal;
+package br.org.groupware_workbench.photo;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -15,6 +15,7 @@ import org.junit.Test;
 import br.org.groupware_workbench.commons.bd.jpa.EntityManagerProvider;
 import br.org.groupware_workbench.coreutils.DAOFactory;
 import br.org.groupware_workbench.photo.Photo;
+import br.org.groupware_workbench.photo.PhotoDAO;
 
 public class PhotoDAOTest {
 

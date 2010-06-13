@@ -2,7 +2,7 @@
 <collabElement xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="ComponentDescriptor.xsd">
 
-    <ComponentClass>br.org.groupware_workbench.collabElement.coop.binomialMgr.internal.BinomialMgrComponent</ComponentClass>
+    <ComponentClass>br.org.groupware_workbench.collabElement.coop.binomialMgr.BinomialMgrComponent</ComponentClass>
 
     <collabElement-description>
         <collabElement-name>BinomialMgr</collabElement-name>

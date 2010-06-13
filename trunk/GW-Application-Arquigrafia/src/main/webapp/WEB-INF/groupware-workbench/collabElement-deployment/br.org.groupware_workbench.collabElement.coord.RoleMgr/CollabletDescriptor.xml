@@ -2,7 +2,7 @@
 <collabElement xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:noNamespaceSchemaLocation="ComponentDescriptor.xsd">
 
-	<ComponentClass>br.org.groupware_workbench.collabElement.coord.roleMgr.internal.RoleMgrComponent</ComponentClass>
+	<ComponentClass>br.org.groupware_workbench.collabElement.coord.roleMgr.RoleMgrComponent</ComponentClass>
 
 	<collabElement-description>
 		<collabElement-name>RoleMgr</collabElement-name>

@@ -10,8 +10,6 @@ import br.com.caelum.vraptor.core.RequestInfo;
 import br.org.groupware_workbench.collabletFw.facade.CollabletInstance;
 import br.org.groupware_workbench.coreutils.DAOFactory;
 import br.org.groupware_workbench.coreutils.GenericEntity;
-import br.org.groupware_workbench.photo.internal.PhotoDAO;
-import br.org.groupware_workbench.photo.internal.PhotoMgrComponent;
 
 public class PhotoMgrInstance extends CollabletInstance {
 

@@ -1,4 +1,4 @@
-package br.org.groupware_workbench.photo.internal;
+package br.org.groupware_workbench.photo;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -14,7 +14,6 @@ import org.apache.commons.io.IOUtils;
 
 import br.org.groupware_workbench.coreutils.GenericDAO;
 import br.org.groupware_workbench.coreutils.GenericEntity;
-import br.org.groupware_workbench.photo.Photo;
 
 public class PhotoDAO extends GenericDAO<Photo> {
 

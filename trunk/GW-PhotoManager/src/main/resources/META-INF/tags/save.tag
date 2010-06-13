@@ -5,7 +5,7 @@
 
 <%@ attribute name="photoRegister" required="true" rtexprvalue="true" type="br.org.groupware_workbench.photo.Photo" %>
 <%@ attribute name="photoInstance" required="true" rtexprvalue="true" type="br.org.groupware_workbench.photo.PhotoMgrInstance" %>
-<%@ attribute name="tagMgr" required="true" rtexprvalue="true" type="br.org.groupware_workbench.collabElement.communic.tagMgr.api.TagMgrInstance" %>
+<%@ attribute name="tagMgr" required="true" rtexprvalue="true" type="br.org.groupware_workbench.collabElement.communic.tagMgr.TagMgrInstance" %>
 <%@ attribute name="formClass" required="false" type="java.lang.String"%>
 <%@ attribute name="formLineClass" required="false" type="java.lang.String" %>
 <%@ attribute name="formLabelClass" required="false" type="java.lang.String" %>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <collablet>
-    <ComponentClass>br.org.groupware_workbench.photo.internal.PhotoMgrComponent</ComponentClass>
+    <ComponentClass>br.org.groupware_workbench.photo.PhotoMgrComponent</ComponentClass>
     <collablet-description>
         <collablet-name>Photo Register</collablet-name>
         <collablet-description>photoInstance</collablet-description>
@@ -37,10 +37,10 @@
         <collabElement id="br.org.groupware_workbench.collabElement.communic.TagMgr" receiveFromParent="false" />
         <collabElement id="br.org.groupware_workbench.collabElement.coord.RoleMgr" receiveFromParent="false">
             <role name="Administrador" defaultAssigment="false">
-                <entity entity="br.org.groupware_workbench.collabElement.coord.userMgr.api.User" param="admin" />
+                <entity entity="br.org.groupware_workbench.collabElement.coord.userMgr.User" param="admin" />
             </role>
             <role name="User" defaultAssigment="true">
-                <entity entity="br.org.groupware_workbench.collabElement.coord.userMgr.api.User" param="user01" />
+                <entity entity="br.org.groupware_workbench.collabElement.coord.userMgr.User" param="user01" />
             </role>
             <role name="Revisor" defaultAssigment="false" />
         </collabElement>

@@ -1,7 +1,6 @@
 package br.org.groupware_workbench.photo;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 import java.io.BufferedInputStream;
 import java.io.File;

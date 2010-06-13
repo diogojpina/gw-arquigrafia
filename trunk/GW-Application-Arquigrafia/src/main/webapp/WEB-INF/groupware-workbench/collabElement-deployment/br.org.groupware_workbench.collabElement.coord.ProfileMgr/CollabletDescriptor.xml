@@ -2,7 +2,7 @@
 <collabElement xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="ComponentDescriptor.xsd">
 
-    <ComponentClass>br.org.groupware_workbench.collabElement.coord.profileMgr.internal.ProfileMgrComponent</ComponentClass>
+    <ComponentClass>br.org.groupware_workbench.collabElement.coord.profileMgr.ProfileMgrComponent</ComponentClass>
 
     <collabElement-description>
         <collabElement-name>ProfileMgr</collabElement-name>
