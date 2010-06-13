@@ -11,8 +11,7 @@
 <project basedir="." default="rebuild" name="Arquigrafia">
 
     <!-- The path used to find the groupware workbench projects and the master.xml. -->
-    <!--<property name="GW.location" value="../../GroupwareWorkbench/workspace" />-->
-    <property name="GW.location" value="../workbench" />
+    <property name="GW.location" value="../../GroupwareWorkbench/workspace" />
 
     <!-- Includes all the reusable things which does the real work. -->
     <import file="${GW.location}/master.xml" />
