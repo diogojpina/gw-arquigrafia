@@ -47,7 +47,7 @@
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
-                    <file>${file.reference.ejb3-persistence-1.0.1.GA.jar}</file>
+                    <file>${file.reference.ejb3-persistence-1.0.2.GA.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">

@@ -2,7 +2,7 @@
 
 <!--
     This ant script controls the building of the GW-Application-Arquigrafia project.
-    See the worker.xml script for the runnable targets.
+    See the web-worker.xml script for the runnable targets.
 
     Authors: Victoriano Alfonso Phocco Diaz
              Victor Williams Stafusa da Silva
@@ -13,20 +13,10 @@
     <property name="GW.location" value="../../../GroupwareWorkbench/workspace" />
 
     <!-- Includes all the reusable things which does the real work. -->
-    <import file="${GW.location}/worker.xml" />
+    <import file="${GW.location}/web-worker.xml" />
 
-    <!-- Define the source dirs. -->
-    <path id="src.compile">
-        <pathelement location="${src.dir}/main/java" />
-        <pathelement location="${src.dir}/main/resources" />
-    </path>
-
-    <!-- Define the test dirs. -->
-    <path id="test.compile">
-        <pathelement location="${src.dir}/test/java" />
-        <pathelement location="${src.dir}/test/resources" />
-        <pathelement location="${src.dir}/test/integration" />
-    </path>
+    <!-- Tells where is the web.xml. -->
+    <property name="src.webxml" value="${src.dir}/main/webapp/WEB-INF/web.xml" />
 
     <!-- Define the dependencies. -->
     <property name="dependency.1.GW-core.location" value="${GW.location}/GW-core" />

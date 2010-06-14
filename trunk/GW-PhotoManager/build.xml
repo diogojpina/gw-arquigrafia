@@ -15,18 +15,6 @@
     <!-- Includes all the reusable things which does the real work. -->
     <import file="${GW.location}/worker.xml" />
 
-    <!-- Define the source dirs. -->
-    <path id="src.compile">
-        <pathelement location="${src.dir}/main/java" />
-        <pathelement location="${src.dir}/main/resources" />
-    </path>
-
-    <!-- Define the test dirs. -->
-    <path id="test.compile">
-        <pathelement location="${src.dir}/test/java" />
-        <pathelement location="${src.dir}/test/resources" />
-    </path>
-
     <!-- Define the dependencies. -->
     <property name="dependency.1.GW-core.location" value="${GW.location}/GW-core" />
     <property name="dependency.2.GW-commons-widgets.location" value="${GW.location}/GW-commons-widgets" />
