@@ -17,21 +17,31 @@ public class PhotoMgrInstance extends CollabletInstance {
 
     // TODO: Não deve haver estado mutável transiente nesta classe, visto que ela é compartilhada entre diferentes
     // Threads.
-    
-    private String dirImagesAbsoluto = null;
+        
 
     public PhotoMgrInstance() {
         super();
     }
 
+    @Deprecated
     public void setRequestInfo(RequestInfo info) {
-        if(dirImagesAbsoluto==null){
-            dirImagesAbsoluto = info.getServletContext().getRealPath("/") + this.getDirImagesRelativo() + File.separator;
-            File dir=new File(dirImagesAbsoluto);
-            if(!dir.exists()){
-                dir.mkdir();
-            }
-        }
+        
+    }
+    
+    public File imgThumb(String nomeArquivoUnico){
+        return this.dao.getImageFile(getDirImages(), this.getThumbPrefix(), nomeArquivoUnico);        
+    }
+    
+    public File imgCrop(String nomeArquivoUnico){
+        return this.dao.getImageFile(getDirImages(), this.getCropPrefix(), nomeArquivoUnico);        
+    }
+    
+    public File imgShow(String nomeArquivoUnico){
+        return this.dao.getImageFile(getDirImages(), this.getMostraPrefix(), nomeArquivoUnico);        
+    }
+    
+    public File imgOriginal(String nomeArquivoUnico){
+        return this.dao.getImageFile(getDirImages(),"", nomeArquivoUnico);        
     }
 
     @Override
@@ -49,7 +59,7 @@ public class PhotoMgrInstance extends CollabletInstance {
     }
 
     public void saveImage(InputStream foto, String nome) throws IOException {
-        this.dao.saveImage(foto, nome, dirImagesAbsoluto);
+        this.dao.saveImage(foto, nome, this.getDirImages());
     }
 
     public List<Photo> buscaFoto(String busca) {
@@ -76,8 +86,9 @@ public class PhotoMgrInstance extends CollabletInstance {
         return dao.listPhotoByPageAndOrder(tamanho,pagina);
     }
 
+    @Deprecated
     public String getDirImagesRelativo() {      
-        return ((PhotoMgrComponent)this.getComponent()).getDirImages();
+        return getDirImages();
     }
 
     public String getThumbPrefix() {        
@@ -89,10 +100,14 @@ public class PhotoMgrInstance extends CollabletInstance {
     }
     
     public String getDirImagesAbsoluto() {      
-        return dirImagesAbsoluto;
+        return this.getDirImages();
     }
 
     public String getCropPrefix() {     
         return ((PhotoMgrComponent)this.getComponent()).getCropPrefix();
+    }
+    
+    public String getDirImages(){
+        return ((PhotoMgrComponent)this.getComponent()).getDirImages();
     }
 }

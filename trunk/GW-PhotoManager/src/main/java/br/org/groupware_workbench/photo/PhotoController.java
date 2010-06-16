@@ -3,6 +3,7 @@ package br.org.groupware_workbench.photo;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.DateFormat;
@@ -22,6 +23,8 @@ import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.Validator;
 import br.com.caelum.vraptor.core.RequestInfo;
+import br.com.caelum.vraptor.interceptor.download.Download;
+import br.com.caelum.vraptor.interceptor.download.FileDownload;
 import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
 import br.com.caelum.vraptor.ioc.RequestScoped;
 import br.com.caelum.vraptor.validator.ValidationMessage;
@@ -51,9 +54,41 @@ public class PhotoController {
         this.result = result;
         this.validator = validator;
         this.request = request;
-        this.info = info;
+        this.info = info;        
     }
-
+   
+    @Get
+    @Path(value = "/groupware-workbench/{photoInstance}/photo/img-thumb/{nomeArquivoUnico}")    
+    public Download imgThumb(PhotoMgrInstance photoInstance, String nomeArquivoUnico){        
+        File file=photoInstance.imgThumb(nomeArquivoUnico);
+        FileDownload fs=new FileDownload(file, "image/jpg", file.getName());
+        return fs;
+    }
+    
+    @Get
+    @Path(value = "/groupware-workbench/{photoInstance}/photo/img-show/{nomeArquivoUnico}")    
+    public Download imgShow(PhotoMgrInstance photoInstance, String nomeArquivoUnico){        
+        File file=photoInstance.imgShow(nomeArquivoUnico);
+        FileDownload fs=new FileDownload(file, "image/jpg", file.getName());
+        return fs;
+    }
+    
+    @Get
+    @Path(value = "/groupware-workbench/{photoInstance}/photo/img-crop/{nomeArquivoUnico}")    
+    public Download imgCrop(PhotoMgrInstance photoInstance, String nomeArquivoUnico){        
+        File file=photoInstance.imgCrop(nomeArquivoUnico);
+        FileDownload fs=new FileDownload(file, "image/jpg", file.getName());
+        return fs;
+    }
+    
+    @Get
+    @Path(value = "/groupware-workbench/{photoInstance}/photo/img-original/{nomeArquivoUnico}")    
+    public Download imgOriginal(PhotoMgrInstance photoInstance, String nomeArquivoUnico){        
+        File file=photoInstance.imgOriginal(nomeArquivoUnico); 
+        FileDownload fs=new FileDownload(file, "image/jpg", file.getName());
+        return fs;
+    }
+    
     @Post
     @Get
     @Path(value = "/groupware-workbench/{photoInstance}/photo/show/{idPhoto}")

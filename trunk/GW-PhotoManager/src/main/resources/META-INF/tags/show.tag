@@ -28,5 +28,7 @@
             <img alt="${foto.nome}" src="${pageContext.request.contextPath}/${dirImagem}/${showPrefix}${foto.nomeArquivo}" />
         </a>
     -->
-    <img alt="${foto.nome}" src="${pageContext.request.contextPath}/${dirImagem}/${showPrefix}${foto.nomeArquivoUnico}" />
+    <%--img alt="${foto.nome}" src="${pageContext.request.contextPath}/${dirImagem}/${showPrefix}${foto.nomeArquivoUnico}" /--%>
+    <img alt="${foto.nome}" src="<c:url value="/groupware-workbench/${photoInstance.id}/photo/img-show/${foto.nomeArquivoUnico}"/>"/>
+    
 </div>

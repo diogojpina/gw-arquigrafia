@@ -5,10 +5,12 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
+import br.com.caelum.vraptor.Resource;
 import br.org.groupware_workbench.coreutils.GenericEntity;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+@Resource
 @Entity
 public class Photo extends GenericEntity {
 

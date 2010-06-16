@@ -10,7 +10,7 @@
     </collablet-description>
     
     <specific-configuration>
-    	<image-directory value="photos"/>
+    	<image-directory value="photos"/> <!-- vai ser criado no $HOME em windows nao sei  -->
     	<show-prefix value="mostra_"/>
     	<crop-prefix value="crop_"/>
     	<thumbnail-prefix value="thumb_"/>

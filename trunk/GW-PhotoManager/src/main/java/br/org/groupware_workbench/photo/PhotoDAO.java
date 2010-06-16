@@ -26,6 +26,12 @@ public class PhotoDAO extends GenericDAO<Photo> {
         file.createNewFile();
         IOUtils.copy(foto, new FileOutputStream(file));
     }
+    
+    
+    public File getImageFile(String pasta, String prefix,  String nomeArquivoUnico){        
+        String path=pasta+prefix+nomeArquivoUnico;
+        return new File(path);
+    }
 
     // TODO: Refatorar isso para não usar uma de lista de GenericEntity.
     public List<Photo> buscaPorID(List<GenericEntity> photos, Long idInstance) {

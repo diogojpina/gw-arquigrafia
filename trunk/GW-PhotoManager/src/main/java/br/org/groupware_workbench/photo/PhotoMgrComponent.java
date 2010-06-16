@@ -1,5 +1,6 @@
 package br.org.groupware_workbench.photo;
 
+import java.io.File;
 import java.util.List;
 
 import org.dom4j.Document;
@@ -32,7 +33,11 @@ public class PhotoMgrComponent extends Collablet {
         List<Node> thumb = doc.selectNodes("//collablet/specific-configuration/thumbnail-prefix");
         
         if (imageDirectory != null) {
-            dirImages = imageDirectory.get(0).valueOf("@value");
+            dirImages = imageDirectory.get(0).valueOf("@value")+File.separator;
+            File dir=new File(dirImages);
+            if(!dir.exists()){
+                dir.mkdir();
+            }                        
         }
         if (show != null) {
             mostraPrefix = show.get(0).valueOf("@value");
