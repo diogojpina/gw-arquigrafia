@@ -9,11 +9,17 @@
 -->
 <project basedir="." default="rebuild-all" name="GW-Application-Arquigrafia">
 
-    <!-- The path used to find the groupware workbench projects and the worker.xml. -->
-    <property name="GW.location" value="../../../GroupwareWorkbench/workspace" />
+    <!--
+        Since the location of the web-worker.xml depends on the host configuration,
+        try some possible configurations to discover which one applies.
+    -->
+    <property file="../GW-Libs/worker-single-workspace-with-projects.config" />
+    <property file="../../GroupwareWorkbench/GW-Libs/worker-single-workspace-with-trunks.config" />
+    <property file="../../../GroupwareWorkbench/workspace/GW-Libs/worker-multiple-workspaces.config" />
+    <fail unless="GW.location" message="Could not find the GW-Libs!" />
 
     <!-- Includes all the reusable things which does the real work. -->
-    <import file="${GW.location}/web-worker.xml" />
+    <import file="${GW-Libs.location}/web-worker.xml" />
 
     <!-- Tells where is the web.xml. -->
     <property name="src.webxml" value="${src.dir}/main/webapp/WEB-INF/web.xml" />
