@@ -1,8 +1,10 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib uri="http://www.groupwareworkbench.org.br/widgets/commons" prefix="Widgets" %>
-<%@ taglib uri="http://www.groupwareworkbench.org.br/widgets/role" prefix="role" %>
-<%@ taglib uri="http://www.groupwareworkbench.org.br/widgets/profile" prefix="profile" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="w" uri="http://www.groupwareworkbench.org.br/widgets/commons" %>
+<%@ taglib prefix="role" uri="http://www.groupwareworkbench.org.br/widgets/role" %>
+<%@ taglib prefix="profile" uri="http://www.groupwareworkbench.org.br/widgets/profile" %>
+
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -18,11 +20,11 @@
                 $("#form1").validate();
             });
         </script>
-        <profile:ScriptProfile />
+        <profile:scriptProfile />
     </head>
     <body>
-        <Widgets:Topo collabletInstance="${collabletInstance}" />
-        <Widgets:ConteudoPagina titulo="Usu&aacute;rio">
+        <w:topo collabletInstance="${collabletInstance}" />
+        <w:conteudoPagina titulo="Usu&aacute;rio">
             <br/>
             <ul>
                 <c:forEach var="error" items="${errors}">
@@ -53,14 +55,14 @@
                 </div>
 
                 <c:if test="${profileMgr != null}">
-                    <profile:Profile profileMgr="${profileMgr}" genericEntity="${user}" />
+                    <profile:profile profileMgr="${profileMgr}" genericEntity="${user}" />
                 </c:if>
 
                 <div class="subsection_f1">
                     <fieldset>
                         <c:if test="${roleMgr != null}">
                             <legend><span class="subtitle_f1">Atribuir pap&eacute;is:</span></legend>
-                            <role:SelectRole roleMgr="${roleMgr}" genericEntity="${user}" />
+                            <role:selectRole roleMgr="${roleMgr}" genericEntity="${user}" />
                         </c:if>
                     </fieldset>
                 </div>
@@ -74,8 +76,8 @@
                 </div>
             </form>
             <div class="barra_botoes">
-                <Widgets:Voltar collabletInstance="${collabletInstance}" />
+                <w:voltar collabletInstance="${collabletInstance}" />
             </div>
-        </Widgets:ConteudoPagina>
+        </w:conteudoPagina>
     </body>
 </html>

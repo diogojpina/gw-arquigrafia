@@ -1,18 +1,20 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib uri="http://www.groupwareworkbench.org.br/widgets/commons" prefix="Widgets" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="w" uri="http://www.groupwareworkbench.org.br/widgets/commons" %>
+
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="Cache-Control" content="no-cache">
         <title>Gerenciador de Ferramentas</title>
         <link href="${pageContext.request.contextPath}/css/reset.css" rel="stylesheet" type="text/css" />
         <link href="${pageContext.request.contextPath}/css/common.css" rel="stylesheet" type="text/css" />
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/listagem.js"></script>
     </head>
     <body>
-        <Widgets:Topo collabletInstance="${collabletInstance}" />
-        <Widgets:ConteudoPagina titulo="Gerenciador de Ferramentas">
+        <w:topo collabletInstance="${collabletInstance}" />
+        <w:conteudoPagina titulo="Gerenciador de Ferramentas">
             <form method="post" action="<c:url value="/groupware-workbench/${collabletInstance.id}/collabletMgr/refresh" />">
                 <c:if test="${collabletInstanceList != null}">
                     <c:if test="${collabletInstancesSize != 0}">
@@ -60,8 +62,8 @@
                 </div>
             </form>
             <div class="barra_botoes">
-                <Widgets:Voltar collabletInstance="${collabletInstance}" />
+                <w:voltar collabletInstance="${collabletInstance}" />
             </div>
-        </Widgets:ConteudoPagina>
+        </w:conteudoPagina>
     </body>
 </html>

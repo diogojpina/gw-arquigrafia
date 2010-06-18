@@ -1,20 +1,21 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib uri="http://www.groupwareworkbench.org.br/widgets/commons" prefix="Widgets" %>
-<%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="w" uri="http://www.groupwareworkbench.org.br/widgets/commons" %>
+
 <html>
     <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="Cache-Control" content="no-cache">
+        <title>Login</title>
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.validate.js"></script>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Login</title>
-        <meta http-equiv="cache-control" content="no-cache">
         <link href="${pageContext.request.contextPath}/css/login.css" rel="stylesheet" type="text/css" />
     </head>
     <body>
         <%--
-            TODO: Reformatar essa p·gina.
-            Utilizar Tableless. Ou seja: N√O FAZER LAYOUT POR TABELAS!
+            TODO: Reformatar essa p√°gina.
+            Utilizar Tableless. Ou seja: N√ÉO FAZER LAYOUT POR TABELAS!
             Ass: Victor Williams Stafusa da Silva
         --%>
         <table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
@@ -54,7 +55,7 @@
                           <c:choose>
                               <c:when test="${env != null and not env}">
                               <tr>
-                                <td colspan="4"><div align="right"><span class="style8">E-mail n„o encontrado</span></div></td>
+                                <td colspan="4"><div align="right"><span class="style8">E-mail n√£o encontrado</span></div></td>
                               </tr>
                                <tr>
                                  <td colspan="4"><div align="left"><span class="style8"><a href="<c:url value="/groupware-workbench/${collablet.id}/userMgr/${userMgr.id}/login"/>">Voltar</a></span></div></td>

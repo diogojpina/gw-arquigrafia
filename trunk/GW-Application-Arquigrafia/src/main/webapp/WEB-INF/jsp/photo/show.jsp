@@ -1,16 +1,18 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib uri="http://www.groupwareworkbench.org.br/widgets/commons" prefix="Widgets" %>
-<%@ taglib uri="http://www.groupwareworkbench.org.br/widgets/photomanager" prefix="photo" %>
-<%@ taglib uri="http://www.groupwareworkbench.org.br/widgets/binomial" prefix="binomialMgr" %>
-<%@ taglib uri="http://www.groupwareworkbench.org.br/widgets/tag" prefix="TagMgr" %>
-<%@ taglib uri="http://www.groupwareworkbench.org.br/widgets/comment" prefix="CommentMgr" %>
-<%@ taglib tagdir="/WEB-INF/tags" prefix="arq" %>
+<%@ taglib prefix="w" uri="http://www.groupwareworkbench.org.br/widgets/commons" %>
+<%@ taglib prefix="photo" uri="http://www.groupwareworkbench.org.br/widgets/photomanager" %>
+<%@ taglib prefix="binomial" uri="http://www.groupwareworkbench.org.br/widgets/binomial" %>
+<%@ taglib prefix="tag" uri="http://www.groupwareworkbench.org.br/widgets/tag" %>
+<%@ taglib prefix="comment" uri="http://www.groupwareworkbench.org.br/widgets/comment" %>
+<%@ taglib prefix="arq" tagdir="/WEB-INF/tags" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="Cache-Control" content="no-cache">
+        <title>Arquigrafia Brasil</title>
         <link href="${pageContext.request.contextPath}/css/reset.css" rel="stylesheet" type="text/css" />
         <link href="${pageContext.request.contextPath}/css/arq-common.css" rel="stylesheet" type="text/css" />
         <link href="${pageContext.request.contextPath}/css/header.css" rel="stylesheet" type="text/css" />
@@ -36,8 +38,8 @@
         <script src="${pageContext.request.contextPath}/scripts/jquery.accordion.js" type="text/javascript"></script>
         <script src="${pageContext.request.contextPath}/scripts/bay.js" type="text/javascript"></script>
         <script src="${pageContext.request.contextPath}/scripts/curvycorners.src.js" type="text/javascript"></script>
-        <binomialMgr:ScriptBinomial/>
-        <TagMgr:ScriptTags />
+        <binomial:scriptBinomial />
+        <tag:scriptTags />
     </head>
     <body>
         <arq:header2 photoInstance="${photoInstance}" siteInstance="${siteInstance}" />
@@ -49,9 +51,9 @@
                         <span id="binTitle">Medidores</span>
                         <br />
                         <br />
-                        <c:if test="${binomialMgr!=null}">
-                            <binomialMgr:SetBinomial idObject="${idPhoto}" binomialMgr="${binomialMgr}" user="${sessionScope.userLogin}"
-                                    binLabelClass="binLabelClass" binValueClass="binValueClass" binWrapClass="binWrapClass"/>
+                        <c:if test="${binomialMgr != null}">
+                            <binomial:setBinomial idObject="${idPhoto}" binomialMgr="${binomialMgr}" user="${sessionScope.userLogin}"
+                                    binLabelClass="binLabelClass" binValueClass="binValueClass" binWrapClass="binWrapClass" />
                         </c:if>
                     </div>
                     <div id="binomialSubmit" style="clear: both">
@@ -97,15 +99,15 @@
                             <div id="tags_left">
                             </div>
                             <div id="tags_content">
-                                <TagMgr:GetTags tagMgr="${tagMgr}" idObject="${idPhoto}" />
+                                <tag:getTags tagMgr="${tagMgr}" idObject="${idPhoto}" />
                             </div>
                             <div id="tags_right">
                             </div>
                         </div>
                     </div>
                     <div id="tagsAdd">
-                        <TagMgr:SelectTags tagMgr="${tagMgr}" />
-                        <TagMgr:SetTags tagMgr="${tagMgr}" idObject="${idPhoto}" tagsEditorClass="mid_black_text" />
+                        <tag:selectTags tagMgr="${tagMgr}" />
+                        <tag:setTags tagMgr="${tagMgr}" idObject="${idPhoto}" tagsEditorClass="mid_black_text" />
                         <input type="submit" name="adicionar" value="Adicionar" />
                     </div>
                     <script type="text/javascript">
@@ -139,11 +141,11 @@
                 </div>
                 <div style="height: 10px; width: 100%; clear: both"></div>
                 <div id="comments_create" style="height: 130px;">
-                    <CommentMgr:AddComment commentMgr="${commentMgr}" idObject="${idPhoto}" user="${sessionScope.userLogin}" editorClass="editorClass" wrapClass="comments_create_internal"/>
+                    <comment:addComment commentMgr="${commentMgr}" idObject="${idPhoto}" user="${sessionScope.userLogin}" editorClass="editorClass" wrapClass="comments_create_internal"/>
                     <input name="commentAdd" value="Adicionar" type="submit" />
                 </div>
                 <div id="comments_show">
-                    <CommentMgr:GetComments commentMgr="${commentMgr}" idObject="${idPhoto}" wrapClass="comments_show_internal" />
+                    <comment:getComments commentMgr="${commentMgr}" idObject="${idPhoto}" wrapClass="comments_show_internal" />
                 </div>
                 <script type="text/javascript">
                     $("#comments_create").hide();

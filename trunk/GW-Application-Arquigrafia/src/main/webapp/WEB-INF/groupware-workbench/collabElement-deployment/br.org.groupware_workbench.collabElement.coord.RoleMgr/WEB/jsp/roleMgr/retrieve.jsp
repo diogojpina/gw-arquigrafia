@@ -1,18 +1,19 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib uri="http://www.groupwareworkbench.org.br/widgets/commons" prefix="Widgets" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="w" uri="http://www.groupwareworkbench.org.br/widgets/commons" %>
+
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta http-equiv="cache-control" content="no-cache">
+        <meta http-equiv="Cache-Control" content="no-cache">
         <title>Papel</title>
         <link href="${pageContext.request.contextPath}/css/reset.css" rel="stylesheet" type="text/css" />
         <link href="${pageContext.request.contextPath}/css/common.css" rel="stylesheet" type="text/css" />
     </head>
     <body>
-        <Widgets:Topo collabletInstance="${collabletInstance}" />
-        <Widgets:ConteudoPagina titulo="Papel">
+        <w:topo collabletInstance="${collabletInstance}" />
+        <w:conteudoPagina titulo="Papel">
             <br />
             <form name="dados" method="POST" action='<c:url value="/groupware-workbench/${collabletInstance.id}/roleMgr/${roleMgr.id}" />' accept-charset="UTF-8">
                 <input type="hidden" name="role.id" value="<c:out value="${role.id}" />" />
@@ -30,8 +31,8 @@
                 </div>
             </form>
             <div class="barra_botoes">
-                <Widgets:Voltar collabletInstance="${collabletInstance}" />
+                <w:voltar collabletInstance="${collabletInstance}" />
             </div>
-        </Widgets:ConteudoPagina>
+        </w:conteudoPagina>
     </body>
 </html>

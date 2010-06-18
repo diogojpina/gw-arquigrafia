@@ -1,15 +1,14 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib uri="http://www.groupwareworkbench.org.br/widgets/commons" prefix="Widgets" %>
-<%@ taglib uri="http://www.groupwareworkbench.org.br/widgets/photomanager" prefix="photo" %>
-<%@ taglib uri="http://www.groupwareworkbench.org.br/widgets/binomial" prefix="binomialMgr" %>
-<%@ taglib uri="http://www.groupwareworkbench.org.br/widgets/tag" prefix="TagMgr" %>
-<%@ taglib tagdir="/WEB-INF/tags" prefix="arq" %>
+<%@ taglib prefix="w" uri="http://www.groupwareworkbench.org.br/widgets/commons" %>
+<%@ taglib prefix="photo" uri="http://www.groupwareworkbench.org.br/widgets/photomanager" %>
+<%@ taglib prefix="arq" tagdir="/WEB-INF/tags" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="Cache-Control" content="no-cache">
         <title>Arquigrafia - Ver foto</title>
         <link href="${pageContext.request.contextPath}/css/reset.css" rel="stylesheet" type="text/css" />
         <link href="${pageContext.request.contextPath}/css/arq-common.css" rel="stylesheet" type="text/css" />
@@ -58,7 +57,7 @@
             </c:forEach>
             <br />
             <div>
-                <Widgets:Voltar collabletInstance="${sessionScope.siteInstance}" />
+                <w:voltar collabletInstance="${sessionScope.siteInstance}" />
             </div>
         </div>
         <div style="height: 30px; width: 100%"></div>

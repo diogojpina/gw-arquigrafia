@@ -1,27 +1,26 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib uri="http://www.groupwareworkbench.org.br/widgets/commons" prefix="Widgets" %>
-<%@ taglib uri="http://www.groupwareworkbench.org.br/widgets/tag" prefix="TagMgr" %>
-<%@ taglib uri="http://www.groupwareworkbench.org.br/widgets/binomial" prefix="BinomialMgr" %>
-<%@ taglib uri="http://www.groupwareworkbench.org.br/widgets/category" prefix="CategoryMgr" %>
+<%@ taglib prefix="w" uri="http://www.groupwareworkbench.org.br/widgets/commons" %>
+<%@ taglib prefix="tag" uri="http://www.groupwareworkbench.org.br/widgets/tag" %>
+<%@ taglib prefix="binomial" uri="http://www.groupwareworkbench.org.br/widgets/binomial" %>
+<%@ taglib prefix="category" uri="http://www.groupwareworkbench.org.br/widgets/category" %>
 
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta http-equiv="cache-control" content="no-cache">
+        <meta http-equiv="Cache-Control" content="no-cache">
         <title>Faq</title>
         <link href="${pageContext.request.contextPath}/css/reset.css" rel="stylesheet" type="text/css" />
         <link href="${pageContext.request.contextPath}/css/common.css" rel="stylesheet" type="text/css" />
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/listagem.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
-        <TagMgr:ScriptTags />
-        <BinomialMgr:ScriptBinomial />
+        <tag:scriptTags />
+        <binomial:scriptBinomial />
     </head>
     <body>
-        <Widgets:Topo collabletInstance="${faqMgr}" />
-        <Widgets:ConteudoPagina titulo="Faq:">
+        <w:topo collabletInstance="${faqMgr}" />
+        <w:conteudoPagina titulo="Faq:">
             <br />
             <h1><span class="style1">Cadastro</span></h1>
             <br />
@@ -33,7 +32,7 @@
                         <tr>
                             <td>Categoria</td>
                             <td>
-                                <CategoryMgr:SimpleDropDownBox genericEntity="${faq}" categoryMgr="${categoryMgr}" />
+                                <category:simpleDropDownBox genericEntity="${faq}" categoryMgr="${categoryMgr}" />
                             </td>
                         </tr>
                     </c:if>
@@ -51,13 +50,13 @@
                             <c:if test="${tagMgr != null}">
                                 Tags clique em uma das tags abaixo para adicion&aacute;-la ao FAQ.
                                 <br />
-                                <TagMgr:SelectTags tagMgr="${tagMgr}" />
-                                <TagMgr:SetTags tagMgr="${tagMgr}" idObject="${faq.id}" />
+                                <tag:selectTags tagMgr="${tagMgr}" />
+                                <tag:setTags tagMgr="${tagMgr}" idObject="${faq.id}" />
                             </c:if>
                         </td>
                         <td>
                             <c:if test="${binomialMgr != null}">
-                                <BinomialMgr:SetBinomial binomialMgr="${binomialMgr}" idObject="${faq.id}" user="${sessionScope.userLogin}" />
+                                <binomial:setBinomial binomialMgr="${binomialMgr}" idObject="${faq.id}" user="${sessionScope.userLogin}" />
                             </c:if>
                         </td>
                     </tr>
@@ -73,8 +72,8 @@
                 <br />
             </form>
             <div class="barra_botoes">
-                <Widgets:Voltar collabletInstance="${faqMgr}" />
+                <w:voltar collabletInstance="${faqMgr}" />
             </div>
-        </Widgets:ConteudoPagina>
+        </w:conteudoPagina>
     </body>
 </html>

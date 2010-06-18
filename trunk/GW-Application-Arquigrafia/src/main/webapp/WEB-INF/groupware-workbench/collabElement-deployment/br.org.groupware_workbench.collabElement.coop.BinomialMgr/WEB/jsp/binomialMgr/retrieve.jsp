@@ -1,7 +1,8 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib uri="http://www.groupwareworkbench.org.br/widgets/commons" prefix="Widgets" %>
-<%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="w" uri="http://www.groupwareworkbench.org.br/widgets/commons" %>
+
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -11,8 +12,8 @@
         <link href="${pageContext.request.contextPath}/css/common.css" rel="stylesheet" type="text/css" />
     </head>
     <body>
-        <Widgets:Topo collabletInstance="${collabletInstance}" />
-        <Widgets:ConteudoPagina titulo="Bin&ocirc;mios">
+        <w:topo collabletInstance="${collabletInstance}" />
+        <w:conteudoPagina titulo="Bin&ocirc;mios">
             <form method="post" action="<c:url value="/groupware-workbench/${param.collablet}/binomialMgr/${param.binomialMgr}" />" accept-charset="UTF-8">
                 <input type="hidden" name="binomial.id" value="<c:out value="${binomial.id}" />" />
                 <input type="hidden" name="binomial.idInstance" value="<c:out value="${param.binomialMgr}" />" />
@@ -45,8 +46,8 @@
                 </div>
             </form>
             <div class="barra_botoes">
-                <Widgets:Voltar collabletInstance="${collabletInstance}" />
+                <w:voltar collabletInstance="${collabletInstance}" />
             </div>
-        </Widgets:ConteudoPagina>
+        </w:conteudoPagina>
     </body>
 </html>
