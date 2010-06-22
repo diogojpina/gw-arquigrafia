@@ -73,9 +73,7 @@ public class PhotoControllerTest {
             imagem = new BufferedInputStream(new FileInputStream(new File(this.getClass().getResource("fotoum.jpg").getFile())));
         } catch (FileNotFoundException e) {
             Assert.fail();
-        } catch (IOException e) {
-            Assert.fail();
-        }
+        } 
 
         UploadedFile file = mock(UploadedFile.class);
         when(file.getFile()).thenReturn(imagem);

@@ -23,7 +23,7 @@ public class PhotoMgrComponent extends Collablet {
     public PhotoMgrComponent() {
     }
     
-    @SuppressWarnings({"unchecked", "null"})
+    @SuppressWarnings("unchecked")
     @Override
     protected void applyConfiguration(Element xml, boolean isInstalling) {
         Document doc = xml.getDocument();

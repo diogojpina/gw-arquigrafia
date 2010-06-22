@@ -8,6 +8,10 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/GW-commons-widgets"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/GW-core"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/GW-Libs"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/java-6-sun-1.6.0.20">
+		<attributes>
+			<attribute name="owner.project.facets" value="jst.java"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

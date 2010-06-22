@@ -154,7 +154,7 @@ public class PhotoController {
         }
 
         @SuppressWarnings("unchecked") // Cast desnecessário no Java EE 6. Necessário no Java EE 5.
-        Map<String, String[]> params = (Map<String, String[]>) request.getParameterMap();
+        Map<String, String[]> params = request.getParameterMap();
         for (CollabElementInstance instance : photoInstance.getCollabElementInstances()) {
             String nome = instance.getName();
             Map<String, String[]> collabParams = new HashMap<String, String[]>();
@@ -187,7 +187,7 @@ public class PhotoController {
         }
 
         @SuppressWarnings("unchecked") // Cast desnecessário no Java EE 6. Necessário no Java EE 5.
-        Map<String, String[]> params = (Map<String, String[]>) request.getParameterMap();
+        Map<String, String[]> params = request.getParameterMap();
         for (CollabElementInstance instance : photoInstance.getCollabElementInstances()) {
             String nomeI = instance.getName();
             Map<String, String[]> collabParams = new HashMap<String, String[]>();

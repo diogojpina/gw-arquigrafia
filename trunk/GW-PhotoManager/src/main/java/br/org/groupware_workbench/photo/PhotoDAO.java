@@ -46,7 +46,7 @@ public class PhotoDAO extends GenericDAO<Photo> {
         query.setParameter("idInstance", idInstance);
 
         @SuppressWarnings("unchecked")
-        List<Photo> result = (List<Photo>) query.getResultList();
+        List<Photo> result = query.getResultList();
 
         return result;
     }
@@ -60,7 +60,7 @@ public class PhotoDAO extends GenericDAO<Photo> {
         //consulta.setParameter("descricao", "%"+busca.toUpperCase()+"%");
 
         @SuppressWarnings("unchecked")
-        List<Photo> result = (List<Photo>) consulta.getResultList();
+        List<Photo> result = consulta.getResultList();
 
         return result;
     }
@@ -82,7 +82,7 @@ public class PhotoDAO extends GenericDAO<Photo> {
         consulta.setParameter("descricao", "%" + descricao.toUpperCase() + "%");
 
         @SuppressWarnings("unchecked")
-        List<Photo> result = (List<Photo>) consulta.getResultList();
+        List<Photo> result = consulta.getResultList();
 
         return result;
     }
@@ -100,7 +100,7 @@ public class PhotoDAO extends GenericDAO<Photo> {
         query.setMaxResults(pageSize);
 
         @SuppressWarnings("unchecked")
-        List<Photo> result = (List<Photo>) query.getResultList();
+        List<Photo> result = query.getResultList();
 
         return result;
     }
@@ -113,7 +113,7 @@ public class PhotoDAO extends GenericDAO<Photo> {
         query.setMaxResults(pageSize);
 
         @SuppressWarnings("unchecked")
-        List<Photo> result = (List<Photo>) query.getResultList();
+        List<Photo> result = query.getResultList();
 
         return result;
     }
