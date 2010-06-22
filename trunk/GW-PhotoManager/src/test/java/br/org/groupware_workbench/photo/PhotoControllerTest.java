@@ -1,12 +1,12 @@
 package br.org.groupware_workbench.photo;
 
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,11 +19,11 @@ import org.junit.Test;
 
 import br.com.caelum.vraptor.core.RequestInfo;
 import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
+import br.com.caelum.vraptor.util.test.MockResult;
 import br.com.caelum.vraptor.util.test.MockValidator;
 import br.com.caelum.vraptor.validator.Message;
 import br.com.caelum.vraptor.validator.ValidationException;
 import br.com.caelum.vraptor.view.LogicResult;
-import br.com.caelum.vraptor.util.test.MockResult;
 
 public class PhotoControllerTest {
 
