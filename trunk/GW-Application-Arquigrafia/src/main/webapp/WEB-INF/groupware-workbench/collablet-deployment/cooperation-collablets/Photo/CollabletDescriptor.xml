@@ -2,7 +2,7 @@
 <collablet>
     <ComponentClass>br.org.groupware_workbench.photo.PhotoMgrComponent</ComponentClass>
     <collablet-description>
-        <collablet-name>Photo Register</collablet-name>
+        <collablet-name>PhotoRegister</collablet-name>
         <collablet-description>photoInstance</collablet-description>
         <!--subordinate-collablets>
             <collablet-group>communication-collablets</collablet-group>

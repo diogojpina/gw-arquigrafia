@@ -4,9 +4,9 @@
     <collablet-description>
         <collablet-name>Arquigrafia Brasil</collablet-name>
         <collablet-description>arquigrafia brasil</collablet-description>
-        <!-- subordinate-collablets>
-            <collablet groupName="cooperation-collablets" collabletName="Foto" />
-        </subordinate-collablets -->
+        <subordinate-collablets>
+            <collablet groupName="cooperation-collablets" collabletName="Photo" />
+        </subordinate-collablets>
     </collablet-description>
     <specific-configuration />
     <collabElements>

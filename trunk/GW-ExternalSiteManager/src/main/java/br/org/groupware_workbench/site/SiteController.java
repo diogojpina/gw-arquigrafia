@@ -8,8 +8,7 @@ import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.ioc.RequestScoped;
 import br.org.groupware_workbench.collabElementFw.facade.CollabElementInstance;
-import br.org.groupware_workbench.groupwareComponentFwFw.facade.Component;
-import br.org.groupware_workbench.groupwareComponentFwFw.facade.ComponentInstance;
+import br.org.groupware_workbench.collabletFw.facade.CollabletInstance;
 
 @RequestScoped
 @Resource
@@ -23,12 +22,15 @@ public class SiteController {
         this.request = request;
     }
 
+    
+    /*
     @Get
     @Path(value="/groupware-workbench/{siteInstance}/site")
     public void index(SiteInstance siteInstance) {
         //addIncludes();
         result.include("siteInstance", siteInstance);
         this.request.getSession().setAttribute("siteInstance", siteInstance);
+        
         for (Component component : siteInstance.getComponent().getGroup().getComponents()) {
             String componentName = component.getCod();
             componentName = componentName.replaceAll("/", "_").toLowerCase();
@@ -48,5 +50,28 @@ public class SiteController {
             this.request.getSession().setAttribute(nomeComponente, collabComponentInstance); // TODO: Não fazer isso, apenas oculta bugs.
             System.out.println("O componente " + collabComponentInstance.getComponent().getCod() + " foi adicionado na requisição com o nome " + nomeComponente);
         }
+    }
+    */
+    @Get
+    @Path(value="/groupware-workbench/{siteInstance}/site")
+    public void index(SiteInstance siteInstance) {
+        addIncludes(siteInstance);
+    }
+    
+    private void addIncludes(SiteInstance siteInstance) {
+        result.include("siteInstance", siteInstance);
+        for (CollabElementInstance collabComponentInstance : siteInstance.getCollabElementInstances()) {
+            String nomeComponente = collabComponentInstance.getName();
+            result.include(nomeComponente, collabComponentInstance);
+            System.out.println("O componente " + collabComponentInstance.getComponent().getCod() + " foi adicionado na requisição com o nome " + nomeComponente);
+        }
+        System.out.println("Adicionando Collablets......"); 
+        for (CollabletInstance collabletInstance : siteInstance.getSubordinatedInstances()) {
+            String nomeComponente = collabletInstance.getComponentInstanceName();
+            result.include(nomeComponente, collabletInstance);
+            System.out.println("O componente " + collabletInstance.getComponent().getCod() + " foi adicionado na requisição com o nome " + nomeComponente);
+        }
+        
+    
     }
 }
