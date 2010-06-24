@@ -6,7 +6,6 @@ import java.io.InputStream;
 import java.util.Date;
 import java.util.List;
 
-import br.com.caelum.vraptor.core.RequestInfo;
 import br.org.groupware_workbench.collabletFw.facade.CollabletInstance;
 import br.org.groupware_workbench.coreutils.DAOFactory;
 import br.org.groupware_workbench.coreutils.GenericEntity;
@@ -23,11 +22,6 @@ public class PhotoMgrInstance extends CollabletInstance {
         super();
     }
 
-    @Deprecated
-    public void setRequestInfo(RequestInfo info) {
-        
-    }
-    
     public File imgThumb(String nomeArquivoUnico){
         return this.dao.getImageFile(getDirImages(), this.getThumbPrefix(), nomeArquivoUnico);        
     }
@@ -84,11 +78,6 @@ public class PhotoMgrInstance extends CollabletInstance {
     
     public List<Photo> listaPhotoPorPaginaEOrdem(int tamanho, int pagina) {
         return dao.listPhotoByPageAndOrder(tamanho,pagina);
-    }
-
-    @Deprecated
-    public String getDirImagesRelativo() {      
-        return getDirImages();
     }
 
     public String getThumbPrefix() {        

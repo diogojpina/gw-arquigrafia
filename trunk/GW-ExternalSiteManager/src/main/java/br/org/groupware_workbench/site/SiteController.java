@@ -1,7 +1,5 @@
 package br.org.groupware_workbench.site;
 
-import javax.servlet.http.HttpServletRequest;
-
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Resource;
@@ -15,43 +13,10 @@ import br.org.groupware_workbench.collabletFw.facade.CollabletInstance;
 public class SiteController {
 
     private final Result result;
-    private final HttpServletRequest request;
-
-    public SiteController(Result result, HttpServletRequest request) {
+    public SiteController(Result result) {
         this.result = result;
-        this.request = request;
     }
-
     
-    /*
-    @Get
-    @Path(value="/groupware-workbench/{siteInstance}/site")
-    public void index(SiteInstance siteInstance) {
-        //addIncludes();
-        result.include("siteInstance", siteInstance);
-        this.request.getSession().setAttribute("siteInstance", siteInstance);
-        
-        for (Component component : siteInstance.getComponent().getGroup().getComponents()) {
-            String componentName = component.getCod();
-            componentName = componentName.replaceAll("/", "_").toLowerCase();
-            ComponentInstance componentInstance;
-            if (component.hasInstance()) {
-                componentInstance = component.getInstances().iterator().next();
-            } else {
-                componentInstance = component.makeNewInstance(); // TODO: Não fazer isso. Esse método deveria ser privado do core.
-            }
-            result.include(componentName, componentInstance);
-            this.request.getSession().setAttribute(componentName, componentInstance); // TODO: Não fazer isso, apenas oculta bugs.
-            System.out.println("Adicionado " + componentName);
-        }
-        for (CollabElementInstance collabComponentInstance : siteInstance.getCollabElementInstances()) {
-            String nomeComponente = collabComponentInstance.getName();
-            result.include(nomeComponente, collabComponentInstance);
-            this.request.getSession().setAttribute(nomeComponente, collabComponentInstance); // TODO: Não fazer isso, apenas oculta bugs.
-            System.out.println("O componente " + collabComponentInstance.getComponent().getCod() + " foi adicionado na requisição com o nome " + nomeComponente);
-        }
-    }
-    */
     @Get
     @Path(value="/groupware-workbench/{siteInstance}/site")
     public void index(SiteInstance siteInstance) {
@@ -63,15 +28,22 @@ public class SiteController {
         for (CollabElementInstance collabComponentInstance : siteInstance.getCollabElementInstances()) {
             String nomeComponente = collabComponentInstance.getName();
             result.include(nomeComponente, collabComponentInstance);
-            System.out.println("O componente " + collabComponentInstance.getComponent().getCod() + " foi adicionado na requisição com o nome " + nomeComponente);
+            System.out.println("O componente elemento " + collabComponentInstance.getComponent().getCod() + " foi adicionado na requisição com o nome " + nomeComponente);
         }
-        System.out.println("Adicionando Collablets......"); 
+        
+        //Adiciona os filhos        
         for (CollabletInstance collabletInstance : siteInstance.getSubordinatedInstances()) {
             String nomeComponente = collabletInstance.getComponentInstanceName();
             result.include(nomeComponente, collabletInstance);
-            System.out.println("O componente " + collabletInstance.getComponent().getCod() + " foi adicionado na requisição com o nome " + nomeComponente);
+            System.out.println("O componente filho" + collabletInstance.getComponent().getCod() + " foi adicionado na requisição com o nome " + nomeComponente);
+        }       
+        //Adiciona o antecessores        
+        CollabletInstance pae=siteInstance.getParent();
+        for(;pae!=null;){            
+            String nomeComponente = pae.getComponentInstanceName();
+            result.include(nomeComponente, pae);       
+            System.out.println("O componente antecessor " + pae.getComponent().getCod() + " foi adicionado na requisição com o nome " + nomeComponente);
+            pae=pae.getParent();
         }
-        
-    
     }
 }

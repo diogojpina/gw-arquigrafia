@@ -36,7 +36,7 @@
         <script src="${pageContext.request.contextPath}/scripts/bay.js" type="text/javascript"></script></head>
     </head>
     <body>
-        <arq:header2 photoInstance="${photoInstance}" siteInstance="${sessionScope.siteInstance}" />
+        <arq:header2 photoInstance="${photoInstance}" siteInstance="${ArquigrafiaBrasil}" />
         <div id="internal_wrap">
         <div class="big_black_title" id="register_title">
             Registrar Foto
@@ -57,10 +57,10 @@
             </c:forEach>
             <br />
             <div>
-                <w:voltar collabletInstance="${sessionScope.siteInstance}" />
+                <w:voltar collabletInstance="${ArquigrafiaBrasil}" />
             </div>
         </div>
         <div style="height: 30px; width: 100%"></div>
-        <arq:footer photoInstance="${photoInstance}" siteInstance="${sessionScope.siteInstance}" />
+        <arq:footer photoInstance="${photoInstance}" siteInstance="${ArquigrafiaBrasil}" />
     </body>
 </html>

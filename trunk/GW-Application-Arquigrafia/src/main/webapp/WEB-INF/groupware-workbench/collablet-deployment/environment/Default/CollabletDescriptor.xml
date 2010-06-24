@@ -2,7 +2,7 @@
 <collablet>
     <ComponentClass>br.org.groupware_workbench.site.SiteComponent</ComponentClass>
     <collablet-description>
-        <collablet-name>Arquigrafia Brasil</collablet-name>
+        <collablet-name>ArquigrafiaBrasil</collablet-name>
         <collablet-description>arquigrafia brasil</collablet-description>
         <subordinate-collablets>
             <collablet groupName="cooperation-collablets" collabletName="Photo" />
@@ -24,7 +24,7 @@
             <user>
                 <login>user02</login>
                 <password>222</password>
-                <name>Usuario02</name>
+                <name>Usuario02</name>                
             </user>
         </collabElement>
         <collabElement id="br.org.groupware_workbench.collabElement.communic.TagMgr" receiveFromParent="false" />

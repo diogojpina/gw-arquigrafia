@@ -36,7 +36,7 @@
         <script src="${pageContext.request.contextPath}/scripts/bay.js" type="text/javascript"></script>
      </head>
      <body>
-         <arq:header2 photoInstance="${photoInstance}" siteInstance="${siteInstance}" />
+         <arq:header2 photoInstance="${photoInstance}" siteInstance="${ArquigrafiaBrasil}" />
          <div id="search_statistics">
              <span id="resultTerm">Voc&ecirc; buscou: <c:out value="${searchTerm}" /></span>
              <span id="resultCount"> (<c:out value="${numResults}" /> resultados)</span>
@@ -54,6 +54,6 @@
              <photo:list photos="${fotos}" photoInstance="${photoInstance}" showName="true" showLocation="false" lineClass="search_line"/>
          </div>
          <div style="height: 30px; clear: both"></div>
-         <arq:footer photoInstance="${photoInstance}" siteInstance="${siteInstance}" />
+         <arq:footer photoInstance="${photoInstance}" siteInstance="${ArquigrafiaBrasil}" />
      </body>
 </html>

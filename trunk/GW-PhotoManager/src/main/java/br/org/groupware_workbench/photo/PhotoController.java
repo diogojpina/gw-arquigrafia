@@ -22,7 +22,6 @@ import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.Validator;
-import br.com.caelum.vraptor.core.RequestInfo;
 import br.com.caelum.vraptor.interceptor.download.Download;
 import br.com.caelum.vraptor.interceptor.download.FileDownload;
 import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
@@ -30,6 +29,7 @@ import br.com.caelum.vraptor.ioc.RequestScoped;
 import br.com.caelum.vraptor.validator.ValidationMessage;
 import br.com.caelum.vraptor.view.Results;
 import br.org.groupware_workbench.collabElementFw.facade.CollabElementInstance;
+import br.org.groupware_workbench.collabletFw.facade.CollabletInstance;
 import br.org.groupware_workbench.commons.util.ImageUtils;
 import br.org.groupware_workbench.coreutils.GenericEntity;
 
@@ -48,13 +48,12 @@ public class PhotoController {
     private final Result result;
     private final HttpServletRequest request;
     private final Validator validator;
-    private final RequestInfo info;
+    
 
-    public PhotoController(Result result, Validator validator, HttpServletRequest request, RequestInfo info) {
+    public PhotoController(Result result, Validator validator, HttpServletRequest request) {
         this.result = result;
         this.validator = validator;
-        this.request = request;
-        this.info = info;        
+        this.request = request;             
     }
    
     @Get
@@ -89,15 +88,39 @@ public class PhotoController {
         return fs;
     }
     
+    
+    private void addIncludes(PhotoMgrInstance photoInstance) {
+        result.include("photoInstance", photoInstance);
+        for (CollabElementInstance collabComponentInstance : photoInstance.getCollabElementInstances()) {
+            String nomeComponente = collabComponentInstance.getName();
+            result.include(nomeComponente, collabComponentInstance);
+            System.out.println("O componente elemento " + collabComponentInstance.getComponent().getCod() + " foi adicionado na requisição com o nome " + nomeComponente);
+        }
+        
+        //Adiciona os filhos        
+        for (CollabletInstance collabletInstance : photoInstance.getSubordinatedInstances()) {
+            String nomeComponente = collabletInstance.getComponentInstanceName();
+            result.include(nomeComponente, collabletInstance);
+            System.out.println("O componente filho" + collabletInstance.getComponent().getCod() + " foi adicionado na requisição com o nome " + nomeComponente);
+        }       
+        //Adiciona o antecessores        
+        CollabletInstance pae=photoInstance.getParent();
+        for(;pae!=null;){            
+            String nomeComponente = pae.getComponentInstanceName();
+            result.include(nomeComponente, pae);       
+            System.out.println("O componente antecessor " + pae.getComponent().getCod() + " foi adicionado na requisição com o nome " + nomeComponente);
+            pae=pae.getParent();
+        }
+    }
+        
+    
     @Post
     @Get
     @Path(value = "/groupware-workbench/{photoInstance}/photo/show/{idPhoto}")
-    public void show(PhotoMgrInstance photoInstance, long idPhoto) {
-        photoInstance.setRequestInfo(info);
+    public void show(PhotoMgrInstance photoInstance, long idPhoto) {        
         result.include("idPhoto", idPhoto);
         Photo photo = photoInstance.buscaPhotoById(idPhoto);
-        //addIncludes();
-        result.include("photoInstance", photoInstance);
+        //addIncludes();        
         result.include("photoTitle", photo.getNome());
         if (photo.getDescricao() != null && !photo.getDescricao().isEmpty()) {
             result.include("photoDescription", photo.getDescricao());
@@ -108,39 +131,30 @@ public class PhotoController {
         if (photo.getLugar() != null && !photo.getLugar().isEmpty()) {
             result.include("photoLocation", photo.getLugar());
         }
-        for (CollabElementInstance collabComponentInstance : photoInstance.getCollabElementInstances()) {
-            String nomeComponente = collabComponentInstance.getName();
-            result.include(nomeComponente, collabComponentInstance);
-            System.out.println("O componente " + collabComponentInstance.getComponent().getCod() + " foi adicionado na requisição com o nome " + nomeComponente);
-        }
-
+        addIncludes(photoInstance);
         photoInstance.processWidgets(request, photo);
     }
 
     @Get
     @Path(value = "/groupware-workbench/{photoInstance}/photo")
     public void busca(PhotoMgrInstance photoInstance) {
-        //addIncludes();
-        result.include("photoInstance", photoInstance);
-        for (CollabElementInstance collabComponentInstance : photoInstance.getCollabElementInstances()) {
-            String nomeComponente = collabComponentInstance.getName();
-            result.include(nomeComponente, collabComponentInstance);
-            System.out.println("O componente " + collabComponentInstance.getComponent().getCod() + " foi adicionado na requisição com o nome " + nomeComponente);
-        }
+        addIncludes(photoInstance);
     }
 
     @Post
     @Path(value = "/groupware-workbench/{photoInstance}/photo/buscaTag/{tagName}")
     public void buscaFotoPorId(String tagName, List<GenericEntity> photos, PhotoMgrInstance photoInstance) {
         List<Photo> resultFotosBusca = photoInstance.buscaFotoPorListaId(photos);
-
         result.include("fotos", resultFotosBusca);
         result.include("thumbPrefix", photoInstance.getThumbPrefix());
         result.include("cropPrefix", photoInstance.getCropPrefix());
         result.include("mostraPrefix", photoInstance.getMostraPrefix());
-        result.include("dirImagem", photoInstance.getDirImagesRelativo());
+        result.include("dirImagem", photoInstance.getDirImages());
         result.include("tagTerm", tagName);
         result.include("numResults", resultFotosBusca.size());
+        
+        addIncludes(photoInstance);
+        
         result.use(Results.logic()).redirectTo(PhotoController.class).busca(photoInstance);
     }
 
@@ -171,9 +185,11 @@ public class PhotoController {
         result.include("thumbPrefix", photoInstance.getThumbPrefix());
         result.include("cropPrefix", photoInstance.getCropPrefix());
         result.include("mostraPrefix", photoInstance.getMostraPrefix());
-        result.include("dirImagem", photoInstance.getDirImagesRelativo());
+        result.include("dirImagem", photoInstance.getDirImages());
         result.include("searchTerm", busca);
         result.include("numResults", resultFotosBusca.size());
+        
+        addIncludes(photoInstance);        
         result.use(Results.logic()).redirectTo(PhotoController.class).busca(photoInstance);
     }
 
@@ -202,29 +218,23 @@ public class PhotoController {
         result.include("fotos", resultFotosBusca);
         result.include("thumbPrefix", photoInstance.getThumbPrefix());
         result.include("cropPrefix", photoInstance.getCropPrefix());
-        result.include("dirImagem", photoInstance.getDirImagesRelativo());
+        result.include("dirImagem", photoInstance.getDirImages());
+        
+        addIncludes(photoInstance);
         result.use(Results.logic()).redirectTo(PhotoController.class).busca(photoInstance);
     }
 
     @Get
     @Path(value = "/groupware-workbench/{photoInstance}/photo/registra")
     public void registra(PhotoMgrInstance photoInstance) {
-        //addIncludes();
-
-        result.include("photoInstance", photoInstance);
-        for (CollabElementInstance collabComponentInstance : photoInstance.getCollabElementInstances()) {
-            String nomeComponente = collabComponentInstance.getName();
-            result.include(nomeComponente, collabComponentInstance);
-            System.out.println("O componente " + collabComponentInstance.getComponent().getCod() + " foi adicionado na requisição com o nome " + nomeComponente);
-        }
+        addIncludes(photoInstance);        
     }
 
     @Post
     @Path(value = "/groupware-workbench/{photoInstance}/photo/registra")
     public void save(Photo photoRegister, UploadedFile foto, PhotoMgrInstance photoInstance) {
 
-        // Validações:
-        photoInstance.setRequestInfo(info);
+        // Validações:        
         boolean erro = false;
         if (photoRegister.getNome().isEmpty()) {
             validator.add(new ValidationMessage(MSG_NOME_OBRIGATORIO, "Erro"));
@@ -286,7 +296,7 @@ public class PhotoController {
         }
 
         photoInstance.processWidgets(request, photoRegister);
-
+        addIncludes(photoInstance);
         result.use(Results.logic()).redirectTo(PhotoController.class).registra(photoInstance);
     }
 
@@ -298,5 +308,6 @@ public class PhotoController {
             return;
         }
         photoInstance.delete(idPhoto);
+        addIncludes(photoInstance);
     }
 }

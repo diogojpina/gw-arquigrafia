@@ -42,7 +42,7 @@
         <tag:scriptTags />
     </head>
     <body>
-        <arq:header2 photoInstance="${photoInstance}" siteInstance="${siteInstance}" />
+        <arq:header2 photoInstance="${photoInstance}" siteInstance="${ArquigrafiaBrasil}" />
         <form name="tags" method="post" enctype="multipart/form-data" action="<c:url value="/groupware-workbench/${photoInstance.id}/photo/show/${idPhoto}" />">
             <div id="photoTitle"><c:out value="${photoTitle}" /></div>
             <div id="photoAndBin">
@@ -175,6 +175,6 @@
             </c:if>
             <div style="height: 30px; width: 100%"></div>
         </form>
-        <arq:footer photoInstance="${photoInstance}" siteInstance="${siteInstance}" />
+        <arq:footer photoInstance="${photoInstance}" siteInstance="${ArquigrafiaBrasil}" />
     </body>
 </html>

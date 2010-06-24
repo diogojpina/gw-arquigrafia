@@ -17,7 +17,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import br.com.caelum.vraptor.core.RequestInfo;
 import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
 import br.com.caelum.vraptor.util.test.MockResult;
 import br.com.caelum.vraptor.util.test.MockValidator;
@@ -30,8 +29,7 @@ public class PhotoControllerTest {
     private PhotoController controller;
     private PhotoMgrInstance photoInstance;
     private MockResult result;
-    private LogicResult view;
-    private RequestInfo requestInfo;
+    private LogicResult view;    
     private HttpServletRequest httpServletRequest;
     private List<Photo> photos;
     private Photo photo1;
@@ -42,11 +40,11 @@ public class PhotoControllerTest {
         view = mock(LogicResult.class);
         result = new MockResult();
 
-        requestInfo = mock(RequestInfo.class);
+        
         httpServletRequest = mock(HttpServletRequest.class);
         photoInstance = mock(PhotoMgrInstance.class);
 
-        controller = new PhotoController(result, new MockValidator(), httpServletRequest, requestInfo);
+        controller = new PhotoController(result, new MockValidator(), httpServletRequest);
         when(view.redirectTo(PhotoController.class)).thenReturn(controller);
 
         photos = new ArrayList<Photo>();
@@ -187,7 +185,7 @@ public class PhotoControllerTest {
 
         UploadedFile file = getImage();
 
-        controller = new PhotoController(result, new MockValidator(), httpServletRequest, requestInfo);
+        controller = new PhotoController(result, new MockValidator(), httpServletRequest);
         when(view.redirectTo(PhotoController.class)).thenReturn(controller);
 
         controller.save(um, file, photoInstance);
