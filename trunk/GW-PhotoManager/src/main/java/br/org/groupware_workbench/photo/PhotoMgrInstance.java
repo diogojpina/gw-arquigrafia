@@ -14,27 +14,23 @@ public class PhotoMgrInstance extends CollabletInstance {
 
     private final PhotoDAO dao = DAOFactory.get(PhotoDAO.class);
 
-    // TODO: Não deve haver estado mutável transiente nesta classe, visto que ela é compartilhada entre diferentes
-    // Threads.
-        
-
     public PhotoMgrInstance() {
         super();
     }
 
-    public File imgThumb(String nomeArquivoUnico){
+    public File imgThumb(String nomeArquivoUnico) {
         return this.dao.getImageFile(getDirImages(), this.getThumbPrefix(), nomeArquivoUnico);        
     }
-    
-    public File imgCrop(String nomeArquivoUnico){
+
+    public File imgCrop(String nomeArquivoUnico) {
         return this.dao.getImageFile(getDirImages(), this.getCropPrefix(), nomeArquivoUnico);        
     }
-    
-    public File imgShow(String nomeArquivoUnico){
+
+    public File imgShow(String nomeArquivoUnico) {
         return this.dao.getImageFile(getDirImages(), this.getMostraPrefix(), nomeArquivoUnico);        
     }
-    
-    public File imgOriginal(String nomeArquivoUnico){
+
+    public File imgOriginal(String nomeArquivoUnico) {
         return this.dao.getImageFile(getDirImages(),"", nomeArquivoUnico);        
     }
 
@@ -75,28 +71,28 @@ public class PhotoMgrInstance extends CollabletInstance {
     public List<Photo> listaTodaPhoto() {
         return dao.listAll();
     }
-    
+
     public List<Photo> listaPhotoPorPaginaEOrdem(int tamanho, int pagina) {
-        return dao.listPhotoByPageAndOrder(tamanho,pagina);
+        return dao.listPhotoByPageAndOrder(tamanho, pagina);
     }
 
-    public String getThumbPrefix() {        
-        return ((PhotoMgrComponent)this.getComponent()).getThumbPrefix();
+    public String getThumbPrefix() {
+        return ((PhotoMgrComponent) this.getComponent()).getThumbPrefix();
     }
 
     public String getMostraPrefix() {
-        return ((PhotoMgrComponent)this.getComponent()).getMostraPrefix();      
+        return ((PhotoMgrComponent) this.getComponent()).getMostraPrefix();
     }
-    
-    public String getDirImagesAbsoluto() {      
+
+    public String getDirImagesAbsoluto() {
         return this.getDirImages();
     }
 
-    public String getCropPrefix() {     
-        return ((PhotoMgrComponent)this.getComponent()).getCropPrefix();
+    public String getCropPrefix() {
+        return ((PhotoMgrComponent) this.getComponent()).getCropPrefix();
     }
-    
-    public String getDirImages(){
-        return ((PhotoMgrComponent)this.getComponent()).getDirImages();
+
+    public String getDirImages() {
+        return ((PhotoMgrComponent) this.getComponent()).getDirImages();
     }
 }

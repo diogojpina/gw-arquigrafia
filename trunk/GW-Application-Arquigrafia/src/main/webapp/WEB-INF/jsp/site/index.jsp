@@ -51,29 +51,10 @@
                     <div class="scrollWrapper" id="images_scrollable">
                         <div class="scrollableArea">
                             <div class="wallBackground">
-                                <c:if test="${PhotoRegister != null}">                                	
-                               	    <photo:listPage linkClass="" photoInstance="${PhotoRegister}" keepRatio="false" showInDiv="true" divClass="wallImage" pageSize="5" pageNumber="0" wrapClass="imageColumn"/>
-                               	    <photo:listPage linkClass="" photoInstance="${PhotoRegister}" keepRatio="false" showInDiv="true" divClass="wallImage" pageSize="5" pageNumber="1" wrapClass="imageColumn"/>
-                               	    <photo:listPage linkClass="" photoInstance="${PhotoRegister}" keepRatio="false" showInDiv="true" divClass="wallImage" pageSize="5" pageNumber="2" wrapClass="imageColumn"/>
-                               	    <photo:listPage linkClass="" photoInstance="${PhotoRegister}" keepRatio="false" showInDiv="true" divClass="wallImage" pageSize="5" pageNumber="3" wrapClass="imageColumn"/>
-                               	    <photo:listPage linkClass="" photoInstance="${PhotoRegister}" keepRatio="false" showInDiv="true" divClass="wallImage" pageSize="5" pageNumber="4" wrapClass="imageColumn"/>
-                               	    <photo:listPage linkClass="" photoInstance="${PhotoRegister}" keepRatio="false" showInDiv="true" divClass="wallImage" pageSize="5" pageNumber="5" wrapClass="imageColumn"/>
-                               	    <photo:listPage linkClass="" photoInstance="${PhotoRegister}" keepRatio="false" showInDiv="true" divClass="wallImage" pageSize="5" pageNumber="6" wrapClass="imageColumn"/>
-                               	    <photo:listPage linkClass="" photoInstance="${PhotoRegister}" keepRatio="false" showInDiv="true" divClass="wallImage" pageSize="5" pageNumber="7" wrapClass="imageColumn"/>
-                               	    <photo:listPage linkClass="" photoInstance="${PhotoRegister}" keepRatio="false" showInDiv="true" divClass="wallImage" pageSize="5" pageNumber="8" wrapClass="imageColumn"/>
-                               	    <photo:listPage linkClass="" photoInstance="${PhotoRegister}" keepRatio="false" showInDiv="true" divClass="wallImage" pageSize="5" pageNumber="9" wrapClass="imageColumn"/>
-                               	    <photo:listPage linkClass="" photoInstance="${PhotoRegister}" keepRatio="false" showInDiv="true" divClass="wallImage" pageSize="5" pageNumber="10" wrapClass="imageColumn"/>
-                               	    <photo:listPage linkClass="" photoInstance="${PhotoRegister}" keepRatio="false" showInDiv="true" divClass="wallImage" pageSize="5" pageNumber="11" wrapClass="imageColumn"/>
-                               	    <photo:listPage linkClass="" photoInstance="${PhotoRegister}" keepRatio="false" showInDiv="true" divClass="wallImage" pageSize="5" pageNumber="12" wrapClass="imageColumn"/>
-                               	    <photo:listPage linkClass="" photoInstance="${PhotoRegister}" keepRatio="false" showInDiv="true" divClass="wallImage" pageSize="5" pageNumber="13" wrapClass="imageColumn"/>
-                               	    <photo:listPage linkClass="" photoInstance="${PhotoRegister}" keepRatio="false" showInDiv="true" divClass="wallImage" pageSize="5" pageNumber="14" wrapClass="imageColumn"/>
-                               	    <photo:listPage linkClass="" photoInstance="${PhotoRegister}" keepRatio="false" showInDiv="true" divClass="wallImage" pageSize="5" pageNumber="15" wrapClass="imageColumn"/>
-                               	    <photo:listPage linkClass="" photoInstance="${PhotoRegister}" keepRatio="false" showInDiv="true" divClass="wallImage" pageSize="5" pageNumber="16" wrapClass="imageColumn"/>
-                               	    <photo:listPage linkClass="" photoInstance="${PhotoRegister}" keepRatio="false" showInDiv="true" divClass="wallImage" pageSize="5" pageNumber="17" wrapClass="imageColumn"/>
-                               	    <photo:listPage linkClass="" photoInstance="${PhotoRegister}" keepRatio="false" showInDiv="true" divClass="wallImage" pageSize="5" pageNumber="18" wrapClass="imageColumn"/>
-                               	    <photo:listPage linkClass="" photoInstance="${PhotoRegister}" keepRatio="false" showInDiv="true" divClass="wallImage" pageSize="5" pageNumber="19" wrapClass="imageColumn"/>
-                               	    <photo:listPage linkClass="" photoInstance="${PhotoRegister}" keepRatio="false" showInDiv="true" divClass="wallImage" pageSize="5" pageNumber="20" wrapClass="imageColumn"/>
-                               	    <photo:listPage linkClass="" photoInstance="${PhotoRegister}" keepRatio="false" showInDiv="true" divClass="wallImage" pageSize="5" pageNumber="21" wrapClass="imageColumn"/>
+                                <c:if test="${PhotoRegister != null}">
+                                    <c:forEach begin="0" end="21" var="indice">
+                                        <photo:listPage linkClass="" photoInstance="${PhotoRegister}" keepRatio="false" showInDiv="true" divClass="wallImage" pageSize="5" pageNumber="${indice}" wrapClass="imageColumn" />
+                                    </c:forEach>
                                 </c:if>
                                 <div class="image_placeholder" id="1">
                                     <img src="${pageContext.request.contextPath}/images/ajax-loader.gif" alt="loading" />

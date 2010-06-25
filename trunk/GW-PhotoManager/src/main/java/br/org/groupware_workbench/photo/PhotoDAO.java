@@ -26,10 +26,9 @@ public class PhotoDAO extends GenericDAO<Photo> {
         file.createNewFile();
         IOUtils.copy(foto, new FileOutputStream(file));
     }
-    
-    
-    public File getImageFile(String pasta, String prefix,  String nomeArquivoUnico){        
-        String path=pasta+prefix+nomeArquivoUnico;
+
+    public File getImageFile(String pasta, String prefix, String nomeArquivoUnico) {
+        String path= pasta + prefix + nomeArquivoUnico;
         return new File(path);
     }
 
@@ -104,7 +103,7 @@ public class PhotoDAO extends GenericDAO<Photo> {
 
         return result;
     }
-    
+
     public List<Photo> listPhotoByPageAndOrder(int pageSize, int pageNumber) {
         String querySentence = "SELECT p FROM " + Photo.class.getSimpleName() + " p ORDER BY p.dataCriacao DESC";
         Query query = getEntityManager().createQuery(querySentence);

@@ -15,14 +15,15 @@ import br.org.groupware_workbench.coreutils.ComponentInfo;
     configurationURL="/groupware-workbench/{photoInstance}/photo"
 )
 public class PhotoMgrComponent extends Collablet {
+
     private String dirImages = "images";
     private String cropPrefix = "crop_";
     private String thumbPrefix = "thumb_";
     private String mostraPrefix = "mostra_";
-           
+
     public PhotoMgrComponent() {
     }
-    
+
     @SuppressWarnings("unchecked")
     @Override
     protected void applyConfiguration(Element xml, boolean isInstalling) {
@@ -31,13 +32,13 @@ public class PhotoMgrComponent extends Collablet {
         List<Node> show = doc.selectNodes("//collablet/specific-configuration/show-prefix");
         List<Node> crop = doc.selectNodes("//collablet/specific-configuration/crop-prefix");
         List<Node> thumb = doc.selectNodes("//collablet/specific-configuration/thumbnail-prefix");
-        
+
         if (imageDirectory != null) {
-            dirImages = imageDirectory.get(0).valueOf("@value")+File.separator;
-            File dir=new File(dirImages);
-            if(!dir.exists()){
+            dirImages = imageDirectory.get(0).valueOf("@value") + File.separator;
+            File dir = new File(dirImages);
+            if (!dir.exists()) {
                 dir.mkdir();
-            }                        
+            }
         }
         if (show != null) {
             mostraPrefix = show.get(0).valueOf("@value");
@@ -47,38 +48,22 @@ public class PhotoMgrComponent extends Collablet {
         }
         if (thumb != null) {
             thumbPrefix = thumb.get(0).valueOf("@value");
-        }                      
+        }
     }
 
     public String getDirImages() {
         return dirImages;
     }
 
-    public void setDirImages(String dirImages) {
-        this.dirImages = dirImages;
-    }
-
     public String getCropPrefix() {
         return cropPrefix;
-    }
-
-    public void setCropPrefix(String cropPrefix) {
-        this.cropPrefix = cropPrefix;
     }
 
     public String getThumbPrefix() {
         return thumbPrefix;
     }
 
-    public void setThumbPrefix(String thumbPrefix) {
-        this.thumbPrefix = thumbPrefix;
-    }
-
     public String getMostraPrefix() {
         return mostraPrefix;
-    }
-
-    public void setMostraPrefix(String mostraPrefix) {
-        this.mostraPrefix = mostraPrefix;
     }
 }

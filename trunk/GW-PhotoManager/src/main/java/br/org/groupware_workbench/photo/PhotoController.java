@@ -9,9 +9,7 @@ import java.io.InputStream;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -43,52 +41,50 @@ public class PhotoController {
     public static final String MSG_IMAGEM_OBRIGATORIA = "Uma imagem é obrigatória.";
     public static final String MSG_NAO_FOI_POSSIVEL_REDIMENSIONAR = "Não foi possível redimensionar a imagem.";
     public static final String MSG_FALHA_NO_UPLOAD = "Falha ao fazer o upload da imagem.";
-    public static final String MSG_ENTIDADE_INVALIDA = "Não é uma entidade válida";
+    public static final String MSG_ENTIDADE_INVALIDA = "Não é uma entidade válida.";
 
     private final Result result;
     private final HttpServletRequest request;
     private final Validator validator;
-    
 
     public PhotoController(Result result, Validator validator, HttpServletRequest request) {
         this.result = result;
         this.validator = validator;
-        this.request = request;             
+        this.request = request;
     }
-   
+
     @Get
-    @Path(value = "/groupware-workbench/{photoInstance}/photo/img-thumb/{nomeArquivoUnico}")    
-    public Download imgThumb(PhotoMgrInstance photoInstance, String nomeArquivoUnico){        
-        File file=photoInstance.imgThumb(nomeArquivoUnico);
-        FileDownload fs=new FileDownload(file, "image/jpg", file.getName());
+    @Path(value = "/groupware-workbench/{photoInstance}/photo/img-thumb/{nomeArquivoUnico}")
+    public Download imgThumb(PhotoMgrInstance photoInstance, String nomeArquivoUnico) {
+        File file = photoInstance.imgThumb(nomeArquivoUnico);
+        FileDownload fs = new FileDownload(file, "image/jpg", file.getName());
+        return fs;
+    }
+
+    @Get
+    @Path(value = "/groupware-workbench/{photoInstance}/photo/img-show/{nomeArquivoUnico}")
+    public Download imgShow(PhotoMgrInstance photoInstance, String nomeArquivoUnico) {
+        File file = photoInstance.imgShow(nomeArquivoUnico);
+        FileDownload fs = new FileDownload(file, "image/jpg", file.getName());
+        return fs;
+    }
+
+    @Get
+    @Path(value = "/groupware-workbench/{photoInstance}/photo/img-crop/{nomeArquivoUnico}")
+    public Download imgCrop(PhotoMgrInstance photoInstance, String nomeArquivoUnico) {
+        File file = photoInstance.imgCrop(nomeArquivoUnico);
+        FileDownload fs = new FileDownload(file, "image/jpg", file.getName());
         return fs;
     }
     
     @Get
-    @Path(value = "/groupware-workbench/{photoInstance}/photo/img-show/{nomeArquivoUnico}")    
-    public Download imgShow(PhotoMgrInstance photoInstance, String nomeArquivoUnico){        
-        File file=photoInstance.imgShow(nomeArquivoUnico);
-        FileDownload fs=new FileDownload(file, "image/jpg", file.getName());
+    @Path(value = "/groupware-workbench/{photoInstance}/photo/img-original/{nomeArquivoUnico}")
+    public Download imgOriginal(PhotoMgrInstance photoInstance, String nomeArquivoUnico) {
+        File file = photoInstance.imgOriginal(nomeArquivoUnico);
+        FileDownload fs = new FileDownload(file, "image/jpg", file.getName());
         return fs;
     }
-    
-    @Get
-    @Path(value = "/groupware-workbench/{photoInstance}/photo/img-crop/{nomeArquivoUnico}")    
-    public Download imgCrop(PhotoMgrInstance photoInstance, String nomeArquivoUnico){        
-        File file=photoInstance.imgCrop(nomeArquivoUnico);
-        FileDownload fs=new FileDownload(file, "image/jpg", file.getName());
-        return fs;
-    }
-    
-    @Get
-    @Path(value = "/groupware-workbench/{photoInstance}/photo/img-original/{nomeArquivoUnico}")    
-    public Download imgOriginal(PhotoMgrInstance photoInstance, String nomeArquivoUnico){        
-        File file=photoInstance.imgOriginal(nomeArquivoUnico); 
-        FileDownload fs=new FileDownload(file, "image/jpg", file.getName());
-        return fs;
-    }
-    
-    
+
     private void addIncludes(PhotoMgrInstance photoInstance) {
         result.include("photoInstance", photoInstance);
         for (CollabElementInstance collabComponentInstance : photoInstance.getCollabElementInstances()) {
@@ -96,31 +92,28 @@ public class PhotoController {
             result.include(nomeComponente, collabComponentInstance);
             System.out.println("O componente elemento " + collabComponentInstance.getComponent().getCod() + " foi adicionado na requisição com o nome " + nomeComponente);
         }
-        
-        //Adiciona os filhos        
+
+        //Adiciona os filhos.
         for (CollabletInstance collabletInstance : photoInstance.getSubordinatedInstances()) {
             String nomeComponente = collabletInstance.getComponentInstanceName();
             result.include(nomeComponente, collabletInstance);
             System.out.println("O componente filho" + collabletInstance.getComponent().getCod() + " foi adicionado na requisição com o nome " + nomeComponente);
-        }       
-        //Adiciona o antecessores        
-        CollabletInstance pae=photoInstance.getParent();
-        for(;pae!=null;){            
-            String nomeComponente = pae.getComponentInstanceName();
-            result.include(nomeComponente, pae);       
-            System.out.println("O componente antecessor " + pae.getComponent().getCod() + " foi adicionado na requisição com o nome " + nomeComponente);
-            pae=pae.getParent();
+        }
+
+        for (CollabletInstance pai : photoInstance.getParentsInstances()) {
+            String nomeComponente = pai.getComponentInstanceName();
+            result.include(nomeComponente, pai);
+            System.out.println("O componente antecessor " + pai.getComponent().getCod() + " foi adicionado na requisição com o nome " + nomeComponente);
         }
     }
-        
-    
+
     @Post
     @Get
     @Path(value = "/groupware-workbench/{photoInstance}/photo/show/{idPhoto}")
-    public void show(PhotoMgrInstance photoInstance, long idPhoto) {        
+    public void show(PhotoMgrInstance photoInstance, long idPhoto) {
         result.include("idPhoto", idPhoto);
         Photo photo = photoInstance.buscaPhotoById(idPhoto);
-        //addIncludes();        
+        //addIncludes();
         result.include("photoTitle", photo.getNome());
         if (photo.getDescricao() != null && !photo.getDescricao().isEmpty()) {
             result.include("photoDescription", photo.getDescricao());
@@ -152,9 +145,9 @@ public class PhotoController {
         result.include("dirImagem", photoInstance.getDirImages());
         result.include("tagTerm", tagName);
         result.include("numResults", resultFotosBusca.size());
-        
+
         addIncludes(photoInstance);
-        
+
         result.use(Results.logic()).redirectTo(PhotoController.class).busca(photoInstance);
     }
 
@@ -167,18 +160,6 @@ public class PhotoController {
             return;
         }
 
-        @SuppressWarnings("unchecked") // Cast desnecessário no Java EE 6. Necessário no Java EE 5.
-        Map<String, String[]> params = request.getParameterMap();
-        for (CollabElementInstance instance : photoInstance.getCollabElementInstances()) {
-            String nome = instance.getName();
-            Map<String, String[]> collabParams = new HashMap<String, String[]>();
-            for (Map.Entry<String, String[]> param : params.entrySet()) {
-                String paramName = param.getKey();
-                if (!paramName.startsWith(nome + ".")) continue;
-                collabParams.put(paramName.substring(nome.length() + 1), param.getValue());
-            }
-        }
-
         List<Photo> resultFotosBusca = photoInstance.buscaFoto(busca);
 
         result.include("fotos", resultFotosBusca);
@@ -188,8 +169,8 @@ public class PhotoController {
         result.include("dirImagem", photoInstance.getDirImages());
         result.include("searchTerm", busca);
         result.include("numResults", resultFotosBusca.size());
-        
-        addIncludes(photoInstance);        
+
+        addIncludes(photoInstance);
         result.use(Results.logic()).redirectTo(PhotoController.class).busca(photoInstance);
     }
 
@@ -202,24 +183,12 @@ public class PhotoController {
             return;
         }
 
-        @SuppressWarnings("unchecked") // Cast desnecessário no Java EE 6. Necessário no Java EE 5.
-        Map<String, String[]> params = request.getParameterMap();
-        for (CollabElementInstance instance : photoInstance.getCollabElementInstances()) {
-            String nomeI = instance.getName();
-            Map<String, String[]> collabParams = new HashMap<String, String[]>();
-            for (Map.Entry<String, String[]> param : params.entrySet()) {
-                String paramName = param.getKey();
-                if (!paramName.startsWith(nomeI + ".")) continue;
-                collabParams.put(paramName.substring(nomeI.length() + 1), param.getValue());
-            }
-        }
-
         List<Photo> resultFotosBusca = photoInstance.buscaFotoAvancada(nome, lugar, descricao, date);
         result.include("fotos", resultFotosBusca);
         result.include("thumbPrefix", photoInstance.getThumbPrefix());
         result.include("cropPrefix", photoInstance.getCropPrefix());
         result.include("dirImagem", photoInstance.getDirImages());
-        
+
         addIncludes(photoInstance);
         result.use(Results.logic()).redirectTo(PhotoController.class).busca(photoInstance);
     }
@@ -227,14 +196,14 @@ public class PhotoController {
     @Get
     @Path(value = "/groupware-workbench/{photoInstance}/photo/registra")
     public void registra(PhotoMgrInstance photoInstance) {
-        addIncludes(photoInstance);        
+        addIncludes(photoInstance);
     }
 
     @Post
     @Path(value = "/groupware-workbench/{photoInstance}/photo/registra")
     public void save(Photo photoRegister, UploadedFile foto, PhotoMgrInstance photoInstance) {
 
-        // Validações:        
+        // Validações:
         boolean erro = false;
         if (photoRegister.getNome().isEmpty()) {
             validator.add(new ValidationMessage(MSG_NOME_OBRIGATORIO, "Erro"));
@@ -254,22 +223,20 @@ public class PhotoController {
 
         String nomeArquivo = foto.getFileName();
         photoRegister.setNomeArquivo(nomeArquivo);
-        byte[] rawphoto = null;
         InputStream imagemOriginal = null;
         InputStream imagemThumb = null;
-        InputStream imagemThumb2 = null;
         InputStream imagemCropped = null;
         InputStream imagemMostra = null;
 
         try {
-            rawphoto = new byte[foto.getFile().available()];
+            byte[] rawphoto = new byte[foto.getFile().available()];
             foto.getFile().read(rawphoto); 
             imagemOriginal = new ByteArrayInputStream(rawphoto);
             imagemMostra = ImageUtils.createThumbnailIfNecessary(800, imagemOriginal, true);
             imagemOriginal.reset();
             imagemThumb = ImageUtils.createThumbnailIfNecessary(100, imagemOriginal, true);
             imagemOriginal.reset();
-            imagemThumb2 = ImageUtils.createThumbnailIfNecessary(100, imagemOriginal, false);
+            InputStream imagemThumb2 = ImageUtils.createThumbnailIfNecessary(100, imagemOriginal, false);
             imagemThumb2.reset();
             Point cropPoint = ImageUtils.calcSqrThumbCropPoint(imagemThumb2);
             imagemThumb2.reset();
