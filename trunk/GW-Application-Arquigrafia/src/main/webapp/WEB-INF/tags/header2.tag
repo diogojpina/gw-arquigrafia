@@ -31,9 +31,8 @@
             <a href="mailto:test@somewhere" class="white_link">Reportar Problema</a>
         </div>
         <div id="user_bottom_links">
-            <a href="#" id="link_profile"><img src="${pageContext.request.contextPath}/images/profile_bt.gif" width="43" height="13" alt="perfil" /></a>
-            <a href="#" id="link_pictures"><img src="${pageContext.request.contextPath}/images/pictures_bt.gif" width="45" height="13" alt="fotos" /></a>
-            <a href="#" id="drop_plus"><img src="${pageContext.request.contextPath}/images/plus_bt.gif" width="41" height="13" alt="mais" /></a>
+        	<!--  TODO: reativar links, quando for criado o lado de rede social do site -->
+        	<div style="height: 13px"></div>
         </div>
     </div>
     <div id="top_links" class="blue_link">
