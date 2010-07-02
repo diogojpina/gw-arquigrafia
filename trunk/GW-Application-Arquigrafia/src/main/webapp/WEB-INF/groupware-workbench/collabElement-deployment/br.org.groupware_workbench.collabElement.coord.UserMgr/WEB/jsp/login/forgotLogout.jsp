@@ -8,9 +8,10 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta http-equiv="Cache-Control" content="no-cache">
         <title>Login</title>
+        <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.ico" />
+        <link href="${pageContext.request.contextPath}/css/login.css" rel="stylesheet" type="text/css" />
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.validate.js"></script>
-        <link href="${pageContext.request.contextPath}/css/login.css" rel="stylesheet" type="text/css" />
     </head>
     <body>
         <%--

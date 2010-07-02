@@ -31,8 +31,8 @@
             <a href="mailto:test@somewhere" class="white_link">Reportar Problema</a>
         </div>
         <div id="user_bottom_links">
-        	<!--  TODO: reativar links, quando for criado o lado de rede social do site -->
-        	<div style="height: 13px"></div>
+            <!--  TODO: reativar links, quando for criado o lado de rede social do site. -->
+            <div style="height: 13px"></div>
         </div>
     </div>
     <div id="top_links" class="blue_link">

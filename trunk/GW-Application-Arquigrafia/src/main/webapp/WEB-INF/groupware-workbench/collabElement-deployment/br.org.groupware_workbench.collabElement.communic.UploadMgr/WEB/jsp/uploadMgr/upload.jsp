@@ -7,6 +7,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta http-equiv="Cache-Control" content="no-cache">
         <title>Upload</title>
+        <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.ico" />
     </head>
     <body>
         <form name="uploadForm" method="post" enctype="multipart/form-data" action="<c:url value="/groupware-workbench/${collabletInstance.id}/doUpload" />">

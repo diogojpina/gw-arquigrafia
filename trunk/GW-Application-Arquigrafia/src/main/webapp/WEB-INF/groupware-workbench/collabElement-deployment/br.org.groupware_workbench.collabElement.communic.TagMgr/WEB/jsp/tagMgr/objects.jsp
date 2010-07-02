@@ -9,18 +9,18 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta http-equiv="Cache-Control" content="no-cache">
-        <title>Arquigrafia Brasil - Busca por tags<title>
-        <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.ico">
-        <link href="${pageContext.request.contextPath}/css/reset.css" rel="stylesheet" type="text/css" />
-        <link href="${pageContext.request.contextPath}/css/arq-common.css" rel="stylesheet" type="text/css" />
-        <link href="${pageContext.request.contextPath}/css/header.css" rel="stylesheet" type="text/css" />
-        <link href="${pageContext.request.contextPath}/css/search.css" rel="stylesheet" type="text/css" />
-        <link href="${pageContext.request.contextPath}/css/forms.css" rel="stylesheet" type="text/css" />
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/sds/css/smoothDivScroll.css" type="text/css" media="screen" />
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bay.css" type="text/css" media="screen" />
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/tagcloud.css" type="text/css" media="screen" />
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css" type="text/css" media="screen" />
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/jquery.css" type="text/css" media="screen" />
+        <title>Arquigrafia Brasil - Busca por tags</title>
+        <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.ico" />
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css" />
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/arq-common.css" />
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/header.css" />
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/search.css" />
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/forms.css" />
+        <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/plugins/sds/css/smoothDivScroll.css" />
+        <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/bay.css" />
+        <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/tagcloud.css" />
+        <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/footer.css" />
+        <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/jquery.css" />
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-ui-1.8.custom.min.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/plugins/sds/js/jquery.smoothDivScroll-0.9-min.js"></script>

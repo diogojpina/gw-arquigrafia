@@ -8,16 +8,17 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta http-equiv="Cache-Control" content="no-cache">
         <title>Gerenciador de Ferramentas</title>
-        <link href="${pageContext.request.contextPath}/css/reset.css" rel="stylesheet" type="text/css" />
-        <link href="${pageContext.request.contextPath}/css/common.css" rel="stylesheet" type="text/css" />
+        <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.ico" />
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css" />
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css" />
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/listagem.js"></script>
     </head>
     <body>
         <w:topo collabletInstance="${collabletInstance}" />
         <w:conteudoPagina titulo="Gerenciador de Ferramentas">
             <form method="post" action="<c:url value="/groupware-workbench/${collabletInstance.id}/collabletMgr/refresh" />">
-                <c:if test="${collabletInstanceList != null}">
-                    <c:if test="${collabletInstancesSize != 0}">
+                <c:choose>
+                    <c:when test="${not empty collabletInstance.subordinatedInstances}">
                         <br />
                         Abaixo est&atilde;o as Ferramentas que podem ser usados neste contexto.
                         <br />
@@ -36,7 +37,7 @@
                                     <th style="border-color: black; border-width: 1px; border-style: solid; ">Descri&ccedil;&atilde;o</th>
                                 </tr>
                             </thead>
-                            <c:forEach var="instance" items="${collabletInstanceList}">
+                            <c:forEach var="instance" items="${collabletInstance.subordinatedInstances}">
                                 <tr>
                                     <td style="border-color: black; border-width: 1px; border-style: solid;">
                                         <input type="hidden" name="allCollabletComponentCods" value="<c:out value="${instance.component.cod}" />" />
@@ -49,14 +50,14 @@
                                 </tr>
                             </c:forEach>
                         </table>
-                    </c:if>
-                    <c:if test="${collabletInstancesSize == 0}">
+                    </c:when>
+                    <c:otherwise>
                         <br />
                         N&atilde;o existem ferramentas para serem utilizadas neste contexto.
                         <br />
                         <br />
-                    </c:if>
-                </c:if>
+                    </c:otherwise>
+                </c:choose>
                 <div style=" clear: both; padding-top: 8px;">
                     <input class="botao" type="submit" name="Ok" value="Ok - Refresh" />
                 </div>
