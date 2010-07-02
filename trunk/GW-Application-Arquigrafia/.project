@@ -8,8 +8,8 @@
 		<project>GW-commons-widgets</project>
 		<project>GW-core</project>
 		<project>GW-Libs</project>
-		<project>GW-PhotoManager</project>
 		<project>GW-ExternalSiteManager</project>
+		<project>GW-PhotoManager</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

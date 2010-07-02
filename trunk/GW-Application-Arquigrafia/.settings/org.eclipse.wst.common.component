@@ -22,10 +22,10 @@
         <dependent-module archiveName="GW-Libs.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/GW-Libs/GW-Libs">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="GW-PhotoManager.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/GW-PhotoManager/GW-PhotoManager">
+        <dependent-module archiveName="GW-ExternalSiteManager.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/GW-ExternalSiteManager/GW-ExternalSiteManager">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="GW-ExternalSiteManager.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/GW-ExternalSiteManager/GW-ExternalSiteManager">
+        <dependent-module archiveName="GW-PhotoManager.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/GW-PhotoManager/GW-PhotoManager">
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <property name="java-output-path"/>

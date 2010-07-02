@@ -39,52 +39,66 @@
         <script src="${pageContext.request.contextPath}/scripts/jquery.accordion.js" type="text/javascript"></script>
         <script src="${pageContext.request.contextPath}/scripts/bay.js" type="text/javascript"></script>
         <script src="${pageContext.request.contextPath}/scripts/curvycorners.src.js" type="text/javascript"></script>
+        <script type="text/javascript">
+        $(document).ready(function() {
+
+            function pageResize() {
+                var maxWidth = $(window).width() - 325; // Max width for the image
+                var maxHeight = 600;       // Max height for the image
+                $('.resizeblePhoto1 img').css("width", "auto").css("height", "auto"); // Remove existing CSS
+                $("#photoWrap").css("margin-left", "auto");
+                $('.resizeblePhoto1 img').removeAttr("width").removeAttr("height"); // Remove HTML attributes
+                var width = $('.resizeblePhoto1 img').width();    // Current image width
+                var height = $('.resizeblePhoto1 img').height();  // Current image height
+
+                if(width > height) {
+                        // Check if the current width is larger than the max
+                        if(width > maxWidth){
+                                var ratio = maxWidth / width;   // get ratio for scaling image
+                                $('.resizeblePhoto1 img').css("width", maxWidth); // Set new width
+                                $('.resizeblePhoto1 img').css("height", height * ratio);  // Scale height based on ratio
+                                height = height * ratio;        // Reset height to match scaled image
+                        }
+                        else {
+	                        $("#photoWrap").css("margin-left", (maxWidth - width) / 2);
+                        }
+                } else {
+                        // Check if current height is larger than max
+                        if(height > maxHeight){
+                                var ratio = maxHeight / height; // get ratio for scaling image
+                                $('.resizeblePhoto1 img').css("height", maxHeight);   // Set new height
+                                $('.resizeblePhoto1 img').css("width", width * ratio);    // Scale width based on ratio
+                                width = width * ratio;  // Reset width to match scaled image
+                        }
+                }
+				$("#photoBackground").css("height", height + 62);
+                $("#binomialsWrap").css("max-height", height - 30);
+                $("#comments_bar_bg").css("width", maxWidth - 20);
+                $("#comments_create").css("width", maxWidth - 20);
+               	$("#comments_show").css("width", maxWidth - 10);
+            }
+
+            $('.resizeblePhoto1 img').load(function(){
+            	pageResize();//Triggers when document first loads
+            });      
+           
+            $(window).bind("resize", function(){//Adjusts image when browser resized  
+            	pageResize();  
+            });  
+        });
+        </script>
         <binomial:scriptBinomial />
         <tag:scriptTags />
     </head>
     <body>
         <arq:header2 photoInstance="${photoInstance}" siteInstance="${ArquigrafiaBrasil}" />
         <form name="tags" method="post" enctype="multipart/form-data" action="<c:url value="/groupware-workbench/${photoInstance.id}/photo/show/${idPhoto}" />">
-            <div id="photoTitle"><c:out value="${photoTitle}" /></div>
-            <div id="photoAndBin">
-                <div id="binArea">
-                    <div id="internalBinArea">
-                        <span id="binTitle">Medidores</span>
-                        <br />
-                        <br />
-                        <c:if test="${binomialMgr != null}">
-                            <binomial:setBinomial idObject="${idPhoto}" binomialMgr="${binomialMgr}" user="${sessionScope.userLogin}"
-                                    binLabelClass="binLabelClass" binValueClass="binValueClass" binWrapClass="binWrapClass" />
-                        </c:if>
-                    </div>
-                    <div id="binomialSubmit" style="clear: both">
-                        <input type="submit" name="saveBinomial" value="salvar" />
-                    </div>
-                    <div class="blueTextBox" id="caracteristics">
-                        <h3>Caracter&iacute;sticas</h3>
-                        <c:if test="${photoDate != null}">
-                            <div>Tirada em: <c:out value="${photoDate}" /></div>
-                        </c:if>
-                        <c:if test="${photoResolution != null}">
-                            <div>Resolu&ccedil;&atilde;o: <c:out value="${photoResolution}" /></div>
-                        </c:if>
-                        <c:if test="${photoLocation != null}">
-                            <div>Local: <c:out value="${photoLocation}" /></div>
-                        </c:if>
-                    </div>
-
-                    <div class="blueTextBox" id="description">
-                        <c:if test="${photoDescription != null}">
-                            <h4>Descri&ccedil;&atilde;o</h4>
-                            <p><c:out value="${photoDescription}" /></p>
-                        </c:if>
-                    </div>
-                </div>
-                <div id="photoAndTagArea">
-                    <div id="photoArea">
-                        <photo:show idPhoto="${idPhoto}" photoInstance="${photoInstance}" />
-                    </div>
-                   <div id="tagsAndEval">
+        <div id="photoWrap">
+        		<c:if test="${photoInstance != null}">
+        		    <div id="photoTitle"><c:out value="${photoTitle}" /></div>
+        		    <div id="photo" class="resizeblePhoto1" ><photo:show idPhoto="${idPhoto}" photoInstance="${photoInstance}" /></div>
+        	    </c:if>
+        	    <div id="tagsAndEval">
                         <div id="evalAndAdd">
                             <div id="eval">
                                 <img src="${pageContext.request.contextPath}/images/evaluation_mock.png" alt="" />
@@ -125,11 +139,41 @@
                             $("#tagsAdd").hide();
                         });
                     </script>
+        	</div>
+           <div id="photoRel">
+        	<div id="binomialsWrap">
+        	    <c:if test="${binomialMgr != null}">
+        		   <div id="binomialsTitle">Medidores</div>
+        		   <binomial:setBinomial idObject="${idPhoto}" binomialMgr="${binomialMgr}" user="${sessionScope.userLogin}"
+                                    binLabelClass="binLabelClass" binValueClass="binValueClass" binWrapClass="binWrapClass" />
+				    <div id="binomialSubmit" style="clear: both">
+                        <input type="submit" name="saveBinomial" value="salvar" />
+                    </div>
+        		</c:if>
+        	</div>
+           </div>
+           <div id="photoBackground"></div>
+           <div id="photoRelSub">
+        	<div id="caracteristicsWrap">
+        		<div id="caracteristicsTitle" style="background-color: #B8C7CF" >Caracter&iacute;sticas</div>
+	            <c:if test="${photoDate != null}">
+                    <div style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; color: #6A8A9A; padding-left: 20px; margin-top: 5px;" >Tirada em: <c:out value="${photoDate}" /></div>
+                </c:if>
+                <c:if test="${photoResolution != null}">
+                    <div  style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; color: #6A8A9A; padding-left: 20px; margin-top: 5px;" >Resolu&ccedil;&atilde;o: <c:out value="${photoResolution}" /></div>
+                </c:if>
+                <c:if test="${photoLocation != null}">
+                    <div  style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; color: #6A8A9A; padding-left: 20px; margin-top: 5px;" >Local: <c:out value="${photoLocation}" /></div>
+                </c:if>
+        	</div>
+        	<c:if test="${photoDescription != null}">
+        	    <div id="descriptionWrap">                      
+                    <div id="descriptionTitle"  style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; font-weight: bold; color: #6A8A9A; margin-top: 15px; background-color: #B8C7CF" >Descri&ccedil;&atilde;o</div>
+                    <p  style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight; color: #6A8A9A; padding-left: 20px; margin-top: 5px;" ><c:out value="${photoDescription}" /></p>
                 </div>
-            </div>
-
+           </c:if>
+           </div>
             <c:if test="${commentMgr != null}">
-                <div style="height: 10px; width: 100%; clear: both"></div>
                 <div id="comments_bar">
                     <div id="comments_bar_left"></div>
                     <div id="comments_bar_bg">
@@ -140,7 +184,6 @@
                     </div>
                     <div id="comments_bar_right"></div>
                 </div>
-                <div style="height: 10px; width: 100%; clear: both"></div>
                 <div id="comments_create" style="height: 130px;">
                     <comment:addComment commentMgr="${commentMgr}" idObject="${idPhoto}" user="${sessionScope.userLogin}" editorClass="editorClass" wrapClass="comments_create_internal"/>
                     <input name="commentAdd" value="Adicionar" type="submit" />
@@ -174,7 +217,7 @@
                     });
                 </script>
             </c:if>
-            <div style="height: 30px; width: 100%"></div>
+            <div style="height: 30px; width: 100%; clear: both"></div>
         </form>
         <arq:footer photoInstance="${photoInstance}" siteInstance="${ArquigrafiaBrasil}" />
     </body>
