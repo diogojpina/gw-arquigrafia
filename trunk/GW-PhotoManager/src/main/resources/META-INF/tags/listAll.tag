@@ -10,8 +10,7 @@
 <%@ attribute name="wrapClass" required="false" rtexprvalue="true" type="java.lang.String" %>
 
 <r:callMethod methodName="listaTodaPhoto" instance="${photoInstance}" var="fotosA" />
-<c:set var="dirImagemA" value="${photoInstance.dirImagesRelativo}" />
-<c:set var="showPrefixA" value="${photoInstance.mostraPrefix}" />
+
 
 <div class="wrapClass">
     <c:choose>
@@ -26,8 +25,7 @@
         <c:if test="${showInDiv}">
             <div class="<c:out value="${divClass}" />">
         </c:if>
-        <a class="${linkClass}" rel="linkimage" href="<c:url value="/groupware-workbench/${photoInstance.id}/photo/show/${fotoA.id}"/>">
-            <%--img src="${pageContext.request.contextPath}/${dirImagemA}/${thumbPrefix}${fotoA.nomeArquivoUnico}" /--%>
+        <a class="${linkClass}" rel="linkimage" href="<c:url value="/groupware-workbench/${photoInstance.id}/photo/show/${fotoA.id}"/>">            
             <img src="<c:url value="/groupware-workbench/${photoInstance.id}/photo/img-thumb/${fotoA.nomeArquivoUnico}"/>"/>
         </a>
         <c:if test="${showInDiv}">

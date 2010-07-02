@@ -15,8 +15,7 @@
     <r:param type="int" value="${pageSize}" />
     <r:param type="int" value="${pageNumber}" />
 </r:callMethod>
-<c:set var="dirImagemA" value="${photoInstance.dirImagesRelativo}" />
-<c:set var="showPrefixA" value="${photoInstance.mostraPrefix}" />
+
 
 <div class="${wrapClass}">
     <c:choose>
@@ -31,8 +30,7 @@
         <c:if test="${showInDiv}">
             <div class="<c:out value="${divClass}" />">
         </c:if>
-        <a class="${linkClass}" rel="linkimage" href="<c:url value="/groupware-workbench/${photoInstance.id}/photo/show/${fotoA.id}"/>">
-            <%--img src="${pageContext.request.contextPath}/${dirImagemA}/${thumbPrefix}${fotoA.nomeArquivoUnico}" /--%>
+        <a class="${linkClass}" rel="linkimage" href="<c:url value="/groupware-workbench/${photoInstance.id}/photo/show/${fotoA.id}"/>">            
             <img src="<c:url value="/groupware-workbench/${photoInstance.id}/photo/img-thumb/${fotoA.nomeArquivoUnico}"/>"/>
         </a>
         <c:if test="${showInDiv}">

@@ -5,10 +5,6 @@
 <%@ attribute name="photoInstance" required="true" rtexprvalue="true" type="br.org.groupware_workbench.photo.PhotoMgrInstance" %>
 <%@ attribute name="idPhoto" required="true" rtexprvalue="true" type="java.lang.Long" %>
 
-<r:callMethod methodName="getDirImagesRelativo" instance="${photoInstance}" var="dirImagem" />
-<r:callMethod methodName="getThumbPrefix" instance="${photoInstance}" var="thumbPrefix" />
-<r:callMethod methodName="getMostraPrefix" instance="${photoInstance}" var="showPrefix" />
-
 <r:callMethod methodName="buscaPhotoById" instance="${photoInstance}" var="foto">
     <r:param type="long" value="${idPhoto}"/>
 </r:callMethod>
@@ -23,11 +19,5 @@
     });
 </script>
 <div>
-    <%--
-        <a rel="linkimage" href="${pageContext.request.contextPath}/${dirImagem}/${foto.nomeArquivo}">
-            <img alt="${foto.nome}" src="${pageContext.request.contextPath}/${dirImagem}/${showPrefix}${foto.nomeArquivo}" />
-        </a>
-    --%>
-    <%--img alt="${foto.nome}" src="${pageContext.request.contextPath}/${dirImagem}/${showPrefix}${foto.nomeArquivoUnico}" /--%>
     <img alt="${foto.nome}" src="<c:url value="/groupware-workbench/${photoInstance.id}/photo/img-show/${foto.nomeArquivoUnico}"/>"/>
 </div>

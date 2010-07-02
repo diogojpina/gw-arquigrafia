@@ -10,25 +10,21 @@
 <%@ attribute name="locationClass" required="false" type="java.lang.String" %>
 <%@ attribute name="idList" required="true" type="java.util.Collection" %>
 <%@ attribute name="lineClass" required="false" type="java.lang.String" %>
-
-<r:callMethod methodName="getDirImagesRelativo"	instance="${photoInstance}" var="dirImagem" />
-<r:callMethod methodName="getThumbPrefix" instance="${photoInstance}" var="thumbPrefix" />
-<r:callMethod methodName="getMostraPrefix" instance="${photoInstance}" var="showPrefix" />
 <r:callMethod methodName="buscaFotoPorListaId" instance="${photoInstance}" var="photos">
     <r:param type="java.util.List" value="${idList}" />
 </r:callMethod>        
         
 <%--
-    TODO: Evitar inserir <div> que não fecham de forma óbvia pois dependem de anï¿½lise sensível ao contexto para
-    garantir que são bem formadas.
+    TODO: Evitar inserir <div> que nï¿½o fecham de forma ï¿½bvia pois dependem de anï¿½lise sensï¿½vel ao contexto para
+    garantir que sï¿½o bem formadas.
 --%>
 <c:forEach var="foto" items="${photos}">
     <div class="${lineClass}" style="float: left">
         <c:if test="${showName || showLocation}">
             <div>
         </c:if>
-        <a class="${linkClass}" rel="linkimage" href="<c:url value="/groupware-workbench/${photoInstance.id}/photo/show/${foto.id}"/>">
-            <img src="${pageContext.request.contextPath}/${dirImagem}/${thumbPrefix}${foto.nomeArquivoUnico}" alt="${foto.nome}"/>
+        <a class="${linkClass}" rel="linkimage" href="<c:url value="/groupware-workbench/${photoInstance.id}/photo/show/${foto.id}"/>">            
+            <img src="<c:url value="/groupware-workbench/${photoInstance.id}/photo/img-thumb/${foto.nomeArquivoUnico}"/>" alt="${foto.nome}"/>
         </a>
         <c:if test="${showName || showLocation}">
             </div>
