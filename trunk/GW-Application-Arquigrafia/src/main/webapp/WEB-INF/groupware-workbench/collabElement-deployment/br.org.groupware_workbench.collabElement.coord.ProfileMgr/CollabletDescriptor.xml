@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<collabElement xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:noNamespaceSchemaLocation="ComponentDescriptor.xsd">
+<collablet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="CollabletDescriptor.xsd">
 
     <ComponentClass>br.org.groupware_workbench.collabElement.coord.profileMgr.ProfileMgrComponent</ComponentClass>
 
-    <collabElement-description>
-        <collabElement-name>ProfileMgr</collabElement-name>
-        <collabElement-description>Gerenciar Perfil</collabElement-description>
-    </collabElement-description>
-
-    <!-- Specific configuration -->
-    <specific-configuration />
-</collabElement>
+    <collablet-description>
+        <collablet-name>ProfileMgr</collablet-name>
+        <collablet-description>Gerenciar Perfil</collablet-description>
+    </collablet-description>
+</collablet>

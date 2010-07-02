@@ -8,17 +8,17 @@
             <collablet-group>communication-collablets</collablet-group>
         </subordinate-collablets-->
     </collablet-description>
-    
+
     <specific-configuration>
-    	<image-directory value="photos"/> <!-- vai ser criado no $HOME em windows nao sei  -->
-    	<show-prefix value="mostra_"/>
-    	<crop-prefix value="crop_"/>
-    	<thumbnail-prefix value="thumb_"/>
+        <image-directory value="photos"/> <!-- vai ser criado no $HOME em windows nao sei  -->
+        <show-prefix value="mostra_"/>
+        <crop-prefix value="crop_"/>
+        <thumbnail-prefix value="thumb_"/>
     </specific-configuration>
-    
-    <collabElements>        
+
+    <collabElements>
         <collabElement id="br.org.groupware_workbench.collabElement.communic.TagMgr" receiveFromParent="true" />
-        <collabElement id="br.org.groupware_workbench.collabElement.coop.BinomialMgr"></collabElement>
+        <collabElement id="br.org.groupware_workbench.collabElement.coop.BinomialMgr" />
         <collabElement id="br.org.groupware_workbench.collabElement.communic.CommentMgr" />
     </collabElements>
 </collablet>

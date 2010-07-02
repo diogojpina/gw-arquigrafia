@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<collabElement xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:noNamespaceSchemaLocation="ComponentDescriptor.xsd">
+<collablet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="CollabletDescriptor.xsd">
 
-	<ComponentClass>br.org.groupware_workbench.collabElement.coord.collabletMgr.CollabletMgrComponent</ComponentClass>
+    <ComponentClass>br.org.groupware_workbench.collabElement.coord.collabletMgr.CollabletMgrComponent</ComponentClass>
 
-	<collabElement-description>
-		<collabElement-name>CollabletMgr</collabElement-name>
-		<collabElement-description>Gerenciar collablets</collabElement-description>
-	</collabElement-description>
-
-	<!-- Specific configuration -->
-	<specific-configuration />
-</collabElement>
+    <collablet-description>
+        <collablet-name>CollabletMgr</collablet-name>
+        <collablet-description>Gerenciar collablets</collablet-description>
+    </collablet-description>
+</collablet>

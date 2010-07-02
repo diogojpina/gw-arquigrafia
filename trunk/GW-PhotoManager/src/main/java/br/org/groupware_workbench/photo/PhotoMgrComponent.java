@@ -7,14 +7,15 @@ import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.Node;
 
-import br.org.groupware_workbench.collabletFw.facade.Collablet;
 import br.org.groupware_workbench.coreutils.ComponentInfo;
+import br.org.groupware_workbench.groupwareComponentFwFw.facade.Component;
 
 @ComponentInfo(instanceType=PhotoMgrInstance.class, 
     version="0.1",
-    configurationURL="/groupware-workbench/{photoInstance}/photo"
+    configurationURL="/groupware-workbench/{photoInstance}/photo",
+    rootLevel=true
 )
-public class PhotoMgrComponent extends Collablet {
+public class PhotoMgrComponent extends Component {
 
     private String dirImages = "images";
     private String cropPrefix = "crop_";

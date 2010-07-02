@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<collabElement xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:noNamespaceSchemaLocation="ComponentDescriptor.xsd">
+<collablet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="CollabletDescriptor.xsd">
 
-	<ComponentClass>br.org.groupware_workbench.collabElement.communic.tagMgr.TagMgrComponent</ComponentClass>
+    <ComponentClass>br.org.groupware_workbench.collabElement.communic.tagMgr.TagMgrComponent</ComponentClass>
 
-	<collabElement-description>
-		<collabElement-name>TagMgr</collabElement-name>
-		<collabElement-description>Gerenciar tags</collabElement-description>
-	</collabElement-description>
-
-	<!-- Specific configuration -->
-	<specific-configuration />
-</collabElement>
+    <collablet-description>
+        <collablet-name>TagMgr</collablet-name>
+        <collablet-description>Gerenciar tags</collablet-description>
+    </collablet-description>
+</collablet>

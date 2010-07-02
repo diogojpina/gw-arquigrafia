@@ -24,7 +24,7 @@
             <user>
                 <login>user02</login>
                 <password>222</password>
-                <name>Usuario02</name>                
+                <name>Usuario02</name>
             </user>
         </collabElement>
         <collabElement id="br.org.groupware_workbench.collabElement.communic.TagMgr" receiveFromParent="false" />
@@ -37,7 +37,7 @@
             </role>
             <role name="Revisor" defaultAssigment="false" />
         </collabElement>
-        <collabElement id="br.org.groupware_workbench.collabElement.coop.BinomialMgr"></collabElement>
+        <collabElement id="br.org.groupware_workbench.collabElement.coop.BinomialMgr" />
         <collabElement id="br.org.groupware_workbench.collabElement.communic.CommentMgr" />
     </collabElements>
 </collablet>
