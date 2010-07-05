@@ -3,9 +3,9 @@
 <%@ taglib prefix="r" uri="http://www.groupwareworkbench.org.br/taglibs/reflection" %>
 <%@ taglib prefix="tag" uri="http://www.groupwareworkbench.org.br/widgets/tag" %>
 
-<%@ attribute name="photoRegister" required="true" rtexprvalue="true" type="br.org.groupware_workbench.photo.Photo" %>
-<%@ attribute name="photoInstance" required="true" rtexprvalue="true" type="br.org.groupware_workbench.photo.PhotoMgrInstance" %>
-<%@ attribute name="tagMgr" required="true" rtexprvalue="true" type="br.org.groupware_workbench.collabElement.communic.tagMgr.TagMgrInstance" %>
+<%@ attribute name="photoRegister" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.arquigrafia.photo.Photo" %>
+<%@ attribute name="photoInstance" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.arquigrafia.photo.PhotoMgrInstance" %>
+<%@ attribute name="tagMgr" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.collablet.communic.tag.TagMgrInstance" %>
 <%@ attribute name="formClass" required="false" type="java.lang.String" %>
 <%@ attribute name="formLineClass" required="false" type="java.lang.String" %>
 <%@ attribute name="formLabelClass" required="false" type="java.lang.String" %>

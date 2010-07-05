@@ -4,8 +4,8 @@
 <%@ taglib prefix="tag" uri="http://www.groupwareworkbench.org.br/widgets/tag" %>
 <%@ taglib prefix="photo" uri="http://www.groupwareworkbench.org.br/widgets/photomanager" %>
 
-<%@ attribute name="photoInstance" required="true" rtexprvalue="true" type="br.org.groupware_workbench.photo.PhotoMgrInstance" %>
-<%@ attribute name="siteInstance" required="true" rtexprvalue="true" type="br.org.groupware_workbench.site.SiteInstance" %>
+<%@ attribute name="photoInstance" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.arquigrafia.photo.PhotoMgrInstance" %>
+<%@ attribute name="siteInstance" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.arquigrafia.site.SiteInstance" %>
 
 <div id="footer_wrap">
     <div style="float: left">

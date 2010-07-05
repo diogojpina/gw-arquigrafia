@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="r" uri="http://www.groupwareworkbench.org.br/taglibs/reflection" %>
 
-<%@ attribute name="photoInstance" required="true" rtexprvalue="true" type="br.org.groupware_workbench.photo.PhotoMgrInstance" %>
+<%@ attribute name="photoInstance" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.arquigrafia.photo.PhotoMgrInstance" %>
 <%@ attribute name="linkClass" required="false" type="java.lang.String" %>
 <%@ attribute name="showName" required="false" type="java.lang.Boolean" rtexprvalue="false" %>
 <%@ attribute name="showLocation" required="false" type="java.lang.Boolean" rtexprvalue="false" %>

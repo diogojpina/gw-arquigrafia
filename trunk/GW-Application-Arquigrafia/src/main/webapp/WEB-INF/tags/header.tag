@@ -3,7 +3,7 @@
 <%@ taglib prefix="w" uri="http://www.groupwareworkbench.org.br/widgets/commons" %>
 <%@ taglib prefix="photo" uri="http://www.groupwareworkbench.org.br/widgets/photomanager" %>
 
-<%@ attribute name="photoInstance" required="true" rtexprvalue="true" type="br.org.groupware_workbench.photo.PhotoMgrInstance" %>
+<%@ attribute name="photoInstance" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.arquigrafia.photo.PhotoMgrInstance" %>
 
 <div class="backgrounded_bay" id="bay">
     <div>

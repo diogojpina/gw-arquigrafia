@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <collablet>
-    <ComponentClass>br.org.groupware_workbench.site.SiteComponent</ComponentClass>
+    <ComponentClass>br.org.groupwareworkbench.arquigrafia.site.SiteComponent</ComponentClass>
     <collablet-description>
         <collablet-name>ArquigrafiaBrasil</collablet-name>
         <collablet-description>arquigrafia brasil</collablet-description>
@@ -10,7 +10,7 @@
     </collablet-description>
     <specific-configuration />
     <collabElements>
-        <collabElement id="br.org.groupware_workbench.collabElement.coord.UserMgr" receiveFromParent="false">
+        <collabElement id="br.org.groupwareworkbench.collablet.coord.User" receiveFromParent="false">
             <user>
                 <login>admin</login>
                 <password>123</password>
@@ -27,17 +27,17 @@
                 <name>Usuario02</name>
             </user>
         </collabElement>
-        <collabElement id="br.org.groupware_workbench.collabElement.communic.TagMgr" receiveFromParent="false" />
-        <collabElement id="br.org.groupware_workbench.collabElement.coord.RoleMgr" receiveFromParent="false">
+        <collabElement id="br.org.groupwareworkbench.collablet.communic.Tag" receiveFromParent="false" />
+        <collabElement id="br.org.groupwareworkbench.collablet.coord.Role" receiveFromParent="false">
             <role name="Administrador" defaultAssigment="false">
-                <entity entity="br.org.groupware_workbench.collabElement.coord.userMgr.User" param="admin" />
+                <entity entity="br.org.groupwareworkbench.collablet.coord.user.User" param="admin" />
             </role>
             <role name="User" defaultAssigment="true">
-                <entity entity="br.org.groupware_workbench.collabElement.coord.userMgr.User" param="user01" />
+                <entity entity="br.org.groupwareworkbench.collablet.coord.user.User" param="user01" />
             </role>
             <role name="Revisor" defaultAssigment="false" />
         </collabElement>
-        <collabElement id="br.org.groupware_workbench.collabElement.coop.BinomialMgr" />
-        <collabElement id="br.org.groupware_workbench.collabElement.communic.CommentMgr" />
+        <collabElement id="br.org.groupwareworkbench.collablet.coop.Binomial" />
+        <collabElement id="br.org.groupwareworkbench.collablet.communic.Comment" />
     </collabElements>
 </collablet>

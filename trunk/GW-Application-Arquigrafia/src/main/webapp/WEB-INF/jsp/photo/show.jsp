@@ -51,38 +51,36 @@
                 var width = $('.resizeblePhoto1 img').width();    // Current image width
                 var height = $('.resizeblePhoto1 img').height();  // Current image height
 
-                if(width > height) {
-                        // Check if the current width is larger than the max
-                        if(width > maxWidth){
-                                var ratio = maxWidth / width;   // get ratio for scaling image
-                                $('.resizeblePhoto1 img').css("width", maxWidth); // Set new width
-                                $('.resizeblePhoto1 img').css("height", height * ratio);  // Scale height based on ratio
-                                height = height * ratio;        // Reset height to match scaled image
-                        }
-                        else {
-	                        $("#photoWrap").css("margin-left", (maxWidth - width) / 2);
-                        }
-                } else {
-                        // Check if current height is larger than max
-                        if(height > maxHeight){
-                                var ratio = maxHeight / height; // get ratio for scaling image
-                                $('.resizeblePhoto1 img').css("height", maxHeight);   // Set new height
-                                $('.resizeblePhoto1 img').css("width", width * ratio);    // Scale width based on ratio
-                                width = width * ratio;  // Reset width to match scaled image
-                        }
+                if (width > height) {
+                    // Check if the current width is larger than the max
+                    if (width > maxWidth) {
+                        var ratio = maxWidth / width;   // get ratio for scaling image
+                        $('.resizeblePhoto1 img').css("width", maxWidth); // Set new width
+                        $('.resizeblePhoto1 img').css("height", height * ratio);  // Scale height based on ratio
+                        height = height * ratio;        // Reset height to match scaled image
+                    } else {
+                        $("#photoWrap").css("margin-left", (maxWidth - width) / 2);
+                    }
+
+                // Check if current height is larger than max
+                } else if (height > maxHeight) {
+                    var ratio = maxHeight / height; // get ratio for scaling image
+                    $('.resizeblePhoto1 img').css("height", maxHeight);   // Set new height
+                    $('.resizeblePhoto1 img').css("width", width * ratio);    // Scale width based on ratio
+                    width = width * ratio;  // Reset width to match scaled image
                 }
-				$("#photoBackground").css("height", height + 62);
+                $("#photoBackground").css("height", height + 62);
                 $("#binomialsWrap").css("max-height", height - 30);
                 $("#comments_bar_bg").css("width", maxWidth - 20);
                 $("#comments_create").css("width", maxWidth - 20);
                	$("#comments_show").css("width", maxWidth - 10);
             }
 
-            $('.resizeblePhoto1 img').load(function(){
+            $('.resizeblePhoto1 img').load(function() {
             	pageResize();//Triggers when document first loads
             });      
-           
-            $(window).bind("resize", function(){//Adjusts image when browser resized  
+
+            $(window).bind("resize", function() { //Adjusts image when browser resized
             	pageResize();  
             });  
         });
@@ -93,86 +91,88 @@
     <body>
         <arq:header2 photoInstance="${photoInstance}" siteInstance="${ArquigrafiaBrasil}" />
         <form name="tags" method="post" enctype="multipart/form-data" action="<c:url value="/groupware-workbench/${photoInstance.id}/photo/show/${idPhoto}" />">
-        <div id="photoWrap">
-        		<c:if test="${photoInstance != null}">
-        		    <div id="photoTitle"><c:out value="${photoTitle}" /></div>
-        		    <div id="photo" class="resizeblePhoto1" ><photo:show idPhoto="${idPhoto}" photoInstance="${photoInstance}" /></div>
-        	    </c:if>
-        	    <div id="tagsAndEval">
-                        <div id="evalAndAdd">
-                            <div id="eval">
-                                <img src="${pageContext.request.contextPath}/images/evaluation_mock.png" alt="" />
-                            </div>
-                            <div id="add">
-                                <a><img src="${pageContext.request.contextPath}/images/add_tag.png" alt="adicionar ou remover tag" /></a>
-                            </div>
-                            <div id="add2">
-                                <a><img src="${pageContext.request.contextPath}/images/add_tag2.png" alt="adicionar ou remover tag" /></a>
-                            </div>
+            <div id="photoWrap">
+                <c:if test="${photoInstance != null}">
+                    <div id="photoTitle"><c:out value="${photoTitle}" /></div>
+                    <div id="photo" class="resizeblePhoto1">
+                        <photo:show idPhoto="${idPhoto}" photoInstance="${photoInstance}" />
+                    </div>
+                </c:if>
+                <div id="tagsAndEval">
+                    <div id="evalAndAdd">
+                        <div id="eval">
+                            <img src="${pageContext.request.contextPath}/images/evaluation_mock.png" alt="" />
                         </div>
-                        <div id="tags">
-                            <div id="tags_left">
-                            </div>
-                            <div id="tags_content">
-                                <tag:getTags tagMgr="${tagMgr}" idObject="${idPhoto}" />
-                            </div>
-                            <div id="tags_right">
-                            </div>
+                        <div id="add">
+                            <a><img src="${pageContext.request.contextPath}/images/add_tag.png" alt="adicionar ou remover tag" /></a>
+                        </div>
+                        <div id="add2">
+                            <a><img src="${pageContext.request.contextPath}/images/add_tag2.png" alt="adicionar ou remover tag" /></a>
                         </div>
                     </div>
-                    <div id="tagsAdd">
-                        <tag:selectTags tagMgr="${tagMgr}" />
-                        <tag:setTags tagMgr="${tagMgr}" idObject="${idPhoto}" tagsEditorClass="mid_black_text" />
-                        <input type="submit" name="adicionar" value="Adicionar" />
+                    <div id="tags">
+                        <div id="tags_left">
+                        </div>
+                        <div id="tags_content">
+                            <tag:getTags tagMgr="${tagMgr}" idObject="${idPhoto}" />
+                        </div>
+                        <div id="tags_right">
+                        </div>
                     </div>
-                    <script type="text/javascript">
+                </div>
+                <div id="tagsAdd">
+                    <tag:selectTags tagMgr="${tagMgr}" />
+                    <tag:setTags tagMgr="${tagMgr}" idObject="${idPhoto}" tagsEditorClass="mid_black_text" />
+                    <input type="submit" name="adicionar" value="Adicionar" />
+                </div>
+                <script type="text/javascript">
+                    $("#add2").hide();
+                    $("#tagsAdd").hide();
+                    $("#add").click(function() {
+                        $("#add2").show();
+                        $("#add").hide();
+                        $("#tagsAdd").show();
+                    });
+                    $("#add2").click(function() {
+                        $("#add").show();
                         $("#add2").hide();
                         $("#tagsAdd").hide();
-                        $("#add").click(function() {
-                            $("#add2").show();
-                            $("#add").hide();
-                            $("#tagsAdd").show();
-                        });
-                        $("#add2").click(function() {
-                            $("#add").show();
-                            $("#add2").hide();
-                            $("#tagsAdd").hide();
-                        });
-                    </script>
-        	</div>
-           <div id="photoRel">
-        	<div id="binomialsWrap">
-        	    <c:if test="${binomialMgr != null}">
-        		   <div id="binomialsTitle">Medidores</div>
-        		   <binomial:setBinomial idObject="${idPhoto}" binomialMgr="${binomialMgr}" user="${sessionScope.userLogin}"
-                                    binLabelClass="binLabelClass" binValueClass="binValueClass" binWrapClass="binWrapClass" />
-				    <div id="binomialSubmit" style="clear: both">
-                        <input type="submit" name="saveBinomial" value="salvar" />
-                    </div>
-        		</c:if>
-        	</div>
+                    });
+                </script>
+            </div>
+            <div id="photoRel">
+                <div id="binomialsWrap">
+                    <c:if test="${binomialMgr != null}">
+                        <div id="binomialsTitle">Medidores</div>
+                        <binomial:setBinomial idObject="${idPhoto}" binomialMgr="${binomialMgr}" user="${sessionScope.userLogin}"
+                                binLabelClass="binLabelClass" binValueClass="binValueClass" binWrapClass="binWrapClass" />
+                        <div id="binomialSubmit" style="clear: both">
+                            <input type="submit" name="saveBinomial" value="salvar" />
+                        </div>
+                    </c:if>
+                </div>
            </div>
            <div id="photoBackground"></div>
            <div id="photoRelSub">
         	<div id="caracteristicsWrap">
-        		<div id="caracteristicsTitle" style="background-color: #B8C7CF" >Caracter&iacute;sticas</div>
-	            <c:if test="${photoDate != null}">
-                    <div style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; color: #6A8A9A; padding-left: 20px; margin-top: 5px;" >Tirada em: <c:out value="${photoDate}" /></div>
-                </c:if>
-                <c:if test="${photoResolution != null}">
-                    <div  style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; color: #6A8A9A; padding-left: 20px; margin-top: 5px;" >Resolu&ccedil;&atilde;o: <c:out value="${photoResolution}" /></div>
-                </c:if>
-                <c:if test="${photoLocation != null}">
-                    <div  style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; color: #6A8A9A; padding-left: 20px; margin-top: 5px;" >Local: <c:out value="${photoLocation}" /></div>
-                </c:if>
+                    <div id="caracteristicsTitle" style="background-color: #B8C7CF" >Caracter&iacute;sticas</div>
+                    <c:if test="${photoDate != null}">
+                        <div style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; color: #6A8A9A; padding-left: 20px; margin-top: 5px;">Tirada em: <c:out value="${photoDate}" /></div>
+                    </c:if>
+                    <c:if test="${photoResolution != null}">
+                        <div style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; color: #6A8A9A; padding-left: 20px; margin-top: 5px;">Resolu&ccedil;&atilde;o: <c:out value="${photoResolution}" /></div>
+                    </c:if>
+                    <c:if test="${photoLocation != null}">
+                        <div style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; color: #6A8A9A; padding-left: 20px; margin-top: 5px;">Local: <c:out value="${photoLocation}" /></div>
+                    </c:if>
         	</div>
         	<c:if test="${photoDescription != null}">
-        	    <div id="descriptionWrap">                      
-                    <div id="descriptionTitle"  style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; font-weight: bold; color: #6A8A9A; margin-top: 15px; background-color: #B8C7CF" >Descri&ccedil;&atilde;o</div>
-                    <p  style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight; color: #6A8A9A; padding-left: 20px; margin-top: 5px;" ><c:out value="${photoDescription}" /></p>
-                </div>
-           </c:if>
-           </div>
+                    <div id="descriptionWrap">
+                        <div id="descriptionTitle" style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; font-weight: bold; color: #6A8A9A; margin-top: 15px; background-color: #B8C7CF" >Descri&ccedil;&atilde;o</div>
+                        <p style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; color: #6A8A9A; padding-left: 20px; margin-top: 5px;"><c:out value="${photoDescription}" /></p>
+                    </div>
+                </c:if>
+            </div>
             <c:if test="${commentMgr != null}">
                 <div id="comments_bar">
                     <div id="comments_bar_left"></div>
@@ -185,7 +185,7 @@
                     <div id="comments_bar_right"></div>
                 </div>
                 <div id="comments_create" style="height: 130px;">
-                    <comment:addComment commentMgr="${commentMgr}" idObject="${idPhoto}" user="${sessionScope.userLogin}" editorClass="editorClass" wrapClass="comments_create_internal"/>
+                    <comment:addComment commentMgr="${commentMgr}" idObject="${idPhoto}" user="${sessionScope.userLogin}" editorClass="editorClass" wrapClass="comments_create_internal" />
                     <input name="commentAdd" value="Adicionar" type="submit" />
                 </div>
                 <div id="comments_show">

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <collablet>
-    <ComponentClass>br.org.groupware_workbench.photo.PhotoMgrComponent</ComponentClass>
+    <ComponentClass>br.org.groupwareworkbench.arquigrafia.photo.PhotoMgrComponent</ComponentClass>
     <collablet-description>
         <collablet-name>PhotoRegister</collablet-name>
         <collablet-description>photoInstance</collablet-description>
@@ -17,8 +17,8 @@
     </specific-configuration>
 
     <collabElements>
-        <collabElement id="br.org.groupware_workbench.collabElement.communic.TagMgr" receiveFromParent="true" />
-        <collabElement id="br.org.groupware_workbench.collabElement.coop.BinomialMgr" />
-        <collabElement id="br.org.groupware_workbench.collabElement.communic.CommentMgr" />
+        <collabElement id="br.org.groupwareworkbench.collablet.communic.Tag" receiveFromParent="true" />
+        <collabElement id="br.org.groupwareworkbench.collablet.coop.Binomial" />
+        <collabElement id="br.org.groupwareworkbench.collablet.communic.Comment" />
     </collabElements>
 </collablet>
