@@ -75,7 +75,12 @@ public class PhotoMgrInstance extends CollabletInstance {
     public List<Photo> listaPhotoPorPaginaEOrdem(int tamanho, int pagina) {
         return dao.listPhotoByPageAndOrder(tamanho, pagina);
     }
-
+    
+    public List<Photo> list() {
+        System.out.println("llego al metodo de listar de photo");
+        return dao.listByIdInstance(this.getId());
+    }
+    
     public String getThumbPrefix() {
         return ((PhotoMgrComponent) this.getComponent()).getThumbPrefix();
     }

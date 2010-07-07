@@ -19,6 +19,7 @@
     <collabElements>
         <collabElement id="br.org.groupwareworkbench.collablet.communic.Tag" receiveFromParent="true" />
         <collabElement id="br.org.groupwareworkbench.collablet.coop.Binomial" />
+        <collabElement id="br.org.groupwareworkbench.collablet.coop.Recommend" />
         <collabElement id="br.org.groupwareworkbench.collablet.communic.Comment" />
     </collabElements>
 </collablet>

@@ -5,6 +5,7 @@
 <%@ taglib prefix="photo" uri="http://www.groupwareworkbench.org.br/widgets/photomanager" %>
 <%@ taglib prefix="binomial" uri="http://www.groupwareworkbench.org.br/widgets/binomial" %>
 <%@ taglib prefix="tag" uri="http://www.groupwareworkbench.org.br/widgets/tag" %>
+<%@ taglib prefix="recommend" uri="http://www.groupwareworkbench.org.br/widgets/recommend" %>
 <%@ taglib prefix="comment" uri="http://www.groupwareworkbench.org.br/widgets/comment" %>
 <%@ taglib prefix="arq" tagdir="/WEB-INF/tags" %>
 
@@ -171,7 +172,15 @@
                         <div id="descriptionTitle" style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; font-weight: bold; color: #6A8A9A; margin-top: 15px; background-color: #B8C7CF" >Descri&ccedil;&atilde;o</div>
                         <p style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; color: #6A8A9A; padding-left: 20px; margin-top: 5px;"><c:out value="${photoDescription}" /></p>
                     </div>
-                </c:if>
+            </c:if>
+             <c:if test="${recommendMgr != null}">
+           		<div id="descriptionWrap">                      
+                    <div id="descriptionTitle"  style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; font-weight: bold; color: #6A8A9A; margin-top: 15px; background-color: #B8C7CF" >Relacionadas</div>
+                    <p  style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight; color: #6A8A9A; padding-left: 20px; margin-top: 5px;" >
+                    	<recommend:simpleListImage genericEntity="${photo}" recommendMgr="${recommendMgr}" />
+                    </p>
+                </div>
+			</c:if>    
             </div>
             <c:if test="${commentMgr != null}">
                 <div id="comments_bar">

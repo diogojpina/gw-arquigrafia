@@ -38,6 +38,8 @@
         &nbsp;|&nbsp;
         <c:if test="${photoInstance != null}">
             <a href="${pageContext.request.contextPath}/groupware-workbench/${photoInstance.id}/photo/registra">Upload de fotos</a>
+             &nbsp;|&nbsp;
+	        <a href="${pageContext.request.contextPath}/groupware-workbench/${photoInstance.id}/recommendMgr/${recommendMgr.id}/calcRecommned">Recomendar</a>
         </c:if>
     </div>
     <div id="search_field">

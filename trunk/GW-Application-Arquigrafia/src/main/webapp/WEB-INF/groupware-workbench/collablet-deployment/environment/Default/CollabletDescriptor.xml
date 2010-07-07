@@ -38,6 +38,7 @@
             <role name="Revisor" defaultAssigment="false" />
         </collabElement>
         <collabElement id="br.org.groupwareworkbench.collablet.coop.Binomial" />
+        <collabElement id="br.org.groupwareworkbench.collablet.coop.Recommend" />
         <collabElement id="br.org.groupwareworkbench.collablet.communic.Comment" />
     </collabElements>
 </collablet>

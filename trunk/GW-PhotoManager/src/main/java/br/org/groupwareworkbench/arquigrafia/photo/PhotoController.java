@@ -112,6 +112,7 @@ public class PhotoController {
     @Path(value = "/groupware-workbench/{photoInstance}/photo/show/{idPhoto}")
     public void show(PhotoMgrInstance photoInstance, long idPhoto) {
         result.include("idPhoto", idPhoto);
+        result.include("nameCollablet","photo");
         Photo photo = photoInstance.buscaPhotoById(idPhoto);
         //addIncludes();
         result.include("photoTitle", photo.getNome());
@@ -126,6 +127,8 @@ public class PhotoController {
         }
         addIncludes(photoInstance);
         photoInstance.processWidgets(request, photo);
+        result.include("photo",photo);
+        
     }
 
     @Get
