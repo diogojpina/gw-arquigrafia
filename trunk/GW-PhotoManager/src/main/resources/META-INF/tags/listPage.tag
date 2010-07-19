@@ -31,7 +31,14 @@
             <div class="<c:out value="${divClass}" />">
         </c:if>
         <a class="${linkClass}" rel="linkimage" href="<c:url value="/groupware-workbench/${photoInstance.id}/photo/show/${fotoA.id}"/>">            
-            <img src="<c:url value="/groupware-workbench/${photoInstance.id}/photo/img-thumb/${fotoA.nomeArquivoUnico}"/>"/>
+        <c:choose>
+            <c:when test="${keepRatio}">
+                <img src="<c:url value="/groupware-workbench/${photoInstance.id}/photo/img-thumb/${fotoA.nomeArquivoUnico}"/>"/>
+            </c:when>
+            <c:otherwise>
+                <img src="<c:url value="/groupware-workbench/${photoInstance.id}/photo/img-crop/${fotoA.nomeArquivoUnico}"/>"/>
+            </c:otherwise>
+        </c:choose>   
         </a>
         <c:if test="${showInDiv}">
             </div>

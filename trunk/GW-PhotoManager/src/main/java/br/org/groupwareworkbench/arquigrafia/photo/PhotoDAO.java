@@ -8,10 +8,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 import org.apache.commons.io.IOUtils;
 
+import br.org.groupwareworkbench.collablet.coord.user.User;
 import br.org.groupwareworkbench.core.bd.GenericDAO;
 import br.org.groupwareworkbench.core.bd.GenericEntity;
 
@@ -27,6 +30,31 @@ public class PhotoDAO extends GenericDAO<Photo> {
         IOUtils.copy(foto, new FileOutputStream(file));
     }
 
+    public void assignToUser(long idPhoto, long idUser) {
+        Photo photo = this.findById(idPhoto);
+        if (photo == null) return;
+        
+        EntityManager em = getEntityManager();
+        String queryString = "SELECT a FROM " + PhotoAssignment.class.getSimpleName() + " a WHERE a.photo.id = :idPhoto AND a.user.id = :idUser";
+        Query query = em.createQuery(queryString);
+        query.setParameter("idPhoto", idPhoto);
+        query.setParameter("idUser", idUser);
+        
+        try {
+            query.getSingleResult();
+        } catch (NoResultException e) {
+            PhotoAssignment assignment = new PhotoAssignment();
+            User user = em.find(User.class, idUser);
+
+            assignment.setPhoto(photo);
+            assignment.setUser(user);
+
+            em.getTransaction().begin();
+            em.merge(assignment);
+            em.getTransaction().commit();
+        }
+    }
+    
     public File getImageFile(String pasta, String prefix, String nomeArquivoUnico) {
         String path= pasta + prefix + nomeArquivoUnico;
         return new File(path);

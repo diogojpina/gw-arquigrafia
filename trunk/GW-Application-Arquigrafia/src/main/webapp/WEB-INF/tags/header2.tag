@@ -37,7 +37,18 @@
         <a href="legal.htm">Legal</a>
         &nbsp;|&nbsp;
         <c:if test="${photoInstance != null}">
-            <a href="${pageContext.request.contextPath}/groupware-workbench/${photoInstance.id}/photo/registra">Upload de fotos</a>
+        	<div id="photoUploadContent" style="visibility: hidden; display: none;">
+        		<iframe name="photoUploadFrame" style="width: 600px; height: 400px; opacity: 0.95;" id="photoUploadFrame" src="${pageContext.request.contextPath}/groupware-workbench/${photoInstance.id}/photo/registra"></iframe>
+        	</div>
+        	<script type="text/javascript">
+        		function refreshPage() {
+        			window.location.reload(true);
+        		}
+            	function showPhotoUpload() {
+            		 new Boxy($("#photoUploadContent").html(), {title: "Use o formulário para enviar uma foto.", modal: true, closeText: "Fechar", afterHide: function() {refreshPage();}}).show();
+            	};
+            </script>
+            <a href="#" onclick="return showPhotoUpload();">Upload de fotos</a>
              &nbsp;|&nbsp;
 	        <a href="${pageContext.request.contextPath}/groupware-workbench/${photoInstance.id}/recommendMgr/${recommendMgr.id}/calcRecommned">Recomendar</a>
         </c:if>
@@ -91,12 +102,12 @@
         $("#simpleSearch").click(function() {
             $("#search_options1").show();
             $("#search_options2").hide();
-            $("#advancedSearchField").hide();
+            $("#advancedSearchField").slideUp();
         });
         $("#advancedSearch").click(function() {
             $("#search_options2").show();
             $("#search_options1").hide();
-            $("#advancedSearchField").show();
+            $("#advancedSearchField").slideDown();
         });
     </script>
 </div>

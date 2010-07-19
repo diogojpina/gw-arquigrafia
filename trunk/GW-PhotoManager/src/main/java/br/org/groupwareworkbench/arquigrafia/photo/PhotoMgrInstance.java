@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.util.Date;
 import java.util.List;
 
+import br.org.groupwareworkbench.collablet.coord.user.User;
 import br.org.groupwareworkbench.core.framework.CollabletInstance;
 import br.org.groupwareworkbench.core.bd.DAOFactory;
 import br.org.groupwareworkbench.core.bd.GenericEntity;
@@ -48,6 +49,10 @@ public class PhotoMgrInstance extends CollabletInstance {
         this.dao.save(photoRegister, true);
     }
 
+    public void assignToUser(Photo photoRegister, User user) {
+        this.dao.assignToUser(photoRegister.getId(), user.getId());
+    }
+    
     public void saveImage(InputStream foto, String nome) throws IOException {
         this.dao.saveImage(foto, nome, this.getDirImages());
     }

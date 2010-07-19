@@ -22,6 +22,7 @@
         <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/jquery.css" />
         <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/tagcloud.css" />
         <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/image_wall.css" />
+        <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/boxy.css" />
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/plugins/sds/js/jquery.smoothDivScroll-0.9-min.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/plugins/sds/js/scroll.js"></script>
@@ -35,11 +36,12 @@
                 });
             });
         </script>
-        <script src="${pageContext.request.contextPath}/scripts/chili-1.7.pack.js" type="text/javascript" ></script>
-        <script src="${pageContext.request.contextPath}/scripts/jquery.easing.js" type="text/javascript"></script>
-        <script src="${pageContext.request.contextPath}/scripts/jquery.dimensions.js" type="text/javascript"></script>
-        <script src="${pageContext.request.contextPath}/scripts/jquery.accordion.js" type="text/javascript"></script>
-        <script src="${pageContext.request.contextPath}/scripts/bay.js" type="text/javascript"></script>
+        <script src="${pageContext.request.contextPath}/js/chili-1.7.pack.js" type="text/javascript" ></script>
+        <script src="${pageContext.request.contextPath}/js/jquery.easing.js" type="text/javascript"></script>
+        <script src="${pageContext.request.contextPath}/js/jquery.dimensions.js" type="text/javascript"></script>
+        <script src="${pageContext.request.contextPath}/js/jquery.accordion.js" type="text/javascript"></script>
+        <script src="${pageContext.request.contextPath}/js/bay.js" type="text/javascript"></script>
+        <script src="${pageContext.request.contextPath}/js/jquery.boxy.js" type="text/javascript"></script>
     </head>
     <body>
         <div id="wrap">
@@ -87,7 +89,7 @@
                 </div>
             </div>
             <arq:know_more />
-            <div style="height: 30px;"></div>
+            <div style="height: 30px; background-color: #fff"></div>
             <arq:footer photoInstance="${PhotoRegister}" siteInstance="${siteInstance}" />
         </div>
     </body>

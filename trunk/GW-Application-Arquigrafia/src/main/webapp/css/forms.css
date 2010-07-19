@@ -4,7 +4,6 @@
 	float: left;
 	width: 100%;
 	line-height: 30px;
-	margin-left: 23px;
 }
 
 .subsection_f1 {
@@ -46,6 +45,14 @@
 .input_f1 {
 	float: left
 }
+.input_f1 input,textarea{
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #0F6197;
+}
 
 .label_f1 {
 	margin-right: 10px;
@@ -57,8 +64,22 @@
 	width: 100px;
 	font-family:Arial, Helvetica, sans-serif;
 	font-size: 12px;
+	font-weight: bold;
+	color: #0F6197;
+	
 }
 
 .bt_cell_submit {
 	margin-right: 10px;
+}
+.bt_cell_submit input {
+    width: 60px;
+    height: 28px;
+    background: url("../images/save_bt1.png") no-repeat scroll;
+    cursor: pointer;
+    border: 0;
+    font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #fff;
 }

@@ -31,7 +31,7 @@
             <li class="${formLabelClass}"><span>Nome:</span></li>
             <li class="${formInputClass}"><input type="text" name="nome" /></li>
         </ul>
-        <ul class="${formLineClass}" style="height: 90px">
+        <ul class="${formLineClass}" style="height: 65px">
             <li class="${formLabelClass}"><span>Descri&ccedil;&atilde;o:</span></li>
             <li class="${formInputClass}"><textarea rows="3" name="descricao"></textarea></li>
         </ul>

@@ -26,10 +26,11 @@ import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
 import br.com.caelum.vraptor.ioc.RequestScoped;
 import br.com.caelum.vraptor.validator.ValidationMessage;
 import br.com.caelum.vraptor.view.Results;
+import br.org.groupwareworkbench.collablet.coord.user.User;
+import br.org.groupwareworkbench.core.bd.GenericEntity;
 import br.org.groupwareworkbench.core.framework.CollabElementInstance;
 import br.org.groupwareworkbench.core.framework.CollabletInstance;
 import br.org.groupwareworkbench.core.util.ImageUtils;
-import br.org.groupwareworkbench.core.bd.GenericEntity;
 
 @RequestScoped
 @Resource
@@ -204,7 +205,7 @@ public class PhotoController {
 
     @Post
     @Path(value = "/groupware-workbench/{photoInstance}/photo/registra")
-    public void save(Photo photoRegister, UploadedFile foto, PhotoMgrInstance photoInstance) {
+    public void save(Photo photoRegister, UploadedFile foto, PhotoMgrInstance photoInstance, User user) {
 
         // Validações:
         boolean erro = false;
@@ -223,7 +224,7 @@ public class PhotoController {
         }
 
         // Fim das validações.
-
+        
         String nomeArquivo = foto.getFileName();
         photoRegister.setNomeArquivo(nomeArquivo);
         InputStream imagemOriginal = null;
@@ -254,11 +255,18 @@ public class PhotoController {
             GregorianCalendar calendar = new GregorianCalendar();
             photoRegister.setDataCriacao(calendar.getTime());
             photoInstance.save(photoRegister);
+            if (user != null) {
+                photoInstance.assignToUser(photoRegister, user);
+            }
             nomeArquivo = photoRegister.getNomeArquivoUnico(); // Para ter um só nome do arquivo.
             photoInstance.saveImage(imagemOriginal, nomeArquivo);  
             photoInstance.saveImage(imagemCropped, photoInstance.getCropPrefix() + nomeArquivo);
             photoInstance.saveImage(imagemThumb, photoInstance.getThumbPrefix() + nomeArquivo);
             photoInstance.saveImage(imagemMostra, photoInstance.getMostraPrefix() + nomeArquivo);
+            result.include("originalImage", photoInstance.imgOriginal(nomeArquivo));
+            result.include("croppedImage", photoInstance.imgCrop(nomeArquivo));
+            result.include("thumbImage", photoInstance.imgThumb(nomeArquivo));
+            result.include("showImage", photoInstance.imgShow(nomeArquivo));
         } catch (IOException e) {
             validator.add(new ValidationMessage(MSG_FALHA_NO_UPLOAD, "Erro"));
             validator.onErrorUse(Results.logic()).redirectTo(PhotoController.class).registra(photoInstance);

@@ -40,5 +40,6 @@
         <collabElement id="br.org.groupwareworkbench.collablet.coop.Binomial" />
         <collabElement id="br.org.groupwareworkbench.collablet.coop.Recommend" />
         <collabElement id="br.org.groupwareworkbench.collablet.communic.Comment" />
+        <collabElement id="br.org.groupwareworkbench.collablet.communic.GoogleMapsMarker" />
     </collabElements>
 </collablet>

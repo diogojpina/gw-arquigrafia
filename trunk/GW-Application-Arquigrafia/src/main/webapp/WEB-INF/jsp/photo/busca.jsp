@@ -21,6 +21,7 @@
         <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/tagcloud.css" />
         <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/footer.css" />
         <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/jquery.css" />
+        <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/boxy.css" />
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-ui-1.8.custom.min.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/plugins/sds/js/jquery.smoothDivScroll-0.9-min.js"></script>
@@ -30,11 +31,12 @@
                 $("div#makeMeScrollable").smoothDivScroll({scrollingSpeed: 12, mouseDownSpeedBooster: 3, visibleHotSpots: "always", startAtElementId: "startAtMe"});
             });
         </script>
-        <script src="${pageContext.request.contextPath}/scripts/chili-1.7.pack.js" type="text/javascript" ></script>
-        <script src="${pageContext.request.contextPath}/scripts/jquery.easing.js" type="text/javascript"></script>
-        <script src="${pageContext.request.contextPath}/scripts/jquery.dimensions.js" type="text/javascript"></script>
-        <script src="${pageContext.request.contextPath}/scripts/jquery.accordion.js" type="text/javascript"></script>
-        <script src="${pageContext.request.contextPath}/scripts/bay.js" type="text/javascript"></script>
+        <script src="${pageContext.request.contextPath}/js/chili-1.7.pack.js" type="text/javascript" ></script>
+        <script src="${pageContext.request.contextPath}/js/jquery.easing.js" type="text/javascript"></script>
+        <script src="${pageContext.request.contextPath}/js/jquery.dimensions.js" type="text/javascript"></script>
+        <script src="${pageContext.request.contextPath}/js/jquery.accordion.js" type="text/javascript"></script>
+        <script src="${pageContext.request.contextPath}/js/bay.js" type="text/javascript"></script>
+        <script src="${pageContext.request.contextPath}/js/jquery.boxy.js" type="text/javascript"></script>
      </head>
      <body>
          <arq:header2 photoInstance="${photoInstance}" siteInstance="${ArquigrafiaBrasil}" />

@@ -3,7 +3,7 @@
 body {
 	background-image: url(../images/header_bg.jpg);
 	background-repeat: no-repeat;
-	background-attachment: scroll;
+	background-attachment: fixed;
 }
 #header {
 	padding-left: 10px;
@@ -29,7 +29,7 @@ body {
 	position: absolute;
 	top: 0px;
 	left: 420px;
-	width: 25%;
+	width: 32%;
 	background-image: url(../images/head1_left2_bg.png);
 	background-repeat: repeat-x;
 	background-attachment: scroll;
@@ -84,7 +84,7 @@ body {
 	background-repeat: repeat-x;
 	background-attachment: scroll;
 	height: 100px;
-	width: 32%;
+	width: 240px;
 	padding-left: 10px;
 }
 #top_links {
@@ -115,7 +115,7 @@ body {
 	float: right;
 }
 #advancedSearchField {
-	margin-left: 30px;
+	padding: 30px 30px 30px 30px;
 	background-color: #fff;
 	opacity: 0.8;
 	filter:alpha(opacity=80);

@@ -9,7 +9,7 @@
 
 <div id="footer_wrap">
     <div style="float: left">
-        <img src="${pageContext.request.contextPath}/images/footer_left_top.png" width="667" height="44" alt="&Uacute;ltimas fotos" />
+        <img src="${pageContext.request.contextPath}/images/footer_left_top.png" width="717" height="44" alt="&Uacute;ltimas fotos" />
     </div>
 
     <c:if test="${tagMgr != null}">
@@ -29,16 +29,29 @@
                     <div id="footer_scroll_list" class="scrollableArea" >
                         <%-- Modelo para inserção de imagens aqui. --%>
                         <c:if test="${photoInstance != null}">
-                            <photo:listPage linkClass="" photoInstance="${photoInstance}" keepRatio="true" pageSize="100" pageNumber="0"/>
+                            <photo:listPage linkClass="" photoInstance="${photoInstance}" keepRatio="true" pageSize="100" pageNumber="0" wrapClass="footerImages"/>
                         </c:if>
                     </div>
                 </div>
              </div>
         </div>
     </div>
-    <div id="footer_bottom">
+    <div id="footer_bottom" style="clear:both">
         <div id="footer_bottom_text">
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat.
+            O desenvolvimento deste projeto recebe o apoio de:
+            <br />
+            <div style="float:left; width: 25%; margin-top: 20px;">
+            	<img src="${pageContext.request.contextPath}/images/rnp_logo.png" alt="RNP" />
+            </div>
+            <div style="float:left; width: 25%; margin-top: 20px;">
+            	<img src="${pageContext.request.contextPath}/images/usp_logo.png" alt="RNP" />
+            </div>
+            <div style="float:left; width: 25%; margin-top: 20px;">
+            	<img src="${pageContext.request.contextPath}/images/ime_logo.png" alt="RNP" />
+            </div>
+            <div style="float:left; width: 25%; margin-top: 20px;">
+            	<img src="${pageContext.request.contextPath}/images/fau_logo.png" alt="RNP" />
+            </div>
         </div>
     </div>
 </div>

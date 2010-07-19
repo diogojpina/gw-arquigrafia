@@ -6,6 +6,7 @@
 <%@ attribute name="photoRegister" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.arquigrafia.photo.Photo" %>
 <%@ attribute name="photoInstance" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.arquigrafia.photo.PhotoMgrInstance" %>
 <%@ attribute name="tagMgr" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.collablet.communic.tag.TagMgrInstance" %>
+<%@ attribute name="user" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.collablet.coord.user.User" %>
 <%@ attribute name="formClass" required="false" type="java.lang.String" %>
 <%@ attribute name="formLineClass" required="false" type="java.lang.String" %>
 <%@ attribute name="formLabelClass" required="false" type="java.lang.String" %>
@@ -25,42 +26,58 @@
             "buttonImageOnly": true
         });
     });
+
+	$("#imageUpload").jqUploader({
+		background:	"FFFFDF",
+		barColor:	"CD270A",
+		allowedExt:     "*.avi; *.jpg; *.jpeg; *.png",
+		allowedExtDescr: "Images and movies (*.avi; *.jpg; *.jpeg; *.png)"
+	});
+    
 </script>
 
 <tag:scriptTags />
 
+<input type="hidden" name="user.id" value="<c:out value="${user.id}" />" />
 <input type="hidden" name="photoRegister.id" value="<c:out value="${photoRegister.id}" />" />
-<div class="${formClass}" id="image_save_form">
-    <ul class="${formLineClass}">
-        <li class="${formLabelClass}"><span>Nome*:</span></li>
-        <li class="${formInputClass}"><input type="text" name="photoRegister.nome"></li>
-    </ul>
-    <ul class="${formLineClass}" style="height:90px">
-        <li class="${formLabelClass}"><span>Descri&ccedil;&atilde;o:</span></li>
-        <li class="${formInputClass}"><textarea rows="3" name="photoRegister.descricao"></textarea></li>
-    </ul>
-    <ul class="${formLineClass}">
-        <li class="${formLabelClass}"><span>Lugar onde foi tirada</span></li>
-        <li class="${formInputClass}"><input type="text" name="photoRegister.lugar"></li>
-    </ul>
-    <ul class="${formLineClass}" style="vertical-align: top; height:120px">
-        <li class="${formLabelClass}"><span>Tags:</span></li>
-        <li class="${formInputClass}">
-            <c:if test="${tagMgr != null}">
-                <tag:selectTags tagMgr="${tagMgr}" />
-                <tag:setTags tagMgr="${tagMgr}" idObject="${photoRegister.id}" />
-            </c:if>
-        </li>
-    </ul>
-    <ul class="${formLineClass}">
-        <li class="${formLabelClass}"><span>Data:</span></li>
-        <li class="${formInputClass}"><input type="text" id="datepicker" name="photoRegister.data" /></li>
-    </ul>
-    <ul class="${formLineClass}">
-        <li class="${formLabelClass}"><span>Arquivo*:</span></li>
-        <li class="${formInputClass}"><input type="file" name="foto" /></li>
-    </ul>
-    <ul class="${formLineBtClass}">
-        <li class="${formSubmitBtClass}"><input type="submit" value="Salvar" /></li>
-    </ul>
-</div>
+    <div class="${formClass}" id="image_save_form">
+       <ul class="${formLineClass}" id="imageUploadField">
+           <li class="${formLabelClass}"><span>Arquivo*:</span></li>
+           <li class="${formInputClass}" id="imageUpload"><input id="imageUpload" type="file" name="foto" /></li>
+       </ul>
+       <fieldset>
+           <legend>Nome e Descrição</legend>
+           <div class="${formLineClass}">
+               <label for="photoRegister.nome" class="${formLabelClass}"><span>Nome*:</span></label>
+               <span  class="${formInputClass}"><input type="text" name="photoRegister.nome" /></span>
+           </div>
+           <div class="${formLineClass}">
+               <label for="photoRegister.descricao" class="${formLabelClass}"><span>Descri&ccedil;&atilde;o:</span></label>
+               <textarea rows="3" name="photoRegister.descricao" class="${formInputClass}"></textarea>
+           </div>
+        </fieldset>
+        <fieldset>
+            <legend>Data e Localização</legend>
+            <div class="${formLineClass}">
+                <label for="photoRegister.data" class="${formLabelClass}"><span>Data:</span></label>
+                <span  class="${formInputClass}"><input type="text" id="datepicker" name="photoRegister.data" /></span>
+            </div>
+            <div class="${formLineClass}">
+                <label for="photoRegister.lugar" class="${formLabelClass}"><span>Localização:</span></label>
+                <span  class="${formInputClass}"><input type="text" name="photoRegister.lugar"></span>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Dados Adcionais</legend>
+                  <ul class="${formLineClass}" style="vertical-align: top; height: 120px">
+                      <li class="${formLabelClass}"><span>Tags:</span></li>
+                      <li class="${formInputClass}"><c:if test="${tagMgr != null}">
+                      <tag:selectTags tagMgr="${tagMgr}" />
+                      <tag:setTags tagMgr="${tagMgr}" idObject="${photoRegister.id}" />
+                      </c:if></li>
+                 </ul>
+				<ul class="${formLineBtClass}">
+            		<li class="${formSubmitBtClass}"><input id="imageSubmit" type="submit" value="Salvar" /></li>
+        		</ul>
+        </fieldset>
+	</div>
