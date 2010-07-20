@@ -1,10 +1,12 @@
 @charset "utf-8";
 /* CSS Document */
 .wallBackground {
-	height: 500px;
+	height: 508px;
 	background-color: #FFF;
 }
 .wallImage {
+	margin-bottom:2px;
+	margin-right:2px;
 }
 .imageColumn {
 	float: left;

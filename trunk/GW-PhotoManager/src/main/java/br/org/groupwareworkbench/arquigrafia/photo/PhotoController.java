@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.Point;
 import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.DateFormat;
@@ -277,7 +278,64 @@ public class PhotoController {
         addIncludes(photoInstance);
         result.use(Results.logic()).redirectTo(PhotoController.class).registra(photoInstance);
     }
+    
+    @Get
+    @Path(value = "/groupware-workbench/{photoInstance}/photo/registra_multiplos/{os}/{dir}")
+    public void  registra_multiplos(String os, String dir, PhotoMgrInstance photoInstance) {
+        String pDir = dir.replace("|", "/");
+        if (os.equals("windows")) {
+            pDir = "C:/" + pDir;
+        }
+        File filesDir = new File(pDir);
+        if (filesDir.isDirectory()) {
+            int numFile = 1;
+            File[] files = filesDir.listFiles();
+            for (File file : files) {
+                System.out.println("Enviando foto " + numFile++ + "/" + files.length); 
+                String name = file.getName().substring(0, file.getName().length() - 4);
+                String nomeArquivo = file.getName();
+                InputStream imagemOriginal = null;
+                InputStream imagemThumb = null;
+                InputStream imagemCropped = null;
+                InputStream imagemMostra = null;
+ 
+                try {
+                    FileInputStream fis = new FileInputStream(file);
+                    byte[] rawphoto = new byte[fis.available()];
+                    fis.read(rawphoto); 
+                    imagemOriginal = new ByteArrayInputStream(rawphoto);
+                    imagemMostra = ImageUtils.createThumbnailIfNecessary(800, imagemOriginal, true);
+                    imagemOriginal.reset();
+                    imagemThumb = ImageUtils.createThumbnailIfNecessary(100, imagemOriginal, true);
+                    imagemOriginal.reset();
+                    InputStream imagemThumb2 = ImageUtils.createThumbnailIfNecessary(100, imagemOriginal, false);
+                    imagemThumb2.reset();
+                    Point cropPoint = ImageUtils.calcSqrThumbCropPoint(imagemThumb2);
+                    imagemThumb2.reset();
+                    imagemCropped = ImageUtils.cropImage(cropPoint, new Dimension(100, 100), imagemThumb2);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
 
+                try {
+                    Photo photoRegister = new Photo();
+                    photoRegister.setNome(name);
+                    photoRegister.setNomeArquivo(nomeArquivo);
+                    GregorianCalendar calendar = new GregorianCalendar();
+                    photoRegister.setDataCriacao(calendar.getTime());
+                    photoInstance.save(photoRegister);
+                    nomeArquivo = photoRegister.getNomeArquivoUnico(); // Para ter um só nome do arquivo.
+                    photoInstance.saveImage(imagemOriginal, nomeArquivo);  
+                    photoInstance.saveImage(imagemCropped, photoInstance.getCropPrefix() + nomeArquivo);
+                    photoInstance.saveImage(imagemThumb, photoInstance.getThumbPrefix() + nomeArquivo);
+                    photoInstance.saveImage(imagemMostra, photoInstance.getMostraPrefix() + nomeArquivo);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+    
     @Delete
     @Path(value = "/groupware-workbench/{photoInstance}/photo/show/{idPhoto}")
     public void delete(PhotoMgrInstance photoInstance, long idPhoto) {
