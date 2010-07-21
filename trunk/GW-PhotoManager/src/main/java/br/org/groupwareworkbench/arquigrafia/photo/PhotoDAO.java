@@ -59,29 +59,10 @@ public class PhotoDAO extends GenericDAO<Photo> {
         String path= pasta + prefix + nomeArquivoUnico;
         return new File(path);
     }
-
-    // TODO: Refatorar isso para não usar uma de lista de GenericEntity.
-    public List<Photo> buscaPorID(List<GenericEntity> photos, Long idInstance) {
-        List<Long> photoIds = new ArrayList<Long>();
-        for (GenericEntity entity : photos) {
-            photoIds.add(entity.getId());
-        }
-        String listAsString = photoIds.toString().replace("[", "");
-        listAsString = listAsString.replace("]", "");
-        String queryText = "SELECT p FROM " + Photo.class.getSimpleName() + " p WHERE p.idInstance = :idInstance AND p.id IN (" + listAsString + ")";
-        Query query = getEntityManager().createQuery(queryText);
-        query.setParameter("idInstance", idInstance);
-
-        @SuppressWarnings("unchecked")
-        List<Photo> result = query.getResultList();
-
-        return result;
-    }
-
-    public List<Photo> busca(String busca, Long idInstance) {
-        String query = "SELECT p FROM " + Photo.class.getSimpleName() + " p WHERE p.idInstance = :idInstance AND UPPER(p.nome) LIKE :nome";
+    
+    public List<Photo> busca(String busca) {
+        String query = "SELECT p FROM " + Photo.class.getSimpleName() + " p WHERE UPPER(p.nome) LIKE :nome";
         Query consulta = getEntityManager().createQuery(query);
-        consulta.setParameter("idInstance", idInstance);
         consulta.setParameter("nome", "%" + busca.toUpperCase() + "%");
         //consulta.setParameter("lugar", "%"+busca.toUpperCase()+"%");
         //consulta.setParameter("descricao", "%"+busca.toUpperCase()+"%");
@@ -92,18 +73,17 @@ public class PhotoDAO extends GenericDAO<Photo> {
         return result;
     }
 
-    public List<Photo> busca(String nome, String lugar, String descricao, Date date, Long idInstance) {
+    public List<Photo> busca(String nome, String lugar, String descricao, Date date) {
         String query;
         Query consulta;
         if (date == null) {
-            query = "SELECT p FROM " + Photo.class.getSimpleName() + " p WHERE p.idInstance = :idInstance AND (UPPER(p.nome) LIKE :nome AND UPPER(p.lugar) LIKE :lugar AND UPPER(p.descricao) LIKE :descricao)";
+            query = "SELECT p FROM " + Photo.class.getSimpleName() + " p WHERE (UPPER(p.nome) LIKE :nome AND UPPER(p.lugar) LIKE :lugar AND UPPER(p.descricao) LIKE :descricao)";
             consulta = getEntityManager().createQuery(query);
         } else {
-            query = "SELECT p FROM " + Photo.class.getSimpleName() + " p WHERE p.idInstance = :idInstance AND (UPPER(p.nome) LIKE :nome AND UPPER(p.lugar) LIKE :lugar AND UPPER(p.descricao) LIKE :descricao AND p.data = :date)";
+            query = "SELECT p FROM " + Photo.class.getSimpleName() + " p WHERE (UPPER(p.nome) LIKE :nome AND UPPER(p.lugar) LIKE :lugar AND UPPER(p.descricao) LIKE :descricao AND p.data = :date)";
             consulta = getEntityManager().createQuery(query);
             consulta.setParameter("date", date);
         }
-        consulta.setParameter("idInstance", idInstance);
         consulta.setParameter("nome", "%" + nome.toUpperCase() + "%");
         consulta.setParameter("lugar", "%" + lugar.toUpperCase() + "%");
         consulta.setParameter("descricao", "%" + descricao.toUpperCase() + "%");

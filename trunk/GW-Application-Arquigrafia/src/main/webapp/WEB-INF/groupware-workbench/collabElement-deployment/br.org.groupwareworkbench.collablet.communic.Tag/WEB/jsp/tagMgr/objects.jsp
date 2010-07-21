@@ -37,7 +37,7 @@
         <script src="${pageContext.request.contextPath}/js/bay.js" type="text/javascript"></script>
      </head>
      <body>
-         <arq:header2 photoInstance="${sessionScope.environment_photo}" siteInstance="${sessionScope.siteInstance}" />
+         <arq:header2 photoInstance="${PhotoRegister}" siteInstance="${collabletInstance}" />
              <div id="search_statistics">
              <span id="resultTerm">Voc&ecirc; buscou por objetos com a tag: <c:out value="${tagName}" /></span>
              <span id="resultCount"> (<c:out value="${tagAssignmentsNum}" /> resultados)</span>
@@ -52,11 +52,11 @@
              <img src="${pageContext.request.contextPath}/images/filtragem.png" alt="" />
          </div>
          <div id="search_scroll">
-             <c:if test="${sessionScope.environment_photo != null}">
-                 <photo:searchByTag photoInstance="${sessionScope.environment_photo}" idList="${geList}" showName="true" showLocation="false" lineClass="search_line"/>
+             <c:if test="${PhotoRegister != null}">
+                 <photo:searchByTag photoInstance="${PhotoRegister}" idList="${geList}" showName="true" showLocation="false" lineClass="search_line"/>
              </c:if>
          </div>
          <div style="height: 30px; clear: both"></div>
-         <arq:footer photoInstance="${sessionScope.environment_photo}" siteInstance="${sessionScope.siteInstance}" />
+         <arq:footer photoInstance="${PhotoRegister}" siteInstance="${collabletInstance}" />
      </body>
 </html>

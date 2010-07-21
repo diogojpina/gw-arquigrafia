@@ -3,13 +3,14 @@ package br.org.groupwareworkbench.arquigrafia.photo;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import br.org.groupwareworkbench.collablet.coord.user.User;
-import br.org.groupwareworkbench.core.framework.CollabletInstance;
 import br.org.groupwareworkbench.core.bd.DAOFactory;
 import br.org.groupwareworkbench.core.bd.GenericEntity;
+import br.org.groupwareworkbench.core.framework.CollabletInstance;
 
 public class PhotoMgrInstance extends CollabletInstance {
 
@@ -58,11 +59,11 @@ public class PhotoMgrInstance extends CollabletInstance {
     }
 
     public List<Photo> buscaFoto(String busca) {
-        return this.dao.busca(busca,this.getId());
+        return this.dao.busca(busca);
     }
 
     public List<Photo> buscaFotoAvancada(String nome, String descricao, String lugar, Date date) {
-        return this.dao.busca(nome, lugar, descricao, date, this.getId());
+        return this.dao.busca(nome, lugar, descricao, date);
     }
 
     public Photo buscaPhotoById(long idPhoto) {
@@ -70,7 +71,13 @@ public class PhotoMgrInstance extends CollabletInstance {
     }
 
     public List<Photo> buscaFotoPorListaId(List<GenericEntity> idList) {
-        return this.dao.buscaPorID(idList, this.getId());
+        List<Photo> photos = new ArrayList<Photo>();
+        for (GenericEntity entity : idList) {
+            if (entity instanceof Photo) {
+                photos.add((Photo)entity);
+            }
+        }
+        return photos;
     }
 
     public List<Photo> listaTodaPhoto() {
