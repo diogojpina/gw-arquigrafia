@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<collablet>
+    <ComponentClass>br.org.groupwareworkbench.arquigrafia.photo.PhotoMgrComponent</ComponentClass>
+    <collablet-description>
+        <collablet-name>PhotoRegister</collablet-name>
+        <collablet-description>photoInstance</collablet-description>
+        <!--subordinate-collablets>
+            <collablet-group>communication-collablets</collablet-group>
+        </subordinate-collablets-->
+    </collablet-description>
+
+    <specific-configuration>
+        <image-directory value="photos"/> <!-- vai ser criado no $HOME em windows nao sei  -->
+        <show-prefix value="mostra_"/>
+        <crop-prefix value="crop_"/>
+        <thumbnail-prefix value="thumb_"/>
+    </specific-configuration>
+
+    <collabElements>
+        <collabElement id="br.org.groupwareworkbench.collablet.communic.Tag" receiveFromParent="true" />
+        <collabElement id="br.org.groupwareworkbench.collablet.coop.Binomial" />
+        <collabElement id="br.org.groupwareworkbench.collablet.coop.Recommend" />
+        <collabElement id="br.org.groupwareworkbench.collablet.communic.Comment" />
+    </collabElements>
+</collablet>
