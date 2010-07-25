@@ -51,6 +51,8 @@
             <a href="#" onclick="return showPhotoUpload();">Upload de fotos</a>
              &nbsp;|&nbsp;
 	        <a href="${pageContext.request.contextPath}/groupware-workbench/${photoInstance.id}/recommendMgr/${recommendMgr.id}/calcRecommned">Recomendar</a>
+   	        &nbsp;|&nbsp;
+	        <a href="${pageContext.request.contextPath}/groupware-workbench/${photoInstance.id}/ratingMgr/${ratingMgr.id}">Rating</a>
         </c:if>
     </div>
     <div id="search_field">

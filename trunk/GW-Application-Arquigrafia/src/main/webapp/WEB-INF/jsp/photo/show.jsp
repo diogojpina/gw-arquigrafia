@@ -6,6 +6,7 @@
 <%@ taglib prefix="binomial" uri="http://www.groupwareworkbench.org.br/widgets/binomial" %>
 <%@ taglib prefix="tag" uri="http://www.groupwareworkbench.org.br/widgets/tag" %>
 <%@ taglib prefix="recommend" uri="http://www.groupwareworkbench.org.br/widgets/recommend" %>
+<%@ taglib prefix="rating" uri="http://www.groupwareworkbench.org.br/widgets/rating" %>
 <%@ taglib prefix="comment" uri="http://www.groupwareworkbench.org.br/widgets/comment" %>
 <%@ taglib prefix="gmaps" uri="http://www.groupwareworkbench.org.br/widgets/googlemapsmarker" %>
 <%@ taglib prefix="arq" tagdir="/WEB-INF/tags" %>
@@ -99,7 +100,10 @@
                 <div id="tagsAndEval">
                     <div id="evalAndAdd">
                         <div id="eval">
-                            <img src="${pageContext.request.contextPath}/images/evaluation_mock.png" alt="" />
+<!--                            <img src="${pageContext.request.contextPath}/images/evaluation_mock.png" alt="" />-->
+ 							<c:if test="${ratingMgr != null}">
+	                   			<rating:starRatingBar genericEntity="${photo}" ratingMgr="${ratingMgr}" collabletInstance="${photoInstance}"/>
+							</c:if>
                         </div>
                         <div id="add">
                             <a><img src="${pageContext.request.contextPath}/images/add_tag.png" alt="adicionar ou remover tag" /></a>

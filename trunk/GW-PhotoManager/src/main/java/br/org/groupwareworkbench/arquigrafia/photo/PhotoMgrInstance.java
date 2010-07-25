@@ -69,7 +69,11 @@ public class PhotoMgrInstance extends CollabletInstance {
     public Photo buscaPhotoById(long idPhoto) {
         return this.dao.findById(idPhoto);
     }
-
+    // TODO a existência de este método é temporal até encontrar uma melhor solução para o componente de avaliação   
+    public Photo findById(long idPhoto) {
+        return this.dao.findById(idPhoto);
+    }
+    
     public List<Photo> buscaFotoPorListaId(List<GenericEntity> idList) {
         List<Photo> photos = new ArrayList<Photo>();
         for (GenericEntity entity : idList) {
