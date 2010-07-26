@@ -100,8 +100,8 @@
                 <div id="tagsAndEval">
                     <div id="evalAndAdd">
                         <div id="eval">
-<!--                            <img src="${pageContext.request.contextPath}/images/evaluation_mock.png" alt="" />-->
  							<c:if test="${ratingMgr != null}">
+<!--	                   		<rating:starRatingWithScore genericEntity="${photo}" ratingMgr="${ratingMgr}" collabletInstance="${photoInstance}"/>-->
 	                   			<rating:starRatingBar genericEntity="${photo}" ratingMgr="${ratingMgr}" collabletInstance="${photoInstance}"/>
 							</c:if>
                         </div>
