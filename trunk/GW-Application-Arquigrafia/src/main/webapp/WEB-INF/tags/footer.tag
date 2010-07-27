@@ -13,7 +13,7 @@
     </div>
 
     <c:if test="${tagMgr != null}">
-        <tag:tagCloud tagMgr="${tagMgr}" collabletInstance="${siteInstance}"/>
+        <tag:tagCloud tagMgr="${tagMgr}" collabletInstance="${siteInstance}" />
     </c:if>
 
     <div id="footer_carrousel_wrap">
@@ -40,17 +40,17 @@
         <div id="footer_bottom_text">
             O desenvolvimento deste projeto recebe o apoio de:
             <br />
-            <div style="float:left; width: 25%; margin-top: 20px;">
-            	<img src="${pageContext.request.contextPath}/images/rnp_logo.png" alt="RNP" />
+            <div style="float: left; width: 25%; margin-top: 20px;">
+                <img src="${pageContext.request.contextPath}/images/rnp_logo.png" alt="RNP" />
             </div>
-            <div style="float:left; width: 25%; margin-top: 20px;">
-            	<img src="${pageContext.request.contextPath}/images/usp_logo.png" alt="RNP" />
+            <div style="float: left; width: 25%; margin-top: 20px;">
+                <img src="${pageContext.request.contextPath}/images/usp_logo.png" alt="USP" />
             </div>
-            <div style="float:left; width: 25%; margin-top: 20px;">
-            	<img src="${pageContext.request.contextPath}/images/ime_logo.png" alt="RNP" />
+            <div style="float: left; width: 25%; margin-top: 20px;">
+                <img src="${pageContext.request.contextPath}/images/ime_logo.png" alt="IME" />
             </div>
-            <div style="float:left; width: 25%; margin-top: 20px;">
-            	<img src="${pageContext.request.contextPath}/images/fau_logo.png" alt="RNP" />
+            <div style="float: left; width: 25%; margin-top: 20px;">
+                <img src="${pageContext.request.contextPath}/images/fau_logo.png" alt="FAU" />
             </div>
         </div>
     </div>

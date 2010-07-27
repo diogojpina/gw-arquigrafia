@@ -24,7 +24,6 @@ import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.ioc.RequestScoped;
-import br.org.groupwareworkbench.core.framework.CollabElementInstance;
 import br.org.groupwareworkbench.core.framework.CollabletInstance;
 
 @RequestScoped
@@ -45,7 +44,7 @@ public class SiteController {
 
     private void addIncludes(SiteInstance siteInstance) {
         result.include("siteInstance", siteInstance);
-        for (CollabElementInstance collabComponentInstance : siteInstance.getCollabElementInstances()) {
+        for (CollabletInstance collabComponentInstance : siteInstance.getCollabElementInstances()) {
             String nomeComponente = collabComponentInstance.getName();
             result.include(nomeComponente, collabComponentInstance);
             System.out.println("O componente elemento " + collabComponentInstance.getComponent().getCod() + " foi adicionado na requisição com o nome " + nomeComponente);
@@ -55,7 +54,7 @@ public class SiteController {
         for (CollabletInstance collabletInstance : siteInstance.getSubordinatedInstances()) {
             String nomeComponente = collabletInstance.getComponentInstanceName();
             result.include(nomeComponente, collabletInstance);
-            System.out.println("O componente filho" + collabletInstance.getComponent().getCod() + " foi adicionado na requisição com o nome " + nomeComponente);
+            System.out.println("O componente filho " + collabletInstance.getComponent().getCod() + " foi adicionado na requisição com o nome " + nomeComponente);
         }
 
         // Adiciona o antecessores.

@@ -69,6 +69,7 @@ public class PhotoMgrInstance extends CollabletInstance {
     public Photo buscaPhotoById(long idPhoto) {
         return this.dao.findById(idPhoto);
     }
+
     // TODO a existência de este método é temporal até encontrar uma melhor solução para o componente de avaliação   
     public Photo findById(long idPhoto) {
         return this.dao.findById(idPhoto);
@@ -78,7 +79,7 @@ public class PhotoMgrInstance extends CollabletInstance {
         List<Photo> photos = new ArrayList<Photo>();
         for (GenericEntity entity : idList) {
             if (entity instanceof Photo) {
-                photos.add((Photo)entity);
+                photos.add((Photo) entity);
             }
         }
         return photos;
@@ -91,12 +92,11 @@ public class PhotoMgrInstance extends CollabletInstance {
     public List<Photo> listaPhotoPorPaginaEOrdem(int tamanho, int pagina) {
         return dao.listPhotoByPageAndOrder(tamanho, pagina);
     }
-    
+
     public List<Photo> list() {
-        System.out.println("llego al metodo de listar de photo");
         return dao.listByIdInstance(this.getId());
     }
-    
+
     public String getThumbPrefix() {
         return ((PhotoMgrComponent) this.getComponent()).getThumbPrefix();
     }

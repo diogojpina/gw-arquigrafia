@@ -29,7 +29,6 @@ import br.com.caelum.vraptor.validator.ValidationMessage;
 import br.com.caelum.vraptor.view.Results;
 import br.org.groupwareworkbench.collablet.coord.user.User;
 import br.org.groupwareworkbench.core.bd.GenericEntity;
-import br.org.groupwareworkbench.core.framework.CollabElementInstance;
 import br.org.groupwareworkbench.core.framework.CollabletInstance;
 import br.org.groupwareworkbench.core.util.ImageUtils;
 
@@ -78,7 +77,7 @@ public class PhotoController {
         FileDownload fs = new FileDownload(file, "image/jpg", file.getName());
         return fs;
     }
-    
+
     @Get
     @Path(value = "/groupware-workbench/{photoInstance}/photo/img-original/{nomeArquivoUnico}")
     public Download imgOriginal(PhotoMgrInstance photoInstance, String nomeArquivoUnico) {
@@ -89,7 +88,7 @@ public class PhotoController {
 
     private void addIncludes(PhotoMgrInstance photoInstance) {
         result.include("photoInstance", photoInstance);
-        for (CollabElementInstance collabComponentInstance : photoInstance.getCollabElementInstances()) {
+        for (CollabletInstance collabComponentInstance : photoInstance.getCollabElementInstances()) {
             String nomeComponente = collabComponentInstance.getName();
             result.include(nomeComponente, collabComponentInstance);
             System.out.println("O componente elemento " + collabComponentInstance.getComponent().getCod() + " foi adicionado na requisição com o nome " + nomeComponente);
@@ -99,7 +98,7 @@ public class PhotoController {
         for (CollabletInstance collabletInstance : photoInstance.getSubordinatedInstances()) {
             String nomeComponente = collabletInstance.getComponentInstanceName();
             result.include(nomeComponente, collabletInstance);
-            System.out.println("O componente filho" + collabletInstance.getComponent().getCod() + " foi adicionado na requisição com o nome " + nomeComponente);
+            System.out.println("O componente filho " + collabletInstance.getComponent().getCod() + " foi adicionado na requisição com o nome " + nomeComponente);
         }
 
         for (CollabletInstance pai : photoInstance.getParentsInstances()) {
@@ -114,7 +113,7 @@ public class PhotoController {
     @Path(value = "/groupware-workbench/{photoInstance}/photo/show/{idPhoto}")
     public void show(PhotoMgrInstance photoInstance, long idPhoto) {
         result.include("idPhoto", idPhoto);
-        result.include("nameCollablet","photo");
+        result.include("nameCollablet", "photo");
         Photo photo = photoInstance.buscaPhotoById(idPhoto);
         //addIncludes();
         result.include("photoTitle", photo.getNome());
@@ -129,8 +128,7 @@ public class PhotoController {
         }
         addIncludes(photoInstance);
         photoInstance.processWidgets(request, photo);
-        result.include("photo",photo);
-        
+        result.include("photo", photo);
     }
 
     @Get

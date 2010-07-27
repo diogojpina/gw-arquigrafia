@@ -16,15 +16,15 @@
         <div id="user_top_links">
             <a href="#" class="black_link"><c:out value="${sessionScope.User}" /></a>
             &nbsp;&nbsp;
-             <a href="<c:url value="/groupware-workbench/${collablet.id}/userMgr/${userMgr.id}/logout"/>" class="gray_link">sair</a>
+            <a href="<c:url value="/groupware-workbench/${collablet.id}/userMgr/${userMgr.id}/logout" />" class="gray_link">sair</a>
         </div>
         <div id="suggestions">
             <a href="mailto:test@somewhere" class="white_link">Sugest&otilde;es e Cr&iacute;ticas</a><br />
             <a href="mailto:test@somewhere" class="white_link">Reportar Problema</a>
         </div>
         <div id="user_bottom_links">
-        	<!--  TODO: reativar links, quando for criado o lado de rede social do site -->
-        	<div style="height: 13px"></div>
+            <!-- TODO: reativar links, quando for criado o lado de rede social do site. -->
+            <div style="height: 13px"></div>
         </div>
     </div>
     <div id="top_links" class="blue_link">
@@ -49,8 +49,8 @@
             	};
             </script>
             <a href="#" onclick="return showPhotoUpload();">Upload de fotos</a>
-             &nbsp;|&nbsp;
-	        <a href="${pageContext.request.contextPath}/groupware-workbench/${photoInstance.id}/recommendMgr/${recommendMgr.id}/calcRecommned">Recomendar</a>
+            &nbsp;|&nbsp;
+	    <a href="${pageContext.request.contextPath}/groupware-workbench/${photoInstance.id}/recommendMgr/${recommendMgr.id}/calcRecommned">Recomendar</a>
    	        &nbsp;|&nbsp;
 	        <a href="${pageContext.request.contextPath}/groupware-workbench/${photoInstance.id}/ratingMgr/${ratingMgr.id}">Rating</a>
         </c:if>
