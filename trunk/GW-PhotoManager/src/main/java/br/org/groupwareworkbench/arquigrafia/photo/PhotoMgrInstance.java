@@ -10,14 +10,36 @@ import java.util.List;
 import br.org.groupwareworkbench.collablet.coord.user.User;
 import br.org.groupwareworkbench.core.bd.DAOFactory;
 import br.org.groupwareworkbench.core.bd.GenericEntity;
-import br.org.groupwareworkbench.core.framework.CollabletInstance;
+import br.org.groupwareworkbench.core.framework.Business;
+import br.org.groupwareworkbench.core.framework.Collablet;
+import br.org.groupwareworkbench.core.framework.ComponentInfo;
 
-public class PhotoMgrInstance extends CollabletInstance {
+@ComponentInfo(
+    version="0.1",
+    configurationURL="/groupware-workbench/{photoInstance}/photo",
+    rootLevel=true
+)
+public class PhotoMgrInstance implements Business {
 
     private final PhotoDAO dao = DAOFactory.get(PhotoDAO.class);
+    private final Collablet collablet;
 
-    public PhotoMgrInstance() {
-        super();
+    // TODO: Converter em atributos.
+    private final String dirImages = "images";
+    private final String cropPrefix = "crop_";
+    private final String thumbPrefix = "thumb_";
+    private final String mostraPrefix = "mostra_";
+
+    public PhotoMgrInstance(Collablet collablet) {
+        this.collablet = collablet;
+    }
+
+    public Collablet getCollablet() {
+        return collablet;
+    }
+
+    public Long getId() {
+        return collablet.getId();
     }
 
     public File imgThumb(String nomeArquivoUnico) {
@@ -33,12 +55,12 @@ public class PhotoMgrInstance extends CollabletInstance {
     }
 
     public File imgOriginal(String nomeArquivoUnico) {
-        return this.dao.getImageFile(getDirImages(),"", nomeArquivoUnico);        
+        return this.dao.getImageFile(getDirImages(), "", nomeArquivoUnico);
     }
 
-    @Override
+    //@Override
     public void destroy() {
-        this.dao.deleteByIdInstance(this.getId());
+        this.dao.deleteByIdInstance(collablet.getId());
     }
 
     public void delete(long photoId) {
@@ -46,7 +68,7 @@ public class PhotoMgrInstance extends CollabletInstance {
     }
 
     public void save(Photo photoRegister) {
-        photoRegister.setIdInstance(this.getId());
+        photoRegister.setIdInstance(collablet.getId());
         this.dao.save(photoRegister, true);
     }
 
@@ -94,26 +116,26 @@ public class PhotoMgrInstance extends CollabletInstance {
     }
 
     public List<Photo> list() {
-        return dao.listByIdInstance(this.getId());
+        return dao.listByIdInstance(collablet.getId());
+    }
+
+     public String getDirImages() {
+        return dirImages;
+    }
+
+    public String getCropPrefix() {
+        return cropPrefix;
     }
 
     public String getThumbPrefix() {
-        return ((PhotoMgrComponent) this.getComponent()).getThumbPrefix();
+        return thumbPrefix;
     }
 
     public String getMostraPrefix() {
-        return ((PhotoMgrComponent) this.getComponent()).getMostraPrefix();
+        return mostraPrefix;
     }
 
     public String getDirImagesAbsoluto() {
         return this.getDirImages();
-    }
-
-    public String getCropPrefix() {
-        return ((PhotoMgrComponent) this.getComponent()).getCropPrefix();
-    }
-
-    public String getDirImages() {
-        return ((PhotoMgrComponent) this.getComponent()).getDirImages();
     }
 }

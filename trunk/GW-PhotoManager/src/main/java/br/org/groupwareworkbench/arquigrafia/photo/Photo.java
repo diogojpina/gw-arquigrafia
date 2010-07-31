@@ -26,6 +26,7 @@ public class Photo extends GenericEntity {
 
     private String lugar;
 
+    // TODO: O nome "data" é uma palavra reservada em alguns dialetos de SQL.
     @Temporal(TemporalType.TIMESTAMP)
     private Date data;
 
@@ -81,18 +82,18 @@ public class Photo extends GenericEntity {
     }
 
     public Date getData() {
-        return data;
+        return data == null ? null : (Date) data.clone();
     }
 
     public void setData(Date data) {
-        this.data = data;
+        this.data = (data == null ? null : (Date) data.clone());
     }
 
     public Date getDataCriacao() {
-        return dataCriacao;
+        return dataCriacao == null ? null : (Date) dataCriacao.clone();
     }
 
-    public void setDataCriacao(Date dataCricao) {
-        this.dataCriacao = dataCricao;
+    public void setDataCriacao(Date dataCriacao) {
+        this.dataCriacao = (dataCriacao == null ? null : (Date) dataCriacao.clone());
     }
 }

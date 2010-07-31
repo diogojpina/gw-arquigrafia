@@ -29,7 +29,7 @@ import br.com.caelum.vraptor.validator.ValidationMessage;
 import br.com.caelum.vraptor.view.Results;
 import br.org.groupwareworkbench.collablet.coord.user.User;
 import br.org.groupwareworkbench.core.bd.GenericEntity;
-import br.org.groupwareworkbench.core.framework.CollabletInstance;
+import br.org.groupwareworkbench.core.framework.Collablet;
 import br.org.groupwareworkbench.core.util.ImageUtils;
 
 @RequestScoped
@@ -88,23 +88,23 @@ public class PhotoController {
 
     private void addIncludes(PhotoMgrInstance photoInstance) {
         result.include("photoInstance", photoInstance);
-        for (CollabletInstance collabComponentInstance : photoInstance.getCollabElementInstances()) {
+        for (Collablet collabComponentInstance : photoInstance.getCollablet().getDependencies()) {
             String nomeComponente = collabComponentInstance.getName();
             result.include(nomeComponente, collabComponentInstance);
-            System.out.println("O componente elemento " + collabComponentInstance.getComponent().getCod() + " foi adicionado na requisição com o nome " + nomeComponente);
+            System.out.println("O componente elemento " + collabComponentInstance.getCod() + " foi adicionado na requisição com o nome " + nomeComponente);
         }
 
         //Adiciona os filhos.
-        for (CollabletInstance collabletInstance : photoInstance.getSubordinatedInstances()) {
-            String nomeComponente = collabletInstance.getComponentInstanceName();
+        for (Collablet collabletInstance : photoInstance.getCollablet().getSubordinateds()) {
+            String nomeComponente = collabletInstance.getName();
             result.include(nomeComponente, collabletInstance);
-            System.out.println("O componente filho " + collabletInstance.getComponent().getCod() + " foi adicionado na requisição com o nome " + nomeComponente);
+            System.out.println("O componente filho " + collabletInstance.getCod() + " foi adicionado na requisição com o nome " + nomeComponente);
         }
 
-        for (CollabletInstance pai : photoInstance.getParentsInstances()) {
-            String nomeComponente = pai.getComponentInstanceName();
+        for (Collablet pai : photoInstance.getCollablet().getHierarchy()) {
+            String nomeComponente = pai.getName();
             result.include(nomeComponente, pai);
-            System.out.println("O componente antecessor " + pai.getComponent().getCod() + " foi adicionado na requisição com o nome " + nomeComponente);
+            System.out.println("O componente antecessor " + pai.getCod() + " foi adicionado na requisição com o nome " + nomeComponente);
         }
     }
 
@@ -127,7 +127,7 @@ public class PhotoController {
             result.include("photoLocation", photo.getLugar());
         }
         addIncludes(photoInstance);
-        photoInstance.processWidgets(request, photo);
+        photoInstance.getCollablet().processWidgets(request, photo);
         result.include("photo", photo);
     }
 
@@ -206,6 +206,8 @@ public class PhotoController {
     @Path(value = "/groupware-workbench/{photoInstance}/photo/registra")
     public void save(Photo photoRegister, UploadedFile foto, PhotoMgrInstance photoInstance, User user) {
 
+        // TODO: Essa lógica de negócio deveria estar na classe de negócio, não na Controller.
+
         // Validações:
         boolean erro = false;
         if (photoRegister.getNome().isEmpty()) {
@@ -223,7 +225,7 @@ public class PhotoController {
         }
 
         // Fim das validações.
-        
+
         String nomeArquivo = foto.getFileName();
         photoRegister.setNomeArquivo(nomeArquivo);
         InputStream imagemOriginal = null;
@@ -272,18 +274,22 @@ public class PhotoController {
             return;
         }
 
-        photoInstance.processWidgets(request, photoRegister);
+        photoInstance.getCollablet().processWidgets(request, photoRegister);
         addIncludes(photoInstance);
         result.use(Results.logic()).redirectTo(PhotoController.class).registra(photoInstance);
     }
-    
+
     @Get
     @Path(value = "/groupware-workbench/{photoInstance}/photo/registra_multiplos/{os}/{dir}")
-    public void  registra_multiplos(String os, String dir, PhotoMgrInstance photoInstance) {
+    public void registraMultiplos(String os, String dir, PhotoMgrInstance photoInstance) {
+        // TODO: Essa lógica de negócio deveria estar na classe de negócio, não na Controller.
+
+        // TODO: Não deveria depender em saber qual é o sistema operacional.
         String pDir = dir.replace("|", "/");
         if (os.equals("windows")) {
             pDir = "C:/" + pDir;
         }
+
         File filesDir = new File(pDir);
         if (filesDir.isDirectory()) {
             int numFile = 1;
@@ -296,7 +302,7 @@ public class PhotoController {
                 InputStream imagemThumb = null;
                 InputStream imagemCropped = null;
                 InputStream imagemMostra = null;
- 
+
                 try {
                     FileInputStream fis = new FileInputStream(file);
                     byte[] rawphoto = new byte[fis.available()];
@@ -333,7 +339,7 @@ public class PhotoController {
             }
         }
     }
-    
+
     @Delete
     @Path(value = "/groupware-workbench/{photoInstance}/photo/show/{idPhoto}")
     public void delete(PhotoMgrInstance photoInstance, long idPhoto) {

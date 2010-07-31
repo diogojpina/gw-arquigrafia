@@ -19,6 +19,7 @@
 */
 package br.org.groupwareworkbench.arquigrafia.photo;
 
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -26,10 +27,9 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 
-import junit.framework.Assert;
-
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.Assert;
 
 import br.org.groupwareworkbench.core.bd.EntityManagerProvider;
 import br.org.groupwareworkbench.core.bd.DAOFactory;
@@ -49,6 +49,7 @@ public class PhotoDAOTest {
     private Photo photo8;
     private Photo photo9;
     private Photo photo10;
+    private List<Photo> allPhotos;
     private Date date;
 
     @Before
@@ -141,6 +142,8 @@ public class PhotoDAOTest {
         photo10.setData(date);
         photo10.setNomeArquivo("fotodez.jpg");
 
+        allPhotos = Arrays.asList(photo1, photo2, photo3, photo4, photo5, photo6, photo7, photo8, photo9, photo10);
+
         dao.save(photo1, true);
         dao.save(photo2, true);
         dao.save(photo3, true);
@@ -155,7 +158,7 @@ public class PhotoDAOTest {
 
     @Test
     public void testFindPhotoByNome() {
-        List<Photo> ret = dao.busca("ois", 1L);
+        List<Photo> ret = dao.busca("ois");
 
         Assert.assertEquals(1, ret.size());
         Assert.assertEquals(photo2, ret.get(0));
@@ -164,7 +167,7 @@ public class PhotoDAOTest {
 
     @Test
     public void testFindPhotoByNomeOuLugarDescricaoData() {
-        List<Photo> ret = dao.busca("ois", "", "", null, 1L);
+        List<Photo> ret = dao.busca("ois", "", "", null);
         Assert.assertEquals(1, ret.size());
         Assert.assertEquals(photo2, ret.get(0));
         Assert.assertNotNull(ret.get(0).getId());
@@ -172,7 +175,7 @@ public class PhotoDAOTest {
 
     @Test
     public void testFindPhotoByLugar() {
-        List<Photo> ret = dao.busca("", "usp", "", null, 1L);
+        List<Photo> ret = dao.busca("", "usp", "", null);
         Assert.assertEquals(1, ret.size());
         Assert.assertEquals(photo1, ret.get(0));
         Assert.assertNotNull(ret.get(0).getId());
@@ -180,7 +183,7 @@ public class PhotoDAOTest {
 
     @Test
     public void testFindPhotoByDescricao() {
-        List<Photo> ret = dao.busca("", "", "this is a short", null, 1L);
+        List<Photo> ret = dao.busca("", "", "this is a short", null);
         Assert.assertEquals(9, ret.size());
         Assert.assertFalse(ret.contains(photo1));
         Assert.assertTrue(ret.contains(photo2));
@@ -199,7 +202,7 @@ public class PhotoDAOTest {
 
     @Test
     public void testFindPhotoByLugarEData() {
-        List<Photo> ret = dao.busca("", "usp", "", date, 1L);
+        List<Photo> ret = dao.busca("", "usp", "", date);
         Assert.assertEquals(1, ret.size());
         Assert.assertEquals(1, ret.size());
         Assert.assertEquals(photo1, ret.get(0));
@@ -208,7 +211,7 @@ public class PhotoDAOTest {
 
     @Test
     public void testFindPhotoByDescricaoEData() {
-        List<Photo> ret = dao.busca("", "", "this is a", date, 1L);
+        List<Photo> ret = dao.busca("", "", "this is a", date);
         Assert.assertEquals(9, ret.size());
         Assert.assertFalse(ret.contains(photo1));
         Assert.assertTrue(ret.contains(photo2));
@@ -227,7 +230,7 @@ public class PhotoDAOTest {
 
     @Test
     public void testFindPhotoByData() {
-        List<Photo> ret = dao.busca("", "", "", date, 1L);
+        List<Photo> ret = dao.busca("", "", "", date);
         Assert.assertEquals(10, ret.size());
         Assert.assertTrue(ret.contains(photo1));
         Assert.assertTrue(ret.contains(photo2));

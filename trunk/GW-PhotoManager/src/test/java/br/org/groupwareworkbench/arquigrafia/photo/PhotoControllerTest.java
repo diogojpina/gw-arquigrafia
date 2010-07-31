@@ -59,7 +59,6 @@ public class PhotoControllerTest {
         view = mock(LogicResult.class);
         result = new MockResult();
 
-        
         httpServletRequest = mock(HttpServletRequest.class);
         photoInstance = mock(PhotoMgrInstance.class);
 

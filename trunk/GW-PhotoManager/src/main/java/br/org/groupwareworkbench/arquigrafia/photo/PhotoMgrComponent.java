@@ -10,11 +10,13 @@ import org.dom4j.Node;
 import br.org.groupwareworkbench.core.framework.ComponentInfo;
 import br.org.groupwareworkbench.core.framework.Component;
 
-@ComponentInfo(instanceType=PhotoMgrInstance.class, 
+@ComponentInfo(
+    instanceType=PhotoMgrInstance.class,
     version="0.1",
     configurationURL="/groupware-workbench/{photoInstance}/photo",
     rootLevel=true
 )
+@Deprecated
 public class PhotoMgrComponent extends Component {
 
     private String dirImages = "images";

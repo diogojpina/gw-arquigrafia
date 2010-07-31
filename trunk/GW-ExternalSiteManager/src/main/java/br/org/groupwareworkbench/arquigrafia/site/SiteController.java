@@ -24,7 +24,7 @@ import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.ioc.RequestScoped;
-import br.org.groupwareworkbench.core.framework.CollabletInstance;
+import br.org.groupwareworkbench.core.framework.Collablet;
 
 @RequestScoped
 @Resource
@@ -44,24 +44,24 @@ public class SiteController {
 
     private void addIncludes(SiteInstance siteInstance) {
         result.include("siteInstance", siteInstance);
-        for (CollabletInstance collabComponentInstance : siteInstance.getCollabElementInstances()) {
+        for (Collablet collabComponentInstance : siteInstance.getCollablet().getDependencies()) {
             String nomeComponente = collabComponentInstance.getName();
             result.include(nomeComponente, collabComponentInstance);
-            System.out.println("O componente elemento " + collabComponentInstance.getComponent().getCod() + " foi adicionado na requisição com o nome " + nomeComponente);
+            System.out.println("O componente elemento " + collabComponentInstance.getCod() + " foi adicionado na requisição com o nome " + nomeComponente);
         }
 
         // Adiciona os filhos.
-        for (CollabletInstance collabletInstance : siteInstance.getSubordinatedInstances()) {
-            String nomeComponente = collabletInstance.getComponentInstanceName();
+        for (Collablet collabletInstance : siteInstance.getCollablet().getSubordinateds()) {
+            String nomeComponente = collabletInstance.getName();
             result.include(nomeComponente, collabletInstance);
-            System.out.println("O componente filho " + collabletInstance.getComponent().getCod() + " foi adicionado na requisição com o nome " + nomeComponente);
+            System.out.println("O componente filho " + collabletInstance.getCod() + " foi adicionado na requisição com o nome " + nomeComponente);
         }
 
         // Adiciona o antecessores.
-        for (CollabletInstance pai : siteInstance.getParentsInstances()) {
-            String nomeComponente = pai.getComponentInstanceName();
+        for (Collablet pai : siteInstance.getCollablet().getHierarchy()) {
+            String nomeComponente = pai.getName();
             result.include(nomeComponente, pai);
-            System.out.println("O componente antecessor " + pai.getComponent().getCod() + " foi adicionado na requisição com o nome " + nomeComponente);
+            System.out.println("O componente antecessor " + pai.getCod() + " foi adicionado na requisição com o nome " + nomeComponente);
         }
     }
 }

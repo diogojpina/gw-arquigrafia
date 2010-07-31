@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -16,7 +15,6 @@ import org.apache.commons.io.IOUtils;
 
 import br.org.groupwareworkbench.collablet.coord.user.User;
 import br.org.groupwareworkbench.core.bd.GenericDAO;
-import br.org.groupwareworkbench.core.bd.GenericEntity;
 
 public class PhotoDAO extends GenericDAO<Photo> {
 
