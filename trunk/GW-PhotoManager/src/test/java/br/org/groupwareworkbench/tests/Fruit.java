@@ -32,6 +32,8 @@ public class Fruit extends GenericEntity {
 
     private String name;
 
+    public Fruit() {}
+
     public void setName(String name) {
         this.name = name;
     }

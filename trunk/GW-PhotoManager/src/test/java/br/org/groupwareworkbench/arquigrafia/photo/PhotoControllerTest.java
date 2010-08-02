@@ -258,7 +258,7 @@ public class PhotoControllerTest {
         } catch (ValidationException e) {
             List<String> outMensagens = listErrors(e);
             for (String erro : outMensagens) {
-                System.out.println(erro);
+                System.err.println(erro);
             }
             Assert.fail();
         }

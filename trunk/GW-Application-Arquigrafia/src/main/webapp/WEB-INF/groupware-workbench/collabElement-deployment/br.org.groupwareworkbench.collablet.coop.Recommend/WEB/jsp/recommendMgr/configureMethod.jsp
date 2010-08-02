@@ -16,19 +16,22 @@
         <w:conteudoPagina titulo="Configuração dos atributos da ferramenta:">
             <br />
 
-            <c:forEach items="${classes}" var="clazz">
-            	Nome da classe : ${clazz.name}
-                <form method="Post" action="<c:url value="/groupware-workbench/${collabletInstance.id}/recommendMgr/${recommendMgr.id}/updateMethodsEnable" />">
-                    <c:forEach var="method" varStatus="status" items="${clazz.methods}">
-	                <br />
-                   	<input type="checkbox" name="enabledMethodList[${status.count}]" value="<c:out value="${method.value.name}" />" <c:if test="${method.value.enabled}">checked="checked"</c:if> />
-                        <c:out value="${method.value.name}" />
-                    </c:forEach>
-                    <br />
-                    <input type="submit" class="botao" value="Confirma" />
-                </form>
-                <br />
-            </c:forEach>
+            <form method="POST" action="<c:url value="/groupware-workbench/${collabletInstance.id}/recommendMgr/${recommendMgr.id}/updateMethodsEnable" />">
+                <c:forEach items="${classes}" var="clazz">
+                    <div>
+                        <p>Nome da classe: <c:out value="${clazz.name}" /></p>
+                        <ul>
+                            <c:forEach var="method" varStatus="status" items="${clazz.methods}">
+                                <li>
+                                    <input type="checkbox" name="enabledMethodList[${status.count}]" value="<c:out value="${clazz.name}" />:<c:out value="${method.value.name}" />" <c:if test="${method.value.enabled}">checked="checked"</c:if> />
+                                    <c:out value="${method.value.name}" />
+                                </li>
+                            </c:forEach>
+                        </ul>
+                    </div>
+                </c:forEach>
+                <input type="submit" class="botao" value="Confirma" />
+            </form>
 
             <div class="barra_botoes">
                 <w:voltar collabletInstance="${collabletInstance}" />
