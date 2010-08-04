@@ -3,8 +3,6 @@
   <persistence-unit name="TestUnit" transaction-type="RESOURCE_LOCAL">
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
     <class>br.org.groupwareworkbench.arquigrafia.photo.Photo</class>
-    <class>br.org.groupwareworkbench.core.bd.GCFF_Component</class>
-    <class>br.org.groupwareworkbench.core.bd.GCFF_ComponentInstance</class>
     <class>br.org.groupwareworkbench.core.bd.GenericEntity</class>
     <class>br.org.groupwareworkbench.core.bd.GenericReference</class>
     <class>br.org.groupwareworkbench.core.framework.Collablet</class>
