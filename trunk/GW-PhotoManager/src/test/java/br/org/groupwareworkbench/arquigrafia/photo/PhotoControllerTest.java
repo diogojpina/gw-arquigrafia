@@ -58,7 +58,6 @@ public class PhotoControllerTest {
     private Collablet outroCollablet;
 
     private MockResult result;
-    private HttpServletRequest httpServletRequest;
 
     private Photo photo1;
     private Photo photo2;
@@ -75,10 +74,7 @@ public class PhotoControllerTest {
         outroCollablet = db.makeCollablet(PhotoMgrInstance.class);
 
         result = new MockResult();
-
-        httpServletRequest = Mockito.mock(HttpServletRequest.class);
-
-        controller = new PhotoController(result, new MockValidator(), httpServletRequest);
+        controller = new PhotoController(result, new MockValidator(), Mockito.mock(HttpServletRequest.class));
 
         populateDatabase();
     }
