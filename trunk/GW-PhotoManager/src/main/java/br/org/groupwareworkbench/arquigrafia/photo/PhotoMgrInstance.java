@@ -21,8 +21,8 @@ import br.org.groupwareworkbench.core.framework.ComponentInfo;
 )
 public class PhotoMgrInstance implements Business {
 
-    private final PhotoDAO dao = DAOFactory.get(PhotoDAO.class);
     private final Collablet collablet;
+    private final PhotoDAO dao = DAOFactory.get(PhotoDAO.class);
 
     // TODO: Converter em atributos.
     private final String dirImages = "images";

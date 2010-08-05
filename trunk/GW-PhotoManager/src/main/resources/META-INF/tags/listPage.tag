@@ -3,19 +3,20 @@
 <%@ taglib prefix="r" uri="http://www.groupwareworkbench.org.br/taglibs/reflection" %>
 
 <%@ attribute name="photoInstance" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.arquigrafia.photo.PhotoMgrInstance" %>
-<%@ attribute name="linkClass" required="false" rtexprvalue="true" type="java.lang.String" %>
+
+<%@ attribute name="linkClass" required="false" rtexprvalue="false" type="java.lang.String" %>
+<%@ attribute name="divClass" required="false" rtexprvalue="false" type="java.lang.String" %>
+<%@ attribute name="wrapClass" required="false" rtexprvalue="false" type="java.lang.String" %>
+
 <%@ attribute name="keepRatio" required="true" rtexprvalue="true" type="java.lang.Boolean" %>
 <%@ attribute name="showInDiv" required="false" rtexprvalue="true" type="java.lang.Boolean" %>
-<%@ attribute name="divClass" required="false" rtexprvalue="true" type="java.lang.String" %>
 <%@ attribute name="pageSize" required="true" rtexprvalue="true" type="java.lang.Integer" %>
 <%@ attribute name="pageNumber" required="true" rtexprvalue="true" type="java.lang.Integer" %>
-<%@ attribute name="wrapClass" required="false" rtexprvalue="true" type="java.lang.String" %>
 
 <r:callMethod methodName="listaPhotoPorPaginaEOrdem" instance="${photoInstance}" var="fotosA">
     <r:param type="int" value="${pageSize}" />
     <r:param type="int" value="${pageNumber}" />
 </r:callMethod>
-
 
 <div class="${wrapClass}">
     <c:choose>
@@ -28,17 +29,17 @@
     </c:choose>
     <c:forEach var="fotoA" items="${fotosA}">
         <c:if test="${showInDiv}">
-            <div class="<c:out value="${divClass}" />">
+            <div class="${divClass}">
         </c:if>
         <a class="${linkClass}" rel="linkimage" href="<c:url value="/groupware-workbench/${photoInstance.id}/photo/show/${fotoA.id}"/>">            
-        <c:choose>
-            <c:when test="${keepRatio}">
-                <img src="<c:url value="/groupware-workbench/${photoInstance.id}/photo/img-thumb/${fotoA.nomeArquivoUnico}"/>"/>
-            </c:when>
-            <c:otherwise>
-                <img src="<c:url value="/groupware-workbench/${photoInstance.id}/photo/img-crop/${fotoA.nomeArquivoUnico}"/>"/>
-            </c:otherwise>
-        </c:choose>   
+            <c:choose>
+                <c:when test="${keepRatio}">
+                    <img src="<c:url value="/groupware-workbench/${photoInstance.id}/photo/img-thumb/${fotoA.nomeArquivoUnico}"/>"/>
+                </c:when>
+                <c:otherwise>
+                    <img src="<c:url value="/groupware-workbench/${photoInstance.id}/photo/img-crop/${fotoA.nomeArquivoUnico}"/>"/>
+                </c:otherwise>
+            </c:choose>
         </a>
         <c:if test="${showInDiv}">
             </div>

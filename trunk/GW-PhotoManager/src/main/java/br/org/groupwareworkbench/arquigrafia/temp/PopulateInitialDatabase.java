@@ -40,6 +40,7 @@ import br.org.groupwareworkbench.core.exceptions.ConfigurationException;
 import br.org.groupwareworkbench.core.framework.Business;
 import br.org.groupwareworkbench.core.framework.Collablet;
 import br.org.groupwareworkbench.core.framework.MainCollablet;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
@@ -80,7 +81,11 @@ public class PopulateInitialDatabase {
 
     private static void populate(Collablet c) {
         c.setEnabled(true);
-        c.setName(c.getComponentClassName().substring(0, c.getComponentClassName().length() - "Instance".length()));
+        String full = c.getComponentClassName();
+        String instanceLess = full.substring(0, full.length() - "Instance".length());
+        String name = instanceLess.substring(instanceLess.lastIndexOf('.') + 1);
+        String lowerCaseName = Character.toLowerCase(name.charAt(0)) + name.substring(1);
+        c.setName(lowerCaseName);
     }
 
     public static void doIt() {

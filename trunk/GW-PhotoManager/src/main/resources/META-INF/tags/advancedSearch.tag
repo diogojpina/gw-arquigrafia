@@ -3,12 +3,13 @@
 <%@ taglib prefix="r" uri="http://www.groupwareworkbench.org.br/taglibs/reflection" %>
 
 <%@ attribute name="photoInstance" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.arquigrafia.photo.PhotoMgrInstance" %>
-<%@ attribute name="formClass" required="false" type="java.lang.String" %>
-<%@ attribute name="formLineClass" required="false" type="java.lang.String" %>
-<%@ attribute name="formLabelClass" required="false" type="java.lang.String" %>
-<%@ attribute name="formInputClass" required="false" type="java.lang.String" %>
-<%@ attribute name="formLineBtClass" required="false" type="java.lang.String" %>
-<%@ attribute name="formSubmitBtClass" required="false" type="java.lang.String" %>
+
+<%@ attribute name="formClass" required="false" rtexprvalue="false" type="java.lang.String" %>
+<%@ attribute name="formLineClass" required="false" rtexprvalue="false" type="java.lang.String" %>
+<%@ attribute name="formLabelClass" required="false" rtexprvalue="false" type="java.lang.String" %>
+<%@ attribute name="formInputClass" required="false" rtexprvalue="false" type="java.lang.String" %>
+<%@ attribute name="formLineBtClass" required="false" rtexprvalue="false" type="java.lang.String" %>
+<%@ attribute name="formSubmitBtClass" required="false" rtexprvalue="false" type="java.lang.String" %>
 
 <script type="text/javascript">
     $(function() {

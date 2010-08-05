@@ -60,7 +60,7 @@
         </table>
     </form>
     <br />
-    <span id="simpleSearch"><a href="#">Pesquisa Simple</a></span>
+    <span id="simpleSearch"><a href="#">Pesquisa Simples</a></span>
 </div>
 
 <script type="text/javascript">

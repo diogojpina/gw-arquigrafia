@@ -4,16 +4,17 @@
 
 <%@ attribute name="photoInstance" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.arquigrafia.photo.PhotoMgrInstance" %>
 <%@ attribute name="photos" required="true" rtexprvalue="true" type="java.util.List" %>
-<%@ attribute name="linkClass" required="false" type="java.lang.String" %>
-<%@ attribute name="showName" required="false" type="java.lang.Boolean" rtexprvalue="false" %>
-<%@ attribute name="showLocation" required="false" type="java.lang.Boolean" rtexprvalue="false" %>
-<%@ attribute name="nameClass" required="false" type="java.lang.String" %>
-<%@ attribute name="locationClass" required="false" type="java.lang.String" %>
-<%@ attribute name="lineClass" required="false" type="java.lang.String" %>
+
+<%@ attribute name="showName" required="false" rtexprvalue="false" type="java.lang.Boolean" %>
+<%@ attribute name="showLocation" required="false" rtexprvalue="false" type="java.lang.Boolean" %>
+<%@ attribute name="linkClass" required="false" rtexprvalue="false" type="java.lang.String" %>
+<%@ attribute name="nameClass" required="false" rtexprvalue="false" type="java.lang.String" %>
+<%@ attribute name="locationClass" required="false" rtexprvalue="false" type="java.lang.String" %>
+<%@ attribute name="lineClass" required="false" rtexprvalue="false" type="java.lang.String" %>
 
 <%--
-    TODO: Evitar inserir <div> que nï¿½o fecham de forma ï¿½bvia pois dependem de anï¿½lise sensï¿½vel ao contexto para
-    garantir que sï¿½o bem formadas.
+    TODO: Evitar inserir <div> que não fecham de forma óbvia pois dependem de análise sensível ao contexto para
+    garantir que são bem formadas.
 --%>
 <c:forEach var="foto" items="${photos}">
     <div class="${lineClass}" style="float: left">

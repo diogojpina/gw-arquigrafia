@@ -19,5 +19,5 @@
     });
 </script>
 <div>
-    <img alt="${foto.nome}" src="<c:url value="/groupware-workbench/${photoInstance.id}/photo/img-show/${foto.nomeArquivoUnico}"/>"/>
+    <img alt="<c:out value="${foto.nome}" />" src="<c:url value="/groupware-workbench/${photoInstance.id}/photo/img-show/${foto.nomeArquivoUnico}"/>" />
 </div>

@@ -90,14 +90,14 @@ public class PhotoController {
         result.include("photoInstance", photoInstance);
         for (Collablet collabComponentInstance : photoInstance.getCollablet().getDependencies()) {
             String nomeComponente = collabComponentInstance.getName();
-            result.include(nomeComponente, collabComponentInstance);
+            result.include(nomeComponente, collabComponentInstance.getBusinessObject());
             System.out.println("O componente elemento " + collabComponentInstance.getCod() + " foi adicionado na requisição com o nome " + nomeComponente);
         }
 
         //Adiciona os filhos.
         for (Collablet collabletInstance : photoInstance.getCollablet().getSubordinateds()) {
             String nomeComponente = collabletInstance.getName();
-            result.include(nomeComponente, collabletInstance);
+            result.include(nomeComponente, collabletInstance.getBusinessObject());
             System.out.println("O componente filho " + collabletInstance.getCod() + " foi adicionado na requisição com o nome " + nomeComponente);
         }
 

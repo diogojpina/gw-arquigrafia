@@ -3,8 +3,9 @@
 <%@ taglib prefix="r" uri="http://www.groupwareworkbench.org.br/taglibs/reflection" %>
 
 <%@ attribute name="photoInstance" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.arquigrafia.photo.PhotoMgrInstance" %>
-<%@ attribute name="searchInputClass" required="false" type="java.lang.String" %>
-<%@ attribute name="searchButtonClass" required="false" type="java.lang.String" %>
+
+<%@ attribute name="searchInputClass" required="false" rtexprvalue="false" type="java.lang.String" %>
+<%@ attribute name="searchButtonClass" required="false" rtexprvalue="false" type="java.lang.String" %>
 
 <div id="search_box">
     <form name="formBusca" action="<c:url value="/groupware-workbench/${photoInstance.id}/photo/busca"/>" method="post">
