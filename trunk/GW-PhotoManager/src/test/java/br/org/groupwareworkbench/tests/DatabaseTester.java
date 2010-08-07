@@ -83,12 +83,7 @@ public class DatabaseTester {
     }
 
     public Collablet makeCollablet(Class<? extends Business> businessClass) {
-        if (closed) throw new IllegalStateException();
-        Collablet collablet = new Collablet();
-        collablet.setComponentClass(businessClass);
-        collablet.setEnabled(true);
-        collablet.save();
-        return collablet;
+        return makeCollablet(businessClass, null);
     }
 
     public Collablet makeCollablet(Class<? extends Business> businessClass, String name) {
@@ -97,7 +92,9 @@ public class DatabaseTester {
         collablet.setComponentClass(businessClass);
         collablet.setEnabled(true);
         collablet.setName(name);
-        collablet.save();
+        em.getTransaction().begin();
+        em.persist(collablet);
+        em.getTransaction().commit();
         return collablet;
     }
 

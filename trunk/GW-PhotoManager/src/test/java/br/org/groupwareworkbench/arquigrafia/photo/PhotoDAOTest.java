@@ -22,6 +22,7 @@ package br.org.groupwareworkbench.arquigrafia.photo;
 import br.org.groupwareworkbench.core.bd.DAOFactory;
 import br.org.groupwareworkbench.arquigrafia.photo.Photo;
 import br.org.groupwareworkbench.arquigrafia.photo.PhotoDAO;
+import br.org.groupwareworkbench.core.bd.EntityManagerProvider;
 import br.org.groupwareworkbench.core.framework.Collablet;
 import br.org.groupwareworkbench.tests.DatabaseTester;
 
@@ -29,6 +30,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+
+import javax.persistence.EntityManager;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -38,6 +41,7 @@ import org.junit.Test;
 public class PhotoDAOTest {
 
     private DatabaseTester db;
+    private EntityManager em;
     private Collablet collablet;
 
     private PhotoDAO dao;
@@ -50,6 +54,7 @@ public class PhotoDAOTest {
     @Before
     public void setUp() {
         db = new DatabaseTester();
+        em = EntityManagerProvider.getEntityManager();
         collablet = db.makeCollablet(PhotoMgrInstance.class);
 
         dao = DAOFactory.get(PhotoDAO.class);
@@ -63,6 +68,7 @@ public class PhotoDAOTest {
     }
 
     private void populateDatabase() {
+        em.getTransaction().begin();
         allPhotos = new ArrayList<Photo>(10);
         notAllPhotos = new ArrayList<Photo>(9);
 
@@ -74,7 +80,7 @@ public class PhotoDAOTest {
         photo1.setData(date);
         photo1.setNomeArquivo("fotoum.jpg");
         allPhotos.add(photo1);
-        dao.save(photo1, true);
+        em.persist(photo1);
 
         photo2 = new Photo();
         photo2.setIdInstance(collablet.getId());
@@ -85,7 +91,7 @@ public class PhotoDAOTest {
         photo2.setNomeArquivo("fotodois.jpg");
         allPhotos.add(photo2);
         notAllPhotos.add(photo2);
-        dao.save(photo2, true);
+        em.persist(photo2);
 
         for (int i = 3; i <= 10; i++) {
             Photo p = new Photo();
@@ -97,8 +103,10 @@ public class PhotoDAOTest {
             p.setNomeArquivo("foto" + i + ".jpg");
             allPhotos.add(p);
             notAllPhotos.add(p);
-            dao.save(p, true);
+            em.persist(p);
         }
+
+        em.getTransaction().commit();
     }
 
     @Test

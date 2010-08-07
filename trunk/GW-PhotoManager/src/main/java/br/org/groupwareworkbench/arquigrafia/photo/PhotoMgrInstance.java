@@ -69,13 +69,13 @@ public class PhotoMgrInstance implements Business {
 
     public void save(Photo photoRegister) {
         photoRegister.setIdInstance(collablet.getId());
-        this.dao.save(photoRegister, true);
+        this.dao.insert(photoRegister);
     }
 
     public void assignToUser(Photo photoRegister, User user) {
         this.dao.assignToUser(photoRegister.getId(), user.getId());
     }
-    
+
     public void saveImage(InputStream foto, String nome) throws IOException {
         this.dao.saveImage(foto, nome, this.getDirImages());
     }
@@ -96,7 +96,7 @@ public class PhotoMgrInstance implements Business {
     public Photo findById(long idPhoto) {
         return this.dao.findById(idPhoto);
     }
-    
+
     public List<Photo> buscaFotoPorListaId(List<GenericEntity> idList) {
         List<Photo> photos = new ArrayList<Photo>();
         for (GenericEntity entity : idList) {
