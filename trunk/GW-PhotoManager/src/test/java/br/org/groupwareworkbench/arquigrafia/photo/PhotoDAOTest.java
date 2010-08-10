@@ -22,9 +22,9 @@ package br.org.groupwareworkbench.arquigrafia.photo;
 import br.org.groupwareworkbench.core.bd.DAOFactory;
 import br.org.groupwareworkbench.arquigrafia.photo.Photo;
 import br.org.groupwareworkbench.arquigrafia.photo.PhotoDAO;
+import br.org.groupwareworkbench.core.bd.DatabaseTester;
 import br.org.groupwareworkbench.core.bd.EntityManagerProvider;
 import br.org.groupwareworkbench.core.framework.Collablet;
-import br.org.groupwareworkbench.tests.DatabaseTester;
 
 import java.util.ArrayList;
 import java.util.Calendar;

@@ -24,10 +24,10 @@ import br.com.caelum.vraptor.util.test.MockResult;
 import br.com.caelum.vraptor.util.test.MockValidator;
 import br.com.caelum.vraptor.validator.Message;
 import br.com.caelum.vraptor.validator.ValidationException;
+import br.org.groupwareworkbench.core.bd.DatabaseTester;
 
 import br.org.groupwareworkbench.core.bd.EntityManagerProvider;
 import br.org.groupwareworkbench.core.framework.Collablet;
-import br.org.groupwareworkbench.tests.DatabaseTester;
 
 import java.io.BufferedInputStream;
 import java.io.File;
