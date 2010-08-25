@@ -31,6 +31,7 @@ import br.org.groupwareworkbench.collablet.coord.user.User;
 import br.org.groupwareworkbench.core.bd.GenericEntity;
 import br.org.groupwareworkbench.core.framework.Collablet;
 import br.org.groupwareworkbench.core.util.ImageUtils;
+import java.util.Map;
 
 @RequestScoped
 @Resource
@@ -88,11 +89,7 @@ public class PhotoController {
 
     private void addIncludes(PhotoMgrInstance photoInstance) {
         result.include("photoInstance", photoInstance);
-        for (Collablet collabComponentInstance : photoInstance.getCollablet().getDependencies()) {
-            String nomeComponente = collabComponentInstance.getName();
-            result.include(nomeComponente, collabComponentInstance.getBusinessObject());
-            System.out.println("O componente elemento " + collabComponentInstance.getCod() + " foi adicionado na requisição com o nome " + nomeComponente);
-        }
+        photoInstance.getCollablet().includeDependencies(result);
 
         //Adiciona os filhos.
         for (Collablet collabletInstance : photoInstance.getCollablet().getSubordinateds()) {

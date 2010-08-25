@@ -88,7 +88,7 @@ public class PopulateInitialDatabase {
         c.setName(lowerCaseName);
     }
 
-    public static void doIt() {
+    public static void doCollablets() {
 
         if (MainCollablet.wasInitialized()) return;
 
@@ -206,6 +206,11 @@ public class PopulateInitialDatabase {
         insertAll(comment, googlemaps, tag, /*upload,*/ binomial, rating, /*recommend,*/ profile, role, user, collab, site,
                 /*recommendPhoto,*/ commentPhoto, binomialPhoto, ratingPhoto, photo,
                 mc);
+    }
+
+    public static void doIt() {
+        Collablet role = Collablet.findByName("roleMgr");
+        Collablet user = Collablet.findByName("userMgr");
 
         Role adminRole = new Role();
         adminRole.setName("Administrador");

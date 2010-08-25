@@ -44,11 +44,7 @@ public class SiteController {
 
     private void addIncludes(SiteInstance siteInstance) {
         result.include("siteInstance", siteInstance);
-        for (Collablet collabComponentInstance : siteInstance.getCollablet().getDependencies()) {
-            String nomeComponente = collabComponentInstance.getName();
-            result.include(nomeComponente, collabComponentInstance.getBusinessObject());
-            System.out.println("O componente elemento " + collabComponentInstance.getCod() + " foi adicionado na requisição com o nome " + nomeComponente);
-        }
+        siteInstance.getCollablet().includeDependencies(result);
 
         // Adiciona os filhos.
         for (Collablet collabletInstance : siteInstance.getCollablet().getSubordinateds()) {
