@@ -75,7 +75,7 @@
             <li class="${formInputClass}">
                 <c:if test="${tagMgr != null}">
                     <tag:selectTags tagMgr="${tagMgr}" />
-                    <tag:setTags tagMgr="${tagMgr}" idObject="${photoRegister.id}" />
+                    <tag:setTags tagMgr="${tagMgr}" entity="${photoRegister}" />
                 </c:if>
             </li>
         </ul>

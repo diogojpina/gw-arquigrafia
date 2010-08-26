@@ -54,7 +54,7 @@ public class SiteController {
         }
 
         // Adiciona o antecessores.
-        for (Collablet pai : siteInstance.getCollablet().getHierarchy()) {
+        for (Collablet pai : siteInstance.getCollablet().getBottomUpHierarchy()) {
             String nomeComponente = pai.getName();
             result.include(nomeComponente, pai);
             System.out.println("O componente antecessor " + pai.getCod() + " foi adicionado na requisição com o nome " + nomeComponente);

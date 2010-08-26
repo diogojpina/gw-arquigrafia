@@ -52,7 +52,7 @@
                                 Tags clique em uma das tags abaixo para adicion&aacute;-la ao FAQ.
                                 <br />
                                 <tag:selectTags tagMgr="${tagMgr}" />
-                                <tag:setTags tagMgr="${tagMgr}" idObject="${faq.id}" />
+                                <tag:setTags tagMgr="${tagMgr}" entity="${faq}" />
                             </c:if>
                         </td>
                         <td>

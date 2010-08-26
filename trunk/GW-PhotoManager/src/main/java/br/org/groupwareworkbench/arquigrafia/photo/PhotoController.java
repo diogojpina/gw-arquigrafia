@@ -98,7 +98,7 @@ public class PhotoController {
             System.out.println("O componente filho " + collabletInstance.getCod() + " foi adicionado na requisição com o nome " + nomeComponente);
         }
 
-        for (Collablet pai : photoInstance.getCollablet().getHierarchy()) {
+        for (Collablet pai : photoInstance.getCollablet().getBottomUpHierarchy()) {
             String nomeComponente = pai.getName();
             result.include(nomeComponente, pai);
             System.out.println("O componente antecessor " + pai.getCod() + " foi adicionado na requisição com o nome " + nomeComponente);
@@ -109,9 +109,10 @@ public class PhotoController {
     @Get
     @Path(value = "/groupware-workbench/{photoInstance}/photo/show/{idPhoto}")
     public void show(PhotoMgrInstance photoInstance, long idPhoto) {
+        Photo photo = photoInstance.buscaPhotoById(idPhoto);
+
         result.include("idPhoto", idPhoto);
         result.include("nameCollablet", "photo");
-        Photo photo = photoInstance.buscaPhotoById(idPhoto);
         //addIncludes();
         result.include("photoTitle", photo.getNome());
         if (photo.getDescricao() != null && !photo.getDescricao().isEmpty()) {

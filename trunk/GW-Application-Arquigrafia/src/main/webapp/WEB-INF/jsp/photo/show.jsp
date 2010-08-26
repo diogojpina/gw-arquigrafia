@@ -90,7 +90,7 @@
                     <div id="photoTitle_tab_1" class="photoTitle_tab"><img src="${pageContext.request.contextPath}/images/photo_details.png" alt="Detalhes da foto" />&nbsp;<span class="mid_white_text">Detalhes</span></div>
                 </div>
                 <div id="photo" class="resizeblePhoto1">
-                    <photo:show idPhoto="${idPhoto}" photoInstance="${photoInstance}" />
+                    <photo:show foto="${photo}" photoInstance="${photoInstance}" />
                 </div>
                 <div id="map_canvas" style="width: 100%; height: 100%"></div>
             </c:if>
@@ -113,7 +113,7 @@
                     <div id="tags_left">
                     </div>
                     <div id="tags_content">
-                        <tag:getTags tagMgr="${tagMgr}" idObject="${idPhoto}" />
+                        <tag:getTags tagMgr="${tagMgr}" entity="${photo}" />
                     </div>
                     <div id="tags_right">
                     </div>
@@ -121,7 +121,7 @@
             </div>
             <div id="tagsAdd">
                 <tag:selectTags tagMgr="${tagMgr}" />
-                <tag:setTags tagMgr="${tagMgr}" idObject="${idPhoto}" tagsEditorClass="mid_black_text" />
+                <tag:setTags tagMgr="${tagMgr}" entity="${photo}" tagsEditorClass="mid_black_text" />
                 <input type="submit" name="adicionar" value="Adicionar" />
             </div>
             <div style="clear:both"></div>
@@ -165,11 +165,11 @@
                     </div>
                 </div>
                 <div id="comments_create" style="height: 130px;">
-                    <comment:addComment commentMgr="${commentMgr}" idObject="${idPhoto}" user="${sessionScope.userLogin}" editorClass="editorClass" wrapClass="comments_create_internal" />
+                    <comment:addComment commentMgr="${commentMgr}" idObject="${photo.id}" user="${sessionScope.userLogin}" editorClass="editorClass" wrapClass="comments_create_internal" />
                     <input name="commentAdd" value="Adicionar" type="submit" />
                 </div>
                 <div id="comments_show">
-                    <comment:getComments commentMgr="${commentMgr}" idObject="${idPhoto}" wrapClass="comments_show_internal" />
+                    <comment:getComments commentMgr="${commentMgr}" idObject="${photo.id}" wrapClass="comments_show_internal" />
                 </div>
                 <script type="text/javascript">
                     $("#comments_create").hide();

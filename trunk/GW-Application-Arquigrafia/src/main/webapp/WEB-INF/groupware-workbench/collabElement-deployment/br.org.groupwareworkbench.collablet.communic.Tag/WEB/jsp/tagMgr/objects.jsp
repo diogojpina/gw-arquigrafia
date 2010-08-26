@@ -39,8 +39,8 @@
      <body>
          <arq:header2 photoInstance="${PhotoRegister}" siteInstance="${collabletInstance}" />
              <div id="search_statistics">
-             <span id="resultTerm">Voc&ecirc; buscou por objetos com a tag: <c:out value="${tagName}" /></span>
-             <span id="resultCount"> (<c:out value="${tagAssignmentsNum}" /> resultados)</span>
+             <span id="resultTerm">Voc&ecirc; buscou por objetos com a tag: <c:out value="${tag.name}" /></span>
+             <span id="resultCount"> (<c:out value="${tag.size}" /> resultados)</span>
              <br/>
              <c:forEach var="error" items="${errors}">
                  <c:out value="${error.category}" /> - <c:out value="${error.message}" />
@@ -53,7 +53,7 @@
          </div>
          <div id="search_scroll">
              <c:if test="${PhotoRegister != null}">
-                 <photo:searchByTag photoInstance="${PhotoRegister}" idList="${geList}" showName="true" showLocation="false" lineClass="search_line"/>
+                 <photo:searchByTag photoInstance="${PhotoRegister}" idList="${tag.taggedObjects}" showName="true" showLocation="false" lineClass="search_line"/>
              </c:if>
          </div>
          <div style="height: 30px; clear: both"></div>
