@@ -11,7 +11,6 @@
     <class>br.org.groupwareworkbench.collablet.communic.googlemapsmarker.GeoReference</class>
     <class>br.org.groupwareworkbench.collablet.communic.googlemapsmarker.GeoReferenceAssignment</class>
     <class>br.org.groupwareworkbench.collablet.communic.tag.Tag</class>
-    <class>br.org.groupwareworkbench.collablet.communic.tag.TagAssignment</class>
     <class>br.org.groupwareworkbench.collablet.coop.binomial.Binomial</class>
     <class>br.org.groupwareworkbench.collablet.coop.binomial.BinomialAssignment</class>
     <class>br.org.groupwareworkbench.collablet.coop.rating.Rating</class>
