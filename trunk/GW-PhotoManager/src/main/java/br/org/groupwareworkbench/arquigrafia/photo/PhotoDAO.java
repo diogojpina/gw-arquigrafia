@@ -9,7 +9,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
-import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import org.apache.commons.io.IOUtils;
 
@@ -34,7 +34,7 @@ public class PhotoDAO extends GenericDAO<Photo> {
         
         EntityManager em = getEntityManager();
         String queryString = "SELECT a FROM " + PhotoAssignment.class.getSimpleName() + " a WHERE a.photo.id = :idPhoto AND a.user.id = :idUser";
-        Query query = em.createQuery(queryString);
+        TypedQuery<PhotoAssignment> query = em.createQuery(queryString, PhotoAssignment.class);
         query.setParameter("idPhoto", idPhoto);
         query.setParameter("idUser", idUser);
         
@@ -60,36 +60,28 @@ public class PhotoDAO extends GenericDAO<Photo> {
     
     public List<Photo> busca(String busca) {
         String query = "SELECT p FROM " + Photo.class.getSimpleName() + " p WHERE UPPER(p.nome) LIKE :nome";
-        Query consulta = getEntityManager().createQuery(query);
+        TypedQuery<Photo> consulta = getEntityManager().createQuery(query, Photo.class);
         consulta.setParameter("nome", "%" + busca.toUpperCase() + "%");
         //consulta.setParameter("lugar", "%"+busca.toUpperCase()+"%");
         //consulta.setParameter("descricao", "%"+busca.toUpperCase()+"%");
-
-        @SuppressWarnings("unchecked")
-        List<Photo> result = consulta.getResultList();
-
-        return result;
+        return consulta.getResultList();
     }
 
     public List<Photo> busca(String nome, String lugar, String descricao, Date date) {
         String query;
-        Query consulta;
+        TypedQuery<Photo> consulta;
         if (date == null) {
             query = "SELECT p FROM " + Photo.class.getSimpleName() + " p WHERE (UPPER(p.nome) LIKE :nome AND UPPER(p.lugar) LIKE :lugar AND UPPER(p.descricao) LIKE :descricao)";
-            consulta = getEntityManager().createQuery(query);
+            consulta = getEntityManager().createQuery(query, Photo.class);
         } else {
             query = "SELECT p FROM " + Photo.class.getSimpleName() + " p WHERE (UPPER(p.nome) LIKE :nome AND UPPER(p.lugar) LIKE :lugar AND UPPER(p.descricao) LIKE :descricao AND p.data = :date)";
-            consulta = getEntityManager().createQuery(query);
+            consulta = getEntityManager().createQuery(query, Photo.class);
             consulta.setParameter("date", date);
         }
         consulta.setParameter("nome", "%" + nome.toUpperCase() + "%");
         consulta.setParameter("lugar", "%" + lugar.toUpperCase() + "%");
         consulta.setParameter("descricao", "%" + descricao.toUpperCase() + "%");
-
-        @SuppressWarnings("unchecked")
-        List<Photo> result = consulta.getResultList();
-
-        return result;
+        return consulta.getResultList();
     }
 
     /*
@@ -99,27 +91,19 @@ public class PhotoDAO extends GenericDAO<Photo> {
      */
     public List<Photo> listPhotoByPage(int pageSize, int pageNumber) {
         String querySentence = "SELECT p FROM " + Photo.class.getSimpleName() + " p";
-        Query query = getEntityManager().createQuery(querySentence);
+        TypedQuery<Photo> query = getEntityManager().createQuery(querySentence, Photo.class);
         int firstElement = pageNumber * pageSize;
         query.setFirstResult(firstElement);
         query.setMaxResults(pageSize);
-
-        @SuppressWarnings("unchecked")
-        List<Photo> result = query.getResultList();
-
-        return result;
+        return query.getResultList();
     }
 
     public List<Photo> listPhotoByPageAndOrder(int pageSize, int pageNumber) {
         String querySentence = "SELECT p FROM " + Photo.class.getSimpleName() + " p ORDER BY p.dataCriacao DESC";
-        Query query = getEntityManager().createQuery(querySentence);
+        TypedQuery<Photo> query = getEntityManager().createQuery(querySentence, Photo.class);
         int firstElement = pageNumber * pageSize;
         query.setFirstResult(firstElement);
         query.setMaxResults(pageSize);
-
-        @SuppressWarnings("unchecked")
-        List<Photo> result = query.getResultList();
-
-        return result;
+        return query.getResultList();
     }
 }
