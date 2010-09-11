@@ -24,7 +24,7 @@
         <profile:scriptProfile />
     </head>
     <body>
-        <w:topo collabletInstance="${collabletInstance}" />
+        <w:topo collabletInstance="${collablet}" />
         <w:conteudoPagina titulo="Usu&aacute;rio">
             <br/>
             <ul>
@@ -35,7 +35,6 @@
 
             <form id="form1" class="cmxform" name="dados" method="POST" action="<c:url value="/groupware-workbench/${collabletInstance.id}/userMgr/${userMgr.id}" />" accept-charset="UTF-8">
                 <input type="hidden" name="user.id" value="<c:out value="${user.id}" />" />
-                <input type="hidden" name="user.idInstance" value="${collabletInstance.id}" />
                 <div class="form_1" id="user_retrieve_form">
                     <ul class="field_line_f1">
                         <li class="label_f1"><span>Login:</span></li>
@@ -63,7 +62,7 @@
                     <fieldset>
                         <c:if test="${roleMgr != null}">
                             <legend><span class="subtitle_f1">Atribuir pap&eacute;is:</span></legend>
-                            <role:selectRole roleMgr="${roleMgr}" genericEntity="${user}" />
+                            <role:selectRole roleMgr="${roleMgr}" user="${user}" />
                         </c:if>
                     </fieldset>
                 </div>
@@ -77,7 +76,7 @@
                 </div>
             </form>
             <div class="barra_botoes">
-                <w:voltar collabletInstance="${collabletInstance}" />
+                <w:voltar collabletInstance="${collablet}" />
             </div>
         </w:conteudoPagina>
     </body>

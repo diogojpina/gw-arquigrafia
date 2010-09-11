@@ -31,7 +31,6 @@ import br.org.groupwareworkbench.collablet.coord.category.CategoryMgrInstance;
 import br.org.groupwareworkbench.collablet.coord.collabletmanagement.CollabletMgrInstance;
 import br.org.groupwareworkbench.collablet.coord.profile.ProfileMgrInstance;
 import br.org.groupwareworkbench.collablet.coord.role.Role;
-import br.org.groupwareworkbench.collablet.coord.role.RoleAssignment;
 import br.org.groupwareworkbench.collablet.coord.role.RoleMgrInstance;
 import br.org.groupwareworkbench.collablet.coord.user.User;
 import br.org.groupwareworkbench.collablet.coord.user.UserMgrInstance;
@@ -214,51 +213,41 @@ public class PopulateInitialDatabase {
 
         Role adminRole = new Role();
         adminRole.setName("Administrador");
-        adminRole.setIdInstance(role.getId());
+        adminRole.setCollablet(role);
 
         Role userRole = new Role();
         userRole.setName("Usuário");
-        userRole.setIdInstance(role.getId());
+        userRole.setCollablet(role);
 
         Role reviewerRole = new Role();
         reviewerRole.setName("Revisor");
-        reviewerRole.setIdInstance(role.getId());
+        reviewerRole.setCollablet(role);
 
         User admin = new User();
         admin.setLogin("admin");
         admin.setEmail("admin@website.com");
         admin.setName("Administrador");
         admin.setPassword("123");
-        admin.setIdInstance(user.getId());
+        admin.setCollablet(user);
+        admin.assign(adminRole);
 
         User user01 = new User();
         user01.setLogin("user01");
         user01.setEmail("user01@website.com");
         user01.setName("Usuario01");
         user01.setPassword("111");
-        user01.setIdInstance(user.getId());
+        user01.setCollablet(user);
+        user01.assign(userRole);
 
         User user02 = new User();
         user02.setLogin("user02");
         user02.setEmail("user02@website.com");
         user02.setName("Usuario02");
         user02.setPassword("222");
-        user02.setIdInstance(user.getId());
-
-        RoleAssignment assign1 = new RoleAssignment();
-        assign1.setRole(adminRole);
-        assign1.setGenericEntity(admin);
-
-        RoleAssignment assign2 = new RoleAssignment();
-        assign2.setRole(userRole);
-        assign2.setGenericEntity(user01);
-
-        RoleAssignment assign3 = new RoleAssignment();
-        assign3.setRole(reviewerRole);
-        assign3.setGenericEntity(user02);
+        user02.setCollablet(user);
+        user02.assign(reviewerRole);
 
         insertAll(adminRole, userRole, reviewerRole,
-                admin, user01, user02,
-                assign1, assign2, assign3);
+                admin, user01, user02);
     }
 }
