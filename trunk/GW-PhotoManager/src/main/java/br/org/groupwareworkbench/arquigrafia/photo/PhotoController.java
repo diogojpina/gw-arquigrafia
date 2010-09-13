@@ -12,8 +12,6 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import br.com.caelum.vraptor.Delete;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
@@ -30,8 +28,8 @@ import br.com.caelum.vraptor.view.Results;
 import br.org.groupwareworkbench.collablet.coord.user.User;
 import br.org.groupwareworkbench.core.bd.GenericEntity;
 import br.org.groupwareworkbench.core.framework.Collablet;
+import br.org.groupwareworkbench.core.framework.WidgetInfo;
 import br.org.groupwareworkbench.core.util.ImageUtils;
-import java.util.Map;
 
 @RequestScoped
 @Resource
@@ -46,13 +44,13 @@ public class PhotoController {
     public static final String MSG_ENTIDADE_INVALIDA = "Não é uma entidade válida.";
 
     private final Result result;
-    private final HttpServletRequest request;
+    private final WidgetInfo info;
     private final Validator validator;
 
-    public PhotoController(Result result, Validator validator, HttpServletRequest request) {
+    public PhotoController(Result result, Validator validator, WidgetInfo info) {
         this.result = result;
         this.validator = validator;
-        this.request = request;
+        this.info = info;
     }
 
     @Get
@@ -125,7 +123,7 @@ public class PhotoController {
             result.include("photoLocation", photo.getLugar());
         }
         addIncludes(photoInstance);
-        photoInstance.getCollablet().processWidgets(request, photo);
+        photoInstance.getCollablet().processWidgets(info, photo);
         result.include("photo", photo);
     }
 
@@ -272,7 +270,7 @@ public class PhotoController {
             return;
         }
 
-        photoInstance.getCollablet().processWidgets(request, photoRegister);
+        photoInstance.getCollablet().processWidgets(info, photoRegister);
         addIncludes(photoInstance);
         result.use(Results.logic()).redirectTo(PhotoController.class).registra(photoInstance);
     }
