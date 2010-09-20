@@ -12,15 +12,12 @@
     <class>br.org.groupwareworkbench.collablet.communic.googlemapsmarker.GeoReferenceAssignment</class>
     <class>br.org.groupwareworkbench.collablet.communic.tag.Tag</class>
     <class>br.org.groupwareworkbench.collablet.coop.binomial.Binomial</class>
-    <class>br.org.groupwareworkbench.collablet.coop.binomial.BinomialAssignment</class>
+    <class>br.org.groupwareworkbench.collablet.coop.binomial.BinomialEvaluation</class>
     <class>br.org.groupwareworkbench.collablet.coop.rating.Rating</class>
     <class>br.org.groupwareworkbench.collablet.coord.category.Category</class>
-    <class>br.org.groupwareworkbench.collablet.coord.category.CategoryAssignment</class>
     <class>br.org.groupwareworkbench.collablet.coord.counter.Counter</class>
     <class>br.org.groupwareworkbench.collablet.coord.profile.Profile</class>
-    <class>br.org.groupwareworkbench.collablet.coord.profile.ProfileAssignment</class>
     <class>br.org.groupwareworkbench.collablet.coord.role.Role</class>
-    <class>br.org.groupwareworkbench.collablet.coord.role.RoleAssignment</class>
     <class>br.org.groupwareworkbench.collablet.coord.user.User</class>
     <class>br.org.groupwareworkbench.tests.Fruit</class>
     <properties>

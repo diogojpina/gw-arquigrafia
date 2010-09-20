@@ -81,7 +81,7 @@ public class PhotoControllerTest {
 
     @After
     public void tearDown() {
-        db.close();
+        if (db != null) db.close();
     }
 
     private void populateDatabase() {
@@ -101,7 +101,7 @@ public class PhotoControllerTest {
 
         photo3 = new Photo();
         photo3.setIdInstance(outroCollablet.getId());
-        photo3.setNome("foto Tres");
+        photo3.setNome("photo Tres");
         photo3.setNomeArquivo("fototres.jpg");
         em.persist(photo3);
 
