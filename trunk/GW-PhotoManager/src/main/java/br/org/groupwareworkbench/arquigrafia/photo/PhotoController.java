@@ -26,7 +26,6 @@ import br.com.caelum.vraptor.ioc.RequestScoped;
 import br.com.caelum.vraptor.validator.ValidationMessage;
 import br.com.caelum.vraptor.view.Results;
 import br.org.groupwareworkbench.collablet.coord.user.User;
-import br.org.groupwareworkbench.core.bd.GenericEntity;
 import br.org.groupwareworkbench.core.framework.Collablet;
 import br.org.groupwareworkbench.core.framework.WidgetInfo;
 import br.org.groupwareworkbench.core.util.ImageUtils;
@@ -107,7 +106,7 @@ public class PhotoController {
     @Get
     @Path(value = "/groupware-workbench/{photoInstance}/photo/show/{idPhoto}")
     public void show(PhotoMgrInstance photoInstance, long idPhoto) {
-        Photo photo = photoInstance.buscaPhotoById(idPhoto);
+        Photo photo = Photo.findById(idPhoto);
 
         result.include("idPhoto", idPhoto);
         result.include("nameCollablet", "photo");
@@ -116,8 +115,8 @@ public class PhotoController {
         if (photo.getDescricao() != null && !photo.getDescricao().isEmpty()) {
             result.include("photoDescription", photo.getDescricao());
         }
-        if (photo.getData() != null) {
-            result.include("photoDate", DateFormat.getInstance().format(photo.getData()));
+        if (photo.getDataCriacao() != null) {
+            result.include("photoDate", DateFormat.getInstance().format(photo.getDataCriacao()));
         }
         if (photo.getLugar() != null && !photo.getLugar().isEmpty()) {
             result.include("photoLocation", photo.getLugar());
@@ -135,8 +134,9 @@ public class PhotoController {
 
     @Post
     @Path(value = "/groupware-workbench/{photoInstance}/photo/buscaTag/{tagName}")
-    public void buscaFotoPorId(String tagName, List<GenericEntity> photos, PhotoMgrInstance photoInstance) {
+    public void buscaFotoPorId(String tagName, List<Object> photos, PhotoMgrInstance photoInstance) {
         List<Photo> resultFotosBusca = photoInstance.buscaFotoPorListaId(photos);
+        
         result.include("fotos", resultFotosBusca);
         result.include("thumbPrefix", photoInstance.getThumbPrefix());
         result.include("cropPrefix", photoInstance.getCropPrefix());
@@ -201,10 +201,6 @@ public class PhotoController {
     @Post
     @Path(value = "/groupware-workbench/{photoInstance}/photo/registra")
     public void save(Photo photoRegister, UploadedFile foto, PhotoMgrInstance photoInstance, User user) {
-
-        // TODO: Essa lógica de negócio deveria estar na classe de negócio, não na Controller.
-
-        // Validações:
         boolean erro = false;
         if (photoRegister.getNome().isEmpty()) {
             validator.add(new ValidationMessage(MSG_NOME_OBRIGATORIO, "Erro"));
@@ -343,7 +339,8 @@ public class PhotoController {
             validator.add(new ValidationMessage(MSG_ENTIDADE_INVALIDA, "Erro"));
             return;
         }
-        photoInstance.delete(idPhoto);
+        
+        photoInstance.delete(Photo.findById(idPhoto));
         addIncludes(photoInstance);
     }
 }

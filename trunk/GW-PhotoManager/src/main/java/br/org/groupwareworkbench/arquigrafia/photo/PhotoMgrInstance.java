@@ -21,8 +21,7 @@ import br.org.groupwareworkbench.core.framework.ComponentInfo;
 )
 public class PhotoMgrInstance implements Business {
 
-    private final Collablet collablet;
-    private final PhotoDAO dao = DAOFactory.get(PhotoDAO.class);
+    private final Collablet collablet;    
 
     // TODO: Converter em atributos.
     private final String dirImages = "images";
@@ -43,82 +42,71 @@ public class PhotoMgrInstance implements Business {
     }
 
     public File imgThumb(String nomeArquivoUnico) {
-        return this.dao.getImageFile(getDirImages(), this.getThumbPrefix(), nomeArquivoUnico);        
+        return Photo.getImageFile(getDirImages(), this.getThumbPrefix(), nomeArquivoUnico);        
     }
 
     public File imgCrop(String nomeArquivoUnico) {
-        return this.dao.getImageFile(getDirImages(), this.getCropPrefix(), nomeArquivoUnico);        
+        return Photo.getImageFile(getDirImages(), this.getCropPrefix(), nomeArquivoUnico);        
     }
 
     public File imgShow(String nomeArquivoUnico) {
-        return this.dao.getImageFile(getDirImages(), this.getMostraPrefix(), nomeArquivoUnico);        
+        return Photo.getImageFile(getDirImages(), this.getMostraPrefix(), nomeArquivoUnico);        
     }
 
     public File imgOriginal(String nomeArquivoUnico) {
-        return this.dao.getImageFile(getDirImages(), "", nomeArquivoUnico);
+        return Photo.getImageFile(getDirImages(), "", nomeArquivoUnico);
     }
 
     //@Override
-    public void destroy() {
-        this.dao.deleteByIdInstance(collablet.getId());
+    public void destroy() {        
+        Photo.deleteAll(collablet);
     }
 
-    public void delete(long photoId) {
-        dao.deleteById(photoId);
+    public void delete(Photo photo) {
+        photo.setCollablet(collablet);
+        photo.delete();        
     }
 
-    public void save(Photo photoRegister) {
-        photoRegister.setIdInstance(collablet.getId());
-        this.dao.insert(photoRegister);
+    public void save(Photo photo) {
+        photo.setCollablet(collablet);
+        photo.save();
     }
 
-    public void assignToUser(Photo photoRegister, User user) {
-        this.dao.assignToUser(photoRegister.getId(), user.getId());
+    public void assignToUser(Photo photo, User user) {        
+        photo.assignUser(user);
+        
     }
 
     public void saveImage(InputStream foto, String nome) throws IOException {
-        this.dao.saveImage(foto, nome, this.getDirImages());
+        Photo.saveImage(foto, nome, this.getDirImages());
     }
 
     public List<Photo> buscaFoto(String busca) {
-        return this.dao.busca(busca);
+        return Photo.busca(collablet, busca);               
     }
 
     public List<Photo> buscaFotoAvancada(String nome, String descricao, String lugar, Date date) {
-        return this.dao.busca(nome, lugar, descricao, date);
+        return Photo.busca(collablet, nome, lugar, descricao, date);        
     }
-
-    public Photo buscaPhotoById(long idPhoto) {
-        return this.dao.findById(idPhoto);
-    }
-
-    // TODO a existência de este método é temporal até encontrar uma melhor solução para o componente de avaliação   
-    public Photo findById(long idPhoto) {
-        return this.dao.findById(idPhoto);
-    }
-
-    public List<Photo> buscaFotoPorListaId(List<GenericEntity> idList) {
+       
+    public List<Photo> buscaFotoPorListaId(List<Object> listObjects) {
         List<Photo> photos = new ArrayList<Photo>();
-        for (GenericEntity entity : idList) {
-            if (entity instanceof Photo) {
-                photos.add((Photo) entity);
+        for (Object object : listObjects) {
+            if (object instanceof Photo) {
+                photos.add((Photo) object);
             }
         }
         return photos;
     }
 
-    public List<Photo> listaTodaPhoto() {
-        return dao.listAll();
-    }
-
-    public List<Photo> listaPhotoPorPaginaEOrdem(int tamanho, int pagina) {
-        return dao.listPhotoByPageAndOrder(tamanho, pagina);
-    }
-
     public List<Photo> list() {
-        return dao.listByIdInstance(collablet.getId());
+        return Photo.list(collablet);        
     }
 
+    public List<Photo> listPhotoByPageAndOrder(int pageSize, int pageNumber) {
+        return Photo.listPhotoByPageAndOrder(collablet, pageSize, pageNumber);        
+    }
+   
      public String getDirImages() {
         return dirImages;
     }

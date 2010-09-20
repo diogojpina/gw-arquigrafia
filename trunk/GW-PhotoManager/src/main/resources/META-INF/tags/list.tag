@@ -13,8 +13,8 @@
 <%@ attribute name="lineClass" required="false" rtexprvalue="false" type="java.lang.String" %>
 
 <%--
-    TODO: Evitar inserir <div> que não fecham de forma óbvia pois dependem de análise sensível ao contexto para
-    garantir que são bem formadas.
+    TODO: Evitar inserir <div> que nao fecham de forma obvia pois dependem de analise sensivel ao contexto para
+    garantir que sao bem formadas.
 --%>
 <c:forEach var="foto" items="${photos}">
     <div class="${lineClass}" style="float: left">

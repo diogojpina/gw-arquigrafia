@@ -88,20 +88,20 @@ public class PhotoControllerTest {
         em.getTransaction().begin();
 
         photo1 = new Photo();
-        photo1.setIdInstance(collablet.getId());
+        photo1.setCollablet(collablet);
         photo1.setNome("foto Um");
         photo1.setNomeArquivo("fotoum.jpg");
         em.persist(photo1);
 
         photo2 = new Photo();
-        photo2.setIdInstance(collablet.getId());
+        photo2.setCollablet(collablet);
         photo2.setNome("foto Dois");
         photo2.setNomeArquivo("fotodois.jpg");
         em.persist(photo2);
 
         photo3 = new Photo();
-        photo3.setIdInstance(outroCollablet.getId());
-        photo3.setNome("photo Tres");
+        photo3.setCollablet(collablet);
+        photo3.setNome("foto Tres");
         photo3.setNomeArquivo("fototres.jpg");
         em.persist(photo3);
 
@@ -195,7 +195,7 @@ public class PhotoControllerTest {
     @Test
     public void testSaveWithoutNameNorImage() {
         Photo quatro = new Photo();
-        quatro.setIdInstance(collablet.getId());
+        quatro.setCollablet(collablet);
         quatro.setNome("");
 
         try {
@@ -212,7 +212,7 @@ public class PhotoControllerTest {
     @Test
     public void testSaveWithoutImage() {
         Photo quatro = new Photo();
-        quatro.setIdInstance(collablet.getId());
+        quatro.setCollablet(collablet);
         quatro.setNome("foto Quatro");
         quatro.setNomeArquivo("fotoquatro.jpg");
 
@@ -229,7 +229,7 @@ public class PhotoControllerTest {
     @Test
     public void testSaveWithoutName() {
         Photo quatro = new Photo();
-        quatro.setIdInstance(collablet.getId());
+        quatro.setCollablet(collablet);
         quatro.setNome("");
 
         try {
@@ -245,7 +245,7 @@ public class PhotoControllerTest {
     @Test
     public void testSucessfulSave() {
         Photo quatro = new Photo();
-        quatro.setIdInstance(collablet.getId());
+        quatro.setCollablet(collablet); 
         quatro.setNome("foto Quatro");
         quatro.setNomeArquivo("fotoquatro.jpg");
 
