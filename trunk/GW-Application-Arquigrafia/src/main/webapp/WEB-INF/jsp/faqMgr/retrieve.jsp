@@ -33,7 +33,7 @@
                         <tr>
                             <td>Categoria</td>
                             <td>
-                                <category:simpleDropDownBox genericEntity="${faq}" categoryMgr="${categoryMgr}" />
+                                <category:simpleDropDownBox entity="${faq}" categoryMgr="${categoryMgr}" />
                             </td>
                         </tr>
                     </c:if>

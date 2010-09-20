@@ -13,142 +13,126 @@
         <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
     </hibernate>
 
-    <initialCollablet>environment/Default</initialCollablet>
+    <initialCollablet>siteMgr</initialCollablet>
 
     <collablets>
         <collablet>
             <business>br.org.groupwareworkbench.collablet.communic.comment.CommentMgrInstance</business>
-            <cod>br.org.groupwareworkbench.collablet.communic.Comment</cod>
             <description>Gerenciar comentários</description>
             <name>commentMgr</name>
         </collablet>
 
         <collablet>
             <business>br.org.groupwareworkbench.collablet.communic.googlemapsmarker.GoogleMapsMarkerMgrInstance</business>
-            <cod>br.org.groupwareworkbench.collablet.communic.GoogleMapsMarker</cod>
             <description>Gerenciar Google Maps</description>
             <name>googleMapsMarkerMgr</name>
         </collablet>
 
         <collablet>
             <business>br.org.groupwareworkbench.collablet.communic.tag.TagMgrInstance</business>
-            <cod>br.org.groupwareworkbench.collablet.communic.Tag</cod>
             <description>Gerenciar tags</description>
             <name>tagMgr</name>
         </collablet>
 
         <!--<collablet>
             <business>br.org.groupwareworkbench.collablet.communic.upload.UploadMgrInstance</business>
-            <cod>br.org.groupwareworkbench.collablet.communic.Upload</cod>
             <description>Gerenciar upload</description>
             <name>uploadMgr</name>
         </collablet>-->
 
         <collablet>
             <business>br.org.groupwareworkbench.collablet.coop.binomial.BinomialMgrInstance</business>
-            <cod>br.org.groupwareworkbench.collablet.coop.Binomial</cod>
             <description>Gerenciar binômios</description>
             <name>binomialMgr</name>
         </collablet>
 
         <collablet>
             <business>br.org.groupwareworkbench.collablet.coop.rating.RatingMgrInstance</business>
-            <cod>br.org.groupwareworkbench.collablet.coop.Rating</cod>
             <description>Gerenciar avaliação</description>
             <name>ratingMgr</name>
         </collablet>
 
         <collablet>
             <business>br.org.groupwareworkbench.collablet.coord.profile.ProfileMgrInstance</business>
-            <cod>br.org.groupwareworkbench.collablet.coord.Profile</cod>
             <description>Gerenciar perfis</description>
             <name>profileMgr</name>
         </collablet>
 
         <collablet>
             <business>br.org.groupwareworkbench.collablet.coord.role.RoleMgrInstance</business>
-            <cod>br.org.groupwareworkbench.collablet.coord.Role</cod>
             <description>Gerenciar papéis</description>
             <name>roleMgr</name>
         </collablet>
 
         <collablet>
             <business>br.org.groupwareworkbench.collablet.coord.user.UserMgrInstance</business>
-            <cod>br.org.groupwareworkbench.collablet.coord.User</cod>
             <description>Gerenciar usuários</description>
             <name>userMgr</name>
         </collablet>
 
         <collablet>
             <business>br.org.groupwareworkbench.collablet.coord.collabletmanagement.CollabletMgrInstance</business>
-            <cod>br.org.groupwareworkbench.collablet.coord.Collablet</cod>
             <description>Gerenciar collablets</description>
             <name>collabletMgr</name>
         </collablet>
 
         <collablet>
-            <business>br.org.groupwareworkbench.collablet.faq.FaqMgrInstance</business>
-            <cod>environment/Default</cod>
-            <description>---</description>
-            <name>Arquigrafia Brasil</name>
+            <business>br.org.groupwareworkbench.arquigrafia.site.SiteInstance</business>
+            <description>Arquigrafia Brasil</description>
+            <name>siteMgr</name>
         </collablet>
 
         <collablet>
             <business>br.org.groupwareworkbench.collablet.communic.comment.CommentMgrInstance</business>
-            <cod>br.org.groupwareworkbench.collablet.communic.Comment</cod>
             <description>Gerenciar comentários</description>
             <name>commentMgr2</name>
         </collablet>
 
         <collablet>
             <business>br.org.groupwareworkbench.collablet.coord.collabletmanagement.CollabletMgrInstance</business>
-            <cod>br.org.groupwareworkbench.collablet.coord.Collablet</cod>
             <description>Gerenciar collablets</description>
             <name>collabletMgr2</name>
         </collablet>
 
         <collablet>
             <business>br.org.groupwareworkbench.collablet.coop.binomial.BinomialMgrInstance</business>
-            <cod>br.org.groupwareworkbench.collablet.coop.Binomial</cod>
             <description>Gerenciar binômios</description>
             <name>binomialMgr2</name>
         </collablet>
 
         <collablet>
             <business>br.org.groupwareworkbench.collablet.coop.rating.RatingMgrInstance</business>
-            <cod>br.org.groupwareworkbench.collablet.coop.Rating</cod>
             <description>Gerenciar avaliação</description>
             <name>ratingMgr2</name>
         </collablet>
 
         <collablet>
-            <business>br.org.groupwareworkbench.collablet.faq.FaqMgrInstance</business>
-            <cod>cooperation-collablets/Photo</cod>
-            <description>---</description>
-            <name>Registro de fotografias</name>
+            <business>br.org.groupwareworkbench.arquigrafia.photo.PhotoMgrInstance</business>
+            <description>Registro de fotografias</description>
+            <name>photoMgr</name>
         </collablet>
     </collablets>
 
     <collablets-subordinations>
-        <subordination parent="Arquigrafia Brasil" child="Registro de fotografias" />
+        <subordination parent="siteMgr" child="photoMgr" />
     </collablets-subordinations>
 
     <collablets-dependencies>
         <dependency from="roleMgr" to="userMgr" />
         <dependency from="profileMgr" to="userMgr" />
-        <dependency from="commentMgr" to="Arquigrafia Brasil" />
-        <dependency from="googleMapsMarkerMgr" to="Arquigrafia Brasil" />
-        <dependency from="tagMgr" to="Arquigrafia Brasil" />
-        <!--<dependency from="uploadMgr" to="Arquigrafia Brasil" />-->
-        <dependency from="binomialMgr" to="Arquigrafia Brasil" />
-        <dependency from="ratingMgr" to="Arquigrafia Brasil" />
-        <dependency from="profileMgr" to="Arquigrafia Brasil" />
-        <dependency from="roleMgr" to="Arquigrafia Brasil" />
-        <dependency from="userMgr" to="Arquigrafia Brasil" />
-        <dependency from="collabletMgr" to="Arquigrafia Brasil" />
-        <dependency from="collabletMgr2" to="Registro de fotografias" alias="collabletMgr" />
-        <dependency from="commentMgr2" to="Registro de fotografias" alias="commentMgr" />
-        <dependency from="binomialMgr2" to="Registro de fotografias" alias="binomialMgr" />
-        <dependency from="ratingMgr2" to="Registro de fotografias" alias="ratingMgr" />
+        <dependency from="commentMgr" to="siteMgr" />
+        <dependency from="googleMapsMarkerMgr" to="siteMgr" />
+        <dependency from="tagMgr" to="siteMgr" />
+        <!--<dependency from="uploadMgr" to="siteMgr" />-->
+        <dependency from="binomialMgr" to="siteMgr" />
+        <dependency from="ratingMgr" to="siteMgr" />
+        <dependency from="profileMgr" to="siteMgr" />
+        <dependency from="roleMgr" to="siteMgr" />
+        <dependency from="userMgr" to="siteMgr" />
+        <dependency from="collabletMgr" to="siteMgr" />
+        <dependency from="collabletMgr2" to="photoMgr" alias="collabletMgr" />
+        <dependency from="commentMgr2" to="photoMgr" alias="commentMgr" />
+        <dependency from="binomialMgr2" to="photoMgr" alias="binomialMgr" />
+        <dependency from="ratingMgr2" to="photoMgr" alias="ratingMgr" />
     </collablets-dependencies>
 </frameworkDescriptor>

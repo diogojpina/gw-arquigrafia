@@ -50,14 +50,14 @@ public class SiteController {
         for (Collablet collabletInstance : siteInstance.getCollablet().getSubordinateds()) {
             String nomeComponente = collabletInstance.getName();
             result.include(nomeComponente, collabletInstance.getBusinessObject());
-            System.out.println("O componente filho " + collabletInstance.getCod() + " foi adicionado na requisição com o nome " + nomeComponente);
+            System.out.println("O componente filho " + collabletInstance.getName() + " foi adicionado na requisição com o nome " + nomeComponente);
         }
 
         // Adiciona o antecessores.
         for (Collablet pai : siteInstance.getCollablet().getBottomUpHierarchy()) {
             String nomeComponente = pai.getName();
             result.include(nomeComponente, pai);
-            System.out.println("O componente antecessor " + pai.getCod() + " foi adicionado na requisição com o nome " + nomeComponente);
+            System.out.println("O componente antecessor " + pai.getName() + " foi adicionado na requisição com o nome " + nomeComponente);
         }
     }
 }

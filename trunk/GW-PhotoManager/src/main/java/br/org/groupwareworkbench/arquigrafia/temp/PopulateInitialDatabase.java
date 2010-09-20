@@ -93,61 +93,51 @@ public class PopulateInitialDatabase {
 
         Collablet comment = new Collablet();
         comment.setComponentClass(CommentMgrInstance.class);
-        comment.setCod("br.org.groupwareworkbench.collablet.communic.Comment");
         comment.setDescription("Gerenciar comentários");
         populate(comment);
 
         Collablet googlemaps = new Collablet();
         googlemaps.setComponentClass(GoogleMapsMarkerMgrInstance.class);
-        googlemaps.setCod("br.org.groupwareworkbench.collablet.communic.GoogleMapsMarker");
         googlemaps.setDescription("Gerenciar Google Maps");
         populate(googlemaps);
 
         Collablet tag = new Collablet();
         tag.setComponentClass(TagMgrInstance.class);
-        tag.setCod("br.org.groupwareworkbench.collablet.communic.Tag");
         tag.setDescription("Gerenciar tags");
         populate(tag);
 
         /*Collablet upload = new Collablet();
         upload.setComponentClass(UploadMgrInstance.class);
-        upload.setCod("br.org.groupwareworkbench.collablet.communic.Upload");
         upload.setDescription("Gerenciar upload");
         populate(upload);*/
 
         Collablet binomial = new Collablet();
         binomial.setComponentClass(BinomialMgrInstance.class);
-        binomial.setCod("br.org.groupwareworkbench.collablet.coop.Binomial");
         binomial.setDescription("Gerenciar binômios");
         populate(binomial);
 
         Collablet rating = new Collablet();
         rating.setComponentClass(RatingMgrInstance.class);
-        rating.setCod("br.org.groupwareworkbench.collablet.coop.Rating");
         rating.setDescription("Gerenciar avaliação");
         populate(rating);
 
         Collablet profile = new Collablet();
         profile.setComponentClass(ProfileMgrInstance.class);
-        profile.setCod("br.org.groupwareworkbench.collablet.coop.Profile");
         populate(profile);
 
         Collablet role = new Collablet();
         role.setComponentClass(RoleMgrInstance.class);
-        role.setCod("br.org.groupwareworkbench.collablet.coord.Role");
         role.setDescription("Gerenciar papéis");
         populate(role);
 
         Collablet user = new Collablet();
         user.setComponentClass(UserMgrInstance.class);
-        user.setCod("br.org.groupwareworkbench.collablet.coord.User");
         user.setDescription("Gerenciar usuários");
         populate(user);
         user.addDependency(role, profile);
 
         Collablet collab = new Collablet();
         collab.setComponentClass(CollabletMgrInstance.class);
-        collab.setCod("br.org.groupwareworkbench.collablet.coord.CollabletManagement");
         collab.setDescription("Gerenciar collablets");
         populate(collab);
 
@@ -160,51 +150,42 @@ public class PopulateInitialDatabase {
 
         Collablet site = new Collablet();
         site.setComponentClass(siteInstanceClass);
-        site.setCod("environment/Default");
         site.setEnabled(true);
-        site.setName("Arquigrafia Brasil");
-        site.setDescription("---");
+        site.setName("siteMgr");
+        site.setDescription("Arquigrafia Brasil");
         site.addDependency(comment, googlemaps, tag, /*upload,*/ binomial, rating, /*recommend,*/ profile, role, user, collab);
-
-        MainCollablet mc = new MainCollablet();
-        mc.setMain(site);
 
         Collablet collabPhoto = new Collablet();
         collabPhoto.setComponentClass(CollabletMgrInstance.class);
-        collabPhoto.setCod("br.org.groupwareworkbench.collablet.coord.CollabletManagement");
         collabPhoto.setDescription("Gerenciar collablets");
         populate(collabPhoto);
 
         Collablet commentPhoto = new Collablet();
         commentPhoto.setComponentClass(CommentMgrInstance.class);
-        commentPhoto.setCod("br.org.groupwareworkbench.collablet.communic.Comment");
         commentPhoto.setDescription("Gerenciar comentários");
         populate(commentPhoto);
 
         Collablet binomialPhoto = new Collablet();
         binomialPhoto.setComponentClass(BinomialMgrInstance.class);
-        binomialPhoto.setCod("br.org.groupwareworkbench.collablet.coop.Binomial");
         binomialPhoto.setDescription("Gerenciar binômios");
         populate(binomialPhoto);
 
         Collablet ratingPhoto = new Collablet();
         ratingPhoto.setComponentClass(RatingMgrInstance.class);
-        ratingPhoto.setCod("br.org.groupwareworkbench.collablet.coop.Rating");
         ratingPhoto.setDescription("Gerenciar avaliação");
         populate(ratingPhoto);
 
         Collablet photo = new Collablet();
         photo.setComponentClass(PhotoMgrInstance.class);
-        photo.setCod("cooperation-collablets/Photo");
         photo.setEnabled(true);
-        photo.setName("Registro de fotografias");
-        photo.setDescription("---");
+        photo.setName("photoMgr");
+        photo.setDescription("Registro de fotografias");
         photo.setParent(site);
         photo.addDependency(tag, /*recommendPhoto,*/ commentPhoto, binomialPhoto, ratingPhoto);
 
         insertAll(comment, googlemaps, tag, /*upload,*/ binomial, rating, /*recommend,*/ profile, role, user, collab, site,
-                /*recommendPhoto,*/ commentPhoto, binomialPhoto, ratingPhoto, photo,
-                mc);
+                /*recommendPhoto,*/ commentPhoto, binomialPhoto, ratingPhoto, photo);
+        MainCollablet.setMainCollablet(site);
     }
 
     public static void doIt() {

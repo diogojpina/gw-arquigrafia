@@ -39,12 +39,10 @@
                 <div id="tabela-perguntas"></div>
             </div>
 
-            <c:if test="${not empty faqMgr.subordinatedInstances}">
-                <div id="subtitle_3">
-                    <span class="subTitulo">Collablets</span>
-                    <w:menuFerramentas collabletInstance="${faqMgr}" groups="${groups}" />
-                </div>
-            </c:if>
+            <div id="subtitle_3">
+                <span class="subTitulo">Collablets</span>
+                <w:menuFerramentas collabletInstance="${faqMgr.collablet}" />
+            </div>
 
             <div class="barra_botoes">
                 <w:voltar collabletInstance="${faqMgr.parent}" />

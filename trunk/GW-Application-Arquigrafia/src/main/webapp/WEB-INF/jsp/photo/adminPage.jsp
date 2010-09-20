@@ -28,7 +28,7 @@
             <span class="subTitulo">Collablets</span>
             <br />
             <br />
-            <w:menuFerramentas collabletInstance="${photoInstance}" groups="${groups}" />
+            <w:menuFerramentas collabletInstance="${photoInstance.collablet}" />
             <br />
             <br />
             <br />
