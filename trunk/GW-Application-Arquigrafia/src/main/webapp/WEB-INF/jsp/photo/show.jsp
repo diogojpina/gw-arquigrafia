@@ -169,7 +169,7 @@
                     <input name="commentAdd" value="Adicionar" type="submit" />
                 </div>
                 <div id="comments_show">
-                    <comment:getComments commentMgr="${commentMgr}" idObject="${photo.id}" wrapClass="comments_show_internal" />
+                    <comment:getComments commentMgr="${commentMgr}" entity="${photo}" wrapClass="comments_show_internal" />
                 </div>
                 <script type="text/javascript">
                     $("#comments_create").hide();
