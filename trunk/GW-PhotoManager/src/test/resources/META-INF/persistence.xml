@@ -8,8 +8,7 @@
     <class>br.org.groupwareworkbench.core.framework.Collablet</class>
     <class>br.org.groupwareworkbench.core.framework.MainCollablet</class>
     <class>br.org.groupwareworkbench.collablet.communic.comment.Comment</class>
-    <class>br.org.groupwareworkbench.collablet.communic.googlemapsmarker.GeoReference</class>
-    <class>br.org.groupwareworkbench.collablet.communic.googlemapsmarker.GeoReferenceAssignment</class>
+    <class>br.org.groupwareworkbench.collablet.communic.georeference.GeoReference</class>
     <class>br.org.groupwareworkbench.collablet.communic.tag.Tag</class>
     <class>br.org.groupwareworkbench.collablet.coop.binomial.Binomial</class>
     <class>br.org.groupwareworkbench.collablet.coop.binomial.BinomialEvaluation</class>

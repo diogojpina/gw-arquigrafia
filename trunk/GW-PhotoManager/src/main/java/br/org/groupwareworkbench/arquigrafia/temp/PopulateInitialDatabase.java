@@ -21,13 +21,10 @@ package br.org.groupwareworkbench.arquigrafia.temp;
 
 import br.org.groupwareworkbench.arquigrafia.photo.PhotoMgrInstance;
 import br.org.groupwareworkbench.collablet.communic.comment.CommentMgrInstance;
-import br.org.groupwareworkbench.collablet.communic.googlemapsmarker.GoogleMapsMarkerMgrInstance;
+import br.org.groupwareworkbench.collablet.communic.georeference.GeoReferenceMgrInstance;
 import br.org.groupwareworkbench.collablet.communic.tag.TagMgrInstance;
-import br.org.groupwareworkbench.collablet.communic.upload.UploadMgrInstance;
 import br.org.groupwareworkbench.collablet.coop.binomial.BinomialMgrInstance;
 import br.org.groupwareworkbench.collablet.coop.rating.RatingMgrInstance;
-import br.org.groupwareworkbench.collablet.coord.category.Category;
-import br.org.groupwareworkbench.collablet.coord.category.CategoryMgrInstance;
 import br.org.groupwareworkbench.collablet.coord.collabletmanagement.CollabletMgrInstance;
 import br.org.groupwareworkbench.collablet.coord.profile.ProfileMgrInstance;
 import br.org.groupwareworkbench.collablet.coord.role.Role;
@@ -96,10 +93,10 @@ public class PopulateInitialDatabase {
         comment.setDescription("Gerenciar comentários");
         populate(comment);
 
-        Collablet googlemaps = new Collablet();
-        googlemaps.setComponentClass(GoogleMapsMarkerMgrInstance.class);
-        googlemaps.setDescription("Gerenciar Google Maps");
-        populate(googlemaps);
+        Collablet georeference = new Collablet();
+        georeference.setComponentClass(GeoReferenceMgrInstance.class);
+        georeference.setDescription("Gerenciar Google Maps");
+        populate(georeference);
 
         Collablet tag = new Collablet();
         tag.setComponentClass(TagMgrInstance.class);
@@ -153,7 +150,7 @@ public class PopulateInitialDatabase {
         site.setEnabled(true);
         site.setName("siteMgr");
         site.setDescription("Arquigrafia Brasil");
-        site.addDependency(comment, googlemaps, tag, /*upload,*/ binomial, rating, /*recommend,*/ profile, role, user, collab);
+        site.addDependency(comment, georeference, tag, /*upload,*/ binomial, rating, /*recommend,*/ profile, role, user, collab);
 
         Collablet collabPhoto = new Collablet();
         collabPhoto.setComponentClass(CollabletMgrInstance.class);
@@ -183,7 +180,7 @@ public class PopulateInitialDatabase {
         photo.setParent(site);
         photo.addDependency(tag, /*recommendPhoto,*/ commentPhoto, binomialPhoto, ratingPhoto);
 
-        insertAll(comment, googlemaps, tag, /*upload,*/ binomial, rating, /*recommend,*/ profile, role, user, collab, site,
+        insertAll(comment, georeference, tag, /*upload,*/ binomial, rating, /*recommend,*/ profile, role, user, collab, site,
                 /*recommendPhoto,*/ commentPhoto, binomialPhoto, ratingPhoto, photo);
         MainCollablet.setMainCollablet(site);
     }
