@@ -19,20 +19,33 @@
 */
 package br.org.groupwareworkbench.tests;
 
+import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.Table;
-
-import br.org.groupwareworkbench.core.bd.GenericEntity;
 
 @Entity
 @Table(name="GW_Test_Fruit")
-public class Fruit extends GenericEntity {
+public class Fruit implements Serializable {
     
     private static final long serialVersionUID = 2803965846837134106L;
+
+    @Id
+    @GeneratedValue
+    private Long id;
 
     private String name;
 
     public Fruit() {}
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public void setName(String name) {
         this.name = name;

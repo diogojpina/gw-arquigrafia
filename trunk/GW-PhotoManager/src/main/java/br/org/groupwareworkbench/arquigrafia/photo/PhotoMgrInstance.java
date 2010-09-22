@@ -8,8 +8,6 @@ import java.util.Date;
 import java.util.List;
 
 import br.org.groupwareworkbench.collablet.coord.user.User;
-import br.org.groupwareworkbench.core.bd.DAOFactory;
-import br.org.groupwareworkbench.core.bd.GenericEntity;
 import br.org.groupwareworkbench.core.framework.Business;
 import br.org.groupwareworkbench.core.framework.Collablet;
 import br.org.groupwareworkbench.core.framework.ComponentInfo;
@@ -21,7 +19,7 @@ import br.org.groupwareworkbench.core.framework.ComponentInfo;
 )
 public class PhotoMgrInstance implements Business {
 
-    private final Collablet collablet;    
+    private final Collablet collablet;
 
     // TODO: Converter em atributos.
     private final String dirImages = "images";
@@ -58,13 +56,13 @@ public class PhotoMgrInstance implements Business {
     }
 
     //@Override
-    public void destroy() {        
+    public void destroy() {
         Photo.deleteAll(collablet);
     }
 
     public void delete(Photo photo) {
         photo.setCollablet(collablet);
-        photo.delete();        
+        photo.delete();
     }
 
     public void save(Photo photo) {
@@ -72,7 +70,7 @@ public class PhotoMgrInstance implements Business {
         photo.save();
     }
 
-    public void assignToUser(Photo photo, User user) {        
+    public void assignToUser(Photo photo, User user) {
         photo.assignUser(user);
         
     }
@@ -82,11 +80,11 @@ public class PhotoMgrInstance implements Business {
     }
 
     public List<Photo> buscaFoto(String busca) {
-        return Photo.busca(collablet, busca);               
+        return Photo.busca(collablet, busca);
     }
 
     public List<Photo> buscaFotoAvancada(String nome, String descricao, String lugar, Date date) {
-        return Photo.busca(collablet, nome, lugar, descricao, date);        
+        return Photo.busca(collablet, nome, lugar, descricao, date);
     }
        
     public List<Photo> buscaFotoPorListaId(List<Object> listObjects) {
@@ -100,7 +98,7 @@ public class PhotoMgrInstance implements Business {
     }
 
     public List<Photo> list() {
-        return Photo.list(collablet);        
+        return Photo.list(collablet);
     }
 
     public List<Photo> listPhotoByPageAndOrder(int pageSize, int pageNumber) {
