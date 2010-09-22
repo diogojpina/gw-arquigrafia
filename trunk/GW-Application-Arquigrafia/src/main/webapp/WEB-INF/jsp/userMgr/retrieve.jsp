@@ -55,7 +55,7 @@
                 </div>
 
                 <c:if test="${profileMgr != null}">
-                    <profile:profile profileMgr="${profileMgr}" genericEntity="${user}" />
+                    <profile:profile profileMgr="${profileMgr}" user="${user}" />
                 </c:if>
 
                 <div class="subsection_f1">

@@ -98,8 +98,8 @@
                 <div id="evalAndAdd">
                     <div id="eval">
                         <c:if test="${ratingMgr != null}">
-                            <%-- <rating:starRatingWithScore genericEntity="${photo}" ratingMgr="${ratingMgr}" collabletInstance="${photoInstance}"/> --%>
-                            <rating:starRatingBar genericEntity="${photo}" ratingMgr="${ratingMgr}" collabletInstance="${photoInstance}" />
+                            <%-- <rating:starRatingWithScore entity="${photo}" ratingMgr="${ratingMgr}" collabletInstance="${photoInstance}"/> --%>
+                            <rating:starRatingBar entity="${photo}" ratingMgr="${ratingMgr}" collabletInstance="${photoInstance}" />
                         </c:if>
                     </div>
                     <div id="add">
@@ -148,7 +148,7 @@
                     <div id="descriptionWrap">
                         <div id="descriptionTitle" style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; font-weight: bold; color: #6A8A9A; margin-top: 15px; background-color: #B8C7CF">Relacionadas</div>
                         <p style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; color: #6A8A9A; padding-left: 20px; margin-top: 5px;">
-                            <recommend:simpleListImage genericEntity="${photo}" recommendMgr="${recommendMgr}" />
+                            <recommend:simpleListImage entity="${photo}" recommendMgr="${recommendMgr}" />
                         </p>
                     </div>
                 </c:if>

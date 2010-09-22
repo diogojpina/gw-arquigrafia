@@ -33,7 +33,7 @@
                 tabela.addCelulaElemento(celula);
             }
         </script>
-        <w:tabela baseUrl="/groupware-workbench/${collabletInstance.id}/tagMgr/${param.tagMgr}"
+        <w:tabela baseUrl="/groupware-workbench/${collabletInstance.id}/tagMgr/${tagMgr.id}"
                   msgAdd="Adicionar nova tag"
                   msgDelete="Tem certeza que deseja remover a tag?"
                   target="tabela-tags"
