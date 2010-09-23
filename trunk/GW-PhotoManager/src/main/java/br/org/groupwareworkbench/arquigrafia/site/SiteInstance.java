@@ -19,28 +19,17 @@
 */
 package br.org.groupwareworkbench.arquigrafia.site;
 
-import br.org.groupwareworkbench.core.framework.Business;
+import br.org.groupwareworkbench.core.framework.AbstractBusiness;
 import br.org.groupwareworkbench.core.framework.Collablet;
 import br.org.groupwareworkbench.core.framework.ComponentInfo;
 
 @ComponentInfo(
     version="0.1",
-    configurationURL="/groupware-workbench/{siteInstance}/site",
-    rootLevel=true
+    configurationURL="/groupware-workbench/{siteInstance}/site"
 )
-public class SiteInstance implements Business {
-
-    private final Collablet collablet;
+public class SiteInstance extends AbstractBusiness {
 
     public SiteInstance(Collablet collablet) {
-        this.collablet = collablet;
-    }
-
-    public Collablet getCollablet() {
-        return collablet;
-    }
-
-    public Long getId() {
-        return collablet.getId();
+        super(collablet);
     }
 }

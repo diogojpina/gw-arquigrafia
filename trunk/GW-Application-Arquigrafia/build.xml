@@ -30,6 +30,5 @@
     <property name="dependency.3.GW-collabElement.location" value="${GW.location}/GW-collabElement" />
     <property name="dependency.4.GW-collablet.location" value="${GW.location}/GW-collablet" />
     <property name="dependency.5.GW-PhotoManager.location" value="../GW-PhotoManager" />
-    <property name="dependency.6.GW-ExternalSiteManager.location" value="../GW-ExternalSiteManager" />
 
 </project>

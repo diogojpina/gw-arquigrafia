@@ -14,8 +14,7 @@ import br.org.groupwareworkbench.core.framework.ComponentInfo;
 
 @ComponentInfo(
     version="0.1",
-    configurationURL="/groupware-workbench/{photoInstance}/photo",
-    rootLevel=true
+    configurationURL="/groupware-workbench/{photoInstance}/photo"
 )
 public class PhotoMgrInstance implements Business {
 

@@ -27,9 +27,9 @@ import br.com.caelum.vraptor.ioc.RequestScoped;
 @Resource
 public class AlbumMgrController {
 
-    private final Result result;
+    //private final Result result;
 
-    public AlbumMgrController(Result result) {
-        this.result = result;
+    public AlbumMgrController(/*Result result*/) {
+        //this.result = result;
     }
 }

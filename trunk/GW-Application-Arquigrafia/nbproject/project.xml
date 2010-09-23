@@ -314,14 +314,6 @@
                 <id>jar</id>
             </reference>
             <reference>
-                <foreign-project>GW-ExternalSiteManager</foreign-project>
-                <artifact-type>jar</artifact-type>
-                <script>nb-build.xml</script>
-                <target>jar</target>
-                <clean-target>clean</clean-target>
-                <id>jar</id>
-            </reference>
-            <reference>
                 <foreign-project>GW-PhotoManager</foreign-project>
                 <artifact-type>jar</artifact-type>
                 <script>nb-build.xml</script>

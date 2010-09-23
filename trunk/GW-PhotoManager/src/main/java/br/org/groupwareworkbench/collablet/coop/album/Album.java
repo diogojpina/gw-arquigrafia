@@ -29,10 +29,11 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import br.org.groupwareworkbench.arquigrafia.photo.Photo;
 import br.org.groupwareworkbench.collablet.coord.user.User;
-import br.org.groupwareworkbench.core.bd.GenericReference;
 import br.org.groupwareworkbench.core.bd.ObjectDAO;
 import br.org.groupwareworkbench.core.framework.Collablet;
 
@@ -41,6 +42,7 @@ import br.org.groupwareworkbench.core.framework.Collablet;
 public class Album implements Serializable  {
 
     private static final long serialVersionUID = -6876191440831919034L;
+
     private static final ObjectDAO<Album, Long> DAO = new ObjectDAO<Album, Long>(Album.class);
 
     @Id
@@ -51,9 +53,11 @@ public class Album implements Serializable  {
     private Collablet collablet;
 
     private String title;
-    
+
+    @Temporal(TemporalType.TIMESTAMP)
     private Date creationDate;
-    
+
+    @Temporal(TemporalType.TIMESTAMP)
     private Date updateDate;
 
     @ManyToOne
@@ -125,19 +129,19 @@ public class Album implements Serializable  {
     }
 
     public Date getCreationDate() {
-        return creationDate;
+        return creationDate == null ? null : (Date) creationDate.clone();
     }
 
     public void setCreationDate(Date creationDate) {
-        this.creationDate = creationDate;
+        this.creationDate = creationDate == null ? null : (Date) creationDate.clone();
     }
 
     public Date getUpdateDate() {
-        return updateDate;
+        return updateDate == null ? null : (Date) updateDate.clone();
     }
 
     public void setUpdateDate(Date updateDate) {
-        this.updateDate = updateDate;
+        this.updateDate = updateDate == null ? null : (Date) updateDate.clone();
     }
 
     public Collablet getCollablet() {
@@ -147,8 +151,4 @@ public class Album implements Serializable  {
     public void setCollablet(Collablet collablet) {
         this.collablet = collablet;
     }
-    
-    
-    
-   
 }

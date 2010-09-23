@@ -35,8 +35,6 @@ public class AlbumMgrInstance extends AbstractBusiness {
     public AlbumMgrInstance(Collablet collablet) {
         super(collablet);
     }
-    
-    
 
     public void save(Album album) {
         album.setCollablet(getCollablet());
@@ -44,7 +42,6 @@ public class AlbumMgrInstance extends AbstractBusiness {
     }
 
     public void delete(Album album) {
-        album.setCollablet(getCollablet());
         album.delete();
     }
 
@@ -59,6 +56,4 @@ public class AlbumMgrInstance extends AbstractBusiness {
     public Album findByName(String name) {
         return Album.findByName(name, getCollablet());
     }
-    
-    
 }
