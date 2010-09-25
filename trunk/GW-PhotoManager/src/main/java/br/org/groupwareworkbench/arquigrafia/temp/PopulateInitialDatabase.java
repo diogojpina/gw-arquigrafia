@@ -20,20 +20,19 @@
 package br.org.groupwareworkbench.arquigrafia.temp;
 
 import br.org.groupwareworkbench.arquigrafia.photo.PhotoMgrInstance;
+import br.org.groupwareworkbench.arquigrafia.site.SiteInstance;
 import br.org.groupwareworkbench.collablet.communic.comment.CommentMgrInstance;
 import br.org.groupwareworkbench.collablet.communic.georeference.GeoReferenceMgrInstance;
 import br.org.groupwareworkbench.collablet.communic.tag.TagMgrInstance;
 import br.org.groupwareworkbench.collablet.coop.binomial.BinomialMgrInstance;
 import br.org.groupwareworkbench.collablet.coop.rating.RatingMgrInstance;
-import br.org.groupwareworkbench.collablet.coord.collabletmanagement.CollabletMgrInstance;
+import br.org.groupwareworkbench.collablet.coord.management.ApplicationInstance;
 import br.org.groupwareworkbench.collablet.coord.profile.ProfileMgrInstance;
 import br.org.groupwareworkbench.collablet.coord.role.Role;
 import br.org.groupwareworkbench.collablet.coord.role.RoleMgrInstance;
 import br.org.groupwareworkbench.collablet.coord.user.User;
 import br.org.groupwareworkbench.collablet.coord.user.UserMgrInstance;
 import br.org.groupwareworkbench.core.bd.EntityManagerProvider;
-import br.org.groupwareworkbench.core.exceptions.ConfigurationException;
-import br.org.groupwareworkbench.core.framework.Business;
 import br.org.groupwareworkbench.core.framework.Collablet;
 import br.org.groupwareworkbench.core.framework.MainCollablet;
 
@@ -134,26 +133,19 @@ public class PopulateInitialDatabase {
         user.addDependency(role, profile);
 
         Collablet collab = new Collablet();
-        collab.setComponentClass(CollabletMgrInstance.class);
+        collab.setComponentClass(ApplicationInstance.class);
         collab.setDescription("Gerenciar collablets");
         populate(collab);
 
-        Class<? extends Business> siteInstanceClass;
-        try {
-            siteInstanceClass = Class.forName("br.org.groupwareworkbench.arquigrafia.site.SiteInstance").asSubclass(Business.class);
-        } catch (ClassNotFoundException e) {
-            throw new ConfigurationException(e);
-        }
-
         Collablet site = new Collablet();
-        site.setComponentClass(siteInstanceClass);
+        site.setComponentClass(SiteInstance.class);
         site.setEnabled(true);
         site.setName("siteMgr");
         site.setDescription("Arquigrafia Brasil");
         site.addDependency(comment, georeference, tag, /*upload,*/ binomial, rating, /*recommend,*/ profile, role, user, collab);
 
         Collablet collabPhoto = new Collablet();
-        collabPhoto.setComponentClass(CollabletMgrInstance.class);
+        collabPhoto.setComponentClass(ApplicationInstance.class);
         collabPhoto.setDescription("Gerenciar collablets");
         populate(collabPhoto);
 

@@ -71,7 +71,7 @@
         </collablet>
 
         <collablet>
-            <business>br.org.groupwareworkbench.collablet.coord.collabletmanagement.CollabletMgrInstance</business>
+            <business>br.org.groupwareworkbench.collablet.coord.management.ApplicationInstance</business>
             <description>Gerenciar collablets</description>
             <name>collabletMgr</name>
         </collablet>
@@ -89,7 +89,7 @@
         </collablet>
 
         <collablet>
-            <business>br.org.groupwareworkbench.collablet.coord.collabletmanagement.CollabletMgrInstance</business>
+            <business>br.org.groupwareworkbench.collablet.coord.management.ApplicationInstance</business>
             <description>Gerenciar collablets</description>
             <name>collabletMgr2</name>
         </collablet>
@@ -129,6 +129,7 @@
         <dependency from="profileMgr" to="siteMgr" />
         <dependency from="roleMgr" to="siteMgr" />
         <dependency from="userMgr" to="siteMgr" />
+        <dependency from="userMgr" to="siteMgr" alias="--login--" />
         <dependency from="collabletMgr" to="siteMgr" />
         <dependency from="collabletMgr2" to="photoMgr" alias="collabletMgr" />
         <dependency from="commentMgr2" to="photoMgr" alias="commentMgr" />
