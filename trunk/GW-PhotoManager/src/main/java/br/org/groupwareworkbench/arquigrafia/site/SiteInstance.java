@@ -21,7 +21,7 @@ package br.org.groupwareworkbench.arquigrafia.site;
 
 import br.org.groupwareworkbench.core.framework.AbstractBusiness;
 import br.org.groupwareworkbench.core.framework.Collablet;
-import br.org.groupwareworkbench.core.framework.ComponentInfo;
+import br.org.groupwareworkbench.core.framework.annotations.ComponentInfo;
 
 @ComponentInfo(
     version="0.1",

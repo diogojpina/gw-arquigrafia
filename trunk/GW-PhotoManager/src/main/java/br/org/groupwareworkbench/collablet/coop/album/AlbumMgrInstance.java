@@ -24,7 +24,7 @@ import java.util.List;
 import br.org.groupwareworkbench.arquigrafia.photo.Photo;
 import br.org.groupwareworkbench.core.framework.AbstractBusiness;
 import br.org.groupwareworkbench.core.framework.Collablet;
-import br.org.groupwareworkbench.core.framework.ComponentInfo;
+import br.org.groupwareworkbench.core.framework.annotations.ComponentInfo;
 
 @ComponentInfo(
         version="0.1",

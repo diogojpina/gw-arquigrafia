@@ -9,6 +9,7 @@
     <class>br.org.groupwareworkbench.collablet.communic.comment.Comment</class>
     <class>br.org.groupwareworkbench.collablet.communic.georeference.GeoReference</class>
     <class>br.org.groupwareworkbench.collablet.communic.tag.Tag</class>
+    <class>br.org.groupwareworkbench.collablet.coop.album.Album</class>
     <class>br.org.groupwareworkbench.collablet.coop.binomial.Binomial</class>
     <class>br.org.groupwareworkbench.collablet.coop.binomial.BinomialEvaluation</class>
     <class>br.org.groupwareworkbench.collablet.coop.rating.Rating</class>

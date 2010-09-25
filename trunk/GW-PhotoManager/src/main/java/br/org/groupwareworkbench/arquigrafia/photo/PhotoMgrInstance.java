@@ -10,7 +10,7 @@ import java.util.List;
 import br.org.groupwareworkbench.collablet.coord.user.User;
 import br.org.groupwareworkbench.core.framework.Business;
 import br.org.groupwareworkbench.core.framework.Collablet;
-import br.org.groupwareworkbench.core.framework.ComponentInfo;
+import br.org.groupwareworkbench.core.framework.annotations.ComponentInfo;
 
 @ComponentInfo(
     version="0.1",

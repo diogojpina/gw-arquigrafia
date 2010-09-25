@@ -37,9 +37,9 @@ import javax.persistence.UniqueConstraint;
 
 import br.org.groupwareworkbench.arquigrafia.photo.Photo;
 import br.org.groupwareworkbench.collablet.coord.user.User;
-import br.org.groupwareworkbench.core.bd.GenericReference;
 import br.org.groupwareworkbench.core.bd.ObjectDAO;
 import br.org.groupwareworkbench.core.framework.Collablet;
+import javax.persistence.JoinColumn;
 
 @Entity
 @Table(
@@ -57,6 +57,7 @@ public class Album implements Serializable {
     private Long id;
 
     @ManyToOne
+    @JoinColumn(name="collablet_id")
     private Collablet collablet;
 
     private String title;

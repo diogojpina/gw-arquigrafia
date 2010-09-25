@@ -90,10 +90,6 @@ public class Photo implements Serializable {
         return DAO.listByField("collablet", collablet);
     }
 
-    public static List<Photo> listAll() {
-        return DAO.listAll();
-    } 
-
     public static File getImageFile(String pasta, String prefix, String nomeArquivoUnico) {
         String path = pasta + prefix + nomeArquivoUnico;
         return new File(path);
