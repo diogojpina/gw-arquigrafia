@@ -18,6 +18,11 @@
     <property file="../../../GroupwareWorkbench/workspace/GW-Libs/worker-multiple-workspaces.config" />
     <fail unless="GW.location" message="Could not find the GW-Libs!" />
 
+    <!-- Suppresses some targets in web-worker.xml. -->
+    <property name="no-verify" value="true" />
+    <property name="no-javadoc" value="true" />
+    <property name="no-test" value="true" />
+
     <!-- Includes all the reusable things which does the real work. -->
     <import file="${GW-Libs.location}/web-worker.xml" />
 
@@ -30,5 +35,6 @@
     <property name="dependency.3.GW-collabElement.location" value="${GW.location}/GW-collabElement" />
     <property name="dependency.4.GW-collablet.location" value="${GW.location}/GW-collablet" />
     <property name="dependency.5.GW-PhotoManager.location" value="../GW-PhotoManager" />
+    <property name="dependency.6.GW-tests.test" value="${GW.location}/GW-tests" />
 
 </project>

@@ -25,5 +25,6 @@
     <property name="dependency.1.GW-core.location" value="${GW.location}/GW-core" />
     <property name="dependency.2.GW-commons-widgets.location" value="${GW.location}/GW-commons-widgets" />
     <property name="dependency.3.GW-collabElement.location" value="${GW.location}/GW-collabElement" />
+    <property name="dependency.4.GW-tests.test" value="${GW.location}/GW-tests" />
 
 </project>

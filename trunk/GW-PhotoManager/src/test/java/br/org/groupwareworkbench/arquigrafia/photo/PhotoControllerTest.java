@@ -24,7 +24,7 @@ import br.com.caelum.vraptor.util.test.MockResult;
 import br.com.caelum.vraptor.util.test.MockValidator;
 import br.com.caelum.vraptor.validator.Message;
 import br.com.caelum.vraptor.validator.ValidationException;
-import br.org.groupwareworkbench.core.bd.DatabaseTester;
+import br.org.groupwareworkbench.tests.DatabaseTester;
 
 import br.org.groupwareworkbench.core.bd.EntityManagerProvider;
 import br.org.groupwareworkbench.core.framework.Collablet;
@@ -38,14 +38,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.servlet.http.HttpServletRequest;
 
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
-import org.mockito.Mockito;
 
 public class PhotoControllerTest {
 
@@ -68,24 +65,21 @@ public class PhotoControllerTest {
         db = new DatabaseTester();
         em = EntityManagerProvider.getEntityManager();
 
-        collablet = db.makeCollablet(PhotoMgrInstance.class);
-        photoInstance = (PhotoMgrInstance) collablet.getBusinessObject();
-
-        outroCollablet = db.makeCollablet(PhotoMgrInstance.class);
-
         result = new MockResult();
         controller = new PhotoController(result, new MockValidator(), null);
 
-        populateDatabase();
-    }
-
-    @After
-    public void tearDown() {
-        if (db != null) db.close();
-    }
-
-    private void populateDatabase() {
         em.getTransaction().begin();
+
+        collablet = new Collablet();
+        collablet.setComponentClass(PhotoMgrInstance.class);
+        collablet.setName("photoMgr");
+        photoInstance = (PhotoMgrInstance) collablet.getBusinessObject();
+        em.persist(collablet);
+
+        outroCollablet = new Collablet();
+        outroCollablet.setComponentClass(PhotoMgrInstance.class);
+        outroCollablet.setName("photoMgr2");
+        em.persist(outroCollablet);
 
         photo1 = new Photo();
         photo1.setCollablet(collablet);
@@ -106,6 +100,11 @@ public class PhotoControllerTest {
         em.persist(photo3);
 
         em.getTransaction().commit();
+    }
+
+    @After
+    public void tearDown() {
+        if (db != null) db.close();
     }
 
     private UploadedFile getImage() {

@@ -17,7 +17,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import br.org.groupwareworkbench.arquigrafia.photo.Photo;
-import br.org.groupwareworkbench.core.bd.DatabaseTester;
+import br.org.groupwareworkbench.tests.DatabaseTester;
 import br.org.groupwareworkbench.core.framework.Collablet;
 
 public class AlbumTest {
