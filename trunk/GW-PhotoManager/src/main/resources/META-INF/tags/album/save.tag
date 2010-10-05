@@ -4,9 +4,8 @@
 <%@ taglib prefix="tag" uri="http://www.groupwareworkbench.org.br/widgets/tag" %>
 
 <%@ attribute name="photoRegister" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.arquigrafia.photo.Photo" %>
-<%@ attribute name="photoInstance" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.arquigrafia.photo.PhotoMgrInstance" %>
+<%@ attribute name="albumMgr" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.collablet.coop.album.AlbumMgrInstance" %>
 
-<%@ attribute name="tagMgr" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.collablet.communic.tag.TagMgrInstance" %>
 <%@ attribute name="user" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.collablet.coord.user.User" %>
 
 <%@ attribute name="formClass" required="false" rtexprvalue="false" type="java.lang.String" %>
@@ -70,7 +69,7 @@
     </fieldset>
     <fieldset>
         <legend>Dados Adicionais</legend>
-        <ul class="${formLineClass}" style="vertical-align: top; height: 120px">
+        <!-- <ul class="${formLineClass}" style="vertical-align: top; height: 120px">
             <li class="${formLabelClass}"><span>Tags:</span></li>
             <li class="${formInputClass}">
                 <c:if test="${tagMgr != null}">
@@ -78,7 +77,7 @@
                     <tag:setTags tagMgr="${tagMgr}" entity="${photoRegister}" />
                 </c:if>
             </li>
-        </ul>
+        </ul> -->
         <ul class="${formLineBtClass}">
             <li class="${formSubmitBtClass}"><input id="imageSubmit" type="submit" value="Salvar" /></li>
         </ul>

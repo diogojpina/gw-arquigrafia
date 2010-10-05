@@ -19,9 +19,16 @@
  */
 package br.org.groupwareworkbench.collablet.coop.album;
 
+import java.awt.Dimension;
+import java.awt.Point;
+import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.text.DateFormat;
 import java.util.Collection;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -35,14 +42,17 @@ import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.Validator;
 import br.com.caelum.vraptor.interceptor.download.Download;
 import br.com.caelum.vraptor.interceptor.download.FileDownload;
+import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
 import br.com.caelum.vraptor.ioc.RequestScoped;
 import br.com.caelum.vraptor.validator.ValidationMessage;
 import br.com.caelum.vraptor.view.Results;
 import br.org.groupwareworkbench.arquigrafia.photo.Photo;
+import br.org.groupwareworkbench.arquigrafia.photo.PhotoController;
 import br.org.groupwareworkbench.arquigrafia.photo.PhotoMgrInstance;
 import br.org.groupwareworkbench.collablet.coord.user.User;
 import br.org.groupwareworkbench.core.framework.Collablet;
 import br.org.groupwareworkbench.core.framework.WidgetInfo;
+import br.org.groupwareworkbench.core.util.ImageUtils;
 
 @RequestScoped
 @Resource
@@ -164,6 +174,94 @@ public class AlbumMgrController {
         FileDownload fs = new FileDownload(file, "image/jpg", file.getName());
         return fs;
     }
+    
+    
+    @Post
+    @Path(value = "/groupware-workbench/{collablet}/albumMgr/{albumMgr}/album/{idAlbum}/photo/registra/")
+    public void save(Collablet collablet, AlbumMgrInstance albumMgr,final Long idAlbum, Photo photoRegister, UploadedFile foto, User user) {
+        PhotoMgrInstance photoInstance = (PhotoMgrInstance)collablet.getDependency("photoMgr").getBusinessObject();
+        Album album = Album.findById(idAlbum);
+        boolean erro = false;
+        if (photoRegister.getNome().isEmpty()) {
+            validator.add(new ValidationMessage(MSG_NOME_OBRIGATORIO, "Erro"));
+            erro = true;
+        }
+        if (foto == null) {
+            validator.add(new ValidationMessage(MSG_IMAGEM_OBRIGATORIA, "Erro"));
+            erro = true;
+        }
+        if (erro) {
+           //validator.onErrorUse(Results.page()).redirect("/groupware-workbench/"+idCollabletInstance+"/photo/registra");
+           validator.onErrorUse(Results.logic()).redirectTo(PhotoController.class).registra(photoInstance);
+           return;
+        }
+
+        // Fim das validações.
+
+        String nomeArquivo = foto.getFileName();
+        photoRegister.setNomeArquivo(nomeArquivo);
+        InputStream imagemOriginal = null;
+        InputStream imagemThumb = null;
+        InputStream imagemCropped = null;
+        InputStream imagemMostra = null;
+
+        try {
+            byte[] rawphoto = new byte[foto.getFile().available()];
+            foto.getFile().read(rawphoto); 
+            imagemOriginal = new ByteArrayInputStream(rawphoto);
+            imagemMostra = ImageUtils.createThumbnailIfNecessary(800, imagemOriginal, true);
+            imagemOriginal.reset();
+            imagemThumb = ImageUtils.createThumbnailIfNecessary(100, imagemOriginal, true);
+            imagemOriginal.reset();
+            InputStream imagemThumb2 = ImageUtils.createThumbnailIfNecessary(100, imagemOriginal, false);
+            imagemThumb2.reset();
+            Point cropPoint = ImageUtils.calcSqrThumbCropPoint(imagemThumb2);
+            imagemThumb2.reset();
+            imagemCropped = ImageUtils.cropImage(cropPoint, new Dimension(100, 100), imagemThumb2);
+        } catch (IOException e) {
+            validator.add(new ValidationMessage(MSG_NAO_FOI_POSSIVEL_REDIMENSIONAR, "Erro"));
+            validator.onErrorUse(Results.logic()).redirectTo(PhotoController.class).registra(photoInstance);
+            return;
+        }
+
+        try {
+            GregorianCalendar calendar = new GregorianCalendar();
+            photoRegister.setDataCriacao(calendar.getTime());
+            photoInstance.save(photoRegister);
+            if (user != null) {
+                photoInstance.assignToUser(photoRegister, user);
+            }
+            nomeArquivo = photoRegister.getNomeArquivoUnico(); // Para ter um só nome do arquivo.
+            photoInstance.saveImage(imagemOriginal, nomeArquivo);  
+            photoInstance.saveImage(imagemCropped, photoInstance.getCropPrefix() + nomeArquivo);
+            photoInstance.saveImage(imagemThumb, photoInstance.getThumbPrefix() + nomeArquivo);
+            photoInstance.saveImage(imagemMostra, photoInstance.getMostraPrefix() + nomeArquivo);
+            result.include("originalImage", photoInstance.imgOriginal(nomeArquivo));
+            result.include("croppedImage", photoInstance.imgCrop(nomeArquivo));
+            result.include("thumbImage", photoInstance.imgThumb(nomeArquivo));
+            result.include("showImage", photoInstance.imgShow(nomeArquivo));
+        } catch (IOException e) {
+            validator.add(new ValidationMessage(MSG_FALHA_NO_UPLOAD, "Erro"));
+            validator.onErrorUse(Results.logic()).redirectTo(PhotoController.class).registra(photoInstance);
+            return;
+        }
+
+        photoInstance.getCollablet().processWidgets(info, photoRegister);
+        addIncludes(photoInstance);
+        photoRegister.save();
+        album.add(photoRegister);
+        //result.use(Results.logic()).redirectTo(PhotoController.class).registra(photoInstance);
+        result.use(Results.logic()).redirectTo(AlbumMgrController.class).registra(photoInstance);
+    }//end
+    
+    @Get
+    @Path(value = "/groupware-workbench/{collablet}/albumMgr/{albumMgr}/album/{idAlbum}/photo/registra")
+    public void registra(PhotoMgrInstance photoInstance) {
+        addIncludes(photoInstance);
+    }
+
+
+
 
     @Get
     @Path(value = "/groupware-workbench/{collablet}/albumMgr/{albumMgr}/photo/img-crop/{nomeArquivoUnico}")
@@ -224,6 +322,7 @@ public class AlbumMgrController {
         addIncludes(photoInstance);
         photoInstance.getCollablet().processWidgets(info, photo);
         result.include("photo", photo);
+        result.include("albumMgr", albumMgr);
     }
 
     
@@ -247,7 +346,7 @@ public class AlbumMgrController {
         //addIncludes(photoInstance);
     }
 
-    @Delete
+    /*@Post
     @Path(value = "/groupware-workbench/{collablet}/albumMgr/{albumMgr}/album/{idAlbum}/show/{idPhoto}")
     public void addPhoto(final Collablet collablet, final AlbumMgrInstance albumMgr, final Long idAlbum, final Long idPhoto) {
         Photo photo = Photo.findById(idPhoto);
@@ -259,13 +358,13 @@ public class AlbumMgrController {
             return;
         }
         
-        photoInstance.delete(Photo.findById(idPhoto));
+        photoInstance.save(Photo.findById(idPhoto));//nao adianta
         photo.save();
         album.add(photo);
         result.include("albumMgr", albumMgr);
         result.include("album", album);
         result.include("photo", photo);
         //addIncludes(photoInstance);
-    }
+    }*/
 
 }
