@@ -22,6 +22,7 @@ package br.org.groupwareworkbench.collablet.coop.album;
 import java.util.List;
 
 import br.org.groupwareworkbench.arquigrafia.photo.Photo;
+import br.org.groupwareworkbench.collablet.coord.user.User;
 import br.org.groupwareworkbench.core.framework.AbstractBusiness;
 import br.org.groupwareworkbench.core.framework.Collablet;
 import br.org.groupwareworkbench.core.framework.annotations.ComponentInfo;
@@ -51,6 +52,10 @@ public class AlbumMgrInstance extends AbstractBusiness {
 
     public List<Album> list() {
         return Album.list(getCollablet());
+    }
+    
+    public List<Album> listByUser(User user){
+        return Album.listByUser(user, getCollablet()); 
     }
 
     public Album findByName(String name) {

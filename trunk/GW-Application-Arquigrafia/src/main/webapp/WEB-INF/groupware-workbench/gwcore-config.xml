@@ -111,6 +111,11 @@
             <description>Registro de fotografias</description>
             <name>photoMgr</name>
         </collablet>
+        <!--<collablet>
+            <business>br.org.groupwareworkbench.collablet.coop.album.AlbumMgrInstance</business>
+            <description>Gerenciar Albuns</description>
+            <name>albumMgr</name>
+        </collablet> -->
     </collablets>
 
     <collablets-subordinations>
@@ -135,5 +140,6 @@
         <dependency from="commentMgr2" to="photoMgr" alias="commentMgr" />
         <dependency from="binomialMgr2" to="photoMgr" alias="binomialMgr" />
         <dependency from="ratingMgr2" to="photoMgr" alias="ratingMgr" />
+        <!-- <dependency from="photoMgr" to="albumMgr" alias="albumMgr" /> -->
     </collablets-dependencies>
 </frameworkDescriptor>

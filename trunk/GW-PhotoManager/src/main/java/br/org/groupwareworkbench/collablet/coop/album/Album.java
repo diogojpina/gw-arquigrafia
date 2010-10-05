@@ -36,6 +36,7 @@ import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
 
 import br.org.groupwareworkbench.arquigrafia.photo.Photo;
+import br.org.groupwareworkbench.collablet.coord.friends.Friends;
 import br.org.groupwareworkbench.collablet.coord.user.User;
 import br.org.groupwareworkbench.core.bd.ObjectDAO;
 import br.org.groupwareworkbench.core.framework.Collablet;
@@ -99,6 +100,12 @@ public class Album implements Serializable {
     public static List<Album> list(Collablet collablet) {
         if (collablet == null) throw new IllegalArgumentException();
         return DAO.query().with("collablet", collablet).list();
+    }
+    
+    public static List<Album> listByUser(User user, Collablet collablet) {
+        if (user == null) throw new IllegalArgumentException("User is required.");
+        if (collablet == null) throw new IllegalArgumentException();
+        return DAO.query().with("collablet", collablet).with("owner.id", user.getId()).list();        
     }
 
     public static Album findByName(String name, Collablet collablet) {
@@ -168,4 +175,6 @@ public class Album implements Serializable {
     public int getSize() {
         return this.photos.size();
     }
+
+    
 }

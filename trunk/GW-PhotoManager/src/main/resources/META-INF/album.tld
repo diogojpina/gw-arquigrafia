@@ -3,5 +3,19 @@
   <tlib-version>1.0</tlib-version>
   <short-name>album</short-name>
   <uri>http://www.groupwareworkbench.org.br/widgets/album</uri>
+  
+  <tag-file>
+        <name>save</name>
+        <path>/META-INF/tags/album/saveAlbum.tag</path>
+  </tag-file>
+  <tag-file>
+        <name>listPhotos</name>
+        <path>/META-INF/tags/album/listPhotos.tag</path>
+  </tag-file>
+  <tag-file>
+        <name>list</name>
+        <path>/META-INF/tags/album/list.tag</path>
+  </tag-file>
+  
 
 </taglib>

@@ -46,9 +46,9 @@ public class SiteController {
         result.include("siteInstance", siteInstance);
         siteInstance.getCollablet().includeDependencies(result);
 
-        // Adiciona os filhos.
         for (Collablet collabletInstance : siteInstance.getCollablet().getSubordinateds()) {
             String nomeComponente = collabletInstance.getName();
+            // Adiciona os filhos.
             result.include(nomeComponente, collabletInstance.getBusinessObject());
             System.out.println("O componente filho " + collabletInstance.getName() + " foi adicionado na requisição com o nome " + nomeComponente);
         }
@@ -61,3 +61,4 @@ public class SiteController {
         }
     }
 }
+    
