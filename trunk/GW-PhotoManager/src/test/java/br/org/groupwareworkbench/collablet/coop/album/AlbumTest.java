@@ -15,11 +15,15 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import br.org.groupwareworkbench.arquigrafia.photo.Photo;
-import br.org.groupwareworkbench.tests.DatabaseTester;
 import br.org.groupwareworkbench.core.framework.Collablet;
 
+import br.org.groupwareworkbench.tests.DatabaseTester;
+import br.org.groupwareworkbench.tests.GWRunner;
+
+@RunWith(GWRunner.class)
 public class AlbumTest {
 
     private DatabaseTester db;
