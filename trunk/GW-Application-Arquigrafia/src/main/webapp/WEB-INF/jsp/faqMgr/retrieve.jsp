@@ -25,7 +25,7 @@
             <br />
             <h1><span class="style1">Cadastro</span></h1>
             <br />
-            <form name="dados" method="post" action="<c:url value="/groupware-workbench/${faqMgr.id}/faq" />">
+            <form name="dados" method="post" action="<c:url value="/groupware-workbench/faq/${faqMgr.id}" />">
                 <input type="hidden" name="faq.id" value="<c:out value="${faq.id}" />" />
                 <%-- TODO: Tableless! --%>
                 <table cellpadding="3">

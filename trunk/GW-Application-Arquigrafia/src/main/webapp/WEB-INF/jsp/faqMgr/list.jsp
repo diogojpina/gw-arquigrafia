@@ -15,7 +15,7 @@
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/page_content.css" />
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/listagem.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
-        <w:tabela baseUrl="/groupware-workbench/${faqMgr.id}/faq"
+        <w:tabela baseUrl="/groupware-workbench/faq"
                   msgAdd="Adicionar nova pergunta"
                   msgDelete="Tem certeza que deseja excluir a pergunta?"
                   msgVazio="Não há perguntas no FAQ."

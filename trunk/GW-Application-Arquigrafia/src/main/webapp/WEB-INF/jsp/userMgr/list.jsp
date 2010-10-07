@@ -14,8 +14,7 @@
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css" />
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/listagem.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
-        <!-- TODO: Arrumar REST. -->
-        <w:tabela baseUrl="/groupware-workbench/users/${userMgr}"
+        <w:tabela baseUrl="/groupware-workbench/users"
                   msgAdd="Adicionar novo usuário"
                   msgDelete="Tem certeza que deseja remover o usuário?"
                   target="tabela-users"
