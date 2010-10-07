@@ -13,7 +13,7 @@
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/login.css" />
     </head>
     <body>
-        <form id="usuariosForm" method="post" name="loginForm" action='<c:url value="/groupware-workbench/${collablet.id}/userMgr/${userMgr.id}/login" />'>
+        <form id="usuariosForm" method="post" name="loginForm" action='<c:url value="/groupware-workbench/users/${userMgr.id}/login" />'>
             <div id="login_box">
                 <div id="lb_title"><span class="style1">Groupware Workbench</span></div>
                 <div id="lb_logo"><img src="<c:url value="/images/loginSistea.jpg" />" width="202" height="67" alt="Login" /></div>
@@ -38,7 +38,7 @@
                 <div id="lb_messages">
                     <c:if test="${sessionScope['log'] == null}">
                         <div id="lb_message_1" align="right">
-                            <a href="<c:url value="/groupware-workbench/${collablet.id}/userMgr/${userMgr.id}/forgotLogout"/>">Esqueceu a senha?</a>
+                            <a href="<c:url value="/groupware-workbench/users/${userMgr.id}/forgotLogout"/>">Esqueceu a senha?</a>
                             <span class="style8"></span>
                         </div>
                     </c:if>
@@ -48,7 +48,7 @@
                                 <span class="style8">Login ou senha incorretos</span>
                             </div>
                             <div id="lb_message_3" align="right">
-                                <a href="<c:url value="/groupware-workbench/${collablet.id}/userMgr/${userMgr.id}/forgotLogout"/>">Esqueceu a senha?</a>
+                                <a href="<c:url value="/groupware-workbench/users/${userMgr.id}/forgotLogout"/>">Esqueceu a senha?</a>
                                 <span class="style8"></span>
                             </div>
                         </c:if>

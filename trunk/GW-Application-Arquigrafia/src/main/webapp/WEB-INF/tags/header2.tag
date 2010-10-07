@@ -16,7 +16,7 @@
         <div id="user_top_links">
             <a href="#" class="black_link"><c:out value="${sessionScope.User}" /></a>
             &nbsp;&nbsp;
-            <a href="<c:url value="/groupware-workbench/${collablet.id}/userMgr/${userMgr.id}/logout" />" class="gray_link">sair</a>
+            <a href="<c:url value="/groupware-workbench/users/${userMgr.id}/logout" />" class="gray_link">sair</a>
         </div>
         <div id="suggestions">
             <a href="mailto:test@somewhere" class="white_link">Sugest&otilde;es e Cr&iacute;ticas</a><br />
@@ -51,8 +51,8 @@
             <a href="#" onclick="return showPhotoUpload();">Upload de fotos</a>
             &nbsp;|&nbsp;
 	    <a href="${pageContext.request.contextPath}/groupware-workbench/${photoInstance.id}/recommendMgr/${recommendMgr.id}/calcRecommned">Recomendar</a>
-   	        &nbsp;|&nbsp;
-	        <a href="${pageContext.request.contextPath}/groupware-workbench/${photoInstance.id}/ratingMgr/${ratingMgr.id}">Rating</a>
+            &nbsp;|&nbsp;
+            <a href="${pageContext.request.contextPath}/groupware-workbench/${photoInstance.id}/ratingMgr/${ratingMgr.id}">Rating</a>
         </c:if>
     </div>
     <div id="search_field">

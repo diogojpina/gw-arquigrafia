@@ -28,7 +28,7 @@
               <td><div align="center"><b><font size="5">Groupware Workbench</font></b></div></td>
             </tr>
             <tr>
-              <td><form id="usuariosForm" method="post" name="loginForm" action='<c:url value="/groupware-workbench/${collablet.id}/userMgr/${userMgr.id}/getPassword" />'>
+              <td><form id="usuariosForm" method="post" name="loginForm" action='<c:url value="/groupware-workbench/users/${userMgr.id}/getPassword" />'>
                   <table width="100%" border="0" align="center" bordercolor="#9B9B9B">
                     <tr>
                       <td><table border="0" align="center" bordercolor="#9B9B9B">
@@ -59,7 +59,7 @@
                                 <td colspan="4"><div align="right"><span class="style8">E-mail não encontrado</span></div></td>
                               </tr>
                                <tr>
-                                 <td colspan="4"><div align="left"><span class="style8"><a href="<c:url value="/groupware-workbench/${collablet.id}/userMgr/${userMgr.id}/login"/>">Voltar</a></span></div></td>
+                                 <td colspan="4"><div align="left"><span class="style8"><a href="<c:url value="/groupware-workbench/users/${userMgr.id}/login"/>">Voltar</a></span></div></td>
                                </tr>
                           </c:when>
                             <c:when test="${env}">
@@ -67,13 +67,13 @@
                                 <td colspan="4"><div align="right"><span class="style8">E-mail enviado com sucesso! </span></div></td>
                               </tr>
                                <tr>
-                                 <td colspan="4"><div align="left"><span class="style8"><a href="<c:url value="/groupware-workbench/${collablet.id}/userMgr/${userMgr.id}/login"/>">Voltar</a></span></div></td>
+                                 <td colspan="4"><div align="left"><span class="style8"><a href="<c:url value="/groupware-workbench/users/${userMgr.id}/login"/>">Voltar</a></span></div></td>
                                </tr>
                           </c:when>
 
                            <c:otherwise>
                               <tr>
-                                <td colspan="4"><div align="left"><span class="style8"><a href="<c:url value="/groupware-workbench/${collablet.id}/userMgr/${userMgr.id}/logout"/>">Voltar</a></span></div></td>
+                                <td colspan="4"><div align="left"><span class="style8"><a href="<c:url value="/groupware-workbench/users/${userMgr.id}/logout"/>">Voltar</a></span></div></td>
                               </tr>
                            </c:otherwise>
 					</c:choose>
