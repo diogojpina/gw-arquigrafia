@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 import br.org.groupwareworkbench.collablet.coord.user.User;
-import br.org.groupwareworkbench.core.framework.Business;
+import br.org.groupwareworkbench.core.framework.AbstractBusiness;
 import br.org.groupwareworkbench.core.framework.Collablet;
 import br.org.groupwareworkbench.core.framework.annotations.ComponentInfo;
 
@@ -16,9 +16,7 @@ import br.org.groupwareworkbench.core.framework.annotations.ComponentInfo;
     version="0.1",
     configurationURL="/groupware-workbench/{photoInstance}/photo"
 )
-public class PhotoMgrInstance implements Business {
-
-    private final Collablet collablet;
+public class PhotoMgrInstance extends AbstractBusiness {
 
     // TODO: Converter em atributos.
     private final String dirImages = "images";
@@ -27,15 +25,7 @@ public class PhotoMgrInstance implements Business {
     private final String mostraPrefix = "mostra_";
 
     public PhotoMgrInstance(Collablet collablet) {
-        this.collablet = collablet;
-    }
-
-    public Collablet getCollablet() {
-        return collablet;
-    }
-
-    public Long getId() {
-        return collablet.getId();
+        super(collablet);
     }
 
     public File imgThumb(String nomeArquivoUnico) {
@@ -54,18 +44,8 @@ public class PhotoMgrInstance implements Business {
         return Photo.getImageFile(getDirImages(), "", nomeArquivoUnico);
     }
 
-    //@Override
-    public void destroy() {
-        Photo.deleteAll(collablet);
-    }
-
-    public void delete(Photo photo) {
-        photo.setCollablet(collablet);
-        photo.delete();
-    }
-
     public void save(Photo photo) {
-        photo.setCollablet(collablet);
+        photo.setCollablet(getCollablet());
         photo.save();
     }
 
@@ -79,11 +59,11 @@ public class PhotoMgrInstance implements Business {
     }
 
     public List<Photo> buscaFoto(String busca) {
-        return Photo.busca(collablet, busca);
+        return Photo.busca(getCollablet(), busca);
     }
 
     public List<Photo> buscaFotoAvancada(String nome, String descricao, String lugar, Date date) {
-        return Photo.busca(collablet, nome, lugar, descricao, date);
+        return Photo.busca(getCollablet(), nome, lugar, descricao, date);
     }
        
     public List<Photo> buscaFotoPorListaId(List<Object> listObjects) {
@@ -97,11 +77,11 @@ public class PhotoMgrInstance implements Business {
     }
 
     public List<Photo> list() {
-        return Photo.list(collablet);
+        return Photo.list(getCollablet());
     }
 
     public List<Photo> listPhotoByPageAndOrder(int pageSize, int pageNumber) {
-        return Photo.listPhotoByPageAndOrder(collablet, pageSize, pageNumber);        
+        return Photo.listPhotoByPageAndOrder(getCollablet(), pageSize, pageNumber);
     }
    
      public String getDirImages() {

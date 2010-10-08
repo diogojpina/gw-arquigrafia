@@ -12,11 +12,11 @@
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/listagem.js"></script>
     </head>
     <body>
-        <w:topo collabletInstance="${collabletInstance}" />
+        <w:topo collabletInstance="${recommendMgr.collablet}" />
         <w:conteudoPagina titulo="Configuração dos atributos da ferramenta:">
             <br />
 
-            <form method="POST" action="<c:url value="/groupware-workbench/${collabletInstance.id}/recommendMgr/${recommendMgr.id}/updateMethodsEnable" />">
+            <form method="POST" action="<c:url value="/groupware-workbench/recommend/${recommendMgr.id}/updateMethodsEnable" />">
                 <c:forEach items="${classes}" var="clazz">
                     <div>
                         <p>Nome da classe: <c:out value="${clazz.name}" /></p>
@@ -34,7 +34,7 @@
             </form>
 
             <div class="barra_botoes">
-                <w:voltar collabletInstance="${collabletInstance}" />
+                <w:voltar collabletInstance="${recommendMgr.collablet.parent}" />
             </div>
         </w:conteudoPagina>
     </body>

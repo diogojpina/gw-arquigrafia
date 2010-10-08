@@ -19,7 +19,7 @@
 </script>
 
 <div id="form1">
-    <form name="formBusca" action="<c:url value="/groupware-workbench/${photoInstance.id}/photo/busca"/>" method="post">
+    <form name="formBusca" action="<c:url value="/groupware-workbench/photo/${photoInstance.id}/busca"/>" method="post">
         <%-- TODO: Tableless! --%>
         <table>
             <tr>
@@ -35,7 +35,7 @@
 </div>
 
 <div id="form2">
-    <form name="formBuscaAvancada" action="<c:url value="/groupware-workbench/${photoInstance.id}/photo/buscaA"/>" method="post">
+    <form name="formBuscaAvancada" action="<c:url value="/groupware-workbench/photo/${photoInstance.id}/buscaA" />" method="post">
         <%-- TODO: Tableless! --%>
         <table>
             <tr>

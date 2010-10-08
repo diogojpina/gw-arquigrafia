@@ -20,7 +20,7 @@
         <binomial:scriptBinomial />
     </head>
     <body>
-        <w:topo collabletInstance="${faqMgr}" />
+        <w:topo collabletInstance="${faqMgr.collablet}" />
         <w:conteudoPagina titulo="Faq:">
             <br />
             <h1><span class="style1">Cadastro</span></h1>
@@ -73,7 +73,7 @@
                 <br />
             </form>
             <div class="barra_botoes">
-                <w:voltar collabletInstance="${faqMgr}" />
+                <w:voltar collabletInstance="${faqMgr.collablet.parent}" />
             </div>
         </w:conteudoPagina>
     </body>

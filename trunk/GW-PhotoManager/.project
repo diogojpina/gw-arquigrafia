@@ -3,6 +3,12 @@
 	<name>GW-PhotoManager</name>
 	<comment></comment>
 	<projects>
+		<project>GW-tests</project>
+		<project>GW-collablet</project>
+		<project>GW-collabElement</project>
+		<project>GW-commons-widgets</project>
+		<project>GW-core</project>
+		<project>GW-Libs</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

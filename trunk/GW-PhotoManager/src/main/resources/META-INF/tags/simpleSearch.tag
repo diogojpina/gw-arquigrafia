@@ -8,7 +8,7 @@
 <%@ attribute name="searchButtonClass" required="false" rtexprvalue="false" type="java.lang.String" %>
 
 <div id="search_box">
-    <form name="formBusca" action="<c:url value="/groupware-workbench/${photoInstance.id}/photo/busca"/>" method="post">
+    <form name="formBusca" action="<c:url value="/groupware-workbench/photo/${photoInstance.id}/busca"/>" method="post">
         <input type="text" name="busca" id="s_b_search" class="${searchInputClass}" />
         <input type="submit" value="Buscar" id="s_b_button" class="${searchButtonClass}" />
     </form>

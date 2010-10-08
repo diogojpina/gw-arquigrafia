@@ -72,7 +72,6 @@ public class AlbumMgrController {
     private final WidgetInfo info;
     private final Validator validator;
 
-
     public AlbumMgrController(Result result, Validator validator, WidgetInfo info, HttpServletRequest request) {
         this.request = request;
         this.result = result;
@@ -81,11 +80,10 @@ public class AlbumMgrController {
     }
     
     @Get
-    @Path(value="/groupware-workbench/{collablet}/albumMgr/{albumMgr}")
-    public void list(final Collablet collablet, final AlbumMgrInstance albumMgr) {
+    @Path(value="/groupware-workbench/album/{albumMgr}/list")
+    public void list(final AlbumMgrInstance albumMgr) {
         User user = (User) request.getSession().getAttribute("userLogin");
         result.include("user", user);
-        result.include("collablet", collablet);
         Collection<Album> albumList = albumMgr.listByUser(user);
         result.include("albumList", albumList);
         result.include("albumMgr", albumMgr);
@@ -93,64 +91,66 @@ public class AlbumMgrController {
     }
 
     @Get
-    @Path(value="/groupware-workbench/{collablet}/albumMgr/{albumMgr}/{id}/listPhotos")
-    public void listPhotos(final Collablet collablet, final AlbumMgrInstance albumMgr, final Long id) {
-        //PhotoMgrInstance photoInstance = (PhotoMgrInstance)collablet.getDependency("photoMgr").getBusinessObject();
+    @Path(value="/groupware-workbench/album/{id}/listPhotos")
+    public void listPhotos(final long id) {
         Album album = Album.findById(id);
         if (album == null) {
             this.result.notFound();
             return;
         }
-        result.include("collablet", collablet);
+
+        AlbumMgrInstance albumMgr = (AlbumMgrInstance) album.getCollablet().getBusinessObject();
         Collection<Photo> photoList = album.getPhotos();
         result.include("photoList", photoList);
-        //result.include("photoInstance", photoInstance);
         result.include("albumMgr", albumMgr);
         result.use(Results.representation()).from(photoList).serialize();
     }
 
     @Get
-    @Path(value="/groupware-workbench/{collablet}/albumMgr/{albumMgr}/create")
-    public void create(final Collablet collablet, final AlbumMgrInstance albumMgr) {
+    @Path(value="/groupware-workbench/album/{albumMgr}/create")
+    public void create(final AlbumMgrInstance albumMgr) {
         Album album = new Album();
-        result.include("collablet", collablet);
         result.include("album", album);
         result.use(Results.representation()).from(album).serialize();
     }
 
     @Get
-    @Path(value="/groupware-workbench/{collablet}/albumMgr/{albumMgr}/{id}")
-    public void retrieve(final Collablet collablet, final AlbumMgrInstance albumMgr, final long id) {
+    @Path(value="/groupware-workbench/album/{id}")
+    public void retrieve(final long id) {
         Album album = Album.findById(id);
         if (album == null) {
             this.result.notFound();
             return;
         }
 
-        result.include("collablet", collablet);
         result.include("album", album);
         result.use(Results.representation()).from(album).serialize();
     }
 
     @Post
-    @Path(value="/groupware-workbench/{collablet}/albumMgr/{albumMgr}/save/{idAlbum}")
-    public void save(final Collablet collablet, AlbumMgrInstance albumMgr, final Long idAlbum) {
+    @Path(value="/groupware-workbench/album/{albumMgr}/save/{idAlbum}")
+    public void save(AlbumMgrInstance albumMgr, final long idAlbum) {
         Album album = Album.findById(idAlbum);
         albumMgr.save(album);
-        result.include("collablet", collablet);
-        result.use(Results.logic()).redirectTo(AlbumMgrController.class).list(collablet, albumMgr);
+        result.use(Results.logic()).redirectTo(AlbumMgrController.class).list(albumMgr);
     }
 
-    @Get
-    @Path(value="/groupware-workbench/{collablet}/albumMgr/{albumMgr}/remove/{id}")
-    public void delete(Collablet collablet, AlbumMgrInstance albumMgr, final long id) {
+    @Delete
+    @Path(value="/groupware-workbench/album/{id}")
+    public void delete(final long id) {
         Album album = Album.findById(id);
-        if (album != null) album.delete();
-        result.use(Results.logic()).redirectTo(AlbumMgrController.class).list(collablet, albumMgr);
+        if (album == null) {
+            this.result.notFound();
+            return;
+        }
+
+        AlbumMgrInstance albumMgr = (AlbumMgrInstance) album.getCollablet().getBusinessObject();
+        album.delete();
+        result.use(Results.logic()).redirectTo(AlbumMgrController.class).list(albumMgr);
     }
 
     /*@Get
-    @Path(value="/groupware-workbench/{collablet}/albumMgr/{albumMgr}/resource/{resource*}")
+    @Path(value="/groupware-workbench/album/{albumMgr}/resource/{resource*}")
     public File getResource(AlbumMgrInstance albumMgr, String resource) {
         return albumMgr.resourcePath(resource);
     }*/
@@ -158,18 +158,18 @@ public class AlbumMgrController {
     
     /*Photo's Management*/
     @Get
-    @Path(value = "/groupware-workbench/{collablet}/albumMgr/{albumMgr}/photo/img-thumb/{nomeArquivoUnico}")
-    public Download imgThumb(Collablet collablet, AlbumMgrInstance albumMgr, String nomeArquivoUnico) {
-        PhotoMgrInstance photoInstance = (PhotoMgrInstance)collablet.getDependency("photoMgr").getBusinessObject();
+    @Path(value = "/groupware-workbench/album/{albumMgr}/photo/img-thumb/{nomeArquivoUnico}")
+    public Download imgThumb(AlbumMgrInstance albumMgr, String nomeArquivoUnico) {
+        PhotoMgrInstance photoInstance = (PhotoMgrInstance) albumMgr.getCollablet().getDependency("photoMgr").getBusinessObject();
         File file = photoInstance.imgThumb(nomeArquivoUnico);
         FileDownload fs = new FileDownload(file, "image/jpg", file.getName());
         return fs;
     }
 
     @Get
-    @Path(value = "/groupware-workbench/{collablet}/albumMgr/{albumMgr}/photo/img-show/{nomeArquivoUnico}")
-    public Download imgShow(Collablet collablet, AlbumMgrInstance albumMgr, String nomeArquivoUnico) {
-        PhotoMgrInstance photoInstance = (PhotoMgrInstance)collablet.getDependency("photoMgr").getBusinessObject();
+    @Path(value = "/groupware-workbench/album/{albumMgr}/photo/img-show/{nomeArquivoUnico}")
+    public Download imgShow(AlbumMgrInstance albumMgr, String nomeArquivoUnico) {
+        PhotoMgrInstance photoInstance = (PhotoMgrInstance) albumMgr.getCollablet().getDependency("photoMgr").getBusinessObject();
         File file = photoInstance.imgShow(nomeArquivoUnico);
         FileDownload fs = new FileDownload(file, "image/jpg", file.getName());
         return fs;
@@ -177,9 +177,9 @@ public class AlbumMgrController {
     
     
     @Post
-    @Path(value = "/groupware-workbench/{collablet}/albumMgr/{albumMgr}/album/{idAlbum}/photo/registra/")
-    public void save(Collablet collablet, AlbumMgrInstance albumMgr,final Long idAlbum, Photo photoRegister, UploadedFile foto, User user) {
-        PhotoMgrInstance photoInstance = (PhotoMgrInstance)collablet.getDependency("photoMgr").getBusinessObject();
+    @Path(value = "/groupware-workbench/album/{albumMgr}/album/{idAlbum}/photo/registra/")
+    public void save(AlbumMgrInstance albumMgr, final long idAlbum, Photo photoRegister, UploadedFile foto, User user) {
+        PhotoMgrInstance photoInstance = (PhotoMgrInstance) albumMgr.getCollablet().getDependency("photoMgr").getBusinessObject();
         Album album = Album.findById(idAlbum);
         boolean erro = false;
         if (photoRegister.getNome().isEmpty()) {
@@ -191,7 +191,6 @@ public class AlbumMgrController {
             erro = true;
         }
         if (erro) {
-           //validator.onErrorUse(Results.page()).redirect("/groupware-workbench/"+idCollabletInstance+"/photo/registra");
            validator.onErrorUse(Results.logic()).redirectTo(PhotoController.class).registra(photoInstance);
            return;
         }
@@ -255,27 +254,24 @@ public class AlbumMgrController {
     }//end
     
     @Get
-    @Path(value = "/groupware-workbench/{collablet}/albumMgr/{albumMgr}/album/{idAlbum}/photo/registra")
+    @Path(value = "/groupware-workbench/album/{albumMgr}/album/{idAlbum}/photo/registra")
     public void registra(PhotoMgrInstance photoInstance) {
         addIncludes(photoInstance);
     }
 
-
-
-
     @Get
-    @Path(value = "/groupware-workbench/{collablet}/albumMgr/{albumMgr}/photo/img-crop/{nomeArquivoUnico}")
-    public Download imgCrop(Collablet collablet, AlbumMgrInstance albumMgr, String nomeArquivoUnico) {
-        PhotoMgrInstance photoInstance = (PhotoMgrInstance)collablet.getDependency("photoMgr").getBusinessObject();
+    @Path(value = "/groupware-workbench/album/{albumMgr}/photo/img-crop/{nomeArquivoUnico}")
+    public Download imgCrop(AlbumMgrInstance albumMgr, String nomeArquivoUnico) {
+        PhotoMgrInstance photoInstance = (PhotoMgrInstance) albumMgr.getCollablet().getDependency("photoMgr").getBusinessObject();
         File file = photoInstance.imgCrop(nomeArquivoUnico);
         FileDownload fs = new FileDownload(file, "image/jpg", file.getName());
         return fs;
     }
 
     @Get
-    @Path(value = "/groupware-workbench/{collablet}/albumMgr/{albumMgr}/photo/img-original/{nomeArquivoUnico}")
-    public Download imgOriginal(Collablet collablet, AlbumMgrInstance albumMgr, String nomeArquivoUnico) {
-        PhotoMgrInstance photoInstance = (PhotoMgrInstance)collablet.getDependency("photoMgr").getBusinessObject();
+    @Path(value = "/groupware-workbench/album/{albumMgr}/photo/img-original/{nomeArquivoUnico}")
+    public Download imgOriginal(AlbumMgrInstance albumMgr, String nomeArquivoUnico) {
+        PhotoMgrInstance photoInstance = (PhotoMgrInstance) albumMgr.getCollablet().getDependency("photoMgr").getBusinessObject();
         File file = photoInstance.imgOriginal(nomeArquivoUnico);
         FileDownload fs = new FileDownload(file, "image/jpg", file.getName());
         return fs;
@@ -299,13 +295,12 @@ public class AlbumMgrController {
         }
     }
 
-    @Post
     @Get
-    @Path(value = "/groupware-workbench/{collablet}/albumMgr/{albumMgr}/photo/show/{idPhoto}")
-    public void showPhoto(Collablet collablet, AlbumMgrInstance albumMgr, long idPhoto) {
+    @Path(value = "/groupware-workbench/album/{albumMgr}/photo/show/{idPhoto}")
+    public void showPhoto(AlbumMgrInstance albumMgr, long idPhoto) {
         Photo photo = Photo.findById(idPhoto);
 
-        PhotoMgrInstance photoInstance = (PhotoMgrInstance)collablet.getDependency("photoMgr").getBusinessObject();
+        PhotoMgrInstance photoInstance = (PhotoMgrInstance) albumMgr.getCollablet().getDependency("photoMgr").getBusinessObject();
         result.include("idPhoto", idPhoto);
         result.include("nameCollablet", "photo");
         //addIncludes();
@@ -324,22 +319,20 @@ public class AlbumMgrController {
         result.include("photo", photo);
         result.include("albumMgr", albumMgr);
     }
-
     
     @Delete
-    @Path(value = "/groupware-workbench/{collablet}/albumMgr/{albumMgr}/album/{idAlbum}/remove/{idPhoto}")
-    public void deletePhoto(final Collablet collablet, final AlbumMgrInstance albumMgr, final Long idAlbum, final Long idPhoto) {
+    @Path(value = "/groupware-workbench/album/{albumMgr}/album/{idAlbum}/remove/{idPhoto}")
+    public void deletePhoto(final AlbumMgrInstance albumMgr, final long idAlbum, final long idPhoto) {
         Photo photo = Photo.findById(idPhoto);
         Album album = Album.findById(idAlbum);
-        PhotoMgrInstance photoInstance = (PhotoMgrInstance)collablet.getDependency("photoMgr").getBusinessObject();
-                
-        if (album ==null || photo==null || idPhoto < 1) {
+
+        if (album == null || photo == null || photo == null) {
             validator.add(new ValidationMessage(MSG_ENTIDADE_INVALIDA, "Erro"));
             return;
         }
         photo.delete();
         album.remove(photo);
-        photoInstance.delete(Photo.findById(idPhoto));
+
         result.include("albumMgr", albumMgr);
         result.include("album", album);
         result.include("photo", photo);
@@ -347,17 +340,17 @@ public class AlbumMgrController {
     }
 
     /*@Post
-    @Path(value = "/groupware-workbench/{collablet}/albumMgr/{albumMgr}/album/{idAlbum}/show/{idPhoto}")
-    public void addPhoto(final Collablet collablet, final AlbumMgrInstance albumMgr, final Long idAlbum, final Long idPhoto) {
+    @Path(value = "/groupware-workbench/album/{albumMgr}/album/{idAlbum}/show/{idPhoto}")
+    public void addPhoto(final AlbumMgrInstance albumMgr, final Long idAlbum, final Long idPhoto) {
         Photo photo = Photo.findById(idPhoto);
         Album album = Album.findById(idAlbum);
-        PhotoMgrInstance photoInstance = (PhotoMgrInstance)collablet.getDependency("photoMgr").getBusinessObject();
-                
-        if (album ==null || photo==null || idPhoto < 1) {
-         validator.add(new ValidationMessage(MSG_ENTIDADE_INVALIDA, "Erro"));
+        PhotoMgrInstance photoInstance = (PhotoMgrInstance) albumMgr.getCollablet().getDependency("photoMgr").getBusinessObject();
+
+        if (album == null || photo == null || idPhoto < 1) {
+            validator.add(new ValidationMessage(MSG_ENTIDADE_INVALIDA, "Erro"));
             return;
         }
-        
+
         photoInstance.save(Photo.findById(idPhoto));//nao adianta
         photo.save();
         album.add(photo);

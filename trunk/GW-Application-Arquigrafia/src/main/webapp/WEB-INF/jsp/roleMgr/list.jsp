@@ -14,7 +14,8 @@
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css" />
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/listagem.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
-        <w:tabela baseUrl="/groupware-workbench/${collabletInstance.id}/roleMgr/${roleMgr.id}"
+        <w:tabela baseUrl="/groupware-workbench/roles"
+                  createUrl="/groupware-workbench/roles/${roleMgr.id}/create"
                   msgAdd="Adicionar Papel"
                   msgDelete="Tem certeza que deseja remover este papel?"
                   target="tabela-roles"
@@ -23,11 +24,11 @@
                   elements="${roleList}" />
     </head>
     <body>
-        <w:topo collabletInstance="${collabletInstance}" />
+        <w:topo collabletInstance="${roleMgr.collablet}" />
         <w:conteudoPagina titulo="Pap&eacute;is">
             <div id="tabela-roles"></div>
             <div class="barra_botoes">
-                <w:voltar collabletInstance="${collabletInstance}" />
+                <w:voltar collabletInstance="${roleMgr.collablet.parent}" />
             </div>
         </w:conteudoPagina>
     </body>

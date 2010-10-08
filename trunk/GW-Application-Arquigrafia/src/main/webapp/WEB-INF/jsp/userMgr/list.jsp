@@ -15,6 +15,7 @@
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/listagem.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
         <w:tabela baseUrl="/groupware-workbench/users"
+                  createUrl="/groupware-workbench/users/${userMgr.id}/create"
                   msgAdd="Adicionar novo usuário"
                   msgDelete="Tem certeza que deseja remover o usuário?"
                   target="tabela-users"
@@ -23,11 +24,11 @@
                   elements="${userList}" />
     </head>
     <body>
-        <w:topo collabletInstance="${collablet}" />
+        <w:topo collabletInstance="${userMgr.collablet}" />
         <w:conteudoPagina titulo="Usu&aacute;rios">
             <div id="tabela-users"></div>
             <div class="barra_botoes">
-                <w:voltar collabletInstance="${collablet}" />
+                <w:voltar collabletInstance="${userMgr.collablet.parent}" />
             </div>
         </w:conteudoPagina>
     </body>

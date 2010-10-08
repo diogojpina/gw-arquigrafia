@@ -25,8 +25,7 @@
     });
 </script>
 
-<form name="formBuscaAvancada" action="<c:url value="/groupware-workbench/${photoInstance.id}/photo/buscaA"/>" method="post">
-    <%-- TODO: Tableless! --%>
+<form name="formBuscaAvancada" action="<c:url value="/groupware-workbench/photo/${photoInstance.id}/buscaA"/>" method="post">
     <div class="${formClass}">
         <ul class="${formLineClass}">
             <li class="${formLabelClass}"><span>Nome:</span></li>

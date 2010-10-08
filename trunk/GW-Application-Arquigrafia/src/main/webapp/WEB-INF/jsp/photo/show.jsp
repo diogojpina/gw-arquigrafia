@@ -61,7 +61,7 @@
     </head>
     <body onload="initializeMap()">
         <arq:header2 photoInstance="${photoInstance}" siteInstance="${ArquigrafiaBrasil}" />
-        <form name="tags" method="post" enctype="multipart/form-data" action="<c:url value="/groupware-workbench/${photoInstance.id}/photo/show/${idPhoto}" />">
+        <form name="tags" method="post" enctype="multipart/form-data" action="<c:url value="/groupware-workbench/${idPhoto}" />">
         <div id="photoRel">
             <c:if test="${binomialMgr != null}">
                 <div id="binomialsTitle" class="big_white_title">Medidores</div>

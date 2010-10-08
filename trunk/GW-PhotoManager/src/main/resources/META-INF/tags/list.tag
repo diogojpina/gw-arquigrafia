@@ -21,8 +21,8 @@
         <c:if test="${showName || showLocation}">
             <div>
         </c:if>
-        <a class="${linkClass}" rel="linkimage" href="<c:url value="/groupware-workbench/${photoInstance.id}/photo/show/${foto.id}"/>">
-            <img src="<c:url value="/groupware-workbench/${photoInstance.id}/photo/img-thumb/${foto.nomeArquivoUnico}"/>"/>
+        <a class="${linkClass}" rel="linkimage" href="<c:url value="/groupware-workbench/photo/${foto.id}"/>">
+            <img src="<c:url value="/groupware-workbench/photo/${photoInstance.id}/img-thumb/${foto.nomeArquivoUnico}"/>"/>
         </a>
         <c:if test="${showName || showLocation}">
             </div>

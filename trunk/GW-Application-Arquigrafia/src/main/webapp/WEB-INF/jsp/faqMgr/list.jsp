@@ -16,6 +16,7 @@
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/listagem.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
         <w:tabela baseUrl="/groupware-workbench/faq"
+                  createUrl="/groupware-workbench/faq/${faqMgr.id}/create"
                   msgAdd="Adicionar nova pergunta"
                   msgDelete="Tem certeza que deseja excluir a pergunta?"
                   msgVazio="Não há perguntas no FAQ."
@@ -25,13 +26,13 @@
                   elements="${faqList}" />
     </head>
     <body>
-        <w:topo collabletInstance="${faqMgr}" />
+        <w:topo collabletInstance="${faqMgr.collablet}" />
 
         <w:conteudoPagina titulo="Faq">
 
             <div id="subtitle_1">
                 <span class="subTitulo">Configura&ccedil;&atilde;o</span>
-                <w:configuracao collabletInstance="${faqMgr}" />
+                <w:configuracao collabletInstance="${faqMgr.collablet}" />
             </div>
 
             <div id="subtitle_2">
@@ -45,7 +46,7 @@
             </div>
 
             <div class="barra_botoes">
-                <w:voltar collabletInstance="${faqMgr.parent}" />
+                <w:voltar collabletInstance="${faqMgr.collablet.parent}" />
             </div>
         </w:conteudoPagina>
     </body>

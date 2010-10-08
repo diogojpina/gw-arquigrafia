@@ -14,7 +14,8 @@
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css" />
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/listagem.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
-        <w:tabela baseUrl="/groupware-workbench/${param.collablet}/binomialMgr/${param.binomialMgr}"
+        <w:tabela baseUrl="/groupware-workbench/binomials"
+                  createUrl="/groupware-workbench/binomials/${binomialMgr.id}/create"
                   msgAdd="Adicionar novo binômio"
                   msgDelete="Tem certeza que deseja remover o binômio?"
                   target="tabela-binomials"
@@ -23,11 +24,11 @@
                   elements="${binomialList}" />
     </head>
     <body>
-        <w:topo collabletInstance="${collabletInstance}" />
+        <w:topo collabletInstance="${binomialMgr.collablet}" />
         <w:conteudoPagina titulo="Bin&ocirc;mios">
             <div id="tabela-binomials"></div>
             <div class="barra_botoes">
-                <w:voltar collabletInstance="${collabletInstance}" />
+                <w:voltar collabletInstance="${binomialMgr.collablet.parent}" />
             </div>
         </w:conteudoPagina>
     </body>

@@ -13,11 +13,11 @@
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css" />
     </head>
     <body>
-        <w:topo collabletInstance="${collabletInstance}" />
+        <w:topo collabletInstance="${binomialMgr.collablet}" />
         <w:conteudoPagina titulo="Bin&ocirc;mios">
-            <form method="post" action="<c:url value="/groupware-workbench/${param.collablet}/binomialMgr/${param.binomialMgr}" />" accept-charset="UTF-8">
+            <form method="post" action="<c:url value="/groupware-workbench/binomials/${binomialMgr.id}" />" accept-charset="UTF-8">
                 <input type="hidden" name="binomial.id" value="<c:out value="${binomial.id}" />" />
-                <input type="hidden" name="binomial.idInstance" value="<c:out value="${param.binomialMgr}" />" />
+
                 <div class="form_1">
                     <div>
                         <ul class="field_line_f1">
@@ -47,7 +47,7 @@
                 </div>
             </form>
             <div class="barra_botoes">
-                <w:voltar collabletInstance="${collabletInstance}" />
+                <w:voltar collabletInstance="${binomialMgr.collablet.parent}" />
             </div>
         </w:conteudoPagina>
     </body>

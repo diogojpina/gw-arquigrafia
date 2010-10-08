@@ -13,10 +13,10 @@
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css" />
     </head>
     <body>
-        <w:topo collabletInstance="${collabletInstance}" />
+        <w:topo collabletInstance="${roleMgr.collablet}" />
         <w:conteudoPagina titulo="Papel">
             <br />
-            <form name="dados" method="POST" action='<c:url value="/groupware-workbench/${collabletInstance.id}/roleMgr/${roleMgr.id}" />' accept-charset="UTF-8">
+            <form name="dados" method="POST" action='<c:url value="/groupware-workbench/roles/${roleMgr.id}" />' accept-charset="UTF-8">
                 <input type="hidden" name="role.id" value="<c:out value="${role.id}" />" />
                 <input type="hidden" name="role.idInstance" value="<c:out value="${roleMgr.id}" />" />
                 <div class="form_1" id="role_retrieve_f1">
@@ -32,7 +32,7 @@
                 </div>
             </form>
             <div class="barra_botoes">
-                <w:voltar collabletInstance="${collabletInstance}" />
+                <w:voltar collabletInstance="${roleMgr.collablet.parent}" />
             </div>
         </w:conteudoPagina>
     </body>

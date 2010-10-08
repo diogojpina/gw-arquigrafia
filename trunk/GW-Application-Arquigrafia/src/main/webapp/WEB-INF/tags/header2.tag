@@ -14,7 +14,7 @@
     </div>
     <div id="header_top_right">
         <div id="user_top_links">
-            <a href="#" class="black_link"><c:out value="${sessionScope.User}" /></a>
+            <a href="#" class="black_link"><c:out value="${sessionScope.userLogin.name}" /></a>
             &nbsp;&nbsp;
             <a href="<c:url value="/groupware-workbench/users/${userMgr.id}/logout" />" class="gray_link">sair</a>
         </div>
@@ -37,22 +37,22 @@
         <a href="legal.htm">Legal</a>
         &nbsp;|&nbsp;
         <c:if test="${photoInstance != null}">
-        	<div id="photoUploadContent" style="visibility: hidden; display: none;">
-        		<iframe name="photoUploadFrame" style="width: 600px; height: 400px; opacity: 0.95;" id="photoUploadFrame" src="${pageContext.request.contextPath}/groupware-workbench/${photoInstance.id}/photo/registra"></iframe>
-        	</div>
-        	<script type="text/javascript">
-        		function refreshPage() {
-        			window.location.reload(true);
-        		}
-            	function showPhotoUpload() {
-            		 new Boxy($("#photoUploadContent").html(), {title: "Use o formulário para enviar uma foto.", modal: true, closeText: "Fechar", afterHide: function() {refreshPage();}}).show();
-            	};
+            <div id="photoUploadContent" style="visibility: hidden; display: none;">
+                <iframe name="photoUploadFrame" style="width: 600px; height: 400px; opacity: 0.95;" id="photoUploadFrame" src="${pageContext.request.contextPath}/groupware-workbench/photo/${photoInstance.id}/registra"></iframe>
+            </div>
+            <script type="text/javascript">
+                function refreshPage() {
+                    window.location.reload(true);
+                }
+                function showPhotoUpload() {
+                    new Boxy($("#photoUploadContent").html(), {title: "Use o formulário para enviar uma foto.", modal: true, closeText: "Fechar", afterHide: function() {refreshPage();}}).show();
+                };
             </script>
             <a href="#" onclick="return showPhotoUpload();">Upload de fotos</a>
             &nbsp;|&nbsp;
-	    <a href="${pageContext.request.contextPath}/groupware-workbench/${photoInstance.id}/recommendMgr/${recommendMgr.id}/calcRecommned">Recomendar</a>
+	    <a href="${pageContext.request.contextPath}/groupware-workbench/recommend/${recommendMgr.id}/calcRecommend">Recomendar</a>
             &nbsp;|&nbsp;
-            <a href="${pageContext.request.contextPath}/groupware-workbench/${photoInstance.id}/ratingMgr/${ratingMgr.id}">Rating</a>
+            <a href="${pageContext.request.contextPath}/groupware-workbench/ratings/${ratingMgr.id}">Rating</a>
         </c:if>
     </div>
     <div id="search_field">

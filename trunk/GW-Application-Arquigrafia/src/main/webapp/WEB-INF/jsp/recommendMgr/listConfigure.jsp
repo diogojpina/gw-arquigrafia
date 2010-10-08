@@ -12,10 +12,10 @@
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/listagem.js"></script>
     </head>
     <body>
-        <w:topo collabletInstance="${newsMgr}" />
+        <w:topo collabletInstance="${recommendMgr.collablet}" />
         <w:conteudoPagina titulo="Configuração de Recomendações:">
             <br />
-            <form name="dados" method="POST" action="<c:url value="/groupware-workbench/${collabletInstance.id}/recommendMgr/${recommendMgr.id}/updateNumRelated" />">
+            <form name="dados" method="POST" action="<c:url value="/groupware-workbench/recommend/${recommendMgr.id}/updateNumRelated" />">
                 <div class="form_1">
                     N&uacute;mero de Recomenda&ccedil;&otilde;es: &nbsp;&nbsp;
                     <input type="text" name="max" size="4" value="${numRelated}" />
@@ -24,14 +24,14 @@
             </form>
             <div class="form_1">
                 <span class="style8">
-                    <a href="<c:url value="/groupware-workbench/${collabletInstance.id}/recommendMgr/${recommendMgr.id}/calcRecommned"/>">Recalcular os valores de similaridade</a>
+                    <a href="<c:url value="/groupware-workbench/recommend/${recommendMgr.id}/calcRecommned"/>">Recalcular os valores de similaridade</a>
                 </span>
             </div>
 
-            <form name="dados" method="GET" action="<c:url value="/groupware-workbench/${collabletInstance.id}/recommendMgr/${recommendMgr.id}/configureMethod" />">
+            <form name="dados" method="GET" action="<c:url value="/groupware-workbench/recommend/${recommendMgr.id}/configureMethod" />">
             	<div class="form_1">
                     <span class="style8">
-                        <a href="<c:url value="/groupware-workbench/${collabletInstance.id}/recommendMgr/${recommendMgr.id}/configureMethod"/>">
+                        <a href="<c:url value="/groupware-workbench/recommend/${recommendMgr.id}/configureMethod"/>">
                             <%-- TODO: Participarão se refere aos atributos ou aos componentes? --%>
                             Configurar atributos do componente para as recomendações
                         </a>
@@ -40,7 +40,7 @@
             </form>
 
             <div class="barra_botoes">
-                <w:voltar collabletInstance="${collabletInstance}" />
+                <w:voltar collabletInstance="${recommendMgr.collablet.parent}" />
             </div>
         </w:conteudoPagina>
     </body>

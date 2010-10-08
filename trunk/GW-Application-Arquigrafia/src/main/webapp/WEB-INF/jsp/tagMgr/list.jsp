@@ -34,6 +34,7 @@
             }
         </script>
         <w:tabela baseUrl="/groupware-workbench/tags"
+                  createUrl="/groupware-workbench/tags/${tagMgr.id}/create"
                   msgAdd="Adicionar nova tag"
                   msgDelete="Tem certeza que deseja remover a tag?"
                   target="tabela-tags"
@@ -44,11 +45,11 @@
                   rowProcess="true" />
     </head>
     <body>
-        <w:topo collabletInstance="${collabletInstance}" />
+        <w:topo collabletInstance="${tagMgr.collablet}" />
         <w:conteudoPagina titulo="Tags">
             <div id="tabela-tags"></div>
             <div class="barra_botoes">
-                <w:voltar collabletInstance="${collabletInstance}" />
+                <w:voltar collabletInstance="${tagMgr.collablet.parent}" />
             </div>
         </w:conteudoPagina>
     </body>

@@ -14,7 +14,8 @@
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css" />
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/listagem.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
-        <w:tabela baseUrl="/groupware-workbench/${param.collablet}/categoryMgr/${param.categoryMgr}"
+        <w:tabela baseUrl="/groupware-workbench/categories"
+                  createUrl="/groupware-workbench/categories/${categoryMgr.id}/create"
                   msgAdd="Adicionar nova categoria"
                   msgDelete="Tem certeza que deseja remover a categoria?"
                   target="tabela-categoria"
@@ -23,11 +24,11 @@
                   elements="${categoryList}" />
     </head>
     <body>
-        <w:topo collabletInstance="${collabletInstance}" />
+        <w:topo collabletInstance="${categoryMgr.collablet}" />
         <w:conteudoPagina titulo="Categorias">
             <div id="tabela-categoria"></div>
             <div class="barra_botoes">
-                <w:voltar collabletInstance="${collabletInstance}" />
+                <w:voltar collabletInstance="${categoryMgr.collablet.parent}" />
             </div>
         </w:conteudoPagina>
     </body>

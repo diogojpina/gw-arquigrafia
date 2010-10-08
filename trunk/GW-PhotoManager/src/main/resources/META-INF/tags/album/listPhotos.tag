@@ -21,8 +21,8 @@ s<%@ attribute name="locationClass" required="false" rtexprvalue="false" type="j
         <c:if test="${showName || showLocation}">
             <div>
         </c:if>
-        <a class="${linkClass}" rel="linkimage" href="<c:url value="${pageContext.request.contextPath}/groupware-workbench/${collablet.id}/albumMgr/${albumMgr.id}/photo/show/${foto.id}"/>">
-            <img src="<c:url value="${pageContext.request.contextPath}/groupware-workbench/${collablet.id}/albumMgr/${albumMgr.id}/photo/img-thumb/${foto.nomeArquivoUnico}"/>"/>
+        <a class="${linkClass}" rel="linkimage" href="<c:url value="${pageContext.request.contextPath}/groupware-workbench/album/${foto.id}"/>">
+            <img src="<c:url value="${pageContext.request.contextPath}/groupware-workbench/album/${albumMgr.id}/photo/img-thumb/${foto.nomeArquivoUnico}"/>"/>
         </a>
         <c:if test="${showName || showLocation}">
             </div>

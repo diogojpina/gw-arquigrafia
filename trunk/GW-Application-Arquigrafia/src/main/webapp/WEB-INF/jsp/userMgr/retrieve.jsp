@@ -24,7 +24,7 @@
         <profile:scriptProfile />
     </head>
     <body>
-        <w:topo collabletInstance="${collablet}" />
+        <w:topo collabletInstance="${userMgr.collablet}" />
         <w:conteudoPagina titulo="Usu&aacute;rio">
             <br/>
             <ul>
@@ -76,7 +76,7 @@
                 </div>
             </form>
             <div class="barra_botoes">
-                <w:voltar collabletInstance="${collablet}" />
+                <w:voltar collabletInstance="${userMgr.collablet.parent}" />
             </div>
         </w:conteudoPagina>
     </body>

@@ -15,10 +15,10 @@
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
     </head>
     <body>
-        <w:topo collabletInstance="${collabletInstance}" />
+        <w:topo collabletInstance="${commentMgr.collablet}" />
         <w:conteudoPagina titulo="Comentários">
             <div class="barra_botoes">
-                <w:voltar collabletInstance="${collabletInstance}" />
+                <w:voltar collabletInstance="${commentMgr.collablet.parent}" />
             </div>
         </w:conteudoPagina>
     </body>

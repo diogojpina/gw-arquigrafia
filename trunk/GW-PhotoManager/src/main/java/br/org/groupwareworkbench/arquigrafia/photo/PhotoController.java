@@ -53,7 +53,7 @@ public class PhotoController {
     }
 
     @Get
-    @Path(value = "/groupware-workbench/{photoInstance}/photo/img-thumb/{nomeArquivoUnico}")
+    @Path(value = "/groupware-workbench/photo/{photoInstance}/img-thumb/{nomeArquivoUnico}")
     public Download imgThumb(PhotoMgrInstance photoInstance, String nomeArquivoUnico) {
         File file = photoInstance.imgThumb(nomeArquivoUnico);
         FileDownload fs = new FileDownload(file, "image/jpg", file.getName());
@@ -61,7 +61,7 @@ public class PhotoController {
     }
 
     @Get
-    @Path(value = "/groupware-workbench/{photoInstance}/photo/img-show/{nomeArquivoUnico}")
+    @Path(value = "/groupware-workbench/photo/{photoInstance}/img-show/{nomeArquivoUnico}")
     public Download imgShow(PhotoMgrInstance photoInstance, String nomeArquivoUnico) {
         File file = photoInstance.imgShow(nomeArquivoUnico);
         FileDownload fs = new FileDownload(file, "image/jpg", file.getName());
@@ -69,7 +69,7 @@ public class PhotoController {
     }
 
     @Get
-    @Path(value = "/groupware-workbench/{photoInstance}/photo/img-crop/{nomeArquivoUnico}")
+    @Path(value = "/groupware-workbench/photo/{photoInstance}/img-crop/{nomeArquivoUnico}")
     public Download imgCrop(PhotoMgrInstance photoInstance, String nomeArquivoUnico) {
         File file = photoInstance.imgCrop(nomeArquivoUnico);
         FileDownload fs = new FileDownload(file, "image/jpg", file.getName());
@@ -77,7 +77,7 @@ public class PhotoController {
     }
 
     @Get
-    @Path(value = "/groupware-workbench/{photoInstance}/photo/img-original/{nomeArquivoUnico}")
+    @Path(value = "/groupware-workbench/photo/{photoInstance}/img-original/{nomeArquivoUnico}")
     public Download imgOriginal(PhotoMgrInstance photoInstance, String nomeArquivoUnico) {
         File file = photoInstance.imgOriginal(nomeArquivoUnico);
         FileDownload fs = new FileDownload(file, "image/jpg", file.getName());
@@ -102,10 +102,9 @@ public class PhotoController {
         }
     }
 
-    @Post
     @Get
-    @Path(value = "/groupware-workbench/{photoInstance}/photo/show/{idPhoto}")
-    public void show(PhotoMgrInstance photoInstance, long idPhoto) {
+    @Path(value = "/groupware-workbench/photo/{idPhoto}")
+    public void show(long idPhoto) {
         Photo photo = Photo.findById(idPhoto);
 
         result.include("idPhoto", idPhoto);
@@ -121,19 +120,21 @@ public class PhotoController {
         if (photo.getLugar() != null && !photo.getLugar().isEmpty()) {
             result.include("photoLocation", photo.getLugar());
         }
+
+        PhotoMgrInstance photoInstance = (PhotoMgrInstance) photo.getCollablet().getBusinessObject();
         addIncludes(photoInstance);
         photoInstance.getCollablet().processWidgets(info, photo);
         result.include("photo", photo);
     }
 
     @Get
-    @Path(value = "/groupware-workbench/{photoInstance}/photo")
+    @Path(value = "/groupware-workbench/photo/{photoInstance}/list")
     public void busca(PhotoMgrInstance photoInstance) {
         addIncludes(photoInstance);
     }
 
     @Post
-    @Path(value = "/groupware-workbench/{photoInstance}/photo/buscaTag/{tagName}")
+    @Path(value = "/groupware-workbench/photo/{photoInstance}/buscaTag/{tagName}")
     public void buscaFotoPorId(String tagName, List<Object> photos, PhotoMgrInstance photoInstance) {
         List<Photo> resultFotosBusca = photoInstance.buscaFotoPorListaId(photos);
         
@@ -151,7 +152,7 @@ public class PhotoController {
     }
 
     @Post
-    @Path(value = "/groupware-workbench/{photoInstance}/photo/busca")
+    @Path(value = "/groupware-workbench/photo/{photoInstance}/busca")
     public void buscaFoto(String busca, PhotoMgrInstance photoInstance) {
         if (busca.length() < 3) {
             validator.add(new ValidationMessage(MSG_MIN_3_LETRAS, "Erro"));
@@ -174,7 +175,7 @@ public class PhotoController {
     }
 
     @Post
-    @Path(value = "/groupware-workbench/{photoInstance}/photo/buscaA")
+    @Path(value = "/groupware-workbench/photo/{photoInstance}/buscaA")
     public void buscaFotoAvancada(String nome, String descricao, String lugar, Date date, PhotoMgrInstance photoInstance) {
         if (nome.isEmpty() && descricao.isEmpty() && lugar.isEmpty() && date == null) {
             validator.add(new ValidationMessage(MSG_NENHUM_CAMPO_PREENCHIDO, "Erro"));
@@ -193,13 +194,13 @@ public class PhotoController {
     }
 
     @Get
-    @Path(value = "/groupware-workbench/{photoInstance}/photo/registra")
+    @Path(value = "/groupware-workbench/photo/{photoInstance}/registra")
     public void registra(PhotoMgrInstance photoInstance) {
         addIncludes(photoInstance);
     }
 
     @Post
-    @Path(value = "/groupware-workbench/{photoInstance}/photo/registra")
+    @Path(value = "/groupware-workbench/photo/{photoInstance}/registra")
     public void save(Photo photoRegister, UploadedFile foto, PhotoMgrInstance photoInstance, User user) {
         boolean erro = false;
         if (photoRegister.getNome().isEmpty()) {
@@ -211,7 +212,6 @@ public class PhotoController {
             erro = true;
         }
         if (erro) {
-           //validator.onErrorUse(Results.page()).redirect("/groupware-workbench/"+idCollabletInstance+"/photo/registra");
            validator.onErrorUse(Results.logic()).redirectTo(PhotoController.class).registra(photoInstance);
            return;
         }
@@ -272,7 +272,7 @@ public class PhotoController {
     }
 
     @Get
-    @Path(value = "/groupware-workbench/{photoInstance}/photo/registra_multiplos/{os}/{dir}")
+    @Path(value = "/groupware-workbench/photo/{photoInstance}/registra_multiplos/{os}/{dir}")
     public void registraMultiplos(String os, String dir, PhotoMgrInstance photoInstance) {
         // TODO: Essa lógica de negócio deveria estar na classe de negócio, não na Controller.
 
@@ -333,14 +333,16 @@ public class PhotoController {
     }
 
     @Delete
-    @Path(value = "/groupware-workbench/{photoInstance}/photo/show/{idPhoto}")
-    public void delete(PhotoMgrInstance photoInstance, long idPhoto) {
-        if (idPhoto < 1) {
+    @Path(value = "/groupware-workbench/photo/{idPhoto}")
+    public void delete(long idPhoto) {
+        Photo photo = Photo.findById(idPhoto);
+        if (photo == null) {
             validator.add(new ValidationMessage(MSG_ENTIDADE_INVALIDA, "Erro"));
             return;
         }
-        
-        photoInstance.delete(Photo.findById(idPhoto));
+
+        PhotoMgrInstance photoInstance = (PhotoMgrInstance) photo.getCollablet().getBusinessObject();
+        photo.delete();
         addIncludes(photoInstance);
     }
 }

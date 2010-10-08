@@ -22,9 +22,9 @@
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/js/fancybox/jquery.fancybox-1.3.1.css" media="screen" />
     </head>
     <body>
-        <w:topo collabletInstance="${photoInstance}" />
+        <w:topo collabletInstance="${photoInstance.collablet}" />
         <w:conteudoPagina titulo="Busca Fotos">
-            <w:configuracao collabletInstance="${photoInstance}" />
+            <w:configuracao collabletInstance="${photoInstance.collablet}" />
             <span class="subTitulo">Collablets</span>
             <br />
             <br />
@@ -32,7 +32,7 @@
             <br />
             <br />
             <br />
-            <a href="<c:url value="/groupware-workbench/${photoInstance.id}/photo/registra"/>">Registrar uma nova foto</a>
+            <a href="<c:url value="/groupware-workbench/photo/${photoInstance.id}/registra"/>">Registrar uma nova foto</a>
             <br />
             <br />
             <div>
@@ -53,7 +53,7 @@
             </c:forEach>
 
             <div class="barra_botoes">
-                <w:voltar collabletInstance="${photoInstance.parent}" />
+                <w:voltar collabletInstance="${photoInstance.collablet.parent}" />
             </div>
         </w:conteudoPagina>
     </body>

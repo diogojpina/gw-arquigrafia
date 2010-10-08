@@ -14,7 +14,7 @@
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
     </head>
     <body>
-        <w:topo collabletInstance="${collabletInstance}" />
+        <w:topo collabletInstance="${categoryMgr.collablet}" />
         <w:conteudoPagina titulo="Categoria">
             <br/>
             <ul>
@@ -23,14 +23,14 @@
                 </c:forEach>
             </ul>
 
-            <form id="dados" class="cmxform" name="dados" method="POST" action="<c:url value="/groupware-workbench/${param.collablet}/categoryMgr/${param.categoryMgr}" />" accept-charset="UTF-8">
+            <form id="dados" class="cmxform" name="dados" method="POST" action="<c:url value="/groupware-workbench/categories/${categoryMgr.id}" />" accept-charset="UTF-8">
                 <input type="hidden" name="category.id" value="<c:out value="${category.id}" />" />
                 <br/>
                 Nome: <input type="text" name="category.name" value="${category.name}" />
                 <br/>
                 <input type="submit" class="botao" value="Ok">
                 &nbsp; &nbsp;
-                <w:voltar collabletInstance="${collabletInstance}" />
+                <w:voltar collabletInstance="${categoryMgr.collablet.parent}" />
             </form>
         </w:conteudoPagina>
     </body>

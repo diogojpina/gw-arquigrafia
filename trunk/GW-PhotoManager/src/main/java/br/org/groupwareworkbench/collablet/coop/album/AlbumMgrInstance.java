@@ -29,7 +29,7 @@ import br.org.groupwareworkbench.core.framework.annotations.ComponentInfo;
 
 @ComponentInfo(
         version="0.1",
-        configurationURL="/groupware-workbench/{collablet}/albumMgr/{albumMgr}"
+        configurationURL="/groupware-workbench/albumMgr/{albumMgr}/list"
 )
 public class AlbumMgrInstance extends AbstractBusiness {
 
@@ -40,14 +40,6 @@ public class AlbumMgrInstance extends AbstractBusiness {
     public void save(Album album) {
         album.setCollablet(getCollablet());
         album.save();
-    }
-
-    public void delete(Album album) {
-        album.delete();
-    }
-
-    public Album findById(Long id) {
-        return Album.findById(id);
     }
 
     public List<Album> list() {

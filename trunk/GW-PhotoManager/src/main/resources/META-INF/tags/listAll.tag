@@ -17,13 +17,13 @@
         <c:if test="${showInDiv}">
             <div class="${divClass}">
         </c:if>
-        <a class="${linkClass}" rel="linkimage" href="<c:url value="/groupware-workbench/${photoInstance.id}/photo/show/${fotoA.id}"/>">   
+        <a class="${linkClass}" rel="linkimage" href="<c:url value="/groupware-workbench/photo/${photoInstance.id}/show/${fotoA.id}"/>">
             <c:choose>
                 <c:when test="${keepRatio}">
-                    <img src="<c:url value="/groupware-workbench/${photoInstance.id}/photo/img-thumb/${fotoA.nomeArquivoUnico}"/>"/>
+                    <img src="<c:url value="/groupware-workbench/photo/${photoInstance.id}/img-thumb/${fotoA.nomeArquivoUnico}"/>"/>
                 </c:when>
                 <c:otherwise>
-                    <img src="<c:url value="/groupware-workbench/${photoInstance.id}/photo/img-crop/${fotoA.nomeArquivoUnico}"/>"/>
+                    <img src="<c:url value="/groupware-workbench/photo/${photoInstance.id}/img-crop/${fotoA.nomeArquivoUnico}"/>"/>
                 </c:otherwise>
             </c:choose>
         </a>
