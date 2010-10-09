@@ -1,52 +1,74 @@
-.style1 {
-	font-family: Verdana, Geneva, sans-serif;
-	font-size: 14px;
-	font-weight: bold;
+
+.login_title {
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
 }
-.style3 {font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; }
-.style5 {
-	font-family: Verdana, Arial, Helvetica, sans-serif;
-	font-size: 12px;
-	font-weight: bold;
-	color: #FFFFFF;
+
+.login_label {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 10px;
 }
-.style8 {
-	font-family: Verdana, Arial, Helvetica, sans-serif;
-	font-size: 10px;
-	font-weight: bold;
-	color: #CC101E;
+
+.login_messages {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    text-align: right;
 }
-#login_box {
-	border-style: solid;
-	border-color: #333;
-	border-width: 1px;
-	width: 540px;
-	padding: 30px;
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 100px;
-	background-color: white;
+
+.login_error {
+    font-weight: bold;
+    color: #CC101E;
+    margin-right: 10px;
 }
-#lb_title {
-	width: 100%;
-	text-align: center;
+
+.login_link {
 }
-#lb_logo {
-	float: left;
+
+.login_box {
+    border-style: solid;
+    border-color: #333;
+    border-width: 1px;
+    width: 540px;
+    padding: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
+    background-color: white;
 }
-#lb_fields {
-	padding-top: 15px;
+
+.login_box_clear {
+    clear: both;
 }
-#lb_fields_1 {
-	float: left;
+
+.login_title {
+    width: 100%;
+    text-align: center;
 }
-#lb_fields_2 {
-	padding-left: 4px;
+
+.login_logo {
+    float: left;
 }
-#lb_fields_3 {
-	padding-top: 15px;
-	float: right;
+
+.login_fields {
+    padding-top: 15px;
+    float: right;
 }
+
+.login_fields_1 {
+    float: left;
+}
+
+.login_fields_2 {
+    padding-left: 4px;
+    float: left;
+}
+
+.login_button {
+    padding-top: 15px;
+    float: right;
+}
+
 body {
-	background-image: url(../images/BG_LISTRADO.gif);
+    background-image: url(../images/BG_LISTRADO.gif);
 }

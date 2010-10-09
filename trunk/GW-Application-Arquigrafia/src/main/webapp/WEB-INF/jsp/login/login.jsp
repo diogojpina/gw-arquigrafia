@@ -13,47 +13,42 @@
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/login.css" />
     </head>
     <body>
-        <form id="usuariosForm" method="post" name="loginForm" action='<c:url value="/groupware-workbench/users/${userMgr.id}/login" />'>
-            <div id="login_box">
-                <div id="lb_title"><span class="style1">Groupware Workbench</span></div>
-                <div id="lb_logo"><img src="<c:url value="/images/loginSistea.jpg" />" width="202" height="67" alt="Login" /></div>
-                <div id="lb_fields">
-                    <div id="lb_fields_1">
+        <form id="usuariosForm" method="post" name="loginForm" action="<c:url value="/groupware-workbench/users/${userMgr.id}/login" />">
+            <div class="login_box">
+                <div class="login_title">
+                    <span class="login_title">Groupware Workbench</span>
+                </div>
+                <div class="login_logo">
+                    <img src="<c:url value="/images/loginSistema.jpg" />" width="202" height="67" alt="Login" />
+                </div>
+                <div class="login_fields">
+                    <div class="login_fields_1">
                         <ul>
-                            <li><span class="style3">Login</span></li>
+                            <li><span class="login_label">Login</span></li>
                             <li><input tabindex="1" name="user.login" type="text" class="box" id="login" size="15" maxlength="30" /></li>
                         </ul>
                     </div>
-                    <div id="lb_fields_3">
-                        <input tabindex="3" name="Submit" type="submit" class="botao" id="Submit" value="Entrar" />
-                    </div>
-                    <div id="lb_fields_2">
+                    <div class="login_fields_2">
                         <ul>
-                            <li><span class="style3">Senha</span></li>
+                            <li><span class="login_label">Senha</span></li>
                             <li><input tabindex="2" name="user.password" type="password" class="box" id="senha" size="15" maxlength="30" /></li>
                         </ul>
                     </div>
+                    <div class="login_button">
+                        <input tabindex="3" name="Submit" type="submit" class="botao" id="Submit" value="Entrar" />
+                    </div>
                 </div>
-                <%-- TODO: Renomear style8 para algum nome melhor. --%>
-                <div id="lb_messages">
-                    <c:if test="${sessionScope['log'] == null}">
-                        <div id="lb_message_1" align="right">
-                            <a href="<c:url value="/groupware-workbench/users/${userMgr.id}/forgotLogout"/>">Esqueceu a senha?</a>
-                            <span class="style8"></span>
-                        </div>
-                    </c:if>
-                    <c:if test="${sessionScope['log'] != null}">
-                        <c:if test="${!sessionScope['log']}">
-                            <div id="lb_message_2" align="right">
-                                <span class="style8">Login ou senha incorretos</span>
-                            </div>
-                            <div id="lb_message_3" align="right">
-                                <a href="<c:url value="/groupware-workbench/users/${userMgr.id}/forgotLogout"/>">Esqueceu a senha?</a>
-                                <span class="style8"></span>
-                            </div>
+                <div class="login_box_clear"></div>
+                <c:if test="${not sessionScope['log']}">
+                    <div class="login_messages">
+                        <c:if test="${sessionScope['log'] == false}">
+                            <span class="login_error">Login ou senha incorretos</span>
                         </c:if>
-                    </c:if>
-                </div>
+                        <span class="login_link">
+                            <a href="<c:url value="/groupware-workbench/users/${userMgr.id}/forgotPassword" />">Esqueceu a senha?</a>
+                        </span>
+                    </div>
+                </c:if>
             </div>
         </form>
     </body>
