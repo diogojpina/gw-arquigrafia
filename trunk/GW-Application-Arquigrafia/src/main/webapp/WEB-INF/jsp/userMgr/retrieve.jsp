@@ -26,7 +26,7 @@
     <body>
         <w:topo collabletInstance="${userMgr.collablet}" />
         <w:conteudoPagina titulo="Usu&aacute;rio">
-            <br/>
+            <br />
             <ul>
                 <c:forEach var="error" items="${errors}">
                     <li><c:out value="${error.message}" /> - <c:out value="${error.category}" /></li>
@@ -58,14 +58,14 @@
                     <profile:profile profileMgr="${profileMgr}" user="${user}" />
                 </c:if>
 
-                <div class="subsection_f1">
-                    <fieldset>
-                        <c:if test="${roleMgr != null}">
+                <c:if test="${roleMgr != null}">
+                    <div class="subsection_f1">
+                        <fieldset>
                             <legend><span class="subtitle_f1">Atribuir pap&eacute;is:</span></legend>
                             <role:selectRole roleMgr="${roleMgr}" user="${user}" />
-                        </c:if>
-                    </fieldset>
-                </div>
+                        </fieldset>
+                    </div>
+                </c:if>
 
                 <div class="form_1">
                     <ul class="bt_line_f1">
