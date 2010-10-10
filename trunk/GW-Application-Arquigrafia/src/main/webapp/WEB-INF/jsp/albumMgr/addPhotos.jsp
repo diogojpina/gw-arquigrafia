@@ -4,7 +4,6 @@
 <%@ taglib prefix="w" uri="http://www.groupwareworkbench.org.br/widgets/commons" %>
 <%@ taglib prefix="photo" uri="http://www.groupwareworkbench.org.br/widgets/photomanager" %>
 <%@ taglib prefix="album" uri="http://www.groupwareworkbench.org.br/widgets/album" %>
-<%@ taglib prefix="arq" tagdir="/WEB-INF/tags" %>
 
 <html>
     <head>
@@ -39,6 +38,7 @@
     </head>
     
     <body>
-        <arq:register photoRegister="${photoRegister}" tagMgr="${tagMgr}" photoInstance="${photoInstance}" />
+            <album:photoRegister photoRegister="${photoRegister}" albumMgr="${albumMgr}" />
+       
     </body>
 </html>
