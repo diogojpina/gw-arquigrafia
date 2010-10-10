@@ -26,6 +26,7 @@ import br.org.groupwareworkbench.collablet.coord.user.User;
 import br.org.groupwareworkbench.core.bd.EntityManagerProvider;
 import br.org.groupwareworkbench.core.bd.ObjectDAO;
 import br.org.groupwareworkbench.core.framework.Collablet;
+import java.text.SimpleDateFormat;
 
 @Entity
 public class Photo implements Serializable {
@@ -196,6 +197,12 @@ public class Photo implements Serializable {
 
     public Date getDataCriacao() {
         return dataCriacao == null ? null : (Date) dataCriacao.clone();
+    }
+
+    public String getDataCriacaoFormatada() {
+        if (dataCriacao == null) return null;
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        return sdf.format(dataCriacao);
     }
 
     public void setDataCriacao(Date dataCriacao) {

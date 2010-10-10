@@ -11,18 +11,19 @@ import br.org.groupwareworkbench.collablet.coord.user.User;
 import br.org.groupwareworkbench.core.framework.AbstractBusiness;
 import br.org.groupwareworkbench.core.framework.Collablet;
 import br.org.groupwareworkbench.core.framework.annotations.ComponentInfo;
+import br.org.groupwareworkbench.core.framework.annotations.DefaultProperty;
 
 @ComponentInfo(
     version="0.1",
-    configurationURL="/groupware-workbench/{photoInstance}/photo"
+    configurationURL="/groupware-workbench/photo/{photoInstance}/index",
+    defaultProperties={
+        @DefaultProperty(name="dirImages", defaultValue="images"),
+        @DefaultProperty(name="cropPrefix", defaultValue="crop_"),
+        @DefaultProperty(name="thumbPrefix", defaultValue="thumb_"),
+        @DefaultProperty(name="mostraPrefix", defaultValue="mostra_")
+    }
 )
 public class PhotoMgrInstance extends AbstractBusiness {
-
-    // TODO: Converter em atributos.
-    private final String dirImages = "images";
-    private final String cropPrefix = "crop_";
-    private final String thumbPrefix = "thumb_";
-    private final String mostraPrefix = "mostra_";
 
     public PhotoMgrInstance(Collablet collablet) {
         super(collablet);
@@ -85,19 +86,19 @@ public class PhotoMgrInstance extends AbstractBusiness {
     }
    
      public String getDirImages() {
-        return dirImages;
+        return getCollablet().getProperty("dirImages");
     }
 
     public String getCropPrefix() {
-        return cropPrefix;
+        return getCollablet().getProperty("cropPrefix");
     }
 
     public String getThumbPrefix() {
-        return thumbPrefix;
+        return getCollablet().getProperty("thumbPrefix");
     }
 
     public String getMostraPrefix() {
-        return mostraPrefix;
+        return getCollablet().getProperty("mostraPrefix");
     }
 
     public String getDirImagesAbsoluto() {

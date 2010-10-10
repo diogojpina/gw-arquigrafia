@@ -9,7 +9,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta http-equiv="Cache-Control" content="no-cache">
-        <title>Edit Album</title>
+        <title>Arquigrafia Brasil - Edi&ccedil;&atilde;o de &aacute;lbum</title>
         <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.ico" />
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css" />
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css" />
@@ -39,26 +39,26 @@
     </head>
     <body>
         <w:topo collabletInstance="${albumMgr.collablet}" />
-        <w:conteudoPagina titulo="Album: ${album.title}">
+        <w:conteudoPagina titulo="Álbum: ${album.title}">
             <br />
-            <h1><span class="style1">Edit</span></h1>
+            <h1><span class="style1">Editar &aacute;lbum</span></h1>
             <br />
             <form name="dados" method="post" action="<c:url value="${pageContext.request.contextPath}/groupware-workbench/album/save/${album.id}"/>">
                 <input type="hidden" name="album.id" value="<c:out value="${album.id}" />" />
                 <div>
                     <ul>
-                        <li>Title</li>
+                        <li>T&iacute;tulo</li>
                         <li><input size="60" type="text" name="album.title" value="<c:out value="${album.title}" />" /></li>
                     </ul>
                     <ul>
                         <div class="${formLineClass}">
-                            <label for="album.creationDate" class="${formLabelClass}"><span>Creation Date:</span></label>
+                            <label for="album.creationDate" class="${formLabelClass}"><span>Data de cria&ccedil;&atilde;o:</span></label>
                             <span class="${formInputClass}"><input type="text" id="datepicker" name="album.creationDate" /></span>
                         </div>
                     </ul>
                     <ul>
                         <div class="${formLineClass}">
-                            <label for="album.updateDate" class="${formLabelClass}"><span>Update Date:</span></label>
+                            <label for="album.updateDate" class="${formLabelClass}"><span>Data de atualiza&ccedil;&atilde;o:</span></label>
                             <span class="${formInputClass}"><input type="text" id="datepicker" name="album.updateDate" /></span>
                         </div>
                     </ul>

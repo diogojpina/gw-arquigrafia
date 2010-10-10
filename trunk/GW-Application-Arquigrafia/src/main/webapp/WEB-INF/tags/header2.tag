@@ -4,11 +4,10 @@
 <%@ taglib prefix="photo" uri="http://www.groupwareworkbench.org.br/widgets/photomanager" %>
 
 <%@ attribute name="photoInstance" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.arquigrafia.photo.PhotoMgrInstance" %>
-<%@ attribute name="siteInstance" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.arquigrafia.site.SiteInstance" %>
 
 <div id="header">
     <div id="title">
-        <a href="${pageContext.request.contextPath}/groupware-workbench/${siteInstance.id}/site">
+        <a href="${pageContext.request.contextPath}/groupware-workbench/photo/${photoInstance.id}/index">
             <img src="${pageContext.request.contextPath}/images/head1_left_top.png" width="350" height="100" alt="Arquigrafia Brasil" />
         </a>
     </div>
@@ -28,7 +27,7 @@
         </div>
     </div>
     <div id="top_links" class="blue_link">
-        <a href="${pageContext.request.contextPath}/groupware-workbench/${siteInstance.id}/site">In&iacute;cio</a>
+        <a href="${pageContext.request.contextPath}/groupware-workbench/photo/${photoInstance.id}/index">In&iacute;cio</a>
         &nbsp;|&nbsp;
         <a href="help.htm">Ajuda</a>
         &nbsp;|&nbsp;
@@ -36,33 +35,29 @@
         &nbsp;|&nbsp;
         <a href="legal.htm">Legal</a>
         &nbsp;|&nbsp;
-        <c:if test="${photoInstance != null}">
-            <div id="photoUploadContent" style="visibility: hidden; display: none;">
-                <iframe name="photoUploadFrame" style="width: 600px; height: 400px; opacity: 0.95;" id="photoUploadFrame" src="${pageContext.request.contextPath}/groupware-workbench/photo/${photoInstance.id}/registra"></iframe>
-            </div>
-            <script type="text/javascript">
-                function refreshPage() {
-                    window.location.reload(true);
-                }
-                function showPhotoUpload() {
-                    new Boxy($("#photoUploadContent").html(), {title: "Use o formulário para enviar uma foto.", modal: true, closeText: "Fechar", afterHide: function() {refreshPage();}}).show();
-                };
-            </script>
-            <a href="#" onclick="return showPhotoUpload();">Upload de fotos</a>
-            &nbsp;|&nbsp;
-	    <a href="${pageContext.request.contextPath}/groupware-workbench/recommend/${recommendMgr.id}/calcRecommend">Recomendar</a>
-            &nbsp;|&nbsp;
-            <a href="${pageContext.request.contextPath}/groupware-workbench/ratings/${ratingMgr.id}">Rating</a>
-        </c:if>
+        <div id="photoUploadContent" style="visibility: hidden; display: none;">
+            <iframe name="photoUploadFrame" style="width: 600px; height: 400px; opacity: 0.95;" id="photoUploadFrame" src="${pageContext.request.contextPath}/groupware-workbench/photo/${photoInstance.id}/registra"></iframe>
+        </div>
+        <script type="text/javascript">
+            function refreshPage() {
+                window.location.reload(true);
+            }
+            function showPhotoUpload() {
+                new Boxy($("#photoUploadContent").html(), {title: "Use o formulário para enviar uma foto.", modal: true, closeText: "Fechar", afterHide: function() {refreshPage();}}).show();
+            };
+        </script>
+        <a href="#" onclick="return showPhotoUpload();">Upload de fotos</a>
+        &nbsp;|&nbsp;
+        <a href="${pageContext.request.contextPath}/groupware-workbench/recommend/${recommendMgr.id}/calcRecommend">Recomendar</a>
+        &nbsp;|&nbsp;
+        <a href="${pageContext.request.contextPath}/groupware-workbench/ratings/${ratingMgr.id}">Rating</a>
     </div>
     <div id="search_field">
         <img src="${pageContext.request.contextPath}/images/head1_left2_top.png" width="99" height="100" alt="campo de busca" />
         <div id="search_input">
             <ul style="list-style: none">
                 <li style="display: inline">
-                    <c:if test="${photoInstance != null}">
-                        <photo:simpleSearch photoInstance="${photoInstance}" />
-                    </c:if>
+                    <photo:simpleSearch photoInstance="${photoInstance}" />
                 </li>
                 <li style="display: inline">
                     <div id="search_options1">
@@ -89,10 +84,8 @@
     </div>
     <div id="advancedSearchField" class="mid_blue_text">
         <div>
-            <c:if test="${photoInstance != null}">
-                <photo:advancedSearch photoInstance="${photoInstance}" formClass="form1" formLineClass="field_line_f1" formLabelClass="label_f1" formInputClass="input_f1"
-                    formLineBtClass="bt_line_f1" formSubmitBtClass="bt_cell_submit" />
-            </c:if>
+            <photo:advancedSearch photoInstance="${photoInstance}" formClass="form1" formLineClass="field_line_f1" formLabelClass="label_f1" formInputClass="input_f1"
+                formLineBtClass="bt_line_f1" formSubmitBtClass="bt_cell_submit" />
         </div>
         <div>
         </div>

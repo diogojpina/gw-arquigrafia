@@ -13,7 +13,7 @@
 <%@ attribute name="pageSize" required="true" rtexprvalue="true" type="java.lang.Integer" %>
 <%@ attribute name="pageNumber" required="true" rtexprvalue="true" type="java.lang.Integer" %>
 
-<r:callMethod methodName="listaPhotoPorPaginaEOrdem" instance="${photoInstance}" var="fotosA">
+<r:callMethod methodName="listPhotoByPageAndOrder" instance="${photoInstance}" var="fotosA">
     <r:param type="int" value="${pageSize}" />
     <r:param type="int" value="${pageNumber}" />
 </r:callMethod>

@@ -13,9 +13,15 @@
         <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
     </hibernate>
 
-    <initialCollablet>siteMgr</initialCollablet>
+    <initialCollablet>photoMgr</initialCollablet>
 
     <collablets>
+        <collablet>
+            <business>br.org.groupwareworkbench.collablet.coord.management.ApplicationInstance</business>
+            <description>Gerenciar aplicação</description>
+            <name>manager</name>
+        </collablet>
+
         <collablet>
             <business>br.org.groupwareworkbench.collablet.communic.comment.CommentMgrInstance</business>
             <description>Gerenciar comentários</description>
@@ -23,9 +29,9 @@
         </collablet>
 
         <collablet>
-            <business>br.org.groupwareworkbench.collablet.communic.googlemapsmarker.GoogleMapsMarkerMgrInstance</business>
+            <business>br.org.groupwareworkbench.collablet.communic.georeference.GeoReferenceMgrInstance</business>
             <description>Gerenciar Google Maps</description>
-            <name>googleMapsMarkerMgr</name>
+            <name>geoReferenceMgr</name>
         </collablet>
 
         <collablet>
@@ -71,46 +77,11 @@
         </collablet>
 
         <collablet>
-            <business>br.org.groupwareworkbench.collablet.coord.management.ApplicationInstance</business>
-            <description>Gerenciar collablets</description>
-            <name>collabletMgr</name>
-        </collablet>
-
-        <collablet>
-            <business>br.org.groupwareworkbench.arquigrafia.site.SiteInstance</business>
-            <description>Arquigrafia Brasil</description>
-            <name>siteMgr</name>
-        </collablet>
-
-        <collablet>
-            <business>br.org.groupwareworkbench.collablet.communic.comment.CommentMgrInstance</business>
-            <description>Gerenciar comentários</description>
-            <name>commentMgr2</name>
-        </collablet>
-
-        <collablet>
-            <business>br.org.groupwareworkbench.collablet.coord.management.ApplicationInstance</business>
-            <description>Gerenciar collablets</description>
-            <name>collabletMgr2</name>
-        </collablet>
-
-        <collablet>
-            <business>br.org.groupwareworkbench.collablet.coop.binomial.BinomialMgrInstance</business>
-            <description>Gerenciar binômios</description>
-            <name>binomialMgr2</name>
-        </collablet>
-
-        <collablet>
-            <business>br.org.groupwareworkbench.collablet.coop.rating.RatingMgrInstance</business>
-            <description>Gerenciar avaliação</description>
-            <name>ratingMgr2</name>
-        </collablet>
-
-        <collablet>
             <business>br.org.groupwareworkbench.arquigrafia.photo.PhotoMgrInstance</business>
             <description>Registro de fotografias</description>
             <name>photoMgr</name>
         </collablet>
+
         <!--<collablet>
             <business>br.org.groupwareworkbench.collablet.coop.album.AlbumMgrInstance</business>
             <description>Gerenciar Albuns</description>
@@ -119,27 +90,28 @@
     </collablets>
 
     <collablets-subordinations>
-        <subordination parent="siteMgr" child="photoMgr" />
+        <subordination parent="photoMgr" child="manager" />
+        <subordination parent="photoMgr" child="userMgr" />
+        <subordination parent="photoMgr" child="roleMgr" />
+        <subordination parent="photoMgr" child="commentMgr" />
+        <!-- <subordination parent="photoMgr" child="geoReferenceMgr" /> -->
+        <subordination parent="photoMgr" child="tagMgr" />
+        <!-- <subordination parent="photoMgr" child="albumMgr" /> -->
     </collablets-subordinations>
 
     <collablets-dependencies>
         <dependency from="roleMgr" to="userMgr" />
         <dependency from="profileMgr" to="userMgr" />
-        <dependency from="commentMgr" to="siteMgr" />
-        <dependency from="googleMapsMarkerMgr" to="siteMgr" />
-        <dependency from="tagMgr" to="siteMgr" />
-        <!--<dependency from="uploadMgr" to="siteMgr" />-->
-        <dependency from="binomialMgr" to="siteMgr" />
-        <dependency from="ratingMgr" to="siteMgr" />
-        <dependency from="profileMgr" to="siteMgr" />
-        <dependency from="roleMgr" to="siteMgr" />
-        <dependency from="userMgr" to="siteMgr" />
-        <dependency from="userMgr" to="siteMgr" alias="--login--" />
-        <dependency from="collabletMgr" to="siteMgr" />
-        <dependency from="collabletMgr2" to="photoMgr" alias="collabletMgr" />
-        <dependency from="commentMgr2" to="photoMgr" alias="commentMgr" />
-        <dependency from="binomialMgr2" to="photoMgr" alias="binomialMgr" />
-        <dependency from="ratingMgr2" to="photoMgr" alias="ratingMgr" />
-        <!-- <dependency from="photoMgr" to="albumMgr" alias="albumMgr" /> -->
+        <dependency from="commentMgr" to="photoMgr" />
+        <!-- <dependency from="geoReferenceMgr" to="photoMgr" /> -->
+        <dependency from="tagMgr" to="photoMgr" />
+        <!--<dependency from="uploadMgr" to="photoMgr" />-->
+        <dependency from="binomialMgr" to="photoMgr" />
+        <dependency from="ratingMgr" to="photoMgr" />
+        <dependency from="profileMgr" to="photoMgr" />
+        <dependency from="roleMgr" to="photoMgr" />
+        <dependency from="userMgr" to="photoMgr" />
+        <dependency from="userMgr" to="photoMgr" alias="--login--" />
+        <!-- <dependency from="albumMgr" to="photoMgr" /> -->
     </collablets-dependencies>
 </frameworkDescriptor>

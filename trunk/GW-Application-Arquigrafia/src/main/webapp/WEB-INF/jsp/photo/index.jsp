@@ -45,7 +45,7 @@
     </head>
     <body>
         <div id="wrap">
-            <arq:header2 photoInstance="${PhotoRegister}" siteInstance="${siteInstance}" />
+            <arq:header2 photoInstance="${photoMgr}" />
 
             <div id="main_section">
                 <div id="makeMeScrollable" style="border-style: solid; border-width: thin; border-color: #666; padding-left: 0px; height: 500px;">
@@ -54,32 +54,32 @@
                     <div class="scrollWrapper" id="images_scrollable">
                         <div class="scrollableArea">
                             <div class="wallBackground">
-                                <c:if test="${PhotoRegister != null}">
+                                <c:if test="${photoMgr != null}">
                                     <c:forEach begin="0" end="21" var="indice">
-                                        <photo:listPage linkClass="" photoInstance="${PhotoRegister}" keepRatio="false" showInDiv="true" divClass="wallImage" pageSize="5" pageNumber="${indice}" wrapClass="imageColumn" />
+                                        <photo:listPage linkClass="" photoInstance="${photoMgr}" keepRatio="false" showInDiv="true" divClass="wallImage" pageSize="5" pageNumber="${indice}" wrapClass="imageColumn" />
                                     </c:forEach>
                                 </c:if>
-                                <div class="image_placeholder" id="1">
+                                <div class="image_placeholder">
                                     <img src="${pageContext.request.contextPath}/images/ajax-loader.gif" alt="loading" />
                                 </div>
                             </div>
                             <div class="image_line">
-                                <div class="image_placeholder" id="2">
+                                <div class="image_placeholder">
                                     <img src="${pageContext.request.contextPath}/images/ajax-loader.gif" alt="loading" />
                                 </div>
                             </div>
                             <div class="image_line">
-                                <div class="image_placeholder" id="3">
+                                <div class="image_placeholder">
                                     <img src="${pageContext.request.contextPath}/images/ajax-loader.gif" alt="loading" />
                                 </div>
                             </div>
                             <div class="image_line">
-                                <div class="image_placeholder" id="4">
+                                <div class="image_placeholder">
                                     <img src="${pageContext.request.contextPath}/images/ajax-loader.gif" alt="loading" />
                                 </div>
                             </div>
                             <div class="image_line">
-                                <div class="image_placeholder" id="5">
+                                <div class="image_placeholder">
                                     <img src="${pageContext.request.contextPath}/images/ajax-loader.gif" alt="loading" />
                                 </div>
                             </div>
@@ -90,7 +90,7 @@
             </div>
             <arq:know_more />
             <div style="height: 30px; background-color: #fff"></div>
-            <arq:footer photoInstance="${PhotoRegister}" siteInstance="${siteInstance}" />
+            <arq:footer photoInstance="${photoMgr}" />
         </div>
     </body>
 </html>

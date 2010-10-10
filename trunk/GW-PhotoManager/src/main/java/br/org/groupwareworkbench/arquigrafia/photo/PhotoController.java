@@ -7,7 +7,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.text.DateFormat;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -26,7 +25,6 @@ import br.com.caelum.vraptor.ioc.RequestScoped;
 import br.com.caelum.vraptor.validator.ValidationMessage;
 import br.com.caelum.vraptor.view.Results;
 import br.org.groupwareworkbench.collablet.coord.user.User;
-import br.org.groupwareworkbench.core.framework.Collablet;
 import br.org.groupwareworkbench.core.framework.WidgetInfo;
 import br.org.groupwareworkbench.core.util.ImageUtils;
 
@@ -61,6 +59,12 @@ public class PhotoController {
     }
 
     @Get
+    @Path(value="/groupware-workbench/photo/{photoInstance}/index")
+    public void index(PhotoMgrInstance photoInstance) {
+        addIncludes(photoInstance);
+    }
+
+    @Get
     @Path(value = "/groupware-workbench/photo/{photoInstance}/img-show/{nomeArquivoUnico}")
     public Download imgShow(PhotoMgrInstance photoInstance, String nomeArquivoUnico) {
         File file = photoInstance.imgShow(nomeArquivoUnico);
@@ -87,19 +91,6 @@ public class PhotoController {
     private void addIncludes(PhotoMgrInstance photoInstance) {
         result.include("photoInstance", photoInstance);
         photoInstance.getCollablet().includeDependencies(result);
-
-        //Adiciona os filhos.
-        for (Collablet collabletInstance : photoInstance.getCollablet().getSubordinateds()) {
-            String nomeComponente = collabletInstance.getName();
-            result.include(nomeComponente, collabletInstance.getBusinessObject());
-            System.out.println("O componente filho " + collabletInstance.getName() + " foi adicionado na requisição com o nome " + nomeComponente);
-        }
-
-        for (Collablet pai : photoInstance.getCollablet().getBottomUpHierarchy()) {
-            String nomeComponente = pai.getName();
-            result.include(nomeComponente, pai);
-            System.out.println("O componente antecessor " + pai.getName() + " foi adicionado na requisição com o nome " + nomeComponente);
-        }
     }
 
     @Get
@@ -111,15 +102,6 @@ public class PhotoController {
         result.include("nameCollablet", "photo");
         //addIncludes();
         result.include("photoTitle", photo.getNome());
-        if (photo.getDescricao() != null && !photo.getDescricao().isEmpty()) {
-            result.include("photoDescription", photo.getDescricao());
-        }
-        if (photo.getDataCriacao() != null) {
-            result.include("photoDate", DateFormat.getInstance().format(photo.getDataCriacao()));
-        }
-        if (photo.getLugar() != null && !photo.getLugar().isEmpty()) {
-            result.include("photoLocation", photo.getLugar());
-        }
 
         PhotoMgrInstance photoInstance = (PhotoMgrInstance) photo.getCollablet().getBusinessObject();
         addIncludes(photoInstance);
@@ -139,10 +121,6 @@ public class PhotoController {
         List<Photo> resultFotosBusca = photoInstance.buscaFotoPorListaId(photos);
         
         result.include("fotos", resultFotosBusca);
-        result.include("thumbPrefix", photoInstance.getThumbPrefix());
-        result.include("cropPrefix", photoInstance.getCropPrefix());
-        result.include("mostraPrefix", photoInstance.getMostraPrefix());
-        result.include("dirImagem", photoInstance.getDirImages());
         result.include("tagTerm", tagName);
         result.include("numResults", resultFotosBusca.size());
 
@@ -163,10 +141,6 @@ public class PhotoController {
         List<Photo> resultFotosBusca = photoInstance.buscaFoto(busca);
 
         result.include("fotos", resultFotosBusca);
-        result.include("thumbPrefix", photoInstance.getThumbPrefix());
-        result.include("cropPrefix", photoInstance.getCropPrefix());
-        result.include("mostraPrefix", photoInstance.getMostraPrefix());
-        result.include("dirImagem", photoInstance.getDirImages());
         result.include("searchTerm", busca);
         result.include("numResults", resultFotosBusca.size());
 
@@ -185,9 +159,6 @@ public class PhotoController {
 
         List<Photo> resultFotosBusca = photoInstance.buscaFotoAvancada(nome, lugar, descricao, date);
         result.include("fotos", resultFotosBusca);
-        result.include("thumbPrefix", photoInstance.getThumbPrefix());
-        result.include("cropPrefix", photoInstance.getCropPrefix());
-        result.include("dirImagem", photoInstance.getDirImages());
 
         addIncludes(photoInstance);
         result.use(Results.logic()).redirectTo(PhotoController.class).busca(photoInstance);
@@ -245,8 +216,7 @@ public class PhotoController {
         }
 
         try {
-            GregorianCalendar calendar = new GregorianCalendar();
-            photoRegister.setDataCriacao(calendar.getTime());
+            photoRegister.setDataCriacao(new Date());
             photoInstance.save(photoRegister);
             if (user != null) {
                 photoInstance.assignToUser(photoRegister, user);
@@ -314,13 +284,12 @@ public class PhotoController {
                 }
 
                 try {
-                    Photo photoRegister = new Photo();
-                    photoRegister.setNome(name);
-                    photoRegister.setNomeArquivo(nomeArquivo);
-                    GregorianCalendar calendar = new GregorianCalendar();
-                    photoRegister.setDataCriacao(calendar.getTime());
-                    photoInstance.save(photoRegister);
-                    nomeArquivo = photoRegister.getNomeArquivoUnico(); // Para ter um só nome do arquivo.
+                    Photo imagem = new Photo();
+                    imagem.setNome(name);
+                    imagem.setNomeArquivo(nomeArquivo);
+                    imagem.setDataCriacao(new Date());
+                    photoInstance.save(imagem);
+                    nomeArquivo = imagem.getNomeArquivoUnico(); // Para ter um só nome do arquivo.
                     photoInstance.saveImage(imagemOriginal, nomeArquivo);  
                     photoInstance.saveImage(imagemCropped, photoInstance.getCropPrefix() + nomeArquivo);
                     photoInstance.saveImage(imagemThumb, photoInstance.getThumbPrefix() + nomeArquivo);

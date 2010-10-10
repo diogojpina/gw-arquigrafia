@@ -10,7 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta http-equiv="Cache-Control" content="no-cache">
-        <title> Album - Add Photos</title>
+        <title>Arquigrafia Brasil - Adi&ccedil;&atilde;o de fotos</title>
         <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.ico" />
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css" />
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/arq-common.css" />
@@ -24,7 +24,12 @@
         <script type="text/javascript" src="${pageContext.request.contextPath}/plugins/sds/js/scroll.js"></script>
         <script type="text/javascript">
             $(function() {
-                $("div#makeMeScrollable").smoothDivScroll({scrollingSpeed: 12, mouseDownSpeedBooster: 3, visibleHotSpots: "always", startAtElementId: "startAtMe"});
+                $("div#makeMeScrollable").smoothDivScroll({
+                    scrollingSpeed: 12,
+                    mouseDownSpeedBooster: 3,
+                    visibleHotSpots: "always",
+                    startAtElementId: "startAtMe"
+                });
             });
         </script>
         <script src="${pageContext.request.contextPath}/js/chili-1.7.pack.js" type="text/javascript" ></script>
@@ -34,6 +39,6 @@
     </head>
     
     <body>
-            <arq:register photoRegister="${photoRegister}" tagMgr="${tagMgr}" photoInstance="${photoInstance}"/>
+        <arq:register photoRegister="${photoRegister}" tagMgr="${tagMgr}" photoInstance="${photoInstance}" />
     </body>
 </html>

@@ -37,7 +37,7 @@
         <script src="${pageContext.request.contextPath}/js/bay.js" type="text/javascript"></script>
      </head>
      <body>
-         <arq:header2 photoInstance="${PhotoRegister}" siteInstance="${collabletInstance}" />
+         <arq:header2 photoInstance="${PhotoRegister}" />
              <div id="search_statistics">
              <span id="resultTerm">Voc&ecirc; buscou por objetos com a tag: <c:out value="${tag.name}" /></span>
              <span id="resultCount"> (<c:out value="${tag.size}" /> resultados)</span>
@@ -57,6 +57,6 @@
              </c:if>
          </div>
          <div style="height: 30px; clear: both"></div>
-         <arq:footer photoInstance="${PhotoRegister}" siteInstance="${collabletInstance}" />
+         <arq:footer photoInstance="${PhotoRegister}" />
      </body>
 </html>

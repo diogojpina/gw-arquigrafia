@@ -8,7 +8,7 @@
 <%@ taglib prefix="recommend" uri="http://www.groupwareworkbench.org.br/widgets/recommend" %>
 <%@ taglib prefix="rating" uri="http://www.groupwareworkbench.org.br/widgets/rating" %>
 <%@ taglib prefix="comment" uri="http://www.groupwareworkbench.org.br/widgets/comment" %>
-<%@ taglib prefix="gmaps" uri="http://www.groupwareworkbench.org.br/widgets/googlemapsmarker" %>
+<%@ taglib prefix="gmaps" uri="http://www.groupwareworkbench.org.br/widgets/georeference" %>
 <%@ taglib prefix="arq" tagdir="/WEB-INF/tags" %>
 
 <html>
@@ -60,12 +60,20 @@
         </script>
     </head>
     <body onload="initializeMap()">
-        <arq:header2 photoInstance="${photoInstance}" siteInstance="${ArquigrafiaBrasil}" />
+        <arq:header2 photoInstance="${photoInstance}" />
         <form name="tags" method="post" enctype="multipart/form-data" action="<c:url value="/groupware-workbench/${idPhoto}" />">
         <div id="photoRel">
             <c:if test="${binomialMgr != null}">
                 <div id="binomialsTitle" class="big_white_title">Medidores</div>
-                <div id="binLink"><a id="myLink"><img alt="Medidores do usu&aacute;rio" src="${pageContext.request.contextPath}/images/bin_user.png" /></a>&nbsp;&nbsp;<a id="avgLink"><img src="${pageContext.request.contextPath}/images/bin_avg.png" alt="M&eacute;dia" /></a></div>
+                <div id="binLink">
+                    <a id="myLink">
+                        <img alt="Medidores do usu&aacute;rio" src="${pageContext.request.contextPath}/images/bin_user.png" />
+                    </a>
+                    &nbsp;&nbsp;
+                    <a id="avgLink">
+                        <img src="${pageContext.request.contextPath}/images/bin_avg.png" alt="M&eacute;dia" />
+                    </a>
+                </div>
                 <div id="binomialsWrap">
                     <div id="binomialsUser">
                         <binomial:getAndSetByUser entity="${photo}" manager="${binomialMgr}" user="${sessionScope.userLogin}" name="userBin"
@@ -82,18 +90,28 @@
             </c:if>
         </div>
         <div id="photoWrap">
-            <c:if test="${photoInstance != null}">
-                <div id="photoTitle">
-                    <span class="big_white_title"><c:out value="${photoTitle}" /></span>
-                    <div id="photoTitle_tab_3" class="photoTitle_tab"><img src="${pageContext.request.contextPath}/images/photo_download.png" alt="Baixar a foto" />&nbsp;<span class="mid_white_text">Download</span></div>
-                    <div id="photoTitle_tab_2" class="photoTitle_tab"><img src="${pageContext.request.contextPath}/images/photo_view.png" alt="Visualizar a foto" />&nbsp;<span class="mid_white_text">Foto</span></div>
-                    <div id="photoTitle_tab_1" class="photoTitle_tab"><img src="${pageContext.request.contextPath}/images/photo_details.png" alt="Detalhes da foto" />&nbsp;<span class="mid_white_text">Detalhes</span></div>
+            <div id="photoTitle">
+                <span class="big_white_title"><c:out value="${photoTitle}" /></span>
+                <div id="photoTitle_tab_3" class="photoTitle_tab">
+                    <img src="${pageContext.request.contextPath}/images/photo_download.png" alt="Baixar a foto" />
+                    &nbsp;
+                    <span class="mid_white_text">Download</span>
                 </div>
-                <div id="photo" class="resizeblePhoto1">
-                    <photo:show foto="${photo}" photoInstance="${photoInstance}" />
+                <div id="photoTitle_tab_2" class="photoTitle_tab">
+                    <img src="${pageContext.request.contextPath}/images/photo_view.png" alt="Visualizar a foto" />
+                    &nbsp;
+                    <span class="mid_white_text">Foto</span>
                 </div>
-                <div id="map_canvas" style="width: 100%; height: 100%"></div>
-            </c:if>
+                <div id="photoTitle_tab_1" class="photoTitle_tab">
+                    <img src="${pageContext.request.contextPath}/images/photo_details.png" alt="Detalhes da foto" />
+                    &nbsp;
+                    <span class="mid_white_text">Detalhes</span>
+                </div>
+            </div>
+            <div id="photo" class="resizeblePhoto1">
+                <photo:show foto="${photo}" photoInstance="${photoInstance}" />
+            </div>
+            <div id="map_canvas" style="width: 100%; height: 100%"></div>
             <div id="tagsAndEval">
                 <div id="evalAndAdd">
                     <div id="eval">
@@ -128,25 +146,31 @@
             <div id="photoRelSub">
                 <div id="caracteristicsWrap">
                     <div id="caracteristicsTitle" style="background-color: #B8C7CF">Caracter&iacute;sticas</div>
-                    <c:if test="${photoDate != null}">
-                        <div style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; color: #6A8A9A; padding-left: 20px; margin-top: 5px;">Tirada em: <c:out value="${photoDate}" /></div>
+                    <c:if test="${not empty photo.dataCriacaoFormatada}">
+                        <div style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; color: #6A8A9A; padding-left: 20px; margin-top: 5px;">
+                            Tirada em: <c:out value="${photo.dataCriacaoFormatada}" />
+                        </div>
                     </c:if>
-                    <c:if test="${photoResolution != null}">
-                        <div style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; color: #6A8A9A; padding-left: 20px; margin-top: 5px;">Resolu&ccedil;&atilde;o: <c:out value="${photoResolution}" /></div>
-                    </c:if>
-                    <c:if test="${photoLocation != null}">
-                        <div style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; color: #6A8A9A; padding-left: 20px; margin-top: 5px;">Local: <c:out value="${photoLocation}" /></div>
+                    <%--<c:if test="${not empty photo.resolution}">
+                        <div style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; color: #6A8A9A; padding-left: 20px; margin-top: 5px;">
+                            Resolu&ccedil;&atilde;o: <c:out value="${photo.resolution}" />
+                        </div>
+                    </c:if>--%>
+                    <c:if test="${not empty photo.lugar}">
+                        <div style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; color: #6A8A9A; padding-left: 20px; margin-top: 5px;">
+                            Local: <c:out value="${photo.lugar}" />
+                        </div>
                     </c:if>
                 </div>
-                <c:if test="${photoDescription != null}">
+                <c:if test="${not empty photo.descricao}">
                     <div id="descriptionWrap">
                         <div id="descriptionTitle" style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; font-weight: bold; color: #6A8A9A; margin-top: 15px; background-color: #B8C7CF">Descri&ccedil;&atilde;o</div>
                         <p style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; color: #6A8A9A; padding-left: 20px; margin-top: 5px;"><c:out value="${photoDescription}" /></p>
                     </div>
                 </c:if>
                 <c:if test="${recommendMgr != null}">
-                    <div id="descriptionWrap">
-                        <div id="descriptionTitle" style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; font-weight: bold; color: #6A8A9A; margin-top: 15px; background-color: #B8C7CF">Relacionadas</div>
+                    <div>
+                        <div style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; font-weight: bold; color: #6A8A9A; margin-top: 15px; background-color: #B8C7CF">Relacionadas</div>
                         <p style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; color: #6A8A9A; padding-left: 20px; margin-top: 5px;">
                             <recommend:simpleListImage entity="${photo}" recommendMgr="${recommendMgr}" />
                         </p>
@@ -188,6 +212,6 @@
             </c:if>
             <div style="height: 30px; width: 100%; clear: both"></div>
         </form>
-        <arq:footer photoInstance="${photoInstance}" siteInstance="${ArquigrafiaBrasil}" />
+        <arq:footer photoInstance="${photoInstance}" />
     </body>
 </html>

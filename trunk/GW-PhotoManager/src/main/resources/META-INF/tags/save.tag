@@ -50,7 +50,7 @@
        <legend>Nome e Descri&ccedil;&atilde;o</legend>
        <div class="${formLineClass}">
            <label for="photoRegister.nome" class="${formLabelClass}"><span>Nome*:</span></label>
-           <span  class="${formInputClass}"><input type="text" name="photoRegister.nome" /></span>
+           <span class="${formInputClass}"><input type="text" name="photoRegister.nome" /></span>
        </div>
        <div class="${formLineClass}">
            <label for="photoRegister.descricao" class="${formLabelClass}"><span>Descri&ccedil;&atilde;o:</span></label>
@@ -65,7 +65,7 @@
         </div>
         <div class="${formLineClass}">
             <label for="photoRegister.lugar" class="${formLabelClass}"><span>Localiza&ccedil;&atilde;o:</span></label>
-            <span class="${formInputClass}"><input type="text" name="photoRegister.lugar"></span>
+            <span class="${formInputClass}"><input type="text" name="photoRegister.lugar" /></span>
         </div>
     </fieldset>
     <fieldset>
@@ -73,7 +73,7 @@
         <ul class="${formLineClass}" style="vertical-align: top; height: 120px">
             <li class="${formLabelClass}"><span>Tags:</span></li>
             <li class="${formInputClass}">
-                <c:if test="${tagMgr != null}">
+                <c:if test="${tagMgr != null and photoRegister != null}">
                     <tag:selectTags tagMgr="${tagMgr}" />
                     <tag:setTags tagMgr="${tagMgr}" entity="${photoRegister}" />
                 </c:if>
