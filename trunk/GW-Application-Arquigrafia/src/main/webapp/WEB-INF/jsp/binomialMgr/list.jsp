@@ -20,7 +20,7 @@
                   msgDelete="Tem certeza que deseja remover o binômio?"
                   target="tabela-binomials"
                   titles="${coll:asList3('Primeiro Bin&ocirc;mio', 'Segundo Bin&ocirc;mio', 'Valor')}"
-                  columns="${coll:asList3('firstBinomial', 'secondBinomial', 'value')}"
+                  columns="${coll:asList3('firstName', 'secondName', 'defaultValue')}"
                   elements="${binomialList}" />
     </head>
     <body>

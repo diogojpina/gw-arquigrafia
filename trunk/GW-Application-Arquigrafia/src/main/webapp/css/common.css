@@ -61,7 +61,7 @@ td, th {
 	font-size: 23px;
 	font-weight: bold;
 	background-attachment: fixed;
-	background-image: url(../images/icos/setaG.gif);
+	background-image: url(../images/icon/setaG.gif);
 	background-repeat: no-repeat;
 	background-position: left center;
 	letter-spacing: 7px;
@@ -79,7 +79,7 @@ td, th {
 	font-size: 14px;
 	font-weight: bold;
 	background-attachment: fixed;
-	background-image: url(../images/icos/setaRedonda.gif);
+	background-image: url(../images/icon/setaRedonda.gif);
 	background-repeat: no-repeat;
 	background-position: 10px;
 	text-indent: 0px;
@@ -98,7 +98,7 @@ td, th {
 	font-size: 14px;
 	font-weight: bold;
 	background-attachment: fixed;
-	background-image: url(../images/icos/alerta.jpg);
+	background-image: url(../images/icon/alerta.jpg);
 	background-repeat: no-repeat;
 	background-position: 10px;
 	text-indent: 37px;

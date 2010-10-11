@@ -76,15 +76,15 @@
                 </div>
                 <div id="binomialsWrap">
                     <div id="binomialsUser">
-                        <binomial:getAndSetByUser entity="${photo}" manager="${binomialMgr}" user="${sessionScope.userLogin}" name="userBin"
-                            binLabelClass="binLabelClass" binValueClass="binValueClass" binWrapClass="binWrapClass" />
+                        <binomial:userAverage entity="${photo}" manager="${binomialMgr}" user="${sessionScope.userLogin}" name="userBin"
+                                labelClass="binLabelClass" valueClass="binValueClass" wrapClass="binWrapClass" />
                         <div id="binomialSubmit">
                             <input type="submit" name="saveBinomial" value="Salvar" />
                         </div>
                     </div>
                     <div id="binomialsAvg">
-                        <binomial:getAverage entity="${photo}" manager="${binomialMgr}" name="avgBin"
-                            binLabelClass="binLabelClass" binValueClass="binValueClass" binWrapClass="binWrapClass" />
+                        <binomial:generalAverage entity="${photo}" manager="${binomialMgr}" name="avgBin"
+                                labelClass="binLabelClass" valueClass="binValueClass" wrapClass="binWrapClass" />
                     </div>
                 </div>
             </c:if>

@@ -22,19 +22,19 @@
                     <div>
                         <ul class="field_line_f1">
                             <li class="label_f1"><span>1&ordm; Bin&ocirc;mio:</span></li>
-                            <li class="input_f1"><input type="text" name="binomial.firstBinomial" value="<c:out value="${binomial.firstBinomial}" />" /></li>
+                            <li class="input_f1"><input type="text" name="binomial.firstName" value="<c:out value="${binomial.firstName}" />" /></li>
                         </ul>
                     </div>
                     <div>
                         <ul class="field_line_f1">
                             <li class="label_f1"><span>2&ordm; Bin&ocirc;mio:</span></li>
-                            <li class="input_f1"><input type="text" name="binomial.secondBinomial" value="<c:out value="${binomial.secondBinomial}" />" /></li>
+                            <li class="input_f1"><input type="text" name="binomial.secondName" value="<c:out value="${binomial.secondName}" />" /></li>
                         </ul>
                     </div>
                     <div>
                         <ul class="field_line_f1">
-                            <li class="label_f1"><span>Valor:</span></li>
-                            <li class="input_f1"><input type="text" name="binomial.value" value="<c:out value="${binomial.value}" />" /></li>
+                            <li class="label_f1"><span>Valor padr&atilde.o:</span></li>
+                            <li class="input_f1"><input type="text" name="binomial.defaultValue" value="<c:out value="${binomial.defaultValue}" />" /></li>
                         </ul>
                     </div>
                     <div>

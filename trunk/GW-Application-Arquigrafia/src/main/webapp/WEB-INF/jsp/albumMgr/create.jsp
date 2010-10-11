@@ -41,13 +41,13 @@
         <w:topo collabletInstance="${albumMgr.collablet}" />
         <w:conteudoPagina titulo="Criar álbum">
             <br />
-            <h1><span class="style1">Crir &aacute;lbum</span></h1>
+            <h1><span class="style1">Criar &aacute;lbum</span></h1>
             <br />
             <form name="dados" method="post" action="<c:url value="${pageContext.request.contextPath}/groupware-workbench/album/save/${album.id}"/>">
                 <input type="hidden" name="album.id" value="<c:out value="${album.id}" />" />
                 <div>
                     <ul>
-                        <li>Title</li>
+                        <li>T&iacute;tulo</li>
                         <li><input size="60" type="text" name="album.title" value="<c:out value="${album.title}" />" /></li>
                     </ul>
                     <ul>

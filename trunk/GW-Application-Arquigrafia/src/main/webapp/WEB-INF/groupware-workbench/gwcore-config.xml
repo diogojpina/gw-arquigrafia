@@ -94,7 +94,8 @@
         <subordination parent="photoMgr" child="userMgr" />
         <subordination parent="photoMgr" child="roleMgr" />
         <subordination parent="photoMgr" child="commentMgr" />
-        <!-- <subordination parent="photoMgr" child="geoReferenceMgr" /> -->
+        <subordination parent="photoMgr" child="binomialMgr" />
+        <subordination parent="photoMgr" child="geoReferenceMgr" />
         <subordination parent="photoMgr" child="tagMgr" />
         <!-- <subordination parent="photoMgr" child="albumMgr" /> -->
     </collablets-subordinations>
@@ -103,7 +104,7 @@
         <dependency from="roleMgr" to="userMgr" />
         <dependency from="profileMgr" to="userMgr" />
         <dependency from="commentMgr" to="photoMgr" />
-        <!-- <dependency from="geoReferenceMgr" to="photoMgr" /> -->
+        <dependency from="geoReferenceMgr" to="photoMgr" />
         <dependency from="tagMgr" to="photoMgr" />
         <!--<dependency from="uploadMgr" to="photoMgr" />-->
         <dependency from="binomialMgr" to="photoMgr" />

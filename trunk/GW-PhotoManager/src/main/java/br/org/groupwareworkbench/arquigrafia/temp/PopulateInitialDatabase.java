@@ -19,6 +19,8 @@
 */
 package br.org.groupwareworkbench.arquigrafia.temp;
 
+import br.org.groupwareworkbench.collablet.coop.binomial.Binomial;
+import br.org.groupwareworkbench.collablet.coop.binomial.BinomialObjects;
 import br.org.groupwareworkbench.collablet.coord.role.Role;
 import br.org.groupwareworkbench.collablet.coord.user.User;
 import br.org.groupwareworkbench.core.bd.EntityManagerProvider;
@@ -37,6 +39,9 @@ public class PopulateInitialDatabase {
             tx.begin();
             for (Object c : toSave) {
                 em.persist(c);
+            }
+            for (Binomial b : BinomialObjects.makeBinomialList(Collablet.findByName("binomialMgr"))) {
+                em.persist(b);
             }
             tx.commit();
         } finally {

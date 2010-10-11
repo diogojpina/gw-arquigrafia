@@ -57,7 +57,8 @@
                         </td>
                         <td>
                             <c:if test="${binomialMgr != null}">
-                                <binomial:setBinomial binomialMgr="${binomialMgr}" idObject="${faq.id}" user="${sessionScope.userLogin}" />
+                                <%-- FIXME: binomial:setBinomial não existe e nem nunca existiu! --%>
+                                <binomial:setBinomial binomialMgr="${binomialMgr}" entity="${faq}" user="${sessionScope.userLogin}" />
                             </c:if>
                         </td>
                     </tr>
