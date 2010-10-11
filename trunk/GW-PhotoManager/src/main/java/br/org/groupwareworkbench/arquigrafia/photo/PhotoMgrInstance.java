@@ -16,6 +16,7 @@ import br.org.groupwareworkbench.core.framework.annotations.DefaultProperty;
 @ComponentInfo(
     version="0.1",
     configurationURL="/groupware-workbench/photo/{photoInstance}/index",
+    retrieveURL="/groupware-workbench/photo/{id}",
     defaultProperties={
         @DefaultProperty(name="dirImages", defaultValue="images"),
         @DefaultProperty(name="cropPrefix", defaultValue="crop_"),
