@@ -1,5 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="w" uri="http://www.groupwareworkbench.org.br/widgets/commons" %>
 <%@ taglib prefix="photo" uri="http://www.groupwareworkbench.org.br/widgets/photomanager" %>
@@ -27,7 +28,12 @@
         <script type="text/javascript" src="${pageContext.request.contextPath}/plugins/sds/js/scroll.js"></script>
         <script type="text/javascript">
             $(function() {
-                $("div#makeMeScrollable").smoothDivScroll({scrollingSpeed: 12, mouseDownSpeedBooster: 3, visibleHotSpots: "always", startAtElementId: "startAtMe"});
+                $("div#makeMeScrollable").smoothDivScroll({
+                    scrollingSpeed: 12,
+                    mouseDownSpeedBooster: 3,
+                    visibleHotSpots: "always",
+                    startAtElementId: "startAtMe"
+                });
             });
         </script>
         <script src="${pageContext.request.contextPath}/js/chili-1.7.pack.js" type="text/javascript" ></script>
@@ -37,7 +43,7 @@
         <script src="${pageContext.request.contextPath}/js/bay.js" type="text/javascript"></script>
      </head>
      <body>
-         <arq:header2 photoInstance="${PhotoRegister}" />
+         <arq:header2 photoInstance="${photoMgr}" />
              <div id="search_statistics">
              <span id="resultTerm">Voc&ecirc; buscou por objetos com a tag: <c:out value="${tag.name}" /></span>
              <span id="resultCount"> (<c:out value="${tag.size}" /> resultados)</span>
@@ -52,11 +58,11 @@
              <img src="${pageContext.request.contextPath}/images/filtragem.png" alt="" />
          </div>
          <div id="search_scroll">
-             <c:if test="${PhotoRegister != null}">
-                 <photo:searchByTag photoInstance="${PhotoRegister}" idList="${tag.taggedObjects}" showName="true" showLocation="false" lineClass="search_line"/>
+             <c:if test="${photoMgr != null}">
+                 <photo:searchByTag photoInstance="${photoMgr}" idList="${tag.taggedObjects}" showName="true" showLocation="false" lineClass="search_line" />
              </c:if>
          </div>
          <div style="height: 30px; clear: both"></div>
-         <arq:footer photoInstance="${PhotoRegister}" />
+         <arq:footer photoInstance="${photoMgr}" />
      </body>
 </html>

@@ -12,16 +12,20 @@ import br.org.groupwareworkbench.core.framework.AbstractBusiness;
 import br.org.groupwareworkbench.core.framework.Collablet;
 import br.org.groupwareworkbench.core.framework.annotations.ComponentInfo;
 import br.org.groupwareworkbench.core.framework.annotations.DefaultProperty;
+import br.org.groupwareworkbench.core.framework.annotations.RequiredProperty;
 
 @ComponentInfo(
     version="0.1",
     configurationURL="/groupware-workbench/photo/{photoInstance}/index",
     retrieveURL="/groupware-workbench/photo/{id}",
     defaultProperties={
-        @DefaultProperty(name="dirImages", defaultValue="images"),
+        //@DefaultProperty(name="dirImages", defaultValue="/home/edith/fotos/"),
         @DefaultProperty(name="cropPrefix", defaultValue="crop_"),
         @DefaultProperty(name="thumbPrefix", defaultValue="thumb_"),
         @DefaultProperty(name="mostraPrefix", defaultValue="mostra_")
+    },
+    requiredProperties={
+        @RequiredProperty(name="dirImages")
     }
 )
 public class PhotoMgrInstance extends AbstractBusiness {

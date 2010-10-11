@@ -8,7 +8,7 @@
         <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
         <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/groupware_workbench_arquigrafia" />
         <property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider" />
-        <property name="hibernate.hbm2ddl.auto" value="update" />
+        <property name="hibernate.hbm2ddl.auto" value="create-drop" />
         <property name="transaction.factory_class" value="org.hibernate.transaction.JDBCTransactionFactory" />
         <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
     </hibernate>
@@ -80,6 +80,9 @@
             <business>br.org.groupwareworkbench.arquigrafia.photo.PhotoMgrInstance</business>
             <description>Registro de fotografias</description>
             <name>photoMgr</name>
+            <properties>
+                <property key="dirImages" value="/home/edith/fotos/" />
+            </properties>
         </collablet>
 
         <!--<collablet>

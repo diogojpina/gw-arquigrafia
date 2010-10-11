@@ -94,14 +94,17 @@ public class PhotoController {
     }
 
     @Get
+    @Post
     @Path(value = "/groupware-workbench/photo/{idPhoto}")
     public void show(long idPhoto) {
         Photo photo = Photo.findById(idPhoto);
+        if (photo == null) {
+            result.notFound();
+            return;
+        }
 
         result.include("idPhoto", idPhoto);
         result.include("nameCollablet", "photo");
-        //addIncludes();
-        result.include("photoTitle", photo.getNome());
 
         PhotoMgrInstance photoInstance = (PhotoMgrInstance) photo.getCollablet().getBusinessObject();
         addIncludes(photoInstance);

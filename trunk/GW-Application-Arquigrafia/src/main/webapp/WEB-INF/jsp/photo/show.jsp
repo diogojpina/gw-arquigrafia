@@ -61,7 +61,7 @@
     </head>
     <body onload="initializeMap()">
         <arq:header2 photoInstance="${photoInstance}" />
-        <form name="tags" method="post" enctype="multipart/form-data" action="<c:url value="/groupware-workbench/${idPhoto}" />">
+        <form name="tags" method="post" enctype="multipart/form-data" action="<c:url value="/groupware-workbench/photo/${photo.id}" />">
         <div id="photoRel">
             <c:if test="${binomialMgr != null}">
                 <div id="binomialsTitle" class="big_white_title">Medidores</div>
@@ -91,7 +91,7 @@
         </div>
         <div id="photoWrap">
             <div id="photoTitle">
-                <span class="big_white_title"><c:out value="${photoTitle}" /></span>
+                <span class="big_white_title"><c:out value="${photo.nome}" /></span>
                 <div id="photoTitle_tab_3" class="photoTitle_tab">
                     <img src="${pageContext.request.contextPath}/images/photo_download.png" alt="Baixar a foto" />
                     &nbsp;
@@ -116,8 +116,8 @@
                 <div id="evalAndAdd">
                     <div id="eval">
                         <c:if test="${ratingMgr != null}">
-                            <%-- <rating:starRatingWithScore entity="${photo}" ratingMgr="${ratingMgr}" collabletInstance="${photoInstance}"/> --%>
-                            <rating:starRatingBar entity="${photo}" ratingMgr="${ratingMgr}" collabletInstance="${photoInstance}" />
+                            <%-- <rating:starRatingWithScore entity="${photo}" ratingMgr="${ratingMgr}" collabletInstance="${photoInstance.collablet}"/> --%>
+                            <rating:starRatingBar entity="${photo}" ratingMgr="${ratingMgr}" collabletInstance="${photoInstance.collablet}" />
                         </c:if>
                     </div>
                     <div id="add">
@@ -168,14 +168,14 @@
                         <p style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; color: #6A8A9A; padding-left: 20px; margin-top: 5px;"><c:out value="${photoDescription}" /></p>
                     </div>
                 </c:if>
-                <c:if test="${recommendMgr != null}">
+                <%--c:if test="${recommendMgr != null}">
                     <div>
                         <div style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; font-weight: bold; color: #6A8A9A; margin-top: 15px; background-color: #B8C7CF">Relacionadas</div>
                         <p style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; color: #6A8A9A; padding-left: 20px; margin-top: 5px;">
                             <recommend:simpleListImage entity="${photo}" recommendMgr="${recommendMgr}" />
                         </p>
                     </div>
-                </c:if>
+                </c:if--%>
             </div>
         </div>
         <div id="photoBackground"></div>
