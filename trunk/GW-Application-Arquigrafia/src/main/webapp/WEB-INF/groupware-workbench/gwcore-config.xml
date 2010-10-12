@@ -81,7 +81,7 @@
             <description>Registro de fotografias</description>
             <name>photoMgr</name>
             <properties>
-                <property key="dirImages" value="/home/edith/fotos/" />
+                <property key="dirImages" value="images/" /> <!--No linux se não usa absolute path assume-se $HOME como prefixo, ou seja "images/" ficara "$HOME/images" -->
             </properties>
         </collablet>
 

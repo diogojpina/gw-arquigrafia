@@ -19,7 +19,6 @@ import br.org.groupwareworkbench.core.framework.annotations.RequiredProperty;
     configurationURL="/groupware-workbench/photo/{photoInstance}/index",
     retrieveURL="/groupware-workbench/photo/{id}",
     defaultProperties={
-        //@DefaultProperty(name="dirImages", defaultValue="/home/edith/fotos/"),
         @DefaultProperty(name="cropPrefix", defaultValue="crop_"),
         @DefaultProperty(name="thumbPrefix", defaultValue="thumb_"),
         @DefaultProperty(name="mostraPrefix", defaultValue="mostra_")
