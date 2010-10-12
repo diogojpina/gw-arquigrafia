@@ -51,6 +51,8 @@
         <a href="${pageContext.request.contextPath}/groupware-workbench/recommend/${recommendMgr.id}/calcRecommend">Recomendar</a>
         &nbsp;|&nbsp;
         <a href="${pageContext.request.contextPath}/groupware-workbench/ratings/${ratingMgr.id}">Rating</a>
+        &nbsp;|&nbsp;
+        <a href="${pageContext.request.contextPath}/groupware-workbench/friends/${friendsMgr.id}/list">Profile do Usuario</a>
     </div>
     <div id="search_field">
         <img src="${pageContext.request.contextPath}/images/head1_left2_top.png" width="99" height="100" alt="campo de busca" />

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <frameworkDescriptor>
 
-    <!-- Configuração do hibernate, tem o mesmo formato do persistence.xml. -->
+    <!-- Configuração do hibernate, tem o mesmo formato do persistence.xml.
+-->
     <hibernate>
         <property name="hibernate.connection.username" value="groupwareUser" />
         <property name="hibernate.connection.password" value="102938" />
@@ -81,15 +82,23 @@
             <description>Registro de fotografias</description>
             <name>photoMgr</name>
             <properties>
-                <property key="dirImages" value="images/" /> <!--No linux se não usa absolute path assume-se $HOME como prefixo, ou seja "images/" ficara "$HOME/images" -->
+                <property key="dirImages" value="images/" /> <!--No linux se não usa absolute path assume-se $HOME como prefixo, ou seja "images/" ficara "$HOME/images"
+-->
             </properties>
+        </collablet>
+        
+        <collablet>
+            <business>br.org.groupwareworkbench.collablet.coord.friends.FriendsMgrInstance</business>
+            <description>Gerenciar amigos</description>
+            <name>friendsMgr</name>
         </collablet>
 
         <!--<collablet>
             <business>br.org.groupwareworkbench.collablet.coop.album.AlbumMgrInstance</business>
             <description>Gerenciar Albuns</description>
             <name>albumMgr</name>
-        </collablet> -->
+        </collablet>
+-->
     </collablets>
 
     <collablets-subordinations>
@@ -100,6 +109,7 @@
         <subordination parent="photoMgr" child="binomialMgr" />
         <subordination parent="photoMgr" child="geoReferenceMgr" />
         <subordination parent="photoMgr" child="tagMgr" />
+        <subordination parent="photoMgr" child="friendsMgr" />
         <!-- <subordination parent="photoMgr" child="albumMgr" /> -->
     </collablets-subordinations>
 
@@ -116,6 +126,7 @@
         <dependency from="roleMgr" to="photoMgr" />
         <dependency from="userMgr" to="photoMgr" />
         <dependency from="userMgr" to="photoMgr" alias="--login--" />
+        <dependency from="friendsMgr" to="photoMgr" />
         <!-- <dependency from="albumMgr" to="photoMgr" /> -->
     </collablets-dependencies>
 </frameworkDescriptor>
