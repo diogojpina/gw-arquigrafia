@@ -1,8 +1,8 @@
 package br.org.groupwareworkbench.arquigrafia.photo;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -14,19 +14,14 @@ import br.org.groupwareworkbench.core.framework.annotations.ComponentInfo;
 import br.org.groupwareworkbench.core.framework.annotations.DefaultProperty;
 import br.org.groupwareworkbench.core.framework.annotations.RequiredProperty;
 
-@ComponentInfo(
-    version="0.1",
-    configurationURL="/groupware-workbench/photo/{photoInstance}/index",
-    retrieveURL="/groupware-workbench/photo/{id}",
-    defaultProperties={
-        @DefaultProperty(name="cropPrefix", defaultValue="crop_"),
-        @DefaultProperty(name="thumbPrefix", defaultValue="thumb_"),
-        @DefaultProperty(name="mostraPrefix", defaultValue="mostra_")
-    },
-    requiredProperties={
-        @RequiredProperty(name="dirImages")
-    }
-)
+@ComponentInfo(version = "0.1", 
+        configurationURL = "/groupware-workbench/photo/{photoInstance}/index",
+        retrieveURL = "/groupware-workbench/photo/{id}",
+        defaultProperties = {
+        @DefaultProperty(name = "cropPrefix", defaultValue = "crop_"),
+        @DefaultProperty(name = "thumbPrefix", defaultValue = "thumb_"),
+        @DefaultProperty(name = "mostraPrefix", defaultValue = "mostra_")}, 
+        requiredProperties = {@RequiredProperty(name = "dirImages")})
 public class PhotoMgrInstance extends AbstractBusiness {
 
     public PhotoMgrInstance(Collablet collablet) {
@@ -34,15 +29,15 @@ public class PhotoMgrInstance extends AbstractBusiness {
     }
 
     public File imgThumb(String nomeArquivoUnico) {
-        return Photo.getImageFile(getDirImages(), this.getThumbPrefix(), nomeArquivoUnico);        
+        return Photo.getImageFile(getDirImages(), this.getThumbPrefix(), nomeArquivoUnico);
     }
 
     public File imgCrop(String nomeArquivoUnico) {
-        return Photo.getImageFile(getDirImages(), this.getCropPrefix(), nomeArquivoUnico);        
+        return Photo.getImageFile(getDirImages(), this.getCropPrefix(), nomeArquivoUnico);
     }
 
     public File imgShow(String nomeArquivoUnico) {
-        return Photo.getImageFile(getDirImages(), this.getMostraPrefix(), nomeArquivoUnico);        
+        return Photo.getImageFile(getDirImages(), this.getMostraPrefix(), nomeArquivoUnico);
     }
 
     public File imgOriginal(String nomeArquivoUnico) {
@@ -56,10 +51,10 @@ public class PhotoMgrInstance extends AbstractBusiness {
 
     public void assignToUser(Photo photo, User user) {
         photo.assignUser(user);
-        
+
     }
 
-    public void saveImage(InputStream foto, String nome) throws IOException {
+    public void saveImage(BufferedImage foto, String nome) throws IOException {
         Photo.saveImage(foto, nome, this.getDirImages());
     }
 
@@ -70,7 +65,7 @@ public class PhotoMgrInstance extends AbstractBusiness {
     public List<Photo> buscaFotoAvancada(String nome, String descricao, String lugar, Date date) {
         return Photo.busca(getCollablet(), nome, lugar, descricao, date);
     }
-       
+
     public List<Photo> buscaFotoPorListaId(List<Object> listObjects) {
         List<Photo> photos = new ArrayList<Photo>();
         for (Object object : listObjects) {
@@ -88,8 +83,8 @@ public class PhotoMgrInstance extends AbstractBusiness {
     public List<Photo> listPhotoByPageAndOrder(int pageSize, int pageNumber) {
         return Photo.listPhotoByPageAndOrder(getCollablet(), pageSize, pageNumber);
     }
-   
-     public String getDirImages() {
+
+    public String getDirImages() {
         return getCollablet().getProperty("dirImages");
     }
 

@@ -1,14 +1,20 @@
 package br.org.groupwareworkbench.arquigrafia.photo;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.imageio.IIOImage;
+import javax.imageio.ImageIO;
+import javax.imageio.ImageWriteParam;
+import javax.imageio.ImageWriter;
+import javax.imageio.stream.FileImageOutputStream;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
@@ -20,13 +26,10 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.TypedQuery;
 
-import org.apache.commons.io.IOUtils;
-
 import br.org.groupwareworkbench.collablet.coord.user.User;
 import br.org.groupwareworkbench.core.bd.EntityManagerProvider;
 import br.org.groupwareworkbench.core.bd.ObjectDAO;
 import br.org.groupwareworkbench.core.framework.Collablet;
-import java.text.SimpleDateFormat;
 
 @Entity
 public class Photo implements Serializable {
@@ -42,10 +45,10 @@ public class Photo implements Serializable {
     @ManyToOne
     private Collablet collablet;
 
-    @Column(name="nome", unique=false, nullable=false)
+    @Column(name = "nome", unique = false, nullable = false)
     private String nome;
 
-    @Column(name="nome_arquivo", unique=false, nullable=false)
+    @Column(name = "nome_arquivo", unique = false, nullable = false)
     private String nomeArquivo;
 
     private String descricao;
@@ -96,15 +99,27 @@ public class Photo implements Serializable {
         return new File(path);
     }
 
-    public static void saveImage(InputStream foto, String nome, String pasta) throws IOException {
-        File file = new File(pasta, nome);
-        file.createNewFile();
-        IOUtils.copy(foto, new FileOutputStream(file));
+    public static void saveImage(BufferedImage input, String name, String path) throws IOException {
+        Iterator<ImageWriter> iter = ImageIO.getImageWritersByFormatName("JPG");
+        if (iter.hasNext()) {
+            ImageWriter writer = iter.next();
+            ImageWriteParam iwp = writer.getDefaultWriteParam();
+            iwp.setCompressionMode(ImageWriteParam.MODE_EXPLICIT);
+            iwp.setCompressionQuality(0.95f);
+            File outFile = new File(path + File.separator + name);
+            FileImageOutputStream output = new FileImageOutputStream(outFile);
+            writer.setOutput(output);
+            IIOImage image = new IIOImage(input, null, null);
+            writer.write(null, image, iwp);
+            output.close();
+        }
     }
 
     public static List<Photo> listPhotoByPageAndOrder(Collablet collablet, int pageSize, int pageNumber) {
-        EntityManager em=EntityManagerProvider.getEntityManager();
-        String querySentence = "SELECT p FROM " + Photo.class.getSimpleName() + " p WHERE p.collablet=:collablet ORDER BY p.dataCriacao DESC";
+        EntityManager em = EntityManagerProvider.getEntityManager();
+        String querySentence =
+                "SELECT p FROM " + Photo.class.getSimpleName() +
+                        " p WHERE p.collablet=:collablet ORDER BY p.dataCriacao DESC";
         TypedQuery<Photo> query = em.createQuery(querySentence, Photo.class);
         query.setParameter("collablet", collablet);
         int firstElement = pageNumber * pageSize;
@@ -114,13 +129,15 @@ public class Photo implements Serializable {
     }
 
     public static List<Photo> busca(Collablet collablet, String busca) {
-        String queryString = "SELECT p FROM " + Photo.class.getSimpleName() + " p WHERE p.collablet=:collablet AND UPPER(p.nome) LIKE :nome";
-        EntityManager em=EntityManagerProvider.getEntityManager();
-        TypedQuery<Photo> query=em.createQuery(queryString,Photo.class);
+        String queryString =
+                "SELECT p FROM " + Photo.class.getSimpleName() +
+                        " p WHERE p.collablet=:collablet AND UPPER(p.nome) LIKE :nome";
+        EntityManager em = EntityManagerProvider.getEntityManager();
+        TypedQuery<Photo> query = em.createQuery(queryString, Photo.class);
         query.setParameter("nome", "%" + busca.toUpperCase() + "%");
         query.setParameter("collablet", collablet);
-        //query.setParameter("lugar", "%" + busca.toUpperCase() + "%");
-        //query.setParameter("descricao", "%" + busca.toUpperCase() + "%");
+        // query.setParameter("lugar", "%" + busca.toUpperCase() + "%");
+        // query.setParameter("descricao", "%" + busca.toUpperCase() + "%");
         return query.getResultList();
     }
 
@@ -129,10 +146,16 @@ public class Photo implements Serializable {
         EntityManager em = EntityManagerProvider.getEntityManager();
         TypedQuery<Photo> consulta;
         if (date == null) {
-            query = "SELECT p FROM " + Photo.class.getSimpleName() + " p WHERE p.collablet = :collablet AND (UPPER(p.nome) LIKE :nome AND UPPER(p.lugar) LIKE :lugar AND UPPER(p.descricao) LIKE :descricao)";
+            query =
+                    "SELECT p FROM " +
+                            Photo.class.getSimpleName() +
+                            " p WHERE p.collablet = :collablet AND (UPPER(p.nome) LIKE :nome AND UPPER(p.lugar) LIKE :lugar AND UPPER(p.descricao) LIKE :descricao)";
             consulta = em.createQuery(query, Photo.class);
         } else {
-            query = "SELECT p FROM " + Photo.class.getSimpleName() + " p WHERE p.collablet = :collablet AND (UPPER(p.nome) LIKE :nome AND UPPER(p.lugar) LIKE :lugar AND UPPER(p.descricao) LIKE :descricao AND p.data = :date)";
+            query =
+                    "SELECT p FROM " +
+                            Photo.class.getSimpleName() +
+                            " p WHERE p.collablet = :collablet AND (UPPER(p.nome) LIKE :nome AND UPPER(p.lugar) LIKE :lugar AND UPPER(p.descricao) LIKE :descricao AND p.data = :date)";
             consulta = em.createQuery(query, Photo.class);
             consulta.setParameter("date", date);
         }

@@ -2,14 +2,15 @@ package br.org.groupwareworkbench.arquigrafia.photo;
 
 import java.awt.Dimension;
 import java.awt.Point;
+import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
+
+import javax.imageio.ImageIO;
 
 import br.com.caelum.vraptor.Delete;
 import br.com.caelum.vraptor.Get;
@@ -59,7 +60,7 @@ public class PhotoController {
     }
 
     @Get
-    @Path(value="/groupware-workbench/photo/{photoInstance}/index")
+    @Path(value = "/groupware-workbench/photo/{photoInstance}/index")
     public void index(PhotoMgrInstance photoInstance) {
         addIncludes(photoInstance);
     }
@@ -122,7 +123,7 @@ public class PhotoController {
     @Path(value = "/groupware-workbench/photo/{photoInstance}/buscaTag/{tagName}")
     public void buscaFotoPorId(String tagName, List<Object> photos, PhotoMgrInstance photoInstance) {
         List<Photo> resultFotosBusca = photoInstance.buscaFotoPorListaId(photos);
-        
+
         result.include("fotos", resultFotosBusca);
         result.include("tagTerm", tagName);
         result.include("numResults", resultFotosBusca.size());
@@ -186,31 +187,28 @@ public class PhotoController {
             erro = true;
         }
         if (erro) {
-           validator.onErrorUse(Results.logic()).redirectTo(PhotoController.class).registra(photoInstance);
-           return;
+            validator.onErrorUse(Results.logic()).redirectTo(PhotoController.class).registra(photoInstance);
+            return;
         }
 
         // Fim das validações.
 
         String nomeArquivo = foto.getFileName();
         photoRegister.setNomeArquivo(nomeArquivo);
-        InputStream imagemOriginal = null;
-        InputStream imagemThumb = null;
-        InputStream imagemCropped = null;
-        InputStream imagemMostra = null;
+        BufferedImage imagemOriginal = null;
+        BufferedImage imagemThumb = null;
+        BufferedImage imagemCropped = null;
+        BufferedImage imagemMostra = null;
 
         try {
             byte[] rawphoto = new byte[foto.getFile().available()];
-            foto.getFile().read(rawphoto); 
-            imagemOriginal = new ByteArrayInputStream(rawphoto);
+            foto.getFile().read(rawphoto);
+            ByteArrayInputStream bais = new ByteArrayInputStream(rawphoto);
+            imagemOriginal = ImageIO.read(bais);
             imagemMostra = ImageUtils.createThumbnailIfNecessary(800, imagemOriginal, true);
-            imagemOriginal.reset();
             imagemThumb = ImageUtils.createThumbnailIfNecessary(100, imagemOriginal, true);
-            imagemOriginal.reset();
-            InputStream imagemThumb2 = ImageUtils.createThumbnailIfNecessary(100, imagemOriginal, false);
-            imagemThumb2.reset();
+            BufferedImage imagemThumb2 = ImageUtils.createThumbnailIfNecessary(100, imagemOriginal, false);
             Point cropPoint = ImageUtils.calcSqrThumbCropPoint(imagemThumb2);
-            imagemThumb2.reset();
             imagemCropped = ImageUtils.cropImage(cropPoint, new Dimension(100, 100), imagemThumb2);
         } catch (IOException e) {
             validator.add(new ValidationMessage(MSG_NAO_FOI_POSSIVEL_REDIMENSIONAR, "Erro"));
@@ -225,7 +223,7 @@ public class PhotoController {
                 photoInstance.assignToUser(photoRegister, user);
             }
             nomeArquivo = photoRegister.getNomeArquivoUnico(); // Para ter um só nome do arquivo.
-            photoInstance.saveImage(imagemOriginal, nomeArquivo);  
+            photoInstance.saveImage(imagemOriginal, nomeArquivo);
             photoInstance.saveImage(imagemCropped, photoInstance.getCropPrefix() + nomeArquivo);
             photoInstance.saveImage(imagemThumb, photoInstance.getThumbPrefix() + nomeArquivo);
             photoInstance.saveImage(imagemMostra, photoInstance.getMostraPrefix() + nomeArquivo);
@@ -260,27 +258,23 @@ public class PhotoController {
             int numFile = 1;
             File[] files = filesDir.listFiles();
             for (File file : files) {
-                System.out.println("Enviando foto " + numFile++ + "/" + files.length); 
+                System.out.println("Enviando foto " + numFile++ + "/" + files.length);
                 String name = file.getName().substring(0, file.getName().length() - 4);
                 String nomeArquivo = file.getName();
-                InputStream imagemOriginal = null;
-                InputStream imagemThumb = null;
-                InputStream imagemCropped = null;
-                InputStream imagemMostra = null;
-
+                BufferedImage imagemOriginal = null;
+                BufferedImage imagemThumb = null;
+                BufferedImage imagemCropped = null;
+                BufferedImage imagemMostra = null;
                 try {
                     FileInputStream fis = new FileInputStream(file);
                     byte[] rawphoto = new byte[fis.available()];
-                    fis.read(rawphoto); 
-                    imagemOriginal = new ByteArrayInputStream(rawphoto);
+                    fis.read(rawphoto);
+                    ByteArrayInputStream bais = new ByteArrayInputStream(rawphoto);
+                    imagemOriginal = ImageIO.read(bais);
                     imagemMostra = ImageUtils.createThumbnailIfNecessary(800, imagemOriginal, true);
-                    imagemOriginal.reset();
                     imagemThumb = ImageUtils.createThumbnailIfNecessary(100, imagemOriginal, true);
-                    imagemOriginal.reset();
-                    InputStream imagemThumb2 = ImageUtils.createThumbnailIfNecessary(100, imagemOriginal, false);
-                    imagemThumb2.reset();
+                    BufferedImage imagemThumb2 = ImageUtils.createThumbnailIfNecessary(100, imagemOriginal, false);
                     Point cropPoint = ImageUtils.calcSqrThumbCropPoint(imagemThumb2);
-                    imagemThumb2.reset();
                     imagemCropped = ImageUtils.cropImage(cropPoint, new Dimension(100, 100), imagemThumb2);
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -293,7 +287,7 @@ public class PhotoController {
                     imagem.setDataCriacao(new Date());
                     photoInstance.save(imagem);
                     nomeArquivo = imagem.getNomeArquivoUnico(); // Para ter um só nome do arquivo.
-                    photoInstance.saveImage(imagemOriginal, nomeArquivo);  
+                    photoInstance.saveImage(imagemOriginal, nomeArquivo);
                     photoInstance.saveImage(imagemCropped, photoInstance.getCropPrefix() + nomeArquivo);
                     photoInstance.saveImage(imagemThumb, photoInstance.getThumbPrefix() + nomeArquivo);
                     photoInstance.saveImage(imagemMostra, photoInstance.getMostraPrefix() + nomeArquivo);
