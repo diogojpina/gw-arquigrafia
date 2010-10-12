@@ -21,16 +21,15 @@ package br.org.groupwareworkbench.collablet.coop.album;
 
 import java.awt.Dimension;
 import java.awt.Point;
+import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.text.DateFormat;
 import java.util.Collection;
 import java.util.GregorianCalendar;
-import java.util.List;
 
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 
 import br.com.caelum.vraptor.Delete;
@@ -60,7 +59,7 @@ public class AlbumMgrController {
 
     private final Result result;
     private final HttpServletRequest request;
-    
+
     public static final String MSG_MIN_3_LETRAS = "Você deve digitar no mínimo 3 letras.";
     public static final String MSG_NENHUM_CAMPO_PREENCHIDO = "Nenhum campo foi preenchido.";
     public static final String MSG_NOME_OBRIGATORIO = "O nome é obrigatório.";
@@ -75,12 +74,12 @@ public class AlbumMgrController {
     public AlbumMgrController(Result result, Validator validator, WidgetInfo info, HttpServletRequest request) {
         this.request = request;
         this.result = result;
-        this.validator= validator;
+        this.validator = validator;
         this.info = info;
     }
-    
+
     @Get
-    @Path(value="/groupware-workbench/album/{albumMgr}/list")
+    @Path(value = "/groupware-workbench/album/{albumMgr}/list")
     public void list(final AlbumMgrInstance albumMgr) {
         User user = (User) request.getSession().getAttribute("userLogin");
         result.include("user", user);
@@ -91,7 +90,7 @@ public class AlbumMgrController {
     }
 
     @Get
-    @Path(value="/groupware-workbench/album/{id}/listPhotos")
+    @Path(value = "/groupware-workbench/album/{id}/listPhotos")
     public void listPhotos(final long id) {
         Album album = Album.findById(id);
         if (album == null) {
@@ -107,7 +106,7 @@ public class AlbumMgrController {
     }
 
     @Get
-    @Path(value="/groupware-workbench/album/{albumMgr}/create")
+    @Path(value = "/groupware-workbench/album/{albumMgr}/create")
     public void create(final AlbumMgrInstance albumMgr) {
         Album album = new Album();
         result.include("album", album);
@@ -115,7 +114,7 @@ public class AlbumMgrController {
     }
 
     @Get
-    @Path(value="/groupware-workbench/album/{id}")
+    @Path(value = "/groupware-workbench/album/{id}")
     public void retrieve(final long id) {
         Album album = Album.findById(id);
         if (album == null) {
@@ -128,7 +127,7 @@ public class AlbumMgrController {
     }
 
     @Post
-    @Path(value="/groupware-workbench/album/{albumMgr}/save/{idAlbum}")
+    @Path(value = "/groupware-workbench/album/{albumMgr}/save/{idAlbum}")
     public void save(AlbumMgrInstance albumMgr, final long idAlbum) {
         Album album = Album.findById(idAlbum);
         albumMgr.save(album);
@@ -136,7 +135,7 @@ public class AlbumMgrController {
     }
 
     @Delete
-    @Path(value="/groupware-workbench/album/{id}")
+    @Path(value = "/groupware-workbench/album/{id}")
     public void delete(final long id) {
         Album album = Album.findById(id);
         if (album == null) {
@@ -149,18 +148,18 @@ public class AlbumMgrController {
         result.use(Results.logic()).redirectTo(AlbumMgrController.class).list(albumMgr);
     }
 
-    /*@Get
-    @Path(value="/groupware-workbench/album/{albumMgr}/resource/{resource*}")
-    public File getResource(AlbumMgrInstance albumMgr, String resource) {
-        return albumMgr.resourcePath(resource);
-    }*/
-    
-    
-    /*Photo's Management*/
+    /*
+     * @Get
+     * @Path(value="/groupware-workbench/album/{albumMgr}/resource/{resource*}") public File
+     * getResource(AlbumMgrInstance albumMgr, String resource) { return albumMgr.resourcePath(resource); }
+     */
+
+    /* Photo's Management */
     @Get
     @Path(value = "/groupware-workbench/album/{albumMgr}/photo/img-thumb/{nomeArquivoUnico}")
     public Download imgThumb(AlbumMgrInstance albumMgr, String nomeArquivoUnico) {
-        PhotoMgrInstance photoInstance = (PhotoMgrInstance) albumMgr.getCollablet().getDependency("photoMgr").getBusinessObject();
+        PhotoMgrInstance photoInstance =
+                (PhotoMgrInstance) albumMgr.getCollablet().getDependency("photoMgr").getBusinessObject();
         File file = photoInstance.imgThumb(nomeArquivoUnico);
         FileDownload fs = new FileDownload(file, "image/jpg", file.getName());
         return fs;
@@ -169,17 +168,18 @@ public class AlbumMgrController {
     @Get
     @Path(value = "/groupware-workbench/album/{albumMgr}/photo/img-show/{nomeArquivoUnico}")
     public Download imgShow(AlbumMgrInstance albumMgr, String nomeArquivoUnico) {
-        PhotoMgrInstance photoInstance = (PhotoMgrInstance) albumMgr.getCollablet().getDependency("photoMgr").getBusinessObject();
+        PhotoMgrInstance photoInstance =
+                (PhotoMgrInstance) albumMgr.getCollablet().getDependency("photoMgr").getBusinessObject();
         File file = photoInstance.imgShow(nomeArquivoUnico);
         FileDownload fs = new FileDownload(file, "image/jpg", file.getName());
         return fs;
     }
-    
-    
+
     @Post
     @Path(value = "/groupware-workbench/album/{albumMgr}/album/{idAlbum}/photo/registra/")
     public void save(AlbumMgrInstance albumMgr, final long idAlbum, Photo photoRegister, UploadedFile foto, User user) {
-        PhotoMgrInstance photoInstance = (PhotoMgrInstance) albumMgr.getCollablet().getDependency("photoMgr").getBusinessObject();
+        PhotoMgrInstance photoInstance =
+                (PhotoMgrInstance) albumMgr.getCollablet().getDependency("photoMgr").getBusinessObject();
         Album album = Album.findById(idAlbum);
         boolean erro = false;
         if (photoRegister.getNome().isEmpty()) {
@@ -191,31 +191,28 @@ public class AlbumMgrController {
             erro = true;
         }
         if (erro) {
-           validator.onErrorUse(Results.logic()).redirectTo(PhotoController.class).registra(photoInstance);
-           return;
+            validator.onErrorUse(Results.logic()).redirectTo(PhotoController.class).registra(photoInstance);
+            return;
         }
 
         // Fim das validações.
 
         String nomeArquivo = foto.getFileName();
         photoRegister.setNomeArquivo(nomeArquivo);
-        InputStream imagemOriginal = null;
-        InputStream imagemThumb = null;
-        InputStream imagemCropped = null;
-        InputStream imagemMostra = null;
+        BufferedImage imagemOriginal = null;
+        BufferedImage imagemThumb = null;
+        BufferedImage imagemCropped = null;
+        BufferedImage imagemMostra = null;
 
         try {
             byte[] rawphoto = new byte[foto.getFile().available()];
-            foto.getFile().read(rawphoto); 
-            imagemOriginal = new ByteArrayInputStream(rawphoto);
+            foto.getFile().read(rawphoto);
+            ByteArrayInputStream bais = new ByteArrayInputStream(rawphoto);
+            imagemOriginal = ImageIO.read(bais);
             imagemMostra = ImageUtils.createThumbnailIfNecessary(800, imagemOriginal, true);
-            imagemOriginal.reset();
             imagemThumb = ImageUtils.createThumbnailIfNecessary(100, imagemOriginal, true);
-            imagemOriginal.reset();
-            InputStream imagemThumb2 = ImageUtils.createThumbnailIfNecessary(100, imagemOriginal, false);
-            imagemThumb2.reset();
+            BufferedImage imagemThumb2 = ImageUtils.createThumbnailIfNecessary(100, imagemOriginal, false);
             Point cropPoint = ImageUtils.calcSqrThumbCropPoint(imagemThumb2);
-            imagemThumb2.reset();
             imagemCropped = ImageUtils.cropImage(cropPoint, new Dimension(100, 100), imagemThumb2);
         } catch (IOException e) {
             validator.add(new ValidationMessage(MSG_NAO_FOI_POSSIVEL_REDIMENSIONAR, "Erro"));
@@ -231,7 +228,7 @@ public class AlbumMgrController {
                 photoInstance.assignToUser(photoRegister, user);
             }
             nomeArquivo = photoRegister.getNomeArquivoUnico(); // Para ter um só nome do arquivo.
-            photoInstance.saveImage(imagemOriginal, nomeArquivo);  
+            photoInstance.saveImage(imagemOriginal, nomeArquivo);
             photoInstance.saveImage(imagemCropped, photoInstance.getCropPrefix() + nomeArquivo);
             photoInstance.saveImage(imagemThumb, photoInstance.getThumbPrefix() + nomeArquivo);
             photoInstance.saveImage(imagemMostra, photoInstance.getMostraPrefix() + nomeArquivo);
@@ -249,10 +246,10 @@ public class AlbumMgrController {
         addIncludes(photoInstance);
         photoRegister.save();
         album.add(photoRegister);
-        //result.use(Results.logic()).redirectTo(PhotoController.class).registra(photoInstance);
+        // result.use(Results.logic()).redirectTo(PhotoController.class).registra(photoInstance);
         result.use(Results.logic()).redirectTo(AlbumMgrController.class).registra(photoInstance);
-    }//end
-    
+    }// end
+
     @Get
     @Path(value = "/groupware-workbench/album/{albumMgr}/album/{idAlbum}/photo/registra")
     public void registra(PhotoMgrInstance photoInstance) {
@@ -262,7 +259,8 @@ public class AlbumMgrController {
     @Get
     @Path(value = "/groupware-workbench/album/{albumMgr}/photo/img-crop/{nomeArquivoUnico}")
     public Download imgCrop(AlbumMgrInstance albumMgr, String nomeArquivoUnico) {
-        PhotoMgrInstance photoInstance = (PhotoMgrInstance) albumMgr.getCollablet().getDependency("photoMgr").getBusinessObject();
+        PhotoMgrInstance photoInstance =
+                (PhotoMgrInstance) albumMgr.getCollablet().getDependency("photoMgr").getBusinessObject();
         File file = photoInstance.imgCrop(nomeArquivoUnico);
         FileDownload fs = new FileDownload(file, "image/jpg", file.getName());
         return fs;
@@ -271,7 +269,8 @@ public class AlbumMgrController {
     @Get
     @Path(value = "/groupware-workbench/album/{albumMgr}/photo/img-original/{nomeArquivoUnico}")
     public Download imgOriginal(AlbumMgrInstance albumMgr, String nomeArquivoUnico) {
-        PhotoMgrInstance photoInstance = (PhotoMgrInstance) albumMgr.getCollablet().getDependency("photoMgr").getBusinessObject();
+        PhotoMgrInstance photoInstance =
+                (PhotoMgrInstance) albumMgr.getCollablet().getDependency("photoMgr").getBusinessObject();
         File file = photoInstance.imgOriginal(nomeArquivoUnico);
         FileDownload fs = new FileDownload(file, "image/jpg", file.getName());
         return fs;
@@ -281,17 +280,19 @@ public class AlbumMgrController {
         result.include("photoInstance", photoInstance);
         photoInstance.getCollablet().includeDependencies(result);
 
-        //Adiciona os filhos.
+        // Adiciona os filhos.
         for (Collablet collabletInstance : photoInstance.getCollablet().getSubordinateds()) {
             String nomeComponente = collabletInstance.getName();
             result.include(nomeComponente, collabletInstance.getBusinessObject());
-            System.out.println("O componente filho " + collabletInstance.getName() + " foi adicionado na requisição com o nome " + nomeComponente);
+            System.out.println("O componente filho " + collabletInstance.getName() +
+                    " foi adicionado na requisição com o nome " + nomeComponente);
         }
 
         for (Collablet pai : photoInstance.getCollablet().getBottomUpHierarchy()) {
             String nomeComponente = pai.getName();
             result.include(nomeComponente, pai);
-            System.out.println("O componente antecessor " + pai.getName() + " foi adicionado na requisição com o nome " + nomeComponente);
+            System.out.println("O componente antecessor " + pai.getName() +
+                    " foi adicionado na requisição com o nome " + nomeComponente);
         }
     }
 
@@ -300,10 +301,11 @@ public class AlbumMgrController {
     public void showPhoto(AlbumMgrInstance albumMgr, long idPhoto) {
         Photo photo = Photo.findById(idPhoto);
 
-        PhotoMgrInstance photoInstance = (PhotoMgrInstance) albumMgr.getCollablet().getDependency("photoMgr").getBusinessObject();
+        PhotoMgrInstance photoInstance =
+                (PhotoMgrInstance) albumMgr.getCollablet().getDependency("photoMgr").getBusinessObject();
         result.include("idPhoto", idPhoto);
         result.include("nameCollablet", "photo");
-        //addIncludes();
+        // addIncludes();
         result.include("photoTitle", photo.getNome());
         if (photo.getDescricao() != null && !photo.getDescricao().isEmpty()) {
             result.include("photoDescription", photo.getDescricao());
@@ -319,7 +321,7 @@ public class AlbumMgrController {
         result.include("photo", photo);
         result.include("albumMgr", albumMgr);
     }
-    
+
     @Delete
     @Path(value = "/groupware-workbench/album/{albumMgr}/album/{idAlbum}/remove/{idPhoto}")
     public void deletePhoto(final AlbumMgrInstance albumMgr, final long idAlbum, final long idPhoto) {
@@ -336,28 +338,19 @@ public class AlbumMgrController {
         result.include("albumMgr", albumMgr);
         result.include("album", album);
         result.include("photo", photo);
-        //addIncludes(photoInstance);
+        // addIncludes(photoInstance);
     }
 
-    /*@Post
-    @Path(value = "/groupware-workbench/album/{albumMgr}/album/{idAlbum}/show/{idPhoto}")
-    public void addPhoto(final AlbumMgrInstance albumMgr, final Long idAlbum, final Long idPhoto) {
-        Photo photo = Photo.findById(idPhoto);
-        Album album = Album.findById(idAlbum);
-        PhotoMgrInstance photoInstance = (PhotoMgrInstance) albumMgr.getCollablet().getDependency("photoMgr").getBusinessObject();
-
-        if (album == null || photo == null || idPhoto < 1) {
-            validator.add(new ValidationMessage(MSG_ENTIDADE_INVALIDA, "Erro"));
-            return;
-        }
-
-        photoInstance.save(Photo.findById(idPhoto));//nao adianta
-        photo.save();
-        album.add(photo);
-        result.include("albumMgr", albumMgr);
-        result.include("album", album);
-        result.include("photo", photo);
-        //addIncludes(photoInstance);
-    }*/
+    /*
+     * @Post
+     * @Path(value = "/groupware-workbench/album/{albumMgr}/album/{idAlbum}/show/{idPhoto}") public void addPhoto(final
+     * AlbumMgrInstance albumMgr, final Long idAlbum, final Long idPhoto) { Photo photo = Photo.findById(idPhoto); Album
+     * album = Album.findById(idAlbum); PhotoMgrInstance photoInstance = (PhotoMgrInstance)
+     * albumMgr.getCollablet().getDependency("photoMgr").getBusinessObject(); if (album == null || photo == null ||
+     * idPhoto < 1) { validator.add(new ValidationMessage(MSG_ENTIDADE_INVALIDA, "Erro")); return; }
+     * photoInstance.save(Photo.findById(idPhoto));//nao adianta photo.save(); album.add(photo);
+     * result.include("albumMgr", albumMgr); result.include("album", album); result.include("photo", photo);
+     * //addIncludes(photoInstance); }
+     */
 
 }
