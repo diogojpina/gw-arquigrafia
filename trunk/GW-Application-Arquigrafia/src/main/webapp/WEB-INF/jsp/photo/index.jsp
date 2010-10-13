@@ -53,12 +53,10 @@
                     <div class="scrollingHotSpotRight" style="height: 500px;"></div>
                     <div class="scrollWrapper" id="images_scrollable">
                         <div class="scrollableArea">
-                            <div class="wallBackground">
-                                <c:if test="${photoMgr != null}">
+                            <div class="wallBackground">                               
                                     <c:forEach begin="0" end="21" var="indice">
                                         <photo:listPage linkClass="" photoInstance="${photoMgr}" keepRatio="false" showInDiv="true" divClass="wallImage" pageSize="5" pageNumber="${indice}" wrapClass="imageColumn" />
-                                    </c:forEach>
-                                </c:if>
+                                    </c:forEach>                                
                                 <div class="image_placeholder">
                                     <img src="${pageContext.request.contextPath}/images/ajax-loader.gif" alt="loading" />
                                 </div>
