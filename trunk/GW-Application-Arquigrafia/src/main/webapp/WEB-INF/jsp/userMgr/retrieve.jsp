@@ -52,6 +52,10 @@
                         <li class="label_f1"><span>Nome:</span></li>
                         <li class="input_f1"><input id="name" class="required" type="text" name="user.name" value="<c:out value="${user.name}" />" /></li>
                     </ul>
+                    <ul class="field_line_f1">
+                        <li class="label_f1"><span>Photo URL:</span></li>
+                        <li class="input_f1"><input id="photoURL" type="text" name="user.photoURL" value="<c:out value="${user.photoURL}" />" /></li>
+                    </ul>
                 </div>
 
                 <c:if test="${profileMgr != null}">
