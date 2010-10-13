@@ -100,8 +100,8 @@ public class Photo implements Serializable {
     }
 
     public static void saveImage(BufferedImage input, String name, String path) throws IOException {
-        File photoDirectory=new File(path);
-        if(!photoDirectory.exists()) {
+        File photoDirectory = new File(path);
+        if (!photoDirectory.exists()) {
             photoDirectory.mkdir();
         }
         Iterator<ImageWriter> iter = ImageIO.getImageWritersByFormatName("JPG");
