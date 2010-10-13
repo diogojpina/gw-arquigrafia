@@ -31,10 +31,7 @@ import br.org.groupwareworkbench.core.framework.Collablet;
 import br.org.groupwareworkbench.tests.DatabaseTester;
 import br.org.groupwareworkbench.tests.GWRunner;
 
-import java.io.BufferedInputStream;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -133,8 +130,8 @@ public class PhotoControllerTest {
             @Override
             public InputStream getFile() {
                 try {
-                    return new BufferedInputStream(new FileInputStream(new File(PhotoControllerTest.class.getResource("fotoum.jpg").getFile())));
-                } catch (FileNotFoundException e) {
+                    return PhotoControllerTest.class.getResource("fotoum.jpg").openStream();
+                } catch (IOException e) {
                     throw new AssertionError(e);
                 }
             }
