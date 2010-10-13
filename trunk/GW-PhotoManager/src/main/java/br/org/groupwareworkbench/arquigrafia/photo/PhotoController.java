@@ -170,6 +170,9 @@ public class PhotoController {
     @Get
     @Path(value = "/groupware-workbench/photo/{photoInstance}/registra")
     public void registra(PhotoMgrInstance photoInstance) {
+        Photo photo = new Photo();
+        photo.setCollablet(photoInstance.getCollablet());
+        result.include("photoRegister", photo);
         addIncludes(photoInstance);
     }
 
