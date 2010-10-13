@@ -30,17 +30,12 @@
 
         <w:conteudoPagina titulo="Faq">
 
-            <div id="subtitle_1">
-                <span class="subTitulo">Configura&ccedil;&atilde;o</span>
-                <w:configuracao collabletInstance="${faqMgr.collablet}" />
-            </div>
-
-            <div id="subtitle_2">
+            <div class="page_element">
                 <span class="subTitulo">Lista de perguntas e respostas frequentes</span>
                 <div id="tabela-perguntas"></div>
             </div>
 
-            <div id="subtitle_3">
+            <div class="page_element">
                 <span class="subTitulo">Collablets</span>
                 <w:menuFerramentas collabletInstance="${faqMgr.collablet}" />
             </div>

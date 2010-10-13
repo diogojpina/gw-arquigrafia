@@ -68,7 +68,7 @@ public class AlbumTest {
         if (db != null) db.close();
     }
 
-    // Databse populating methods.
+    // Database populating methods.
 
     private void persistOthers() {
         em.persist(c);

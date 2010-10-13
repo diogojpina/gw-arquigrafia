@@ -35,6 +35,7 @@ import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 
 import java.util.ArrayList;
@@ -45,11 +46,14 @@ import javax.persistence.EntityManager;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(GWRunner.class)
 public class PhotoControllerTest {
+
+    private static volatile String TEMP_DIR;
 
     private DatabaseTester db;
     private EntityManager em;
@@ -57,13 +61,18 @@ public class PhotoControllerTest {
     private PhotoController controller;
     private PhotoMgrInstance photoInstance;
 
-    private Collablet outroCollablet;
+    //private Collablet outroCollablet;
 
     private MockResult result;
 
     private Photo photo1;
     private Photo photo2;
     private Photo photo3;
+
+    @BeforeClass
+    public static void initClass() throws IOException {
+        TEMP_DIR = File.createTempFile("xxxx", "xxxx").getAbsolutePath();
+    }
 
     @Before
     public void setUp() {
@@ -77,14 +86,15 @@ public class PhotoControllerTest {
 
         collablet = new Collablet();
         collablet.setComponentClass(PhotoMgrInstance.class);
+        collablet.setProperty("dirImages", TEMP_DIR);
         collablet.setName("photoMgr");
         photoInstance = (PhotoMgrInstance) collablet.getBusinessObject();
         em.persist(collablet);
 
-        outroCollablet = new Collablet();
+        /*outroCollablet = new Collablet();
         outroCollablet.setComponentClass(PhotoMgrInstance.class);
         outroCollablet.setName("photoMgr2");
-        em.persist(outroCollablet);
+        em.persist(outroCollablet);*/
 
         photo1 = new Photo();
         photo1.setCollablet(collablet);

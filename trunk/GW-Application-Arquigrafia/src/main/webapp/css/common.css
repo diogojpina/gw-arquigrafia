@@ -155,6 +155,7 @@ td, th {
 	background-image: url(../images/bg/bgTabelaPrincipal.jpg);
 	background-repeat: repeat-x;
 	background-attachment: fixed;
+	text-align: left;
 }
 
 .box {
@@ -252,5 +253,5 @@ a {
 	background-image: url(../images/bg/tabelaBgAzul.jpg);
 	background-position: bottom;
 	background-repeat: repeat-x;
-	height: 48px;
+	padding: 20px;
 }

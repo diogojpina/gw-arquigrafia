@@ -1,14 +1,9 @@
 @charset "utf-8";
-/* CSS Document */
+
 #page_body {
-	margin-left: 50px;
+    margin-left: 50px;
 }
-#subtitle_1 {
-	margin-top: 30px;
-}
-#subtitle_2 {
-	margin-top: 30px;
-}
-#subtitle_3 {
-	margin-top: 30px;
+
+.page_element {
+    margin-top: 30px;
 }

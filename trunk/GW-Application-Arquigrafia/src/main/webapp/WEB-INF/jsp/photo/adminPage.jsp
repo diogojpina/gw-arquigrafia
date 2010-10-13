@@ -24,7 +24,6 @@
     <body>
         <w:topo collabletInstance="${photoInstance.collablet}" />
         <w:conteudoPagina titulo="Busca Fotos">
-            <w:configuracao collabletInstance="${photoInstance.collablet}" />
             <span class="subTitulo">Collablets</span>
             <br />
             <br />
