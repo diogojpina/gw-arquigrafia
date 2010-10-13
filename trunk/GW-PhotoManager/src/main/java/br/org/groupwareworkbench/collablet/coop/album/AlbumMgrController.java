@@ -304,7 +304,7 @@ public class AlbumMgrController {
         PhotoMgrInstance photoInstance =
                 (PhotoMgrInstance) albumMgr.getCollablet().getDependency("photoMgr").getBusinessObject();
         result.include("idPhoto", idPhoto);
-        result.include("nameCollablet", "photo");
+
         // addIncludes();
         result.include("photoTitle", photo.getNome());
         if (photo.getDescricao() != null && !photo.getDescricao().isEmpty()) {

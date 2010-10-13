@@ -18,9 +18,10 @@ import br.org.groupwareworkbench.core.framework.annotations.RequiredProperty;
         configurationURL = "/groupware-workbench/photo/{photoInstance}/index",
         retrieveURL = "/groupware-workbench/photo/{id}",
         defaultProperties = {
-        @DefaultProperty(name = "cropPrefix", defaultValue = "crop_"),
-        @DefaultProperty(name = "thumbPrefix", defaultValue = "thumb_"),
-        @DefaultProperty(name = "mostraPrefix", defaultValue = "mostra_")}, 
+            @DefaultProperty(name = "cropPrefix", defaultValue = "crop_"),
+            @DefaultProperty(name = "thumbPrefix", defaultValue = "thumb_"),
+            @DefaultProperty(name = "mostraPrefix", defaultValue = "mostra_")
+        },
         requiredProperties = {@RequiredProperty(name = "dirImages")})
 public class PhotoMgrInstance extends AbstractBusiness {
 
@@ -67,7 +68,7 @@ public class PhotoMgrInstance extends AbstractBusiness {
     }
 
     public List<Photo> buscaFotoPorListaId(List<Object> listObjects) {
-        List<Photo> photos = new ArrayList<Photo>();
+        List<Photo> photos = new ArrayList<Photo>(listObjects.size());
         for (Object object : listObjects) {
             if (object instanceof Photo) {
                 photos.add((Photo) object);

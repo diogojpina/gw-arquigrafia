@@ -38,7 +38,6 @@
     </head>
     
     <body>
-            <album:photoRegister photoRegister="${photoRegister}" albumMgr="${albumMgr}" />
-       
+        <album:photoRegister photoRegister="${photoRegister}" albumMgr="${albumMgr}" />
     </body>
 </html>

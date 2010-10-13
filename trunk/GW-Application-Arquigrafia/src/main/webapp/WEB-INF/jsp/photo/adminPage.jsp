@@ -53,7 +53,7 @@
             </c:forEach>
 
             <div class="barra_botoes">
-                <w:voltar collabletInstance="${photoInstance.collablet.parent}" />
+                <w:voltar collabletInstance="${photoInstance.collablet}" />
             </div>
         </w:conteudoPagina>
     </body>

@@ -105,7 +105,6 @@ public class PhotoController {
         }
 
         result.include("idPhoto", idPhoto);
-        result.include("nameCollablet", "photo");
 
         PhotoMgrInstance photoInstance = (PhotoMgrInstance) photo.getCollablet().getBusinessObject();
         addIncludes(photoInstance);

@@ -47,7 +47,7 @@
                 </div>
             </form>
             <div class="barra_botoes">
-                <w:voltar collabletInstance="${binomialMgr.collablet.parent}" />
+                <w:voltar collabletInstance="${binomialMgr.collablet}" />
             </div>
         </w:conteudoPagina>
     </body>

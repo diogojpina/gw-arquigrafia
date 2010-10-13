@@ -34,7 +34,7 @@
             </form>
 
             <div class="barra_botoes">
-                <w:voltar collabletInstance="${recommendMgr.collablet.parent}" />
+                <w:voltar collabletInstance="${recommendMgr.collablet}" />
             </div>
         </w:conteudoPagina>
     </body>

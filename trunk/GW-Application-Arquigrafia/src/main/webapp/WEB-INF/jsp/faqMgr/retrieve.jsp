@@ -74,7 +74,7 @@
                 <br />
             </form>
             <div class="barra_botoes">
-                <w:voltar collabletInstance="${faqMgr.collablet.parent}" />
+                <w:voltar collabletInstance="${faqMgr.collablet}" />
             </div>
         </w:conteudoPagina>
     </body>

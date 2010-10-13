@@ -28,9 +28,9 @@
                 <br/>
                 Nome: <input type="text" name="category.name" value="${category.name}" />
                 <br/>
-                <input type="submit" class="botao" value="Ok">
+                <input type="submit" class="botao" value="Ok" />
                 &nbsp; &nbsp;
-                <w:voltar collabletInstance="${categoryMgr.collablet.parent}" />
+                <w:voltar collabletInstance="${categoryMgr.collablet}" />
             </form>
         </w:conteudoPagina>
     </body>

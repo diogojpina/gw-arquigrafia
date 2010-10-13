@@ -32,7 +32,7 @@
                 </div>
             </form>
             <div class="barra_botoes">
-                <w:voltar collabletInstance="${roleMgr.collablet.parent}" />
+                <w:voltar collabletInstance="${roleMgr.collablet}" />
             </div>
         </w:conteudoPagina>
     </body>
