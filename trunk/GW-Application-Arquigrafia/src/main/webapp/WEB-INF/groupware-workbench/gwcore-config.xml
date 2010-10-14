@@ -109,7 +109,7 @@
         <subordination parent="photoMgr" child="binomialMgr" />
         <subordination parent="photoMgr" child="geoReferenceMgr" />
         <subordination parent="photoMgr" child="tagMgr" />
-        <subordination parent="photoMgr" child="friendsMgr" />
+        <subordination parent="photoMgr" child="friendsMgr" />        
         <!-- <subordination parent="photoMgr" child="albumMgr" /> -->
     </collablets-subordinations>
 
@@ -127,6 +127,7 @@
         <dependency from="userMgr" to="photoMgr" />
         <dependency from="userMgr" to="photoMgr" alias="--login--" />
         <dependency from="friendsMgr" to="photoMgr" />
+        <dependency from="userMgr" to="friendsMgr" />                
         <!-- <dependency from="albumMgr" to="photoMgr" /> -->
     </collablets-dependencies>
 </frameworkDescriptor>

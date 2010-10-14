@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="w" uri="http://www.groupwareworkbench.org.br/widgets/commons" %>
 <%@ taglib prefix="friends" uri="http://www.groupwareworkbench.org.br/widgets/friends"%>
+<%@ taglib prefix="r" uri="http://www.groupwareworkbench.org.br/taglibs/reflection" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -13,6 +14,17 @@
         <title>Friends</title>
     </head>
     <body>
+    <c:if test="${userMgr!=null}">
+    	<r:callMethod methodName="getAllElements" instance="${userMgr}" var="listUsers"/>
+    	<h1>Olaaa</h1>
+    	<c:forEach items="listUsers" var="u">
+   			<c:out value="${user.login}"/>
+   		</c:forEach>
+    	
+    </c:if>
+    
+				    		
+   
         <w:topo collabletInstance="${friendMgr.collablet}" />
         <w:conteudoPagina titulo="Friends:">
             <br />
@@ -25,6 +37,8 @@
             <friends:listFriends user="${user}" friendsMgr="${friendsMgr}" />
             <br/>
             <friends:editFriends user="${user}" friendsMgr="${friendsMgr}" />
+                                   
+   		         
         </w:conteudoPagina>
     </body>
 </html>
