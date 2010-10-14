@@ -41,31 +41,50 @@
 
 <input type="hidden" name="user.id" value="<c:out value="${user.id}" />" />
 <input type="hidden" name="photoRegister.id" value="<c:out value="${photoRegister.id}" />" />
+
 <div class="${formClass}" id="image_save_form">
    <ul class="${formLineClass}" id="imageUploadField">
-       <li class="${formLabelClass}"><span>Arquivo*:</span></li>
-       <li class="${formInputClass}" id="imageUpload"><input id="imageUpload" type="file" name="foto" /></li>
+       <li class="${formLabelClass}">
+       		<span>Arquivo*:</span>
+       </li>
+       <li class="${formInputClass}" id="imageUpload">
+       		<input id="imageUpload" type="file" name="foto" />
+       	</li>
    </ul>
    <fieldset>
        <legend>Nome e Descri&ccedil;&atilde;o</legend>
        <div class="${formLineClass}">
-           <label for="photoRegister.nome" class="${formLabelClass}"><span>Nome*:</span></label>
-           <span class="${formInputClass}"><input type="text" name="photoRegister.nome" /></span>
+           <label for="photoRegister.nome" class="${formLabelClass}">
+           		<span>Nome*:</span>
+           </label>
+           <span class="${formInputClass}">
+           		<input type="text" name="photoRegister.nome" />
+        	</span>
        </div>
        <div class="${formLineClass}">
-           <label for="photoRegister.descricao" class="${formLabelClass}"><span>Descri&ccedil;&atilde;o:</span></label>
+           <label for="photoRegister.descricao" class="${formLabelClass}">
+           		<span>Descri&ccedil;&atilde;o:</span>
+           </label>
            <textarea rows="3" name="photoRegister.descricao" class="${formInputClass}"></textarea>
        </div>
     </fieldset>
     <fieldset>
         <legend>Data e Localiza&ccedil;&atilde;o</legend>
         <div class="${formLineClass}">
-            <label for="photoRegister.data" class="${formLabelClass}"><span>Data:</span></label>
-            <span class="${formInputClass}"><input type="text" id="datepicker" name="photoRegister.data" /></span>
+            <label for="photoRegister.data" class="${formLabelClass}">
+            	<span>Data:</span>
+            </label>
+            <span class="${formInputClass}">
+            	<input type="text" id="datepicker" name="photoRegister.data" />
+            </span>
         </div>
         <div class="${formLineClass}">
-            <label for="photoRegister.lugar" class="${formLabelClass}"><span>Localiza&ccedil;&atilde;o:</span></label>
-            <span class="${formInputClass}"><input type="text" name="photoRegister.lugar" /></span>
+            <label for="photoRegister.lugar" class="${formLabelClass}">
+            	<span>Localiza&ccedil;&atilde;o:</span>
+           	</label>
+            <span class="${formInputClass}">
+            	<input type="text" name="photoRegister.lugar" />
+           	</span>
         </div>
     </fieldset>
     <fieldset>
@@ -73,7 +92,7 @@
         <ul class="${formLineClass}" style="vertical-align: top; height: 120px">
             <li class="${formLabelClass}"><span>Tags:</span></li>
             <li class="${formInputClass}">
-                <c:if test="${tagMgr != null and photoRegister != null}">
+                <c:if test="${tagMgr != null and photoRegister != null}"> 
                     <tag:selectTags tagMgr="${tagMgr}" />
                     <tag:setTags tagMgr="${tagMgr}" entity="${photoRegister}" />
                 </c:if>
