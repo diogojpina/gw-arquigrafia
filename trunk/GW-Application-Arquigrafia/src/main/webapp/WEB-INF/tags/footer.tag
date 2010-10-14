@@ -40,14 +40,17 @@
             <div style="float: left; width: 25%; margin-top: 20px;">
                 <img src="${pageContext.request.contextPath}/images/rnp_logo.png" alt="RNP" />
             </div>
-            <div style="float: left; width: 25%; margin-top: 20px;">
+            <div style="float: left; width: 20%; margin-top: 20px;">
                 <img src="${pageContext.request.contextPath}/images/usp_logo.png" alt="USP" />
             </div>
-            <div style="float: left; width: 25%; margin-top: 20px;">
+            <div style="float: left; width: 20%; margin-top: 20px;">
                 <img src="${pageContext.request.contextPath}/images/ime_logo.png" alt="IME" />
             </div>
-            <div style="float: left; width: 25%; margin-top: 20px;">
+            <div style="float: left; width: 20%; margin-top: 20px;">
                 <img src="${pageContext.request.contextPath}/images/fau_logo.png" alt="FAU" />
+            </div>
+            <div style="float: left; width: 15%; margin-top: 20px;">
+                <img src="${pageContext.request.contextPath}/images/eca_logo.gif" alt="ECA" style="width: 114px" />
             </div>
         </div>
     </div>
