@@ -29,11 +29,14 @@
     <div id="top_links" class="blue_link">
         <a href="${pageContext.request.contextPath}/groupware-workbench/photo/${photoInstance.id}/index">In&iacute;cio</a>
         &nbsp;|&nbsp;
-        <a href="help.htm">Ajuda</a>
+        <!--a href="help.htm">Ajuda</a-->
+        <a href="#">Ajuda</a>
         &nbsp;|&nbsp;
-        <a href="privacy.htm">Privacidade</a>
+        <!--a href="privacy.htm">Privacidade</a-->
+        <a href="#">Privacidade</a>
         &nbsp;|&nbsp;
-        <a href="legal.htm">Legal</a>
+        <!--a href="legal.htm">Legal</a-->
+        <a href="#">Legal</a>
         &nbsp;|&nbsp;
         <div id="photoUploadContent" style="visibility: hidden; display: none;">
             <iframe name="photoUploadFrame" style="width: 600px; height: 400px; opacity: 0.95;" id="photoUploadFrame" src="${pageContext.request.contextPath}/groupware-workbench/photo/${photoInstance.id}/registra"></iframe>
@@ -48,9 +51,11 @@
         </script>
         <a href="#" onclick="return showPhotoUpload();">Upload de fotos</a>
         &nbsp;|&nbsp;
-        <a href="${pageContext.request.contextPath}/groupware-workbench/recommend/${recommendMgr.id}/calcRecommend">Recomendar</a>
+        <!--a href="${pageContext.request.contextPath}/groupware-workbench/recommend/${recommendMgr.id}/calcRecommend">Recomendar</a-->
+        <a href="#">Recomendar</a>
         &nbsp;|&nbsp;
-        <a href="${pageContext.request.contextPath}/groupware-workbench/ratings/${ratingMgr.id}">Rating</a>
+        <!--a href="${pageContext.request.contextPath}/groupware-workbench/ratings/${ratingMgr.id}">Rating</a-->
+        <a href="#">Rating</a>
         &nbsp;|&nbsp;
         <a href="${pageContext.request.contextPath}/groupware-workbench/friends/${friendsMgr.id}/list">Profile do Usuario</a>
     </div>
