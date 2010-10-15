@@ -62,7 +62,7 @@
         <arq:header2 photoInstance="${photoInstance}" />
         <form name="tags" method="post" enctype="multipart/form-data" action="<c:url value="/groupware-workbench/photo/${photo.id}" />">
         <div id="photoRel">
-            <c:if test="${binomialMgr != null}">
+            <c:if test="${binomialMgr.collablet.enabled}">
                 <div id="binomialsTitle" class="big_white_title">Medidores</div>
                 <div id="binLink">
                     <a id="myLink">
@@ -163,7 +163,7 @@
                         <p style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; color: #6A8A9A; padding-left: 20px; margin-top: 5px;"><c:out value="${photo.descricao}" /></p>
                     </div>
                 </c:if>
-                <%--c:if test="${recommendMgr != null}">
+                <%--c:if test="${recommendMgr.collablet.enabled}">
                     <div>
                         <div style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; font-weight: bold; color: #6A8A9A; margin-top: 15px; background-color: #B8C7CF">Relacionadas</div>
                         <p style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; color: #6A8A9A; padding-left: 20px; margin-top: 5px;">
@@ -175,7 +175,7 @@
         </div>
         <div id="photoBackground"></div>
         <div style="height: 5px; width: 100%; clear:both"></div>
-            <c:if test="${commentMgr != null}">
+            <c:if test="${commentMgr.collablet.enabled}">
                 <div id="comments_bar">
                     <div id="comments_bar_bg">
                         <div id="comments_bar_title" class="big_blue_title2">Coment&aacute;rios</div>

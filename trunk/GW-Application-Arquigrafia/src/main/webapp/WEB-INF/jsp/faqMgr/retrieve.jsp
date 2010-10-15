@@ -29,7 +29,7 @@
                 <input type="hidden" name="faq.id" value="<c:out value="${faq.id}" />" />
                 <%-- TODO: Tableless! --%>
                 <table cellpadding="3">
-                    <c:if test="${categoryMgr != null}">
+                    <c:if test="${categoryMgr.collablet.enabled}">
                         <tr>
                             <td>Categoria</td>
                             <td>
@@ -48,7 +48,7 @@
                     <tr>
                         <td></td>
                         <td>
-                            <c:if test="${tagMgr != null}">
+                            <c:if test="${tagMgr.collablet.enabled}">
                                 Tags clique em uma das tags abaixo para adicion&aacute;-la ao FAQ.
                                 <br />
                                 <tag:selectTags tagMgr="${tagMgr}" />
@@ -56,7 +56,7 @@
                             </c:if>
                         </td>
                         <td>
-                            <c:if test="${binomialMgr != null}">
+                            <c:if test="${binomialMgr.collablet.enabled}">
                                 <%-- FIXME: binomial:setBinomial não existe e nem nunca existiu! --%>
                                 <binomial:setBinomial binomialMgr="${binomialMgr}" entity="${faq}" user="${sessionScope.userLogin}" />
                             </c:if>

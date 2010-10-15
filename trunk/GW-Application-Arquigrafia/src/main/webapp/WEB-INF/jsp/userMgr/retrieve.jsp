@@ -58,11 +58,11 @@
                     </ul>
                 </div>
 
-                <c:if test="${profileMgr != null}">
+                <c:if test="${profileMgr.collablet.enabled}">
                     <profile:profile profileMgr="${profileMgr}" user="${user}" />
                 </c:if>
 
-                <c:if test="${roleMgr != null}">
+                <c:if test="${roleMgr.collablet.enabled}">
                     <div class="subsection_f1">
                         <fieldset>
                             <legend><span class="subtitle_f1">Atribuir pap&eacute;is:</span></legend>

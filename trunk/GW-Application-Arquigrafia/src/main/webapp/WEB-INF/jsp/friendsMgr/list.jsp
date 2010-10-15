@@ -14,17 +14,6 @@
         <title>Friends</title>
     </head>
     <body>
-    <c:if test="${userMgr!=null}">
-    	<r:callMethod methodName="getAllElements" instance="${userMgr}" var="listUsers"/>
-    	<h1>Olaaa</h1>
-    	<c:forEach items="listUsers" var="u">
-   			<c:out value="${user.login}"/>
-   		</c:forEach>
-    	
-    </c:if>
-    
-				    		
-   
         <w:topo collabletInstance="${friendMgr.collablet}" />
         <w:conteudoPagina titulo="Friends:">
             <br />
@@ -37,8 +26,22 @@
             <friends:listFriends user="${user}" friendsMgr="${friendsMgr}" />
             <br/>
             <friends:editFriends user="${user}" friendsMgr="${friendsMgr}" />
-                                   
-   		         
+
+
+		    <c:if test="${userMgr!=null}">
+		    	<r:callMethod methodName="getAllElements" instance="${userMgr}" var="listUsers"/>    	
+		    	
+		    	<div>
+			    	<c:forEach items="${listUsers}" var="u">
+			    		<div>
+			    			<c:out value="${u.login}"/>
+			    		</div>
+			    		<div>
+			    			<friends:sendRequest friendsMgr="${friendsMgr}" user="${u}"/>
+			    		</div>
+			   		</c:forEach>
+		   		</div>
+		    </c:if>
         </w:conteudoPagina>
     </body>
 </html>

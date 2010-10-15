@@ -37,7 +37,7 @@
                 <div class="login_box_clear"></div>
                 <div class="login_messages">
                     <c:set var="env" value="${sessionScope.emailEnviado}" />
-                    <c:if test="${env != null and not env}">
+                    <c:if test="${env.collablet.enabled and not env}">
                         <span class="login_error">E-mail não encontrado</span>
                     </c:if>
                     <c:if test="${sessionScope['log'] == false}">
