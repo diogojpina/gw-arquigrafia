@@ -11,20 +11,17 @@
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css" />
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css" />
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/page_content.css" />
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/friends.css" />
         <title>Friends</title>
     </head>
     <body>
-        <w:topo collabletInstance="${friendMgr.collablet}" />
-        <w:conteudoPagina titulo="Friends:">
-            <br />
-            <h1><span class="style1">Lista Amigos</span></h1>
-            <br />            
+    <div style="padding-left: 15px">
+    
+            <friends:listFriendsRequests user="${user}" friendsMgr="${friendsMgr}" friends_header="friends_header"/>
             <br/>
-            <friends:listFriendsRequests user="${user}" friendsMgr="${friendsMgr}" />
+            <friends:listFriends user="${user}" friendsMgr="${friendsMgr}" friends_header="friends_header" />
             <br/>
-            <friends:listFriends user="${user}" friendsMgr="${friendsMgr}" />
-            <br/>
-            <friends:editFriends user="${user}" friendsMgr="${friendsMgr}" />
+            <friends:editFriends user="${user}" friendsMgr="${friendsMgr}" friends_header="friends_header"/>
 
 
 		    <c:if test="${userMgr.collablet.enabled}">
@@ -32,7 +29,7 @@
 		    	
 		    	<div>
 			    	<c:forEach items="${listUsers}" var="u">
-			    		<div>
+			    		<div class="all_friends">
 			    		<c:if test="${u.login != user.login}">
 			    			<c:out value="${u.login}"/>  <friends:sendRequest friendsMgr="${friendsMgr}" user="${u}"/>
 			    		</c:if>
@@ -41,6 +38,6 @@
 			   		</c:forEach>
 		   		</div>
 		    </c:if>
-        </w:conteudoPagina>
+		    </div>
     </body>
 </html>

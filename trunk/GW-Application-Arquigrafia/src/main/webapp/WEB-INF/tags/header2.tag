@@ -41,12 +41,18 @@
         <div id="photoUploadContent" style="visibility: hidden; display: none;">
             <iframe name="photoUploadFrame" style="width: 600px; height: 400px; opacity: 0.95;" id="photoUploadFrame" src="${pageContext.request.contextPath}/groupware-workbench/photo/${photoInstance.id}/registra"></iframe>
         </div>
+        <div id="friendsContent" style="visibility: hidden; display: none;">
+            <iframe name="friendsFrame" style="width: 450px; height: 400px; opacity: 0.95;" id="friendsFrame" src="${pageContext.request.contextPath}/groupware-workbench/friends/${friendsMgr.id}/list"></iframe>
+        </div>
         <script type="text/javascript">
             function refreshPage() {
                 window.location.reload(true);
             }
             function showPhotoUpload() {
                 new Boxy($("#photoUploadContent").html(), {title: "Use o formulário para enviar uma foto.", modal: true, closeText: "Fechar", afterHide: function() {refreshPage();}}).show();
+            };
+            function showFriends() {
+                new Boxy($("#friendsContent").html(), {title: "Meus Amigos", modal: true, closeText: "Fechar", afterHide: function() {refreshPage();}}).show();
             };
         </script>
         <a href="#" onclick="return showPhotoUpload();">Upload de fotos</a>
@@ -57,7 +63,7 @@
         <!--a href="${pageContext.request.contextPath}/groupware-workbench/ratings/${ratingMgr.id}">Rating</a-->
         <a href="#">Rating</a>
         &nbsp;|&nbsp;
-        <a href="${pageContext.request.contextPath}/groupware-workbench/friends/${friendsMgr.id}/list">Profile do Usuario</a>
+		<a href="#" onclick="return showFriends();">Meus Amigos</a>
     </div>
     <div id="search_field">
         <img src="${pageContext.request.contextPath}/images/head1_left2_top.png" width="99" height="100" alt="campo de busca" />
