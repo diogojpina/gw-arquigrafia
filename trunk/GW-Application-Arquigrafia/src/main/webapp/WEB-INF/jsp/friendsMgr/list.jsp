@@ -18,8 +18,7 @@
         <w:conteudoPagina titulo="Friends:">
             <br />
             <h1><span class="style1">Lista Amigos</span></h1>
-            <br />
-            <friends:sendRequest user="${user}" friendsMgr="${friendsMgr}" />
+            <br />            
             <br/>
             <friends:listFriendsRequests user="${user}" friendsMgr="${friendsMgr}" />
             <br/>
@@ -34,11 +33,11 @@
 		    	<div>
 			    	<c:forEach items="${listUsers}" var="u">
 			    		<div>
-			    			<c:out value="${u.login}"/>
+			    		<c:if test="${u.login != user.login}">
+			    			<c:out value="${u.login}"/>  <friends:sendRequest friendsMgr="${friendsMgr}" user="${u}"/>
+			    		</c:if>
 			    		</div>
-			    		<div>
-			    			<friends:sendRequest friendsMgr="${friendsMgr}" user="${u}"/>
-			    		</div>
+			    		
 			   		</c:forEach>
 		   		</div>
 		    </c:if>
