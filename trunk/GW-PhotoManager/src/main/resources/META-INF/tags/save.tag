@@ -92,7 +92,7 @@
         <ul class="${formLineClass}" style="vertical-align: top; height: 120px">
             <li class="${formLabelClass}"><span>Tags:</span></li>
             <li class="${formInputClass}">
-                <c:if test="${tagMgr != null and photoRegister != null}"> 
+                <c:if test="${tagMgr.collablet.enabled and photoRegister.collablet.enabled}"> 
                     <tag:selectTags tagMgr="${tagMgr}" />
                     <tag:setTags tagMgr="${tagMgr}" entity="${photoRegister}" />
                 </c:if>

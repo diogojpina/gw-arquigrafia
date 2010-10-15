@@ -28,7 +28,7 @@
             <friends:editFriends user="${user}" friendsMgr="${friendsMgr}" />
 
 
-		    <c:if test="${userMgr!=null}">
+		    <c:if test="${userMgr.collablet.enabled}">
 		    	<r:callMethod methodName="getAllElements" instance="${userMgr}" var="listUsers"/>    	
 		    	
 		    	<div>

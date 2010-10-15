@@ -11,7 +11,7 @@
         <img src="${pageContext.request.contextPath}/images/footer_left_top.png" width="717" height="44" alt="&Uacute;ltimas fotos" />
     </div>
 
-    <c:if test="${tagMgr != null}">
+    <c:if test="${tagMgr.collablet.enabled}">
         <tag:tagCloud tagMgr="${tagMgr}" collabletInstance="${photoInstance.collablet}" />
     </c:if>
 
