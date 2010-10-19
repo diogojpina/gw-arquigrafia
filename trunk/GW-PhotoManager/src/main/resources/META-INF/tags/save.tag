@@ -16,8 +16,10 @@
 <%@ attribute name="formLineBtClass" required="false" rtexprvalue="false" type="java.lang.String" %>
 <%@ attribute name="formSubmitBtClass" required="false" rtexprvalue="false" type="java.lang.String" %>
 
+<tag:scriptTags />
+
 <script type="text/javascript">
-    $(function() {
+    $(document).ready(function() {
         $("#datepicker").datepicker({
             "showOn": "button",
             "changeMonth": true,
@@ -37,7 +39,7 @@
     });
 </script>
 
-<tag:scriptTags />
+
 
 <input type="hidden" name="user.id" value="<c:out value="${user.id}" />" />
 <input type="hidden" name="photoRegister.id" value="<c:out value="${photoRegister.id}" />" />
