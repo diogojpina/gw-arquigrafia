@@ -19,7 +19,15 @@
 <tag:scriptTags />
 
 <script type="text/javascript">
-    $(document).ready(function() {
+$(document).ready(function() {
+	var datepick = document.getElementById("datepicker");
+	var data = new Date();
+	datepick.value = data.getDate()+"/"+(data.getMonth()+1)+"/"+data.getFullYear();
+});
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function() {		
         $("#datepicker").datepicker({
             "showOn": "button",
             "changeMonth": true,
