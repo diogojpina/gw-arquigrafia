@@ -30,13 +30,13 @@
         <a href="${pageContext.request.contextPath}/groupware-workbench/photo/${photoInstance.id}/index">In&iacute;cio</a>
         &nbsp;|&nbsp;
         <!--a href="help.htm">Ajuda</a-->
-        <a href="#">Ajuda</a>
+        Ajuda
         &nbsp;|&nbsp;
         <!--a href="privacy.htm">Privacidade</a-->
-        <a href="#">Privacidade</a>
+        Privacidade
         &nbsp;|&nbsp;
         <!--a href="legal.htm">Legal</a-->
-        <a href="#">Legal</a>
+        Legal
         &nbsp;|&nbsp;
         <div id="photoUploadContent" style="visibility: hidden; display: none;">
             <iframe name="photoUploadFrame" style="width: 600px; height: 400px; opacity: 0.95;" id="photoUploadFrame" src="${pageContext.request.contextPath}/groupware-workbench/photo/${photoInstance.id}/registra"></iframe>
@@ -58,12 +58,14 @@
         <a href="#" onclick="return showPhotoUpload();">Upload de fotos</a>
         &nbsp;|&nbsp;
         <!--a href="${pageContext.request.contextPath}/groupware-workbench/recommend/${recommendMgr.id}/calcRecommend">Recomendar</a-->
-        <a href="#">Recomendar</a>
+        Recomendar
         &nbsp;|&nbsp;
         <!--a href="${pageContext.request.contextPath}/groupware-workbench/ratings/${ratingMgr.id}">Rating</a-->
-        <a href="#">Rating</a>
+        Rating
         &nbsp;|&nbsp;
 		<a href="#" onclick="return showFriends();">Meus Amigos</a>
+		&nbsp;|&nbsp;
+		<a href="${pageContext.request.contextPath}/groupware-workbench/users/${userMgr.id}/list">Usuarios</a>
     </div>
     <div id="search_field">
         <img src="${pageContext.request.contextPath}/images/head1_left2_top.png" width="99" height="100" alt="campo de busca" />
