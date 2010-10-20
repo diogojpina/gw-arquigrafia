@@ -102,7 +102,8 @@ $(document).ready(function() {
         <ul class="${formLineClass}" style="vertical-align: top; height: 120px">
             <li class="${formLabelClass}"><span>Tags:</span></li>
             <li class="${formInputClass}">
-                <c:if test="${tagMgr.collablet.enabled and photoRegister.collablet.enabled}"> 
+                <c:if test="${tagMgr.collablet.enabled and photoRegister.collablet.enabled}">
+                    <label class="${formLabelClass}}">As tags devem ser separadas por ,</label>
                     <tag:selectTags tagMgr="${tagMgr}" />
                     <tag:setTags tagMgr="${tagMgr}" entity="${photoRegister}" />
                 </c:if>

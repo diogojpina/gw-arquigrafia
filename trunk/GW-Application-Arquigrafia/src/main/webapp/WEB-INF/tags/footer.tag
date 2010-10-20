@@ -38,22 +38,22 @@
             O desenvolvimento deste projeto recebe o apoio de:
             <br />
             <div style="float: left; width: 25%; margin-top: 20px;">
-                <img src="${pageContext.request.contextPath}/images/rnp_logo.png" alt="RNP" />
+                <a href="http://www.rnp.br/"><img src="${pageContext.request.contextPath}/images/rnp_logo.png" alt="RNP" /></a>
             </div>
             <div style="float: left; width: 15%; margin-top: 20px;">
-                <img src="${pageContext.request.contextPath}/images/usp_logo.png" alt="USP" />
+                <a href="http://www.usp.br/"><img src="${pageContext.request.contextPath}/images/usp_logo.png" alt="USP" /></a>
             </div>
             <div style="float: left; width: 15%; margin-top: 20px;">
-                <img src="${pageContext.request.contextPath}/images/ime_logo.png" alt="IME" />
+                <a href="htpp://www.ime.usp.br"><img src="${pageContext.request.contextPath}/images/ime_logo.png" alt="IME" /></a>
             </div>
             <div style="float: left; width: 15%; margin-top: 20px;">
-                <img src="${pageContext.request.contextPath}/images/fau_logo.png" alt="FAU" />
+                <a href="http://www.usp.br/fau/"><img src="${pageContext.request.contextPath}/images/fau_logo.png" alt="FAU" /></a>
             </div>
             <div style="float: left; width: 15%; margin-top: 20px;">
-                <img src="${pageContext.request.contextPath}/images/eca_logo.gif" alt="ECA" style="width: 114px" />
+                <a href="http://www3.eca.usp.br/"><img src="${pageContext.request.contextPath}/images/eca_logo.gif" alt="ECA" style="width: 114px" /></a>
             </div>
             <div style="float: left; width: 15%; margin-top: 20px;">
-                <img src="${pageContext.request.contextPath}/images/ccsl.png" alt="CCSL" style="height: 84px" />
+                <a href="http://ccsl.ime.usp.br/"><img src="${pageContext.request.contextPath}/images/ccsl.png" alt="CCSL" style="height: 84px" /></a>
             </div>
         </div>
     </div>

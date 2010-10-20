@@ -53,15 +53,17 @@ fieldset {
 }
 
 .prev, .next { 
-	background-color:#CD270A;
+	background-color:#003399;
 	padding:5px 10px;
-	color:#fff; 
+	color:#fff;
+        width: 70px;
+        text-align: center;
 	text-decoration:none;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
 }
-.prev:hover, .next:hover { background-color:#F8816B; text-decoration:none;}
+.prev:hover, .next:hover { background-color:#0033CC; text-decoration:none;}
 .prev { float:left;}
 .next { float:right;}
 #steps { list-style:none; width:100%; overflow:hidden; margin:0px; padding:0px;}
