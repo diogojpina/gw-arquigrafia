@@ -58,6 +58,7 @@ public class PhotoController {
     public static final String MSG_IMAGEM_OBRIGATORIA = "Uma imagem é obrigatória.";
     public static final String MSG_NAO_FOI_POSSIVEL_REDIMENSIONAR = "Não foi possível redimensionar a imagem.";
     public static final String MSG_FALHA_NO_UPLOAD = "Falha ao fazer o upload da imagem.";
+    public static final String MSG_IMAGEM_NAO_EXISTENTE = "Precisa-se da rota da imagem correta.";
     public static final String MSG_ENTIDADE_INVALIDA = "Não é uma entidade válida.";
 
     private final Result result;
@@ -226,6 +227,12 @@ public class PhotoController {
             foto.getFile().read(rawphoto);
             ByteArrayInputStream bais = new ByteArrayInputStream(rawphoto);
             imagemOriginal = ImageIO.read(bais);
+            if(imagemOriginal==null){
+                validator.add(new ValidationMessage(MSG_IMAGEM_NAO_EXISTENTE, "Erro"));
+                validator.onErrorUse(Results.logic()).redirectTo(PhotoController.class).registra(photoInstance);
+                return;
+            }
+            
             imagemMostra = ImageUtils.createThumbnailIfNecessary(800, imagemOriginal, true);
             imagemThumb = ImageUtils.createThumbnailIfNecessary(100, imagemOriginal, true);
             BufferedImage imagemThumb2 = ImageUtils.createThumbnailIfNecessary(100, imagemOriginal, false);
