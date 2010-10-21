@@ -76,18 +76,18 @@
                 </li>
                 <li style="display: inline">
                     <div id="search_options1">
-                        <span class="option_on">Texto</span>
+                       <!-- <span class="option_on">Texto</span>
                         <span class="fat_separator">|</span>
-                        <span class="option_off">Tags</span>
+                        <span class="option_off">Tags</span> -->
                         <br />
                         <span id="advancedSearch">
                             <a href="#" class="orange_link">Busca Avan&ccedil;ada &gt;&gt;</a>
                         </span>
                     </div>
                     <div id="search_options2">
-                        <span class="option_on">Texto</span>
+                        <!--<span class="option_on">Texto</span>
                         <span class="fat_separator">|</span>
-                        <span class="option_off">Tags</span>
+                        <span class="option_off">Tags</span> -->
                         <br />
                         <span id="simpleSearch">
                             <a href="#" class="orange_link">Busca Simples &gt;&gt;</a>

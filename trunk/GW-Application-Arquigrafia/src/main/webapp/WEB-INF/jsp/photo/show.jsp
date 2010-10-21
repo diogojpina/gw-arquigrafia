@@ -45,17 +45,26 @@
         </script>
         <binomial:scriptBinomial />
         <tag:scriptTags />
-        <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+        <script type="text/javascript" src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAbf6eUcfIXSm07sEX-Hds_RRENaz91t6R4aLs0JFjRYJDtYpxpRTiOp0ddxtDlMNsckRtLrwfJnhCLg&sensor=false"></script>
         <script type="text/javascript">
-            function initializeMap() {
-                var latlng = new google.maps.LatLng(-34.397, 150.644);
-                var myOptions = {
-                    zoom: 8,
-                    center: latlng,
-                    mapTypeId: google.maps.MapTypeId.ROADMAP
-                };
-                var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+         $(function() {
+            var map = null;
+
+            // Inicializador do Google Maps.
+            if (GBrowserIsCompatible()) {
+                map = new GMap2($("#map_canvas").get(0), { size: new GSize(400, 300) });
+                map.enableContinuousZoom();
+                map.enableScrollWheelZoom();
             }
+
+            //Destrutor do Google Maps.
+            $("body").unload(GUnload);
+
+            if (map == null) {
+                alert("Error! The map is null!");
+            }
+            map.setCenter(new GLatLng(-14.235004, -43.92528), 4);
+        });
         </script>
     </head>
     <body onload="initializeMap()">
