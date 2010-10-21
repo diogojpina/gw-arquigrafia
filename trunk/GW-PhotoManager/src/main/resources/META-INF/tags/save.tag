@@ -99,18 +99,20 @@ $(document).ready(function() {
     </fieldset>
     <fieldset>
         <legend>Dados Adicionais</legend>
-        <ul class="${formLineClass}" style="vertical-align: top; height: 120px">
+        <ul class="${formLineClass}" style="height:100px;">
             <li class="${formLabelClass}"><span>Tags:</span></li>
             <li class="${formInputClass}">
                 <c:if test="${tagMgr.collablet.enabled and photoRegister.collablet.enabled}">
-                    <label class="${formLabelClass}}">As tags devem ser separadas por ,</label>
+                    <label style="font-size:12px;color:blue;">As tags devem ser separadas por ,</label>
                     <tag:selectTags tagMgr="${tagMgr}" />
                     <tag:setTags tagMgr="${tagMgr}" entity="${photoRegister}" />
                 </c:if>
             </li>
         </ul>
-        <ul class="${formLineBtClass}">
-            <li class="${formSubmitBtClass}"><input id="imageSubmit" type="submit" value="Salvar" /></li>
+        <ul class="${formLineBtClass}" style="margin-left:0;">
+            <li class="${formSubmitBtClass}" >
+            	<input id="imageSubmit" type="submit" value="Salvar" />
+            </li>
         </ul>
     </fieldset>
 </div>

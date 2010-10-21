@@ -56,12 +56,13 @@ fieldset {
 	background-color:#003399;
 	padding:5px 10px;
 	color:#fff;
-        width: 70px;
+        width: 75px;
         text-align: center;
 	text-decoration:none;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
+	font-family:arial;
 }
 .prev:hover, .next:hover { background-color:#0033CC; text-decoration:none;}
 .prev { float:left;}
