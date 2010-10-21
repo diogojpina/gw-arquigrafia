@@ -60,6 +60,7 @@ public class PhotoController {
     public static final String MSG_FALHA_NO_UPLOAD = "Falha ao fazer o upload da imagem.";
     public static final String MSG_IMAGEM_NAO_EXISTENTE = "Precisa-se da rota da imagem correta.";
     public static final String MSG_ENTIDADE_INVALIDA = "Não é uma entidade válida.";
+    public static final String MSG_SUCCESS = "A foto foi salva com sucesso";
 
     private final Result result;
     private final WidgetInfo info;
@@ -267,6 +268,7 @@ public class PhotoController {
 
         photoInstance.getCollablet().processWidgets(info, photoRegister);
         addIncludes(photoInstance);
+        result.include("successMessage", MSG_SUCCESS);
         result.use(Results.logic()).redirectTo(PhotoController.class).registra(photoInstance);
     }
 

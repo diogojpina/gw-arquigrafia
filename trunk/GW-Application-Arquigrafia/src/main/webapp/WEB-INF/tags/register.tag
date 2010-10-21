@@ -31,6 +31,17 @@
     	</script> 
     </c:if>
 </div>
+<div id="success" class="messages">
+    <script type="text/javascript">
+        $("#success").show().delay(2000).slideUp(300);                
+    </script>
+    <c:out value="${successMessage}" />    
+    <c:if test="${empty successMessage}">
+    	<script type="text/javascript">
+            $("#success").hide();
+    	</script> 
+    </c:if>
+</div>
 <div id="internal_wrap">
     <div class="mid_blue_text" style="margin-left: 30px; background-color: #fff;">
         <form name="photoRegisterForm" id="photoRegisterForm" method="post" enctype="multipart/form-data"

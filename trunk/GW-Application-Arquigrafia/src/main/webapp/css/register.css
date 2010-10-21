@@ -17,7 +17,7 @@ body {
 #register_title div {
 	float: left;
 }
-#errors {
+#errors, .messages {
 	padding-left: 30px;
 	padding-bottom: 10px;
 	padding-top: 10px;
@@ -31,6 +31,12 @@ body {
 	border-style: solid;
 	background-color: #FCC6BC;
 }
+
+.messages {
+	color: #009900;
+	background-color: #33FF33;
+}
+
 #imageUploadField {
 	background-color: #CBD6DC;
 	border-color: #CBD6DC;
