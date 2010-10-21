@@ -100,6 +100,12 @@
             <description>Gerenciar Albuns</description>
             <name>albumMgr</name>
         </collablet> -->
+        
+        <collablet>
+            <business>br.org.groupwareworkbench.collablet.communic.comment.CommentMgrInstance</business>
+            <description>Gerenciar comentários</description>
+            <name>commentMgr2</name>
+        </collablet>
 
     </collablets>
 
@@ -111,11 +117,15 @@
         <subordination parent="photoMgr" child="tagMgr" />
         <subordination parent="photoMgr" child="friendsMgr" />        
         <!-- <subordination parent="photoMgr" child="albumMgr" /> -->
+        <subordination parent="photoMgr" child="commentMgr" />
+        <subordination parent="photoMgr" child="commentMgr2" />
+<!--        <subordination parent="friendsMgr" child="commentMgr2" />-->
     </collablets-subordinations>
 
     <collablets-dependencies>
         <dependency from="roleMgr" to="userMgr" />
         <dependency from="profileMgr" to="userMgr" />
+        <dependency from="commentMgr2" to="friendsMgr" />
         <dependency from="commentMgr" to="photoMgr" />
         <dependency from="geoReferenceMgr" to="photoMgr" />
         <dependency from="tagMgr" to="photoMgr" />
@@ -128,7 +138,8 @@
         <dependency from="userMgr" to="photoMgr" />
         <dependency from="userMgr" to="photoMgr" alias="--login--" />
         <dependency from="friendsMgr" to="photoMgr" />
-        <dependency from="userMgr" to="friendsMgr" />                
+        <dependency from="commentMgr2" to="photoMgr" />
+        <dependency from="userMgr" to="friendsMgr" />
         <!-- <dependency from="albumMgr" to="photoMgr" /> -->
     </collablets-dependencies>
 </frameworkDescriptor>

@@ -16,7 +16,13 @@
     </head>
     <body>
     <div style="padding-left: 15px">
-    
+    		<br/>
+			<div class="${friend}">
+                <a href="<c:url value="/groupware-workbench/friends/${friendsMgr.id}/show/${user.id}"/>">
+                    <span class="${friend_name}">Meu perfil</span>
+                </a>
+            </div>
+    		<br/>
             <friends:listFriendsRequests user="${user}" friendsMgr="${friendsMgr}" friends_header="friends_header"/>
             <br/>
             <friends:listFriends user="${user}" friendsMgr="${friendsMgr}" friends_header="friends_header" />
