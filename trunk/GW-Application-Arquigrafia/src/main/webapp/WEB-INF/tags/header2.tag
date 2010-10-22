@@ -50,22 +50,22 @@
             }
             function showPhotoUpload() {
                 new Boxy($("#photoUploadContent").html(), {title: "Use o formulário para enviar uma foto.", modal: true, closeText: "Fechar", afterHide: function() {refreshPage();}}).show();
-            };
+            }
             function showFriends() {
                 new Boxy($("#friendsContent").html(), {title: "Meus Amigos", modal: true, closeText: "Fechar", afterHide: function() {refreshPage();}}).show();
-            };
+            }
         </script>
         <a href="#" onclick="return showPhotoUpload();">Upload de fotos</a>
         &nbsp;|&nbsp;
-        <!--a href="${pageContext.request.contextPath}/groupware-workbench/recommend/${recommendMgr.id}/calcRecommend">Recomendar</a-->
+        <%--a href="${pageContext.request.contextPath}/groupware-workbench/recommend/${recommendMgr.id}/calcRecommend">Recomendar</a--%>
         Recomendar
         &nbsp;|&nbsp;
-        <!--a href="${pageContext.request.contextPath}/groupware-workbench/ratings/${ratingMgr.id}">Rating</a-->
+        <%--a href="${pageContext.request.contextPath}/groupware-workbench/ratings/${ratingMgr.id}">Rating</a--%>
         Rating
         &nbsp;|&nbsp;
-		<a href="#" onclick="return showFriends();">Meus Amigos</a>
-		&nbsp;|&nbsp;
-		<a href="${pageContext.request.contextPath}/groupware-workbench/users/${userMgr.id}/list">Usuarios</a>
+        <a href="#" onclick="return showFriends();">Meus Amigos</a>
+        &nbsp;|&nbsp;
+        <a href="${pageContext.request.contextPath}/groupware-workbench/users/${userMgr.id}/list">Usu&aacute;rios</a>
     </div>
     <div id="search_field">
         <img src="${pageContext.request.contextPath}/images/head1_left2_top.png" width="99" height="100" alt="campo de busca" />
@@ -76,7 +76,7 @@
                 </li>
                 <li style="display: inline">
                     <div id="search_options1">
-                       <!-- <span class="option_on">Texto</span>
+                        <!-- <span class="option_on">Texto</span>
                         <span class="fat_separator">|</span>
                         <span class="option_off">Tags</span> -->
                         <br />
@@ -100,10 +100,9 @@
     <div id="advancedSearchField" class="mid_blue_text">
         <div>
             <photo:advancedSearch photoInstance="${photoInstance}" formClass="form1" formLineClass="field_line_f1" formLabelClass="label_f1" formInputClass="input_f1"
-                formLineBtClass="bt_line_f1" formSubmitBtClass="bt_cell_submit" />
+                    formLineBtClass="bt_line_f1" formSubmitBtClass="bt_cell_submit" />
         </div>
-        <div>
-        </div>
+        <div></div>
         <div style="clear: both"></div>
     </div>
     <script type="text/javascript">

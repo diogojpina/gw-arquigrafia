@@ -38,7 +38,7 @@
                 <div class="form_1" id="user_retrieve_form">
                     <ul class="field_line_f1">
                         <li class="label_f1"><span>Login:</span></li>
-                        <li class="input_f1"><input type="text" class="required" name="user.login" value="<c:out value="${user.id == null ?' ' : user.login}" />" /></li>
+                        <li class="input_f1"><input type="text" class="required" name="user.login" value="<c:out value="${user.id == null ? ' ' : user.login}" />" /></li>
                     </ul>
                     <ul class="field_line_f1">
                         <li class="label_f1"><span>Password:</span></li>

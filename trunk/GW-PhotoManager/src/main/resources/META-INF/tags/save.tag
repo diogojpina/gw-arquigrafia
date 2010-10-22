@@ -13,17 +13,15 @@
 <%@ attribute name="formLineClass" required="false" rtexprvalue="false" type="java.lang.String" %>
 <%@ attribute name="formLabelClass" required="false" rtexprvalue="false" type="java.lang.String" %>
 <%@ attribute name="formInputClass" required="false" rtexprvalue="false" type="java.lang.String" %>
-<%@ attribute name="formLineBtClass" required="false" rtexprvalue="false" type="java.lang.String" %>
-<%@ attribute name="formSubmitBtClass" required="false" rtexprvalue="false" type="java.lang.String" %>
 
 <tag:scriptTags />
 
 <script type="text/javascript">
-$(document).ready(function() {
-	var datepick = document.getElementById("datepicker");
-	var data = new Date();
-	datepick.value = data.getDate()+"/"+(data.getMonth()+1)+"/"+data.getFullYear();
-});
+    $(document).ready(function() {
+        var datepick = document.getElementById("datepicker");
+        var data = new Date();
+        datepick.value = data.getDate() + "/" + (data.getMonth() + 1) + "/" + data.getFullYear();
+    });
 </script>
 
 <script type="text/javascript">
@@ -47,33 +45,31 @@ $(document).ready(function() {
     });
 </script>
 
-
-
 <input type="hidden" name="user.id" value="<c:out value="${user.id}" />" />
 <input type="hidden" name="photoRegister.id" value="<c:out value="${photoRegister.id}" />" />
 
 <div class="${formClass}" id="image_save_form">
    <ul class="${formLineClass}" id="imageUploadField">
        <li class="${formLabelClass}">
-       		<span>Arquivo*:</span>
+           <span>Arquivo*:</span>
        </li>
        <li class="${formInputClass}" id="imageUpload">
-       		<input id="imageUpload" type="file" name="foto" />
-       	</li>
+       	   <input id="imageUpload" type="file" name="foto" />
+       </li>
    </ul>
    <fieldset>
        <legend>Nome e Descri&ccedil;&atilde;o</legend>
        <div class="${formLineClass}">
            <label for="photoRegister.nome" class="${formLabelClass}">
-           		<span>Nome*:</span>
+               <span>Nome*:</span>
            </label>
            <span class="${formInputClass}">
-           		<input type="text" name="photoRegister.nome" />
-        	</span>
+               <input type="text" name="photoRegister.nome" />
+           </span>
        </div>
        <div class="${formLineClass}">
            <label for="photoRegister.descricao" class="${formLabelClass}">
-           		<span>Descri&ccedil;&atilde;o:</span>
+               <span>Descri&ccedil;&atilde;o:</span>
            </label>
            <textarea rows="3" name="photoRegister.descricao" class="${formInputClass}"></textarea>
        </div>
@@ -82,36 +78,31 @@ $(document).ready(function() {
         <legend>Data e Localiza&ccedil;&atilde;o</legend>
         <div class="${formLineClass}">
             <label for="photoRegister.data" class="${formLabelClass}">
-            	<span>Data:</span>
+                <span>Data:</span>
             </label>
             <span class="${formInputClass}">
-            	<input type="text" id="datepicker" name="photoRegister.data" />
+                <input type="text" id="datepicker" name="photoRegister.data" />
             </span>
         </div>
         <div class="${formLineClass}">
             <label for="photoRegister.lugar" class="${formLabelClass}">
-            	<span>Localiza&ccedil;&atilde;o:</span>
-           	</label>
+                <span>Localiza&ccedil;&atilde;o:</span>
+            </label>
             <span class="${formInputClass}">
-            	<input type="text" name="photoRegister.lugar" />
-           	</span>
+                <input type="text" name="photoRegister.lugar" />
+            </span>
         </div>
     </fieldset>
     <fieldset>
         <legend>Dados Adicionais</legend>
-        <ul class="${formLineClass}" style="height:100px;">
+        <ul class="${formLineClass}" style="line-height: normal;">
             <li class="${formLabelClass}"><span>Tags:</span></li>
             <li class="${formInputClass}">
-                <c:if test="${tagMgr.collablet.enabled and photoRegister.collablet.enabled}">
-                    <label style="font-size:12px;color:blue;">As tags devem ser separadas por ,</label>
+                <c:if test="${tagMgr.collablet.enabled}">
+                    <label style="font-size: 12px; color: blue;">As tags devem ser separadas por v&iacute;rgulas</label>
                     <tag:selectTags tagMgr="${tagMgr}" />
                     <tag:setTags tagMgr="${tagMgr}" entity="${photoRegister}" />
                 </c:if>
-            </li>
-        </ul>
-        <ul class="${formLineBtClass}" style="margin-left:0;">
-            <li class="${formSubmitBtClass}" >
-            	<input id="imageSubmit" type="submit" value="Salvar" />
             </li>
         </ul>
     </fieldset>

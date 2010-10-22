@@ -14,6 +14,7 @@
         Since the location of the master.xml depends on the host configuration,
         try some possible configurations to discover which one applies.
     -->
+    <property file="../GW-Libs/worker-single-workspace-with-projects.config" />
     <property file="../GroupwareWorkbench/GW-Libs/master-single-workspace-with-trunks.config" />
     <property file="../../GroupwareWorkbench/workspace/GW-Libs/master-multiple-workspaces.config" />
     <fail unless="GW.location" message="Could not find the GW-Libs!" />

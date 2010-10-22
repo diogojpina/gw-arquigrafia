@@ -8,38 +8,31 @@
 
 <script src="${pageContext.request.contextPath}/js/formToWizard.js" type="text/javascript"></script>
 <script type="text/javascript"> 
-    $(document).ready(function(){
-        $("#photoRegisterForm").formToWizard({ submitButton: 'imageSubmit' })
+    $(document).ready(function() {
+        $("#photoRegisterForm").formToWizard();
     });
-</script> 
+</script>
         
 <div class="big_white_title" id="register_title">
     <div><img src="${pageContext.request.contextPath}/images/upload.png" alt="upload" />&nbsp;</div>
     <div>Album - Add Photos</div>
 </div>
-<div id="errors">
-    <script type="text/javascript">
-        $("#errors").show();
-    </script>
-    <c:forEach var="error" items="${errors}">
-        <c:out value="${error.category}" /> - <c:out value="${error.message}" />
-    </c:forEach>
-    <c:if test="${empty errors}">
-    	<script type="text/javascript">
-            $("#errors").hide();
-    	</script> 
-    </c:if>
-</div>
+<c:if test="${not empty errors}">
+    <div id="errors">
+        <c:forEach var="error" items="${errors}">
+            <c:out value="${error.category}" /> - <c:out value="${error.message}" />
+        </c:forEach>
+    </div>
+</c:if>
 <div id="internal_wrap">
     <div class="mid_blue_text" style="margin-left: 30px; background-color: #fff;">
         <form name="photoRegisterForm" id="photoRegisterForm" method="post" enctype="multipart/form-data"
-              action="<c:url value="/groupware-workbench/album/${albumMgr.id}/album/${album.id}/photo/registra/" />">
+                action="<c:url value="/groupware-workbench/album/${albumMgr.id}/album/${album.id}/photo/registra/" />">
             <photo:save photoRegister="${photoRegister}"
-                albumMgr="${albumMgr}" 
-                user="${sessionScope.userLogin}" formClass="form1"
-                formLineClass="field_line_f1" formLabelClass="label_f1"
-                formInputClass="input_f1" formLineBtClass="bt_line_f1"
-                formSubmitBtClass="bt_cell_submit" />
+                    albumMgr="${albumMgr}"
+                    user="${sessionScope.userLogin}" formClass="form1"
+                    formLineClass="field_line_f1" formLabelClass="label_f1"
+                    formInputClass="input_f1" />
         </form>
     </div>
 </div>

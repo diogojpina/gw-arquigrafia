@@ -47,24 +47,24 @@
         <tag:scriptTags />
         <script type="text/javascript" src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAbf6eUcfIXSm07sEX-Hds_RRENaz91t6R4aLs0JFjRYJDtYpxpRTiOp0ddxtDlMNsckRtLrwfJnhCLg&sensor=false"></script>
         <script type="text/javascript">
-         $(function() {
-            var map = null;
+            $(function() {
+                var map = null;
 
-            // Inicializador do Google Maps.
-            if (GBrowserIsCompatible()) {
-                map = new GMap2($("#map_canvas").get(0), { size: new GSize(400, 300) });
-                map.enableContinuousZoom();
-                map.enableScrollWheelZoom();
-            }
+                // Inicializador do Google Maps.
+                if (GBrowserIsCompatible()) {
+                    map = new GMap2($("#map_canvas").get(0), { size: new GSize(400, 300) });
+                    map.enableContinuousZoom();
+                    map.enableScrollWheelZoom();
+                }
 
-            //Destrutor do Google Maps.
-            $("body").unload(GUnload);
+                // Destrutor do Google Maps.
+                $("body").unload(GUnload);
 
-            if (map == null) {
-                alert("Error! The map is null!");
-            }
-            map.setCenter(new GLatLng(-14.235004, -43.92528), 4);
-        });
+                if (map == null) {
+                    alert("Error! The map is null!");
+                }
+                map.setCenter(new GLatLng(-14.235004, -43.92528), 4);
+            });
         </script>
     </head>
     <body onload="initializeMap()">

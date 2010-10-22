@@ -18,7 +18,6 @@
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/header.css" />
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/forms.css" />
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/show.css" />
-
         <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/plugins/sds/css/smoothDivScroll.css" />
         <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/bay.css" />
         <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/tagcloud.css" />
@@ -44,47 +43,55 @@
         <title>Friends</title>
     </head>
     <body>
-                                                                                            
-    <form name="comments" method="post" enctype="multipart/form-data" action="<c:url value="/groupware-workbench/friends/${friendsMgr.id}/show/${friend.user.id}" />">
-    	<div style="padding-left: 15px">
-		    <div class="${friend}">
-				<span class="${friend_name}"><c:out value="${friend.user.name}" /></span>
-                <!-- Provisório, talvez depois aqui o carregamento de uma foto padrão seja mais adequado -->
-                <img class="${friend_img}" alt="<c:out value="${friend.user.name}" />" src="http://localhost:8080/GW-Application-Arquigrafia/images/${friend.user.name}.png" />
-                
-                <c:if test="${commentMgr2.collablet.enabled}">
-                <div id="comments_bar">
-                    <div id="comments_bar_bg">
-                        <div id="comments_bar_title" class="big_blue_title2">Coment&aacute;rios</div>
-                        <div id="comments_bar_link" class="comments_link"><a class="white_link"><img src="${pageContext.request.contextPath}/images/add_comment.png" alt="Adicionar Coment&aacute;rio" /></a></div>
-                        <div id="comments_bar_link2" class="comments_link"><a class="white_link"><img src="${pageContext.request.contextPath}/images/add_comment2.png" alt="Adicionar Coment&aacute;rio" /></a></div>
-                    </div>
+        <form name="comments" method="post" enctype="multipart/form-data" action="<c:url value="/groupware-workbench/friends/${friendsMgr.id}/show/${friend.user.id}" />">
+            <div style="padding-left: 15px">
+                <div class="${friend}">
+                    <span class="${friend_name}"><c:out value="${friend.user.name}" /></span>
+                    <!-- Provisório, talvez depois aqui o carregamento de uma foto padrão seja mais adequado -->
+                    <img class="${friend_img}" alt="<c:out value="${friend.user.name}" />" src="http://localhost:8080/GW-Application-Arquigrafia/images/${friend.user.name}.png" />
+
+                    <c:if test="${commentMgr2.collablet.enabled}">
+                        <div id="comments_bar">
+                            <div id="comments_bar_bg">
+                                <div id="comments_bar_title" class="big_blue_title2">
+                                    <p>Coment&aacute;rios</p>
+                                </div>
+                                <div id="comments_bar_link" class="comments_link">
+                                    <a class="white_link">
+                                        <img src="${pageContext.request.contextPath}/images/add_comment.png" alt="Adicionar Coment&aacute;rio" />
+                                    </a>
+                                </div>
+                                <div id="comments_bar_link2" class="comments_link">
+                                    <a class="white_link">
+                                        <img src="${pageContext.request.contextPath}/images/add_comment2.png" alt="Adicionar Coment&aacute;rio" />
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="comments_create" style="height: 130px;">
+                            <comment:addComment commentMgr="${commentMgr2}" idObject="${friend.user.id}" user="${sessionScope.userLogin}" editorClass="editorClass" wrapClass="comments_create_internal" />
+                            <input name="commentAdd" value="Adicionar" type="submit" />
+                        </div>
+                        <div id="comments_show">
+                            <comment:getComments commentMgr="${commentMgr2}" entity="${friend.user}" wrapClass="comments_show_internal" />
+                        </div>
+                        <script type="text/javascript">
+                            $("#comments_create").hide();
+                            $("#comments_bar_link2").hide();
+                            $("#comments_bar_link").click(function() {
+                                $("#comments_create").slideDown();
+                                $("#comments_bar_link").hide();
+                                $("#comments_bar_link2").show();
+                            });
+                            $("#comments_bar_link2").click(function() {
+                                $("#comments_create").slideUp();
+                                $("#comments_bar_link2").hide();
+                                $("#comments_bar_link").show();
+                            });
+                        </script>
+                    </c:if>
                 </div>
-                <div id="comments_create" style="height: 130px;">
-                    <comment:addComment commentMgr="${commentMgr2}" idObject="${friend.user.id}" user="${sessionScope.userLogin}" editorClass="editorClass" wrapClass="comments_create_internal" />
-                    
-                    <input name="commentAdd" value="Adicionar" type="submit" />
-                </div>
-                <div id="comments_show">
-                    <comment:getComments commentMgr="${commentMgr2}" entity="${friend.user}" wrapClass="comments_show_internal" />
-                </div>
-                <script type="text/javascript">
-                    $("#comments_create").hide();
-                    $("#comments_bar_link2").hide();
-                    $("#comments_bar_link").click(function() {
-                        $("#comments_create").slideDown();
-                        $("#comments_bar_link").hide();
-                        $("#comments_bar_link2").show();
-                    });
-                    $("#comments_bar_link2").click(function() {
-                        $("#comments_create").slideUp();
-                        $("#comments_bar_link2").hide();
-                        $("#comments_bar_link").show();
-                    });
-                </script>
-       			</c:if>
             </div>
-		    </div>
-		    </form>
+        </form>
     </body>
 </html>

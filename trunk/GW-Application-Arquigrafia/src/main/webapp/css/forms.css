@@ -1,80 +1,80 @@
 @charset "utf-8";
 /* CSS Document */
 .form_1 {
-	float: left;
-	width: 100%;
-	line-height: 30px;
+    float: left;
+    width: 100%;
+    line-height: 30px;
 }
 
 .subsection_f1 {
-	margin-left: 0px;
+    margin-left: 0px;
 }
 
 .subtitle_f1 {
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 12px;
-	color: #585858;
-	font-weight: bold;
-	text-align: left;
-	padding-top: 10px;
-	height: 40px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color: #585858;
+    font-weight: bold;
+    text-align: left;
+    padding-top: 10px;
+    height: 40px;
 }
 
 .field_line_f1 {
-	list-style: none;
-	width: 100%;
-	height: 30px;
-	line-height:30px;
+    list-style: none;
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
 }
 
 .field_line_f1 li {
-	display: inline;
+    display: inline;
 }
 
 .bt_line_f1 {
-	float: left;
-	list-style: none;
-	margin-left: 100px;
+    float: left;
+    list-style: none;
+    margin-left: 100px;
 }
 
 .bt_line_f1 li {
-	display: inline;
+    display: inline;
 }
 
 .input_f1 {
-	float: left
+    float: left;
 }
-.input_f1 input,textarea{
-	-webkit-border-radius: 4px;
-	-moz-border-radius: 4px;
-	border-radius: 4px;
-	border-style: solid;
-	border-width: 1px;
-	border-color: #0F6197;
-        width: 180px;
 
+.input_f1 input, textarea {
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #0F6197;
+    width: 180px;
 }
 
 .label_f1 {
-	margin-right: 10px;
+    margin-right: 10px;
 }
 
 .label_f1 span {
-	float: left;
-	text-align: left;
-	width: 100px;
-	font-family:Arial, Helvetica, sans-serif;
-	font-size: 12px;
-	font-weight: bold;
-	color: #0F6197;
-	margin-right:10px;
-	text-align:right;
-	
+    float: left;
+    text-align: left;
+    width: 100px;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    color: #0F6197;
+    margin-right:10px;
+    text-align:right;
 }
 
 .bt_cell_submit {
-	margin-right: 10px;
+    margin-right: 10px;
 }
+
 .bt_cell_submit input {
     width: 60px;
     height: 28px;
@@ -82,7 +82,7 @@
     cursor: pointer;
     border: 0;
     font-family: Arial, Helvetica, sans-serif;
-	font-size: 11px;
-	font-weight: bold;
-	color: #fff;
+    font-size: 11px;
+    font-weight: bold;
+    color: #fff;
 }

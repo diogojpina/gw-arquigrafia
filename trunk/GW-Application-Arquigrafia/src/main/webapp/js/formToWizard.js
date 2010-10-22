@@ -2,16 +2,12 @@
 
 (function($) {
     $.fn.formToWizard = function(options) {
-        options = $.extend({  
-            submitButton: "" 
-        }, options); 
-        
+        options = $.extend({}, options); 
+
         var element = this;
 
         var steps = $(element).find("fieldset");
         var count = steps.size();
-        var submmitButtonName = "#" + options.submitButton;
-        $(submmitButtonName).hide();
 
         // 2
         $(element).before("<ul id='steps'></ul>");
@@ -27,12 +23,11 @@
             if (i == 0) {
                 createNextButton(i);
                 selectStep(i);
-            }
-            else if (i == count - 1) {
+            } else if (i == count - 1) {
                 $("#step" + i).hide();
                 createPrevButton(i);
-            }
-            else {
+                createSubmitButton(i);
+            } else {
                 $("#step" + i).hide();
                 createPrevButton(i);
                 createNextButton(i);
@@ -41,26 +36,32 @@
 
         function createPrevButton(i) {
             var stepName = "step" + i;
-            $("#" + stepName + "commands").append("<a href='#' id='" + stepName + "Prev' class='prev'>< Voltar</a>");
+            $("#" + stepName + "commands").append("<a href='#' id='" + stepName + "Prev' class='prev'>&lt; Voltar</a>");
 
             $("#" + stepName + "Prev").bind("click", function(e) {
                 $("#" + stepName).hide();
                 $("#step" + (i - 1)).show();
-                $(submmitButtonName).hide();
                 selectStep(i - 1);
             });
         }
 
         function createNextButton(i) {
             var stepName = "step" + i;
-            $("#" + stepName + "commands").append("<a href='#' id='" + stepName + "Next' class='next'>Pr&oacute;ximo ></a>");
+            $("#" + stepName + "commands").append("<a href='#' id='" + stepName + "Next' class='next'>Pr&oacute;ximo &gt;</a>");
 
             $("#" + stepName + "Next").bind("click", function(e) {
                 $("#" + stepName).hide();
                 $("#step" + (i + 1)).show();
-                if (i + 2 == count)
-                    $(submmitButtonName).show();
                 selectStep(i + 1);
+            });
+        }
+
+        function createSubmitButton(i) {
+            var stepName = "step" + i;
+            $("#" + stepName + "commands").append("<a href='#' id='" + stepName + "Next' class='next'>Salvar</a>");
+
+            $("#" + stepName + "Next").bind("click", function(e) {
+                $(element).submit();
             });
         }
 
@@ -68,6 +69,5 @@
             $("#steps li").removeClass("current");
             $("#stepDesc" + i).addClass("current");
         }
-
     }
 })(jQuery); 
