@@ -341,4 +341,10 @@ public class PhotoController {
         photo.delete();
         addIncludes(photoInstance);
     }
+    
+    @Get
+    @Path(value = "/groupware-workbench/photo/{photoInstance}/system_users")
+    public void systemUsers(PhotoMgrInstance photoInstance) {
+        addIncludes(photoInstance);
+    }
 }
