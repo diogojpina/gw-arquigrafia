@@ -2,4 +2,4 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="friends" uri="http://www.groupwareworkbench.org.br/widgets/friends"%>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/friends.css" />
-<friends:listFriends user="${user}" friendsMgr="${friendsMgr}" friends_header="friends_header" />
+<friends:editFriends user="${userLogin}" friendsMgr="${friendsMgr}" friends_header="friends_header"/>
