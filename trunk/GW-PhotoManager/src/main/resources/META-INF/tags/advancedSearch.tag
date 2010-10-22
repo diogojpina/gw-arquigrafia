@@ -35,7 +35,7 @@
             <li class="${formLabelClass}"><span>Descri&ccedil;&atilde;o:</span></li>
             <li class="${formInputClass}"><textarea rows="3" name="descricao"></textarea></li>
         </ul>
-        <ul class="${formLineClass}">
+        <ul class="${formLineClass}" style="float:left">
             <li class="${formLabelClass}"><span>Lugar onde foi tirada:</span></li>
             <li class="${formInputClass}"><input type="text" name="lugar" /></li>
         </ul>
