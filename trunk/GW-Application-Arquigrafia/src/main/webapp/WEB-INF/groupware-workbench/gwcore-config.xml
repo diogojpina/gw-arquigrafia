@@ -141,6 +141,6 @@
         <dependency from="commentMgr2" to="photoMgr" />
         <dependency from="userMgr" to="friendsMgr" />
         <!-- <dependency from="albumMgr" to="photoMgr" /> -->
-        <dependency from="manager" to="photofMgr" />
+        <dependency from="manager" to="photoMgr" />
     </collablets-dependencies>
 </frameworkDescriptor>
