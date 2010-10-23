@@ -34,6 +34,9 @@
 
                     <span class="${friend_name}"><c:out value="${friend.user.name}" /></span>
 
+                    <friends:sendRequest friendsMgr="${friendsMgr}" user="${friend.user}" />
+
+
                     <c:if test="${profileMgr.collablet.enabled}">
                         <profile:showProfile profileMgr="${profileMgr}" user="${friend.user}" />
                     </c:if>

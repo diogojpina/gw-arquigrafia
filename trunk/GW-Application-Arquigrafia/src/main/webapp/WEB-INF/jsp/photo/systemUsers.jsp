@@ -4,23 +4,20 @@
 <%@ taglib prefix="r" uri="http://www.groupwareworkbench.org.br/taglibs/reflection"%>
 <%@ taglib prefix="friends" uri="http://www.groupwareworkbench.org.br/widgets/friends"%>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/friends.css" />
-<style type="text/css">
-.friend {
-    height: 30px;
-}
-
-.friend span {
-    float: left;
-    width: 350px;
-}
-</style>
-<div style="width: 450px;">
+<div>
 <c:if test="${userMgr.collablet.enabled}">
     <r:callMethod methodName="getAllElements" instance="${userMgr}" var="listUsers" />
     <div><c:forEach items="${listUsers}" var="u">
         <c:if test="${u.login != userLogin.login}">
-            <div class="friend"><span><c:out value="${u.name}" /></span>
-            <div><friends:sendRequest friendsMgr="${friendsMgr}" user="${u}" /></div>
+            <div>
+                <br/>
+                <img src="<c:out value="${u.photoURL}" />" alt="foto do usuario" />
+                &nbsp;
+                <a href="${pageContext.request.contextPath}/groupware-workbench/friends/${friendsMgr.id}/show/${u.id}">
+                    <c:out value="${u.name}"/>
+                </a>
+                &nbsp;
+                <friends:sendRequest friendsMgr="${friendsMgr}" user="${u}" />
             </div>
         </c:if>
     </c:forEach></div>
