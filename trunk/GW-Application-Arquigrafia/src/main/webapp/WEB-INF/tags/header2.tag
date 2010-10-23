@@ -45,7 +45,8 @@
             <div id="systemUsersContent"></div>
         </div>
         <div id="profileDiv" style="visibility: hidden; display: none;">
-            <div id="profileContent" style="width: 400px; height: 400px;"></div>
+            <iframe name="profileContentFrame" style="width: 400px; height: 600px; opacity: 0.95;"
+                    id="profileContentFrame" src="${pageContext.request.contextPath}/groupware-workbench/friends/${friendsMgr.id}/show/${userLogin.id}"></iframe>
         </div>
         <script type="text/javascript">
             function refreshPage() {
@@ -87,12 +88,7 @@
                 });               
             }
             function showProfile(){
-                var url = "${pageContext.request.contextPath}/groupware-workbench/friends/${friendsMgr.id}/show/${userLogin.id}";                
-                $("#profileContent").load(url,function(){
-                    new Boxy($("#profileDiv").html(), {title: "Meu Perfil", modal: true, closeText: "Fechar", afterHide: function(){
-                        $("#profileContent").empty();
-                        }}).show();
-                });               
+                    new Boxy($("#profileDiv").html(), {title: "Meu Perfil", modal: true, closeText: "Fechar"}).show();        
             }
             
         </script>

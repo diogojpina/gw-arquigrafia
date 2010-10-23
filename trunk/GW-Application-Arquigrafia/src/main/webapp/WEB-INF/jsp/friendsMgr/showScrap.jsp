@@ -13,43 +13,26 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css" />
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css" />
-        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/page_content.css" />
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/friends.css" />
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/arq-common.css" />
-        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/header.css" />
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/forms.css" />
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/show.css" />
-        <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/plugins/sds/css/smoothDivScroll.css" />
-        <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/bay.css" />
-        <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/tagcloud.css" />
-        <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/footer.css" />
         <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/jquery.css" />
         <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/boxy.css" />
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/compiled/arquigrafia-default.js"></script>
-        <script type="text/javascript" src="${pageContext.request.contextPath}/plugins/sds/js/jquery.smoothDivScroll-0.9-min.js"></script>
-        <script type="text/javascript" src="${pageContext.request.contextPath}/plugins/sds/js/scroll.js"></script>
         <script src="${pageContext.request.contextPath}/js/jquery.boxy.js" type="text/javascript"></script>
-        <script type="text/javascript">
-            $(function() {
-                $("div#makeMeScrollable").smoothDivScroll({scrollingSpeed: 12, mouseDownSpeedBooster: 3, visibleHotSpots: "always", startAtElementId: "startAtMe"});
-            });
-        </script>
-        <script type="text/javascript" src="${pageContext.request.contextPath}/js/show.js"></script>
-        <script type="text/javascript">
-            $(document).ready(function() {
-                basicAndEvents();
-            });
-        </script>
+
         <title>Friends</title>
     </head>
     <body>
         <form name="comments" method="post" enctype="multipart/form-data" action="<c:url value="/groupware-workbench/friends/${friendsMgr.id}/show/${friend.user.id}" />">
             <div style="padding-left: 15px">
                 <div class="${friend}">
+                    <br/>
+                    <img class="${friend_img}" alt="<c:out value="${friend.user.name}" />" src="${friend.user.photoURL}" />
+
                     <span class="${friend_name}"><c:out value="${friend.user.name}" /></span>
-                    <!-- Provisório, talvez depois aqui o carregamento de uma foto padrão seja mais adequado -->
-                    <img class="${friend_img}" alt="<c:out value="${friend.user.name}" />" src="http://localhost:8080/GW-Application-Arquigrafia/images/${friend.user.name}.png" />
 
                     <c:if test="${profileMgr.collablet.enabled}">
                         <profile:showProfile profileMgr="${profileMgr}" user="${friend.user}" />
@@ -59,16 +42,16 @@
                         <div id="comments_bar">
                             <div id="comments_bar_bg">
                                 <div id="comments_bar_title" class="big_blue_title2">
-                                    <p>Coment&aacute;rios</p>
+                                    <p>Mensagens</p>
                                 </div>
                                 <div id="comments_bar_link" class="comments_link">
                                     <a class="white_link">
-                                        <img src="${pageContext.request.contextPath}/images/add_comment.png" alt="Adicionar Coment&aacute;rio" />
+                                        <img src="${pageContext.request.contextPath}/images/add_comment.png" alt="Adicionar Mensagem" />
                                     </a>
                                 </div>
                                 <div id="comments_bar_link2" class="comments_link">
                                     <a class="white_link">
-                                        <img src="${pageContext.request.contextPath}/images/add_comment2.png" alt="Adicionar Coment&aacute;rio" />
+                                        <img src="${pageContext.request.contextPath}/images/add_comment2.png" alt="Adicionar Mensagem" />
                                     </a>
                                 </div>
                             </div>
