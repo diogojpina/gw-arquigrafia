@@ -29,15 +29,6 @@
     <div id="top_links" class="blue_link">
         <a href="${pageContext.request.contextPath}/groupware-workbench/photo/${photoInstance.id}/index">In&iacute;cio</a>
         &nbsp;|&nbsp;
-        <!--a href="help.htm">Ajuda</a-->
-        Ajuda
-        &nbsp;|&nbsp;
-        <!--a href="privacy.htm">Privacidade</a-->
-        Privacidade
-        &nbsp;|&nbsp;
-        <!--a href="legal.htm">Legal</a-->
-        Legal
-        &nbsp;|&nbsp;
         <div id="photoUploadContent" style="visibility: hidden; display: none;">
             <iframe name="photoUploadFrame" style="width: 600px; height: 400px; opacity: 0.95;" id="photoUploadFrame" src="${pageContext.request.contextPath}/groupware-workbench/photo/${photoInstance.id}/registra"></iframe>
         </div>
@@ -106,12 +97,6 @@
             
         </script>
         <a href="#" onclick="return showPhotoUpload();">Upload de fotos</a>
-        &nbsp;|&nbsp;
-        <%--a href="${pageContext.request.contextPath}/groupware-workbench/recommend/${recommendMgr.id}/calcRecommend">Recomendar</a--%>
-        Recomendar
-        &nbsp;|&nbsp;
-        <%--a href="${pageContext.request.contextPath}/groupware-workbench/ratings/${ratingMgr.id}">Rating</a--%>
-        Rating
         &nbsp;|&nbsp;
         <a href="#" onclick="return showProfile();">Meu Perfil</a>
         &nbsp;|&nbsp;

@@ -90,7 +90,7 @@ body {
 #top_links {
 	position: absolute;
 	z-index: 9999;
-	left: 360px;
+	left: 30px;
 	top: 2px;
 }
 #user_top_links {

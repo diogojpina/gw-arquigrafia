@@ -134,6 +134,7 @@
         <dependency from="binomialMgr" to="photoMgr" />
         <dependency from="ratingMgr" to="photoMgr" />
         <dependency from="profileMgr" to="photoMgr" />
+        <dependency from="profileMgr" to="friendsMgr" />
         <dependency from="roleMgr" to="photoMgr" />
         <dependency from="userMgr" to="photoMgr" />
         <dependency from="userMgr" to="photoMgr" alias="--login--" />

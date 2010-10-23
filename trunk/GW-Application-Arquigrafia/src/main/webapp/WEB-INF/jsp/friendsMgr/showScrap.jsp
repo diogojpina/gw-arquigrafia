@@ -5,6 +5,7 @@
 <%@ taglib prefix="r" uri="http://www.groupwareworkbench.org.br/taglibs/reflection" %>
 <%@ taglib prefix="tag" uri="http://www.groupwareworkbench.org.br/widgets/tag" %>
 <%@ taglib prefix="comment" uri="http://www.groupwareworkbench.org.br/widgets/comment" %>
+<%@taglib  prefix="profile" uri="http://www.groupwareworkbench.org.br/widgets/profile" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -49,6 +50,10 @@
                     <span class="${friend_name}"><c:out value="${friend.user.name}" /></span>
                     <!-- Provisório, talvez depois aqui o carregamento de uma foto padrão seja mais adequado -->
                     <img class="${friend_img}" alt="<c:out value="${friend.user.name}" />" src="http://localhost:8080/GW-Application-Arquigrafia/images/${friend.user.name}.png" />
+
+                    <c:if test="${profileMgr.collablet.enabled}">
+                        <profile:showProfile profileMgr="${profileMgr}" user="${friend.user}" />
+                    </c:if>
 
                     <c:if test="${commentMgr2.collablet.enabled}">
                         <div id="comments_bar">
