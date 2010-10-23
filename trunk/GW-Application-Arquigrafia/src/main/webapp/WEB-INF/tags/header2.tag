@@ -33,19 +33,20 @@
             <iframe name="photoUploadFrame" style="width: 600px; height: 400px; opacity: 0.95;" id="photoUploadFrame" src="${pageContext.request.contextPath}/groupware-workbench/photo/${photoInstance.id}/registra"></iframe>
         </div>
         <div id="friendsContent" style="visibility: hidden; display: none;">            
-             <iframe name="profileContentFrame" style="width: 450px; height: 500px; opacity: 0.95;"
-                    id="friendsFrame" src="${pageContext.request.contextPath}/groupware-workbench/friends/${friendsMgr.id}/list">
-             </iframe>
+            <div id="friendsFrame"></div>
+        </div>
+        <div id="edithFriends" style="visibility: hidden; display: none;">
+            <div id="edithFriendsContent"></div>
+        </div>
+        <div id="friendsRequest" style="visibility: hidden; display: none;">
+            <div id="friendsRequestContent"></div>
         </div>
         <div id="systemUsers" style="visibility: hidden; display: none;">
-            <iframe name="profileContentFrame" style="width: 450px; height: 500px; opacity: 0.95;"
-                    id="systemUsersContent" src="${pageContext.request.contextPath}/groupware-workbench/photo/${photoInstance.id}/system_users">
-             </iframe>
+            <div id="systemUsersContent"></div>
         </div>
         <div id="profileDiv" style="visibility: hidden; display: none;">
             <iframe name="profileContentFrame" style="width: 400px; height: 600px; opacity: 0.95;"
-                    id="profileContentFrame" src="${pageContext.request.contextPath}/groupware-workbench/friends/${friendsMgr.id}/show/${userLogin.id}">
-            </iframe>
+                    id="profileContentFrame" src="${pageContext.request.contextPath}/groupware-workbench/friends/${friendsMgr.id}/show/${userLogin.id}"></iframe>
         </div>
         <script type="text/javascript">
             function refreshPage() {
@@ -54,12 +55,37 @@
             function showPhotoUpload() {
                 new Boxy($("#photoUploadContent").html(), {title: "Use o formulário para enviar uma foto.", modal: true, closeText: "Fechar", afterHide: function() {refreshPage();}}).show();
             }
-            function showFriends() {            
-                new Boxy($("#friendsContent").html(), {title: "Amigos", modal: true, closeText: "Fechar"}).show();
+            function showFriends() {
+            	var url = "${pageContext.request.contextPath}/groupware-workbench/friends/${friendsMgr.id}/list";                
+                $("#friendsFrame").load(url,function(){
+                    new Boxy($("#friendsContent").html(), {title: "Amigos", modal: true, closeText: "Fechar", afterHide: function() {
+                        $("#friendsFrame").empty();
+                        }}).show();
+                });
             }
             function showSystemUsers(){
-               
-                new Boxy($("#systemUsers").html(), {title: "Usu&aacute;rios do sistema", modal: true, closeText: "Fechar"}).show();           
+                var url = "${pageContext.request.contextPath}/groupware-workbench/photo/${photoInstance.id}/system_users";                
+                $("#systemUsersContent").load(url,function(){
+                	new Boxy($("#systemUsers").html(), {title: "Usu&aacute;rios do sistema", modal: true, closeText: "Fechar", afterHide: function() {
+                		$("#systemUsersContent").empty();
+                        }}).show();
+                });               
+            }
+            function showEdithFriends(){
+                var url = "${pageContext.request.contextPath}/groupware-workbench/friends/${friendsMgr.id}/edit";                
+                $("#edithFriendsContent").load(url,function(){
+                    new Boxy($("#edithFriends").html(), {title: "Editar amigos", modal: true, closeText: "Fechar", afterHide: function() {
+                    	$("#edithFriendsContent").empty();
+                        }}).show();
+                });               
+            }
+            function showFriendsRequest(){
+                var url = "${pageContext.request.contextPath}/groupware-workbench/friends/${friendsMgr.id}/request";                
+                $("#friendsRequestContent").load(url,function(){
+                    new Boxy($("#friendsRequest").html(), {title: "Convites", modal: true, closeText: "Fechar", afterHide: function(){
+                    	$("#friendsRequestContent").empty();
+                        }}).show();
+                });               
             }
             function showProfile(){
                     new Boxy($("#profileDiv").html(), {title: "Meu Perfil", modal: true, closeText: "Fechar"}).show();        
@@ -72,6 +98,14 @@
         &nbsp;|&nbsp;
         <a href="#" onclick="return showFriends();">Meus Amigos</a>
         &nbsp;|&nbsp;
+        <a href="#" onclick="return showFriendsRequest();">Convites</a>
+        &nbsp;|&nbsp;
+        <a href="#" onclick="return showEdithFriends();">Editar Amigos</a>
+        &nbsp;|&nbsp;
+		<a href="#" onclick="return showFriends();">Meus Amigos</a>
+		&nbsp;|&nbsp;  
+		<a href="${pageContext.request.contextPath}/groupware-workbench/manager/${manager.id}">Gerenciador</a>
+		&nbsp;|&nbsp;  
         <a href="#" onclick="return showSystemUsers();">Usu&aacute;rios do sistema</a>
         &nbsp;|&nbsp;        
         <a href="${pageContext.request.contextPath}/groupware-workbench/users/${userMgr.id}/list">Gerenciar Usu&aacute;rios</a>

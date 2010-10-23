@@ -20,6 +20,7 @@
     font-weight: bold;
     color: #CC101E;
     margin-right: 10px;
+    background-color: #FFF;
 }
 
 .login_link {
@@ -30,11 +31,16 @@
     border-color: #333;
     border-width: 1px;
     width: 540px;
-    padding: 30px;
     margin-left: auto;
     margin-right: auto;
     margin-top: 100px;
     background-color: white;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: url("../images/arq_login.jpg");
+    height: 245px;
+    width: 450px;
 }
 
 .login_box_clear {
@@ -44,31 +50,38 @@
 .login_title {
     width: 100%;
     text-align: center;
-}
-
-.login_logo {
     float: left;
 }
 
+
 .login_fields {
-    padding-top: 15px;
-    float: right;
+	margin-top: 100px;
+	padding: 15px;
 }
 
 .login_fields_1 {
     float: left;
+    background: #FFF;
+	opacity: 0.8;
+	padding-bottom: 15px;
 }
 
 .login_fields_2 {
     padding-left: 4px;
     float: left;
+    background: #FFF;
+	opacity: 0.8;
+	padding-bottom: 15px;
 }
 
 .login_button {
+	padding-left: 7px;
     padding-top: 15px;
     float: right;
+    background: #FFF;
+	opacity: 0.8;
+	padding-bottom: 15px;
 }
 
 body {
-    background-image: url(../images/BG_LISTRADO.gif);
 }

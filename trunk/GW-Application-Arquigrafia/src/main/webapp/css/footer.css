@@ -9,20 +9,20 @@
 }
 .footer_scroll {	
 	
-	height: 80px;
+	height: 100px;
 	margin-right: 280px;	
 }
 
 #footer_scroll_left {
 	min-width: 35px;
 	margin-left: 40px;
-	height: 80px;
+	height: 100px;
 }
 
 #footer_scroll_right {
 	min-width: 35px;
 	margin-right: 280px;
-	height: 80px;
+	height: 100px;
 }
 
 #footer_bottom {
@@ -58,9 +58,6 @@
 }
 
 #footer_scroll_list img{
-	display: block;
-	position: relative;
-	float: left;
 	padding: 0;
 	margin: 0px 10px 0px 10px;
 	border-width: 2px;
@@ -69,6 +66,10 @@
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	border-radius: 3px;
+}
+#footer_scroll_list div{
+	float: left;
+	min-height:105px;
 }
 .tag_cloud {
 	text-align: center;

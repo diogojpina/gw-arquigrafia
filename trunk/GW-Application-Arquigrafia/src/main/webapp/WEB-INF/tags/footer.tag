@@ -21,14 +21,18 @@
         <br />
         <br />
         <div id="small_carrousel">
-            <div id="makeMeScrollable" class="footer_scroll">
+            <div id="makeMeScrollable2" class="footer_scroll">
                 <div id="footer_scroll_left" class="scrollingHotSpotLeft"></div>
                 <div id="footer_scroll_right" class="scrollingHotSpotRight"></div>
+                                    <div class="scrollWrapper">
+                        <div class="scrollableArea">
                 <div class="scrollWrapper">
                     <div id="footer_scroll_list" class="scrollableArea" >
                         <%-- Modelo para inserção de imagens aqui. --%>
-                        <photo:listPage linkClass="" photoInstance="${photoInstance}" keepRatio="true" pageSize="100" pageNumber="0" wrapClass="footerImages" />
+                        <photo:listPage linkClass="" photoInstance="${photoInstance}" keepRatio="true" pageSize="100" pageNumber="0" showInDiv="true"/>
                     </div>
+                </div>
+                </div>
                 </div>
              </div>
         </div>
@@ -44,7 +48,7 @@
                 <a href="http://www.usp.br/"><img src="${pageContext.request.contextPath}/images/usp_logo.png" alt="USP" /></a>
             </div>
             <div style="float: left; width: 15%; margin-top: 20px;">
-                <a href="htpp://www.ime.usp.br"><img src="${pageContext.request.contextPath}/images/ime_logo.png" alt="IME" /></a>
+                <a href="http://www.ime.usp.br"><img src="${pageContext.request.contextPath}/images/ime_logo.png" alt="IME" /></a>
             </div>
             <div style="float: left; width: 15%; margin-top: 20px;">
                 <a href="http://www.usp.br/fau/"><img src="${pageContext.request.contextPath}/images/fau_logo.png" alt="FAU" /></a>

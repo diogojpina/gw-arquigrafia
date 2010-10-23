@@ -15,23 +15,17 @@
     <body>
         <form id="usuariosForm" method="post" name="loginForm" action="<c:url value="/groupware-workbench/users/${userMgr.id}/login" />">
             <div class="login_box">
-                <div class="login_title">
-                    <span class="login_title">Groupware Workbench</span>
-                </div>
-                <div class="login_logo">
-                    <img src="<c:url value="/images/loginSistema.jpg" />" width="202" height="67" alt="Login" />
-                </div>
                 <div class="login_fields">
                     <div class="login_fields_1">
                         <ul>
                             <li><span class="login_label">Login</span></li>
-                            <li><input tabindex="1" name="user.login" type="text" class="box" id="login" size="15" maxlength="30" /></li>
+                            <li><input tabindex="1" name="user.login" type="text" class="box" id="login" size="23" maxlength="30" /></li>
                         </ul>
                     </div>
                     <div class="login_fields_2">
                         <ul>
                             <li><span class="login_label">Senha</span></li>
-                            <li><input tabindex="2" name="user.password" type="password" class="box" id="senha" size="15" maxlength="30" /></li>
+                            <li><input tabindex="2" name="user.password" type="password" class="box" id="senha" size="23" maxlength="30" /></li>
                         </ul>
                     </div>
                     <div class="login_button">

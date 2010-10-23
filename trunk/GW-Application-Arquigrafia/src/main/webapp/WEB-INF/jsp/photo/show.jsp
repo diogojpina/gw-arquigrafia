@@ -120,6 +120,7 @@
                 <photo:show foto="${photo}" photoInstance="${photoInstance}" />
             </div>
             <div id="map_canvas" style="width: 100%; height: 100%"></div>
+            <c:if test="${tagMgr.collablet.enabled}">
             <div id="tagsAndEval">
                 <div id="evalAndAdd">
                     <div id="eval">
@@ -146,6 +147,7 @@
                 <tag:setTags tagMgr="${tagMgr}" entity="${photo}" tagsEditorClass="mid_black_text" />
                 <input type="submit" name="adicionar" value="Adicionar" />
             </div>
+            </c:if>
             <div style="clear:both"></div>
             <div id="photoRelSub">
                 <div id="caracteristicsWrap">
