@@ -32,18 +32,6 @@
         <div id="photoUploadContent" style="visibility: hidden; display: none;">
             <iframe name="photoUploadFrame" style="width: 600px; height: 400px; opacity: 0.95;" id="photoUploadFrame" src="${pageContext.request.contextPath}/groupware-workbench/photo/${photoInstance.id}/registra"></iframe>
         </div>
-        <div id="friendsContent" style="visibility: hidden; display: none;">            
-            <div id="friendsFrame"></div>
-        </div>
-        <div id="edithFriends" style="visibility: hidden; display: none;">
-            <div id="edithFriendsContent"></div>
-        </div>
-        <div id="friendsRequest" style="visibility: hidden; display: none;">
-            <div id="friendsRequestContent"></div>
-        </div>
-        <div id="systemUsers" style="visibility: hidden; display: none;">
-            <div id="systemUsersContent"></div>
-        </div>
         <div id="profileDiv" style="visibility: hidden; display: none;">
             <iframe name="profileContentFrame" style="width: 450px; height: 500px; opacity: 0.95;"
                     id="profileContentFrame" src="${pageContext.request.contextPath}/groupware-workbench/friends/${friendsMgr.id}/show/${userLogin.id}"></iframe>
@@ -51,6 +39,10 @@
         <div id="myFriendsDiv" style="visibility: hidden; display: none;">
             <iframe name="profileContentFrame" style="width: 450px; height: 500px; opacity: 0.95;"
                     id="profileContentFrame" src="${pageContext.request.contextPath}/groupware-workbench/friends/${friendsMgr.id}/list"></iframe>
+        </div>
+        <div id="systemUsersDiv" style="visibility: hidden; display: none;">
+            <iframe name="profileContentFrame" style="width: 450px; height: 500px; opacity: 0.95;"
+                    id="profileContentFrame" src="${pageContext.request.contextPath}/groupware-workbench/photo/${photoInstance.id}/system_users"></iframe>
         </div>
         <script type="text/javascript">
             function refreshPage() {
@@ -65,20 +57,6 @@
                     afterHide: refreshPage
                 }).show();
             }
-
-            function showSystemUsers() {
-                var url = "${pageContext.request.contextPath}/groupware-workbench/photo/${photoInstance.id}/system_users";
-                $("#systemUsersContent").load(url, function() {
-                    new Boxy($("#systemUsers").html(), {
-                        title: "Usu&aacute;rios do sistema",
-                        modal: true,
-                        closeText: "Fechar",
-                        afterHide: function() {
-                            $("#systemUsersContent").empty();
-                        }
-                    }).show();
-                });
-            }
             function showProfile() {
                 new Boxy($("#profileDiv").html(), {
                     title: "Meu Perfil",
@@ -89,6 +67,13 @@
             function showMyFriends() {
                 new Boxy($("#myFriendsDiv").html(), {
                     title: "Meus Amigos",
+                    modal: true,
+                    closeText: "Fechar"
+                }).show();
+            }            
+            function showSystemUsers() {
+                new Boxy($("#systemUsersDiv").html(), {
+                    title: "Usuários",
                     modal: true,
                     closeText: "Fechar"
                 }).show();
