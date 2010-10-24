@@ -130,13 +130,7 @@
         &nbsp;|&nbsp;
         <a href="#" onclick="return showProfile();">Meu Perfil</a>
         &nbsp;|&nbsp;
-        <a href="#" onclick="return showFriends();">Meus Amigos</a>
-        &nbsp;|&nbsp;
-        <a href="#" onclick="return showFriendsRequest();">Convites</a>
-        &nbsp;|&nbsp;
-        <a href="#" onclick="return showEdithFriends();">Editar Amigos</a>
-        &nbsp;|&nbsp;
-        <a href="#" onclick="return showFriends();">Meus Amigos</a>
+        <a href="#" onclick="return showFriends();">Meus Amigos</a>                
         &nbsp;|&nbsp;
         <a href="${pageContext.request.contextPath}/groupware-workbench/manager/${manager.id}">Gerenciador</a>
         &nbsp;|&nbsp;
