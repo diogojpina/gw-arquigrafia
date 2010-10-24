@@ -31,7 +31,7 @@
             <photo:save photoRegister="${photoRegister}"
                     albumMgr="${albumMgr}"
                     user="${sessionScope.userLogin}" formClass="form1"
-                    formLineClass="field_line_f1" formLabelClass="label_f1"
+                    formLineClass="field_line_f1 upload_form" formLabelClass="label_f1"
                     formInputClass="input_f1" />
         </form>
     </div>

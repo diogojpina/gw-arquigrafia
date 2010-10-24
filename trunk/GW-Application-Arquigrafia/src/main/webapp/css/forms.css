@@ -27,6 +27,14 @@
     line-height: 30px;
 }
 
+.upload_form {
+    line-height: 20px;
+}
+
+#imageUploadField {
+    line-height: 30px;
+}
+
 .field_line_f1 li {
     display: inline;
 }
