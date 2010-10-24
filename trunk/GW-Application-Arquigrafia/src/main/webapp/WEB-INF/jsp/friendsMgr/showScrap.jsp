@@ -29,13 +29,12 @@
         <form name="comments" method="post" enctype="multipart/form-data" action="<c:url value="/groupware-workbench/friends/${friendsMgr.id}/show/${friend.user.id}" />">
             <div style="padding-left: 15px">
                 <div class="${friend}">
-                    <br/>
+                    <br />
                     <img class="${friend_img}" alt="<c:out value="${friend.user.name}" />" src="${friend.user.photoURL}" />
 
                     <span class="${friend_name}"><c:out value="${friend.user.name}" /></span>
 
                     <friends:sendRequest friendsMgr="${friendsMgr}" user="${friend.user}" />
-
 
                     <c:if test="${profileMgr.collablet.enabled}">
                         <profile:showProfile profileMgr="${profileMgr}" user="${friend.user}" />

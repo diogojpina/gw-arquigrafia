@@ -57,7 +57,7 @@
 
             <div id="main_section">
                 <div id="makeMeScrollable" style="border-style: solid; border-width: thin; border-color: #666; padding-left: 0px; height: 500px;">
-                    <div class="scrollingHotSpotLeft" style=" height: 500px;"></div>
+                    <div class="scrollingHotSpotLeft" style="height: 500px;"></div>
                     <div class="scrollingHotSpotRight" style="height: 500px;"></div>
                     <div class="scrollWrapper" id="images_scrollable">
                         <div class="scrollableArea">
