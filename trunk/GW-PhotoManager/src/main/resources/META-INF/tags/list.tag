@@ -22,7 +22,7 @@
             <div>
         </c:if>
         <a class="${linkClass}" rel="linkimage" href="<c:url value="/groupware-workbench/photo/${foto.id}"/>">
-            <img src="<c:url value="/groupware-workbench/photo/${photoInstance.id}/img-thumb/${foto.nomeArquivoUnico}"/>"/>
+            <img src="<c:url value="/groupware-workbench/photo/img-thumb/${foto.id}"/>" />
         </a>
         <c:if test="${showName || showLocation}">
             </div>

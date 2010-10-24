@@ -19,19 +19,15 @@
 */
 package br.org.groupwareworkbench.arquigrafia.photo;
 
-import java.awt.Dimension;
-import java.awt.Point;
-import java.awt.image.BufferedImage;
-
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.io.IOException;
 
 import java.text.SimpleDateFormat;
 
 import java.util.Date;
 import java.util.List;
-
-import javax.imageio.ImageIO;
 
 import br.com.caelum.vraptor.Delete;
 import br.com.caelum.vraptor.Get;
@@ -41,7 +37,6 @@ import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.Validator;
 import br.com.caelum.vraptor.interceptor.download.Download;
-import br.com.caelum.vraptor.interceptor.download.FileDownload;
 import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
 import br.com.caelum.vraptor.ioc.RequestScoped;
 import br.com.caelum.vraptor.validator.ValidationMessage;
@@ -49,7 +44,6 @@ import br.com.caelum.vraptor.view.Results;
 
 import br.org.groupwareworkbench.collablet.coord.user.User;
 import br.org.groupwareworkbench.core.framework.WidgetInfo;
-import br.org.groupwareworkbench.core.util.ImageUtils;
 
 @RequestScoped
 @Resource
@@ -82,35 +76,47 @@ public class PhotoController {
     }
 
     @Get
-    @Path(value = "/groupware-workbench/photo/{photoInstance}/img-thumb/{nomeArquivoUnico}")
-    public Download imgThumb(PhotoMgrInstance photoInstance, String nomeArquivoUnico) {
-        File file = photoInstance.imgThumb(nomeArquivoUnico);
-        FileDownload fs = new FileDownload(file, "image/jpg", file.getName());
-        return fs;
+    @Path(value = "/groupware-workbench/photo/img-thumb/{idPhoto}")
+    public Download imgThumb(long idPhoto) {
+        Photo photo = Photo.findById(idPhoto);
+        if (photo == null) {
+            result.notFound();
+            return null;
+        }
+        return photo.downloadImgThumb();
     }
 
     @Get
-    @Path(value = "/groupware-workbench/photo/{photoInstance}/img-show/{nomeArquivoUnico}")
-    public Download imgShow(PhotoMgrInstance photoInstance, String nomeArquivoUnico) {
-        File file = photoInstance.imgShow(nomeArquivoUnico);
-        FileDownload fs = new FileDownload(file, "image/jpg", file.getName());
-        return fs;
+    @Path(value = "/groupware-workbench/photo/img-show/{idPhoto}")
+    public Download imgShow(long idPhoto) {
+        Photo photo = Photo.findById(idPhoto);
+        if (photo == null) {
+            result.notFound();
+            return null;
+        }
+        return photo.downloadImgShow();
     }
 
     @Get
-    @Path(value = "/groupware-workbench/photo/{photoInstance}/img-crop/{nomeArquivoUnico}")
-    public Download imgCrop(PhotoMgrInstance photoInstance, String nomeArquivoUnico) {
-        File file = photoInstance.imgCrop(nomeArquivoUnico);
-        FileDownload fs = new FileDownload(file, "image/jpg", file.getName());
-        return fs;
+    @Path(value = "/groupware-workbench/photo/img-crop/{idPhoto}")
+    public Download imgCrop(long idPhoto) {
+        Photo photo = Photo.findById(idPhoto);
+        if (photo == null) {
+            result.notFound();
+            return null;
+        }
+        return photo.downloadImgCrop();
     }
 
     @Get
-    @Path(value = "/groupware-workbench/photo/{photoInstance}/img-original/{nomeArquivoUnico}")
-    public Download imgOriginal(PhotoMgrInstance photoInstance, String nomeArquivoUnico) {
-        File file = photoInstance.imgOriginal(nomeArquivoUnico);
-        FileDownload fs = new FileDownload(file, "image/jpg", file.getName());
-        return fs;
+    @Path(value = "/groupware-workbench/photo/img-original/{idPhoto}")
+    public Download imgOriginal(long idPhoto) {
+        Photo photo = Photo.findById(idPhoto);
+        if (photo == null) {
+            result.notFound();
+            return null;
+        }
+        return photo.downloadImgOriginal();
     }
 
     private void addIncludes(PhotoMgrInstance photoInstance) {
@@ -221,8 +227,7 @@ public class PhotoController {
     @Post
     @Path(value = "/groupware-workbench/photo/{photoInstance}/registra")
     public void save(Photo photoRegister, UploadedFile foto, PhotoMgrInstance photoInstance, User user) {
-        String nomeArquivo = (foto == null ? null : foto.getFileName());
-        photoRegister.setNomeArquivo(nomeArquivo);
+        photoRegister.setNomeArquivo(foto == null ? null : foto.getFileName());
         result.include("photoRegister", photoRegister);
 
         boolean erro = false;
@@ -239,49 +244,16 @@ public class PhotoController {
             return;
         }
 
+        if (user != null) {
+            photoRegister.assignUser(user);
+        }
         // Fim das validações.
 
-        BufferedImage imagemOriginal = null;
-        BufferedImage imagemThumb = null;
-        BufferedImage imagemCropped = null;
-        BufferedImage imagemMostra = null;
-
         try {
-            imagemOriginal = ImageIO.read(foto.getFile());
-            if (imagemOriginal == null) {
-                validator.add(new ValidationMessage(MSG_IMAGEM_INVALIDA, "Erro"));
-                validator.onErrorUse(Results.logic()).redirectTo(PhotoController.class).registra(photoInstance);
-                return;
-            }
-
-            imagemMostra = ImageUtils.createThumbnailIfNecessary(800, imagemOriginal, true);
-            imagemThumb = ImageUtils.createThumbnailIfNecessary(100, imagemOriginal, true);
-            BufferedImage imagemThumb2 = ImageUtils.createThumbnailIfNecessary(100, imagemOriginal, false);
-            Point cropPoint = ImageUtils.calcSqrThumbCropPoint(imagemThumb2);
-            imagemCropped = ImageUtils.cropImage(cropPoint, new Dimension(100, 100), imagemThumb2);
-        } catch (IOException e) {
-            validator.add(new ValidationMessage(MSG_NAO_FOI_POSSIVEL_REDIMENSIONAR, "Erro"));
-            validator.onErrorUse(Results.logic()).redirectTo(PhotoController.class).registra(photoInstance);
-            return;
-        }
-
-        try {
-            photoRegister.setDataCriacao(new Date());
             photoInstance.save(photoRegister);
-            if (user != null) {
-                photoInstance.assignToUser(photoRegister, user);
-            }
-            nomeArquivo = photoRegister.getNomeArquivoUnico(); // Para ter um só nome do arquivo.
-            photoInstance.saveImage(imagemOriginal, nomeArquivo);
-            photoInstance.saveImage(imagemCropped, photoInstance.getCropPrefix() + nomeArquivo);
-            photoInstance.saveImage(imagemThumb, photoInstance.getThumbPrefix() + nomeArquivo);
-            photoInstance.saveImage(imagemMostra, photoInstance.getMostraPrefix() + nomeArquivo);
-            result.include("originalImage", photoInstance.imgOriginal(nomeArquivo));
-            result.include("croppedImage", photoInstance.imgCrop(nomeArquivo));
-            result.include("thumbImage", photoInstance.imgThumb(nomeArquivo));
-            result.include("showImage", photoInstance.imgShow(nomeArquivo));
+            photoRegister.saveImage(foto.getFile());
         } catch (IOException e) {
-            validator.add(new ValidationMessage(MSG_FALHA_NO_UPLOAD, "Erro"));
+            validator.add(new ValidationMessage(e.getMessage(), "Erro"));
             validator.onErrorUse(Results.logic()).redirectTo(PhotoController.class).registra(photoInstance);
             return;
         }
@@ -295,7 +267,6 @@ public class PhotoController {
     @Get
     @Path(value = "/groupware-workbench/photo/{photoInstance}/registra_multiplos/{os}/{dir}")
     public void registraMultiplos(String os, String dir, PhotoMgrInstance photoInstance) {
-        // TODO: Essa lógica de negócio deveria estar na classe de negócio, não na Controller.
 
         // TODO: Não deveria depender em saber qual é o sistema operacional.
         String pDir = dir.replace("|", "/");
@@ -309,36 +280,23 @@ public class PhotoController {
         int numFile = 1;
         File[] files = filesDir.listFiles();
         for (File file : files) {
-            System.out.println("Enviando foto " + numFile++ + "/" + files.length);
+            System.out.println("Enviando foto " + numFile + "/" + files.length);
+            numFile++;
             String name = file.getName().substring(0, file.getName().length() - 4);
             String nomeArquivo = file.getName();
-            BufferedImage imagemOriginal = null;
-            BufferedImage imagemThumb = null;
-            BufferedImage imagemCropped = null;
-            BufferedImage imagemMostra = null;
 
             try {
-                imagemOriginal = ImageIO.read(file);
-                imagemMostra = ImageUtils.createThumbnailIfNecessary(800, imagemOriginal, true);
-                imagemThumb = ImageUtils.createThumbnailIfNecessary(100, imagemOriginal, true);
-                BufferedImage imagemThumb2 = ImageUtils.createThumbnailIfNecessary(100, imagemOriginal, false);
-                Point cropPoint = ImageUtils.calcSqrThumbCropPoint(imagemThumb2);
-                imagemCropped = ImageUtils.cropImage(cropPoint, new Dimension(100, 100), imagemThumb2);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            try {
-                Photo imagem = new Photo();
-                imagem.setNome(name);
-                imagem.setNomeArquivo(nomeArquivo);
-                imagem.setDataCriacao(new Date());
-                photoInstance.save(imagem);
-                nomeArquivo = imagem.getNomeArquivoUnico(); // Para ter um só nome do arquivo.
-                photoInstance.saveImage(imagemOriginal, nomeArquivo);
-                photoInstance.saveImage(imagemCropped, photoInstance.getCropPrefix() + nomeArquivo);
-                photoInstance.saveImage(imagemThumb, photoInstance.getThumbPrefix() + nomeArquivo);
-                photoInstance.saveImage(imagemMostra, photoInstance.getMostraPrefix() + nomeArquivo);
+                InputStream input = null;
+                try {
+                    input = new FileInputStream(file);
+                    Photo imagem = new Photo();
+                    imagem.setNome(name);
+                    imagem.setNomeArquivo(nomeArquivo);
+                    photoInstance.save(imagem);
+                    imagem.saveImage(input);
+                } finally {
+                    if (input != null) input.close();
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }

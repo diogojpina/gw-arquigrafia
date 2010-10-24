@@ -1,10 +1,35 @@
+/*
+*    UNIVERSIDADE DE SÃO PAULO.
+*    Author: Marco Aurélio Gerosa (gerosa@ime.usp.br)
+*
+*    This file is part of Groupware Workbench (http://www.groupwareworkbench.org.br).
+*
+*    Groupware Workbench is free software: you can redistribute it and/or modify
+*    it under the terms of the GNU Lesser General Public License as published by
+*    the Free Software Foundation, either version 3 of the License, or
+*    (at your option) any later version.
+*
+*    Groupware Workbench is distributed in the hope that it will be useful,
+*    but WITHOUT ANY WARRANTY; without even the implied warranty of
+*    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+*    GNU Lesser General Public License for more details.
+*
+*    You should have received a copy of the GNU Lesser General Public License
+*    along with Swift.  If not, see <http://www.gnu.org/licenses/>.
+*/
 package br.org.groupwareworkbench.arquigrafia.photo;
 
+import java.awt.Dimension;
+import java.awt.Point;
 import java.awt.image.BufferedImage;
+
 import java.io.File;
+import java.io.InputStream;
 import java.io.IOException;
 import java.io.Serializable;
+
 import java.text.SimpleDateFormat;
+
 import java.util.Date;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -15,6 +40,7 @@ import javax.imageio.ImageIO;
 import javax.imageio.ImageWriteParam;
 import javax.imageio.ImageWriter;
 import javax.imageio.stream.FileImageOutputStream;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
@@ -26,11 +52,14 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.TypedQuery;
 
+import br.com.caelum.vraptor.interceptor.download.FileDownload;
+
 import br.org.groupwareworkbench.collablet.coord.user.User;
 import br.org.groupwareworkbench.core.bd.EntityManagerProvider;
 import br.org.groupwareworkbench.core.bd.ObjectDAO;
 import br.org.groupwareworkbench.core.bd.QueryBuilder;
 import br.org.groupwareworkbench.core.framework.Collablet;
+import br.org.groupwareworkbench.core.util.ImageUtils;
 
 @Entity
 public class Photo implements Serializable {
@@ -45,6 +74,8 @@ public class Photo implements Serializable {
 
     @ManyToOne
     private Collablet collablet;
+
+    private transient PhotoMgrInstance instance;
 
     @Column(name = "nome", unique = false, nullable = false)
     private String nome;
@@ -95,12 +126,92 @@ public class Photo implements Serializable {
         return DAO.listByField("collablet", collablet);
     }
 
-    public static File getImageFile(String pasta, String prefix, String nomeArquivoUnico) {
-        String path = pasta + prefix + nomeArquivoUnico;
+    private PhotoMgrInstance getInstance() {
+        if (instance == null) {
+            instance = (PhotoMgrInstance) collablet.getBusinessObject();
+        }
+        return instance;
+    }
+
+    private File makeImg(String prefix) {
+        String path = getInstance().getDirImages() + prefix + id;
         return new File(path);
     }
 
-    public static void saveImage(BufferedImage input, String name, String path) throws IOException {
+    private FileDownload makeDownload(String prefix) {
+        File file = makeImg(prefix);
+        return new FileDownload(file, "image/jpg", file.getName());
+    }
+
+    public FileDownload downloadImgThumb() {
+        return makeDownload(getInstance().getThumbPrefix());
+    }
+
+    public FileDownload downloadImgCrop() {
+        return makeDownload(getInstance().getCropPrefix());
+    }
+
+    public FileDownload downloadImgShow() {
+        return makeDownload(getInstance().getMostraPrefix());
+    }
+
+    public FileDownload downloadImgOriginal() {
+        return makeDownload("");
+    }
+
+    public File getImgThumb() {
+        return makeImg(getInstance().getThumbPrefix());
+    }
+
+    public File getImgCrop() {
+        return makeImg(getInstance().getCropPrefix());
+    }
+
+    public File getImgShow() {
+        return makeImg(getInstance().getMostraPrefix());
+    }
+
+    public File getImgOriginal() {
+        return makeImg("");
+    }
+
+    public void saveImage(InputStream foto) throws IOException {
+        BufferedImage imagemOriginal = null;
+        BufferedImage imagemThumb = null;
+        BufferedImage imagemCropped = null;
+        BufferedImage imagemMostra = null;
+
+        try {
+            imagemOriginal = ImageIO.read(foto);
+        } catch (IOException e) {
+            throw new IOException(PhotoController.MSG_FALHA_NO_UPLOAD, e);
+        }
+
+        if (imagemOriginal == null) {
+            throw new IOException(PhotoController.MSG_IMAGEM_INVALIDA);
+        }
+
+        try {
+            imagemMostra = ImageUtils.createThumbnailIfNecessary(800, imagemOriginal, true);
+            imagemThumb = ImageUtils.createThumbnailIfNecessary(100, imagemOriginal, true);
+            BufferedImage imagemThumb2 = ImageUtils.createThumbnailIfNecessary(100, imagemOriginal, false);
+            Point cropPoint = ImageUtils.calcSqrThumbCropPoint(imagemThumb2);
+            imagemCropped = ImageUtils.cropImage(cropPoint, new Dimension(100, 100), imagemThumb2);
+        } catch (IOException e) {
+            throw new IOException(PhotoController.MSG_NAO_FOI_POSSIVEL_REDIMENSIONAR, e);
+        }
+
+        try {
+            this.saveImage(imagemOriginal, "", getInstance().getDirImages());
+            this.saveImage(imagemCropped, getInstance().getCropPrefix(), getInstance().getDirImages());
+            this.saveImage(imagemThumb, getInstance().getThumbPrefix(), getInstance().getDirImages());
+            this.saveImage(imagemMostra, getInstance().getMostraPrefix(), getInstance().getDirImages());
+        } catch (IOException e) {
+            throw new IOException(PhotoController.MSG_FALHA_NO_UPLOAD, e);
+        }
+    }
+
+    private void saveImage(BufferedImage input, String prefix, String path) throws IOException {
         File photoDirectory = new File(path);
         if (!photoDirectory.exists()) {
             photoDirectory.mkdir();
@@ -112,7 +223,7 @@ public class Photo implements Serializable {
             ImageWriteParam iwp = writer.getDefaultWriteParam();
             iwp.setCompressionMode(ImageWriteParam.MODE_EXPLICIT);
             iwp.setCompressionQuality(0.95f);
-            File outFile = new File(path + File.separator + name);
+            File outFile = new File(path + File.separator + prefix + id);
             FileImageOutputStream output = null;
             try {
                 output = new FileImageOutputStream(outFile);
@@ -154,10 +265,6 @@ public class Photo implements Serializable {
 
     public static Photo findById(long id) {
         return DAO.findById(id);
-    }
-
-    public String getNomeArquivoUnico() {
-        return this.getId() + this.getNomeArquivo();
     }
 
     public String getNomeArquivo() {

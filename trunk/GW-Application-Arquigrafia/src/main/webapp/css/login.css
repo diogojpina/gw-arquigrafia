@@ -8,6 +8,7 @@
 .login_label {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 10px;
+    font-weight: bold;
 }
 
 .login_messages {
@@ -18,9 +19,9 @@
 
 .login_error {
     font-weight: bold;
-    color: #CC101E;
+    color: yellow;
     margin-right: 10px;
-    background-color: #FFF;
+    background-color: #CC101E;
 }
 
 .login_link {
@@ -53,34 +54,27 @@
     float: left;
 }
 
-
 .login_fields {
-	margin-top: 100px;
-	padding: 15px;
+    margin-top: 100px;
+    padding: 15px;
 }
 
 .login_fields_1 {
     float: left;
-    background: #FFF;
-	opacity: 0.8;
-	padding-bottom: 15px;
+    padding-bottom: 15px;
 }
 
 .login_fields_2 {
     padding-left: 4px;
     float: left;
-    background: #FFF;
-	opacity: 0.8;
-	padding-bottom: 15px;
+    padding-bottom: 15px;
 }
 
 .login_button {
-	padding-left: 7px;
+    padding-left: 7px;
     padding-top: 15px;
     float: right;
-    background: #FFF;
-	opacity: 0.8;
-	padding-bottom: 15px;
+    padding-bottom: 15px;
 }
 
 body {

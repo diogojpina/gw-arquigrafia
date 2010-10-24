@@ -54,7 +54,7 @@
            <span>Arquivo*:</span>
        </li>
        <li class="${formInputClass}" id="imageUpload">
-       	   <input id="imageUpload" type="file" name="foto" />
+       	   <input id="imageUpload" type="file" name="foto" value="<c:out value="${photoRegister.nomeArquivo}" />" />
        </li>
    </ul>
    <fieldset>
@@ -64,14 +64,14 @@
                <span>Nome*:</span>
            </label>
            <span class="${formInputClass}">
-               <input type="text" name="photoRegister.nome" />
+               <input type="text" name="photoRegister.nome" value="<c:out value="${photoRegister.nome}" />" />
            </span>
        </div>
        <div class="${formLineClass}">
            <label for="photoRegister.descricao" class="${formLabelClass}">
                <span>Descri&ccedil;&atilde;o:</span>
            </label>
-           <textarea rows="3" name="photoRegister.descricao" class="${formInputClass}"></textarea>
+           <textarea rows="3" name="photoRegister.descricao" class="${formInputClass}"><c:out value="${photoRegister.descricao}" /></textarea>
        </div>
     </fieldset>
     <fieldset>
@@ -89,21 +89,21 @@
                 <span>Localiza&ccedil;&atilde;o:</span>
             </label>
             <span class="${formInputClass}">
-                <input type="text" name="photoRegister.lugar" />
+                <input type="text" name="photoRegister.lugar" value="<c:out value="${photoRegister.lugar}" />" />
             </span>
         </div>
     </fieldset>
-    <fieldset>
-        <legend>Dados Adicionais</legend>
-        <ul class="${formLineClass}" style="line-height: normal;">
-            <li class="${formLabelClass}"><span>Tags:</span></li>
-            <li class="${formInputClass}">
-                <c:if test="${tagMgr.collablet.enabled}">
+    <c:if test="${tagMgr.collablet.enabled}">
+        <fieldset>
+            <legend>Dados Adicionais</legend>
+            <ul class="${formLineClass}" style="line-height: normal;">
+                <li class="${formLabelClass}"><span>Tags:</span></li>
+                <li class="${formInputClass}">
                     <label style="font-size: 12px; color: blue;">As tags devem ser separadas por v&iacute;rgulas</label>
                     <tag:selectTags tagMgr="${tagMgr}" />
                     <tag:setTags tagMgr="${tagMgr}" entity="${photoRegister}" />
-                </c:if>
-            </li>
-        </ul>
-    </fieldset>
+                </li>
+            </ul>
+        </fieldset>
+    </c:if>
 </div>
