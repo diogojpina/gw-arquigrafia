@@ -96,7 +96,7 @@
                     $("#local_canvas").html("");
                     <c:forEach var="instance" items="${extCollablet.collablets}">
                         $.get(
-                            '<c:out value="${pageContext.request.contextPath}" />/groupware-workbench/manager/<c:out value="${manager.id}" />/get-position/<c:out value="${instance.id}" />/on-canvas/<c:out value="${extCollablet.dependences.id}" />',
+                            '<c:out value="${pageContext.request.contextPath}" />/groupware-workbench/manager/<c:out value="${manager.id}" />/get-position/<c:out value="${instance.id}" />/on-canvas/<c:out value="${extCollablet.dependencies.id}" />',
                             function(data) {
                                 $("#dummy_pos").html(data);
                                 var x = $('#coord_x_<c:out value="${instance.id}" />').val();
@@ -112,7 +112,7 @@
                                     2
                                 );
                                 $.get(
-                                    '<c:out value="${pageContext.request.contextPath}" />/groupware-workbench/manager/<c:out value="${manager.id}" />/get-relation/<c:out value="${instance.id}" />/on-canvas/<c:out value="${extCollablet.dependences.id}" />',
+                                    '<c:out value="${pageContext.request.contextPath}" />/groupware-workbench/manager/<c:out value="${manager.id}" />/get-relation/<c:out value="${instance.id}" />/on-canvas/<c:out value="${extCollablet.dependencies.id}" />',
                                     function(data) {
                                         $("#dummy_rel").html(data);
                                         var from = $('#rel_from_<c:out value="${instance.id}" />').val();
