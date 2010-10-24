@@ -3,9 +3,9 @@
 <%@ taglib prefix="friends" uri="http://www.groupwareworkbench.org.br/widgets/friends"%>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/friends.css" />
 <br/>
-<friends:listFriendsRequests user="${userLogin}" friendsMgr="${friendsMgr}" friends_header="friends_header" />
+<friends:listFriendsRequests user="${userLogin}" friendsMgr="${friendsMgr}" afterRejectFunction="refreshPage" afterAcceptFunction="refreshPage" friends_header="friends_header" />
 <br/>
 <friends:listFriends user="${user}" friendsMgr="${friendsMgr}" friends_header="friends_header" />
 <br/>
-<friends:editFriends user="${userLogin}" friendsMgr="${friendsMgr}" friends_header="friends_header"/>
+<friends:editFriends user="${userLogin}" friendsMgr="${friendsMgr}" afterRemoveFunction="refreshPage" friends_header="friends_header"/>
 <br/>

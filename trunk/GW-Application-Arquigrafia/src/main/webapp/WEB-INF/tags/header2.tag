@@ -65,7 +65,7 @@
             function showFriends() {
                 var url = "${pageContext.request.contextPath}/groupware-workbench/friends/${friendsMgr.id}/list";
                 $("#friendsFrame").load(url, function() {
-                    new Boxy($("#friendsContent").html(), {
+                        new Boxy($("#friendsContent").html(), {
                         title: "Amigos",
                         modal: true,
                         closeText: "Fechar",
