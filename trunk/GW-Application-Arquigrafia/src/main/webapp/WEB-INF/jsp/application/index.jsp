@@ -16,7 +16,7 @@
         <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.ico" />
         <!-- BASIC CSS -->
         <link type="text/css" href="${pageContext.request.contextPath}/management/assets/css/reset.css" rel="stylesheet" />
-        <!-- YUI --> 
+        <!-- YUI -->
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/management/assets/external/fonts-min.css" />
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/management/assets/external/yui/reset/reset-min.css" />
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/management/assets/css/Wire_it.css" />
@@ -32,7 +32,7 @@
         <script type="text/javascript" src="${pageContext.request.contextPath}/management/assets/external/json-min.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/management/assets/external/inputex.js"></script>
 
-        <!-- Excanvas --> 
+        <!-- Excanvas -->
         <!--[if IE]>
             <script type="text/javascript" src="${pageContext.request.contextPath}/management/assets/external/excanvas.js"></script>
         <![endif]-->
@@ -57,7 +57,7 @@
         <script type="text/javascript" src="${pageContext.request.contextPath}/management/assets/js/specific_configuration_layout.js" ></script>
         <!-- SPECIFIC CONFIGURATION: ANIMATIONS -->
         <script type="text/javascript" src="${pageContext.request.contextPath}/management/assets/js/specific_configuration_animations.js" ></script>
-        <style type="text/css">        
+        <style type="text/css">
             div.WireIt-Layer {
                 height: 1000px;
             }
@@ -72,7 +72,7 @@
 
             function onMoved(id, canvasId, pos_x, pos_y) {
                 $.post('<c:out value="${pageContext.request.contextPath}" />/groupware-workbench/manager/<c:out value="${manager.id}" />/set-position/' + id + '/on-canvas/' + canvasId + '/' + pos_x + '/' + pos_y);
-            } 
+            }
 
             function onAddWire1(event, args) {
                 var wire = args[0];
@@ -98,7 +98,7 @@
                 }
                 sourceId = $(source.parentEl).attr("id");
                 targetId = $(target.parentEl).attr("id");
-                $.post('<c:out value="${pageContext.request.contextPath}" />/groupware-workbench/manager/<c:out value="${manager.id}" />/subordinate/' + targetId + '/to/' + sourceId, 
+                $.post('<c:out value="${pageContext.request.contextPath}" />/groupware-workbench/manager/<c:out value="${manager.id}" />/subordinate/' + targetId + '/to/' + sourceId,
                     function(data) {
                         $("#status").text($(source.parentEl).attr("title") + " subordina " + $(target.parentEl).attr("title"));
                     }
@@ -130,7 +130,7 @@
 
                 sourceId = $(source.parentEl).attr("id");
                 targetId = $(target.parentEl).attr("id");
-                $.post('<c:out value="${pageContext.request.contextPath}" />/groupware-workbench/manager/<c:out value="${manager.id}" />/unsubordinate/' + targetId + '/from/' + sourceId, 
+                $.post('<c:out value="${pageContext.request.contextPath}" />/groupware-workbench/manager/<c:out value="${manager.id}" />/unsubordinate/' + targetId + '/from/' + sourceId,
                     function(data) {
                         $("#status").text($(source.parentEl).attr("title") + " não mais subordina " + $(target.parentEl).attr("title"));
                     }
@@ -162,7 +162,7 @@
 
                 sourceId = $(source.parentEl).attr("id");
                 targetId = $(target.parentEl).attr("id");
-                $.post('<c:out value="${pageContext.request.contextPath}" />/groupware-workbench/manager/<c:out value="${manager.id}" />/add-dependency/' + targetId + '/of/' + sourceId, 
+                $.post('<c:out value="${pageContext.request.contextPath}" />/groupware-workbench/manager/<c:out value="${manager.id}" />/add-dependency/' + targetId + '/of/' + sourceId,
                     function(data) {
                         $("#status").text($(source.parentEl).attr("title") + " é dependência de " + $(target.parentEl).attr("title"));
                     }
@@ -194,7 +194,7 @@
 
                 sourceId = $(source.parentEl).attr("id");
                 targetId = $(target.parentEl).attr("id");
-                $.post('<c:out value="${pageContext.request.contextPath}" />/groupware-workbench/manager/<c:out value="${manager.id}" />/remove-dependency/' + targetId + '/of/' + sourceId, 
+                $.post('<c:out value="${pageContext.request.contextPath}" />/groupware-workbench/manager/<c:out value="${manager.id}" />/remove-dependency/' + targetId + '/of/' + sourceId,
                     function(data) {
                         $("#status").text($(source.parentEl).attr("title") + " não mais é dependência de " + $(target.parentEl).attr("title"));
                     }
@@ -218,10 +218,10 @@
                         '<div class="instance_toggle_details basic_button">' +
                             '<a href="#" id="details_bt_' + numModel + '" >' +
                                 '<img id="bullet1_' + numModel + '" src="${pageContext.request.contextPath}/management/assets/images/bullet.png" alt="Detalhes" style="padding-top: 3px"/>' +
-	                        '<img id="bullet2_' + numModel + '" src="${pageContext.request.contextPath}/management/assets/images/bullet2.png" alt="Detalhes" style="padding-top: 3px"/>' +
+                                '<img id="bullet2_' + numModel + '" src="${pageContext.request.contextPath}/management/assets/images/bullet2.png" alt="Detalhes" style="padding-top: 3px"/>' +
                             '</a>' +
-	                '</div>' +
-	                '<' + 'script type="text/javascript">' +
+                        '</div>' +
+                        '<' + 'script type="text/javascript">' +
                             '$("#bullet2_' + numModel + '").hide();' +
                             '$("#bullet1_' + numModel + '").click(function() { ' +
                                 '$("#bullet1_' + numModel + '").hide();' +

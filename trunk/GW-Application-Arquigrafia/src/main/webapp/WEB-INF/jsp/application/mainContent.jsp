@@ -1,5 +1,5 @@
 <!--
-    Description: Holds the list of components, plus the canvases and all associated structures. 
+    Description: Holds the list of components, plus the canvases and all associated structures.
     Created By: Gustavo H. Braga (gustavo.henrick@gmail.com)
     Date: 08/09/2010
 -->
@@ -16,7 +16,7 @@
         <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.ico" />
     </head>
     <body>
-    	<div id="status_dialog"></div>
+        <div id="status_dialog"></div>
 
         <!-- Shows all available components in the system -->
         <div id="available_components" class="component_canvas">
@@ -24,7 +24,7 @@
                 <h3>Collablets Dispon&iacute;veis</h3>
             </div>
             <div id="component_list">
-            	<c:set var="num" value="0"></c:set>
+                <c:set var="num" value="0"></c:set>
                 <c:forEach var="extcol" items="${extCollabletInstanceList}">
                     <div>
                         <c:set var="num" value="${num + 1}" />
@@ -35,24 +35,24 @@
                             </a>
                         </h3>
                         <div>
-                            <form id="comp_<c:out value="${extcol.id}" />" >
+                            <form id="comp_<c:out value="${extcol.id}" />">
                                 <div>
-                                    <input id="inst_<c:out value="${extcol.id }" />" type="checkbox" checked="<c:out value="${extcol.installed}" />" name="manager.eCRegister.installed" />
-                                    <label for="inst_<c:out value="${extcol.id }" />">Instalado:</label>
+                                    <input id="inst_<c:out value="${extcol.id}" />" type="checkbox" checked="<c:out value="${extcol.installed}" />" name="manager.eCRegister.installed" />
+                                    <label for="inst_<c:out value="${extcol.id}" />">Instalado:</label>
                                 </div>
                                 <div>
-                                    <textarea id="desc_<c:out value="${extcol.id }" />" rows="3" cols="35" name="manager.eCRegister.description"><c:out value="${extcol.description}" /></textarea>
-                        	</div>
-                        	<div>
+                                    <textarea id="desc_<c:out value="${extcol.id}" />" rows="3" cols="35" name="manager.eCRegister.description"><c:out value="${extcol.description}" /></textarea>
+                                </div>
+                                <div>
                                     <input id="bt_mod_<c:out value="${extcol.id}" />" type="button" value="Modificar" />
                                     <script type="text/javascript">
                                         $(document).ready(function() {
                                             $("#bt_mod_<c:out value="${extcol.id}" />").click(function() {
                                                 $.post(
-                                                    '<c:out value="${pageContext.request.contextPath}" />/groupware-workbench/manager/<c:out value="${manager.id}" />/update/<c:out value="${extcol.componentTypeName }" />',
+                                                    '<c:out value="${pageContext.request.contextPath}" />/groupware-workbench/manager/<c:out value="${manager.id}" />/update/<c:out value="${extcol.componentTypeName}" />',
                                                     $('#comp_<c:out value="${extcol.id }" />').serialize(),
                                                     function(data) {
-                                                        $("#status").text('O Collablet <c:out value="${extcol.componentTypeName }" /> foi modificado.');
+                                                        $("#status").text('O Collablet <c:out value="${extcol.componentTypeName}" /> foi modificado.');
                                                         $('#status_dialog').html('Collablet modificado!');
                                                         $("#status_dialog").dialog('open');
                                                     }
@@ -128,7 +128,7 @@
                         pageResize(); // TODO: Verificar se deveria estar dentro do callback do $.get.
                     }
                 );
-		//$("#c_tabs-2").load('<c:out value="${pageContext.request.contextPath}" />/groupware-workbench/manager/<c:out value="${manager.id}" />/dep_canvas');
+                //$("#c_tabs-2").load('<c:out value="${pageContext.request.contextPath}" />/groupware-workbench/manager/<c:out value="${manager.id}" />/dep_canvas');
                 $('#status_dialog').dialog({
                     autoOpen: false,
                     modal: true,

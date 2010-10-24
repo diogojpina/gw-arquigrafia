@@ -1,5 +1,5 @@
 <!--
-    Description: Holds the list of components, plus the canvases and all associated structures. 
+    Description: Holds the list of components, plus the canvases and all associated structures.
     Created By: Gustavo H. Braga (gustavo.henrick@gmail.com)
     Date: 08/09/2010
 -->

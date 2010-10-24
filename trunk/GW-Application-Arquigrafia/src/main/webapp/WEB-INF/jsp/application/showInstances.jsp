@@ -1,5 +1,5 @@
 <!--
-    Description: Holds the list of components, plus the canvases and all associated structures. 
+    Description: Holds the list of components, plus the canvases and all associated structures.
     Created By: Gustavo H. Braga (gustavo.henrick@gmail.com)
     Date: 08/09/2010
 -->
@@ -50,7 +50,7 @@
                 <c:forEach var="instance" items="${extCollablet.collablets}">
                     addInstance('<c:out value="${instance.name}" />', '<c:out value="${extCollablet.componentTypeName}" />', '<c:out value="${instance.description}" />', '<c:out value="${instance.id}" />');
                 </c:forEach>
-				
+
                 function popSubordinates() {
                     $("#local_canvas2").html("");
                     <c:forEach var="instance" items="${extCollablet.collablets}">

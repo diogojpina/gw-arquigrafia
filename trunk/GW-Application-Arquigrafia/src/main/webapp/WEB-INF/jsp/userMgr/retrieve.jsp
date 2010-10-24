@@ -33,12 +33,12 @@
                 </c:forEach>
             </ul>
 
-            <form id="form1" class="cmxform" name="dados" method="POST" action="<c:url value="/groupware-workbench/users/${userMgr.id}" />" accept-charset="UTF-8">
+            <form id="form1" class="cmxform" name="dados" method="POST" action="<c:url value="/groupware-workbench/users/${userMgr.id}" />" accept-charset="UTF-8" autocomplete="off">
                 <input type="hidden" name="user.id" value="<c:out value="${user.id}" />" />
                 <div class="form_1" id="user_retrieve_form">
                     <ul class="field_line_f1">
                         <li class="label_f1"><span>Login:</span></li>
-                        <li class="input_f1"><input type="text" class="required" name="user.login" value="<c:out value="${user.id == null ? ' ' : user.login}" />" /></li>
+                        <li class="input_f1"><input type="text" class="required" name="user.login" value="<c:out value="${user.login}" />" /></li>
                     </ul>
                     <ul class="field_line_f1">
                         <li class="label_f1"><span>Password:</span></li>
