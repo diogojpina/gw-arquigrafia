@@ -61,10 +61,6 @@ public class PopulateInitialDatabase {
         userRole.setName("Usuário");
         userRole.setCollablet(role);
 
-        Role reviewerRole = new Role();
-        reviewerRole.setName("Revisor");
-        reviewerRole.setCollablet(role);
-
         User admin = new User();
         admin.setLogin("admin");
         admin.setEmail("admin@website.com");
@@ -87,9 +83,9 @@ public class PopulateInitialDatabase {
         user02.setName("Usuario02");
         user02.setPassword("222");
         user02.setCollablet(user);
-        user02.assign(reviewerRole);
+        user02.assign(userRole);
 
-        insertAll(adminRole, userRole, reviewerRole,
+        insertAll(adminRole, userRole,
                 admin, user01, user02);
     }
 }
