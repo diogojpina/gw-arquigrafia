@@ -45,8 +45,12 @@
             <div id="systemUsersContent"></div>
         </div>
         <div id="profileDiv" style="visibility: hidden; display: none;">
-            <iframe name="profileContentFrame" style="width: 400px; height: 600px; opacity: 0.95;"
+            <iframe name="profileContentFrame" style="width: 450px; height: 500px; opacity: 0.95;"
                     id="profileContentFrame" src="${pageContext.request.contextPath}/groupware-workbench/friends/${friendsMgr.id}/show/${userLogin.id}"></iframe>
+        </div>
+        <div id="myFriendsDiv" style="visibility: hidden; display: none;">
+            <iframe name="profileContentFrame" style="width: 450px; height: 500px; opacity: 0.95;"
+                    id="profileContentFrame" src="${pageContext.request.contextPath}/groupware-workbench/friends/${friendsMgr.id}/list"></iframe>
         </div>
         <script type="text/javascript">
             function refreshPage() {
@@ -62,20 +66,6 @@
                 }).show();
             }
 
-            function showFriends() {
-                var url = "${pageContext.request.contextPath}/groupware-workbench/friends/${friendsMgr.id}/list";
-                $("#friendsFrame").load(url, function() {
-                        new Boxy($("#friendsContent").html(), {
-                        title: "Amigos",
-                        modal: true,
-                        closeText: "Fechar",
-                        afterHide: function() {
-                            $("#friendsFrame").empty();
-                        }
-                    }).show();
-                });
-            }
-
             function showSystemUsers() {
                 var url = "${pageContext.request.contextPath}/groupware-workbench/photo/${photoInstance.id}/system_users";
                 $("#systemUsersContent").load(url, function() {
@@ -89,35 +79,6 @@
                     }).show();
                 });
             }
-
-            function showEdithFriends() {
-                var url = "${pageContext.request.contextPath}/groupware-workbench/friends/${friendsMgr.id}/edit";
-                $("#edithFriendsContent").load(url, function() {
-                    new Boxy($("#edithFriends").html(), {
-                        title: "Editar amigos",
-                        modal: true,
-                        closeText: "Fechar",
-                        afterHide: function() {
-                            $("#edithFriendsContent").empty();
-                        }
-                    }).show();
-                });
-            }
-
-            function showFriendsRequest() {
-                var url = "${pageContext.request.contextPath}/groupware-workbench/friends/${friendsMgr.id}/friendsRequest";
-                $("#friendsRequestContent").load(url, function() {
-                    new Boxy($("#friendsRequest").html(), {
-                        title: "Convites",
-                        modal: true,
-                        closeText: "Fechar",
-                        afterHide: function() {
-                            $("#friendsRequestContent").empty();
-                        }
-                    }).show();
-                });
-            }
-
             function showProfile() {
                 new Boxy($("#profileDiv").html(), {
                     title: "Meu Perfil",
@@ -125,18 +86,25 @@
                     closeText: "Fechar"
                 }).show();
             }
+            function showMyFriends() {
+                new Boxy($("#myFriendsDiv").html(), {
+                    title: "Meus Amigos",
+                    modal: true,
+                    closeText: "Fechar"
+                }).show();
+            }            
         </script>
         <a href="#" onclick="return showPhotoUpload();">Upload de fotos</a>
         &nbsp;|&nbsp;
         <a href="#" onclick="return showProfile();">Meu Perfil</a>
         &nbsp;|&nbsp;
-        <a href="#" onclick="return showFriends();">Meus Amigos</a>                
-        &nbsp;|&nbsp;
-        <a href="${pageContext.request.contextPath}/groupware-workbench/manager/${manager.id}">Gerenciador</a>
+        <a href="#" onclick="return showMyFriends();">Meus Amigos</a>                
         &nbsp;|&nbsp;
         <a href="#" onclick="return showSystemUsers();">Usu&aacute;rios do sistema</a>
         &nbsp;|&nbsp;
         <a href="${pageContext.request.contextPath}/groupware-workbench/users/${userMgr.id}/list">Gerenciar Usu&aacute;rios</a>
+        &nbsp;|&nbsp;
+        <a href="${pageContext.request.contextPath}/groupware-workbench/manager/${manager.id}">Gerenciar aplicação</a>
     </div>
     <div id="search_field">
         <img src="${pageContext.request.contextPath}/images/head1_left2_top.png" width="99" height="100" alt="campo de busca" />
