@@ -44,11 +44,7 @@
             <iframe name="profileContentFrame" style="width: 450px; height: 500px; opacity: 0.95;"
                     id="profileContentFrame" src="${pageContext.request.contextPath}/groupware-workbench/photo/${photoInstance.id}/system_users"></iframe>
         </div>
-        <script type="text/javascript">
-            function refreshPage() {
-                window.location.reload(true);
-            }
-
+        <script type="text/javascript">            
             function showPhotoUpload() {
                 new Boxy($("#photoUploadContent").html(), {
                     title: "Use o formulário para enviar uma foto.",
