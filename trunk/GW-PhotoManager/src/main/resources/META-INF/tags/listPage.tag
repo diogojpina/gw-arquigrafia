@@ -19,19 +19,11 @@
 </r:callMethod>
 
 <div class="${wrapClass}">
-    <c:choose>
-        <c:when test="${keepRatio}">
-            <c:set var="thumbPrefix" value="${photoInstance.thumbPrefix}" />
-        </c:when>
-        <c:otherwise>
-            <c:set var="thumbPrefix" value="${photoInstance.cropPrefix}" />
-        </c:otherwise>
-    </c:choose>
     <c:forEach var="fotoA" items="${fotosA}">
         <c:if test="${showInDiv}">
             <div class="${divClass}">
         </c:if>
-        <a class="${linkClass}" rel="linkimage" href="<c:url value="/groupware-workbench/photo/${fotoA.id}"/>">
+        <a class="${linkClass}" rel="linkimage" href="<c:url value="/groupware-workbench/photo/${fotoA.id}" />">
             <c:choose>
                 <c:when test="${keepRatio}">
                     <img src="<c:url value="/groupware-workbench/photo/img-thumb/${fotoA.id}"/>" />

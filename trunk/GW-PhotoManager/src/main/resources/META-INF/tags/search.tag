@@ -11,7 +11,7 @@
             "changeMonth": true,
             "changeYear": true,
             "width": 15,
-            "dateFormat": "dd/mm/yyyy",
+            "dateFormat": "dd/mm/yy", <%-- Atenção: De acordo com a documentação, yy é o ano com 4 dígitos. --%>
             "buttonImage": "${pageContext.request.contextPath}/images/calendar.gif",
             "buttonImageOnly": true
         });

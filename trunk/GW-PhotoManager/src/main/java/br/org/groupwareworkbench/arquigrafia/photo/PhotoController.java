@@ -247,7 +247,6 @@ public class PhotoController {
         if (user != null) {
             photoRegister.assignUser(user);
         }
-        // Fim das validações.
 
         try {
             photoInstance.save(photoRegister);

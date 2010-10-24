@@ -11,7 +11,6 @@
 
 <r:callMethod methodName="listaTodaPhoto" instance="${photoInstance}" var="fotosA" />
 
-
 <div class="wrapClass">
     <c:forEach var="fotoA" items="${fotosA}">
         <c:if test="${showInDiv}">

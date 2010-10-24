@@ -43,19 +43,16 @@ import javax.imageio.stream.FileImageOutputStream;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EntityManager;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.TypedQuery;
 
 import br.com.caelum.vraptor.interceptor.download.FileDownload;
 
 import br.org.groupwareworkbench.collablet.coord.user.User;
-import br.org.groupwareworkbench.core.bd.EntityManagerProvider;
 import br.org.groupwareworkbench.core.bd.ObjectDAO;
 import br.org.groupwareworkbench.core.bd.QueryBuilder;
 import br.org.groupwareworkbench.core.framework.Collablet;
@@ -90,6 +87,7 @@ public class Photo implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataCriacao;
 
+    // FIXME: ManyToMany!? Por quê? Aliás, esta lista não é usada nunca!
     @ManyToMany
     private List<User> users = new LinkedList<User>();
 
@@ -102,12 +100,10 @@ public class Photo implements Serializable {
 
     public void assignUser(User user) {
         users.add(user);
-        DAO.update(this);
     }
 
     public void deassignUser(User user) {
         users.remove(user);
-        DAO.update(this);
     }
 
     public static void deleteAll(Collablet collablet) {
@@ -237,16 +233,15 @@ public class Photo implements Serializable {
     }
 
     public static List<Photo> listPhotoByPageAndOrder(Collablet collablet, int pageSize, int pageNumber) {
-        EntityManager em = EntityManagerProvider.getEntityManager();
-        String querySentence =
-                "SELECT p FROM " + Photo.class.getSimpleName() +
-                        " p WHERE p.collablet=:collablet ORDER BY p.dataCriacao DESC";
-        TypedQuery<Photo> query = em.createQuery(querySentence, Photo.class);
-        query.setParameter("collablet", collablet);
+        if (collablet == null) throw new IllegalArgumentException();
+
         int firstElement = pageNumber * pageSize;
-        query.setFirstResult(firstElement);
-        query.setMaxResults(pageSize);
-        return query.getResultList();
+
+        return QueryBuilder.query(Photo.class)
+                .with("collablet", collablet)
+                .firstResult(firstElement)
+                .maxResults(pageSize)
+                .list("dataCriacao DESC");
     }
 
     public static List<Photo> busca(Collablet collablet, String nome, String lugar, String descricao, Date date) {
@@ -258,7 +253,7 @@ public class Photo implements Serializable {
         if (nome != null) q.with("nome", "%" + nome.toUpperCase() + "%").upper().like();
         if (descricao != null) q.with("descricao", "%" + descricao.toUpperCase() + "%").upper().like();
         if (lugar != null) q.with("lugar", "%" + lugar.toUpperCase() + "%").upper().like();
-        if (date != null) q.with("dataCriacao", date);
+        if (date != null) q.withDay("dataCriacao", date);
 
         return q.list();
     }

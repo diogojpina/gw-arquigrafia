@@ -51,15 +51,11 @@ public class PhotoMgrInstance extends AbstractBusiness {
         photo.save();
     }
 
-    public void assignToUser(Photo photo, User user) {
-        photo.assignUser(user);
-    }
-
     public List<Photo> buscaFoto(String busca) {
         return Photo.busca(getCollablet(), busca, null, null, null);
     }
 
-    public List<Photo> buscaFotoAvancada(String nome, String descricao, String lugar, Date date) {
+    public List<Photo> buscaFotoAvancada(String nome, String lugar, String descricao, Date date) {
         return Photo.busca(getCollablet(), nome, lugar, descricao, date);
     }
 
