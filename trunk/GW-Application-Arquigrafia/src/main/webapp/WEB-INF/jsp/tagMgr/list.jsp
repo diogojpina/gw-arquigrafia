@@ -34,8 +34,6 @@
             }
         </script>
         <w:tabela baseUrl="/groupware-workbench/tags"
-                  createUrl="/groupware-workbench/tags/${tagMgr.id}/create"
-                  msgAdd="Adicionar nova tag"
                   msgDelete="Tem certeza que deseja remover a tag?"
                   target="tabela-tags"
                   titles="${coll:asList1('Nome')}"
