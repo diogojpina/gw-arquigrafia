@@ -98,18 +98,17 @@
             <div style="padding-top: 5px;">
                 <span>&nbsp;Status: <span id="status">Pronto</span></span>
             </div>
-        </div>
 
-        <!-- TODO: Certificar-se se o canvas_tabs fica dentro do installed_components ou não. -->
-        <div id="canvas_tabs" style="margin: 5px; margin-left: 215px;">
-            <ul style="height: 28px">
-                <li><a href="#c_tabs-1">Subordina&ccedil;&atilde;o</a></li>
-                <li><a href="#c_tabs-2">Depend&ecirc;ncia</a></li>
-            </ul>
+            <div id="canvas_tabs" style="margin: 5px; margin-left: 215px;">
+                <ul style="height: 28px">
+                    <li><a href="#c_tabs-1">Subordina&ccedil;&atilde;o</a></li>
+                    <li><a href="#c_tabs-2">Depend&ecirc;ncia</a></li>
+                </ul>
 
-            <div id="c_tabs-1" class="canvas_tab" style="padding: 0px; margin: 0px; background-color: #FFF"></div>
+                <div id="c_tabs-1" class="canvas_tab" style="padding: 0px; margin: 0px; background-color: #FFF"></div>
 
-            <div id="c_tabs-2" class="canvas_tab" style="padding: 0px; margin: 0px; background-color: #FFF"></div>
+                <div id="c_tabs-2" class="canvas_tab" style="padding: 0px; margin: 0px; background-color: #FFF"></div>
+            </div>
         </div>
 
         <script type="text/javascript">
