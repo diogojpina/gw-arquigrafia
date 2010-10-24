@@ -52,7 +52,6 @@ public class PhotoMgrInstance extends AbstractBusiness {
 
     public void assignToUser(Photo photo, User user) {
         photo.assignUser(user);
-
     }
 
     public void saveImage(BufferedImage foto, String nome) throws IOException {
@@ -60,7 +59,7 @@ public class PhotoMgrInstance extends AbstractBusiness {
     }
 
     public List<Photo> buscaFoto(String busca) {
-        return Photo.busca(getCollablet(), busca);
+        return Photo.busca(getCollablet(), busca, null, null, null);
     }
 
     public List<Photo> buscaFotoAvancada(String nome, String descricao, String lugar, Date date) {
@@ -99,9 +98,5 @@ public class PhotoMgrInstance extends AbstractBusiness {
 
     public String getMostraPrefix() {
         return getCollablet().getProperty("mostraPrefix");
-    }
-
-    public String getDirImagesAbsoluto() {
-        return this.getDirImages();
     }
 }

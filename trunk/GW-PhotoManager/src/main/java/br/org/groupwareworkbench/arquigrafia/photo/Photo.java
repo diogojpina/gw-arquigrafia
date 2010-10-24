@@ -29,6 +29,7 @@ import javax.persistence.TypedQuery;
 import br.org.groupwareworkbench.collablet.coord.user.User;
 import br.org.groupwareworkbench.core.bd.EntityManagerProvider;
 import br.org.groupwareworkbench.core.bd.ObjectDAO;
+import br.org.groupwareworkbench.core.bd.QueryBuilder;
 import br.org.groupwareworkbench.core.framework.Collablet;
 
 @Entity
@@ -104,6 +105,7 @@ public class Photo implements Serializable {
         if (!photoDirectory.exists()) {
             photoDirectory.mkdir();
         }
+
         Iterator<ImageWriter> iter = ImageIO.getImageWritersByFormatName("JPG");
         if (iter.hasNext()) {
             ImageWriter writer = iter.next();
@@ -111,11 +113,15 @@ public class Photo implements Serializable {
             iwp.setCompressionMode(ImageWriteParam.MODE_EXPLICIT);
             iwp.setCompressionQuality(0.95f);
             File outFile = new File(path + File.separator + name);
-            FileImageOutputStream output = new FileImageOutputStream(outFile);
-            writer.setOutput(output);
-            IIOImage image = new IIOImage(input, null, null);
-            writer.write(null, image, iwp);
-            output.close();
+            FileImageOutputStream output = null;
+            try {
+                output = new FileImageOutputStream(outFile);
+                writer.setOutput(output);
+                IIOImage image = new IIOImage(input, null, null);
+                writer.write(null, image, iwp);
+            } finally {
+                if (output != null) output.close();
+            }
         }
     }
 
@@ -132,42 +138,18 @@ public class Photo implements Serializable {
         return query.getResultList();
     }
 
-    public static List<Photo> busca(Collablet collablet, String busca) {
-        String queryString =
-                "SELECT p FROM " + Photo.class.getSimpleName() +
-                        " p WHERE p.collablet=:collablet AND UPPER(p.nome) LIKE :nome";
-        EntityManager em = EntityManagerProvider.getEntityManager();
-        TypedQuery<Photo> query = em.createQuery(queryString, Photo.class);
-        query.setParameter("nome", "%" + busca.toUpperCase() + "%");
-        query.setParameter("collablet", collablet);
-        // query.setParameter("lugar", "%" + busca.toUpperCase() + "%");
-        // query.setParameter("descricao", "%" + busca.toUpperCase() + "%");
-        return query.getResultList();
-    }
-
     public static List<Photo> busca(Collablet collablet, String nome, String lugar, String descricao, Date date) {
-        String query;
-        EntityManager em = EntityManagerProvider.getEntityManager();
-        TypedQuery<Photo> consulta;
-        if (date == null) {
-            query =
-                    "SELECT p FROM " +
-                            Photo.class.getSimpleName() +
-                            " p WHERE p.collablet = :collablet AND (UPPER(p.nome) LIKE :nome AND UPPER(p.lugar) LIKE :lugar AND UPPER(p.descricao) LIKE :descricao)";
-            consulta = em.createQuery(query, Photo.class);
-        } else {
-            query =
-                    "SELECT p FROM " +
-                            Photo.class.getSimpleName() +
-                            " p WHERE p.collablet = :collablet AND (UPPER(p.nome) LIKE :nome AND UPPER(p.lugar) LIKE :lugar AND UPPER(p.descricao) LIKE :descricao AND p.data = :date)";
-            consulta = em.createQuery(query, Photo.class);
-            consulta.setParameter("date", date);
-        }
-        consulta.setParameter("collablet", collablet);
-        consulta.setParameter("nome", "%" + nome.toUpperCase() + "%");
-        consulta.setParameter("lugar", "%" + lugar.toUpperCase() + "%");
-        consulta.setParameter("descricao", "%" + descricao.toUpperCase() + "%");
-        return consulta.getResultList();
+        if (collablet == null) throw new IllegalArgumentException();
+
+        QueryBuilder q = QueryBuilder.query(Photo.class)
+                .with("collablet", collablet);
+
+        if (nome != null) q.with("nome", "%" + nome.toUpperCase() + "%").upper().like();
+        if (descricao != null) q.with("descricao", "%" + descricao.toUpperCase() + "%").upper().like();
+        if (lugar != null) q.with("lugar", "%" + lugar.toUpperCase() + "%").upper().like();
+        if (date != null) q.with("dataCriacao", date);
+
+        return q.list();
     }
 
     public static Photo findById(long id) {
@@ -190,12 +172,14 @@ public class Photo implements Serializable {
     public boolean equals(Object o) {
         if (!(o instanceof Photo)) return false;
         Photo other = (Photo) o;
-        return other.getNome().equals(this.getNome());
+        return (id == null ? other.id == null : id.equals(other.id)) &&
+                (nome == null ? other.nome == null : nome.equals(other.nome));
     }
 
     @Override
     public int hashCode() {
-        return nome == null ? 0 : nome.hashCode();
+        return (id == null ? 0 : id.hashCode()) ^
+                (nome == null ? 0 : nome.hashCode());
     }
 
     public String getNome() {

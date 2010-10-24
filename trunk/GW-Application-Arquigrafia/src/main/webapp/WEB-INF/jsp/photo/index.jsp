@@ -24,7 +24,7 @@
         <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/image_wall.css" />
         <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/boxy.css" />
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
-                <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-ui-1.8.custom.min.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-ui-1.8.custom.min.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/plugins/sds/js/jquery.smoothDivScroll-0.9-min.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/plugins/sds/js/scroll.js"></script>
         <script type="text/javascript">
@@ -35,6 +35,7 @@
                     visibleHotSpots: "always",
                     startAtElementId: "startAtMe"
                 });
+
                 $("div#makeMeScrollable2").smoothDivScroll({
                     scrollingSpeed: 12,
                     mouseDownSpeedBooster: 3,
@@ -60,10 +61,10 @@
                     <div class="scrollingHotSpotRight" style="height: 500px;"></div>
                     <div class="scrollWrapper" id="images_scrollable">
                         <div class="scrollableArea">
-                            <div class="wallBackground">                               
-                                    <c:forEach begin="0" end="21" var="indice">
-                                        <photo:listPage linkClass="" photoInstance="${photoMgr}" keepRatio="false" showInDiv="true" divClass="wallImage" pageSize="5" pageNumber="${indice}" wrapClass="imageColumn" />
-                                    </c:forEach>                                
+                            <div class="wallBackground">
+                                <c:forEach begin="0" end="21" var="indice">
+                                    <photo:listPage linkClass="" photoInstance="${photoMgr}" keepRatio="false" showInDiv="true" divClass="wallImage" pageSize="5" pageNumber="${indice}" wrapClass="imageColumn" />
+                                </c:forEach>
                                 <div class="image_placeholder">
                                     <img src="${pageContext.request.contextPath}/images/ajax-loader.gif" alt="loading" />
                                 </div>

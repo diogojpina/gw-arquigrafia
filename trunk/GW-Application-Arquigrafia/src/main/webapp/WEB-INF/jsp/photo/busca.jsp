@@ -1,6 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="w" uri="http://www.groupwareworkbench.org.br/widgets/commons" %>
 <%@ taglib prefix="photo" uri="http://www.groupwareworkbench.org.br/widgets/photomanager" %>
 <%@ taglib prefix="arq" tagdir="/WEB-INF/tags" %>
@@ -42,8 +43,15 @@
          <arq:header2 photoInstance="${photoInstance}" />
          <div id="search_statistics">
              <span id="resultTerm">Voc&ecirc; buscou: <c:out value="${searchTerm}" /></span>
-             <span id="resultCount"> (<c:out value="${numResults}" /> resultados)</span>
-             <br/>
+             <c:set var="qtdFotos" value="${fn:length(fotos)}" />
+             <span id="resultCount">
+                 <c:choose>
+                     <c:when test="${qtdFotos == 0}">(nenhum resultado)</c:when>
+                     <c:when test="${qtdFotos == 1}">(1 resultado)</c:when>
+                     <c:otherwise>(<c:out value="${qtdFotos}" /> resultados)</c:otherwise>
+                 </c:choose>
+             </span>
+             <br />
              <c:forEach var="error" items="${errors}">
                  <c:out value="${error.category}" /> - <c:out value="${error.message}" />
                  <br />

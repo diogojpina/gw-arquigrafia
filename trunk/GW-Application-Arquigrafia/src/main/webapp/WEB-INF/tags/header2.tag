@@ -52,45 +52,79 @@
             function refreshPage() {
                 window.location.reload(true);
             }
+
             function showPhotoUpload() {
-                new Boxy($("#photoUploadContent").html(), {title: "Use o formulário para enviar uma foto.", modal: true, closeText: "Fechar", afterHide: function() {refreshPage();}}).show();
+                new Boxy($("#photoUploadContent").html(), {
+                    title: "Use o formulário para enviar uma foto.",
+                    modal: true,
+                    closeText: "Fechar",
+                    afterHide: refreshPage
+                }).show();
             }
+
             function showFriends() {
-            	var url = "${pageContext.request.contextPath}/groupware-workbench/friends/${friendsMgr.id}/list";                
-                $("#friendsFrame").load(url,function(){
-                    new Boxy($("#friendsContent").html(), {title: "Amigos", modal: true, closeText: "Fechar", afterHide: function() {
-                        $("#friendsFrame").empty();
-                        }}).show();
+                var url = "${pageContext.request.contextPath}/groupware-workbench/friends/${friendsMgr.id}/list";
+                $("#friendsFrame").load(url, function() {
+                    new Boxy($("#friendsContent").html(), {
+                        title: "Amigos",
+                        modal: true,
+                        closeText: "Fechar",
+                        afterHide: function() {
+                            $("#friendsFrame").empty();
+                        }
+                    }).show();
                 });
             }
-            function showSystemUsers(){
-                var url = "${pageContext.request.contextPath}/groupware-workbench/photo/${photoInstance.id}/system_users";                
-                $("#systemUsersContent").load(url,function(){
-                	new Boxy($("#systemUsers").html(), {title: "Usu&aacute;rios do sistema", modal: true, closeText: "Fechar", afterHide: function() {
-                		$("#systemUsersContent").empty();
-                        }}).show();
-                });               
+
+            function showSystemUsers() {
+                var url = "${pageContext.request.contextPath}/groupware-workbench/photo/${photoInstance.id}/system_users";
+                $("#systemUsersContent").load(url, function() {
+                    new Boxy($("#systemUsers").html(), {
+                        title: "Usu&aacute;rios do sistema",
+                        modal: true,
+                        closeText: "Fechar",
+                        afterHide: function() {
+                            $("#systemUsersContent").empty();
+                        }
+                    }).show();
+                });
             }
-            function showEdithFriends(){
-                var url = "${pageContext.request.contextPath}/groupware-workbench/friends/${friendsMgr.id}/edit";                
-                $("#edithFriendsContent").load(url,function(){
-                    new Boxy($("#edithFriends").html(), {title: "Editar amigos", modal: true, closeText: "Fechar", afterHide: function() {
-                    	$("#edithFriendsContent").empty();
-                        }}).show();
-                });               
+
+            function showEdithFriends() {
+                var url = "${pageContext.request.contextPath}/groupware-workbench/friends/${friendsMgr.id}/edit";
+                $("#edithFriendsContent").load(url, function() {
+                    new Boxy($("#edithFriends").html(), {
+                        title: "Editar amigos",
+                        modal: true,
+                        closeText: "Fechar",
+                        afterHide: function() {
+                            $("#edithFriendsContent").empty();
+                        }
+                    }).show();
+                });
             }
-            function showFriendsRequest(){
-                var url = "${pageContext.request.contextPath}/groupware-workbench/friends/${friendsMgr.id}/request";                
-                $("#friendsRequestContent").load(url,function(){
-                    new Boxy($("#friendsRequest").html(), {title: "Convites", modal: true, closeText: "Fechar", afterHide: function(){
-                    	$("#friendsRequestContent").empty();
-                        }}).show();
-                });               
+
+            function showFriendsRequest() {
+                var url = "${pageContext.request.contextPath}/groupware-workbench/friends/${friendsMgr.id}/friendsRequest";
+                $("#friendsRequestContent").load(url, function() {
+                    new Boxy($("#friendsRequest").html(), {
+                        title: "Convites",
+                        modal: true,
+                        closeText: "Fechar",
+                        afterHide: function() {
+                            $("#friendsRequestContent").empty();
+                        }
+                    }).show();
+                });
             }
-            function showProfile(){
-                    new Boxy($("#profileDiv").html(), {title: "Meu Perfil", modal: true, closeText: "Fechar"}).show();        
+
+            function showProfile() {
+                new Boxy($("#profileDiv").html(), {
+                    title: "Meu Perfil",
+                    modal: true,
+                    closeText: "Fechar"
+                }).show();
             }
-            
         </script>
         <a href="#" onclick="return showPhotoUpload();">Upload de fotos</a>
         &nbsp;|&nbsp;
@@ -102,12 +136,12 @@
         &nbsp;|&nbsp;
         <a href="#" onclick="return showEdithFriends();">Editar Amigos</a>
         &nbsp;|&nbsp;
-		<a href="#" onclick="return showFriends();">Meus Amigos</a>
-		&nbsp;|&nbsp;  
-		<a href="${pageContext.request.contextPath}/groupware-workbench/manager/${manager.id}">Gerenciador</a>
-		&nbsp;|&nbsp;  
+        <a href="#" onclick="return showFriends();">Meus Amigos</a>
+        &nbsp;|&nbsp;
+        <a href="${pageContext.request.contextPath}/groupware-workbench/manager/${manager.id}">Gerenciador</a>
+        &nbsp;|&nbsp;
         <a href="#" onclick="return showSystemUsers();">Usu&aacute;rios do sistema</a>
-        &nbsp;|&nbsp;        
+        &nbsp;|&nbsp;
         <a href="${pageContext.request.contextPath}/groupware-workbench/users/${userMgr.id}/list">Gerenciar Usu&aacute;rios</a>
     </div>
     <div id="search_field">
