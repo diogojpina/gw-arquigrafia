@@ -10,18 +10,18 @@
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
         <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/jquery.css" />
         <script type="text/javascript">
-            function refreshPage() {
+            function refreshFriendsPage() {
                 window.location.reload(true);
             }
         </script>
     </head>
     <body>
         <br />
-        <friends:listFriendsRequests user="${userLogin}" friendsMgr="${friendsMgr}" afterRejectFunction="refreshPage" afterAcceptFunction="refreshPage" friendsHeader="friends_header" />
+        <friends:listFriendsRequests user="${userLogin}" friendsMgr="${friendsMgr}" afterRejectFunction="refreshFriendsPage" afterAcceptFunction="refreshFriendsPage" friendsHeader="friends_header" />
         <br/>
         <friends:listFriends user="${userLogin}" friendsMgr="${friendsMgr}" friendsHeader="friends_header" />
         <br/>
-        <friends:editFriends user="${userLogin}" friendsMgr="${friendsMgr}" afterRemoveFunction="refreshPage" friendsHeader="friends_header" />
+        <friends:editFriends user="${userLogin}" friendsMgr="${friendsMgr}" afterRemoveFunction="refreshFriendsPage" friendsHeader="friends_header" />
         <br/>
     </body>
 </html>

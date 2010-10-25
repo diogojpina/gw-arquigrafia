@@ -31,7 +31,7 @@
                                     <c:out value="${u.name}"/>
                                 </a>
                                 &nbsp;
-                                <friends:sendRequest friendsMgr="${friendsMgr}" user="${u}" afterRequestFunction="aviso" />
+                                <friends:sendRequest friendsMgr="${friendsMgr}" viewer="${userLogin}" viewed="${u}" afterRequestFunction="aviso" />
                             </div>
                         </c:if>
                     </c:forEach>
