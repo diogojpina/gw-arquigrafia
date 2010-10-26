@@ -4,7 +4,7 @@ import br.org.groupwareworkbench.tests.GWRunner;
 
 import org.junit.runner.RunWith;
 
-@RunWith(GWRunner.class)
+//@RunWith(GWRunner.class)
 public class AlbumMgrInstanceTest {
 
 }
