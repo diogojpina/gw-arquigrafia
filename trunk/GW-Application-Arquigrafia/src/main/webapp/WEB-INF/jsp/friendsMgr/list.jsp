@@ -6,6 +6,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta http-equiv="Cache-Control" content="no-cache">
+        <title>Amigos</title>
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/friends.css" />
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
         <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/jquery.css" />
