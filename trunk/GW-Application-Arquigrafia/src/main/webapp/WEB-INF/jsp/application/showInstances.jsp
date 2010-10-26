@@ -16,7 +16,7 @@
         <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.ico" />
     </head>
     <body>
-        <div id='create_instance_dialog_<c:out value="${extCollablet.componentTypeName}" />'class="create_instance_dialog" title="${extCollablet.componentTypeName} - Nova Inst&acirc;ncia">
+        <div id="create_instance_dialog_<c:out value="${extCollablet.componentTypeName}" />" class="create_instance_dialog" title="${extCollablet.componentTypeName} - Nova Inst&acirc;ncia">
             <form id="instance_form_<c:out value="${extCollablet.componentTypeName}" />">
                 <input type="hidden" name="manager.register.className" value="<c:out value="${extCollablet.componentClassName}" />" />
                 <fieldset class="ui-helper-reset">
@@ -52,7 +52,7 @@
                 </c:forEach>
 
                 function popSubordinates() {
-                    $("#local_canvas2").html("");
+                    $("#local_canvas1").html("");
                     <c:forEach var="instance" items="${extCollablet.collablets}">
                         $.get(
                             '<c:out value="${pageContext.request.contextPath}" />/groupware-workbench/manager/<c:out value="${manager.id}" />/get-position/<c:out value="${instance.id}" />/on-canvas/<c:out value="${extCollablet.subordinations.id}" />',
@@ -66,7 +66,7 @@
                                         $("#dummy_rel").html(data);
                                         var subSetters = new Array("subordina");
                                         var relTo = new Array();
-                                        var count  = -1;
+                                        var count = -1;
 
                                         do {
                                             count = count + 1;
@@ -74,17 +74,16 @@
                                             subSetters[count + 1] = relTo[count];
                                         } while (relTo[count] != null);
 
-                                        createComponent(
-                                            '<c:out value="${instance.id}" />',
-                                            "local_canvas",
-                                            [x, y],
-                                            [$("#local_canvas").offset().left, $("#local_canvas").offset().top],
-                                            '<c:out value="${instance.name}" />',
-                                            subSetters,
-                                            ["subordinado a", "subordinado a"],
-                                            1,
-                                            <c:out value="${extCollablet.subordinations.id}" />
-                                        );
+                                        createComponent({
+                                            id: '<c:out value="${instance.id}" />',
+                                            container: "local_canvas0",
+                                            position: [x, y],
+                                            constraints: [$("#local_canvas0").offset().left, $("#local_canvas0").offset().top],
+                                            name: '<c:out value="${instance.name}" />',
+                                            setters: subSetters,
+                                            getters: ["subordinado a", "subordinado a"],
+                                            type: 0
+                                        });
                                     }
                                 );
                             }
@@ -92,25 +91,25 @@
                     </c:forEach>
                 }
 
-                function popDependences() {
-                    $("#local_canvas").html("");
-                    <c:forEach var="instance" items="${extCollablet.collablets}">
+                function popDependencies() {
+                    $("#local_canvas0").html("");
+                    /*<c:forEach var="instance" items="${extCollablet.collablets}">
                         $.get(
                             '<c:out value="${pageContext.request.contextPath}" />/groupware-workbench/manager/<c:out value="${manager.id}" />/get-position/<c:out value="${instance.id}" />/on-canvas/<c:out value="${extCollablet.dependencies.id}" />',
                             function(data) {
                                 $("#dummy_pos").html(data);
                                 var x = $('#coord_x_<c:out value="${instance.id}" />').val();
                                 var y = $('#coord_y_<c:out value="${instance.id}" />').val();
-                                createComponent(
-                                    '<c:out value="${instance.id}" />',
-                                    "local_canvas2",
-                                    [x, y],
-                                    [$("#local_canvas2").offset().left, $("#local_canvas2").offset().top],
-                                    '<c:out value="${instance.name}" />',
-                                    ["dependence", "dependence"],
-                                    ["depends", "depends"],
-                                    2
-                                );
+                                createComponent({
+                                    id: '<c:out value="${instance.id}" />',
+                                    container: "local_canvas1",
+                                    position: [x, y],
+                                    constraints: [$("#local_canvas1").offset().left, $("#local_canvas1").offset().top],
+                                    name: '<c:out value="${instance.name}" />',
+                                    setters: ["dependency", "dependency"],
+                                    getters: ["depends", "depends"],
+                                    type: 1
+                                });
                                 $.get(
                                     '<c:out value="${pageContext.request.contextPath}" />/groupware-workbench/manager/<c:out value="${manager.id}" />/get-relation/<c:out value="${instance.id}" />/on-canvas/<c:out value="${extCollablet.dependencies.id}" />',
                                     function(data) {
@@ -120,14 +119,14 @@
                                 );
                             }
                         );
-                    </c:forEach>
+                    </c:forEach>*/
                 }
 
                 $("#canvas_tabs").show();
                 $("#canvas_tabs").tabs({
                     select: function(event, ui) {
                         if (ui.panel.id == "c_tabs-2") {
-                            // popDependences();
+                            // popDependencies();
                         }
                         if (ui.panel.id == "c_tabs-1") {
                             popSubordinates();
@@ -168,8 +167,8 @@
                     $dialog.dialog('open');
                 });
 
-                $("#local_canvas").html("");
-                $("#local_canvas2").html("");
+                $("#local_canvas0").html("");
+                $("#local_canvas1").html("");
 
                 popSubordinates();
             });

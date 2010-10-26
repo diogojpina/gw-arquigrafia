@@ -43,7 +43,7 @@ function pageResize() {
 
         $("#canvas_tabs").css("height", height - diff3);
         $(".canvas_tab").css("height", height - mysteriousGambiMagicNumber6);
-        $("#local_canvas").css("height", height - mysteriousGambiMagicNumber7);
-        $("#local_canvas2").css("height", height - mysteriousGambiMagicNumber7);
+        $("#local_canvas0").css("height", height - mysteriousGambiMagicNumber7);
+        $("#local_canvas1").css("height", height - mysteriousGambiMagicNumber7);
     }
 }

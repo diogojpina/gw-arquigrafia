@@ -1,5 +1,5 @@
 <!--
-    Description: Holds the list of components, plus the canvases and all associated structures. 
+    Description: Holds the list of components, plus the canvases and all associated structures.
     Created By: Gustavo H. Braga (gustavo.henrick@gmail.com)
     Date: 08/09/2010
 -->
@@ -17,7 +17,7 @@
     </head>
     <body>
         <div style="width: 100%; height: 100%">
-            <div id="local_canvas_menu" style="height: 70px; width:100%; border-bottom: #666 1px solid; background-color: #FFE897;z-index: 100; overflow: scroll; overflow-x: auto; overflow-y: auto;">
+            <div id="local_canvas<c:out value="${canvasType.ordinal}" />_menu" style="height: 70px; width: 100%; border-bottom: #666 1px solid; background-color: #FFE897; z-index: 100; overflow: scroll; overflow-x: auto; overflow-y: auto;">
                 <c:forEach var="extcol" items="${extCollabletInstanceList}">
                     <div class="draggable" style="float: left; padding: 5px; opacity: 0.7" title="<c:out value="${extcol.componentTypeName}" />" id="big_icon_<c:out value="${extcol.id}" />">
                         <img src="${pageContext.request.contextPath}/management/assets/images/<c:out value="${extcol.componentTypeName}" />_big.png" alt="<c:out value="${extcol.description}" />" />
@@ -26,9 +26,9 @@
                         </div>
                     </div>
 
-                    <div id="dialog_inst_<c:out value="${extcol.componentTypeName}" />">
+                    <div id="dialog_inst_<c:out value="${extcol.componentTypeName}" /><c:out value="${canvasType.ordinal}" />">
                         Selecione uma inst&acirc;ncia:<br />
-                        <select id="sel_inst_<c:out value="${extcol.componentTypeName}" />" >
+                        <select id="sel_inst_<c:out value="${extcol.componentTypeName}" /><c:out value="${canvasType.ordinal}" />">
                             <c:forEach var="instance" items="${extcol.collablets}">
                                 <option value="<c:out value="${instance.id}" />" ><c:out value="${instance.name}" /></option>
                             </c:forEach>
@@ -36,21 +36,21 @@
                     </div>
 
                     <script type="text/javascript">
-                        $('#dialog_inst_<c:out value="${extcol.componentTypeName}" />').dialog({
+                        $('#dialog_inst_<c:out value="${extcol.componentTypeName}" /><c:out value="${canvasType.ordinal}" />').dialog({
                             autoOpen: false,
                             modal: true,
                             buttons: {
                                 'Selecionar': function() {
-                                    createComponent(
-                                        $('#sel_inst_<c:out value="${extcol.componentTypeName}" />').val(),
-                                        "local_canvas",
-                                        [$("#coord_left").val(), $("#coord_top").val()],
-                                        [$("#local_canvas").offset().left, $("#local_canvas").offset().top],
-                                        $('#sel_inst_<c:out value="${extcol.componentTypeName}" />').text(),
-                                        [],
-                                        ["subordinatedTo", "subordinatedTo"],
-                                        1
-                                    );
+                                    createComponent({
+                                        id: $('#sel_inst_<c:out value="${extcol.componentTypeName}" /><c:out value="${canvasType.ordinal}" />').val(),
+                                        container: "local_canvas<c:out value="${canvasType.ordinal}" />",
+                                        position: [$("#coord_left").val(), $("#coord_top").val()],
+                                        constraints: [$("#local_canvas<c:out value="${canvasType.ordinal}" />").offset().left, $("#local_canvas<c:out value="${canvasType.ordinal}" />").offset().top],
+                                        name: $('#sel_inst_<c:out value="${extcol.componentTypeName}" /><c:out value="${canvasType.ordinal}" />').text(),
+                                        setters: [],
+                                        getters: ["<c:out value="${canvasType.edgeText}" />", "<c:out value="${canvasType.edgeText}" />"],
+                                        type: <c:out value="${canvasType.ordinal}" />
+                                    });
                                     $(this).dialog('close');
                                 },
                                 'Cancelar': function() {
@@ -59,10 +59,9 @@
                             }
                         });
                     </script>
-				
                 </c:forEach>
             </div>
-            <div class="droppable" id="local_canvas" style="background-color: #FFF; overflow: scroll; overflow-x: auto; overflow-y: auto; "></div>
+            <div class="droppable" id="local_canvas<c:out value="${canvasType.ordinal}" />" style="background-color: #FFF; overflow: scroll; overflow-x: auto; overflow-y: auto; "></div>
         </div>
 
         <form>
@@ -82,7 +81,7 @@
                     drop: function(event, ui) {
                         $("#coord_left").val(ui.offset.left);
                         $("#coord_top").val(ui.offset.top);
-                        $("#dialog_inst_" + ui.draggable.attr("title")).dialog('open');
+                        $("#dialog_inst_" + ui.draggable.attr("title") + "<c:out value="${canvasType.ordinal}" />").dialog('open');
                     }
                 });
             });

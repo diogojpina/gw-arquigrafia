@@ -74,7 +74,7 @@
                 $.post('<c:out value="${pageContext.request.contextPath}" />/groupware-workbench/manager/<c:out value="${manager.id}" />/set-position/' + id + '/on-canvas/' + canvasId + '/' + pos_x + '/' + pos_y);
             }
 
-            function onAddWire1(event, args) {
+            function handleWire(args, callback) {
                 var wire = args[0];
                 //alert($(args[0].terminal1.parentEl).attr("id"));
                 var terminal1 = wire.terminal1;
@@ -96,109 +96,55 @@
                     terminal1.removeWire(wire);
                     return;
                 }
-                sourceId = $(source.parentEl).attr("id");
-                targetId = $(target.parentEl).attr("id");
-                $.post('<c:out value="${pageContext.request.contextPath}" />/groupware-workbench/manager/<c:out value="${manager.id}" />/subordinate/' + targetId + '/to/' + sourceId,
-                    function(data) {
-                        $("#status").text($(source.parentEl).attr("title") + " subordina " + $(target.parentEl).attr("title"));
-                    }
-                );
+                callback(source, target);
+            }
+
+            function onAddWire1(event, args) {
+                handleWire(args, function(source, target) {
+                    var sourceId = $(source.parentEl).attr("id");
+                    var targetId = $(target.parentEl).attr("id");
+                    $.post('<c:out value="${pageContext.request.contextPath}" />/groupware-workbench/manager/<c:out value="${manager.id}" />/subordinate/' + targetId + '/to/' + sourceId,
+                        function(data) {
+                            $("#status").text($(source.parentEl).attr("title") + " subordina " + $(target.parentEl).attr("title"));
+                        }
+                    );
+                });
             }
 
             function onRemoveWire1(event, args) {
-                var wire = args[0];
-                //alert($(args[0].terminal1.parentEl).attr("id"));
-                var terminal1 = wire.terminal1;
-                var terminal2 = wire.getOtherTerminal(terminal1);
-                if ($(terminal2.parentEl).attr("id") == null) return;
-
-                var source;
-                var target;
-                var terminal1Type = terminal1.options.ddConfig.type;
-                var terminal2Type = terminal2.options.ddConfig.type;
-                if (terminal1Type == "setter" && terminal2Type == "getter") {
-                    source = terminal1;
-                    target = terminal2;
-                } else if (terminal1.options.ddConfig.type == "getter" && terminal2Type == "setter") {
-                    source = terminal2;
-                    target = terminal1;
-                } else {
-                    alert("Invalid connection.");
-                    terminal1.removeWire(wire);
-                    return;
-                }
-
-                sourceId = $(source.parentEl).attr("id");
-                targetId = $(target.parentEl).attr("id");
-                $.post('<c:out value="${pageContext.request.contextPath}" />/groupware-workbench/manager/<c:out value="${manager.id}" />/unsubordinate/' + targetId + '/from/' + sourceId,
-                    function(data) {
-                        $("#status").text($(source.parentEl).attr("title") + " não mais subordina " + $(target.parentEl).attr("title"));
-                    }
-                );
+                handleWire(args, function(source, target) {
+                    var sourceId = $(source.parentEl).attr("id");
+                    var targetId = $(target.parentEl).attr("id");
+                    $.post('<c:out value="${pageContext.request.contextPath}" />/groupware-workbench/manager/<c:out value="${manager.id}" />/unsubordinate/' + targetId + '/from/' + sourceId,
+                        function(data) {
+                            $("#status").text($(source.parentEl).attr("title") + " não mais subordina " + $(target.parentEl).attr("title"));
+                        }
+                    );
+                });
             }
 
             function onAddWire2(event, args) {
-                var wire = args[0];
-                //alert($(args[0].terminal1.parentEl).attr("id"));
-                var terminal1 = wire.terminal1;
-                var terminal2 = wire.getOtherTerminal(terminal1);
-                if ($(terminal2.parentEl).attr("id") == null) return;
-
-                var source;
-                var target;
-                var terminal1Type = terminal1.options.ddConfig.type;
-                var terminal2Type = terminal2.options.ddConfig.type;
-                if (terminal1Type == "setter" && terminal2Type == "getter") {
-                    source = terminal1;
-                    target = terminal2;
-                } else if (terminal1Type == "getter" && terminal2Type == "setter") {
-                    source = terminal2;
-                    target = terminal1;
-                } else {
-                    alert("Invalid connection.");
-                    terminal1.removeWire(wire);
-                    return;
-                }
-
-                sourceId = $(source.parentEl).attr("id");
-                targetId = $(target.parentEl).attr("id");
-                $.post('<c:out value="${pageContext.request.contextPath}" />/groupware-workbench/manager/<c:out value="${manager.id}" />/add-dependency/' + targetId + '/of/' + sourceId,
-                    function(data) {
-                        $("#status").text($(source.parentEl).attr("title") + " é dependência de " + $(target.parentEl).attr("title"));
-                    }
-                );
+                handleWire(args, function(source, target) {
+                    var sourceId = $(source.parentEl).attr("id");
+                    var targetId = $(target.parentEl).attr("id");
+                    $.post('<c:out value="${pageContext.request.contextPath}" />/groupware-workbench/manager/<c:out value="${manager.id}" />/add-dependency/' + targetId + '/of/' + sourceId,
+                        function(data) {
+                            $("#status").text($(source.parentEl).attr("title") + " é dependência de " + $(target.parentEl).attr("title"));
+                        }
+                    );
+                });
             }
 
             function onRemoveWire2(event, args) {
-                var wire = args[0];
-                //alert($(args[0].terminal1.parentEl).attr("id"));
-                var terminal1 = wire.terminal1;
-                var terminal2 = wire.getOtherTerminal(terminal1);
-                if ($(terminal2.parentEl).attr("id") == null) return;
-
-                var source;
-                var target;
-                var terminal1Type = terminal1.options.ddConfig.type;
-                var terminal2Type = terminal2.options.ddConfig.type;
-                if (terminal1Type == "setter" && terminal2Type == "getter") {
-                    source = terminal1;
-                    target = terminal2;
-                } else if (terminal1Type == "getter" && terminal2Type == "setter") {
-                    source = terminal2;
-                    target = terminal1;
-                } else {
-                    alert("Invalid connection.");
-                    terminal1.removeWire(wire);
-                    return;
-                }
-
-                sourceId = $(source.parentEl).attr("id");
-                targetId = $(target.parentEl).attr("id");
-                $.post('<c:out value="${pageContext.request.contextPath}" />/groupware-workbench/manager/<c:out value="${manager.id}" />/remove-dependency/' + targetId + '/of/' + sourceId,
-                    function(data) {
-                        $("#status").text($(source.parentEl).attr("title") + " não mais é dependência de " + $(target.parentEl).attr("title"));
-                    }
-                );
+                handleWire(args, function(source, target) {
+                    var sourceId = $(source.parentEl).attr("id");
+                    var targetId = $(target.parentEl).attr("id");
+                    $.post('<c:out value="${pageContext.request.contextPath}" />/groupware-workbench/manager/<c:out value="${manager.id}" />/remove-dependency/' + targetId + '/of/' + sourceId,
+                        function(data) {
+                            $("#status").text($(source.parentEl).attr("title") + " não mais é dependência de " + $(target.parentEl).attr("title"));
+                        }
+                    );
+                });
             }
 
             function remove(numModel, name, type) {
@@ -217,8 +163,8 @@
                     '<div class="instance_input" id="inst_details' + numModel + '" >' +
                         '<div class="instance_toggle_details basic_button">' +
                             '<a href="#" id="details_bt_' + numModel + '" >' +
-                                '<img id="bullet1_' + numModel + '" src="${pageContext.request.contextPath}/management/assets/images/bullet.png" alt="Detalhes" style="padding-top: 3px"/>' +
-                                '<img id="bullet2_' + numModel + '" src="${pageContext.request.contextPath}/management/assets/images/bullet2.png" alt="Detalhes" style="padding-top: 3px"/>' +
+                                '<img id="bullet1_' + numModel + '" src="${pageContext.request.contextPath}/management/assets/images/bullet.png" alt="Detalhes" style="padding-top: 3px" />' +
+                                '<img id="bullet2_' + numModel + '" src="${pageContext.request.contextPath}/management/assets/images/bullet2.png" alt="Detalhes" style="padding-top: 3px" />' +
                             '</a>' +
                         '</div>' +
                         '<' + 'script type="text/javascript">' +
