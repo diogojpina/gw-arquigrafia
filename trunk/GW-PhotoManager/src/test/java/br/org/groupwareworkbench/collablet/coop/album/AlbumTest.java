@@ -54,8 +54,7 @@ public class AlbumTest {
         ph3.setNome("photo3");
         ph3.setNomeArquivo("path3");
         
-        c = new Collablet();
-        c.setName("Cool Collablet");
+        c = new Collablet("Cool Collablet");
     }
 
     private void setUpPersistence() {
@@ -161,7 +160,7 @@ public class AlbumTest {
     @Test
     public void testCollabletSetAndGet() {
         Album a = new Album();
-        Collablet d = new Collablet();
+        Collablet d = new Collablet("Other collablet");
         a.setCollablet(c);
         Assert.assertEquals(c, a.getCollablet());
         a.setCollablet(d);

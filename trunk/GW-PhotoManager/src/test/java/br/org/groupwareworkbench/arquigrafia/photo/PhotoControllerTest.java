@@ -81,10 +81,9 @@ public class PhotoControllerTest {
 
         em.getTransaction().begin();
 
-        collablet = new Collablet();
+        collablet = new Collablet("photoMgr");
         collablet.setComponentClass(PhotoMgrInstance.class);
         collablet.setProperty("dirImages", TEMP_DIR);
-        collablet.setName("photoMgr");
         photoInstance = (PhotoMgrInstance) collablet.getBusinessObject();
         em.persist(collablet);
 
