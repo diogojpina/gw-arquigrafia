@@ -247,8 +247,7 @@ public class Photo implements Serializable {
     public static List<Photo> busca(Collablet collablet, String nome, String lugar, String descricao, Date date) {
         if (collablet == null) throw new IllegalArgumentException();
 
-        QueryBuilder q = QueryBuilder.query(Photo.class)
-                .with("collablet", collablet);
+        QueryBuilder<Photo> q = QueryBuilder.query(Photo.class).with("collablet", collablet);
 
         if (nome != null) q.with("nome", "%" + nome.toUpperCase() + "%").upper().like();
         if (descricao != null) q.with("descricao", "%" + descricao.toUpperCase() + "%").upper().like();
