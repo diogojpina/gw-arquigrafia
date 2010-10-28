@@ -4,6 +4,10 @@
   <short-name>album</short-name>
   <uri>http://www.groupwareworkbench.org.br/widgets/album</uri>
   <tag-file>
+    <name>addPhoto</name>
+    <path>/META-INF/tags/album/addPhoto.tag</path>
+  </tag-file>
+  <tag-file>
     <name>save</name>
     <path>/META-INF/tags/album/photoRegister.tag</path>
   </tag-file>

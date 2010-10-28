@@ -25,6 +25,8 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CollectionTable;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -37,6 +39,7 @@ import javax.persistence.UniqueConstraint;
 
 import br.org.groupwareworkbench.arquigrafia.photo.Photo;
 import br.org.groupwareworkbench.collablet.coord.user.User;
+import br.org.groupwareworkbench.core.bd.GenericReference;
 import br.org.groupwareworkbench.core.bd.ObjectDAO;
 import br.org.groupwareworkbench.core.framework.Collablet;
 import javax.persistence.JoinColumn;
@@ -71,8 +74,10 @@ public class Album implements Serializable {
     @ManyToOne
     private User owner;
 
-    @OneToMany
-    private List<Photo> photos = new ArrayList<Photo>();
+    @ElementCollection
+    @CollectionTable(name = "gw_collab_Album_Assignments")
+    //private List<Photo> photos = new ArrayList<Photo>();
+    private List<GenericReference> objects = new ArrayList<GenericReference>();
 
     public Album() {
     }
@@ -87,9 +92,9 @@ public class Album implements Serializable {
         DAO.delete(this);
     }
 
-    public boolean contains(Photo photo) {
-        if (photo == null) throw new IllegalArgumentException();
-        return this.photos.contains(photo);
+    public boolean contains(Object object) {
+        if (object == null) throw new IllegalArgumentException();
+        return this.objects.contains(new GenericReference(object));
     }
 
     public static Album findById(Long id) {
@@ -113,21 +118,21 @@ public class Album implements Serializable {
         return DAO.query().with("collablet", collablet).with("name", name).find();
     }
 
-    // Add photos
-    public void add(Photo photo) {
-        if (photo == null) throw new IllegalArgumentException();
-        this.photos.add(photo);
+    // Add objects
+    public void add(Object object) {
+        if (object == null) throw new IllegalArgumentException();
+        this.objects.add(new GenericReference(object));
     }
 
-    // Delete photos
-    public void remove(Photo photo) {
-        if (photo == null) throw new IllegalArgumentException();
-        this.photos.remove(photo);
+    // Delete objects
+    public void remove(Object object) {
+        if (object == null) throw new IllegalArgumentException();
+        this.objects.remove(new GenericReference(object));
     }
 
-    // List the last photos
+    // List the last Objects
 
-    // Sort photos
+    // Sort Objects
 
     /* Getters and Setters */
 
@@ -159,8 +164,14 @@ public class Album implements Serializable {
         this.updateDate = updateDate == null ? null : (Date) updateDate.clone();
     }
 
-    public List<Photo> getPhotos() {
-        return Collections.unmodifiableList(this.photos);
+    public List getObjects() {
+        List result = new ArrayList(objects.size());
+
+        for (GenericReference gr : this.objects) {
+            result.add(gr.getEntity());
+        }
+
+        return Collections.unmodifiableList(result);
     }
 
     public Collablet getCollablet() {
@@ -172,7 +183,7 @@ public class Album implements Serializable {
     }
 
     public int getSize() {
-        return this.photos.size();
+        return this.objects.size();
     }
 
     

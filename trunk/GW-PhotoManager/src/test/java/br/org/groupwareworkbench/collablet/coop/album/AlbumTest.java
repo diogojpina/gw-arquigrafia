@@ -21,6 +21,7 @@ import br.org.groupwareworkbench.arquigrafia.photo.Photo;
 import br.org.groupwareworkbench.core.framework.Collablet;
 
 import br.org.groupwareworkbench.tests.DatabaseTester;
+import br.org.groupwareworkbench.tests.Fruit;
 import br.org.groupwareworkbench.tests.GWRunner;
 
 @RunWith(GWRunner.class)
@@ -30,29 +31,23 @@ public class AlbumTest {
     private EntityManager em;
 
     private Collablet c;
-    private Photo ph1;
-    private Photo ph2;
-    private Photo ph3;
+    private Fruit fh1;
+    private Fruit fh2;
+    private Fruit fh3;
 
     @Before
     public void setUp() {
         db = null;
         em = null;
 
-        ph1 = new Photo();
-        ph1.setDataCriacao(new Date());
-        ph1.setNome("photo1");
-        ph1.setNomeArquivo("path1");
+        fh1 = new Fruit();
+        fh1.setName("apple");
         
-        ph2 = new Photo();
-        ph2.setDataCriacao(new Date());
-        ph2.setNome("photo2");
-        ph2.setNomeArquivo("path2");
+        fh2 = new Fruit();
+        fh2.setName("orange");
         
-        ph3 = new Photo();
-        ph3.setDataCriacao(new Date());
-        ph3.setNome("photo3");
-        ph3.setNomeArquivo("path3");
+        fh3 = new Fruit();
+        fh3.setName("grape");
         
         c = new Collablet("Cool Collablet");
     }
@@ -60,6 +55,12 @@ public class AlbumTest {
     private void setUpPersistence() {
         db = new DatabaseTester();
         em = db.getEntityManager();
+        
+        em.getTransaction().begin();
+        em.persist(fh1);
+        em.persist(fh2);
+        em.persist(fh3);
+        em.getTransaction().commit();
     }
 
     @After
@@ -71,18 +72,18 @@ public class AlbumTest {
 
     private void persistOthers() {
         em.persist(c);
-        em.persist(ph1);
-        em.persist(ph2);
-        em.persist(ph3);
+        em.persist(fh1);
+        em.persist(fh2);
+        em.persist(fh3);
     }
 
     private Album completeAlbum() {
         Album a = new Album();
         a.setCollablet(c);
         a.setTitle("Album1");
-        a.add(ph1);
-        a.add(ph2);
-        a.add(ph3);
+        a.add(fh1);
+        a.add(fh2);
+        a.add(fh3);
         return a;
     }
 
@@ -216,25 +217,25 @@ public class AlbumTest {
 
     // Tagged objects tests.
 
-    private void verifyPhotos(Album a, boolean shouldHavePh1, boolean shouldHavePh2, boolean shouldHavePh3) {
+    private void verifyObjects(Album a, boolean shouldHavePh1, boolean shouldHavePh2, boolean shouldHavePh3) {
         int count = (shouldHavePh1 ? 1 : 0) + (shouldHavePh2 ? 1 : 0) + (shouldHavePh3 ? 1 : 0);
         Assert.assertEquals(count, a.getSize());
 
-        List<Photo> photos = a.getPhotos();
-        Assert.assertEquals(count, photos.size());
-        Assert.assertEquals(shouldHavePh1, photos.contains(ph1));
-        Assert.assertEquals(shouldHavePh2, photos.contains(ph2));
-        Assert.assertEquals(shouldHavePh3, photos.contains(ph3));
-        Assert.assertEquals(shouldHavePh1, a.contains(ph1));
-        Assert.assertEquals(shouldHavePh2, a.contains(ph2));
-        Assert.assertEquals(shouldHavePh3, a.contains(ph3));
+        List<Object> objects = a.getObjects();
+        Assert.assertEquals(count, objects.size());
+        Assert.assertEquals(shouldHavePh1, objects.contains(fh1));
+        Assert.assertEquals(shouldHavePh2, objects.contains(fh2));
+        Assert.assertEquals(shouldHavePh3, objects.contains(fh3));
+        Assert.assertEquals(shouldHavePh1, a.contains(fh1));
+        Assert.assertEquals(shouldHavePh2, a.contains(fh2));
+        Assert.assertEquals(shouldHavePh3, a.contains(fh3));
     }
 
     @Test
     public void testAssignmentsStartingState() {
         Album a = new Album();
         Assert.assertEquals(0, a.getSize());
-        Assert.assertTrue(a.getPhotos().isEmpty());
+        Assert.assertTrue(a.getObjects().isEmpty());
     }
 
     @Test(expected=IllegalArgumentException.class)
@@ -251,9 +252,9 @@ public class AlbumTest {
         em.detach(a);
         Album x = em.find(Album.class, a.getId());
         Assert.assertNotSame(a, x);
-        verifyPhotos(x, true, true, true);
+        verifyObjects(x, true, true, true);
 
-        x.remove(ph2);
+        x.remove(fh2);
 
         em.getTransaction().begin();
         em.merge(x);
@@ -263,37 +264,40 @@ public class AlbumTest {
         Album y = em.find(Album.class, a.getId());
         Assert.assertNotSame(a, y);
         Assert.assertNotSame(x, y);
-        verifyPhotos(y, true, false, true);
+        verifyObjects(y, true, false, true);
     }
 
     // Test assignments list consistency.
 
-    private void checkList(Photo... elems) {
-        List<Photo> list = Arrays.asList(elems);
-        Assert.assertTrue(list.contains(ph1));
-        Assert.assertTrue(list.contains(ph2));
-        Assert.assertTrue(list.contains(ph3));
+    private void checkList(Object... elems) {
+        List<Object> list = Arrays.asList(elems);
+        Assert.assertTrue(list.contains(fh1));
+        Assert.assertTrue(list.contains(fh2));
+        Assert.assertTrue(list.contains(fh3));
     }
 
     
     @Test(expected=UnsupportedOperationException.class)
-    public void testPhotosImmutabilityOnAdding() {
+    public void testObjectsImmutabilityOnAdding() {
+        setUpPersistence();
         Album a = completeAlbum();
-        List<Photo> photos = a.getPhotos();
-        photos.add(new Photo());
+        List<Object> objects = a.getObjects();
+        objects.add(new Fruit());
     }
 
     @Test(expected=UnsupportedOperationException.class)
-    public void testPhotosImmutabilityOnRemoving() {
+    public void testObjectsImmutabilityOnRemoving() {
+        setUpPersistence();
         Album a = completeAlbum();
-        List<Photo> photos = a.getPhotos();
-        photos.remove(ph2);
+        List<Object> objects = a.getObjects();
+        objects.remove(fh2);
     }
 
     @Test(expected=UnsupportedOperationException.class)
-    public void testPhotosImmutabilityOnIteratorRemoving() {
+    public void testObjectsImmutabilityOnIteratorRemoving() {
+        setUpPersistence();
         Album a = completeAlbum();
-        Iterator<Photo> it = a.getPhotos().iterator();
+        Iterator<Object> it = a.getObjects().iterator();
         it.next();
         it.remove();
     }
@@ -313,7 +317,7 @@ public class AlbumTest {
 
         Album x = em.find(Album.class, a.getId());
         Assert.assertNotSame(a, x);
-        verifyPhotos(x, true, true, true);
+        verifyObjects(x, true, true, true);
     }
 
     @Test
@@ -330,7 +334,7 @@ public class AlbumTest {
 
         Album x = em.find(Album.class, a.getId());
         Assert.assertNotSame(a, x);
-        verifyPhotos(x, true, true, true);
+        verifyObjects(x, true, true, true);
     }
 
     @Test
@@ -338,7 +342,7 @@ public class AlbumTest {
         setUpPersistence();
         Album a = completePersistedAlbum();
 
-        a.remove(ph2);
+        a.remove(fh2);
         a.setTitle("album1");
         em.getTransaction().begin();
         a.save();
@@ -348,7 +352,7 @@ public class AlbumTest {
         Album y = em.find(Album.class, a.getId());
         Assert.assertNotSame(a, y);
         Assert.assertEquals("album1", y.getTitle());
-        verifyPhotos(y, true, false, true);
+        verifyObjects(y, true, false, true);
     }
 
     @Test
@@ -356,7 +360,7 @@ public class AlbumTest {
         setUpPersistence();
         Album a = completePersistedAlbum();
 
-        a.remove(ph2);
+        a.remove(fh2);
         a.setTitle("album1");
         a.save();
         em.detach(a);
@@ -364,7 +368,7 @@ public class AlbumTest {
         Album y = em.find(Album.class, a.getId());
         Assert.assertNotSame(a, y);
         Assert.assertEquals("album1", y.getTitle());
-        verifyPhotos(y, true, false, true);
+        verifyObjects(y, true, false, true);
     }
 
     @Test

@@ -29,7 +29,8 @@ import br.org.groupwareworkbench.core.framework.annotations.ComponentInfo;
 
 @ComponentInfo(
         version="0.1",
-        configurationURL="/groupware-workbench/albumMgr/{albumMgr}/list"
+        configurationURL="/groupware-workbench/albuns/{albumMgr}/list",
+        retrieveURL = "/groupware-workbench/albuns/{id}"
 )
 public class AlbumMgrInstance extends AbstractBusiness {
 

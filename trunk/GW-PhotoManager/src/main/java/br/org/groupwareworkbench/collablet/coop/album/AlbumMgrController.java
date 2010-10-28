@@ -52,8 +52,7 @@ public class AlbumMgrController {
     public static final String MSG_MIN_3_LETRAS = "Você deve digitar no mínimo 3 letras.";
     public static final String MSG_NENHUM_CAMPO_PREENCHIDO = "Nenhum campo foi preenchido.";
     public static final String MSG_NOME_OBRIGATORIO = "O nome é obrigatório.";
-    public static final String MSG_IMAGEM_OBRIGATORIA = "Uma imagem é obrigatória.";
-    public static final String MSG_NAO_FOI_POSSIVEL_REDIMENSIONAR = "Não foi possível redimensionar a imagem.";
+    public static final String MSG_Arquivo_OBRIGATORIA = "Um arquivo é obrigatória.";
     public static final String MSG_FALHA_NO_UPLOAD = "Falha ao fazer o upload da imagem.";
     public static final String MSG_ENTIDADE_INVALIDA = "Não é uma entidade válida.";
 
@@ -68,19 +67,19 @@ public class AlbumMgrController {
     }
 
     @Get
-    @Path(value = "/groupware-workbench/album/{albumMgr}/list")
+    @Path(value = "/groupware-workbench/albuns/{albumMgr}/list")
     public void list(final AlbumMgrInstance albumMgr) {
         User user = (User) request.getSession().getAttribute("userLogin");
-        result.include("user", user);
         Collection<Album> albumList = albumMgr.listByUser(user);
+        result.include("user", user);
         result.include("albumList", albumList);
         result.include("albumMgr", albumMgr);
         result.use(Results.representation()).from(albumList).serialize();
     }
 
     @Get
-    @Path(value = "/groupware-workbench/album/{id}/listPhotos")
-    public void listPhotos(final long id) {
+    @Path(value = "/groupware-workbench/albuns/{id}/listObjects")
+    public void listObjects(final long id) {
         Album album = Album.findById(id);
         if (album == null) {
             this.result.notFound();
@@ -88,14 +87,15 @@ public class AlbumMgrController {
         }
 
         AlbumMgrInstance albumMgr = (AlbumMgrInstance) album.getCollablet().getBusinessObject();
-        Collection<Photo> photoList = album.getPhotos();
-        result.include("photoList", photoList);
+        Collection<Object> objectList = album.getObjects();
+        result.include("objectList", objectList);
         result.include("albumMgr", albumMgr);
-        result.use(Results.representation()).from(photoList).serialize();
+        result.use(Results.representation()).from(objectList).serialize();
     }
 
+    
     @Get
-    @Path(value = "/groupware-workbench/album/{albumMgr}/create")
+    @Path(value = "/groupware-workbench/albuns/{albumMgr}/create")
     public void create(final AlbumMgrInstance albumMgr) {
         Album album = new Album();
         result.include("album", album);
@@ -103,28 +103,29 @@ public class AlbumMgrController {
     }
 
     @Get
-    @Path(value = "/groupware-workbench/album/{id}")
+    @Path(value = "/groupware-workbench/albuns/{id}")
     public void retrieve(final long id) {
         Album album = Album.findById(id);
         if (album == null) {
             this.result.notFound();
             return;
         }
-
         result.include("album", album);
         result.use(Results.representation()).from(album).serialize();
     }
 
     @Post
-    @Path(value = "/groupware-workbench/album/{albumMgr}/save/{idAlbum}")
-    public void save(AlbumMgrInstance albumMgr, final long idAlbum) {
-        Album album = Album.findById(idAlbum);
+    //@Path(value = "/groupware-workbench/albuns/{albumMgr}/save/{idAlbum}")
+    @Path(value = "/groupware-workbench/albuns/{albumMgr}")
+    public void save(AlbumMgrInstance albumMgr, final Album album) {
+        result.include("album", album);
+        result.include("albumMgr", albumMgr);
         albumMgr.save(album);
         result.use(Results.logic()).redirectTo(AlbumMgrController.class).list(albumMgr);
     }
 
     @Delete
-    @Path(value = "/groupware-workbench/album/{id}")
+    @Path(value = "/groupware-workbench/albuns/{id}")
     public void delete(final long id) {
         Album album = Album.findById(id);
         if (album == null) {
@@ -143,113 +144,28 @@ public class AlbumMgrController {
      * getResource(AlbumMgrInstance albumMgr, String resource) { return albumMgr.resourcePath(resource); }
      */
 
-    /* Photo's Management */
-
+    /* Object's Management */
+    
     @Post
-    @Path(value = "/groupware-workbench/album/{albumMgr}/album/{idAlbum}/photo/registra/")
-    public void save(AlbumMgrInstance albumMgr, final long idAlbum, Photo photoRegister, UploadedFile foto, User user) {
-        PhotoMgrInstance photoInstance =
-                (PhotoMgrInstance) albumMgr.getCollablet().getDependency("photoMgr").getBusinessObject();
-        Album album = Album.findById(idAlbum);
-        boolean erro = false;
-        if (photoRegister.getNome().isEmpty()) {
-            validator.add(new ValidationMessage(MSG_NOME_OBRIGATORIO, "Erro"));
-            erro = true;
-        }
-        if (foto == null) {
-            validator.add(new ValidationMessage(MSG_IMAGEM_OBRIGATORIA, "Erro"));
-            erro = true;
-        }
-        if (erro) {
-            validator.onErrorUse(Results.logic()).redirectTo(PhotoController.class).registra(photoInstance);
+    @Path(value = "/groupware-workbench/albuns/{id}/object/")
+    public void addObject(final long id, final Object object) {
+        Album album = Album.findById(id);
+        if (album == null) {
+            this.result.notFound();
             return;
         }
-
-        // Fim das validações.
-
-        try {
-            photoInstance.save(photoRegister);
-            photoRegister.saveImage(foto.getFile());
-        } catch (IOException e) {
-            validator.add(new ValidationMessage(e.getMessage(), "Erro"));
-            validator.onErrorUse(Results.logic()).redirectTo(PhotoController.class).registra(photoInstance);
-            return;
-        }
-
-        photoInstance.getCollablet().processWidgets(info, photoRegister);
-        addIncludes(photoInstance);
-        photoRegister.save();
-        album.add(photoRegister);
-        // result.use(Results.logic()).redirectTo(PhotoController.class).registra(photoInstance);
-        result.use(Results.logic()).redirectTo(AlbumMgrController.class).registra(photoInstance);
-    }// end
-
-    @Get
-    @Path(value = "/groupware-workbench/album/{albumMgr}/album/{idAlbum}/photo/registra")
-    public void registra(PhotoMgrInstance photoInstance) {
-        addIncludes(photoInstance);
+        album.add(object);
     }
-
-    private void addIncludes(PhotoMgrInstance photoInstance) {
-        result.include("photoInstance", photoInstance);
-        photoInstance.getCollablet().includeDependencies(result);
-    }
-
-    @Get
-    @Path(value = "/groupware-workbench/album/{albumMgr}/photo/show/{idPhoto}")
-    public void showPhoto(AlbumMgrInstance albumMgr, long idPhoto) {
-        Photo photo = Photo.findById(idPhoto);
-
-        PhotoMgrInstance photoInstance =
-                (PhotoMgrInstance) albumMgr.getCollablet().getDependency("photoMgr").getBusinessObject();
-        result.include("idPhoto", idPhoto);
-
-        // addIncludes();
-        result.include("photoTitle", photo.getNome());
-        if (photo.getDescricao() != null && !photo.getDescricao().isEmpty()) {
-            result.include("photoDescription", photo.getDescricao());
-        }
-        if (photo.getDataCriacao() != null) {
-            result.include("photoDate", DateFormat.getInstance().format(photo.getDataCriacao()));
-        }
-        if (photo.getLugar() != null && !photo.getLugar().isEmpty()) {
-            result.include("photoLocation", photo.getLugar());
-        }
-        addIncludes(photoInstance);
-        photoInstance.getCollablet().processWidgets(info, photo);
-        result.include("photo", photo);
-        result.include("albumMgr", albumMgr);
-    }
-
+    
     @Delete
-    @Path(value = "/groupware-workbench/album/{albumMgr}/album/{idAlbum}/remove/{idPhoto}")
-    public void deletePhoto(final AlbumMgrInstance albumMgr, final long idAlbum, final long idPhoto) {
-        Photo photo = Photo.findById(idPhoto);
-        Album album = Album.findById(idAlbum);
-
-        if (album == null || photo == null || photo == null) {
-            validator.add(new ValidationMessage(MSG_ENTIDADE_INVALIDA, "Erro"));
+    @Path(value = "/groupware-workbench/albuns/{id}/object/}")
+    public void removeObject(final long id, final Object object) {
+        Album album = Album.findById(id);
+        if (album == null) {
+            this.result.notFound();
             return;
         }
-        photo.delete();
-        album.remove(photo);
 
-        result.include("albumMgr", albumMgr);
-        result.include("album", album);
-        result.include("photo", photo);
-        // addIncludes(photoInstance);
+        album.remove(object);
     }
-
-    /*
-     * @Post
-     * @Path(value = "/groupware-workbench/album/{albumMgr}/album/{idAlbum}/show/{idPhoto}") public void addPhoto(final
-     * AlbumMgrInstance albumMgr, final Long idAlbum, final Long idPhoto) { Photo photo = Photo.findById(idPhoto); Album
-     * album = Album.findById(idAlbum); PhotoMgrInstance photoInstance = (PhotoMgrInstance)
-     * albumMgr.getCollablet().getDependency("photoMgr").getBusinessObject(); if (album == null || photo == null ||
-     * idPhoto < 1) { validator.add(new ValidationMessage(MSG_ENTIDADE_INVALIDA, "Erro")); return; }
-     * photoInstance.save(Photo.findById(idPhoto));//nao adianta photo.save(); album.add(photo);
-     * result.include("albumMgr", albumMgr); result.include("album", album); result.include("photo", photo);
-     * //addIncludes(photoInstance); }
-     */
-
 }
