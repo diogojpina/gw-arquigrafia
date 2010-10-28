@@ -101,9 +101,11 @@
             <div id="photoTitle">
                 <span class="big_white_title"><c:out value="${photo.nome}" /></span>
                 <div id="photoTitle_tab_3" class="photoTitle_tab">
-                    <img src="${pageContext.request.contextPath}/images/photo_download.png" alt="Baixar a foto" />
-                    &nbsp;
-                    <span class="mid_white_text">Download</span>
+                    <a href="${pageContext.request.contextPath}/groupware-workbench/photo/img-original/${photo.id}"> 
+                       <img src="${pageContext.request.contextPath}/images/photo_download.png" alt="Baixar a foto" />
+                       &nbsp;
+                       <span class="mid_white_text">Download</span>
+                    </a>     
                 </div>
                 <div id="photoTitle_tab_2" class="photoTitle_tab">
                     <img src="${pageContext.request.contextPath}/images/photo_view.png" alt="Visualizar a foto" />
