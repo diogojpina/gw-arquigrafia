@@ -117,6 +117,13 @@ public class Album implements Serializable {
         if (name == null) throw new IllegalArgumentException();
         return DAO.query().with("collablet", collablet).with("name", name).find();
     }
+    
+    public static List<Album> getAlbuns(User user) {
+        if (user == null) throw new IllegalArgumentException();
+        return DAO.query().with("owner.id", user.getId()).list();
+    }
+    
+    
 
     // Add objects
     public void add(Object object) {
@@ -129,7 +136,7 @@ public class Album implements Serializable {
         if (object == null) throw new IllegalArgumentException();
         this.objects.remove(new GenericReference(object));
     }
-
+    
     // List the last Objects
 
     // Sort Objects

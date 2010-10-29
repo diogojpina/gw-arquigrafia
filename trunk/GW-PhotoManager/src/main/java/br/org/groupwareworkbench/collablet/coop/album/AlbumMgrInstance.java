@@ -19,7 +19,10 @@
 */
 package br.org.groupwareworkbench.collablet.coop.album;
 
+import java.util.Date;
 import java.util.List;
+
+import com.sun.org.apache.regexp.internal.recompile;
 
 import br.org.groupwareworkbench.arquigrafia.photo.Photo;
 import br.org.groupwareworkbench.collablet.coord.user.User;
@@ -54,4 +57,23 @@ public class AlbumMgrInstance extends AbstractBusiness {
     public Album findByName(String name) {
         return Album.findByName(name, getCollablet());
     }
+    
+    public Album getAlbumByDefault(User user) {
+        List<Album> albuns = this.listByUser(user);
+        Album album;
+        if(albuns==null || albuns.isEmpty()){//it has no album
+            album = new Album();
+            album.setTitle("first");
+            album.setCreationDate(new Date());
+            album.setUpdateDate(album.getCreationDate());
+            
+            this.save(album);
+        }
+        else //
+            album = albuns.get(0);  
+      
+        return album;
+    }
+    
+    
 }

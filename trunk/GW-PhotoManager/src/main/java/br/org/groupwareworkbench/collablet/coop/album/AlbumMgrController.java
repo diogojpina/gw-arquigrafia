@@ -157,6 +157,22 @@ public class AlbumMgrController {
         album.add(object);
     }
     
+    @Post
+    @Path(value = "/groupware-workbench/albuns/{albumMgr}/default")
+    public void addObjectAtDefaultAlbum( AlbumMgrInstance albumMgr,final Object object) {
+        User user = (User) request.getSession().getAttribute("userLogin");
+        
+        Album album = albumMgr.getAlbumByDefault(user);
+        
+        if (album == null) {
+            this.result.notFound();
+            return;
+        }
+        album.add(object);
+        //result.include("album", album);
+        //result.include("albumMgr", albumMgr);
+    }
+    
     @Delete
     @Path(value = "/groupware-workbench/albuns/{id}/object/}")
     public void removeObject(final long id, final Object object) {
