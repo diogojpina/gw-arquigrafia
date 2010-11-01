@@ -41,7 +41,7 @@
                         <ul class="field_line_f1">
                             <li class="label_f1"><span>2&ordm; Bin&ocirc;mio:</span></li>
                             <li class="input_f1"><input type="text" name="binomial.secondName" value="<c:out value="${binomial.secondName}" />" /></li>
-                        </ul>"src/main/webapp/WEB-INF/groupware-workbench"
+                        </ul>
                     </div>
                     <div>
                         <ul class="field_line_f1">
