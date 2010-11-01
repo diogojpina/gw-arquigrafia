@@ -7,35 +7,41 @@
 <%@ attribute name="photo" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.arquigrafia.photo.Photo" %>
 
 <%@ attribute name="albumDefault" required="false" rtexprvalue="true" type="java.lang.Boolean" %>
-<%@ attribute name="user" required="false" rtexprvalue="true" type="br.org.groupwareworkbench.collablet.coord.user.User" %>
-<%@ attribute name="linkClass" required="false" rtexprvalue="false" type="java.lang.String" %>
-<%@ attribute name="nameClass" required="false" rtexprvalue="false" type="java.lang.String" %>
+<%@ attribute name="user" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.collablet.coord.user.User" %>
+<%@ attribute name="successClass" required="false" rtexprvalue="false" type="java.lang.String" %>
+
 
 <%--
     TODO: Evitar inserir <div> que nao fecham de forma obvia pois dependem de analise sensivel ao contexto para
     garantir que sao bem formadas.
 --%>
  <script type="text/javascript">
-     $(document).ready(function() {
-    	$('#addPhotoToAlbum').submit(function() {
-   			$.ajax({
-   			    type: 		"post",
-   	   			url: "/groupware-workbench/albuns/"+${albumMgr.id}+"/default/",
-   	   			data: "object=" +${photo},
-   	   			function(data){
-   	   		     alert("Data Loaded: " + data);
-   	   			}
-  			});
-    		return false;
-   		});
-     });
- </script>
+    function addObject(){
+    	 $.ajax({
+			    type: 		"post",
+	   			url: "${pageContext.request.contextPath}/groupware-workbench/albuns/${albumMgr.id}/default/",
+	   			data: "objectId= ${photo.id} & strClass= ${photo.class.name}",
+	   			complete: function(){
+					ShowStatus( "AJAX - complete()" );
+				},
 
-<form name="addPhotoToAlbum" method="post" enctype="multipart/form-data" 
-      action="<c:url value="" />"  >
-      <input id="photot" type="hidden" value="${photo}" name="object"/>
-           
-      <div id="BtPhoto">
-         	<input id="submit" type="submit" value="Add to Album" name="submit"/>
-      </div>
-</form>      
+			});
+
+	}
+ </script>
+ 
+	<div id="BtPhoto">
+	   	<input id="submit" type="submit" value="Add to Album" name="submit" onclick="addObject();"/>
+	</div>
+
+ <div id="successAddObjectAtDefaultAlbum" >
+    <script type="text/javascript">
+        $("#successAddObjectAtDefaultAlbum").show().delay(2000).slideUp(300);                
+    </script>
+    <c:out value="${successAddObjectAtDefaultAlbum}" />    
+    <c:if test="${empty successAddObjectAtDefaultAlbum}">
+    	<script type="text/javascript">
+            $("#successAddObjectAtDefaultAlbum").hide();
+    	</script> 
+    </c:if>
+</div>

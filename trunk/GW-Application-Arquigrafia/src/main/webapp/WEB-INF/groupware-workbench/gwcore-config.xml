@@ -95,11 +95,11 @@
             <name>friendsMgr</name>
         </collablet>
 
-        <!--<collablet>
+        <collablet>
             <business>br.org.groupwareworkbench.collablet.coop.album.AlbumMgrInstance</business>
             <description>Gerenciar Albuns</description>
             <name>albumMgr</name>
-        </collablet> -->
+        </collablet>
         
         <collablet>
             <business>br.org.groupwareworkbench.collablet.communic.comment.CommentMgrInstance</business>
@@ -112,6 +112,7 @@
     <collablets-subordinations>
         <subordination parent="photoMgr" child="manager" />
         <subordination parent="photoMgr" child="userMgr" />
+        <subordination parent="photoMgr" child="albumMgr" />
         <subordination parent="photoMgr" child="binomialMgr" />
         <subordination parent="photoMgr" child="geoReferenceMgr" />
         <subordination parent="photoMgr" child="tagMgr" />
@@ -132,6 +133,7 @@
         <dependency from="photoMgr" to="tagMgr" />
         <!--<dependency from="uploadMgr" to="photoMgr" />-->
         <dependency from="binomialMgr" to="photoMgr" />
+        <dependency from="albumMgr" to="photoMgr" />
         <dependency from="ratingMgr" to="photoMgr" />
         <dependency from="profileMgr" to="photoMgr" />
         <dependency from="profileMgr" to="friendsMgr" />

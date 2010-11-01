@@ -193,5 +193,13 @@ public class Album implements Serializable {
         return this.objects.size();
     }
 
+    public void setOwner(User owner) {
+        this.owner = owner;
+    }
+
+    public User getOwner() {
+        return owner;
+    }
+
     
 }

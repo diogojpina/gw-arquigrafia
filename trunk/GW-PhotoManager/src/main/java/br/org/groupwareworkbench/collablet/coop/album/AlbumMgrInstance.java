@@ -19,13 +19,17 @@
 */
 package br.org.groupwareworkbench.collablet.coop.album;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+
+import javax.persistence.EntityManager;
 
 import com.sun.org.apache.regexp.internal.recompile;
 
 import br.org.groupwareworkbench.arquigrafia.photo.Photo;
 import br.org.groupwareworkbench.collablet.coord.user.User;
+import br.org.groupwareworkbench.core.bd.EntityManagerProvider;
 import br.org.groupwareworkbench.core.framework.AbstractBusiness;
 import br.org.groupwareworkbench.core.framework.Collablet;
 import br.org.groupwareworkbench.core.framework.annotations.ComponentInfo;
@@ -66,6 +70,7 @@ public class AlbumMgrInstance extends AbstractBusiness {
             album.setTitle("first");
             album.setCreationDate(new Date());
             album.setUpdateDate(album.getCreationDate());
+            album.setOwner(user);
             
             this.save(album);
         }
@@ -75,5 +80,8 @@ public class AlbumMgrInstance extends AbstractBusiness {
         return album;
     }
     
-    
+    public Object findById(Serializable id, Class type){
+        EntityManager em = EntityManagerProvider.getEntityManager();
+        return em.find(type,id);
+    }
 }

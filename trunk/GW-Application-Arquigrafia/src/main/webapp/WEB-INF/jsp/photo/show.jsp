@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="w" uri="http://www.groupwareworkbench.org.br/widgets/commons" %>
 <%@ taglib prefix="photo" uri="http://www.groupwareworkbench.org.br/widgets/photomanager" %>
+<%@ taglib prefix="album" uri="http://www.groupwareworkbench.org.br/widgets/album" %>
 <%@ taglib prefix="binomial" uri="http://www.groupwareworkbench.org.br/widgets/binomial" %>
 <%@ taglib prefix="tag" uri="http://www.groupwareworkbench.org.br/widgets/tag" %>
 <%@ taglib prefix="recommend" uri="http://www.groupwareworkbench.org.br/widgets/recommend" %>
@@ -141,6 +142,9 @@
                         <tag:getTags tagMgr="${tagMgr}" entity="${photo}" />
                     </div>
                     <div id="tags_right">
+                    </div>
+                    <div>
+                    	<album:addPhoto albumMgr="${albumMgr}" user="${sessionScope.userLogin}" album="${null}" photo="${photo}" albumDefault="true"/>
                     </div>
                 </div>
             </div>
