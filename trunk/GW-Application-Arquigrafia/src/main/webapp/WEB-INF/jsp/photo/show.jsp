@@ -33,6 +33,12 @@
         <script type="text/javascript" src="${pageContext.request.contextPath}/plugins/sds/js/jquery.smoothDivScroll-0.9-min.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/plugins/sds/js/scroll.js"></script>
         <script src="${pageContext.request.contextPath}/js/jquery.boxy.js" type="text/javascript"></script>
+        <script src="${pageContext.request.contextPath}/js/toolTips.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){	
+				$('label[rel=tooltip]').tooltip();
+			});
+		</script>        
         <script type="text/javascript">
             $(function() {
                 $("div#makeMeScrollable").smoothDivScroll({scrollingSpeed: 12, mouseDownSpeedBooster: 3, visibleHotSpots: "always", startAtElementId: "startAtMe"});

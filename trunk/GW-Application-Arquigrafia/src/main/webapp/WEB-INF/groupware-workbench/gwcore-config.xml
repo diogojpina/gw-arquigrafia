@@ -26,6 +26,10 @@
             <business>br.org.groupwareworkbench.collablet.communic.comment.CommentMgrInstance</business>
             <description>Gerenciar comentários</description>
             <name>commentMgr</name>
+            <properties>
+                <property key="msgAddComment" value="Digite um comentário à foto" /> 
+                <property key="msgGetComment" value="Ninguém comentou ainda a foto. Seja o primeiro!" />
+            </properties>            
         </collablet>
 
         <collablet>
@@ -105,6 +109,11 @@
             <business>br.org.groupwareworkbench.collablet.communic.comment.CommentMgrInstance</business>
             <description>Gerenciar comentários</description>
             <name>commentMgr2</name>
+            <properties>
+                <property key="msgAddComment" value="Digite um comentário para o seu amigo" />
+                <property key="msgGetComment" value="Ninguém comentou ainda a seu amigo	. Seja o primeiro!" />
+            </properties>
+            
         </collablet>
 
     </collablets>

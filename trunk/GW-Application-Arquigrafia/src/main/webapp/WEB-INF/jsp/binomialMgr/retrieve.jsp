@@ -27,16 +27,41 @@
                     </div>
                     <div>
                         <ul class="field_line_f1">
-                            <li class="label_f1"><span>2&ordm; Bin&ocirc;mio:</span></li>
-                            <li class="input_f1"><input type="text" name="binomial.secondName" value="<c:out value="${binomial.secondName}" />" /></li>
+                            <li class="label_f1"><span>Descrição:</span></li>
+                            <li class="input_f1"><input type="text" name="binomial.firstDescription" value="<c:out value="${binomial.firstDescription}" />" /></li>
                         </ul>
                     </div>
                     <div>
                         <ul class="field_line_f1">
-                            <li class="label_f1"><span>Valor padr&atilde.o:</span></li>
+                            <li class="label_f1"><span>Link:</span></li>
+                            <li class="input_f1"><input type="text" name="binomial.firstLink" value="<c:out value="${binomial.firstLink}" />" /></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul class="field_line_f1">
+                            <li class="label_f1"><span>2&ordm; Bin&ocirc;mio:</span></li>
+                            <li class="input_f1"><input type="text" name="binomial.secondName" value="<c:out value="${binomial.secondName}" />" /></li>
+                        </ul>"src/main/webapp/WEB-INF/groupware-workbench"
+                    </div>
+                    <div>
+                        <ul class="field_line_f1">
+                            <li class="label_f1"><span>Descrição:</span></li>
+                            <li class="input_f1"><input type="text" name="binomial.secondDescription" value="<c:out value="${binomial.secondDescription}" />" /></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul class="field_line_f1">
+                            <li class="label_f1"><span>Link:</span></li>
+                            <li class="input_f1"><input type="text" name="binomial.secondLink" value="<c:out value="${binomial.secondLink}" />" /></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul class="field_line_f1">
+                            <li class="label_f1"><span>Valor padr&atilde;o:</span></li>
                             <li class="input_f1"><input type="text" name="binomial.defaultValue" value="<c:out value="${binomial.defaultValue}" />" /></li>
                         </ul>
                     </div>
+
                     <div>
                         <ul class="bt_line_f1">
                             <li class="bt_cell_submit">
