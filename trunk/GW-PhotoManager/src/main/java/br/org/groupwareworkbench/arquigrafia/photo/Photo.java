@@ -84,7 +84,7 @@ public class Photo implements Serializable {
 
     private String lugar;
 
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date dataCriacao;
 
     // FIXME: ManyToMany!? Por quê? Aliás, esta lista não é usada nunca!
