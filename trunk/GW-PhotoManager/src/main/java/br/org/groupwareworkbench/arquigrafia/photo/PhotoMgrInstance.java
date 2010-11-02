@@ -52,7 +52,7 @@ public class PhotoMgrInstance extends AbstractBusiness {
     }
 
     public List<Photo> buscaFoto(String busca) {
-        return Photo.busca(getCollablet(), busca, null, null, null);
+        return Photo.busca(getCollablet(), busca, "", "", null);
     }
 
     public List<Photo> buscaFotoAvancada(String nome, String lugar, String descricao, Date date) {

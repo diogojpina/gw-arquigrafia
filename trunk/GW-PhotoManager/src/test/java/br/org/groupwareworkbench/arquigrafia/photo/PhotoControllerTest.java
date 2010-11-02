@@ -19,6 +19,8 @@
 */
 package br.org.groupwareworkbench.arquigrafia.photo;
 
+import static org.mockito.Mockito.*;
+import br.com.caelum.vraptor.core.Converters;
 import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
 import br.com.caelum.vraptor.util.test.MockResult;
 import br.com.caelum.vraptor.util.test.MockValidator;
@@ -27,6 +29,7 @@ import br.com.caelum.vraptor.validator.ValidationException;
 
 import br.org.groupwareworkbench.core.bd.EntityManagerProvider;
 import br.org.groupwareworkbench.core.framework.Collablet;
+import br.org.groupwareworkbench.core.framework.WidgetInfo;
 
 import br.org.groupwareworkbench.tests.DatabaseTester;
 import br.org.groupwareworkbench.tests.GWRunner;
@@ -39,6 +42,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.servlet.http.HttpServletRequest;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -77,40 +81,39 @@ public class PhotoControllerTest {
         em = EntityManagerProvider.getEntityManager();
 
         result = new MockResult();
-        controller = new PhotoController(result, new MockValidator(), null);
+        
+        HttpServletRequest request = mock(HttpServletRequest.class);
+        Converters converters = mock(Converters.class);        
+        WidgetInfo info = new WidgetInfo(request, converters);
+        controller = new PhotoController(result, new MockValidator(), info);
 
         em.getTransaction().begin();
-
         collablet = new Collablet("photoMgr");
         collablet.setComponentClass(PhotoMgrInstance.class);
         collablet.setProperty("dirImages", TEMP_DIR);
         photoInstance = (PhotoMgrInstance) collablet.getBusinessObject();
-        em.persist(collablet);
-
-        /*outroCollablet = new Collablet();
-        outroCollablet.setComponentClass(PhotoMgrInstance.class);
-        outroCollablet.setName("photoMgr2");
-        em.persist(outroCollablet);*/
+        em.persist(collablet);        
+        em.getTransaction().commit();
 
         photo1 = new Photo();
         photo1.setCollablet(collablet);
         photo1.setNome("foto Um");
         photo1.setNomeArquivo("fotoum.jpg");
-        em.persist(photo1);
+        
 
         photo2 = new Photo();
         photo2.setCollablet(collablet);
         photo2.setNome("foto Dois");
         photo2.setNomeArquivo("fotodois.jpg");
-        em.persist(photo2);
+
 
         photo3 = new Photo();
         photo3.setCollablet(collablet);
         photo3.setNome("foto Tres");
         photo3.setNomeArquivo("fototres.jpg");
-        em.persist(photo3);
 
-        em.getTransaction().commit();
+
+        
     }
 
     @After
@@ -154,6 +157,9 @@ public class PhotoControllerTest {
 
     @Test
     public void testPhotoSearchWithShortString() {
+        photo1.save();
+        photo2.save();        
+        photo3.save();
         try {
             controller.buscaFoto("fo", photoInstance);
             Assert.fail();
@@ -166,6 +172,10 @@ public class PhotoControllerTest {
 
     @Test
     public void testPhotoSearchWithLongEnoughString() {
+        photo1.save();
+        photo2.save();
+        photo3.setNome("alguma");
+        photo3.save();        
         controller.buscaFoto("fot", photoInstance);
 
         @SuppressWarnings("unchecked")
@@ -179,6 +189,9 @@ public class PhotoControllerTest {
 
     @Test
     public void testAdvancedSearchWithoutAnyFields() {
+        photo1.save();
+        photo2.save();
+        photo3.save();
         try {
             controller.buscaFotoAvancada("", "", "", null, photoInstance);
             Assert.fail();
@@ -191,7 +204,11 @@ public class PhotoControllerTest {
 
     @Test
     public void testAdvancedSearchByName() {
-        controller.buscaFotoAvancada("fotoum", "", "", null, photoInstance);
+        photo1.save();
+        photo2.save();
+        photo3.setNome("alguma coisa");
+        photo3.save();
+        controller.buscaFotoAvancada("foto", "", "", null, photoInstance);
 
         @SuppressWarnings("unchecked")
         List<Photo> fotosResult = (List<Photo>) result.included("fotos");
@@ -220,7 +237,7 @@ public class PhotoControllerTest {
     }
 
     @Test
-    public void testSaveWithoutImage() {
+    public void testSaveWithoutImage() {        
         Photo quatro = new Photo();
         quatro.setCollablet(collablet);
         quatro.setNome("foto Quatro");
@@ -237,7 +254,7 @@ public class PhotoControllerTest {
     }
 
     @Test
-    public void testSaveWithoutName() {
+    public void testSaveWithoutName() {        
         Photo quatro = new Photo();
         quatro.setCollablet(collablet);
         quatro.setNome("");
@@ -253,20 +270,19 @@ public class PhotoControllerTest {
     }
 
     @Test
-    public void testSucessfulSave() {
+    public void testSucessfulSave() {        
         Photo quatro = new Photo();
         quatro.setCollablet(collablet); 
         quatro.setNome("foto Quatro");
         quatro.setNomeArquivo("fotoquatro.jpg");
-
         try {
             controller.save(quatro, getImage(), photoInstance, null);
         } catch (ValidationException e) {
             List<String> outMensagens = listErrors(e);
             for (String erro : outMensagens) {
                 System.err.println(erro);
+                Assert.fail();
             }
-            Assert.fail();
         }
     }
 }

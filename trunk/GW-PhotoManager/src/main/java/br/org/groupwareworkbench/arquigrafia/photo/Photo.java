@@ -210,9 +210,12 @@ public class Photo implements Serializable {
     private void saveImage(BufferedImage input, String prefix, String path) throws IOException {
         File photoDirectory = new File(path);
         if (!photoDirectory.exists()) {
-            photoDirectory.mkdir();
+                photoDirectory.mkdir();
         }
-
+        else if (photoDirectory.exists() && photoDirectory.isFile()) {
+                photoDirectory.delete();
+                photoDirectory.mkdir();
+        }
         Iterator<ImageWriter> iter = ImageIO.getImageWritersByFormatName("JPG");
         if (iter.hasNext()) {
             ImageWriter writer = iter.next();
@@ -249,9 +252,9 @@ public class Photo implements Serializable {
 
         QueryBuilder<Photo> q = QueryBuilder.query(Photo.class).with("collablet", collablet);
 
-        if (nome != null) q.with("nome", "%" + nome.toUpperCase() + "%").upper().like();
-        if (descricao != null) q.with("descricao", "%" + descricao.toUpperCase() + "%").upper().like();
-        if (lugar != null) q.with("lugar", "%" + lugar.toUpperCase() + "%").upper().like();
+        if (!nome.isEmpty()) q.with("nome", "%" + nome.toUpperCase() + "%").upper().like();
+        if (!descricao.isEmpty()) q.with("descricao", "%" + descricao.toUpperCase() + "%").upper().like();
+        if (!lugar.isEmpty()) q.with("lugar", "%" + lugar.toUpperCase() + "%").upper().like();
         if (date != null) q.withDay("dataCriacao", date);
 
         return q.list();
