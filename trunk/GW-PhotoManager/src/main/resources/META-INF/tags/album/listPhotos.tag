@@ -22,7 +22,7 @@ s<%@ attribute name="locationClass" required="false" rtexprvalue="false" type="j
         <c:if test="${showName || showLocation}">
             <div>
         </c:if>
-        <a class="${linkClass}" rel="linkimage" href="<c:url value="${pageContext.request.contextPath}//groupware-workbench/photo/${foto.id}"/>">
+        <a class="${linkClass}" rel="linkimage" href="<c:url value="${pageContext.request.contextPath}/groupware-workbench/photo/${foto.id}"/>">
             <img src="<c:url value="${pageContext.request.contextPath}/groupware-workbench/photo/img-thumb/${foto.id}"/>" />
         </a>
         <c:if test="${showName || showLocation}">

@@ -7,10 +7,7 @@
     <name>addPhoto</name>
     <path>/META-INF/tags/album/addPhoto.tag</path>
   </tag-file>
-  <tag-file>
-    <name>album_scripts</name>
-    <path>/META-INF/tags/album/album_scripts.tag</path>
-  </tag-file>
+  
   <tag-file>
     <name>save</name>
     <path>/META-INF/tags/album/photoRegister.tag</path>

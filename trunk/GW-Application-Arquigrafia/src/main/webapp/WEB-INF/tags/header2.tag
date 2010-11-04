@@ -44,6 +44,11 @@
             <iframe name="profileContentFrame" style="width: 450px; height: 500px; opacity: 0.95;"
                     id="profileContentFrame" src="${pageContext.request.contextPath}/groupware-workbench/photo/${photoInstance.id}/system_users"></iframe>
         </div>
+        <div id="albumObjectsDiv" style="visibility: hidden; display: none;">
+           <iframe name="albumContentFrame" style="width: 450px; height: 500px; opacity: 0.95;"
+                   id="albumContentFrame" src="${pageContext.request.contextPath}/groupware-workbench/albun/${albumMgr.id}/album/${null}/listObjects"></iframe>
+        </div>
+        
         <script type="text/javascript">
             function refreshPage() {
                 window.location.reload(true);
@@ -81,6 +86,14 @@
                     closeText: "Fechar"
                 }).show();
             }
+
+            function showAlbumPhotos() {
+                new Boxy($("#albumObjectsDiv").html(), {
+                    title: "Album de Fotos",
+                    modal: true,
+                    closeText: "Fechar"
+                }).show();
+            }
         </script>
         <a href="#" onclick="return showPhotoUpload();">Upload de fotos</a>
         &nbsp;|&nbsp;
@@ -93,6 +106,8 @@
         <a href="${pageContext.request.contextPath}/groupware-workbench/users/${userMgr.id}/list">Gerenciar usu&aacute;rios</a>
         &nbsp;|&nbsp;
         <a href="${pageContext.request.contextPath}/groupware-workbench/manager/${manager.id}">Gerenciar aplica&ccedil;&atilde;o</a>
+        &nbsp;|&nbsp;
+        <a href="${pageContext.request.contextPath}/groupware-workbench/albuns/${albumMgr.id}/album/${null}/listObjects">Album de Fotos</a>
     </div>
     <div id="search_field">
         <img src="${pageContext.request.contextPath}/images/head1_left2_top.png" width="99" height="100" alt="campo de busca" />
