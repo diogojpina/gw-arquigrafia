@@ -81,15 +81,14 @@ public class AlbumMgrController {
     }
 
     @Get
-    @Path(value = "/groupware-workbench/albuns/{id}/listObjects")
-    public void listObjects(final long id) {
+    @Path(value = "/groupware-workbench/albuns/{albumMgr}/album/{id}/listObjects")
+    public void listObjects(AlbumMgrInstance albumMgr,final long id) {
         Album album = Album.findById(id);
         if (album == null) {
-            this.result.notFound();
-            return;
+            User user = (User) request.getSession().getAttribute("userLogin");
+            album = albumMgr.getAlbumByDefault(user);
         }
-
-        AlbumMgrInstance albumMgr = (AlbumMgrInstance) album.getCollablet().getBusinessObject();
+        
         Collection<Object> objectList = album.getObjects();
         result.include("objectList", objectList);
         result.include("albumMgr", albumMgr);

@@ -3,6 +3,7 @@
 <%@ taglib prefix="r" uri="http://www.groupwareworkbench.org.br/taglibs/reflection" %>
 
 <%@ attribute name="albumMgr" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.collablet.coop.album.AlbumMgrInstance" %>
+<%@ attribute name="album" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.collablet.coop.album.Album" %>
 <%@ attribute name="photos" required="true" rtexprvalue="true" type="java.util.List" %>
 
 <%@ attribute name="showName" required="false" rtexprvalue="false" type="java.lang.Boolean" %>
@@ -21,7 +22,7 @@ s<%@ attribute name="locationClass" required="false" rtexprvalue="false" type="j
         <c:if test="${showName || showLocation}">
             <div>
         </c:if>
-        <a class="${linkClass}" rel="linkimage" href="<c:url value="${pageContext.request.contextPath}/groupware-workbench/album/${albumMgr.id}/photo/show/${foto.id}"/>">
+        <a class="${linkClass}" rel="linkimage" href="<c:url value="${pageContext.request.contextPath}//groupware-workbench/photo/${foto.id}"/>">
             <img src="<c:url value="${pageContext.request.contextPath}/groupware-workbench/photo/img-thumb/${foto.id}"/>" />
         </a>
         <c:if test="${showName || showLocation}">
