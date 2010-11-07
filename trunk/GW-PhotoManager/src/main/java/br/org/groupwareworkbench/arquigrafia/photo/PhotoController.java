@@ -216,8 +216,9 @@ public class PhotoController {
 
     @Get
     @Path(value = "/groupware-workbench/photo/{photoInstance}/registra")
-    public void registra(PhotoMgrInstance photoInstance) {
-        Photo photo = new Photo();
+    public void registra(PhotoMgrInstance photoInstance, Photo photo) {
+        if(photo == null)
+            photo = new Photo();
         photo.setCollablet(photoInstance.getCollablet());
         result.include("photoRegister", photo);
         addIncludes(photoInstance);
@@ -240,7 +241,7 @@ public class PhotoController {
             erro = true;
         }
         if (erro) {
-            validator.onErrorUse(Results.logic()).redirectTo(PhotoController.class).registra(photoInstance);
+            validator.onErrorUse(Results.logic()).redirectTo(PhotoController.class).registra(photoInstance, photoRegister);
             return;
         }
 
@@ -253,14 +254,14 @@ public class PhotoController {
             photoRegister.saveImage(foto.getFile());
         } catch (IOException e) {
             validator.add(new ValidationMessage(e.getMessage(), "Erro"));
-            validator.onErrorUse(Results.logic()).redirectTo(PhotoController.class).registra(photoInstance);
+            validator.onErrorUse(Results.logic()).redirectTo(PhotoController.class).registra(photoInstance, photoRegister);
             return;
         }
 
         photoInstance.getCollablet().processWidgets(info, photoRegister);
         addIncludes(photoInstance);
         result.include("successMessage", MSG_SUCCESS);
-        result.use(Results.logic()).redirectTo(PhotoController.class).registra(photoInstance);
+        result.use(Results.logic()).redirectTo(PhotoController.class).registra(photoInstance, new Photo());
     }
 
     @Get
