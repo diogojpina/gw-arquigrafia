@@ -36,13 +36,9 @@
             <iframe name="profileContentFrame" style="width: 450px; height: 500px; opacity: 0.95;"
                     id="profileContentFrame" src="${pageContext.request.contextPath}/groupware-workbench/friends/${friendsMgr.id}/show/${userLogin.id}"></iframe>
         </div>
-        <div id="myFriendsDiv" style="visibility: hidden; display: none;">
-            <iframe name="profileContentFrame" style="width: 450px; height: 500px; opacity: 0.95;"
-                    id="profileContentFrame" src="${pageContext.request.contextPath}/groupware-workbench/friends/${friendsMgr.id}/list"></iframe>
-        </div>
         <div id="systemUsersDiv" style="visibility: hidden; display: none;">
             <iframe name="profileContentFrame" style="width: 450px; height: 500px; opacity: 0.95;"
-                    id="profileContentFrame" src="${pageContext.request.contextPath}/groupware-workbench/photo/${photoInstance.id}/system_users"></iframe>
+                    id="profileContentFrame" src="${pageContext.request.contextPath}/groupware-workbench/friends/${friendsMgr.id}/system_users"></iframe>
         </div>
         <div id="albumObjectsDiv" style="visibility: hidden; display: none;">
            <iframe name="albumContentFrame" style="width: 450px; height: 500px; opacity: 0.95;"
@@ -71,14 +67,6 @@
                 }).show();
             }
 
-            function showMyFriends() {
-                new Boxy($("#myFriendsDiv").html(), {
-                    title: "Meus Amigos",
-                    modal: true,
-                    closeText: "Fechar"
-                }).show();
-            }
-
             function showSystemUsers() {
                 new Boxy($("#systemUsersDiv").html(), {
                     title: "Usuários",
@@ -97,9 +85,7 @@
         </script>
         <a href="#" onclick="return showPhotoUpload();">Upload de fotos</a>
         &nbsp;|&nbsp;
-        <a href="#" onclick="return showProfile();">Meu perfil</a>
-        &nbsp;|&nbsp;
-        <a href="#" onclick="return showMyFriends();">Meus amigos</a>
+        <a href="${pageContext.request.contextPath}/groupware-workbench/friends/${friendsMgr.id}/show/${userLogin.id}" onclick="">Meu perfil</a>
         &nbsp;|&nbsp;
         <a href="#" onclick="return showSystemUsers();">Usu&aacute;rios do sistema</a>
         &nbsp;|&nbsp;
