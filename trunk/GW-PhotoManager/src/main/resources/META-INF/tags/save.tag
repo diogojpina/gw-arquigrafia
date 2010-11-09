@@ -31,7 +31,7 @@
             "changeMonth": true,
             "changeYear": true,
             "width": 15,
-            "dateFormat": "dd/mm/yy", <%-- Atenção: De acordo com a documentação, yy é o ano com 4 dígitos. --%>
+            "dateFormat": "dd/mm/yy", <%-- Atenï¿½ï¿½o: De acordo com a documentaï¿½ï¿½o, yy ï¿½ o ano com 4 dï¿½gitos. --%>
             "buttonImage": "${pageContext.request.contextPath}/images/calendar.gif",
             "buttonImageOnly": true
         });
@@ -77,11 +77,11 @@
     <fieldset>
         <legend>Data e Localiza&ccedil;&atilde;o</legend>
         <div class="${formLineClass}">
-            <label for="photoRegister.data" class="${formLabelClass}">
+            <label for="photoRegister.dataCriacao" class="${formLabelClass}">
                 <span>Data:</span>
             </label>
             <span class="${formInputClass}">
-                <input type="text" id="datepicker" name="photoRegister.data" />
+                <input type="text" id="datepicker" name="photoRegister.dataCriacao" />
             </span>
         </div>
         <div class="${formLineClass}">

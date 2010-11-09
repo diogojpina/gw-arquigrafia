@@ -23,7 +23,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import br.org.groupwareworkbench.collablet.coord.user.User;
 import br.org.groupwareworkbench.core.framework.AbstractBusiness;
 import br.org.groupwareworkbench.core.framework.Collablet;
 import br.org.groupwareworkbench.core.framework.annotations.ComponentInfo;
@@ -46,7 +45,6 @@ public class PhotoMgrInstance extends AbstractBusiness {
     }
 
     public void save(Photo photo) {
-        photo.setDataCriacao(new Date());
         photo.setCollablet(getCollablet());
         photo.save();
     }
