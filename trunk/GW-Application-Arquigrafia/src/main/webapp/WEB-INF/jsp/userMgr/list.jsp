@@ -14,8 +14,7 @@
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css" />
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/listagem.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
-        
-        
+
         <w:tabela baseUrl="/groupware-workbench/users"
                   createUrl="/groupware-workbench/users/${userMgr.id}/create"
                   msgAdd="Adicionar novo usuário"
@@ -32,7 +31,6 @@
             <div class="barra_botoes">
                 <w:voltar collabletInstance="${userMgr.collablet.parent}" />
             </div>
-            
         </w:conteudoPagina>
     </body>
 </html>

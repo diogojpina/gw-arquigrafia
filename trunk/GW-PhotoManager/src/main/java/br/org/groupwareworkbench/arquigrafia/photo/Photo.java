@@ -209,13 +209,14 @@ public class Photo implements Serializable {
 
     private void saveImage(BufferedImage input, String prefix, String path) throws IOException {
         File photoDirectory = new File(path);
+
         if (!photoDirectory.exists()) {
-                photoDirectory.mkdir();
+            photoDirectory.mkdir();
+        } else if (photoDirectory.exists() && photoDirectory.isFile()) {
+            photoDirectory.delete();
+            photoDirectory.mkdir();
         }
-        else if (photoDirectory.exists() && photoDirectory.isFile()) {
-                photoDirectory.delete();
-                photoDirectory.mkdir();
-        }
+
         Iterator<ImageWriter> iter = ImageIO.getImageWritersByFormatName("JPG");
         if (iter.hasNext()) {
             ImageWriter writer = iter.next();
@@ -276,14 +277,14 @@ public class Photo implements Serializable {
     public boolean equals(Object o) {
         if (!(o instanceof Photo)) return false;
         Photo other = (Photo) o;
-        return (id == null ? other.id == null : id.equals(other.id)) &&
-                (nome == null ? other.nome == null : nome.equals(other.nome));
+        return (id == null ? other.id == null : id.equals(other.id))
+                && (nome == null ? other.nome == null : nome.equals(other.nome));
     }
 
     @Override
     public int hashCode() {
-        return (id == null ? 0 : id.hashCode()) ^
-                (nome == null ? 0 : nome.hashCode());
+        return (id == null ? 0 : id.hashCode())
+                ^ (nome == null ? 0 : nome.hashCode());
     }
 
     public String getNome() {

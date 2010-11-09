@@ -6,7 +6,8 @@
 <%@ taglib prefix="tag" uri="http://www.groupwareworkbench.org.br/widgets/tag" %>
 <%@ taglib prefix="comment" uri="http://www.groupwareworkbench.org.br/widgets/comment" %>
 <%@taglib  prefix="profile" uri="http://www.groupwareworkbench.org.br/widgets/profile" %>
- <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -20,16 +21,12 @@
         <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/boxy.css" />
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/friends.css" />
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/arq-common.css" />
-        <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js">
-        </script>
-        <script type="text/javascript" src="${pageContext.request.contextPath}/js/compiled/arquigrafia-default.js">
-        </script>
-        <script src="${pageContext.request.contextPath}/js/jquery.boxy.js" type="text/javascript">
-        </script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/js/compiled/arquigrafia-default.js"></script>
+        <script src="${pageContext.request.contextPath}/js/jquery.boxy.js" type="text/javascript"></script>
     </head>
     <body style="background: url(../../../../images/header_bg.jpg) no-repeat scroll 0 0 transparent;">
-
-    <div id="corpo" style=" display: block; width: 990px; margin-left: auto; margin-right: auto; margin-top: 10px;">
+        <div id="corpo" style=" display: block; width: 990px; margin-left: auto; margin-right: auto; margin-top: 10px;">
 
             <div id="top_links" class="blue_link" style="margin-bottom: 15px;">
                 <a class="blue_link" href="${pageContext.request.contextPath}/groupware-workbench">In&iacute;cio</a>
@@ -49,22 +46,20 @@
                 </c:if>
             </div>
 
-                <div id="amigos" style="float: right;">
-                    <friends:listFriends
-                                user="${userLogin}"
-                                friendsMgr="${friendsMgr}" friendsHeader="friends_header"
-                                style="width: 400px;" />
-                </div>
+            <div id="amigos" style="float: right;">
+                <friends:listFriends
+                        user="${userLogin}"
+                        friendsMgr="${friendsMgr}" friendsHeader="friends_header"
+                        style="width: 400px;" />
+            </div>
 
+            <c:if test="${commentMgr2.collablet.enabled}">
                 <div id="comentario" style="width: 750px;">
-                    <form name="comments" method="post" enctype="multipart/form-data" action="<c:url value="/groupware-workbench/friends/${friendsMgr.id}/show/${friend.id}"/>" >
-                    <c:if test="${commentMgr2.collablet.enabled}">
+                    <form name="comments" method="post" enctype="multipart/form-data" action="<c:url value="/groupware-workbench/friends/${friendsMgr.id}/show/${friend.id}" />">
                         <div id="comments_bar">
                             <div id="comments_bar_bg">
                                 <div id="comments_bar_title" class="big_blue_title2">
-                                    <p>
-                                        Mensagens
-                                    </p>
+                                    <p>Mensagens</p>
                                 </div>
                                 <div id="comments_bar_link" class="comments_link">
                                     <a class="white_link"><img src="${pageContext.request.contextPath}/images/add_comment.png" alt="Adicionar Mensagem" /></a>
@@ -95,10 +90,9 @@
                                 $("#comments_bar_link").show();
                             });
                         </script>
-                    </c:if>
                     </form>
                 </div>
-            </div>
-   </div>
-</body>
+            </c:if>
+        </div>
+    </body>
 </html>

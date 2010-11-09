@@ -19,12 +19,8 @@
 */
 package br.org.groupwareworkbench.collablet.coop.album;
 
-import java.io.IOException;
-import java.io.Serializable;
-import java.text.DateFormat;
 import java.util.Collection;
 
-import javax.persistence.Entity;
 import javax.servlet.http.HttpServletRequest;
 
 import br.com.caelum.vraptor.Delete;
@@ -34,13 +30,8 @@ import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.Validator;
-import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
 import br.com.caelum.vraptor.ioc.RequestScoped;
-import br.com.caelum.vraptor.validator.ValidationMessage;
 import br.com.caelum.vraptor.view.Results;
-import br.org.groupwareworkbench.arquigrafia.photo.Photo;
-import br.org.groupwareworkbench.arquigrafia.photo.PhotoController;
-import br.org.groupwareworkbench.arquigrafia.photo.PhotoMgrInstance;
 import br.org.groupwareworkbench.collablet.coord.user.User;
 import br.org.groupwareworkbench.core.framework.WidgetInfo;
 
@@ -54,7 +45,7 @@ public class AlbumMgrController {
     public static final String MSG_MIN_3_LETRAS = "Você deve digitar no mínimo 3 letras.";
     public static final String MSG_NENHUM_CAMPO_PREENCHIDO = "Nenhum campo foi preenchido.";
     public static final String MSG_NOME_OBRIGATORIO = "O nome é obrigatório.";
-    public static final String MSG_Arquivo_OBRIGATORIA = "Um arquivo é obrigatória.";
+    public static final String MSG_ARQUIVO_OBRIGATORIO = "Um arquivo é obrigatório.";
     public static final String MSG_FALHA_NO_UPLOAD = "Falha ao fazer o upload da imagem.";
     public static final String MSG_ENTIDADE_INVALIDA = "Não é uma entidade válida.";
     public static final String MSG_SUCCESS_ADD = "O elemento foi adicionado";
@@ -82,16 +73,15 @@ public class AlbumMgrController {
 
     @Get
     @Path(value = "/groupware-workbench/albuns/{albumMgr}/album/{id}/listObjects")
-    public void listObjects(AlbumMgrInstance albumMgr,final Long id) {
+    public void listObjects(AlbumMgrInstance albumMgr, final Long id) {
         Album album;
         if (id == null) {
             User user = (User) request.getSession().getAttribute("userLogin");
             album = albumMgr.getAlbumByDefault(user);
-        }
-        else{
+        } else {
             album = Album.findById(id);    
         }
-        
+
         if (album == null) {
             result.notFound();
             return;
@@ -148,12 +138,6 @@ public class AlbumMgrController {
         result.use(Results.logic()).redirectTo(AlbumMgrController.class).list(albumMgr);
     }
 
-    /*
-     * @Get
-     * @Path(value="/groupware-workbench/album/{albumMgr}/resource/{resource*}") public File
-     * getResource(AlbumMgrInstance albumMgr, String resource) { return albumMgr.resourcePath(resource); }
-     */
-
     /* Object's Management */
     
     @Post
@@ -166,17 +150,17 @@ public class AlbumMgrController {
         }
         album.add(object);
     }
-    
+
     @Post
     @Get
     @Path(value = "/groupware-workbench/albuns/{albumMgr}/default/")
-    public void addObjectAtDefaultAlbum( AlbumMgrInstance albumMgr,final String objectId, String strClass) {
-        Object entity=null;
+    public void addObjectAtDefaultAlbum(AlbumMgrInstance albumMgr, final String objectId, String strClass) {
+        Object entity = null;
         try {
-            Class classObject= Class.forName(strClass.trim());
-            entity= albumMgr.findById(Long.decode(objectId.trim()),classObject);
+            Class<?> classObject = Class.forName(strClass.trim());
+            entity = albumMgr.findById(Long.decode(objectId.trim()), classObject);
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            e.printStackTrace(); // TODO: tirar isso daqui.
         }
         
         User user = (User) request.getSession().getAttribute("userLogin");
@@ -192,10 +176,10 @@ public class AlbumMgrController {
         //result.include("album", album);
         //result.include("albumMgr", albumMgr);
     }
-    
+
     @Delete
     @Path(value = "/groupware-workbench/albuns/{id}/object/}")
-    public void removeObject(final long id, final Object object ) {
+    public void removeObject(final long id, final Object object) {
         Album album = Album.findById(id);
         if (album == null) {
             this.result.notFound();

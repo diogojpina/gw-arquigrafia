@@ -53,7 +53,7 @@ public class AlbumMgrInstance extends AbstractBusiness {
     public List<Album> list() {
         return Album.list(getCollablet());
     }
-    
+
     public List<Album> listByUser(User user){
         return Album.listByUser(user, getCollablet()); 
     }
@@ -61,27 +61,27 @@ public class AlbumMgrInstance extends AbstractBusiness {
     public Album findByName(String name) {
         return Album.findByName(name, getCollablet());
     }
-    
+
     public Album getAlbumByDefault(User user) {
         List<Album> albuns = this.listByUser(user);
         Album album;
-        if(albuns==null || albuns.isEmpty()){//it has no album
+        if (albuns == null || albuns.isEmpty()) {//it has no album
             album = new Album();
             album.setTitle("first");
             album.setCreationDate(new Date());
             album.setUpdateDate(album.getCreationDate());
             album.setOwner(user);
-            
+
             this.save(album);
+        } else {
+            album = albuns.get(0);
         }
-        else //
-            album = albuns.get(0);  
-      
+
         return album;
     }
-    
-    public Object findById(Serializable id, Class type){
+
+    public <E> E findById(Serializable id, Class<E> type) {
         EntityManager em = EntityManagerProvider.getEntityManager();
-        return em.find(type,id);
+        return em.find(type, id);
     }
 }

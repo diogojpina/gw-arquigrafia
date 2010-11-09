@@ -124,6 +124,7 @@ public class PhotoController {
         photoInstance.getCollablet().includeDependencies(result);
     }
 
+    // FIXME: @Get e @Post ao mesmo tempo? Separar as duas coisas. Não é idempotente.
     @Get
     @Post
     @Path(value = "/groupware-workbench/photo/{idPhoto}")
@@ -214,11 +215,13 @@ public class PhotoController {
         result.use(Results.logic()).redirectTo(PhotoController.class).busca(photoInstance);
     }
 
+    // TODO: Achar uma forma de fazer isto sem ter o photo na URL.
     @Get
     @Path(value = "/groupware-workbench/photo/{photoInstance}/registra")
     public void registra(PhotoMgrInstance photoInstance, Photo photo) {
-        if(photo == null)
+        if (photo == null) {
             photo = new Photo();
+        }
         photo.setCollablet(photoInstance.getCollablet());
         result.include("photoRegister", photo);
         addIncludes(photoInstance);

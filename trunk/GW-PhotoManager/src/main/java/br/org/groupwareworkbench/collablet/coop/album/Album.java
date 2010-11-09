@@ -30,19 +30,17 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
 
-import br.org.groupwareworkbench.arquigrafia.photo.Photo;
 import br.org.groupwareworkbench.collablet.coord.user.User;
 import br.org.groupwareworkbench.core.bd.GenericReference;
 import br.org.groupwareworkbench.core.bd.ObjectDAO;
 import br.org.groupwareworkbench.core.framework.Collablet;
-import javax.persistence.JoinColumn;
 
 @Entity
 @Table(
@@ -105,7 +103,7 @@ public class Album implements Serializable {
         if (collablet == null) throw new IllegalArgumentException();
         return DAO.query().with("collablet", collablet).list();
     }
-    
+
     public static List<Album> listByUser(User user, Collablet collablet) {
         if (user == null) throw new IllegalArgumentException("User is required.");
         if (collablet == null) throw new IllegalArgumentException();
@@ -117,13 +115,11 @@ public class Album implements Serializable {
         if (name == null) throw new IllegalArgumentException();
         return DAO.query().with("collablet", collablet).with("name", name).find();
     }
-    
+
     public static List<Album> getAlbuns(User user) {
         if (user == null) throw new IllegalArgumentException();
         return DAO.query().with("owner.id", user.getId()).list();
     }
-    
-    
 
     // Add objects
     public void add(Object object) {
@@ -136,7 +132,7 @@ public class Album implements Serializable {
         if (object == null) throw new IllegalArgumentException();
         this.objects.remove(new GenericReference(object));
     }
-    
+
     // List the last Objects
 
     // Sort Objects
@@ -171,8 +167,8 @@ public class Album implements Serializable {
         this.updateDate = updateDate == null ? null : (Date) updateDate.clone();
     }
 
-    public List getObjects() {
-        List result = new ArrayList(objects.size());
+    public List<Object> getObjects() {
+        List<Object> result = new ArrayList<Object>(objects.size());
 
         for (GenericReference gr : this.objects) {
             result.add(gr.getEntity());
@@ -200,6 +196,4 @@ public class Album implements Serializable {
     public User getOwner() {
         return owner;
     }
-
-    
 }

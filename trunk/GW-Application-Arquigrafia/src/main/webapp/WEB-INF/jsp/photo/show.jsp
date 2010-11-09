@@ -32,13 +32,13 @@
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/compiled/arquigrafia-default.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/plugins/sds/js/jquery.smoothDivScroll-0.9-min.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/plugins/sds/js/scroll.js"></script>
-        <script src="${pageContext.request.contextPath}/js/jquery.boxy.js" type="text/javascript"></script>
-        <script src="${pageContext.request.contextPath}/js/toolTips.js" type="text/javascript"></script>
-		<script type="text/javascript">
-			$(document).ready(function(){	
-				$('label[rel=tooltip]').tooltip();
-			});
-		</script>        
+        <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.boxy.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/js/toolTips.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('label[rel=tooltip]').tooltip();
+            });
+        </script>
         <script type="text/javascript">
             $(function() {
                 $("div#makeMeScrollable").smoothDivScroll({scrollingSpeed: 12, mouseDownSpeedBooster: 3, visibleHotSpots: "always", startAtElementId: "startAtMe"});
@@ -109,10 +109,10 @@
                 <span class="big_white_title"><c:out value="${photo.nome}" /></span>
                 <div id="photoTitle_tab_3" class="photoTitle_tab">
                     <a href="${pageContext.request.contextPath}/groupware-workbench/photo/img-original/${photo.id}"> 
-                       <img src="${pageContext.request.contextPath}/images/photo_download.png" alt="Baixar a foto" />
-                       &nbsp;
-                       <span class="mid_white_text">Download</span>
-                    </a>     
+                        <img src="${pageContext.request.contextPath}/images/photo_download.png" alt="Baixar a foto" />
+                        &nbsp;
+                        <span class="mid_white_text">Download</span>
+                    </a>
                 </div>
                 <div id="photoTitle_tab_2" class="photoTitle_tab">
                     <img src="${pageContext.request.contextPath}/images/photo_view.png" alt="Visualizar a foto" />
@@ -150,7 +150,7 @@
                     <div id="tags_right">
                     </div>
                     <div>
-                    	<album:addPhoto albumMgr="${albumMgr}" user="${sessionScope.userLogin}" album="${null}" photo="${photo}" albumDefault="true"/>
+                        <album:addPhoto albumMgr="${albumMgr}" user="${sessionScope.userLogin}" album="${null}" photo="${photo}" albumDefault="true" />
                     </div>
                 </div>
             </div>

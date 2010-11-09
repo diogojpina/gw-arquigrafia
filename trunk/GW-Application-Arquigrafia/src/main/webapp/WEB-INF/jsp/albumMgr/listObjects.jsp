@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="w" uri="http://www.groupwareworkbench.org.br/widgets/commons" %>
 <%@ taglib prefix="photo" uri="http://www.groupwareworkbench.org.br/widgets/photomanager" %>
@@ -19,12 +18,12 @@
         <w:topo collabletInstance="${albumMgr.collablet}" />
         <w:conteudoPagina titulo="Albun: ${album.title}">
             <br />
-            <h1><span class="style1">Lista de Elementos </span></h1>
+            <h1><span class="style1">Lista de elementos</span></h1>
             <br />
 
             <div id="search_scroll">
                 <album:listPhotos  albumMgr="${albumMgr}" photos="${objectList}" showName="true" />
-                <!--<photo:list photos="${photoList}" photoInstance="${photoInstance}" showName="true" showLocation="false" lineClass="search_line" /> -->
+                <%--<photo:list photos="${photoList}" photoInstance="${photoInstance}" showName="true" showLocation="false" lineClass="search_line" /> --%>
             </div>
             <br />
         </w:conteudoPagina>

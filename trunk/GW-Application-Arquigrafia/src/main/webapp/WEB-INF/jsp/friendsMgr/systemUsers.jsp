@@ -4,6 +4,7 @@
 <%@ taglib prefix="r" uri="http://www.groupwareworkbench.org.br/taglibs/reflection" %>
 <%@ taglib prefix="friends" uri="http://www.groupwareworkbench.org.br/widgets/friends" %>
 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -20,22 +21,20 @@
     <body>
         <div>
             <c:if test="${userMgr.collablet.enabled}">
-                <div>
-                    <c:forEach items="${userMgr.allElements}" var="u">
-                        <c:if test="${u.login != userLogin.login}">
-                            <div>
-                                <br />
-                                <img src="<c:out value="${u.photoURL}" />" alt="foto do usuario" />
-                                &nbsp;
-                                <a href="${pageContext.request.contextPath}/groupware-workbench/friends/${friendsMgr.id}/show/${u.id}">
-                                    <c:out value="${u.name}"/>
-                                </a>
-                                &nbsp;
-                                <friends:sendRequest friendsMgr="${friendsMgr}" viewer="${userLogin}" viewed="${u}" afterRequestFunction="aviso" />
-                            </div>
-                        </c:if>
-                    </c:forEach>
-                </div>
+                <c:forEach items="${userMgr.allElements}" var="u">
+                    <c:if test="${u.login != userLogin.login}">
+                        <div>
+                            <br />
+                            <img src="<c:out value="${u.photoURL}" />" alt="Foto do usu&aacute;rio" />
+                            &nbsp;
+                            <a href="${pageContext.request.contextPath}/groupware-workbench/friends/${friendsMgr.id}/show/${u.id}">
+                                <c:out value="${u.name}" />
+                            </a>
+                            &nbsp;
+                            <friends:sendRequest friendsMgr="${friendsMgr}" viewer="${userLogin}" viewed="${u}" afterRequestFunction="aviso" />
+                        </div>
+                    </c:if>
+                </c:forEach>
             </c:if>
         </div>
     </body>

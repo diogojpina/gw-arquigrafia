@@ -19,14 +19,14 @@
 --%>
 <c:forEach var="album" items="${albuns}">
     <div class="${lineClass}" style="float: left">
-      <!-- <form action="${pageContext.request.contextPath}/groupware-workbench/album/${albumMgr.id}/remove/${album.id}"> -->
+        <!-- <form action="${pageContext.request.contextPath}/groupware-workbench/album/${albumMgr.id}/remove/${album.id}"> -->
         <c:if test="${showNumber || showEdit}">
             <div>
         </c:if>
-        <!--<a class="${linkClass}" rel="linkimage" href="<c:url value="/groupware-workbench/photo/${foto.id}"/>">
-            <img src="<c:url value="/groupware-workbench/photo/img-thumb/${foto.id}"/>" />
+        <!--<a class="${linkClass}" rel="linkimage" href="<c:url value="/groupware-workbench/photo/${foto.id}" />">
+            <img src="<c:url value="/groupware-workbench/photo/img-thumb/${foto.id}" />" />
         </a>-->
-        <a class="${linkClass}" href="<c:url value="${pageContext.request.contextPath}/groupware-workbench/album/${albumMgr.id}/album/${album.id}"/>">
+        <a class="${linkClass}" href="<c:url value="${pageContext.request.contextPath}/groupware-workbench/album/${albumMgr.id}/album/${album.id}" />">
             <c:out value="${album.title}"/>
         </a>
         <c:if test="${showNumber || showEdit}">
@@ -40,14 +40,14 @@
         <c:if test="${showEdit}">
             <div class="${editClass}" >
             	<a class="${linkClass}" href="<c:url value="${pageContext.request.contextPath}/groupware-workbench/album/${albumMgr.id}/album/${album.id}"/>">
-                    <c:out value="Edit"/>
+                    Edit
                 </a>
             </div>
         </c:if>
         <c:if test="${showDelete}">
             <div class="${editClass}" >
             	<a class="${linkClass}" href="<c:url value="${pageContext.request.contextPath}/groupware-workbench/album/${albumMgr.id}/remove/${album.id}"/>">
-                    <c:out value="Delete"/>
+                    Delete
                 </a>
             </div>
         </c:if>

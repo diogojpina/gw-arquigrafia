@@ -72,7 +72,9 @@ public class PhotoControllerTest {
 
     @BeforeClass
     public static void initClass() throws IOException {
-        TEMP_DIR = File.createTempFile("xxxx", "xxxx").getAbsolutePath();
+        File temp = File.createTempFile("xxxx", "xxxx");
+        TEMP_DIR = temp.getAbsolutePath();
+        temp.delete();
     }
 
     @Before
