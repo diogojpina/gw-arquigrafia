@@ -16,13 +16,13 @@
     </head>
     <body>
         <w:topo collabletInstance="${albumMgr.collablet}" />
-        <w:conteudoPagina titulo="Albun: ${album.title}">
+        <w:conteudoPagina titulo="Album: ${album.title}">
             <br />
             <h1><span class="style1">Lista de elementos</span></h1>
             <br />
 
             <div id="search_scroll">
-                <album:listPhotos  albumMgr="${albumMgr}" photos="${objectList}" showName="true" />
+                <album:listPhotos  albumMgr="${albumMgr}" objects="${objectList}" showName="true" />
                 <%--<photo:list photos="${photoList}" photoInstance="${photoInstance}" showName="true" showLocation="false" lineClass="search_line" /> --%>
             </div>
             <br />

@@ -75,7 +75,7 @@ public class AlbumMgrController {
     @Path(value = "/groupware-workbench/albuns/{albumMgr}/album/{id}/listObjects")
     public void listObjects(AlbumMgrInstance albumMgr, final Long id) {
         Album album;
-        if (id == null) {
+        if (id == null || id == -1) {
             User user = (User) request.getSession().getAttribute("userLogin");
             album = albumMgr.getAlbumByDefault(user);
         } else {
@@ -172,6 +172,7 @@ public class AlbumMgrController {
             return;
         }
         album.add(entity);
+        album.save();
         result.include("successAddObjectAtDefaultAlbum", MSG_SUCCESS_ADD);
         //result.include("album", album);
         //result.include("albumMgr", albumMgr);
