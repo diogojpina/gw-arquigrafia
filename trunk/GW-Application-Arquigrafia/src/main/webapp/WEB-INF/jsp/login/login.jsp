@@ -43,6 +43,9 @@
                         </span>
                     </div>
                 </c:if>
+                <div class="login_messages">
+	        		<a href="${pageContext.request.contextPath}/groupware-workbench/users/${userMgr.id}/register">Cadastre-se&nbsp;&nbsp;&nbsp;</a>
+    	    	</div>
             </div>
         </form>
     </body>
