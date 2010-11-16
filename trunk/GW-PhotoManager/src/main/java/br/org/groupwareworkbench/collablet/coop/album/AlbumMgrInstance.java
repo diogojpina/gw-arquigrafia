@@ -19,25 +19,18 @@
 */
 package br.org.groupwareworkbench.collablet.coop.album;
 
-import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.EntityManager;
-
-import com.sun.org.apache.regexp.internal.recompile;
-
-import br.org.groupwareworkbench.arquigrafia.photo.Photo;
 import br.org.groupwareworkbench.collablet.coord.user.User;
-import br.org.groupwareworkbench.core.bd.EntityManagerProvider;
 import br.org.groupwareworkbench.core.framework.AbstractBusiness;
 import br.org.groupwareworkbench.core.framework.Collablet;
 import br.org.groupwareworkbench.core.framework.annotations.ComponentInfo;
 
 @ComponentInfo(
-        version="0.1",
-        configurationURL="/groupware-workbench/albuns/{albumMgr}/list",
-        retrieveURL = "/groupware-workbench/albuns/{id}"
+        version = "0.1",
+        configurationURL = "/groupware-workbench/album/{albumMgr}",
+        retrieveURL = "/groupware-workbench/album/{albumMgr}/{idAlbum}"
 )
 public class AlbumMgrInstance extends AbstractBusiness {
 
@@ -50,38 +43,23 @@ public class AlbumMgrInstance extends AbstractBusiness {
         album.save();
     }
 
-    public List<Album> list() {
-        return Album.list(getCollablet());
-    }
-
-    public List<Album> listByUser(User user){
-        return Album.listByUser(user, getCollablet()); 
-    }
-
-    public Album findByName(String name) {
-        return Album.findByName(name, getCollablet());
+    public List<Album> listByUser(User user) {
+        return Album.listByUser(user, getCollablet());
     }
 
     public Album getAlbumByDefault(User user) {
         List<Album> albuns = this.listByUser(user);
         Album album;
-        if (albuns == null || albuns.isEmpty()) {//it has no album
+        if (albuns == null || albuns.isEmpty()) { //it has no album
             album = new Album();
-            album.setTitle("first");
+            album.setTitle("default");
             album.setCreationDate(new Date());
-            album.setUpdateDate(album.getCreationDate());
+            album.setDescription("");
             album.setOwner(user);
-
-            this.save(album);
         } else {
             album = albuns.get(0);
         }
-
         return album;
     }
-
-    public <E> E findById(Serializable id, Class<E> type) {
-        EntityManager em = EntityManagerProvider.getEntityManager();
-        return em.find(type, id);
-    }
 }
+

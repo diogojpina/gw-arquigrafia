@@ -19,174 +19,68 @@
 */
 package br.org.groupwareworkbench.collablet.coop.album;
 
-import java.util.Collection;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import br.com.caelum.vraptor.Delete;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
-import br.com.caelum.vraptor.Validator;
 import br.com.caelum.vraptor.ioc.RequestScoped;
 import br.com.caelum.vraptor.view.Results;
 import br.org.groupwareworkbench.collablet.coord.user.User;
-import br.org.groupwareworkbench.core.framework.WidgetInfo;
 
 @RequestScoped
 @Resource
 public class AlbumMgrController {
-
     private final Result result;
     private final HttpServletRequest request;
 
-    public static final String MSG_MIN_3_LETRAS = "Você deve digitar no mínimo 3 letras.";
-    public static final String MSG_NENHUM_CAMPO_PREENCHIDO = "Nenhum campo foi preenchido.";
-    public static final String MSG_NOME_OBRIGATORIO = "O nome é obrigatório.";
-    public static final String MSG_ARQUIVO_OBRIGATORIO = "Um arquivo é obrigatório.";
-    public static final String MSG_FALHA_NO_UPLOAD = "Falha ao fazer o upload da imagem.";
-    public static final String MSG_ENTIDADE_INVALIDA = "Não é uma entidade válida.";
-    public static final String MSG_SUCCESS_ADD = "O elemento foi adicionado";
-
-    private final WidgetInfo info;
-    private final Validator validator;
-
-    public AlbumMgrController(Result result, Validator validator, WidgetInfo info, HttpServletRequest request) {
+    public AlbumMgrController(Result result, HttpServletRequest request) {
         this.request = request;
         this.result = result;
-        this.validator = validator;
-        this.info = info;
     }
 
     @Get
-    @Path(value = "/groupware-workbench/albuns/{albumMgr}/list")
-    public void list(final AlbumMgrInstance albumMgr) {
-        User user = (User) request.getSession().getAttribute("userLogin");
-        Collection<Album> albumList = albumMgr.listByUser(user);
-        result.include("user", user);
-        result.include("albumList", albumList);
-        result.include("albumMgr", albumMgr);
-        result.use(Results.representation()).from(albumList).serialize();
+    @Path(value = "/groupware-workbench/album/{albumMgr}")
+    public void defaultPage(AlbumMgrInstance albumMgr) {
+        addIncludes(albumMgr);
     }
 
     @Get
-    @Path(value = "/groupware-workbench/albuns/{albumMgr}/album/{id}/listObjects")
-    public void listObjects(AlbumMgrInstance albumMgr, final Long id) {
-        Album album;
-        if (id == null || id == -1) {
-            User user = (User) request.getSession().getAttribute("userLogin");
-            album = albumMgr.getAlbumByDefault(user);
-        } else {
-            album = Album.findById(id);    
-        }
-
-        if (album == null) {
-            result.notFound();
-            return;
-        }
-        
-        Collection<Object> objectList = album.getObjects();
-        result.include("objectList", objectList);
-        result.include("albumMgr", albumMgr);
-        result.use(Results.representation()).from(objectList).serialize();
+    @Path(value = "/groupware-workbench/album/{albumMgr}/list/{idUser}")
+    public void list(AlbumMgrInstance albumMgr, Long idUser) {
+        User user = User.findById(idUser);
+        List<Album> albunList = albumMgr.listByUser(user);
+        result.include("albumList", albunList);
+        result.use(Results.representation()).from(albunList).serialize();
+        addIncludes(albumMgr);
     }
 
-    
     @Get
-    @Path(value = "/groupware-workbench/albuns/{albumMgr}/create")
-    public void create(final AlbumMgrInstance albumMgr) {
-        Album album = new Album();
+    @Path({
+        "/groupware-workbench/album/{albumMgr}/{idAlbum}",
+        "/groupware-workbench/album/{albumMgr}/create"
+    })
+    public void retrieve(AlbumMgrInstance albumMgr, Long idAlbum) {
+        Album album = Album.findById(idAlbum);
         result.include("album", album);
-        result.use(Results.representation()).from(album).serialize();
-    }
-
-    @Get
-    @Path(value = "/groupware-workbench/albuns/{id}")
-    public void retrieve(final long id) {
-        Album album = Album.findById(id);
-        if (album == null) {
-            this.result.notFound();
-            return;
-        }
-        result.include("album", album);
-        result.use(Results.representation()).from(album).serialize();
+        addIncludes(albumMgr);
     }
 
     @Post
-    //@Path(value = "/groupware-workbench/albuns/{albumMgr}/save/{idAlbum}")
-    @Path(value = "/groupware-workbench/albuns/{albumMgr}")
-    public void save(AlbumMgrInstance albumMgr, final Album album) {
-        result.include("album", album);
-        result.include("albumMgr", albumMgr);
+    @Path(value = "/groupware-workbench/album/{albumMgr}/save")
+    public void save(AlbumMgrInstance albumMgr, Album album) {
+        User user = (User) request.getSession().getAttribute("userLogin");
+        album.setOwner(user);
         albumMgr.save(album);
-        result.use(Results.logic()).redirectTo(AlbumMgrController.class).list(albumMgr);
+        result.nothing();
     }
 
-    @Delete
-    @Path(value = "/groupware-workbench/albuns/{id}")
-    public void delete(final long id) {
-        Album album = Album.findById(id);
-        if (album == null) {
-            this.result.notFound();
-            return;
-        }
-
-        AlbumMgrInstance albumMgr = (AlbumMgrInstance) album.getCollablet().getBusinessObject();
-        album.delete();
-        result.use(Results.logic()).redirectTo(AlbumMgrController.class).list(albumMgr);
-    }
-
-    /* Object's Management */
-    
-    @Post
-    @Path(value = "/groupware-workbench/albuns/{id}/object/")
-    public void addObject(final long id, final Object object) {
-        Album album = Album.findById(id);
-        if (album == null) {
-            this.result.notFound();
-            return;
-        }
-        album.add(object);
-    }
-
-    @Post
-    @Get
-    @Path(value = "/groupware-workbench/albuns/{albumMgr}/default/")
-    public void addObjectAtDefaultAlbum(AlbumMgrInstance albumMgr, final String objectId, String strClass) {
-        Object entity = null;
-        try {
-            Class<?> classObject = Class.forName(strClass.trim());
-            entity = albumMgr.findById(Long.decode(objectId.trim()), classObject);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace(); // TODO: tirar isso daqui.
-        }
-        
-        User user = (User) request.getSession().getAttribute("userLogin");
-        
-        Album album = albumMgr.getAlbumByDefault(user);
-        
-        if (album == null) {
-            this.result.notFound();
-            return;
-        }
-        album.add(entity);
-        album.save();
-        result.include("successAddObjectAtDefaultAlbum", MSG_SUCCESS_ADD);
-        //result.include("album", album);
-        //result.include("albumMgr", albumMgr);
-    }
-
-    @Delete
-    @Path(value = "/groupware-workbench/albuns/{id}/object/}")
-    public void removeObject(final long id, final Object object) {
-        Album album = Album.findById(id);
-        if (album == null) {
-            this.result.notFound();
-            return;
-        }
-
-        album.remove(object);
+    private void addIncludes(AlbumMgrInstance albumMgr) {
+        result.include("albumMgr", albumMgr);
+        albumMgr.getCollablet().includeDependencies(result);
     }
 }

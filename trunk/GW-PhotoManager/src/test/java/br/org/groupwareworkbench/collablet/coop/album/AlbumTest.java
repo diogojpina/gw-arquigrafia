@@ -138,19 +138,6 @@ public class AlbumTest {
     }
 
     @Test
-    public void testPropertiesSetAndGet() throws ParseException {
-        Album a = new Album();
-        SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");  
-        a.setTitle("album1");
-        Assert.assertEquals("album1", a.getTitle());
-        a.setCreationDate(formatador.parse("24/09/2010"));
-        Assert.assertEquals(formatador.parse("24/09/2010"), a.getCreationDate());
-        a.setUpdateDate(formatador.parse("27/09/2010"));
-        Assert.assertEquals(formatador.parse("27/09/2010"), a.getUpdateDate());
-        
-    }
-
-    @Test
     public void testNamePersistence() {
         setUpPersistence();
         Album a = new Album();
@@ -199,36 +186,6 @@ public class AlbumTest {
         Album x = em.find(Album.class, a.getId());
         Assert.assertNotSame(a, x);
         Assert.assertEquals(c, a.getCollablet());
-    }
-
-    @Test
-    public void testNameAndCollabletUniqueness() {
-        setUpPersistence();
-        Album a1 = new Album();
-        a1.setTitle("album1");
-        a1.setCollablet(c);
-
-        Album a2 = new Album();
-        a2.setTitle("album2");
-        a2.setCollablet(c);
-
-        em.getTransaction().begin();
-        em.persist(c);
-        em.persist(a1);
-        em.persist(a2);
-        em.getTransaction().commit();
-        em.clear();
-
-        a2.setTitle("album1");
-
-        try {
-            em.getTransaction().begin();
-            em.merge(a2);
-            em.getTransaction().commit();
-            Assert.fail();
-        } catch (PersistenceException e) {
-            // Ignore.
-        }
     }
 
     // Tagged objects tests.

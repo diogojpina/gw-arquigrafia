@@ -20,6 +20,7 @@
 package br.org.groupwareworkbench.collablet.coop.album;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -35,7 +36,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.UniqueConstraint;
 
 import br.org.groupwareworkbench.collablet.coord.user.User;
 import br.org.groupwareworkbench.core.bd.GenericReference;
@@ -43,10 +43,7 @@ import br.org.groupwareworkbench.core.bd.ObjectDAO;
 import br.org.groupwareworkbench.core.framework.Collablet;
 
 @Entity
-@Table(
-        name = "gw_collab_Album",
-        uniqueConstraints={@UniqueConstraint(columnNames={"collablet_id", "title"})}
-)
+@Table(name = "gw_collab_Album")
 public class Album implements Serializable {
 
     private static final long serialVersionUID = -6876191440831919034L;
@@ -58,23 +55,21 @@ public class Album implements Serializable {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name="collablet_id")
+    @JoinColumn(name = "collablet_id")
     private Collablet collablet;
 
     private String title;
 
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date creationDate;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date updateDate;
+    private String description;
 
     @ManyToOne
     private User owner;
 
     @ElementCollection
-    @CollectionTable(name = "gw_collab_Album_Assignments")
-    //private List<Photo> photos = new ArrayList<Photo>();
+    @CollectionTable(name = "gw_collab_Album_Elements")
     private List<GenericReference> objects = new ArrayList<GenericReference>();
 
     public Album() {
@@ -96,51 +91,41 @@ public class Album implements Serializable {
     }
 
     public static Album findById(Long id) {
-        return DAO.findById(id);
-    }
-
-    public static List<Album> list(Collablet collablet) {
-        if (collablet == null) throw new IllegalArgumentException();
-        return DAO.query().with("collablet", collablet).list();
+        Album album = null;
+        if (id == null) {
+            album = new Album();
+            return album;
+        }
+        album = DAO.findById(id);
+        if (album == null) {
+            album = new Album();
+        }
+        return album;
     }
 
     public static List<Album> listByUser(User user, Collablet collablet) {
         if (user == null) throw new IllegalArgumentException("User is required.");
         if (collablet == null) throw new IllegalArgumentException();
-        return DAO.query().with("collablet", collablet).with("owner.id", user.getId()).list();        
+        return DAO.query().with("collablet", collablet).with("owner.id", user.getId()).list();
     }
 
-    public static Album findByName(String name, Collablet collablet) {
-        if (collablet == null) throw new IllegalArgumentException();
-        if (name == null) throw new IllegalArgumentException();
-        return DAO.query().with("collablet", collablet).with("name", name).find();
-    }
-
-    public static List<Album> getAlbuns(User user) {
-        if (user == null) throw new IllegalArgumentException();
-        return DAO.query().with("owner.id", user.getId()).list();
-    }
-
-    // Add objects
     public void add(Object object) {
         if (object == null) throw new IllegalArgumentException();
         this.objects.add(new GenericReference(object));
     }
 
-    // Delete objects
     public void remove(Object object) {
         if (object == null) throw new IllegalArgumentException();
         this.objects.remove(new GenericReference(object));
     }
 
-    // List the last Objects
-
-    // Sort Objects
-
     /* Getters and Setters */
-
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -155,25 +140,21 @@ public class Album implements Serializable {
         return creationDate == null ? null : (Date) creationDate.clone();
     }
 
+    public String getFormattedCreationDate() {
+        if (creationDate == null) return null;
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        return sdf.format(creationDate);
+    }
+
     public void setCreationDate(Date creationDate) {
         this.creationDate = creationDate == null ? null : (Date) creationDate.clone();
     }
 
-    public Date getUpdateDate() {
-        return updateDate == null ? null : (Date) updateDate.clone();
-    }
-
-    public void setUpdateDate(Date updateDate) {
-        this.updateDate = updateDate == null ? null : (Date) updateDate.clone();
-    }
-
     public List<Object> getObjects() {
         List<Object> result = new ArrayList<Object>(objects.size());
-
         for (GenericReference gr : this.objects) {
             result.add(gr.getEntity());
         }
-
         return Collections.unmodifiableList(result);
     }
 
@@ -195,5 +176,13 @@ public class Album implements Serializable {
 
     public User getOwner() {
         return owner;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getDescription() {
+        return description;
     }
 }

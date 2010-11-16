@@ -17,7 +17,7 @@
     <path>/META-INF/tags/album/listPhotos.tag</path>
   </tag-file>
   <tag-file>
-    <name>list</name>
-    <path>/META-INF/tags/album/list.tag</path>
+    <name>listByUser</name>
+    <path>/META-INF/tags/album/listByUser.tag</path>
   </tag-file>
 </taglib>
