@@ -13,28 +13,23 @@
         <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.ico" />
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css" />
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css" />
+        <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/jquery.css" />
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/listagem.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-ui-1.8.custom.min.js"></script>
         
         <script type="text/javascript">
-            $(function() {
-                $("#datepicker").datepicker({
+            $(document).ready((function() {
+                $("#dateInput").datepicker({
                     "showOn": "button",
                     "changeMonth": true,
                     "changeYear": true,
                     "width": 15,
-                    "dateFormat": "dd/mm/yy", <%-- Atenção: De acordo com a documentação, yy é o ano com 4 dígitos. --%>
+                    "dateFormat": "dd/mm/yy",
                     "buttonImage": "${pageContext.request.contextPath}/images/calendar.gif",
                     "buttonImageOnly": true
                 });
-
-                $("#imageUpload").jqUploader({
-                    background: "FFFFDF",
-                    barColor: "CD270A",
-                    allowedExt: "*.avi; *.jpg; *.jpeg; *.png",
-                    allowedExtDescr: "Images and movies (*.avi; *.jpg; *.jpeg; *.png)"
-                });
-            });
+            }));            
         </script>
     </head>
     <body>
@@ -43,23 +38,27 @@
             <br />
             <h1><span class="style1">Editar &aacute;lbum</span></h1>
             <br />
-            <form name="dados" method="post" action="<c:url value="${pageContext.request.contextPath}/groupware-workbench/album/save/${album.id}"/>">
-                <input type="hidden" name="album.id" value="<c:out value="${album.id}" />" />
+            <form name="dados" method="POST" action="<c:url value="/groupware-workbench/album/${albumMgr.id}/save"/>">
+                <input type="hidden" name="album.id" value="${album.id}" />
                 <div>
                     <ul>
                         <li>T&iacute;tulo</li>
-                        <li><input size="60" type="text" name="album.title" value="<c:out value="${album.title}" />" /></li>
+                        <li><input size="60" type="text" name="album.title" value="${album.title}" /></li>
                     </ul>
                     <ul>
                         <div class="${formLineClass}">
                             <label for="album.creationDate" class="${formLabelClass}"><span>Data de cria&ccedil;&atilde;o:</span></label>
-                            <span class="${formInputClass}"><input type="text" id="datepicker" name="album.creationDate" /></span>
+                            <span class="${formInputClass}">
+                                <input type="text" id="dateInput" name="album.creationDate" value="${album.formattedCreationDate}" />
+                            </span>
                         </div>
                     </ul>
                     <ul>
                         <div class="${formLineClass}">
-                            <label for="album.updateDate" class="${formLabelClass}"><span>Data de atualiza&ccedil;&atilde;o:</span></label>
-                            <span class="${formInputClass}"><input type="text" id="datepicker" name="album.updateDate" /></span>
+                            <label for="album.description" class="${formLabelClass}"><span>Descri&ccedil;&atilde;o:</span></label>
+                            <span class="${formInputClass}">
+                                <textarea name="album.description">${album.description}</textarea>
+                            </span>
                         </div>
                     </ul>
                     <ul>

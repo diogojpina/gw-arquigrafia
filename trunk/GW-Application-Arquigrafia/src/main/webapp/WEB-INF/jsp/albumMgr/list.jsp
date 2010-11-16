@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="w" uri="http://www.groupwareworkbench.org.br/widgets/commons" %>
 <%@ taglib prefix="photo" uri="http://www.groupwareworkbench.org.br/widgets/photomanager" %>
@@ -20,8 +19,7 @@
             <br />
             <h1><span class="style1">Lista de &Aacute;lbuns</span></h1>
             <br />
-
-            <album:list albumMgr="${albumMgr}" albuns="${albumList}" showEdit="true" />
+            <album:list albumMgr="${albumMgr}" albuns="${albumList}" showEdit="true" showNumber="true" />
         </w:conteudoPagina>
     </body>
 </html>
