@@ -94,6 +94,10 @@
         <a href="${pageContext.request.contextPath}/groupware-workbench/manager/${manager.id}">Gerenciar aplica&ccedil;&atilde;o</a>
         &nbsp;|&nbsp;
         <a href="${pageContext.request.contextPath}/groupware-workbench/album/${albumMgr.id}">Album de Fotos</a>
+        &nbsp;|&nbsp;
+        <a href="${pageContext.request.contextPath}/groupware-workbench/tracker/${tracker.id}">Localizador de Usuários</a>
+        &nbsp;|&nbsp;
+        <a href="${pageContext.request.contextPath}/groupware-workbench/repository/${componentRepository.id}">Repositório Android</a>
     </div>
     <div id="search_field">
         <img src="${pageContext.request.contextPath}/images/head1_left2_top.png" width="99" height="100" alt="campo de busca" />
