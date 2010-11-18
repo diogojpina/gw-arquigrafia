@@ -149,9 +149,9 @@
                     </div>
                     <div id="tags_right">
                     </div>
-                    <div>
+                    <%--div>
                         <album:addPhoto albumMgr="${albumMgr}" user="${sessionScope.userLogin}" album="${null}" photo="${photo}" albumDefault="true" />
-                    </div>
+                    </div--%>
                 </div>
             </div>
             <div id="tagsAdd">

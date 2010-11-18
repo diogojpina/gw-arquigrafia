@@ -30,6 +30,7 @@ import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.ioc.RequestScoped;
 import br.com.caelum.vraptor.view.Results;
+import br.org.groupwareworkbench.arquigrafia.photo.Photo;
 import br.org.groupwareworkbench.collablet.coord.user.User;
 
 @RequestScoped
@@ -58,6 +59,14 @@ public class AlbumMgrController {
         result.use(Results.representation()).from(albunList).serialize();
         addIncludes(albumMgr);
     }
+    
+    @Get
+    @Path(value = "/groupware-workbench/album/{albumMgr}/listPhotos/{idAlbum}")
+    public void listPhotos(AlbumMgrInstance albumMgr, Long idAlbum) {
+        Album album = Album.findById(idAlbum);
+        result.include("album", album);
+        addIncludes(albumMgr);
+    }
 
     @Get
     @Path({
@@ -76,6 +85,17 @@ public class AlbumMgrController {
         User user = (User) request.getSession().getAttribute("userLogin");
         album.setOwner(user);
         albumMgr.save(album);
+        result.nothing();
+    }
+    
+    @Post
+    @Path(value = "/groupware-workbench/album/{albumMgr}/add/{idAlbum}/{idObject}")
+    public void addToAlbum(AlbumMgrInstance albumMgr, Long idAlbum, Long idObject) {
+        Photo photo = Photo.findById(idObject); //Por enquanto amarrado a Photo
+        Album album = Album.findById(idAlbum);
+        album.add(photo);
+        album.save();
+        addIncludes(albumMgr);
         result.nothing();
     }
 

@@ -67,6 +67,8 @@ public class Album implements Serializable {
 
     @ManyToOne
     private User owner;
+    
+    private String urlCover;
 
     @ElementCollection
     @CollectionTable(name = "gw_collab_Album_Elements")
@@ -184,5 +186,13 @@ public class Album implements Serializable {
 
     public String getDescription() {
         return description;
+    }
+
+    public void setUrlCover(String urlCover) {
+        this.urlCover = urlCover;
+    }
+
+    public String getUrlCover() {
+        return urlCover;
     }
 }

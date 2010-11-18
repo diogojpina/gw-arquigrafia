@@ -319,4 +319,11 @@ public class PhotoController {
         photo.delete();
         addIncludes(photoInstance);
     }
+
+    @Get
+    @Path("/groupware-workbench/photo/{photoMgr}/listbypage/{pageSize}/{pageNumber}")
+    public void listByPageAndOrder(PhotoMgrInstance photoMgr, int pageSize, int pageNumber) {
+        List<Photo> photos = photoMgr.listPhotoByPageAndOrder(pageSize, pageNumber);
+        result.use(Results.json()).from(photos).serialize();
+    }
 }
