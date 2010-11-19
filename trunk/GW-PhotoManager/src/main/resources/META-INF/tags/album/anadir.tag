@@ -14,7 +14,7 @@
 </r:callMethod>
 <script type="text/javascript">
 <!--
-var pageSize = 10;
+var pageSize = 32;
 var actualPage = 0;
 var sizeLastRequest = pageSize;
 function loadImages() {
@@ -80,10 +80,13 @@ function upPage() {
 </script>
 
 <div style="${style}">
-<div style="height: 20px ;text-align: center; vertical-align: middle">
-    <span><a href="#" onclick="downPage();">anterior</a></span>
-    <span style="margin-left: 4px;"></span>
-    <span><a href="#" onclick="upPage();">seguinte</a></span>
+<div class="component_header" style="height: 25px ;">
+    <span class="title">Fotos</span>
+    <span style="float: right">
+        <span class="span_link" style="color: white;" onclick="downPage();">anterior</span>
+        <span style="margin-left: 4px;"></span>
+        <span class="span_link" style="color: white;" onclick="upPage();">seguinte</span>
+    </span>
 </div>
        <ul id="listPhotos" style="list-style: none;"></ul>
 </div>

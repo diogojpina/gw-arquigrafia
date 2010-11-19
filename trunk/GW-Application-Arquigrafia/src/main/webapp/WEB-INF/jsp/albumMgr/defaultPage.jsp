@@ -26,15 +26,38 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-ui-1.8.custom.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/plugins/sds/js/jquery.smoothDivScroll-0.9-min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/plugins/sds/js/scroll.js"></script>
+    <style type="text/css">
+     .text, .title, .span_link{
+        font-size: 12px;
+        font-family: Arial,Helvetica,sans-serif;
+     }
+     .title {
+        font-weight: bold;
+     }
+     .span_link {
+        color: blue;
+        cursor: pointer;
+        text-decoration: underline;
+     }
+     .component_header {
+        background-color: #483E37;
+        color: white;
+        padding: 5px;
+        -moz-border-radius: 5px 5px 0 0;
+        margin-bottom: 10px;
+     }
+     
+    </style>
 </head>
 <body>
     <arq:header2 photoInstance="${photoMgr}" />
     <div style="display: block;">
-    <div style="float: left; margin-left: -250px; border: 1px solid; -moz-border-radius: 5px;">
-        <div style="vertical-align: middle; background-color: black; height: 50px; -moz-border-radius: 5px; "><span style="color:white;">Meus Albums</span></div>
+    <div class="text" style="float: left; margin-left: -350px; border: 1px solid; -moz-border-radius: 5px; width: 170px;">
+        <div class="component_header" style="height: 25px;"><span class="title" style="color:white;">Meus Albums</span></div>
+        <div style="margin-bottom: 30px;"><span class="span_link" style="margin-left: 10px;">criar novo album</span></div>
         <album:listByUser albumMgr="${albumMgr}" user="${userLogin}"/>
     </div>
-    <album:anadir albumMgr="${albumMgr}" user="${userLogin}" style="width:1100px; height:640px; margin-left: auto; margin-right: auto; border: 1px solid; -moz-border-radius: 5px;"/>
+    <album:anadir albumMgr="${albumMgr}" user="${userLogin}" style="margin-left:200px; width:80%; height:640px; margin-right: auto; border: 1px solid; -moz-border-radius: 5px;"/>
     </div>
     <arq:footer photoInstance="${photoMgr}" />    
 </body>
