@@ -24,7 +24,7 @@
             <br />
             <h1><span class="style1">Editar &aacute;lbum</span></h1>
             <br />
-            <album:edith album="${album}"/>
+            <album:edith album="${album}" albumMgr="${albumMgr}"/>
             <div class="barra_botoes">
                 <w:voltar collabletInstance="${albumMgr.collablet}" />
             </div>

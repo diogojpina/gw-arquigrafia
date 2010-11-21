@@ -17,6 +17,26 @@
 var pageSize = 32;
 var actualPage = 0;
 var sizeLastRequest = pageSize;
+
+
+$(function(){
+     var width = $("#list_anadir_container").width();
+     var height = $("#list_anadir_container").height(); 
+     pageSize = ((width * height) / (110 * 132)) | 0;
+     sizeLastRequest = pageSize;
+     actualPage = 0;
+});
+
+
+$(window).resize( function(){
+ var width = $("#list_anadir_container").width();
+ var height = $("#list_anadir_container").height(); 
+ pageSize = ((width * height) / (110 * 132)) | 0;
+ sizeLastRequest = pageSize;
+ actualPage = 0;
+ loadImages();
+  
+});
 function loadImages() {
     $.getJSON("${pageContext.request.contextPath}/groupware-workbench/photo/${photoMgr.id}/listbypage/"+pageSize+"/"+actualPage,
              function(json) {
@@ -79,7 +99,7 @@ function upPage() {
 //-->
 </script>
 
-<div style="${style}">
+<div id="list_anadir_container" style="${style}">
 <div class="component_header" style="height: 25px ;">
     <span class="title">Fotos</span>
     <span style="float: right">

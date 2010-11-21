@@ -4,8 +4,8 @@
   <short-name>album</short-name>
   <uri>http://www.groupwareworkbench.org.br/widgets/album</uri>
   <tag-file>
-    <name>anadir</name>
-    <path>/META-INF/tags/album/anadir.tag</path>
+    <name>listAnadir</name>
+    <path>/META-INF/tags/album/listAnadir.tag</path>
   </tag-file>
   <tag-file>
     <name>album</name>
