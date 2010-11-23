@@ -136,6 +136,7 @@ public class PhotoController {
         }
 
         result.include("idPhoto", idPhoto);
+        result.use(Results.representation()).from(photo).serialize();
 
         PhotoMgrInstance photoInstance = (PhotoMgrInstance) photo.getCollablet().getBusinessObject();
         addIncludes(photoInstance);
@@ -154,6 +155,7 @@ public class PhotoController {
     public void buscaFotoPorId(String tagName, List<Object> photos, PhotoMgrInstance photoInstance) {
         List<Photo> resultFotosBusca = photoInstance.buscaFotoPorListaId(photos);
 
+        result.use(Results.representation()).from(resultFotosBusca).serialize();
         result.include("fotos", resultFotosBusca);
         result.include("tagTerm", tagName);
         result.include("numResults", resultFotosBusca.size());
@@ -174,6 +176,7 @@ public class PhotoController {
 
         List<Photo> resultFotosBusca = photoInstance.buscaFoto(busca);
 
+        result.use(Results.representation()).from(resultFotosBusca).serialize();
         result.include("fotos", resultFotosBusca);
         result.include("searchTerm", busca);
 
@@ -191,6 +194,8 @@ public class PhotoController {
         }
 
         List<Photo> resultFotosBusca = photoInstance.buscaFotoAvancada(nome, lugar, descricao, date);
+
+        result.use(Results.representation()).from(resultFotosBusca).serialize();
         result.include("fotos", resultFotosBusca);
 
         StringBuilder term = new StringBuilder();
