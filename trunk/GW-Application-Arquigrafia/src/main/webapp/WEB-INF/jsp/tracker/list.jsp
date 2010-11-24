@@ -46,7 +46,7 @@
 		    new google.maps.Marker({
 		    	position: new google.maps.LatLng(${ti.latitude}, ${ti.longitude}),
 		    	map: map,
-		    	title: "${ti.userId}"
+		    	title: "${ti.user.name}"
 		    });
 		    </c:forEach>
 		  });
