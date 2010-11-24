@@ -11,9 +11,9 @@ public class ComponentFile implements UploadedFile {
 	private File file;
 
 	public ComponentFile(File file) {
-		if(file.exists()){
+		if(!file.exists()){
 			throw new RuntimeException("File not found.");
-		}else if(file.getName().toLowerCase().endsWith(".apk")){
+		}else if(!file.getName().toLowerCase().endsWith(".apk")){
 			throw new RuntimeException("Supplied file is not an APK.");
 		}else{
 			this.file = file;
