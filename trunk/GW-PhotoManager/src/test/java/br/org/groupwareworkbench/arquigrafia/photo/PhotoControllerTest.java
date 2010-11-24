@@ -173,6 +173,21 @@ public class PhotoControllerTest {
     }
 
     @Test
+    public void testAlternativePhotoSearchWithShortString() {
+        photo1.save();
+        photo2.save();
+        photo3.save();
+        try {
+            controller.buscaFotoAlternativa("fo", photoInstance);
+            Assert.fail();
+        } catch (ValidationException e) {
+            List<Message> errors = e.getErrors();
+            Assert.assertEquals(1, errors.size());
+            Assert.assertEquals(PhotoController.MSG_MIN_3_LETRAS, errors.get(0).getMessage());
+        }
+    }
+
+    @Test
     public void testPhotoSearchWithLongEnoughString() {
         photo1.save();
         photo2.save();
@@ -196,6 +211,21 @@ public class PhotoControllerTest {
         photo3.save();
         try {
             controller.buscaFotoAvancada("", "", "", null, photoInstance);
+            Assert.fail();
+        } catch (ValidationException e) {
+            List<Message> errors = e.getErrors();
+            Assert.assertEquals(1, errors.size());
+            Assert.assertEquals(PhotoController.MSG_NENHUM_CAMPO_PREENCHIDO, errors.get(0).getMessage());
+        }
+    }
+
+    @Test
+    public void testAlternativeAdvancedSearchWithoutAnyFields() {
+        photo1.save();
+        photo2.save();
+        photo3.save();
+        try {
+            controller.buscaAvancadaAlternativa("", "", "", null, photoInstance);
             Assert.fail();
         } catch (ValidationException e) {
             List<Message> errors = e.getErrors();

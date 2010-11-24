@@ -174,13 +174,24 @@ public class PhotoController {
         }
 
         List<Photo> resultFotosBusca = photoInstance.buscaFoto(busca);
-
-        result.use(Results.representation()).from(resultFotosBusca).serialize();
+        
         result.include("fotos", resultFotosBusca);
         result.include("searchTerm", busca);
 
         addIncludes(photoInstance);
-        result.use(Results.logic()).redirectTo(PhotoController.class).busca(photoInstance);
+        result.use(Results.logic()).forwardTo(PhotoController.class).busca(photoInstance);
+    }
+
+    @Post
+    @Path(value = "/groupware-workbench/photo/{photoInstance}/buscaAlternativa")
+    public void buscaFotoAlternativa(String busca, PhotoMgrInstance photoInstance) {
+        if (busca.length() < 3) {
+            validator.add(new ValidationMessage(MSG_MIN_3_LETRAS, "Erro"));
+            validator.onErrorUse(Results.logic()).redirectTo(PhotoController.class).busca(photoInstance);
+            return;
+        }
+        List<Photo> resultFotosBusca = photoInstance.buscaFoto(busca);
+        result.use(Results.representation()).from(resultFotosBusca).serialize();
     }
 
     @Post
@@ -193,8 +204,6 @@ public class PhotoController {
         }
 
         List<Photo> resultFotosBusca = photoInstance.buscaFotoAvancada(nome, lugar, descricao, date);
-
-        result.use(Results.representation()).from(resultFotosBusca).serialize();
         result.include("fotos", resultFotosBusca);
 
         StringBuilder term = new StringBuilder();
@@ -217,6 +226,19 @@ public class PhotoController {
 
         addIncludes(photoInstance);
         result.use(Results.logic()).redirectTo(PhotoController.class).busca(photoInstance);
+    }
+
+    @Post
+    @Path(value = "/groupware-workbench/photo/{photoInstance}/buscaAvancadaAlternativa")
+    public void buscaAvancadaAlternativa(String nome, String descricao, String lugar, Date date, PhotoMgrInstance photoInstance) {
+        if (nome.isEmpty() && descricao.isEmpty() && lugar.isEmpty() && date == null) {
+            validator.add(new ValidationMessage(MSG_NENHUM_CAMPO_PREENCHIDO, "Erro"));
+            validator.onErrorUse(Results.logic()).redirectTo(PhotoController.class).busca(photoInstance);
+            return;
+        }
+
+        List<Photo> resultFotosBusca = photoInstance.buscaFotoAvancada(nome, lugar, descricao, date);
+        result.use(Results.representation()).from(resultFotosBusca).serialize();
     }
 
     // TODO: Achar uma forma de fazer isto sem ter o photo na URL.
