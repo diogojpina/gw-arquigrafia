@@ -30,10 +30,17 @@ import br.org.groupwareworkbench.core.bd.EntityManagerProvider;
 import br.org.groupwareworkbench.core.framework.AbstractBusiness;
 import br.org.groupwareworkbench.core.framework.Collablet;
 import br.org.groupwareworkbench.core.framework.annotations.ComponentInfo;
+import br.org.groupwareworkbench.core.framework.annotations.DefaultProperty;
 
 @ComponentInfo(version = "0.1", 
         configurationURL = "/groupware-workbench/tracker/{trackerInstance}",
-        retrieveURL = "/groupware-workbench/tracker/{trackerInstance}/list/{lat}/{lng}/{range}")
+        retrieveURL = "/groupware-workbench/tracker/{trackerInstance}/list/{lat}/{lng}/{range}",
+        defaultProperties = {
+                @DefaultProperty(name = "defaultLatitude", defaultValue = "-23.558764"),
+                @DefaultProperty(name = "defaultLongitude", defaultValue = "-46.731850"),
+                @DefaultProperty(name = "defaultRange", defaultValue = "15")
+            }
+        )
 public class TrackerInstance extends AbstractBusiness {
 
     private static final String LIST_IN_RANGE_QUERY =
@@ -60,7 +67,7 @@ public class TrackerInstance extends AbstractBusiness {
         ti.save();
     }
 
-    //range em kilometros
+    //range/accuracy em kilometros
     public List<TrackingInfo> listAllInRange(double latitude, double longitude, double range) {
         EntityManager em = EntityManagerProvider.getEntityManager();
         TypedQuery<TrackingInfo> q = em.createQuery(LIST_IN_RANGE_QUERY, TrackingInfo.class);

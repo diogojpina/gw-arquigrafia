@@ -10,17 +10,14 @@ import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.Validator;
 import br.com.caelum.vraptor.ioc.RequestScoped;
 import br.com.caelum.vraptor.validator.ValidationMessage;
-import br.org.groupwareworkbench.arquigrafia.photo.PhotoMgrInstance;
 import br.org.groupwareworkbench.collablet.coord.user.User;
+import br.org.groupwareworkbench.core.framework.MainCollablet;
 
 @RequestScoped
 @Resource
 public class TrackerController {
-    private static final double defaultLatitude = -23.558764;
-    private static final double defaultLongitude = -46.731850;
-    private static final double defaultRange = 5; //in kilometers
-    
-	private Result result;
+
+    private Result result;
 	private Validator validator;
 
 	public TrackerController(final Validator validator, final Result result){
@@ -28,13 +25,22 @@ public class TrackerController {
 		this.validator = validator;
 	}
 	
+	private void addIncludes(TrackerInstance trackerInstance){
+        result.include(trackerInstance.getCollablet().getName(), trackerInstance);
+        trackerInstance.getCollablet().includeDependencies(result);
+        result.include(MainCollablet.getMainCollablet().getName(), MainCollablet.getMainCollablet().getBusinessObject());
+        MainCollablet.getMainCollablet().includeDependencies(result);
+	}
+	
 	@Get
 	@Path("/groupware-workbench/tracker/{trackerInstance}")
 	public void index(TrackerInstance trackerInstance){
+	    double defaultLatitude = Double.parseDouble(trackerInstance.getCollablet().getProperty("defaultLatitude"));
+	    double defaultLongitude = Double.parseDouble(trackerInstance.getCollablet().getProperty("defaultLongitude"));
+	    double defaultRange = Double.parseDouble(trackerInstance.getCollablet().getProperty("defaultRange"));
 	    result.forwardTo(this).list(trackerInstance, defaultLatitude, defaultLongitude, defaultRange);
 	}
 	
-	@SuppressWarnings("cast") //cast de Business para PhotoMgrInstance
     @Get
 	@Path("/groupware-workbench/tracker/{trackerInstance}/list/{lat}/{lng}/{range}")
 	public List<TrackingInfo> list(TrackerInstance trackerInstance, double lat, double lng, double range){
@@ -43,8 +49,7 @@ public class TrackerController {
 		track.setLongitude(lng);
 		track.setRange(range);
 		
-		result.include("tracker", trackerInstance);
-        result.include("photoMgr", (PhotoMgrInstance)trackerInstance.getCollablet().getParent().getBusinessObject());
+		addIncludes(trackerInstance);
 		result.include("trackRequest", track);
 		return trackerInstance.listAllInRange(lat, lng, range);
 	}
