@@ -32,6 +32,7 @@ import br.com.caelum.vraptor.ioc.RequestScoped;
 import br.com.caelum.vraptor.view.Results;
 import br.org.groupwareworkbench.arquigrafia.photo.Photo;
 import br.org.groupwareworkbench.collablet.coord.user.User;
+import br.org.groupwareworkbench.core.framework.MainCollablet;
 
 @RequestScoped
 @Resource
@@ -100,7 +101,9 @@ public class AlbumMgrController {
     }
 
     private void addIncludes(AlbumMgrInstance albumMgr) {
-        result.include("albumMgr", albumMgr);
+        result.include(albumMgr.getCollablet().getName(), albumMgr);
         albumMgr.getCollablet().includeDependencies(result);
+        result.include(MainCollablet.getMainCollablet().getName(), MainCollablet.getMainCollablet().getBusinessObject());
+        MainCollablet.getMainCollablet().includeDependencies(result);
     }
 }
