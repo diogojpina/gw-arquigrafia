@@ -152,7 +152,7 @@ public class ComponentRepositoryController {
             joinus.setVersion("1.9b");
             joinus.setAction("br.ufes.cwtools.gw.android.GWA_JOINUS");
             joinus.setPackageName("br.ufes.cwtools.joinus");
-            ComponentFile joinusFile = new ComponentFile(new File(componentRootPath + "/" + "GWA-Tracker.apk"));
+            ComponentFile joinusFile = new ComponentFile(new File(componentRootPath + "/" + "JoinUs-AndroidClient.apk"));
     
             componentRepositoryInstance.save(binomial, binomialFile);
             componentRepositoryInstance.save(gallery, galleryFile);
