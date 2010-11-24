@@ -136,12 +136,11 @@ public class PhotoController {
         }
 
         result.include("idPhoto", idPhoto);
-        result.use(Results.representation()).from(photo).serialize();
-
+        result.include("photo", photo);
         PhotoMgrInstance photoInstance = (PhotoMgrInstance) photo.getCollablet().getBusinessObject();
         addIncludes(photoInstance);
         photoInstance.getCollablet().processWidgets(info, photo);
-        result.include("photo", photo);
+        result.use(Results.representation()).from(photo).serialize();        
     }
 
     @Get

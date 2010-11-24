@@ -38,7 +38,7 @@
         });
     }
 
-                
+
 </script>
 <style type="text/css">
 .label {
@@ -76,5 +76,4 @@
     <div>
         <button onclick="saveAlbum();" class="botao">Guardar</button>
     </div>
-
 </div>

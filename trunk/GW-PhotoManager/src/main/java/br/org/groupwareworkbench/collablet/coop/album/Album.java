@@ -67,7 +67,7 @@ public class Album implements Serializable {
 
     @ManyToOne
     private User owner;
-    
+
     private String urlCover;
 
     @ElementCollection
@@ -113,7 +113,9 @@ public class Album implements Serializable {
 
     public void add(Object object) {
         if (object == null) throw new IllegalArgumentException();
-        this.objects.add(new GenericReference(object));
+        GenericReference reference = new GenericReference(object);
+        if (!this.objects.contains(reference))
+            this.objects.add(new GenericReference(object));
     }
 
     public void remove(Object object) {

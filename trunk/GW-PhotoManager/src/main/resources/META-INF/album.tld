@@ -4,8 +4,12 @@
   <short-name>album</short-name>
   <uri>http://www.groupwareworkbench.org.br/widgets/album</uri>
   <tag-file>
-    <name>listAnadir</name>
-    <path>/META-INF/tags/album/listAnadir.tag</path>
+    <name>listAdicionar</name>
+    <path>/META-INF/tags/album/listAdicionar.tag</path>
+  </tag-file>
+  <tag-file>
+    <name>buttonAdd</name>
+    <path>/META-INF/tags/album/buttonAdd.tag</path>
   </tag-file>
   <tag-file>
     <name>album</name>

@@ -6,9 +6,8 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
     <title>Arquigrafia Brasil - &Aacute;lbuns</title>
-    
+
     <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.ico" />
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css" />
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/arq-common.css" />
@@ -45,14 +44,14 @@
         padding: 5px;
         -moz-border-radius: 5px 5px 0 0;
         margin-bottom: 10px;
-     }     
+     }
     </style>
     <script type="text/javascript">
     $(function(){
         $("#album_novo").dialog({
-        		 autoOpen: false,
-        	     modal: true,
-        	     width: 380,
+                 autoOpen: false,
+                 modal: true,
+                 width: 380,
                  height: 200
         });
         $("#open_album_novo").click(function(){
@@ -68,16 +67,16 @@
 </head>
 <body>
     <arq:header2 photoInstance="${photoMgr}" />
-    <div style="display: block;">
-    <div class="text" style="float: left; margin-left: -350px; border: 1px solid; -moz-border-radius: 5px; width: 170px;">
+    <div style="display: block; margin: 20px;">
+    <div class="text" style="float: left; border: 1px solid; -moz-border-radius: 5px; width: 170px; height: 650px; ">
         <div class="component_header" style="height: 25px;"><span class="title" style="color:white;">Meus Albums</span></div>
-        <div style="margin-bottom: 30px;"><span class="span_link" id="open_album_novo" style="margin-left: 10px;">criar novo album</span></div>
+        <div style="margin-bottom: 30px; height: 12px;"><span class="span_link" id="open_album_novo" style="margin-left: 10px;">criar novo album</span></div>
         <album:listByUser albumMgr="${albumMgr}" user="${userLogin}"/>
     </div>
-    <album:listAnadir albumMgr="${albumMgr}" user="${userLogin}" style="margin-left:200px; width:80%; height:640px; margin-right: auto; border: 1px solid; -moz-border-radius: 5px;"/>
+    <album:listAdicionar albumMgr="${albumMgr}" user="${userLogin}" style="margin-left:200px; height:650px; border: 1px solid; -moz-border-radius: 5px;"/>
     </div>
-    <arq:footer photoInstance="${photoMgr}" />    
-    
+    <arq:footer photoInstance="${photoMgr}" />
+
     <div id="album_novo" class="text">
     <album:edith afterSaveFunction="afterSave" albumMgr="${albumMgr}"/>
     </div>

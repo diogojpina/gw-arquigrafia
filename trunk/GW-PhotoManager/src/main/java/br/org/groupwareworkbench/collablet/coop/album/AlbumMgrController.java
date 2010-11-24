@@ -59,7 +59,7 @@ public class AlbumMgrController {
         result.use(Results.representation()).from(albunList).serialize();
         addIncludes(albumMgr);
     }
-    
+
     @Get
     @Path(value = "/groupware-workbench/album/{albumMgr}/listPhotos/{idAlbum}")
     public void listPhotos(AlbumMgrInstance albumMgr, Long idAlbum) {
@@ -87,7 +87,7 @@ public class AlbumMgrController {
         albumMgr.save(album);
         result.nothing();
     }
-    
+
     @Post
     @Path(value = "/groupware-workbench/album/{albumMgr}/add/{idAlbum}/{idObject}")
     public void addToAlbum(AlbumMgrInstance albumMgr, Long idAlbum, Long idObject) {

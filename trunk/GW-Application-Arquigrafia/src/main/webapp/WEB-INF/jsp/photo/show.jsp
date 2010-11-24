@@ -29,6 +29,7 @@
         <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/jquery.css" />
         <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/boxy.css" />
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-ui-1.8.custom.min.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/compiled/arquigrafia-default.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/plugins/sds/js/jquery.smoothDivScroll-0.9-min.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/plugins/sds/js/scroll.js"></script>
@@ -149,9 +150,9 @@
                     </div>
                     <div id="tags_right">
                     </div>
-                    <%--div>
-                        <album:addPhoto albumMgr="${albumMgr}" user="${sessionScope.userLogin}" album="${null}" photo="${photo}" albumDefault="true" />
-                    </div--%>
+                    <div>
+                        <album:buttonAdd albumMgr="${albumMgr}" user="${userLogin}" photo="${photo}"/>
+                    </div>
                 </div>
             </div>
             <div id="tagsAdd">
