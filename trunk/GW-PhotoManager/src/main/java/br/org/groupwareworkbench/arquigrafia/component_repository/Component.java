@@ -31,6 +31,9 @@ public class Component implements Serializable {
 	@Column(length=255, nullable=false)
 	private String action;
 	
+	@Column(length=255, nullable=false)
+	private String packageName;
+	
 	@Column(length=10)
 	private String version;
 	
@@ -66,6 +69,14 @@ public class Component implements Serializable {
 	public void setDescription(String desc) {
 		this.description = desc;
 	}
+	
+	public String getPackageName() {
+        return packageName;
+    }
+    
+    public void setPackageName(String packageName) {
+        this.packageName = packageName;
+    }
 	
 	public String getAction(){
 	    return action;

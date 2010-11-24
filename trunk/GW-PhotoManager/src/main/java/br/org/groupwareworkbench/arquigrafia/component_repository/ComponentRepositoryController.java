@@ -1,14 +1,9 @@
 package br.org.groupwareworkbench.arquigrafia.component_repository;
 
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
-import java.math.BigInteger;
 import java.net.URLEncoder;
-import java.security.MessageDigest;
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import br.com.caelum.vraptor.Delete;
@@ -18,6 +13,7 @@ import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.Validator;
+import br.com.caelum.vraptor.core.RequestInfo;
 import br.com.caelum.vraptor.interceptor.download.Download;
 import br.com.caelum.vraptor.interceptor.download.FileDownload;
 import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
@@ -29,10 +25,12 @@ import br.org.groupwareworkbench.arquigrafia.photo.PhotoMgrInstance;
 public class ComponentRepositoryController {
 	private final Result result;
 	private final Validator validator;
+	private final RequestInfo info;
 
-	public ComponentRepositoryController(final Validator validator, final Result result){
+	public ComponentRepositoryController(final Validator validator, final Result result, final RequestInfo info){
 		this.result = result;
 		this.validator = validator;
+		this.info = info;
 	}
 	
 	private void validateComponent(final Component component) {
@@ -66,6 +64,12 @@ public class ComponentRepositoryController {
 		}else if(component.getAction().length() > 255){
             validator.add(new ValidationMessage("Ação do componente deve ter no máximo 255 caracteres.", "Dados inválidos"));
         }
+		//Validação do package
+        if(component.getPackageName().isEmpty()){
+            validator.add(new ValidationMessage("Pacote do componente não informado.", "Dados incompletos"));
+        }else if(component.getPackageName().length() > 255){
+            validator.add(new ValidationMessage("Pacote do componente deve ter no máximo 255 caracteres.", "Dados inválidos"));
+        }
 		//Validação da versão
 		if(componentVersion.length() > 10){
 			validator.add(new ValidationMessage("Versão do componente deve ter no máximo 10 caracteres.", "Dados inválidos"));
@@ -95,11 +99,88 @@ public class ComponentRepositoryController {
 	    result.include("photoMgr", (PhotoMgrInstance)componentRepositoryInstance.getCollablet().getParent().getBusinessObject());
 	}
 	
+	private List<Component> registerComponents(ComponentRepositoryInstance componentRepositoryInstance){
+	    try{
+            String componentRootPath = info.getServletContext().getRealPath("/WEB-INF/repository");
+            new File(componentRootPath).mkdirs();
+
+            Component binomial = new Component();
+            binomial.setName("Binomial");
+            binomial.setDescription("Gerenciador de binômios.");
+            binomial.setVersion("0.9b");
+            binomial.setAction("br.ufes.cwtools.gw.android.GWA_BINOMIAL");
+            binomial.setPackageName("br.ufes.cwtools.gw.android.components.binomial");
+            ComponentFile binomialFile = new ComponentFile(new File(componentRootPath + "/GWA-Binomial.apk"));
+            
+            Component gallery = new Component();
+            gallery.setName("Gallery");
+            gallery.setDescription("Exibe a galeria de fotos.");
+            gallery.setVersion("0.9b");
+            gallery.setAction("br.ufes.cwtools.gw.android.GWA_GALLERY");
+            gallery.setPackageName("br.ufes.cwtools.gw.android.components.gallery");
+            ComponentFile galleryFile = new ComponentFile(new File(componentRootPath + "/" + "GWA-Gallery.apk"));
+            
+            Component imageUpload = new Component();
+            imageUpload.setName("ImageUpload");
+            imageUpload.setDescription("Envia fotos para o servidor.");
+            imageUpload.setVersion("0.9b");
+            imageUpload.setAction("br.ufes.cwtools.gw.android.GWA_IMAGE_UPLOAD#br.ufes.cwtools.gw.android.GWA_IMAGE_PICKER");
+            imageUpload.setPackageName("br.ufes.cwtools.gw.android.components.image_upload");
+            ComponentFile imageUploadFile = new ComponentFile(new File(componentRootPath + "/" + "GWA-ImageUpload.apk"));
+            
+            Component map = new Component();
+            map.setName("Map");
+            map.setDescription("Mapa para exibição de usuários e objetos.");
+            map.setVersion("0.9b");
+            map.setAction("br.ufes.cwtools.gw.android.GWA_MAP");
+            map.setPackageName("br.ufes.cwtools.gw.android.components.map");
+            ComponentFile mapFile = new ComponentFile(new File(componentRootPath + "/" + "GWA-Map.apk"));
+            
+            Component tracker = new Component();
+            tracker.setName("Tracker");
+            tracker.setDescription("Localizador de usuários móveis.");
+            tracker.setVersion("0.9b");
+            tracker.setAction("br.ufes.cwtools.gw.android.GWA_TRACKER");
+            tracker.setPackageName("br.ufes.cwtools.gw.android.components.tracker");
+            ComponentFile trackerFile = new ComponentFile(new File(componentRootPath + "/" + "GWA-Tracker.apk"));
+            
+            Component joinus = new Component();
+            joinus.setName("JoinUs!");
+            joinus.setDescription("JoinUs! - rede social móvel.");
+            joinus.setVersion("1.9b");
+            joinus.setAction("br.ufes.cwtools.gw.android.GWA_JOINUS");
+            joinus.setPackageName("br.ufes.cwtools.joinus");
+            ComponentFile joinusFile = new ComponentFile(new File(componentRootPath + "/" + "GWA-Tracker.apk"));
+    
+            componentRepositoryInstance.save(binomial, binomialFile);
+            componentRepositoryInstance.save(gallery, galleryFile);
+            componentRepositoryInstance.save(imageUpload, imageUploadFile);
+            componentRepositoryInstance.save(map, mapFile);
+            componentRepositoryInstance.save(tracker, trackerFile);
+            componentRepositoryInstance.save(joinus, joinusFile);
+            
+            return componentRepositoryInstance.listAll();
+        }catch(Exception e){
+            System.out.println("Erro no cadastro inicial dos componentes APK.");
+            validator.add(new ValidationMessage("Erro na instalação dos componentes iniciais.", "Erro de Setup"));
+            validator.onErrorUsePageOf(this).list(componentRepositoryInstance);
+            
+            return new ArrayList<Component>();
+        }
+	}
+	
 	@Get
 	@Path("/groupware-workbench/repository/{componentRepositoryInstance}")
 	public List<Component> list(ComponentRepositoryInstance componentRepositoryInstance){
 	    addIncludes(componentRepositoryInstance);
-		return componentRepositoryInstance.listAll();
+	    
+	    List<Component> lc = componentRepositoryInstance.listAll();
+	    
+    	if(lc.size() == 0){
+    	    lc = registerComponents(componentRepositoryInstance);
+    	}
+    	
+    	return lc;
 	}
 	
 	@Get
@@ -113,69 +194,18 @@ public class ComponentRepositoryController {
 	@Path("/groupware-workbench/repository/{componentRepositoryInstance}/new")
 	//If you wan't to insert a new file programatically, use componentController.insert(repository, component, new ComponentFile(File)); 
 	public void insert(ComponentRepositoryInstance componentRepositoryInstance, final Component component, final UploadedFile componentUploadedFile){
-		long size = 0;
-		
+		addIncludes(componentRepositoryInstance);
 		validateComponent(component);
 		validateComponentFile(componentUploadedFile);
 		validator.onErrorUse(Results.logic()).forwardTo(ComponentRepositoryController.class).form(componentRepositoryInstance);
 		
-		File tmpComponentFile = null;
-		File componentFile = null;
-		File componentFileDir;
 		try {
-			tmpComponentFile = File.createTempFile("tempComponent", ".apk.tmp");
-			//Read uploaded file to file system
-			FileOutputStream componentFileOutputStream = new FileOutputStream(tmpComponentFile);
-			InputStream uploadedFileInputStream = componentUploadedFile.getFile();
-			byte[] tmpBytes = new byte[1024]; //buffer size. 1k is ok?
-			int sizeRead;
-			while((sizeRead = uploadedFileInputStream.read(tmpBytes)) > 0){
-				size += sizeRead;
-				componentFileOutputStream.write(tmpBytes, 0, sizeRead);
-			}
-			componentFileOutputStream.close();
-			//Generating the md5 checksum from the file
-			uploadedFileInputStream.reset();
-			MessageDigest md = MessageDigest.getInstance("MD5");
-			md.reset();
-			while((sizeRead = uploadedFileInputStream.read(tmpBytes)) > 0){
-				md.update(tmpBytes, 0, sizeRead);
-			}
-			byte[] componentMD5 = md.digest();
-			BigInteger md5BigInteger = new BigInteger(componentMD5);
-			String md5String = md5BigInteger.toString(16);
-			while(md5String.length() < 32){
-				md5String = "0" + md5String;
-			}
-			component.setMd5hash(md5String.substring(md5String.length()-32));
-			//Setting the component date
-			component.setInsertionDate(new Date());
-			
-			//Renaming the temporary component to the final name
-			componentFileDir = new File(componentRepositoryInstance.getCollablet().getProperty("dirComponents"));
-			componentFileDir.mkdirs();
-			componentFile = new File(componentFileDir.getAbsolutePath() + "/" + component.getMd5hash() + ".apk");
-			
-			if(!tmpComponentFile.renameTo(componentFile)){
-				throw new IOException("Erro ao mover arquivo do componente.");
-			}
-			//Setting the file size
-			component.setSize(size);
-			//Inserting
-			componentRepositoryInstance.save(component);
-			
+			componentRepositoryInstance.save(component, componentUploadedFile);
 		}catch(Exception e) {
-			if(tmpComponentFile != null){
-				tmpComponentFile.delete();
-			}
-			if(componentFile != null){
-				componentFile.delete();
-			}
 			result.use(Results.status()).badRequest((String) null);
 			return;
 		}
-
-		addIncludes(componentRepositoryInstance);
+		
 		result.redirectTo(this).list(componentRepositoryInstance);
 	}
 
