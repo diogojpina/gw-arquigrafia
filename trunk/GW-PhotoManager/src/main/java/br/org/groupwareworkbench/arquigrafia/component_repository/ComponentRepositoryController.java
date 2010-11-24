@@ -20,6 +20,7 @@ import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
 import br.com.caelum.vraptor.validator.ValidationMessage;
 import br.com.caelum.vraptor.view.Results;
 import br.org.groupwareworkbench.arquigrafia.photo.PhotoMgrInstance;
+import br.org.groupwareworkbench.core.framework.Component;
 
 @Resource
 public class ComponentRepositoryController {

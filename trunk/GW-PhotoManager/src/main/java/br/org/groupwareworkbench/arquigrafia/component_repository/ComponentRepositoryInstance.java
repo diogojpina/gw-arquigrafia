@@ -16,6 +16,7 @@ import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
 import br.org.groupwareworkbench.core.bd.EntityManagerProvider;
 import br.org.groupwareworkbench.core.framework.AbstractBusiness;
 import br.org.groupwareworkbench.core.framework.Collablet;
+import br.org.groupwareworkbench.core.framework.Component;
 import br.org.groupwareworkbench.core.framework.annotations.ComponentInfo;
 
 @ComponentInfo(version = "0.1", 
