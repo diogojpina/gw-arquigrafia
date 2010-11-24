@@ -9,7 +9,6 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
         <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.ico" />
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css" />
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/arq-common.css" />
@@ -28,7 +27,6 @@
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-ui-1.8.custom.min.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/plugins/sds/js/jquery.smoothDivScroll-0.9-min.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/plugins/sds/js/scroll.js"></script>
-
         <script type="text/javascript">
             $(document).ready(function() {
                 $("div#makeMeScrollable").smoothDivScroll({
@@ -46,10 +44,9 @@
                 });
             });
         </script>
-
         <title>Arquigrafia Brasil - &Aacute;lbuns</title>
-
     </head>
+    
     <body>
         <arq:header2 photoInstance="${photoMgr}" />
         <album:listPhotos album="${album}" classe="main-lista-fotos"/>

@@ -5,10 +5,6 @@
 <%@ attribute name="user" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.collablet.coord.user.User" %>
 <%@ attribute name="classe" required="true" rtexprvalue="true" type="java.lang.String"%>
 
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-ui-1.8.custom.min.js"></script>
-<link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/jquery.css" />
-
 <r:callMethod methodName="listByUser" instance="${albumMgr}" var="albums">
     <r:param type="br.org.groupwareworkbench.collablet.coord.user.User" value="${user}"/>
 </r:callMethod>
