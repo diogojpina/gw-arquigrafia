@@ -1,3 +1,4 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="w" uri="http://www.groupwareworkbench.org.br/widgets/commons" %>
@@ -6,51 +7,80 @@
 <%@ taglib prefix="tag" uri="http://www.groupwareworkbench.org.br/widgets/tag" %>
 <%@ taglib prefix="comment" uri="http://www.groupwareworkbench.org.br/widgets/comment" %>
 <%@taglib  prefix="profile" uri="http://www.groupwareworkbench.org.br/widgets/profile" %>
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="photo" uri="http://www.groupwareworkbench.org.br/widgets/photomanager" %>
+<%@ taglib prefix="arq" tagdir="/WEB-INF/tags" %>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta http-equiv="Cache-Control" content="no-cache">
         <title>Recados</title>
-        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css" />
-        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css" />
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/forms.css" />
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/show.css" />
-        <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/jquery.css" />
-        <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/boxy.css" />
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/friends.css" />
-        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/arq-common.css" />
-        <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/compiled/arquigrafia-default.js"></script>
-        <script src="${pageContext.request.contextPath}/js/jquery.boxy.js" type="text/javascript"></script>
+        
+        <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.ico" />
+	    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css" />
+	    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/arq-common.css" />
+	    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/header.css" />
+	    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/know_more.css" />
+	    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/forms.css"  />
+	    <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/plugins/sds/css/smoothDivScroll.css" />
+	    <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/bay.css" />
+	    <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/footer.css" />
+	    <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/jquery.css" />
+	    <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/tagcloud.css" />
+	    <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/image_wall.css" />
+	    <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/boxy.css" />
+	    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
+	    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-ui-1.8.custom.min.js"></script>
+	    <script type="text/javascript" src="${pageContext.request.contextPath}/plugins/sds/js/jquery.smoothDivScroll-0.9-min.js"></script>
+	    <script type="text/javascript" src="${pageContext.request.contextPath}/plugins/sds/js/scroll.js"></script>
+        <script  type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.boxy.js"></script>
+        
+	    <script type="text/javascript">
+            $(document).ready(function() {
+                $("div#makeMeScrollable").smoothDivScroll({
+                    scrollingSpeed: 12,
+                    mouseDownSpeedBooster: 3,
+                    visibleHotSpots: "always",
+                    startAtElementId: "startAtMe"
+                });
+
+                $("div#makeMeScrollable2").smoothDivScroll({
+                    scrollingSpeed: 12,
+                    mouseDownSpeedBooster: 3,
+                    visibleHotSpots: "always",
+                    startAtElementId: "startAtMe"
+                });
+            });
+        </script>
+        
     </head>
     <body style="background: url(../../../../images/header_bg.jpg) no-repeat scroll 0 0 transparent;">
-        <div id="corpo" style=" display: block; width: 990px; margin-left: auto; margin-right: auto; margin-top: 10px;">
-
-            <div id="top_links" class="blue_link" style="margin-bottom: 15px;">
-                <a class="blue_link" href="${pageContext.request.contextPath}/groupware-workbench">In&iacute;cio</a>
-                    &nbsp;|&nbsp;
-                <a class="blue_link" href="${pageContext.request.contextPath}/groupware-workbench/friends/${friendsMgr.id}/edit">Editar Amigos</a>
-            </div>
-
+    	<arq:header2 photoInstance="${photoMgr}" />
+		<div id="corpo" class="default_div">
+		<div id="info" class="default_info">
             <div id="cabecalho">
+            	<br />
                 <img class="${friend_img}" alt="photo <c:out value="${friend.name}" />" src="${friend.photoURL}" />
-                <span class="${friend_name}"><c:out value="${friend.name}" /></span>
+                <span class="big_black_title"><c:out value="${friend.name}" /></span>
+                <a class="blue_link" href="${pageContext.request.contextPath}/groupware-workbench/friends/${friendsMgr.id}/edit">Editar Amigos</a>
                 <friends:sendRequest friendsMgr="${friendsMgr}" viewer="${userLogin}" viewed="${friend}" />
             </div>
-
-            <div id="informacao">
-                <c:if test="${profileMgr.collablet.enabled}">
-                    <profile:showProfile profileMgr="${profileMgr}" user="${friend}" />
-                </c:if>
-            </div>
+            <br />
 
             <div id="amigos" style="float: right;">
                 <friends:listFriends
                         user="${userLogin}"
                         friendsMgr="${friendsMgr}" friendsHeader="friends_header"
                         style="width: 400px;" />
+            </div>
+
+            <div id="informacao" >
+                <c:if test="${profileMgr.collablet.enabled}">
+                    <profile:showProfile profileMgr="${profileMgr}" user="${friend}" />
+                </c:if>
             </div>
 
             <c:if test="${commentMgr2.collablet.enabled}">
@@ -93,6 +123,11 @@
                     </form>
                 </div>
             </c:if>
+            </div>
         </div>
+	    <div>
+            <div style="height: 30px; background-color: #fff"></div>
+            <arq:footer photoInstance="${photoMgr}" />
+		</div>        
     </body>
 </html>

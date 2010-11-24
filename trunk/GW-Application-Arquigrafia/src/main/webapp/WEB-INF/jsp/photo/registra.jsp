@@ -21,6 +21,8 @@
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-ui-1.8.custom.min.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/plugins/sds/js/jquery.smoothDivScroll-0.9-min.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/plugins/sds/js/scroll.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.boxy.js"></script>
+		
         <script type="text/javascript">
             $(function() {
                 $("div#makeMeScrollable").smoothDivScroll({

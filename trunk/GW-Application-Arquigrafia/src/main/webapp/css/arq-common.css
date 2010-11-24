@@ -108,6 +108,26 @@ label {
 	text-decoration: none;
 }
 
+.default_div {
+    margin: 0 auto;
+    width: 100%;
+    /*height: 500px;*/
+    height:100%; 
+    background: white;
+}
+
+.default_info {
+    display: block; 
+    margin-left: auto; 
+    margin-right: auto; 
+    margin-top: 10px;
+    width: 990px;
+    overflow: auto;
+    background: transparent;
+    /*text-align: center; *//*Para poder centrar un DIV en IExplorer*/
+}
+    
+
 /* Tooltip */
 
 #tooltip {
