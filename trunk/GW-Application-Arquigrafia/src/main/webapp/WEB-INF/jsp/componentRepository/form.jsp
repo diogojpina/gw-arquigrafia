@@ -47,6 +47,7 @@
 					<ul>
 						<li>Nome: <input type="text" name="component.name" value="${component.name}" /></li>
 						<li>Descrição: <textarea name="component.description">${component.description}</textarea></li>
+						<li>Pacote: <input type="text" name="component.packageName" value="${component.packageName}" /></li>
 						<li>Ação: <input type="text" name="component.action" value="${component.action}" /></li>
 						<li>Versão: <input type="text" name="component.version" value="${component.version}" /></li>
 						<li>Arquivo APK: <input type="file" name="componentUploadedFile" /></li>
