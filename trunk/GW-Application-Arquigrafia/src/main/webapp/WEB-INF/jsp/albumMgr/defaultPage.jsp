@@ -21,51 +21,13 @@
     <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/tagcloud.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/image_wall.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/boxy.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/album.css" />
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-ui-1.8.custom.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/plugins/sds/js/jquery.smoothDivScroll-0.9-min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/plugins/sds/js/scroll.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.boxy.js"></script>
 
-    <!-- <script type="text/javascript">
-        $(document).ready(function() {
-            $("div#makeMeScrollable").smoothDivScroll({
-                scrollingSpeed: 12,
-                mouseDownSpeedBooster: 3,
-                visibleHotSpots: "always",
-                startAtElementId: "startAtMe"
-            });
-
-            $("div#makeMeScrollable2").smoothDivScroll({
-                scrollingSpeed: 12,
-                mouseDownSpeedBooster: 3,
-                visibleHotSpots: "always",
-                startAtElementId: "startAtMe"
-            });
-        });
-    </script>  -->	
-	
-	<style type="text/css">
-     .text, .title, .span_link{
-        font-size: 12px;
-        font-family: Arial,Helvetica,sans-serif;
-     }
-     .title {
-        font-weight: bold;
-     }
-     .span_link {
-        color: blue;
-        cursor: pointer;
-        text-decoration: underline;
-     }
-     .component_header {
-        background-color: #483E37;
-        color: white;
-        padding: 5px;
-        -moz-border-radius: 5px 5px 0 0;
-        margin-bottom: 10px;
-     }
-    </style>
     <script type="text/javascript">
     $(function(){
         $("#album_novo").dialog({
@@ -87,18 +49,20 @@
 </head>
 <body>
     <arq:header2 photoInstance="${photoMgr}" />
-    <div style="display: block; margin: 20px;">
-    <div class="text" style="float: left; border: 1px solid; -moz-border-radius: 5px; width: 170px; height: 650px; ">
-        <div class="component_header" style="height: 25px;"><span class="title" style="color:white;">Meus Albums</span></div>
-        <div style="margin-bottom: 30px; height: 12px;"><span class="span_link" id="open_album_novo" style="margin-left: 10px;">criar novo album</span></div>
-        <album:listByUser albumMgr="${albumMgr}" user="${userLogin}"/>
+    <div class="main">
+    <div class="text list-albums-frame">
+        <div class="component_header"><span class="title">Meus Albums</span></div>
+        <div class="criar-album">
+            <span class="span_link" id="open_album_novo">criar novo album</span>
+        </div>
+        <album:listAlbumByUser albumMgr="${albumMgr}" user="${userLogin}"/>
     </div>
-    <album:listAdicionar albumMgr="${albumMgr}" user="${userLogin}" style="margin-left:200px; height:650px; border: 1px solid; -moz-border-radius: 5px;"/>
+    <album:listAdicionar classe="list-adicionar" albumMgr="${albumMgr}" user="${userLogin}"/>
     </div>
     <arq:footer photoInstance="${photoMgr}" />
 
     <div id="album_novo" class="text">
-    <album:edith afterSaveFunction="afterSave" albumMgr="${albumMgr}"/>
+    <album:edit classe="edit-album" afterSaveFunction="afterSave" albumMgr="${albumMgr}"/>
     </div>
 </body>
 </html>

@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ attribute name="album" required="false" rtexprvalue="true" type="br.org.groupwareworkbench.collablet.coop.album.Album" %>
 <%@ attribute name="albumMgr" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.collablet.coop.album.AlbumMgrInstance"%>
-<%@ attribute name="style" required="false" rtexprvalue="true" type="java.lang.String" %>
+<%@ attribute name="classe" required="true" rtexprvalue="true" type="java.lang.String" %>
 <%@ attribute name="afterSaveFunction" required="false" rtexprvalue="true" type="java.lang.String" %>
 <script type="text/javascript">
     $(document).ready((function() {
@@ -19,7 +19,7 @@
 
     function serialize() {
         serial="";
-        $("#sendData input, #sendData textarea").each(function(i,item){
+        $(".${classe} input, .${classe} textarea").each(function(i,item){
             val = $(item).val();
             nome = $(item).attr("name");
             serial=serial + "&" +nome+"="+val
@@ -40,14 +40,8 @@
 
 
 </script>
-<style type="text/css">
-.label {
-    float: left;
-    width: 150px;
-}
-</style>
 
-<div id="sendData" style="${style}">
+<div class="${classe}">
     <div>
         <div class="label">T&iacute;tulo</div>
         <div><input type="text" name="album.title" value="${album.title}" /></div>

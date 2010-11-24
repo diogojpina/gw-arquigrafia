@@ -3,7 +3,7 @@
 <%@ taglib prefix="r" uri="http://www.groupwareworkbench.org.br/taglibs/reflection"%>
 <%@ attribute name="albumMgr" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.collablet.coop.album.AlbumMgrInstance"%>
 <%@ attribute name="user" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.collablet.coord.user.User" %>
-<%@ attribute name="style" required="false" rtexprvalue="true" type="java.lang.String"%>
+<%@ attribute name="classe" required="true" rtexprvalue="true" type="java.lang.String"%>
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-ui-1.8.custom.min.js"></script>
@@ -18,43 +18,48 @@
 var pageSize = 32;
 var actualPage = 0;
 var sizeLastRequest = pageSize;
+var marginLeft = 0;
 
 
 $(window).resize( function(){
      loadImages();
 
 });
+
 function calcMargins() {
-    var width = $("#list_anadir_container").width();
-    var height = $("#list_anadir_container").height(); 
+    var width = $(".${classe}").width();
+    var height = $(".${classe}").height(); 
     pageLine = (width / 100) | 0;  
-    var marginLeft = ((width - (pageLine * 100)) / pageLine) + (100 / pageLine)| 0;
-    $(".shiftedImg").css("margin-left", marginLeft + "px");
+    marginLeft = ((width - (pageLine * 100)) / pageLine) + (100 / pageLine)| 0;    
     pageSize = (((width * height) / ((100 + marginLeft) * 127)) | 0 ) - 1;
     sizeLastRequest = pageSize;
-    actualPage = 0;
 }
 function loadImages() {
+	calcMargins();
     $.getJSON("${pageContext.request.contextPath}/groupware-workbench/photo/${photoMgr.id}/listbypage/"+pageSize+"/"+actualPage,
              function(json) {
                sizeLastRequest = json.list.length;
                if(sizeLastRequest > 0) {
-                     $("#listPhotos").empty();
+                   $("#listPhotos").empty();
+               }
+               else {
+                     actualPage = 0;
+                     $(".anterior").show();
+                     $(".seguinte").show();
                }
                $.each(json.list, function(i,photo) {
                      var add = 
-                         '<li class="shiftedImg" style="float: left; margin-bottom: 9px;" >' +
+                         '<li class="shiftedImg" >' +
                            '<img src="${pageContext.request.contextPath}/groupware-workbench/photo/img-crop/'+photo.id+'" />' +
-                           '<div><a style="font-size: 10px; margin: 4px;" onclick="openPanel('+photo.id+');" href="#">anadir</a></div>' +
+                           '<div><a onclick="openPanel('+photo.id+');" href="#">adicionar</a></div>' +
                          '</li>';
                      $("#listPhotos").append(add);
                });
-               calcMargins();
+               $(".shiftedImg").css("margin-left", marginLeft + "px");
      });
 }
 
 $(document).ready(function(){
- loadImages();
  $("#modalPanel").dialog({
      autoOpen: false,
      modal: true,
@@ -62,7 +67,7 @@ $(document).ready(function(){
        "Cancelar": function() {
              $("#modalPanel").dialog("close");
         },
-       "Anadir": function() {
+       "Adicionar": function() {
              var object = $("#modalPanel_hidden").val();
              var album = $("#modalPanel input:radio[name=radioAlbum]:checked").val();
              if (album == null) {
@@ -74,6 +79,7 @@ $(document).ready(function(){
        }
      }
      });
+ loadImages();
 });
 
 function openPanel(idPhoto) {
@@ -84,34 +90,46 @@ function openPanel(idPhoto) {
 function downPage(){
     if (actualPage > 0) {
         actualPage--;
+        $(".anterior").show();
     }
+    else {
+    	$(".anterior").hide();
+        
+    }
+    $(".seguinte").show();
     loadImages();
 }
 
 function upPage() {
     if (sizeLastRequest == pageSize) {
         actualPage++;
+        $(".seguinte").show();
     }
+    else {
+    	$(".seguinte").hide();
+    }
+    $(".anterior").show();
     loadImages();
 }
 //-->
 </script>
 
-<div id="list_anadir_container" style="${style}">
-<div class="component_header" style="height: 25px ;">
-    <span class="title">Fotos</span>
-    <span style="float: right">
-        <span class="span_link" style="color: white;" onclick="downPage();">anterior</span>
-        <span style="margin-left: 4px;"></span>
-        <span class="span_link" style="color: white;" onclick="upPage();">seguinte</span>
-    </span>
+<div class="${classe}">
+    <div class="component_header">
+        <span class="title">Fotos</span>
+        <span style="float: right;">
+            <span class="span_link anterior" onclick="downPage();">anterior</span>
+            <span style="margin-left: 4px;"></span>
+            <span class="span_link seguinte" onclick="upPage();">seguinte</span>
+        </span>
+    </div>
+    <ul id="listPhotos" style="list-style: none;"></ul>
 </div>
-       <ul id="listPhotos" style="list-style: none;"></ul>
-</div>
+
 <div id="modalPanel">
     <div>
         <h2>Albums:</h2>
-        <input id="modalPanel_hidden" type="hidden" value=""/>
+        <input id="modalPanel_hidden" type="hidden"/>
         <c:forEach items="${albums}" var="item">
             <div><input type="radio" name="radioAlbum" value="${item.id}">${item.title}</div>
         </c:forEach>

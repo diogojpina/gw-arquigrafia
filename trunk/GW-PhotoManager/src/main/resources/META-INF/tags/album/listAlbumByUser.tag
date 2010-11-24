@@ -7,8 +7,8 @@
 <r:callMethod methodName="listByUser" instance="${albumMgr}" var="albunsByUser" >
     <r:param type="br.org.groupwareworkbench.collablet.coord.user.User" value="${user}" />
 </r:callMethod>
-<div style="height: 550px; overflow-y: scroll;">
-<c:forEach items="${albunsByUser}" var="album">
-    <album:album album="${album}" albumMgr="${albumMgr}"/>
-</c:forEach>
+<div class="album-list-block">
+    <c:forEach items="${albunsByUser}" var="album">
+        <album:album album="${album}" albumMgr="${albumMgr}"/>
+    </c:forEach>
 </div>

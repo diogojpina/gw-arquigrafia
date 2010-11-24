@@ -10,27 +10,24 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Arquigrafia Brasil - &Aacute;lbuns</title>
-        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/page_content.css" />
         <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.ico" />
-	    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css" />
-	    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/arq-common.css" />
-	    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/header.css" />
-	    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/know_more.css" />
-	    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/forms.css"  />
-	    <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/plugins/sds/css/smoothDivScroll.css" />
-	    <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/bay.css" />
-	    <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/footer.css" />
-	    <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/jquery.css" />
-	    <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/tagcloud.css" />
-	    <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/image_wall.css" />
-	    <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/boxy.css" />
-	    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
-	    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-ui-1.8.custom.min.js"></script>
-	    <script type="text/javascript" src="${pageContext.request.contextPath}/plugins/sds/js/jquery.smoothDivScroll-0.9-min.js"></script>
-	    <script type="text/javascript" src="${pageContext.request.contextPath}/plugins/sds/js/scroll.js"></script>
-		<script  type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.boxy.js"></script>
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css" />
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/arq-common.css" />
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/header.css" />
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/know_more.css" />
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/forms.css"  />
+        <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/plugins/sds/css/smoothDivScroll.css" />
+        <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/bay.css" />
+        <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/footer.css" />
+        <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/jquery.css" />
+        <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/tagcloud.css" />
+        <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/image_wall.css" />
+        <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/boxy.css" />
+        <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/album.css" />
+        <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-ui-1.8.custom.min.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/plugins/sds/js/jquery.smoothDivScroll-0.9-min.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/plugins/sds/js/scroll.js"></script>
 
         <script type="text/javascript">
             $(document).ready(function() {
@@ -50,34 +47,12 @@
             });
         </script>
 
-        <style type="text/css">
-             .text, .title, .span_link{
-                font-size: 12px;
-                font-family: Arial,Helvetica,sans-serif;
-             }
-             .title {
-                font-weight: bold;
-             }
-             .span_link {
-                color: blue;
-                cursor: pointer;
-                text-decoration: underline;
-             }
-             .component_header {
-                background-color: #483E37;
-                color: white;
-                padding: 5px;
-                -moz-border-radius: 5px 5px 0 0;
-                margin-bottom: 10px;
-             }     
-        </style>
+        <title>Arquigrafia Brasil - &Aacute;lbuns</title>
 
     </head>
     <body>
         <arq:header2 photoInstance="${photoMgr}" />
-        <div style="height: 500px;">
-            <album:listPhotos album="${album}"/>
-        </div>
+        <album:listPhotos album="${album}" classe="main-lista-fotos"/>
         <arq:footer photoInstance="${photoMgr}" />
     </body>
 </html>

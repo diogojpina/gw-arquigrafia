@@ -18,7 +18,7 @@ $(function(){
            "Cancelar": function() {
                  $("#modalPanel_adicionar").dialog("close");
             },
-           "Anadir": function() {
+           "Adicionar": function() {
                  var album = $("#modalPanel_adicionar input:radio[name=radioAlbum]:checked").val();
                  if (album == null) {
                      alert("Escolhe um album");

@@ -20,11 +20,11 @@
     <path>/META-INF/tags/album/listPhotos.tag</path>
   </tag-file>
   <tag-file>
-    <name>listByUser</name>
-    <path>/META-INF/tags/album/listByUser.tag</path>
+    <name>listAlbumByUser</name>
+    <path>/META-INF/tags/album/listAlbumByUser.tag</path>
   </tag-file>
   <tag-file>
-    <name>edith</name>
+    <name>edit</name>
     <path>/META-INF/tags/album/editAlbum.tag</path>
   </tag-file>
 </taglib>
