@@ -19,8 +19,8 @@ import br.com.caelum.vraptor.interceptor.download.FileDownload;
 import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
 import br.com.caelum.vraptor.validator.ValidationMessage;
 import br.com.caelum.vraptor.view.Results;
-import br.org.groupwareworkbench.arquigrafia.photo.PhotoMgrInstance;
 import br.org.groupwareworkbench.core.framework.Component;
+import br.org.groupwareworkbench.core.framework.MainCollablet;
 
 @Resource
 public class ComponentRepositoryController {
@@ -94,10 +94,11 @@ public class ComponentRepositoryController {
 		}
 	}
 	
-	@SuppressWarnings("cast")
     private void addIncludes(ComponentRepositoryInstance componentRepositoryInstance){
-	    result.include("componentRepository", componentRepositoryInstance);
-	    result.include("photoMgr", (PhotoMgrInstance)componentRepositoryInstance.getCollablet().getParent().getBusinessObject());
+	    result.include(componentRepositoryInstance.getCollablet().getName(), componentRepositoryInstance);
+	    componentRepositoryInstance.getCollablet().includeDependencies(result);
+	    result.include(MainCollablet.getMainCollablet().getName(), MainCollablet.getMainCollablet().getBusinessObject());
+        MainCollablet.getMainCollablet().includeDependencies(result);
 	}
 	
 	private List<Component> registerComponents(ComponentRepositoryInstance componentRepositoryInstance){
