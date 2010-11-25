@@ -14,6 +14,7 @@
     </hibernate>
 
     <initialCollablet>photoMgr</initialCollablet>
+    <android-app displayName="Arquigrafia Brasil" textColor="#B31B1B" backgroundColor="#FFFFFF" logoImage="http://i.imgur.com/kDX43.png" /> 
 
     <collablets>
         <collablet>
@@ -36,6 +37,12 @@
             <business>br.org.groupwareworkbench.collablet.communic.georeference.GeoReferenceMgrInstance</business>
             <description>Gerenciar Google Maps</description>
             <name>geoReferenceMgr</name>
+            <android>true</android>
+            <android-properties>
+            	<property key="menuLabel" value="Mapa" />
+            	<property key="tag" value="map" />
+            	<property key="package" value="br.ufes.cwtools.gw.android.components.map" />
+            </android-properties>
         </collablet>
 
         <collablet>
@@ -54,6 +61,11 @@
             <business>br.org.groupwareworkbench.collablet.coop.binomial.BinomialMgrInstance</business>
             <description>Gerenciar binômios</description>
             <name>binomialMgr</name>
+            <android>true</android>
+            <android-properties>
+            	<property key="tag" value="binomial" />
+            	<property key="package" value="br.ufes.cwtools.gw.android.components.binomial" />
+            </android-properties>
         </collablet>
 
         <collablet>
@@ -91,6 +103,21 @@
                     se tiver permissões esta pasta é criada automaticamente pelo componente.
                 -->
             </properties>
+            <android>true</android>
+            <android-properties>
+            	<property key="menuLabel" value="Upload de Foto" />
+            	<property key="tag" value="image_picker" />
+            	<property key="package" value="br.ufes.cwtools.gw.android.components.image_upload" />
+            </android-properties>
+            <android-properties>
+            	<property key="tag" value="image_upload" />
+            	<property key="package" value="br.ufes.cwtools.gw.android.components.image_upload" />
+            </android-properties>
+            <android-properties>
+            	<property key="menuLabel" value="Galeria" />
+            	<property key="tag" value="gallery" />
+            	<property key="package" value="br.ufes.cwtools.gw.android.components.gallery" />
+            </android-properties>
         </collablet>
 
         <collablet>
@@ -113,13 +140,18 @@
                 <property key="msgAddComment" value="Digite um comentário para o seu amigo" />
                 <property key="msgGetComment" value="Ninguém comentou ainda a seu amigo	. Seja o primeiro!" />
             </properties>
-            
         </collablet>
         
         <collablet>
         	<business>br.org.groupwareworkbench.arquigrafia.tracker.TrackerInstance</business>
             <description>Gerenciar localização de usuários</description>
             <name>tracker</name>
+            <android>true</android>
+            <android-properties>
+            	<property key="menuLabel" value="Localizador" />
+            	<property key="tag" value="tracker" />
+            	<property key="package" value="br.ufes.cwtools.gw.android.components.tracker" />
+            </android-properties>
         </collablet>
         
         <collablet>
@@ -148,7 +180,7 @@
         <!-- <subordination parent="photoMgr" child="albumMgr" /> -->
         <subordination parent="photoMgr" child="commentMgr" />
         <subordination parent="photoMgr" child="commentMgr2" />
-<!--        <subordination parent="friendsMgr" child="commentMgr2" />-->
+		<!-- <subordination parent="friendsMgr" child="commentMgr2" /> -->
 		<subordination parent="photoMgr" child="tracker" />
 		<subordination parent="photoMgr" child="componentRepository" />
     </collablets-subordinations>
@@ -178,4 +210,11 @@
         <dependency from="tracker" to="photoMgr" />
         <dependency from="componentRepository" to="photoMgr" />
     </collablets-dependencies>
+    
+    <android-sequence>
+	    <dependency from="tracker" to="map" relatedExtra="relation"/>
+	    <dependency from="image_picker" to="image_upload" relatedExtra="image_uri"/>
+	    <!-- dependency from="image_upload" to="binomial" relatedExtra="default"/ -->
+	    <!-- dependency from="gallery" to="binomial" relatedExtra="default"/ -->
+	</android-sequence>
 </frameworkDescriptor>
