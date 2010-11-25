@@ -104,6 +104,10 @@ body {
 	text-align: right;
 	margin-top: 25px;
 }
+#users_online{
+	text-align: right;
+	margin-top: 25px;
+}
 #user_bottom_links {
 	margin-top: 22px;
 	margin-left: 8px;

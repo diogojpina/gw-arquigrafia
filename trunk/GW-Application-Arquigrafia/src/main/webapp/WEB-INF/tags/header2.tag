@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="w" uri="http://www.groupwareworkbench.org.br/widgets/commons" %>
 <%@ taglib prefix="photo" uri="http://www.groupwareworkbench.org.br/widgets/photomanager" %>
+<%@ taglib prefix="tracker" uri="http://www.groupwareworkbench.org.br/widgets/tracker" %>
 
 <%@ attribute name="photoInstance" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.arquigrafia.photo.PhotoMgrInstance" %>
 
@@ -20,6 +21,9 @@
         <div id="suggestions">
             <a href="mailto:test@somewhere" class="white_link">Sugest&otilde;es e Cr&iacute;ticas</a><br />
             <a href="mailto:test@somewhere" class="white_link">Reportar Problema</a>
+        </div>
+        <div id="users_online">
+        	<span class="black_link"><tracker:onlineUsers trackerInstance="${tracker}" /></span>
         </div>
         <div id="user_bottom_links">
             <!-- TODO: reativar links, quando for criado o lado de rede social do site. -->
