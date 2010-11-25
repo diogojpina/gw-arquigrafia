@@ -76,7 +76,7 @@
 						<c:if test="${!empty trackingInfoList}">
 							<c:forEach var="ti" items="${trackingInfoList}">
 								<tr>
-									<td>${ti.userId}</td>
+									<td>${ti.user.id}</td>
 									<td>${ti.accuracy}</td>
 									<td>${ti.latitude}</td>
 									<td>${ti.longitude}</td>

@@ -4,7 +4,7 @@
 	<c:forEach var="ti" items="${trackingInfoList}">
 		<GeoObject lat="${ti.latitude}" 
 		lon="${ti.longitude}"
-		label="${ti.userId}"
+		label="${ti.user.name}"
 		reference="${ti.accuracy}" 
 		type="user"/>
 	</c:forEach>
