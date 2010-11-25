@@ -111,8 +111,8 @@ label {
 .default_div {
     margin: 0 auto;
     width: 100%;
-    /*height: 500px;*/
     height:100%; 
+    min-height: 300px;
     background: white;
 }
 
@@ -125,6 +125,21 @@ label {
     overflow: auto;
     background: transparent;
     /*text-align: center; *//*Para poder centrar un DIV en IExplorer*/
+}
+
+.botao {
+    font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	background-color:#003399;
+	padding:5px 10px;
+	color:#fff;
+    width: 75px;
+    text-align: center;
+	text-decoration:none;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	font-family:arial;
 }
     
 

@@ -36,10 +36,6 @@
             <iframe name="profileContentFrame" style="width: 450px; height: 500px; opacity: 0.95;"
                     id="profileContentFrame" src="${pageContext.request.contextPath}/groupware-workbench/friends/${friendsMgr.id}/show/${userLogin.id}"></iframe>
         </div>
-        <div id="systemUsersDiv" style="visibility: hidden; display: none;">
-            <iframe name="profileContentFrame" style="width: 450px; height: 500px; opacity: 0.95;"
-                    id="profileContentFrame" src="${pageContext.request.contextPath}/groupware-workbench/friends/${friendsMgr.id}/system_users"></iframe>
-        </div>
         <div id="albumObjectsDiv" style="visibility: hidden; display: none;">
            <iframe name="albumContentFrame" style="width: 450px; height: 500px; opacity: 0.95;"
                    id="albumContentFrame" src="${pageContext.request.contextPath}/groupware-workbench/albun/${albumMgr.id}/album/${-1}/listObjects"></iframe>
@@ -67,14 +63,6 @@
                 }).show();
             }
 
-            function showSystemUsers() {
-                new Boxy($("#systemUsersDiv").html(), {
-                    title: "Usuários",
-                    modal: true,
-                    closeText: "Fechar"
-                }).show();
-            }
-
             function showAlbumPhotos() {
                 new Boxy($("#albumObjectsDiv").html(), {
                     title: "Album de Fotos",
@@ -87,7 +75,7 @@
         &nbsp;|&nbsp;
         <a href="${pageContext.request.contextPath}/groupware-workbench/friends/${friendsMgr.id}/show/${userLogin.id}" onclick="">Meu perfil</a>
         &nbsp;|&nbsp;
-        <a href="#" onclick="return showSystemUsers();">Usu&aacute;rios do sistema</a>
+        <a href="${pageContext.request.contextPath}/groupware-workbench/friends/${friendsMgr.id}/system_users">Usu&aacute;rios do sistema</a>
         &nbsp;|&nbsp;
         <a href="${pageContext.request.contextPath}/groupware-workbench/users/${userMgr.id}/list">Gerenciar usu&aacute;rios</a>
         &nbsp;|&nbsp;
