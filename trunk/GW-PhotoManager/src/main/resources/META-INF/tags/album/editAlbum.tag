@@ -58,7 +58,7 @@
                     <input type="text" name="album.urlCover" value="${album.urlCover}" />
                 </c:when>
                 <c:otherwise>
-                    <input type="text" name="album.urlCover" value="${pageContext.request.contextPath}/images/default_album.jpg" />
+                    <input type="text" name="album.urlCover" value="${pageContext.request.contextPath}/images/album_icon.png" />
                 </c:otherwise>
             </c:choose>
         </div>

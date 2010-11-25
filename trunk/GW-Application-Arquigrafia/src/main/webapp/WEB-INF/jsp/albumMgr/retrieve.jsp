@@ -22,7 +22,7 @@
     </head>
     <body>
         <w:topo collabletInstance="${albumMgr.collablet}" />
-        <w:conteudoPagina titulo="Álbum: ${album.title}">
+        <w:conteudoPagina titulo="&Aacute;lbum: ${album.title}">
             <br />
             <h1><span class="style1">Editar &aacute;lbum</span></h1>
             <br />

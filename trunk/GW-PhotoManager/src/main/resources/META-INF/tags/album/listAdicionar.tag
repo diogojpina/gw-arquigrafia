@@ -46,7 +46,9 @@ function loadImages() {
                $.each(json.list, function(i,photo) {
                      var add = 
                          '<li class="shiftedImg" >' +
+                           '<a href="${pageContext.request.contextPath}/groupware-workbench/photo/'+photo.id+'">' +
                            '<img src="${pageContext.request.contextPath}/groupware-workbench/photo/img-crop/'+photo.id+'" />' +
+                           '</a>' +
                            '<div><a onclick="openPanel('+photo.id+');" href="#">adicionar</a></div>' +
                          '</li>';
                      $("#listPhotos").append(add);
@@ -124,7 +126,7 @@ function upPage() {
 
 <div id="modalPanel">
     <div>
-        <h2>Albums:</h2>
+        <h2>&Aacute;lbums:</h2>
         <input id="modalPanel_hidden" type="hidden"/>
         <c:forEach items="${albums}" var="item">
             <div><input type="radio" name="radioAlbum" value="${item.id}">${item.title}</div>

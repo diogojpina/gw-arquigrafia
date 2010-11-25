@@ -21,7 +21,7 @@ $(function(){
            "Adicionar": function() {
                  var album = $("#modalPanel_adicionar input:radio[name=radioAlbum]:checked").val();
                  if (album == null) {
-                     alert("Escolhe um album");
+                     alert("Escolhe um &aacute;lbum");
                  } else {
                      $.post("${pageContext.request.contextPath}/groupware-workbench/album/${albumMgr.id}/add/"+album+"/"+${photo.id});
                      $("#modalPanel_adicionar").dialog("close");
@@ -32,10 +32,10 @@ $(function(){
  });
 </script>
 
-<button onclick='$("#modalPanel_adicionar").dialog("open");' type="button">Adicionar</button>
+<button onclick='$("#modalPanel_adicionar").dialog("open");' type="button">Adicionar no &aacute;lbum</button>
 <div id="modalPanel_adicionar">
     <div>
-        <h2>Albums:</h2>
+        <h2>&Aacute;lbums:</h2>
         <c:forEach items="${albums}" var="item">
             <div><input type="radio" name="radioAlbum" value="${item.id}">${item.title}</div>
         </c:forEach>

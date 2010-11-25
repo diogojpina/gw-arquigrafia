@@ -35,13 +35,6 @@
             "buttonImage": "${pageContext.request.contextPath}/images/calendar.gif",
             "buttonImageOnly": true
         });
-
-        $("#imageUpload").jqUploader({
-            background: "FFFFDF",
-            barColor: "CD270A",
-            allowedExt: "*.avi; *.jpg; *.jpeg; *.png",
-            allowedExtDescr: "Images and movies (*.avi; *.jpg; *.jpeg; *.png)"
-        });
     });
 </script>
 
@@ -53,7 +46,7 @@
        <li class="${formLabelClass}">
            <span>Arquivo*:</span>
        </li>
-       <li class="${formInputClass}" id="imageUpload">
+       <li class="${formInputClass}" id="imageUpload-li">
        	   <input id="imageUpload" type="file" name="foto" value="<c:out value="${photoRegister.nomeArquivo}" />" />
        </li>
    </ul>

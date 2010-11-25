@@ -51,7 +51,7 @@
     </head>
     <body>
 		<arq:header2 photoInstance="${photoMgr}" />
-        <w:conteudoPagina titulo="Álbuns: ">
+        <w:conteudoPagina titulo="&Aacute;lbuns: ">
             <br />
             <h1><span class="style1">Lista de &Aacute;lbuns</span></h1>
             <br />

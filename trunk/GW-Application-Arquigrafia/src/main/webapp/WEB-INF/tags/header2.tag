@@ -40,6 +40,9 @@
             <iframe name="profileContentFrame" style="width: 450px; height: 500px; opacity: 0.95;"
                     id="profileContentFrame" src="${pageContext.request.contextPath}/groupware-workbench/friends/${friendsMgr.id}/show/${userLogin.id}"></iframe>
         </div>
+        <div id="systemUsersDiv" style="visibility: hidden; display: none;">
+		      <div id="systemUsersConteudo" style="width: 450px; height: 500px; opacity: 0.95; overflow-y: scroll"></div>
+        </div>
         <div id="albumObjectsDiv" style="visibility: hidden; display: none;">
            <iframe name="albumContentFrame" style="width: 450px; height: 500px; opacity: 0.95;"
                    id="albumContentFrame" src="${pageContext.request.contextPath}/groupware-workbench/albun/${albumMgr.id}/album/${-1}/listObjects"></iframe>
@@ -65,6 +68,21 @@
                     modal: true,
                     closeText: "Fechar"
                 }).show();
+            }
+
+            function showSystemUsers() {
+				$.get("${pageContext.request.contextPath}/groupware-workbench/friends/${friendsMgr.id}/system_users",
+				    function(data){
+					   $("#systemUsersConteudo").empty().append(data);
+					   new Boxy($("#systemUsersDiv").html(), {
+                        title: "Usuários",
+                        modal: true,						
+                        closeText: "Fechar",
+						afterHide: function(){
+                                       $("#systemUsersConteudo").empty();
+						           }
+                       }).show();
+				    });
             }
 
             function showAlbumPhotos() {

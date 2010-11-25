@@ -67,9 +67,9 @@
     <arq:header2 photoInstance="${photoMgr}" />
     <div class="main">
         <div class="text list-albums-frame">
-            <div class="component_header"><span class="title">Meus Albums</span></div>
+            <div class="component_header"><span class="title">Meus &Aacute;lbuns</span></div>
             <div class="criar-album">
-                <span class="span_link" id="open_album_novo">criar novo album</span>
+                <span class="span_link" id="open_album_novo">criar novo &aacute;lbum</span>
             </div>
             <album:listAlbumByUser albumMgr="${albumMgr}" user="${userLogin}"/>
         </div>

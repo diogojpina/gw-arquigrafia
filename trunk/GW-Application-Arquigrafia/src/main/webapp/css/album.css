@@ -49,7 +49,7 @@
 }
 
 .album-name span {
-    background: white;
+    /*background: white;*/
 }
 
 .shiftedImg {
@@ -63,10 +63,11 @@
 }
 
 .shiftedImg div {
-    background: white;
+    /*background: white;*/
 }
 
 .main {
+    background: white;
     display: block;
     margin: 20px;
 }
@@ -112,6 +113,7 @@
 
 .main-lista-fotos {
     height: 500px;
+	background: white;
 }
 
 .main-lista-fotos .corpo {
