@@ -57,6 +57,16 @@ public class TrackerInstance extends AbstractBusiness {
         "   * COS(RADIANS(:lng) - RADIANS(ti.longitude))) * 6378 " +
         " ) AND ti.dateUpdate >= (:dateNowMinus15Minutes) ";
 
+    private static final String COUNT_ONLINE_QUERY =
+        " SELECT COUNT(ti) " +
+        " FROM TrackingInfo ti " +
+        " WHERE ti.dateUpdate = ( " +
+        "   SELECT MAX(lastTi.dateUpdate) " +
+        "   FROM TrackingInfo lastTi " +
+        "   WHERE lastTi.user = ti.user " +
+        "   GROUP BY lastTi.user " +
+        " ) AND ti.dateUpdate >= (:dateNowMinus15Minutes) ";
+
     public TrackerInstance(Collablet collablet) {
         super(collablet);
     }
@@ -78,5 +88,16 @@ public class TrackerInstance extends AbstractBusiness {
         nowMinus15.add(Calendar.MINUTE, -15);
         q.setParameter("dateNowMinus15Minutes", nowMinus15.getTime());
         return q.getResultList();
+    }
+    
+    public long getOnlineUserCount(){
+        EntityManager em = EntityManagerProvider.getEntityManager();
+        TypedQuery<Long> q = em.createQuery(COUNT_ONLINE_QUERY, Long.class);
+        
+        Calendar nowMinus15 = Calendar.getInstance();
+        nowMinus15.add(Calendar.MINUTE, -15);
+        q.setParameter("dateNowMinus15Minutes", nowMinus15.getTime());
+        
+        return q.getSingleResult();
     }
 }
