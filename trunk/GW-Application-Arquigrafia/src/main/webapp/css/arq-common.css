@@ -141,7 +141,17 @@ label {
 	border-radius: 5px;
 	font-family:arial;
 }
-    
+.linha{
+     padding:0;
+     padding-bottom:5px;
+     clear:both;
+ }
+
+.coluna{    
+     height:25px;
+     width:80px;      
+     float:right;
+} 
 
 /* Tooltip */
 

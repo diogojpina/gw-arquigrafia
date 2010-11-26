@@ -54,25 +54,32 @@
     </head>
     <body>
     	<arq:header2 photoInstance="${photoMgr}" />
-    	<div style="background: white; width:100%; height:100%; min-height: 300px; margin-top: 0px;padding-top:0px;">
-    	<span class="big_black_title" style="text-align: left;" >Usu&aacute;rios do sistema</span>
-    	<div style="margin-top: 20px;">
+    	<div style="margin-top: 20px;background: white; width:100%; height:100%; min-height: 300px; margin-top: 0px;padding-top:0px;">
+    	<br />
+    	<span class="big_black_title" style="text-align: right;" >Usu&aacute;rios do sistema</span>
+    	<br />
             <c:if test="${userMgr.collablet.enabled}">
                 <c:forEach items="${userMgr.allElements}" var="u">
                     <c:if test="${u.login != userLogin.login}">
-                        <span style="margin: 20px auto;">
-                            <img src="<c:out value="${u.photoURL}" />" alt="Foto do usu&aacute;rio" />
-                            &nbsp;
-                            <a class="blue_link" href="${pageContext.request.contextPath}/groupware-workbench/friends/${friendsMgr.id}/show/${u.id}">
-                                <c:out value="${u.name}" />
-                            </a>
-                            &nbsp;
-                            <friends:sendRequest friendsMgr="${friendsMgr}" viewer="${userLogin}" viewed="${u}" afterRequestFunction="aviso" />
-                        </span>
+						<div style="float: left; margin: 20px auto; padding: 10px;" >
+							<div class="linha">
+                            	<img src="<c:out value="${u.photoURL}" />" alt="Foto do usu&aacute;rio" />
+                            	&nbsp;
+                            	<div class="coluna"> 
+                            		<div class="linha">
+	                            		<a class="blue_link" href="${pageContext.request.contextPath}/groupware-workbench/friends/${friendsMgr.id}/show/${u.id}">
+	                                		<c:out value="${u.name}" />
+	                            		</a>
+		                            </div>
+									<div class="linha">
+			                            <friends:sendRequest friendsMgr="${friendsMgr}" viewer="${userLogin}" viewed="${u}" afterRequestFunction="aviso" />
+									</div>
+								</div>
+                            </div>
+						</div>
                     </c:if>
                 </c:forEach>
             </c:if>
-        </div>
         </div>
         <div>
         	<div style="height: 30px; background-color: #fff"></div>
