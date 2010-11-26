@@ -210,11 +210,11 @@
         <dependency from="tracker" to="photoMgr" />
         <dependency from="componentRepository" to="photoMgr" />
     </collablets-dependencies>
-    
+
     <android-sequence>
-	    <dependency from="tracker" to="map" relatedExtra="relation"/>
-	    <dependency from="image_picker" to="image_upload" relatedExtra="image_uri"/>
-	    <!-- dependency from="image_upload" to="binomial" relatedExtra="default"/ -->
-	    <!-- dependency from="gallery" to="binomial" relatedExtra="default"/ -->
-	</android-sequence>
+        <dependency from="tracker" to="map" relatedExtra="relation"/>
+        <dependency from="image_picker" to="image_upload" relatedExtra="image_uri"/>
+	<!-- dependency from="image_upload" to="binomial" relatedExtra="default"/ -->
+	<!-- dependency from="gallery" to="binomial" relatedExtra="default"/ -->
+    </android-sequence>
 </frameworkDescriptor>

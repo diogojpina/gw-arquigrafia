@@ -6,6 +6,7 @@
 <%@ attribute name="photoRegister" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.arquigrafia.photo.Photo" %>
 <%@ attribute name="photoInstance" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.arquigrafia.photo.PhotoMgrInstance" %>
 <%@ attribute name="tagMgr" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.collablet.communic.tag.TagMgrInstance" %>
+<%@ attribute name="geoReferenceMgr" required="false" rtexprvalue="true" type="br.org.groupwareworkbench.collablet.communic.georeference.GeoReferenceMgrInstance" %>
 
 <script src="${pageContext.request.contextPath}/js/formToWizard.js" type="text/javascript"></script>
 <script type="text/javascript"> 
@@ -39,6 +40,7 @@
                 action="<c:url value="/groupware-workbench/photo/${photoInstance.id}/registra" />">
             <photo:save photoRegister="${photoRegister}"
                     photoInstance="${photoInstance}" tagMgr="${tagMgr}"
+                    geoReferenceMgr="${geoReferenceMgr}"
                     user="${sessionScope.userLogin}" formClass="form1"
                     formLineClass="field_line_f1 upload_form" formLabelClass="label_f1"
                     formInputClass="input_f1" />

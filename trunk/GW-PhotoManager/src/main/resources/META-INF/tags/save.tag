@@ -2,12 +2,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="r" uri="http://www.groupwareworkbench.org.br/taglibs/reflection" %>
 <%@ taglib prefix="tag" uri="http://www.groupwareworkbench.org.br/widgets/tag" %>
+<%@ taglib prefix="gmaps" uri="http://www.groupwareworkbench.org.br/widgets/georeference" %>
 
 <%@ attribute name="photoRegister" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.arquigrafia.photo.Photo" %>
 <%@ attribute name="photoInstance" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.arquigrafia.photo.PhotoMgrInstance" %>
 
 <%@ attribute name="tagMgr" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.collablet.communic.tag.TagMgrInstance" %>
 <%@ attribute name="user" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.collablet.coord.user.User" %>
+<%@ attribute name="geoReferenceMgr" required="false" rtexprvalue="true" type="br.org.groupwareworkbench.collablet.communic.georeference.GeoReferenceMgrInstance" %>
 
 <%@ attribute name="formClass" required="false" rtexprvalue="false" type="java.lang.String" %>
 <%@ attribute name="formLineClass" required="false" rtexprvalue="false" type="java.lang.String" %>
@@ -83,6 +85,9 @@
             </label>
             <span class="${formInputClass}">
                 <input type="text" name="photoRegister.lugar" value="<c:out value="${photoRegister.lugar}" />" />
+            </span>
+            <span class="${formInputClass}">
+                <gmaps:setGeoref geoReferenceMgr="${geoReferenceMgr}" entity="${photoRegister}" />
             </span>
         </div>
     </fieldset>
