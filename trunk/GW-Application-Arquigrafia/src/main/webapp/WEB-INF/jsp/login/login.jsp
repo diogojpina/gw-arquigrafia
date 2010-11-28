@@ -11,9 +11,25 @@
         <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.ico" />
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css" />
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/login.css" />
+		<script type="text/javascript">
+           	function showAboutArquigrafia() {
+              	new Boxy($("#aboutDiv").html(), {
+               	title: "Sobre o Arquigrafia",
+               	modal: true,
+               	closeText: "Fechar"
+             	}).show();
+    		}
+ 		</script>
     </head>
     <body>
-        <form id="usuariosForm" method="post" name="loginForm" action="<c:url value="/groupware-workbench/users/${userMgr.id}/login" />">
+
+		<div id="aboutDiv" style="visibility: hidden; display: none;">
+			<iframe name="aboutContentFrame" style="width: 450px; height: 500px; opacity: 0.95;" id="aboutContentFrame"
+				src="${pageContext.request.contextPath}/groupware-workbench/photo/about.jsp">
+			</iframe>
+		</div>
+
+		<form id="usuariosForm" method="post" name="loginForm" action="<c:url value="/groupware-workbench/users/${userMgr.id}/login" />">
             <div class="login_box">
                 <div class="login_fields">
                     <div class="login_fields_1">
@@ -39,14 +55,17 @@
                             <span class="login_error">Login ou senha incorretos</span>
                         </c:if>
                         <span class="login_link">
-                            <a href="<c:url value="/groupware-workbench/users/${userMgr.id}/forgotPassword" />">Esqueceu a senha?</a>
+                            <a href="<c:url value="/groupware-workbench/users/${userMgr.id}/forgotPassword" />">Esqueceu a senha?</a>&nbsp;&nbsp;&nbsp;&nbsp;
                         </span>
                     </div>
                 </c:if>
                 <div class="login_messages">
-	        		<a href="${pageContext.request.contextPath}/groupware-workbench/users/${userMgr.id}/register">Cadastre-se&nbsp;&nbsp;&nbsp;</a>
+	        		<a href="${pageContext.request.contextPath}/groupware-workbench/users/${userMgr.id}/register">Cadastre-se</a>&nbsp;&nbsp;&nbsp;&nbsp;
     	    	</div>
             </div>
         </form>
+    	<!-- <div class="login_messages">
+	    	<a href="#" onclick="return showAboutArquigrafia();">Sobre Arquigrafia</a>&nbsp;&nbsp;&nbsp;&nbsp;
+    	</div> -->
     </body>
 </html>

@@ -19,9 +19,8 @@
 
 .login_error {
     font-weight: bold;
-    color: yellow;
+    color: red;
     margin-right: 10px;
-    background-color: #CC101E;
 }
 
 .login_link {
@@ -40,7 +39,7 @@
     -webkit-border-radius: 10px;
     border-radius: 10px;
     background: url("../images/arq_login.jpg");
-    height: 245px;
+    height: 250px;
     width: 450px;
 }
 
@@ -57,22 +56,25 @@
 .login_fields {
     margin-top: 100px;
     padding: 15px;
+    background: white;
 }
 
 .login_fields_1 {
     float: left;
     padding-bottom: 15px;
+    background: white;
 }
 
 .login_fields_2 {
     padding-left: 4px;
     float: left;
     padding-bottom: 15px;
+    background: white;
 }
 
 .login_button {
     padding-left: 7px;
-    padding-top: 15px;
+    padding-top: 0px;
     float: right;
     padding-bottom: 15px;
 }

@@ -17,17 +17,11 @@
     <body>
         <form id="usuariosForm" method="post" name="loginForm" action='<c:url value="/groupware-workbench/users/getPassword" />'>
             <div class="login_box">
-                <div class="login_title">
-                    <span class="login_title">Groupware Workbench</span>
-                </div>
-                <div class="login_logo">
-                    <img src="<c:url value="/images/forgotPassword.jpg" />" width="202" height="67" alt="Login" />
-                </div>
                 <div class="login_fields">
-                    <div class="login_fields_1">
+                    <div>
                         <ul>
                             <li><span class="login_label">Informe seu e-mail:</span></li>
-                            <li><input tabindex="1" name="user.email" type="text" class="box" id="email" size="37" /></li>
+                            <li><input tabindex="1" name="user.email" type="text" class="box" id="email" size="45" /></li>
                         </ul>
                     </div>
                     <div class="login_button">
@@ -44,7 +38,7 @@
                         <span class="login_error">E-mail enviado com sucesso</span>
                     </c:if>
                     <span class="login_link">
-                        <a href="<c:url value="/groupware-workbench/users/${userMgr.id}/login" />">Voltar</a>
+                        <a href="<c:url value="/groupware-workbench/users/${userMgr.id}/login" />">Voltar</a> &nbsp;&nbsp;&nbsp;&nbsp;
                     </span>
                 </div>
             </div>

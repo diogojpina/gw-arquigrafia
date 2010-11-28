@@ -73,7 +73,7 @@
         <legend>Data e Localiza&ccedil;&atilde;o</legend>
         <div class="${formLineClass}">
             <label for="photoRegister.dataCriacao" class="${formLabelClass}">
-                <span>Data:</span>
+                <span>Data da foto:</span>
             </label>
             <span class="${formInputClass}">
                 <input type="text" id="datepicker" name="photoRegister.dataCriacao" />

@@ -36,13 +36,7 @@
         <div id="photoUploadContent" style="visibility: hidden; display: none;">
             <iframe name="photoUploadFrame" style="width: 600px; height: 400px; opacity: 0.95;" id="photoUploadFrame" src="${pageContext.request.contextPath}/groupware-workbench/photo/${photoInstance.id}/registra"></iframe>
         </div>
-        <div id="profileDiv" style="visibility: hidden; display: none;">
-            <iframe name="profileContentFrame" style="width: 450px; height: 500px; opacity: 0.95;"
-                    id="profileContentFrame" src="${pageContext.request.contextPath}/groupware-workbench/friends/${friendsMgr.id}/show/${userLogin.id}"></iframe>
-        </div>
-        <div id="systemUsersDiv" style="visibility: hidden; display: none;">
-		      <div id="systemUsersConteudo" style="width: 450px; height: 500px; opacity: 0.95; overflow-y: scroll"></div>
-        </div>
+        
         <div id="albumObjectsDiv" style="visibility: hidden; display: none;">
            <iframe name="albumContentFrame" style="width: 450px; height: 500px; opacity: 0.95;"
                    id="albumContentFrame" src="${pageContext.request.contextPath}/groupware-workbench/albun/${albumMgr.id}/album/${-1}/listObjects"></iframe>
@@ -60,29 +54,6 @@
                     closeText: "Fechar",
                     afterHide: refreshPage
                 }).show();
-            }
-
-            function showProfile() {
-                new Boxy($("#profileDiv").html(), {
-                    title: "Meu Perfil",
-                    modal: true,
-                    closeText: "Fechar"
-                }).show();
-            }
-
-            function showSystemUsers() {
-				$.get("${pageContext.request.contextPath}/groupware-workbench/friends/${friendsMgr.id}/system_users",
-				    function(data){
-					   $("#systemUsersConteudo").empty().append(data);
-					   new Boxy($("#systemUsersDiv").html(), {
-                        title: "Usuários",
-                        modal: true,						
-                        closeText: "Fechar",
-						afterHide: function(){
-                                       $("#systemUsersConteudo").empty();
-						           }
-                       }).show();
-				    });
             }
 
             function showAlbumPhotos() {
@@ -103,7 +74,7 @@
         &nbsp;|&nbsp;
         <a href="${pageContext.request.contextPath}/groupware-workbench/manager/${manager.id}">Gerenciar aplica&ccedil;&atilde;o</a>
         &nbsp;|&nbsp;
-        <a href="${pageContext.request.contextPath}/groupware-workbench/album/${albumMgr.id}">Album de Fotos</a>
+        <a href="${pageContext.request.contextPath}/groupware-workbench/album/${albumMgr.id}">Álbum de Fotos</a>
         &nbsp;|&nbsp;
         <a href="${pageContext.request.contextPath}/groupware-workbench/tracker/${tracker.id}">Localizador de Usuários</a>
         &nbsp;|&nbsp;
