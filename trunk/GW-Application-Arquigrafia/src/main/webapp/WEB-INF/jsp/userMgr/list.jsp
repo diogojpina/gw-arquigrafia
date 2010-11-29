@@ -66,7 +66,7 @@
 			<div id="info" class="default_info">
         	<w:conteudoPagina titulo="Usu&aacute;rios">
             	<div id="tabela-users"></div>
-            	<div class="barra_botoes">
+            	<div class="barra_botoes" align="center">
                 	<w:voltar collabletInstance="${userMgr.collablet.parent}" />
             	</div>
         	</w:conteudoPagina>

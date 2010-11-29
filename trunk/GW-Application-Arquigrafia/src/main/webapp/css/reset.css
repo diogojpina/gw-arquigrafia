@@ -17,6 +17,8 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 	font-size: 100%;
 	vertical-align: baseline;
 	background: transparent;
+	cellspacing: 5;
+	cellpadding: 20;
 }
 body {
 	line-height: 1;
@@ -50,4 +52,6 @@ del {
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
+	cellspacing: 5;
+	cellpadding: 20;
 }

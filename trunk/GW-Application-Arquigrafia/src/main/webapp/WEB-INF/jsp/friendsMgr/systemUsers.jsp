@@ -54,7 +54,7 @@
     </head>
     <body>
     	<arq:header2 photoInstance="${photoMgr}" />
-    	<div style="margin-top: 20px;background: white; width:100%; height:100%; min-height: 300px; margin-top: 0px;padding-top:0px;">
+    	<div style="margin-top: 20px;background: white; width:100%; height:100%; min-height: 300px; margin-top: 0px;padding-top:0px;overflow: auto;">
     	<br />
     	<span class="big_black_title" style="text-align: right;" >Usu&aacute;rios do sistema</span>
     	<br />

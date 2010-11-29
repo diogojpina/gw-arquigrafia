@@ -58,9 +58,19 @@
                 $("#form1").validate();
             });
         </script>
+        
+        <script>
+    		function setFocus() {
+      			var loginForm = document.getElementById("form1");
+      			if (loginForm) {
+        			loginForm["user.login"].focus();
+      			}
+    		}
+  		</script>
+        
         <profile:scriptProfile />
     </head>
-    <body>
+    <body onload="setFocus();">
         <arq:header2 photoInstance="${photoMgr}" />
         <div id="corpo" class="default_div">
 <!--			<div id="info" class="default_info">-->
@@ -78,7 +88,7 @@
                 	<div class="form_1" id="user_retrieve_form">
                     <ul class="field_line_f1">
                         <li class="label_f1"><span>Login:</span></li>
-                        <li class="input_f1"><input autofocus type="text" class="required" name="user.login" value="<c:out value="${user.login}" />" /></li>
+                        <li class="input_f1"><input type="text" class="required" name="user.login" value="<c:out value="${user.login}" />" /></li>
                     </ul>
                     <ul class="field_line_f1">
                         <li class="label_f1"><span>Password:</span></li>
@@ -119,7 +129,7 @@
                     </ul>
                 </div>
             </form>
-            <div class="barra_botoes">
+            <div class="barra_botoes" align="center">
                 <w:voltar collabletInstance="${userMgr.collablet}" />
             </div>
         </w:conteudoPagina>

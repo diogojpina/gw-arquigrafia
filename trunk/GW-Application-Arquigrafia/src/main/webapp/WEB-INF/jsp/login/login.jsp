@@ -19,9 +19,15 @@
                	closeText: "Fechar"
              	}).show();
     		}
+    		function setFocus() {
+      			var loginForm = document.getElementById("usuariosForm");
+      			if (loginForm) {
+        			loginForm["user.login"].focus();
+      			}
+    		}
  		</script>
     </head>
-    <body>
+    <body onload="setFocus();">
 
 		<div id="aboutDiv" style="visibility: hidden; display: none;">
 			<iframe name="aboutContentFrame" style="width: 450px; height: 500px; opacity: 0.95;" id="aboutContentFrame"
@@ -35,7 +41,7 @@
                     <div class="login_fields_1">
                         <ul>
                             <li><span class="login_label">Login</span></li>
-                            <li><input autofocus tabindex="1" name="user.login" type="text" class="box" id="login" size="23" maxlength="30" /></li>
+                            <li><input tabindex="1" name="user.login" type="text" class="box" id="login" size="23" maxlength="30" /></li>
                         </ul>
                     </div>
                     <div class="login_fields_2">
