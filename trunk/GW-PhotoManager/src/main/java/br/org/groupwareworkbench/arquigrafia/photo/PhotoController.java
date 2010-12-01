@@ -249,6 +249,7 @@ public class PhotoController {
             photo = new Photo();
         }
         photo.setCollablet(photoInstance.getCollablet());
+        photo.setDataUpload(new Date());
         result.include("photoRegister", photo);
         addIncludes(photoInstance);
     }

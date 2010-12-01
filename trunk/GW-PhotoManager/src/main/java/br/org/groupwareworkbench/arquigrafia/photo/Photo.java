@@ -85,6 +85,9 @@ public class Photo implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date dataCriacao;
     
+    @Temporal(TemporalType.DATE)
+    private Date dataUpload;
+
     
     private String direitosAutorais;
     private String cidade;
@@ -253,7 +256,7 @@ public class Photo implements Serializable {
                 .with("collablet", collablet)
                 .firstResult(firstElement)
                 .maxResults(pageSize)
-                .list("dataCriacao DESC");
+                .list("dataCriacao ASC");
     }
 
     public static List<Photo> busca(Collablet collablet, String nome, String cidade, String descricao, Date date) {
@@ -324,6 +327,20 @@ public class Photo implements Serializable {
     public void setDataCriacao(Date dataCriacao) {
         this.dataCriacao = (dataCriacao == null ? null : (Date) dataCriacao.clone());
     }
+    
+    public Date getDataUpload() {
+        return dataUpload == null ? null : (Date) dataUpload.clone();
+    }
+
+    public String getDataUploadFormatada() {
+        if (dataUpload == null) return null;
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        return sdf.format(dataUpload);
+    }
+
+    public void setDataUpload(Date dataUpload) {
+        this.dataUpload = (dataUpload == null ? null : (Date) dataUpload.clone());
+    }    
 
     public Long getId() {
         return id;
