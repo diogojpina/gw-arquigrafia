@@ -35,6 +35,8 @@
         <script type="text/javascript" src="${pageContext.request.contextPath}/plugins/sds/js/scroll.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.boxy.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/toolTips.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/js/ui.base.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/js/ui.slider.js"></script>
         <script type="text/javascript">
             $(document).ready(function() {
                 $('label[rel=tooltip]').tooltip();
