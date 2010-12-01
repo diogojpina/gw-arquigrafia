@@ -65,16 +65,17 @@
         <form name="tags" method="post" enctype="multipart/form-data" action="<c:url value="/groupware-workbench/photo/${photo.id}" />">
         <div id="photoRel">
             <c:if test="${binomialMgr.collablet.enabled}">
-                <div id="binomialsTitle" class="big_white_title">Medidores</div>
+                <div id="binomialsTitle" class="big_white_title">Avalie esta foto</div>
                 <div id="binLink">
                     <a id="myLink">
-                        <img alt="Medidores do usu&aacute;rio" src="${pageContext.request.contextPath}/images/bin_user.png" />
+                        <label rel="tooltip" title="Como você interpreta esta imagem?"><img src="${pageContext.request.contextPath}/images/bin_user.png" /></label>
                     </a>
                     &nbsp;&nbsp;
                     <a id="avgLink">
-                        <img src="${pageContext.request.contextPath}/images/bin_avg.png" alt="M&eacute;dia" />
+                        <label rel="tooltip" title="Veja a média das avaliações desta imagem."><img src="${pageContext.request.contextPath}/images/bin_avg.png" /></label>
                     </a>
                 </div>
+                
                 <div id="binomialsWrap">
                     <div id="binomialsUser">
                         <binomial:userAverage entity="${photo}" manager="${binomialMgr}" user="${sessionScope.userLogin}" name="userBin"
