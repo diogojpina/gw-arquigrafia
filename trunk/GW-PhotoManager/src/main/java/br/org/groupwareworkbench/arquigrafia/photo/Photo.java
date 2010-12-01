@@ -256,14 +256,14 @@ public class Photo implements Serializable {
                 .list("dataCriacao DESC");
     }
 
-    public static List<Photo> busca(Collablet collablet, String nome, String lugar, String descricao, Date date) {
+    public static List<Photo> busca(Collablet collablet, String nome, String cidade, String descricao, Date date) {
         if (collablet == null) throw new IllegalArgumentException();
 
         QueryBuilder<Photo> q = QueryBuilder.query(Photo.class).with("collablet", collablet);
 
         if (!nome.isEmpty()) q.with("nome", "%" + nome.toUpperCase() + "%").upper().like();
         if (!descricao.isEmpty()) q.with("descricao", "%" + descricao.toUpperCase() + "%").upper().like();
-        if (!lugar.isEmpty()) q.with("lugar", "%" + lugar.toUpperCase() + "%").upper().like();
+        if (!cidade.isEmpty()) q.with("cidade", "%" + cidade.toUpperCase() + "%").upper().like();
         if (date != null) q.withDay("dataCriacao", date);
 
         return q.list();

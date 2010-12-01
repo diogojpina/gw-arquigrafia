@@ -262,9 +262,8 @@ public class PhotoControllerTest {
             Assert.fail();
         } catch (ValidationException e) {
             List<String> outMensagens = listErrors(e);
-            Assert.assertTrue(outMensagens.contains(PhotoController.MSG_NOME_OBRIGATORIO));
             Assert.assertTrue(outMensagens.contains(PhotoController.MSG_IMAGEM_OBRIGATORIA));
-            Assert.assertEquals(2, outMensagens.size());
+            Assert.assertEquals(1, outMensagens.size());
         }
     }
 
@@ -281,22 +280,6 @@ public class PhotoControllerTest {
         } catch (ValidationException e) {
             List<String> outMensagens = listErrors(e);
             Assert.assertTrue(outMensagens.contains(PhotoController.MSG_IMAGEM_OBRIGATORIA));
-            Assert.assertEquals(1, outMensagens.size());
-        }
-    }
-
-    @Test
-    public void testSaveWithoutName() {        
-        Photo quatro = new Photo();
-        quatro.setCollablet(collablet);
-        quatro.setNome("");
-
-        try {
-            controller.save(quatro, getImage(), photoInstance, null);
-            Assert.fail();
-        } catch (ValidationException e) {
-            List<String> outMensagens = listErrors(e);
-            Assert.assertTrue(outMensagens.contains(PhotoController.MSG_NOME_OBRIGATORIO));
             Assert.assertEquals(1, outMensagens.size());
         }
     }
