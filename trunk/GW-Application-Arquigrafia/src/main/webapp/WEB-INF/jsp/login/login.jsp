@@ -12,13 +12,6 @@
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css" />
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/login.css" />
 		<script type="text/javascript">
-           	function showAboutArquigrafia() {
-              	new Boxy($("#aboutDiv").html(), {
-               	title: "Sobre o Arquigrafia",
-               	modal: true,
-               	closeText: "Fechar"
-             	}).show();
-    		}
     		function setFocus() {
       			var loginForm = document.getElementById("usuariosForm");
       			if (loginForm) {
@@ -28,12 +21,6 @@
  		</script>
     </head>
     <body onload="setFocus();">
-
-		<div id="aboutDiv" style="visibility: hidden; display: none;">
-			<iframe name="aboutContentFrame" style="width: 450px; height: 500px; opacity: 0.95;" id="aboutContentFrame"
-				src="${pageContext.request.contextPath}/groupware-workbench/photo/about.jsp">
-			</iframe>
-		</div>
 
 		<form id="usuariosForm" method="post" name="loginForm" action="<c:url value="/groupware-workbench/users/${userMgr.id}/login" />">
             <div class="login_box">
@@ -70,8 +57,5 @@
     	    	</div>
             </div>
         </form>
-    	<!-- <div class="login_messages">
-	    	<a href="#" onclick="return showAboutArquigrafia();">Sobre Arquigrafia</a>&nbsp;&nbsp;&nbsp;&nbsp;
-    	</div> -->
     </body>
 </html>

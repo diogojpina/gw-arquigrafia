@@ -14,13 +14,14 @@
 
         steps.each(function(i) {
             $(this).wrap("<div id='step" + i + "'></div>");
-            $(this).append("<div id='step" + i + "commands' style='clear:both'></div>");
+            $(this).append("<div id='step" + i + "commands' style='clear:both;margin:10px; bottom: 0; position: absolute; width:760px; text-align:right;'></div>");
 
             // 2
             var name = $(this).find("legend").html();
             $("#steps").append("<li id='stepDesc" + i + "'>Passo " + (i + 1) + "<span>" + name + "</span></li>");
 
             if (i == 0) {
+            	createSubmitButton(i);
                 createNextButton(i);
                 selectStep(i);
             } else if (i == count - 1) {
@@ -30,6 +31,7 @@
             } else {
                 $("#step" + i).hide();
                 createPrevButton(i);
+                createSubmitButton(i);
                 createNextButton(i);
             }
         });
@@ -58,9 +60,9 @@
 
         function createSubmitButton(i) {
             var stepName = "step" + i;
-            $("#" + stepName + "commands").append("<a href='#' id='" + stepName + "Next' class='next'>Salvar</a>");
+            $("#" + stepName + "commands").append("<a href='#' id='" + stepName + "Sub' class='sub'>Fazer upload</a>");
 
-            $("#" + stepName + "Next").bind("click", function(e) {
+            $("#" + stepName + "Sub").bind("click", function(e) {
                 $(element).submit();
             });
         }

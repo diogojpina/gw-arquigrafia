@@ -58,7 +58,7 @@ legend {
 fieldset {
 }
 
-.prev, .next { 
+.prev, .next, .sub { 
 	background-color:#003399;
 	padding:5px 10px;
 	color:#fff;
@@ -69,10 +69,10 @@ fieldset {
 	-moz-border-radius: 5px;
 	border-radius: 5px;
 	font-family:arial;
+	margin-right: 5px;
 }
-.prev:hover, .next:hover { background-color:#0033CC; text-decoration:none;}
-.prev { float:left;}
-.next { float:right;}
+.prev:hover, .next:hover, .sub:hover { background-color:#0033CC; text-decoration:none;}
+
 #steps { list-style:none; width:100%; overflow:hidden; margin:0px; padding:0px;}
 #steps li {font-size:24px; float:left; padding:10px; color:#b0b1b3;}
 #steps li span {font-size:11px; display:block;}

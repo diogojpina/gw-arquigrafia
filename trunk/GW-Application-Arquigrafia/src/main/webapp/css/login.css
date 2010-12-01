@@ -39,7 +39,7 @@
     -webkit-border-radius: 10px;
     border-radius: 10px;
     background: url("../images/arq_login.jpg");
-    height: 250px;
+    height: 245px;
     width: 450px;
 }
 
@@ -56,25 +56,22 @@
 .login_fields {
     margin-top: 100px;
     padding: 15px;
-    background: white;
 }
 
 .login_fields_1 {
     float: left;
     padding-bottom: 15px;
-    background: white;
 }
 
 .login_fields_2 {
     padding-left: 4px;
     float: left;
     padding-bottom: 15px;
-    background: white;
 }
 
 .login_button {
     padding-left: 7px;
-    padding-top: 0px;
+    padding-top: 15px;
     float: right;
     padding-bottom: 15px;
 }
