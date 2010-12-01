@@ -52,7 +52,7 @@ public class PhotoController {
     public static final String MSG_MIN_3_LETRAS = "Você deve digitar no mínimo 3 letras.";
     public static final String MSG_NENHUM_CAMPO_PREENCHIDO = "Nenhum campo foi preenchido.";
     public static final String MSG_NOME_OBRIGATORIO = "O nome é obrigatório.";
-    public static final String MSG_IMAGEM_OBRIGATORIA = "Uma imagem é obrigatória.";
+    public static final String MSG_IMAGEM_OBRIGATORIA = "O arquivo deve ser informado.";
     public static final String MSG_NAO_FOI_POSSIVEL_REDIMENSIONAR = "Não foi possível redimensionar a imagem.";
     public static final String MSG_FALHA_NO_UPLOAD = "Falha ao fazer o upload da imagem.";
     public static final String MSG_IMAGEM_INVALIDA = "O arquivo não foi reconhecido como uma imagem válida.";
