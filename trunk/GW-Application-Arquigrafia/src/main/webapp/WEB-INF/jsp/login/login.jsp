@@ -47,14 +47,12 @@
                         <c:if test="${sessionScope['log'] == false}">
                             <span class="login_error">Login ou senha incorretos</span>
                         </c:if>
-                        <span class="login_link">
-                            <a href="<c:url value="/groupware-workbench/users/${userMgr.id}/forgotPassword" />">Esqueceu a senha?</a>&nbsp;&nbsp;&nbsp;&nbsp;
-                        </span>
                     </div>
                 </c:if>
-                <div class="login_messages">
-	        		<a href="${pageContext.request.contextPath}/groupware-workbench/users/${userMgr.id}/register">Cadastre-se</a>&nbsp;&nbsp;&nbsp;&nbsp;
-    	    	</div>
+            </div>
+            <div class="info_box">
+            <h1 class="title_text">Bem vindo ao Arquigrafia-Brasil! </h1>
+            <p class="info_text">O projeto Arquigrafia-Brasil propõe a construção coletiva e colaborativa de um acervo digital de imagens da arquitetura brasileira. Valendo-se da dinâmica de um rede social na Web 2.0, o Arquigrafia poderá reunir fotografias, desenhos e vídeos de todos os recantos do país, produzidos por arquitetos, estudantes, professores, fotógrafos e pessoas interessadas em arquitetura, conformando assim um acervo iconográfico da arquitetura brasileira, que depois poderá ser ampliado à arquitetura mundial. Disponível on line para acesso convencional e em dispositivos móveis (Android), esse acervo de imagens digitais em contínua expansão é aberto ao público, garantindo contudo o gerenciamento dos direitos autorais sobre as imagens.   </p>
             </div>
         </form>
     </body>
