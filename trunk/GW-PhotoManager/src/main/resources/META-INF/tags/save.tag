@@ -56,7 +56,7 @@
        <legend>Nome e Descri&ccedil;&atilde;o</legend>
        <div class="${formLineClass}">
            <label for="photoRegister.nome" class="${formLabelClass}">
-               <span>Nome*:</span>
+               <span>Nome:</span>
            </label>
            <span class="${formInputClass}">
                <input type="text" name="photoRegister.nome" value="<c:out value="${photoRegister.nome}" />" />
@@ -69,8 +69,9 @@
            <textarea rows="3" name="photoRegister.descricao" class="${formInputClass}"><c:out value="${photoRegister.descricao}" /></textarea>
        </div>
     </fieldset>
+    
     <fieldset>
-        <legend>Data e Localiza&ccedil;&atilde;o</legend>
+        <legend>Data e Informa&ccedil;&otilde;es arquitetonicas</legend>
         <div class="${formLineClass}">
             <label for="photoRegister.dataCriacao" class="${formLabelClass}">
                 <span>Data da foto:</span>
@@ -80,17 +81,51 @@
             </span>
         </div>
         <div class="${formLineClass}">
-            <label for="photoRegister.lugar" class="${formLabelClass}">
-                <span>Localiza&ccedil;&atilde;o:</span>
+            <label for="photoRegister.infoArquitetonicas" class="${formLabelClass}">
+                <span>Informa&ccedil;&otilde;es arquitetonicas:</span>
             </label>
             <span class="${formInputClass}">
-                <input type="text" name="photoRegister.lugar" value="<c:out value="${photoRegister.lugar}" />" />
-            </span>
-            <span class="${formInputClass}">
-                <gmaps:setGeoref geoReferenceMgr="${geoReferenceMgr}" entity="${photoRegister}" />
+                <textarea name="photoRegister.infArquitetonicas" >${photoRegister.infArquitetonicas}</textarea>
             </span>
         </div>
     </fieldset>
+    
+    <fieldset>
+        <legend>Localiza&ccedil;&atilde;o e Direitos Autorais</legend>
+        <div class="${formLineClass}">
+            <label for="photoRegister.cidade" class="${formLabelClass}">
+                <span>Cidade:</span>
+            </label>
+            <span class="${formInputClass}">
+                <input type="text" name="photoRegister.cidade" value="<c:out value="${photoRegister.cidade}" />" />
+            </span>
+        </div>
+        <div class="${formLineClass}">
+            <label for="photoRegister.estado" class="${formLabelClass}">
+                <span>Estado:</span>
+            </label>
+            <span class="${formInputClass}">
+                <input type="text" name="photoRegister.estado" value="<c:out value="${photoRegister.estado}" />" />
+            </span>            
+        </div>
+        <div class="${formLineClass}">
+            <label for="photoRegister.pais" class="${formLabelClass}">
+                <span>Pais:</span>
+            </label>
+            <span class="${formInputClass}">
+                <input type="text" name="photoRegister.pais" value="<c:out value="${photoRegister.pais}" />" />
+            </span>            
+        </div>
+        <div class="${formLineClass}">
+            <label for="photoRegister.direitosAutorais" class="${formLabelClass}">
+                <span>Direitos Autorais:</span>
+            </label>
+            <span class="${formInputClass}">
+                <input type="text" name="photoRegister.direitosAutorais" value="<c:out value="${photoRegister.direitosAutorais}" />" />
+            </span>
+        </div>
+    </fieldset>
+
     <c:if test="${tagMgr.collablet.enabled}">
         <fieldset>
             <legend>Dados Adicionais</legend>

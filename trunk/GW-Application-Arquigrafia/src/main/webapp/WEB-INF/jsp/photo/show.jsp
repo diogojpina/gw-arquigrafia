@@ -158,11 +158,31 @@
                             Resolu&ccedil;&atilde;o: <c:out value="${photo.resolution}" />
                         </div>
                     </c:if>--%>
-                    <c:if test="${not empty photo.lugar}">
+                    <c:if test="${not empty photo.cidade}">
                         <div style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; color: #6A8A9A; padding-left: 20px; margin-top: 5px;">
-                            Local: <c:out value="${photo.lugar}" />
+                            Cidade: <c:out value="${photo.cidade}" />
                         </div>
                     </c:if>
+                    <c:if test="${not empty photo.estado}">
+                        <div style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; color: #6A8A9A; padding-left: 20px; margin-top: 5px;">
+                            Estado: <c:out value="${photo.cidade}" />
+                        </div>
+                    </c:if>
+                    <c:if test="${not empty photo.pais}">
+                        <div style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; color: #6A8A9A; padding-left: 20px; margin-top: 5px;">
+                            Pais: <c:out value="${photo.cidade}" />
+                        </div>
+                    </c:if>
+                    <c:if test="${not empty photo.direitosAutorais}">
+                        <div style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; color: #6A8A9A; padding-left: 20px; margin-top: 5px;">
+                            Direitos Autorais: <c:out value="${photo.direitosAutorais}" />
+                        </div>
+                    </c:if>
+                    <c:if test="${not empty photo.infArquitetonicas}">
+                        <div style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; color: #6A8A9A; padding-left: 20px; margin-top: 5px;">
+                            Informa&ccedil;&otilde;es Arquitetonicas: <c:out value="${photo.infArquitetonicas}" />
+                        </div>
+                    </c:if>             
                 </div>
                 <c:if test="${not empty photo.descricao}">
                     <div id="descriptionWrap">

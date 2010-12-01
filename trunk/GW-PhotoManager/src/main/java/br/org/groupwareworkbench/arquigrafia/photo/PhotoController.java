@@ -261,10 +261,6 @@ public class PhotoController {
         result.include("photoRegister", photoRegister);
 
         boolean erro = false;
-        if (photoRegister.getNome().isEmpty()) {
-            validator.add(new ValidationMessage(MSG_NOME_OBRIGATORIO, "Erro"));
-            erro = true;
-        }
         if (foto == null) {
             validator.add(new ValidationMessage(MSG_IMAGEM_OBRIGATORIA, "Erro"));
             erro = true;

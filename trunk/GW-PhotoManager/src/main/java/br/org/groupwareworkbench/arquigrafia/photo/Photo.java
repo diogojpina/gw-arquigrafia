@@ -82,10 +82,18 @@ public class Photo implements Serializable {
 
     private String descricao;
 
-    private String lugar;
-
     @Temporal(TemporalType.DATE)
     private Date dataCriacao;
+    
+    
+    private String direitosAutorais;
+    private String cidade;
+    private String estado;
+    private String pais;
+    
+    private String infArquitetonicas;
+    
+    
 
     // FIXME: ManyToMany!? Por quê? Aliás, esta lista não é usada nunca!
     @ManyToMany
@@ -303,14 +311,6 @@ public class Photo implements Serializable {
         this.descricao = descricao;
     }
 
-    public String getLugar() {
-        return lugar;
-    }
-
-    public void setLugar(String lugar) {
-        this.lugar = lugar;
-    }
-
     public Date getDataCriacao() {
         return dataCriacao == null ? null : (Date) dataCriacao.clone();
     }
@@ -339,5 +339,45 @@ public class Photo implements Serializable {
 
     public void setCollablet(Collablet collablet) {
         this.collablet = collablet;
+    }
+
+    public String getDireitosAutorais() {
+        return direitosAutorais;
+    }
+
+    public void setDireitosAutorais(String direitosAutorais) {
+        this.direitosAutorais = direitosAutorais;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public String getPais() {
+        return pais;
+    }
+
+    public void setPais(String pais) {
+        this.pais = pais;
+    }
+
+    public String getInfArquitetonicas() {
+        return infArquitetonicas;
+    }
+
+    public void setInfArquitetonicas(String infArquitetonicas) {
+        this.infArquitetonicas = infArquitetonicas;
     }
 }

@@ -34,7 +34,7 @@
         <a href="${pageContext.request.contextPath}/groupware-workbench/photo/${photoInstance.id}/index">In&iacute;cio</a>
         &nbsp;|&nbsp;
         <div id="photoUploadContent" style="visibility: hidden; display: none;">
-            <iframe name="photoUploadFrame" style="width: 600px; height: 400px; opacity: 0.95;" id="photoUploadFrame" src="${pageContext.request.contextPath}/groupware-workbench/photo/${photoInstance.id}/registra"></iframe>
+            <iframe name="photoUploadFrame" style="width: 800px; height: 400px; opacity: 0.95;" id="photoUploadFrame" src="${pageContext.request.contextPath}/groupware-workbench/photo/${photoInstance.id}/registra"></iframe>
         </div>
         
         <div id="albumObjectsDiv" style="visibility: hidden; display: none;">
