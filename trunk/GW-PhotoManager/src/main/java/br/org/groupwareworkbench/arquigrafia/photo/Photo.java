@@ -30,6 +30,7 @@ import java.io.Serializable;
 
 import java.text.SimpleDateFormat;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -84,19 +85,18 @@ public class Photo implements Serializable {
 
     @Temporal(TemporalType.DATE)
     private Date dataCriacao;
-    
+
     @Temporal(TemporalType.DATE)
     private Date dataUpload;
 
-    
+
     private String direitosAutorais;
     private String cidade;
     private String estado;
     private String pais;
-    
+
     private String infArquitetonicas;
-    
-    
+
 
     // FIXME: ManyToMany!? Por quê? Aliás, esta lista não é usada nunca!
     @ManyToMany
@@ -126,6 +126,7 @@ public class Photo implements Serializable {
     }
 
     public void save() {
+        this.setDataUpload(Calendar.getInstance().getTime());
         DAO.save(this);
     }
 
@@ -256,8 +257,9 @@ public class Photo implements Serializable {
                 .with("collablet", collablet)
                 .firstResult(firstElement)
                 .maxResults(pageSize)
-                .list("dataCriacao ASC");
+                .list("dataUpload DESC");
     }
+
 
     public static List<Photo> busca(Collablet collablet, String nome, String cidade, String descricao, Date date) {
         if (collablet == null) throw new IllegalArgumentException();
@@ -325,22 +327,16 @@ public class Photo implements Serializable {
     }
 
     public void setDataCriacao(Date dataCriacao) {
-        this.dataCriacao = (dataCriacao == null ? null : (Date) dataCriacao.clone());
+        this.dataCriacao = dataCriacao == null ? null : (Date) dataCriacao.clone();
     }
-    
+
     public Date getDataUpload() {
         return dataUpload == null ? null : (Date) dataUpload.clone();
     }
 
-    public String getDataUploadFormatada() {
-        if (dataUpload == null) return null;
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-        return sdf.format(dataUpload);
-    }
-
     public void setDataUpload(Date dataUpload) {
-        this.dataUpload = (dataUpload == null ? null : (Date) dataUpload.clone());
-    }    
+        this.dataUpload = dataUpload == null ? null : (Date) dataUpload.clone();
+    }
 
     public Long getId() {
         return id;

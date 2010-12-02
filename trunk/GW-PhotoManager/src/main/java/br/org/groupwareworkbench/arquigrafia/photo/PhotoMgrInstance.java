@@ -29,7 +29,7 @@ import br.org.groupwareworkbench.core.framework.annotations.ComponentInfo;
 import br.org.groupwareworkbench.core.framework.annotations.DefaultProperty;
 import br.org.groupwareworkbench.core.framework.annotations.RequiredProperty;
 
-@ComponentInfo(version = "0.1", 
+@ComponentInfo(version = "0.1",
         configurationURL = "/groupware-workbench/photo/{photoInstance}/index",
         retrieveURL = "/groupware-workbench/photo/{id}",
         defaultProperties = {
@@ -37,7 +37,7 @@ import br.org.groupwareworkbench.core.framework.annotations.RequiredProperty;
             @DefaultProperty(name = "thumbPrefix", defaultValue = "thumb_"),
             @DefaultProperty(name = "mostraPrefix", defaultValue = "mostra_")
         },
-        requiredProperties = {@RequiredProperty(name = "dirImages")})
+        requiredProperties = {@RequiredProperty(name = "dirImages") })
 public class PhotoMgrInstance extends AbstractBusiness {
 
     public PhotoMgrInstance(Collablet collablet) {

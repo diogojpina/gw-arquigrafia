@@ -140,7 +140,7 @@ public class PhotoController {
         PhotoMgrInstance photoInstance = (PhotoMgrInstance) photo.getCollablet().getBusinessObject();
         addIncludes(photoInstance);
         photoInstance.getCollablet().processWidgets(info, photo);
-        result.use(Results.representation()).from(photo).serialize();        
+        result.use(Results.representation()).from(photo).serialize();
     }
 
     @Get
@@ -174,7 +174,7 @@ public class PhotoController {
         }
 
         List<Photo> resultFotosBusca = photoInstance.buscaFoto(busca);
-        
+
         result.include("fotos", resultFotosBusca);
         result.include("searchTerm", busca);
 
@@ -349,7 +349,7 @@ public class PhotoController {
         List<Photo> photos = photoMgr.listPhotoByPageAndOrder(pageSize, pageNumber);
         result.use(Results.json()).from(photos).serialize();
     }
-    
+
     // TODO: About de Arquigrafia.
     @Get
     @Path(value = "/groupware-workbench/photo/about")

@@ -30,7 +30,7 @@
                 <div class="scrollWrapper">
                     <div id="footer_scroll_list" class="scrollableArea" >
                         <%-- Modelo para inserção de imagens aqui. --%>
-                        <photo:listPage linkClass="" photoInstance="${photoInstance}" keepRatio="true" pageSize="100" pageNumber="0" showInDiv="true"/>
+                        <photo:listPage linkClass="" photoInstance="${photoInstance}" keepRatio="true" pageSize="15" pageNumber="0" showInDiv="true"/>
                     </div>
                 </div>
                 </div>
