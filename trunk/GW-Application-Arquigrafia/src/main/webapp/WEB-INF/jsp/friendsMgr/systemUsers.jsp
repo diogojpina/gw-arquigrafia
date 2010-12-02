@@ -54,7 +54,7 @@
     </head>
     <body>
     	<arq:header2 photoInstance="${photoMgr}" />
-    	<div style="margin-top: 20px;background: white; width:100%; height:100%; min-height: 300px; margin-top: 0px;padding-top:0px;overflow: auto;">
+    	<div style="margin-top: 20px;background: white; width:100%; height:500px; min-height: 300px; margin-top: 0px;padding-top:0px;overflow: auto;">
     	<br />
     	<span class="big_black_title" style="text-align: right;" >Usu&aacute;rios do sistema</span>
     	<br />
@@ -63,7 +63,7 @@
                     <c:if test="${u.login != userLogin.login}">
 						<div style="float: left; margin: 20px auto; padding: 10px;" >
 							<div class="linha">
-                            	<img src="<c:out value="${u.photoURL}" />" alt="Foto do usu&aacute;rio" />
+                            	<img class="imagem_user" src="<c:out value="${u.photoURL}" />" alt="Foto do usu&aacute;rio" />
                             	&nbsp;
                             	<div class="coluna"> 
                             		<div class="linha">

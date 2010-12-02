@@ -37,7 +37,7 @@
 	    <script type="text/javascript" src="${pageContext.request.contextPath}/plugins/sds/js/jquery.smoothDivScroll-0.9-min.js"></script>
 	    <script type="text/javascript" src="${pageContext.request.contextPath}/plugins/sds/js/scroll.js"></script>
         <script  type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.boxy.js"></script>
-        
+
 	    <script type="text/javascript">
             $(document).ready(function() {
                 $("div#makeMeScrollable").smoothDivScroll({
@@ -63,9 +63,9 @@
 		<div id="info" class="default_info">
             <div id="cabecalho">
             	<br />
-                <img class="${friend_img}" alt="photo <c:out value="${friend.name}" />" src="${friend.photoURL}" />
+                <img class="imagem_user" alt="photo <c:out value="${friend.name}" />" src="${friend.photoURL}" />
                 <span class="big_black_title"><c:out value="${friend.name}" /></span>
-                <a class="blue_link" href="${pageContext.request.contextPath}/groupware-workbench/friends/${friendsMgr.id}/edit">Editar Amigos</a>
+                
                 <friends:sendRequest friendsMgr="${friendsMgr}" viewer="${userLogin}" viewed="${friend}" />
             </div>
             <br />

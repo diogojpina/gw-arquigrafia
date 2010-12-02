@@ -175,6 +175,11 @@ td {
 	cellpadding: 10;
 }
 
+.imagem_user {
+	width: 70px; 
+	height: 80px;
+}
+
 /* Tooltip */
 
 #tooltip {
