@@ -86,7 +86,7 @@ public class Photo implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date dataCriacao;
 
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date dataUpload;
 
 
