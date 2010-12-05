@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="w" uri="http://www.groupwareworkbench.org.br/widgets/commons" %>
+<%@ taglib prefix="arq" tagdir="/WEB-INF/tags" %>
 
 <html>
     <head>
@@ -11,6 +12,7 @@
         <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.ico" />
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css" />
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/login.css" />
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/know_more.css" />
 		<script type="text/javascript">
     		function setFocus() {
       			var loginForm = document.getElementById("usuariosForm");
@@ -50,10 +52,7 @@
                     </div>
                 </c:if>
             </div>
-            <div class="info_box">
-            <h1 class="title_text">Bem vindo ao Arquigrafia-Brasil! </h1>
-            <p class="info_text">O projeto Arquigrafia-Brasil propõe a construção coletiva e colaborativa de um acervo digital de imagens da arquitetura brasileira. Valendo-se da dinâmica de um rede social na Web 2.0, o Arquigrafia poderá reunir fotografias, desenhos e vídeos de todos os recantos do país, produzidos por arquitetos, estudantes, professores, fotógrafos e pessoas interessadas em arquitetura, conformando assim um acervo iconográfico da arquitetura brasileira, que depois poderá ser ampliado à arquitetura mundial. Disponível on line para acesso convencional e em dispositivos móveis (Android), esse acervo de imagens digitais em contínua expansão é aberto ao público, garantindo contudo o gerenciamento dos direitos autorais sobre as imagens.   </p>
-            </div>
         </form>
+        <arq:know_more />
     </body>
 </html>

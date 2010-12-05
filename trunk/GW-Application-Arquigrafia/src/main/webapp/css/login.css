@@ -32,7 +32,7 @@
     border-width: 1px;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 50px;
+    margin-top: 20px;
     background-color: white;
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
@@ -42,27 +42,6 @@
     width: 450px;
 }
 
-.info_box {
-    border-style: solid;
-    border-color: #666666;
-    border-width: 1px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 20px;
-    background-color: white;
-    -moz-border-radius: 10px;
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
-    width: 450px;
-}
-
-.info_text {
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: 14px;
-    color: #666666;
-    text-align: justify;
-    padding: 10px;
-}
 
 .title_text {
     font-family: Verdana, Arial, Helvetica, sans-serif;

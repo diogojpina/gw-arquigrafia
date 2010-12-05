@@ -14,7 +14,6 @@
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css" />
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/arq-common.css" />
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/header.css" />
-        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/know_more.css" />
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/forms.css"  />
         <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/plugins/sds/css/smoothDivScroll.css" />
         <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/bay.css" />
@@ -65,36 +64,20 @@
                                 <c:forEach begin="0" end="21" var="indice">
                                     <photo:listPage linkClass="" photoInstance="${photoMgr}" keepRatio="false" showInDiv="true" divClass="wallImage" pageSize="5" pageNumber="${indice}" wrapClass="imageColumn" />
                                 </c:forEach>
-                                <div class="image_placeholder">
-                                    <img src="${pageContext.request.contextPath}/images/ajax-loader.gif" alt="loading" />
-                                </div>
                             </div>
                             <div class="image_line">
-                                <div class="image_placeholder">
-                                    <img src="${pageContext.request.contextPath}/images/ajax-loader.gif" alt="loading" />
-                                </div>
                             </div>
                             <div class="image_line">
-                                <div class="image_placeholder">
-                                    <img src="${pageContext.request.contextPath}/images/ajax-loader.gif" alt="loading" />
-                                </div>
                             </div>
                             <div class="image_line">
-                                <div class="image_placeholder">
-                                    <img src="${pageContext.request.contextPath}/images/ajax-loader.gif" alt="loading" />
-                                </div>
                             </div>
                             <div class="image_line">
-                                <div class="image_placeholder">
-                                    <img src="${pageContext.request.contextPath}/images/ajax-loader.gif" alt="loading" />
-                                </div>
                             </div>
                             <script type="text/javascript" src="plugins/visual_lightbox/engine/js/visuallightbox.js" ></script>
                         </div>
                     </div>
                 </div>
             </div>
-            <arq:know_more />
             <div style="height: 30px; background-color: #fff"></div>
             <arq:footer photoInstance="${photoMgr}" />
         </div>
