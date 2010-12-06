@@ -22,6 +22,7 @@ package br.org.groupwareworkbench.collablet.coop.album;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -60,7 +61,7 @@ public class Album implements Serializable {
 
     private String title;
 
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date creationDate;
 
     private String description;
@@ -80,6 +81,7 @@ public class Album implements Serializable {
     /* Operations */
 
     public void save() {
+        this.setCreationDate(Calendar.getInstance().getTime());
         DAO.save(this);
     }
 

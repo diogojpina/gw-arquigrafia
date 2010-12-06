@@ -44,16 +44,20 @@ import javax.imageio.stream.FileImageOutputStream;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.Query;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.TypedQuery;
 
 import br.com.caelum.vraptor.interceptor.download.FileDownload;
 
 import br.org.groupwareworkbench.collablet.coord.user.User;
+import br.org.groupwareworkbench.core.bd.EntityManagerProvider;
 import br.org.groupwareworkbench.core.bd.ObjectDAO;
 import br.org.groupwareworkbench.core.bd.QueryBuilder;
 import br.org.groupwareworkbench.core.framework.Collablet;
@@ -246,6 +250,22 @@ public class Photo implements Serializable {
                 if (output != null) output.close();
             }
         }
+    }
+
+    public static List<Photo> listPhotoByUserPageAndOrder(Collablet collablet, User user, int pageSize, int pageNumber) {
+        if (collablet == null) throw new IllegalArgumentException();
+        if (user == null) throw new IllegalArgumentException();
+
+        int firstElement = pageNumber * pageSize;
+
+        String queryString = "SELECT p FROM Photo p JOIN p.users AS u WHERE p.collablet = :collablet AND u = :user ORDER BY p.dataUpload DESC";
+        EntityManager em = EntityManagerProvider.getEntityManager();
+        TypedQuery<Photo> query = em.createQuery(queryString, Photo.class);
+        query.setMaxResults(pageSize);
+        query.setFirstResult(firstElement);
+        query.setParameter("collablet", collablet);
+        query.setParameter("user", user);
+        return query.getResultList();
     }
 
     public static List<Photo> listPhotoByPageAndOrder(Collablet collablet, int pageSize, int pageNumber) {

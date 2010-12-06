@@ -4,18 +4,18 @@
 <%@ attribute name="albumMgr" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.collablet.coop.album.AlbumMgrInstance"%>
 <%@ attribute name="user" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.collablet.coord.user.User" %>
 <%@ attribute name="photo" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.arquigrafia.photo.Photo" %>
-
+<%@ attribute name="idButton" required="false" rtexprvalue="true" type="java.lang.String" %>
 <r:callMethod methodName="listByUser" instance="${albumMgr}" var="albums">
     <r:param type="br.org.groupwareworkbench.collablet.coord.user.User" value="${user}"/>
 </r:callMethod>
-
 <script type="text/javascript">
-$(function(){
+$(document).ready(function(){
      $("#modalPanel_adicionar").dialog({
          autoOpen: false,
          modal: true,
+         position: 'center',
          buttons: {
-           "Cancelar": function() {
+           "Fechar": function() {
                  $("#modalPanel_adicionar").dialog("close");
             },
            "Adicionar": function() {
@@ -29,13 +29,14 @@ $(function(){
            }
          }
      });
- });
+     $("#modalPanel_adicionar input:radio[name=radioAlbum]:first").attr("checked", "checked");
+});
 </script>
 
-<button onclick='$("#modalPanel_adicionar").dialog("open");' type="button">Adicionar no &aacute;lbum</button>
-<div id="modalPanel_adicionar">
+<button id="${idButton}" onclick='$("#modalPanel_adicionar").dialog("open");' type="button">Adicionar no &aacute;lbum</button>
+<div id="modalPanel_adicionar" title="Adicionar no album">
     <div>
-        <h2>&Aacute;lbums:</h2>
+        <h2>Escolha um &aacute;lbum para adicionar esta foto:</h2>
         <c:forEach items="${albums}" var="item">
             <div><input type="radio" name="radioAlbum" value="${item.id}">${item.title}</div>
         </c:forEach>

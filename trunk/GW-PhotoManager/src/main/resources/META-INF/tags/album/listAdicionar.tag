@@ -32,7 +32,7 @@ function calcMargins() {
 }
 function loadImages() {
 	calcMargins();
-    $.getJSON("${pageContext.request.contextPath}/groupware-workbench/photo/${photoMgr.id}/listbypage/"+pageSize+"/"+actualPage,
+    $.getJSON("${pageContext.request.contextPath}/groupware-workbench/photo/${photoMgr.id}/listbyuserpage/"+pageSize+"/"+actualPage,
              function(json) {
                sizeLastRequest = json.list.length;
                if(sizeLastRequest > 0) {
@@ -114,7 +114,7 @@ function upPage() {
 
 <div class="${classe}">
     <div class="component_header">
-        <span class="title">Fotos</span>
+        <span class="title">Minhas Imagens</span>
         <span style="float: right;">
             <span class="span_link anterior" onclick="downPage();">anterior</span>
             <span style="margin-left: 4px;"></span>

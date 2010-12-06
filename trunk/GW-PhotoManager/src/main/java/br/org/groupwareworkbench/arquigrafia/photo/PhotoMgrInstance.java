@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import br.org.groupwareworkbench.collablet.coord.user.User;
 import br.org.groupwareworkbench.core.framework.AbstractBusiness;
 import br.org.groupwareworkbench.core.framework.Collablet;
 import br.org.groupwareworkbench.core.framework.annotations.ComponentInfo;
@@ -89,5 +90,9 @@ public class PhotoMgrInstance extends AbstractBusiness {
 
     public String getMostraPrefix() {
         return getCollablet().getProperty("mostraPrefix");
+    }
+
+    public List<Photo> listPhotoByUserPageAndOrder(User user, int pageSize, int pageNumber) {
+        return Photo.listPhotoByUserPageAndOrder(getCollablet(), user, pageSize, pageNumber);
     }
 }

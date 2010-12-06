@@ -29,6 +29,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import br.com.caelum.vraptor.Delete;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
@@ -347,6 +349,14 @@ public class PhotoController {
     @Path("/groupware-workbench/photo/{photoMgr}/listbypage/{pageSize}/{pageNumber}")
     public void listByPageAndOrder(PhotoMgrInstance photoMgr, int pageSize, int pageNumber) {
         List<Photo> photos = photoMgr.listPhotoByPageAndOrder(pageSize, pageNumber);
+        result.use(Results.json()).from(photos).serialize();
+    }
+
+    @Get
+    @Path("/groupware-workbench/photo/{photoMgr}/listbyuserpage/{pageSize}/{pageNumber}")
+    public void listByUserPageAndOrder(PhotoMgrInstance photoMgr, int pageSize, int pageNumber) {
+        User  user = (User)info.getRequest().getSession().getAttribute("userLogin");
+        List<Photo> photos = photoMgr.listPhotoByUserPageAndOrder(user, pageSize, pageNumber);
         result.use(Results.json()).from(photos).serialize();
     }
 

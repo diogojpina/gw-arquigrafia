@@ -137,7 +137,7 @@
                     <div id="tags_right">
                     </div>
                     <div>
-                        <album:buttonAdd albumMgr="${albumMgr}" user="${userLogin}" photo="${photo}"/>
+                        <album:buttonAdd idButton="inputAddToAlbum" albumMgr="${albumMgr}" user="${userLogin}" photo="${photo}"/>
                     </div>
                 </div>
             </div>

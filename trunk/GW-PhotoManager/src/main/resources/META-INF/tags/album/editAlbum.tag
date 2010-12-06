@@ -42,27 +42,11 @@
 </script>
 
 <div class="${classe}">
+    <input type="hidden" name="album.urlCover" value="${pageContext.request.contextPath}/images/album_icon.png" />
     <div>
         <div class="label">T&iacute;tulo</div>
         <div><input type="text" name="album.title" value="${album.title}" /></div>
-    </div>
-    <div>
-        <div class="label">Data de cria&ccedil;&atilde;o:</div>
-        <div><input type="text" id="edithAlbum_dateInput" name="album.creationDate" value="${album.formattedCreationDate}" /></div>
-    </div>
-    <div>
-        <div class="label">Imagen da Capa</div>
-        <div>
-            <c:choose>
-                <c:when test="${album.id != null}">
-                    <input type="text" name="album.urlCover" value="${album.urlCover}" />
-                </c:when>
-                <c:otherwise>
-                    <input type="text" name="album.urlCover" value="${pageContext.request.contextPath}/images/album_icon.png" />
-                </c:otherwise>
-            </c:choose>
-        </div>
-    </div>
+    </div>    
     <div>
         <div class="label">Descri&ccedil;&atilde;o:</div>
         <div><textarea name="album.description">${album.description}</textarea></div>

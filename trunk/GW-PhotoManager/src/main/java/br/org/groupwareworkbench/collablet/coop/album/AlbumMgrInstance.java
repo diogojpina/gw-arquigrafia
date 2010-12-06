@@ -19,6 +19,8 @@
 */
 package br.org.groupwareworkbench.collablet.coop.album;
 
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -33,6 +35,7 @@ import br.org.groupwareworkbench.core.framework.annotations.ComponentInfo;
         retrieveURL = "/groupware-workbench/album/{albumMgr}/{idAlbum}"
 )
 public class AlbumMgrInstance extends AbstractBusiness {
+    public static String albumCoverPath="/GW-Application-Arquigrafia/images/album_icon.png";
 
     public AlbumMgrInstance(Collablet collablet) {
         super(collablet);
@@ -43,8 +46,23 @@ public class AlbumMgrInstance extends AbstractBusiness {
         album.save();
     }
 
+    private void createDefaultAlbum(User user) {
+        Album album = new Album();
+        album.setCreationDate(Calendar.getInstance().getTime());
+        album.setOwner(user);
+        album.setUrlCover(albumCoverPath);
+        album.setTitle("Meu arquigrafia");
+        album.setDescription("Meu album arquigrafia");
+        this.save(album);
+    }
+
     public List<Album> listByUser(User user) {
-        return Album.listByUser(user, getCollablet());
+        List<Album> albuns = Album.listByUser(user, getCollablet());
+        if(albuns.size() == 0) {
+            createDefaultAlbum(user);
+            albuns = Album.listByUser(user, getCollablet());
+        }
+        return albuns;
     }
 
     public Album getAlbumByDefault(User user) {

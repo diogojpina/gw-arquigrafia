@@ -75,7 +75,7 @@
         </div>
         <album:listAdicionar classe="list-adicionar" albumMgr="${albumMgr}" user="${userLogin}"/>
 
-        <div id="album_novo" class="text">
+        <div id="album_novo" class="text"  title="Novo álbum">
             <album:edit classe="edit-album" afterSaveFunction="afterSave" albumMgr="${albumMgr}"/>
         </div>
     </div>
