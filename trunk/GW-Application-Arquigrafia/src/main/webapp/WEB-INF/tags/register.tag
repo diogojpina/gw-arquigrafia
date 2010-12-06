@@ -17,7 +17,7 @@
         
 <div class="big_white_title" id="register_title">
     <div><img src="${pageContext.request.contextPath}/images/upload.png" alt="upload" />&nbsp;</div>
-    <div>Upload de Foto</div>
+    <div>Enviar Imagem</div>
 </div>
 <c:if test="${not empty errors}">
     <div id="errors">
@@ -29,7 +29,7 @@
 <c:if test="${not empty successMessage}">
     <div id="success" class="messages">
         <script type="text/javascript">
-            $("#success").show().delay(2000).slideUp(300);
+            $("#success").show().delay(10000).slideUp(300);
         </script>
         <c:out value="${successMessage}" />
     </div>

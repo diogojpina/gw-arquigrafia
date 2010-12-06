@@ -3,6 +3,7 @@
 <%@ taglib prefix="w" uri="http://www.groupwareworkbench.org.br/widgets/commons" %>
 <%@ taglib prefix="photo" uri="http://www.groupwareworkbench.org.br/widgets/photomanager" %>
 <%@ taglib prefix="tracker" uri="http://www.groupwareworkbench.org.br/widgets/tracker" %>
+<%@ taglib prefix="r" uri="http://www.groupwareworkbench.org.br/taglibs/reflection" %>
 
 <%@ attribute name="photoInstance" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.arquigrafia.photo.PhotoMgrInstance" %>
 
@@ -14,7 +15,7 @@
     </div>
     <div id="header_top_right">
         <div id="user_top_links">
-            <a href="#" class="black_link"><c:out value="${sessionScope.userLogin.name}" /></a>
+            <a href="${pageContext.request.contextPath}/groupware-workbench/friends/${friendsMgr.id}/show/${userLogin.id}" class="black_link"><c:out value="${sessionScope.userLogin.name}" /></a>
             &nbsp;&nbsp;
             <a href="<c:url value="/groupware-workbench/users/${userMgr.id}/logout" />" class="gray_link">sair</a>
         </div>
@@ -64,21 +65,24 @@
                 }).show();
             }
         </script>
-        <a href="#" onclick="return showPhotoUpload();">Upload de fotos</a>
+        <a href="#" onclick="return showPhotoUpload();">Enviar Imagem</a>
+        &nbsp;|&nbsp;
+        <a href="${pageContext.request.contextPath}/groupware-workbench/album/${albumMgr.id}">Álbum de Imagens</a>
         &nbsp;|&nbsp;
         <a href="${pageContext.request.contextPath}/groupware-workbench/friends/${friendsMgr.id}/show/${userLogin.id}" onclick="">Meu perfil</a>
         &nbsp;|&nbsp;
         <a href="${pageContext.request.contextPath}/groupware-workbench/friends/${friendsMgr.id}/system_users">Usu&aacute;rios do sistema</a>
-        &nbsp;|&nbsp;
-        <a href="${pageContext.request.contextPath}/groupware-workbench/users/${userMgr.id}/list">Gerenciar usu&aacute;rios</a>
-        &nbsp;|&nbsp;
-        <a href="${pageContext.request.contextPath}/groupware-workbench/manager/${manager.id}">Gerenciar aplica&ccedil;&atilde;o</a>
-        &nbsp;|&nbsp;
-        <a href="${pageContext.request.contextPath}/groupware-workbench/album/${albumMgr.id}">Álbum de Fotos</a>
-        &nbsp;|&nbsp;
-        <a href="${pageContext.request.contextPath}/groupware-workbench/tracker/${tracker.id}">Localizador de Usuários</a>
-        &nbsp;|&nbsp;
-        <a href="${pageContext.request.contextPath}/groupware-workbench/repository/${componentRepository.id}">Repositório Android</a>
+        <!-- TODO: solução temporária, aqui deve ser usado o papel e não o nome do usuário -->
+        <c:if test = "${sessionScope.userLogin.name == 'Administrador'}">  
+            &nbsp;|&nbsp;
+            <a href="${pageContext.request.contextPath}/groupware-workbench/users/${userMgr.id}/list">Gerenciar usu&aacute;rios</a>
+            &nbsp;|&nbsp;
+            <a href="${pageContext.request.contextPath}/groupware-workbench/manager/${manager.id}">Gerenciar aplica&ccedil;&atilde;o</a>
+            &nbsp;|&nbsp;
+            <a href="${pageContext.request.contextPath}/groupware-workbench/tracker/${tracker.id}">Localizador de Usuários</a>
+            &nbsp;|&nbsp;
+            <a href="${pageContext.request.contextPath}/groupware-workbench/repository/${componentRepository.id}">Repositório Android</a>
+        </c:if>
     </div>
     <div id="search_field">
         <img src="${pageContext.request.contextPath}/images/head1_left2_top.png" width="99" height="100" alt="campo de busca" />

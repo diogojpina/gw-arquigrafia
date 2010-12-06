@@ -60,7 +60,7 @@
 
         function createSubmitButton(i) {
             var stepName = "step" + i;
-            $("#" + stepName + "commands").append("<a href='#' id='" + stepName + "Sub' class='sub'>Fazer upload</a>");
+            $("#" + stepName + "commands").append("<a href='#' id='" + stepName + "Sub' class='sub'>Finalizar Envio</a>");
 
             $("#" + stepName + "Sub").bind("click", function(e) {
                 $(element).submit();

@@ -119,14 +119,6 @@
         <div class="${formLineClass}">
             <gmaps:setGeoref geoReferenceMgr="${geoReferenceMgr}" entity="${photoRegister}" />
         </div>
-        <div class="${formLineClass}">
-            <label for="photoRegister.direitosAutorais" class="${formLabelClass}">
-                <span>Direitos Autorais:</span>
-            </label>
-            <span class="${formInputClass}">
-                <input type="text" name="photoRegister.direitosAutorais" value="<c:out value="${photoRegister.direitosAutorais}" />" />
-            </span>            
-        </div>
     </fieldset>
 
     <c:if test="${tagMgr.collablet.enabled}">

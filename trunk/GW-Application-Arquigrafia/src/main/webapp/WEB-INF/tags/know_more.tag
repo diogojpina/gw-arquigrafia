@@ -10,16 +10,16 @@
     <div id="know_more_1">
         <img src="${pageContext.request.contextPath}/images/know_more_1.jpg" width="148" height="140" alt="compartilhe" />
         <h3>Compartilhe</h3>
-        <p>Compartilhe suas imagens com seus amigos, faça comentários e duscuta com seus amigos sobre suas fotos favoritas.</p>
+        <p>Compartilhe suas imagens com seus amigos, faça comentários e discuta com seus amigos sobre suas imagens favoritas.</p>
     </div>
     <div id="know_more_3">
         <img src="${pageContext.request.contextPath}/images/know_more_3.jpg" width="149" height="133" alt="localize" />
         <h3>Localize</h3>
-        <p>É possivel adicionar informações geográficas em suas imagens facilitando descobrir novidades perto de onde você está.</p>
+        <p>É possível adicionar informações geográficas em suas imagens facilitando descobrir novidades perto de onde você está.</p>
     </div>
     <div id="know_more_2">
         <img src="${pageContext.request.contextPath}/images/know_more_2.jpg" width="212" height="140" alt="busque e organize" />
         <h3>Busque e Organize</h3>
-        <p>Utilize a ferramenta de busca para ver todas as imagens compartilhadas. Organize também as imagens em albuns e com o <strong>"Meu arquigrafia"</strong> fica muito mais fácil para seus amigos verem suas contribuições.</p>
+        <p>Utilize a ferramenta de busca para ver todas as imagens compartilhadas. Organize também as imagens em álbuns e com o <strong>"Meu Arquigrafia"</strong> fica muito mais fácil para seus amigos verem suas contribuições.</p>
     </div>
 </div>
