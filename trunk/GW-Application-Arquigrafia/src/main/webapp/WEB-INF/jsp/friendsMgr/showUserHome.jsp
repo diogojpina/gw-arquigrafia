@@ -64,7 +64,15 @@
             	<br />
             	<div class="linha">
             	<div class="coluna" style="float: left;">
-                	<img class="imagem_user" alt="photo <c:out value="${friend.name}" />" src="${friend.photoURL}" />
+            		<c:choose>
+                    	<c:when test="${empty friend.photoURL}">
+	            			<img class="imagem_user" src="<c:url value="/images/users/default.jpg" />" />
+                        </c:when>
+            			<c:otherwise>
+            				<img class="imagem_user" src="${friend.photoURL}" />
+            			</c:otherwise>
+            		</c:choose>
+                	
                 </div>
                 <div class="coluna" style="float: left; width: 475px;">
                 	<div class="linha">

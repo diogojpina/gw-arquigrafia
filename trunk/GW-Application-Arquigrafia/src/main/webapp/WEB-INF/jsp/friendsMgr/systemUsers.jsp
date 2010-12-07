@@ -63,7 +63,16 @@
                     <c:if test="${u.login != userLogin.login}">
 						<div style="float: left; margin: 20px auto; padding: 10px;" >
 							<div class="linha">
-                            	<a href="${pageContext.request.contextPath}/groupware-workbench/friends/${friendsMgr.id}/show/${u.id}"><img class="imagem_user" src="<c:out value="${u.photoURL}" />" alt="Foto do usu&aacute;rio" /></a>
+                            	<a href="${pageContext.request.contextPath}/groupware-workbench/friends/${friendsMgr.id}/show/${u.id}">
+                            		<c:choose>
+                            			<c:when test="${empty u.photoURL}">
+	            							<img class="imagem_user" src="<c:url value="/images/users/default.jpg" />" />
+                            			</c:when>
+            							<c:otherwise>
+                            				<img class="imagem_user" src="<c:out value="${u.photoURL}" />" alt="Foto do usu&aacute;rio" />
+                            			</c:otherwise>
+            						</c:choose>
+                            	</a>
                             	&nbsp;
                             	<div class="coluna"> 
                             		<div class="linha">
