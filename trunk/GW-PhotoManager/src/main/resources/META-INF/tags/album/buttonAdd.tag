@@ -8,31 +8,6 @@
 <r:callMethod methodName="listByUser" instance="${albumMgr}" var="albums">
     <r:param type="br.org.groupwareworkbench.collablet.coord.user.User" value="${user}"/>
 </r:callMethod>
-<script type="text/javascript">
-$(document).ready(function(){
-     $("#modalPanel_adicionar").dialog({
-         autoOpen: false,
-         modal: true,
-         position: 'center',
-         buttons: {
-           "Fechar": function() {
-                 $("#modalPanel_adicionar").dialog("close");
-            },
-           "Adicionar": function() {
-                 var album = $("#modalPanel_adicionar input:radio[name=radioAlbum]:checked").val();
-                 if (album == null) {
-                     alert("Escolhe um &aacute;lbum");
-                 } else {
-                     $.post("${pageContext.request.contextPath}/groupware-workbench/album/${albumMgr.id}/add/"+album+"/"+${photo.id});
-                     $("#modalPanel_adicionar").dialog("close");
-                 }
-           }
-         }
-     });
-     $("#modalPanel_adicionar input:radio[name=radioAlbum]:first").attr("checked", "checked");
-});
-</script>
-
 <button id="${idButton}" onclick='$("#modalPanel_adicionar").dialog("open");' type="button">Adicionar no &aacute;lbum</button>
 <div id="modalPanel_adicionar" title="Adicionar no album">
     <div>

@@ -55,6 +55,31 @@
         </script>
         <binomial:scriptBinomial />
         <tag:scriptTags />
+        <script type="text/javascript">
+            $(document).ready(function(){
+                 $("#modalPanel_adicionar").dialog({
+                     autoOpen: false,
+                     modal: true,
+                     position: 'center',
+                     buttons: {
+                       "Fechar": function() {
+                             $("#modalPanel_adicionar").dialog("close");
+                        },
+                       "Adicionar": function() {
+                             var album = $("#modalPanel_adicionar input:radio[name=radioAlbum]:checked").val();
+                             if (album == null) {
+                                 alert("Escolhe um &aacute;lbum");
+                             } else {
+                                 $.post("${pageContext.request.contextPath}/groupware-workbench/album/${albumMgr.id}/add/"+album+"/"+${photo.id});
+                                 $("#modalPanel_adicionar").dialog("close");
+                             }
+                       }
+                     }
+                 });
+                 $("#modalPanel_adicionar input:radio[name=radioAlbum]:first").attr("checked", "checked");
+            });
+         </script>
+        
 
         <c:if test="${geoReferenceMgr.collablet.enabled}">
             <gmaps:scriptGeoReference geoReferenceMgr="${geoReferenceMgr}" entity="${photo}"/>
@@ -168,12 +193,12 @@
                     </c:if>
                     <c:if test="${not empty photo.estado}">
                         <div style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; color: #6A8A9A; padding-left: 20px; margin-top: 5px;">
-                            Estado: <c:out value="${photo.cidade}" />
+                            Estado: <c:out value="${photo.estado}" />
                         </div>
                     </c:if>
                     <c:if test="${not empty photo.pais}">
                         <div style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; color: #6A8A9A; padding-left: 20px; margin-top: 5px;">
-                            Pais: <c:out value="${photo.cidade}" />
+                            Pais: <c:out value="${photo.pais}" />
                         </div>
                     </c:if>
                     <c:if test="${not empty photo.direitosAutorais}">
@@ -183,7 +208,7 @@
                     </c:if>
                     <c:if test="${not empty photo.infArquitetonicas}">
                         <div style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; color: #6A8A9A; padding-left: 20px; margin-top: 5px;">
-                            Informa&ccedil;&otilde;es Arquitetonicas: <c:out value="${photo.infArquitetonicas}" />
+                            Informa&ccedil;&otilde;es arquitetonicas: <c:out value="${photo.infArquitetonicas}" />
                         </div>
                     </c:if>             
                 </div>
