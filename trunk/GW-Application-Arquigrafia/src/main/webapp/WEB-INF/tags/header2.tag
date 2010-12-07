@@ -20,6 +20,7 @@
             <a href="<c:url value="/groupware-workbench/users/${userMgr.id}/logout" />" class="gray_link">sair</a>
         </div>
         <div id="suggestions">
+<!--             <a href="${pageContext.request.contextPath}/groupware-workbench/users/${userMgr.id}/suggest" class="white_link">Sugest&otilde;es e Cr&iacute;ticas</a><br />  -->
             <a href="mailto:test@somewhere" class="white_link">Sugest&otilde;es e Cr&iacute;ticas</a><br />
             <a href="mailto:test@somewhere" class="white_link">Reportar Problema</a>
         </div>

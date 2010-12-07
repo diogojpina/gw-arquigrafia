@@ -55,7 +55,7 @@
                 <a href="http://www.ime.usp.br" target="_blanck"><img src="${pageContext.request.contextPath}/images/ime_logo.png" alt="IME" /></a>
             </div>
             <div style="float: left; width: 13%; margin-top: 20px;">
-                <a href="http://www.usp.br/fau/"target="_blanck"><img src="${pageContext.request.contextPath}/images/fau_logo.png" alt="FAU" /></a>
+                <a href="http://www.usp.br/fau/" target="_blanck"><img src="${pageContext.request.contextPath}/images/fau_logo.png" alt="FAU" /></a>
             </div>
             <div style="float: left; width: 13%; margin-top: 20px;">
                 <a href="http://www3.eca.usp.br/" target="_blanck"><img src="${pageContext.request.contextPath}/images/eca_logo.gif" alt="ECA" style="width: 114px" /></a>

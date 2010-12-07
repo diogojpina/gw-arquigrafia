@@ -60,30 +60,43 @@
     <body style="background: url(../../../../images/header_bg.jpg) no-repeat scroll 0 0 transparent;">
     	<arq:header2 photoInstance="${photoMgr}" />
 		<div id="corpo" class="default_div">
-		<div id="info" class="default_info">
-            <div id="cabecalho">
+			<div id="info" class="default_info">
             	<br />
-                <img class="imagem_user" alt="photo <c:out value="${friend.name}" />" src="${friend.photoURL}" />
-                <span class="big_black_title"><c:out value="${friend.name}" /></span>
-                
-                <friends:sendRequest friendsMgr="${friendsMgr}" viewer="${userLogin}" viewed="${friend}" />
-            </div>
+            	<div class="linha">
+            	<div class="coluna" style="float: left;">
+                	<img class="imagem_user" alt="photo <c:out value="${friend.name}" />" src="${friend.photoURL}" />
+                </div>
+                <div class="coluna" style="float: left; width: 475px;">
+                	<div class="linha">
+                	<span class="big_black_title"><c:out value="${friend.name}" /></span>
+                	</div>
+                	<div class="linha">
+	                <c:if test="${friend.id == userLogin.id}">
+    	            	<form class="cmxform" name="edit" method="POST" action="<c:url value="/groupware-workbench/user/edit" />" accept-charset="UTF-8" autocomplete="off">
+							<input type="hidden" id="idUser" name="idUser" value="<c:out value="${friend.id}" />" />
+            	    		<input type="submit"  name="Editar" value="Editar perfil" />  
+                		</form>
+	                </c:if>
+	               	<friends:sendRequest friendsMgr="${friendsMgr}" viewer="${userLogin}" viewed="${friend}" />
+               		</div>
+               	</div>
+               	<div class="coluna" style="float: left;">
+   	            	<friends:listFriends
+       	            	    user="${friend}"
+           	            	friendsMgr="${friendsMgr}" friendsHeader="friends_header"
+               	        	style="width: 400px;" />
+               	</div>
+               	</div>
             <br />
-
-            <div id="amigos" style="float: right;">
-                <friends:listFriends
-                        user="${userLogin}"
-                        friendsMgr="${friendsMgr}" friendsHeader="friends_header"
-                        style="width: 400px;" />
-            </div>
-
-            <div id="informacao" >
+            <div id="informacao" class="linha">
+            	<br />
+            	<br />
                 <c:if test="${profileMgr.collablet.enabled}">
                     <profile:showProfile profileMgr="${profileMgr}" user="${friend}" />
                 </c:if>
             </div>
-
-            <c:if test="${commentMgr2.collablet.enabled}">
+			<div class="linha">
+            	<c:if test="${commentMgr2.collablet.enabled}">
                 <div id="comentario" style="width: 750px;">
                     <form name="comments" method="post" enctype="multipart/form-data" action="<c:url value="/groupware-workbench/friends/${friendsMgr.id}/show/${friend.id}" />">
                         <div id="comments_bar">
@@ -122,8 +135,9 @@
                         </script>
                     </form>
                 </div>
-            </c:if>
+            	</c:if>
             </div>
+        </div>
         </div>
 	    <div>
             <div style="height: 30px; background-color: #fff"></div>

@@ -73,9 +73,8 @@
     <body onload="setFocus();">
         <arq:header2 photoInstance="${photoMgr}" />
         <div id="corpo" class="default_div">
-<!--			<div id="info" class="default_info">-->
 			<div id="info" style="display: block;width: 500px; margin-left: auto; margin-right: auto; margin-top: 10px;background: transparent;">
-        	<w:conteudoPagina titulo="Usu&aacute;rio">
+        	<w:conteudoPagina titulo="Perfil de Usu&aacute;rio">
             	<br />
             	<ul>
                 	<c:forEach var="error" items="${errors}">
@@ -83,7 +82,7 @@
                 	</c:forEach>
             	</ul>
 
-            	<form id="form1" class="cmxform" name="dados" method="POST" action="<c:url value="/groupware-workbench/users/${userMgr.id}" />" accept-charset="UTF-8" autocomplete="off">
+            	<form id="form1" class="cmxform" name="dados" method="POST" action="<c:url value="/groupware-workbench/users/${userMgr.id}/saveEdit" />" accept-charset="UTF-8" autocomplete="off">
                 	<input type="hidden" name="user.id" value="<c:out value="${user.id}" />" />
                 	<div class="form_1" id="user_retrieve_form">
                     <ul class="field_line_f1">
@@ -103,7 +102,7 @@
                         <li class="input_f1"><input id="name" class="required" type="text" name="user.name" value="<c:out value="${user.name}" />" /></li>
                     </ul>
                     <ul class="field_line_f1">
-                        <li class="label_f1"><span>URL da sua foto:</span></li>
+                        <li class="label_f1"><span>Endere&ccedil;o da sua foto:</span></li>
                         <li class="input_f1"><input id="photoURL" type="text" name="user.photoURL" value="<c:out value="${user.photoURL}" />" /></li>
                     </ul>
                 </div>
@@ -112,25 +111,16 @@
                     <profile:profile profileMgr="${profileMgr}" user="${user}" />
                 </c:if>
 
-                <c:if test="${roleMgr.collablet.enabled}">
-                    <div class="subsection_f1">
-                        <fieldset>
-                            <legend><span class="subtitle_f1">Atribuir pap&eacute;is:</span></legend>
-                            <role:selectRole roleMgr="${roleMgr}" user="${user}" />
-                        </fieldset>
-                    </div>
-                </c:if>
-
-                <div class="form_1">
+                <!-- <div class="form_1">
                     <ul class="bt_line_f1">
                         <li class="bt_cell_submit">
                             <input type="submit" class="botao" value="Ok" />
                         </li>
                     </ul>
-                </div>
+                </div>  -->
             </form>
-            <div class="barra_botoes" align="center">
-                <w:voltar collabletInstance="${userMgr.collablet}" />
+            <div class="voltar" align="center">
+               <button onclick="javascript:history.back(1);">Voltar</button>  
             </div>
         </w:conteudoPagina>
         </div>

@@ -359,11 +359,4 @@ public class PhotoController {
         List<Photo> photos = photoMgr.listPhotoByUserPageAndOrder(user, pageSize, pageNumber);
         result.use(Results.json()).from(photos).serialize();
     }
-
-    // TODO: About de Arquigrafia.
-    @Get
-    @Path(value = "/groupware-workbench/photo/about")
-    public void about(PhotoMgrInstance photoInstance) {
-        addIncludes(photoInstance);
-    }
 }
