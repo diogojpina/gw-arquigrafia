@@ -29,9 +29,6 @@
         <script type="text/javascript" src="${pageContext.request.contextPath}/plugins/sds/js/scroll.js"></script>
         <script type="text/javascript">
             $(document).ready(function() {
-            	$('span#msg').hide();
-            	$('span#subjectMsg').hide();
-            	
                 $("div#makeMeScrollable").smoothDivScroll({
                     scrollingSpeed: 12,
                     mouseDownSpeedBooster: 3,
@@ -46,20 +43,6 @@
                     startAtElementId: "startAtMe"
                 });
             });
-            function validaForm(){
-				d = document.formulario;
-            	if (d.subject.value == ""){
-            		$('span#subjectMsg').show();
-            	    d.subject.focus();
-            	    return false;
-				}
-				if (d.message.value == ""){
-					$('span#msg').show();
-          	        d.message.focus();
-          	        return false;
-          	    }
-          	    return true;
-          	 }
         </script>
         <script src="${pageContext.request.contextPath}/js/chili-1.7.pack.js" type="text/javascript" ></script>
         <script src="${pageContext.request.contextPath}/js/jquery.easing.js" type="text/javascript"></script>
@@ -72,34 +55,9 @@
         <div id="wrap">
             <arq:header2 photoInstance="${photoMgr}" />
 				<div id="corpo" class="default_div">
-				<form id="form1" class="cmxform" name="formulario" method="POST" action="<c:url value="/groupware-workbench/user/${userMgr.id}/sendEmail/${userLogin.id}" />" accept-charset="UTF-8" onSubmit="return validaForm()" autocomplete="off">
                 <div id="info" class="default_info">
-                	<span class="tituloPrincipal">Sugest&otilde;es e Cr&iacute;ticas:</span>
-                    <ul class="field_line_f1">
-                        <li class="label_f1"><span>Nome:</span></li>
-                        <li class="input_f1"><c:out value="${sessionScope.userLogin.name}" /></li>
-                    </ul>
-                    <ul class="field_line_f1">
-                        <li class="label_f1"><span>Assunto</span></li>
-                        <li class="input_f1">
-                        	<input id="subject" type="text" name="subject" value="" />
-                        	<span id="subjectMsg">O campo Assunto tem que ser preenchido</span>
-                        </li>
-                    </ul>
-                    <ul class="field_line_f1">
-                        <li class="label_f1"><span>Sugest&otilde;es e cr&iacute;ticas:</span></li>
-                        <li class="input_f1">
-                        	<input type="hidden" id="reason" name="reason" value="Sugest&otilde;es e cr&iacute;ticas:" />
-                        	<textarea rows="4" cols="60" id="message" name="message"></textarea>
-                        	<span id="msg">O campo tem que ser preenchido </span>
-                        </li>
-                    </ul>
-                    <br />
+                	<span class="input_f1" style="padding: 10px;">A sua mensagem foi encaminhada com &ecirc;xito. Obrigado por a sua colabora&ccedil;&atilde;o</span>
                 </div>
-                <div style="text-align: center;">
-	            	<input type="submit" class="botao" value="Enviar" />
-                </div>
-	            </form>
             </div>
             <div style="height: 30px; background-color: #fff"></div>
             <arq:footer photoInstance="${photoMgr}" />

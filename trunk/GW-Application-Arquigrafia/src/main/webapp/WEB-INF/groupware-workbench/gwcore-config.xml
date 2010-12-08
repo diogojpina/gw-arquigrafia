@@ -90,6 +90,10 @@
             <business>br.org.groupwareworkbench.collablet.coord.user.UserMgrInstance</business>
             <description>Gerenciar usuários</description>
             <name>userMgr</name>
+            <properties>
+                <property key="emailAdmin" value="arquigrafiabrasil@gmail.com" /> 
+                <property key="passwdAdmin" value="12345" />
+            </properties>    
         </collablet>
 
         <collablet>

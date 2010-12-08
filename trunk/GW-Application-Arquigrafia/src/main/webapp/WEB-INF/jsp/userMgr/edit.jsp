@@ -82,8 +82,9 @@
                 	</c:forEach>
             	</ul>
 
-            	<form id="form1" class="cmxform" name="dados" method="POST" action="<c:url value="/groupware-workbench/users/${userMgr.id}/saveEdit" />" accept-charset="UTF-8" autocomplete="off">
+            	<form id="form1" class="cmxform" name="dados" method="POST" action="<c:url value="/groupware-workbench/users/${userMgr.id}/saveWithUrl" />" accept-charset="UTF-8" autocomplete="off">
                 	<input type="hidden" name="user.id" value="<c:out value="${user.id}" />" />
+                	<input type="hidden" id="url" name="url" value="${url}" />
                 	<div class="form_1" id="user_retrieve_form">
                     <ul class="field_line_f1">
                         <li class="label_f1"><span>Login:</span></li>
@@ -111,13 +112,13 @@
                     <profile:profile profileMgr="${profileMgr}" user="${user}" />
                 </c:if>
 
-                <!-- <div class="form_1">
+                <div class="form_1">
                     <ul class="bt_line_f1">
                         <li class="bt_cell_submit">
                             <input type="submit" class="botao" value="Ok" />
                         </li>
                     </ul>
-                </div>  -->
+                </div>
             </form>
             <div class="voltar" align="center">
                <button onclick="javascript:history.back(1);">Voltar</button>  

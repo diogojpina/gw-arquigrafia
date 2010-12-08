@@ -55,13 +55,20 @@
                 });
             });
         </script>
-        
     </head>
     <body style="background: url(../../../../images/header_bg.jpg) no-repeat scroll 0 0 transparent;">
     	<arq:header2 photoInstance="${photoMgr}" />
 		<div id="corpo" class="default_div">
 			<div id="info" class="default_info">
             	<br />
+            	<div class="linha">
+					<c:if test="${not empty pending}">
+						<h4 style="color: #DF4C32;font-family: Arial,Helvetica,sans-serif;font-size: 12px;font-weight: bold;">
+							Voc&ecirc; tem ${pending} convite(s)  novo(s);
+						</h4>
+						<br />
+					</c:if>
+				</div>
             	<div class="linha">
             	<div class="coluna" style="float: left;">
             		<c:choose>
@@ -82,6 +89,7 @@
 	                <c:if test="${friend.id == userLogin.id}">
     	            	<form class="cmxform" name="edit" method="POST" action="<c:url value="/groupware-workbench/user/edit" />" accept-charset="UTF-8" autocomplete="off">
 							<input type="hidden" id="idUser" name="idUser" value="<c:out value="${friend.id}" />" />
+							<input type="hidden" id="url" name="url" value="/groupware-workbench/friends/${friendsMgr.id}/show/${friend.id}" />
             	    		<input type="submit"  name="Editar" value="Editar perfil" />  
                 		</form>
 	                </c:if>

@@ -74,7 +74,7 @@
 				<div id="corpo" class="default_div">
 				<form id="form1" class="cmxform" name="formulario" method="POST" action="<c:url value="/groupware-workbench/user/${userMgr.id}/sendEmail/${userLogin.id}" />" accept-charset="UTF-8" onSubmit="return validaForm()" autocomplete="off">
                 <div id="info" class="default_info">
-                	<span class="tituloPrincipal">Sugest&otilde;es e Cr&iacute;ticas:</span>
+                	<span class="tituloPrincipal"> Reportar problemas:</span>
                     <ul class="field_line_f1">
                         <li class="label_f1"><span>Nome:</span></li>
                         <li class="input_f1"><c:out value="${sessionScope.userLogin.name}" /></li>
@@ -87,10 +87,10 @@
                         </li>
                     </ul>
                     <ul class="field_line_f1">
-                        <li class="label_f1"><span>Sugest&otilde;es e cr&iacute;ticas:</span></li>
+                        <li class="label_f1"><span>Reporte o problema:</span></li>
                         <li class="input_f1">
-                        	<input type="hidden" id="reason" name="reason" value="Sugest&otilde;es e cr&iacute;ticas:" />
-                        	<textarea rows="4" cols="60" id="message" name="message"></textarea>
+                        	<input type="hidden" id="reason" name="reason" value="Reporte de problema: " />
+                        	<textarea rows="4" cols="60" id="message" name="message"> </textarea>
                         	<span id="msg">O campo tem que ser preenchido </span>
                         </li>
                     </ul>
