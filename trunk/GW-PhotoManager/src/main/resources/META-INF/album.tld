@@ -12,6 +12,10 @@
     <path>/META-INF/tags/album/buttonAdd.tag</path>
   </tag-file>
   <tag-file>
+    <name>buttonAdd-script</name>
+    <path>/META-INF/tags/album/buttonAdd-script.tag</path>
+  </tag-file>
+  <tag-file>
     <name>album</name>
     <path>/META-INF/tags/album/album.tag</path>
   </tag-file>  

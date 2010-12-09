@@ -15,6 +15,7 @@ var pageSize = 32;
 var actualPage = 0;
 var sizeLastRequest = pageSize;
 var marginLeft = 0;
+var dialog;
 
 
 $(window).resize( function(){
@@ -58,11 +59,12 @@ function loadImages() {
 }
 
 $(document).ready(function(){
- $("#modalPanel").dialog({
+/*
+    $("#modalPanel").dialog({
      autoOpen: false,
      modal: true,
      buttons: {
-       "Cancelar": function() {
+       "Fechar": function() {
              $("#modalPanel").dialog("close");
         },
        "Adicionar": function() {
@@ -77,12 +79,31 @@ $(document).ready(function(){
        }
      }
      });
- loadImages();
+*/
+    $(".modalPanel_adicionar input:radio[name=radioAlbum]:first").attr("checked", "checked");
+    dialog = new Boxy($(".modalPanel_adicionar"),{
+        title: "Adicionar no album",
+        closeable: false,
+        modal: true,
+        }).hide();
+    loadImages();
 });
+
+function closeDialog() {
+    dialog.hide();
+}
+
+function addToAlbum() {
+	var object = $("#modalPanel_hidden").val();
+    var album = $(".modalPanel_adicionar input:radio[name=radioAlbum]:checked").val();
+    $.post("${pageContext.request.contextPath}/groupware-workbench/album/${albumMgr.id}/add/"+album+"/"+object, function(data){
+    	dialog.hide();
+    });
+}
 
 function openPanel(idPhoto) {
      $("#modalPanel_hidden").val(idPhoto);
-     $("#modalPanel").dialog("open");
+     dialog.show();
 }
 
 function downPage(){
@@ -113,6 +134,7 @@ function upPage() {
 </script>
 
 <div class="${classe}">
+    <input type="hidden" id="modalPanel_hidden"/>
     <div class="component_header">
         <span class="title">Minhas Imagens</span>
         <span style="float: right;">
@@ -124,12 +146,15 @@ function upPage() {
     <ul id="listPhotos" style="list-style: none;"></ul>
 </div>
 
-<div id="modalPanel">
+<div class="modalPanel_adicionar" title="Adicionar no album">
     <div>
-        <h2>&Aacute;lbums:</h2>
-        <input id="modalPanel_hidden" type="hidden"/>
+        <h2>Escolha um &aacute;lbum para adicionar esta foto:</h2>
         <c:forEach items="${albums}" var="item">
-            <div><input type="radio" name="radioAlbum" value="${item.id}">${item.title}</div>
-        </c:forEach>
+            <div><input type="radio" name="radioAlbum" value="${item.id}"> ${item.title}</div>
+        </c:forEach>        
+    </div>
+    <div class="controls">
+        <div class="blue-button fechar" onclick="closeDialog();">Fechar</div>
+        <div class="blue-button adicionar" onclick="addToAlbum();">Adicionar</div>
     </div>
 </div>

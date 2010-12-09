@@ -126,3 +126,47 @@
 .main-lista-fotos .corpo .photo-item img {
     border: 0;
 }
+
+.modalPanel_adicionar {
+	margin: 5px;
+	width: 300px;
+	background-color: #EEEEEE;
+	overflow: auto;
+}
+
+.modalPanel_adicionar h2{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.modalPanel_adicionar .controls{
+    float: right;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	display: block;
+}
+
+.modalPanel_adicionar .controls div{
+    float: right;
+}
+
+.modalPanel_adicionar .controls .fechar{
+    margin-left: 10px;
+}
+
+.blue-button, .buttonAddAlbum {
+    -moz-border-radius: 5px 5px 5px 5px;
+    background-color: #003399;
+    color: #FFFFFF;
+    font-family: arial;    
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.buttonAddAlbum {
+    width: 110px;
+}

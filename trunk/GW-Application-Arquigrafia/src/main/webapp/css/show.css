@@ -106,6 +106,8 @@
 	border-top: none;
 	border-left: none;
 	border-right: none;
+	overflow: auto;
+	padding-bottom: 5px;
 }
 #photoWrap {
 	float: left;
@@ -177,9 +179,9 @@
 	padding-top: 4px;
 }
 #tagsAdd {
-	position:absolute;
+	width: 190px;
 	z-index: 9999;
-	margin-top: 30px;
+	margin-top: 3px;
 	margin-left: 120px;
 	background-image: url("../images/gray_gradient_bg.png");
 	background-attachment: scroll;
@@ -221,6 +223,7 @@
 #tagsAndEval {
 	margin-top: 8px;
 	clear: both;
+	overflow: auto;
 }
 #comments_bar_bg {
 	float: left;
@@ -262,20 +265,6 @@
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
-}
-
-#inputAddToAlbum {
-    border: 0;
-    width: 130px;
-    height: 28px;
-    background-image: url("../images/save_bt2.png");
-    background-attachment: scroll;
-    background-repeat: no-repeat;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 11px;
-    font-weight: bold;
-    color: #fff;
-	cursor: pointer;
 }
 
 .comments_create_internal {
