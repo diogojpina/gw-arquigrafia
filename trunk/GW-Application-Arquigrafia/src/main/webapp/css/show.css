@@ -64,7 +64,6 @@
 	margin-right: 8px;
 	padding-top: 5px;
 	padding-left: 40px;
-	border-left: solid;
 	border-color: #FFF;
 	border-width: 1px;
 }
@@ -183,7 +182,8 @@
 	width: 190px;
 	z-index: 9999;
 	margin-top: 3px;
-	margin-left: 120px;
+	margin-left: 40px;
+    clear: both;	
 	background-image: url("../images/gray_gradient_bg.png");
 	background-attachment: scroll;
 	background-repeat: repeat-x;
@@ -222,9 +222,12 @@
 	padding-left: 30px;
 }
 #tagsAndEval {
-	margin-top: 8px;
+	padding-top: 8px;
 	clear: both;
 	overflow: auto;
+	margin-left: auto;
+	margin-right: auto;
+	width: 550px;
 }
 #comments_bar_bg {
 	float: left;

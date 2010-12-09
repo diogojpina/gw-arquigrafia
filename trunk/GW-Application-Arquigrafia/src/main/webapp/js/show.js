@@ -108,20 +108,13 @@ function basicAndEvents() {
     $("#add").click(function() {
         $("#add2").show();
         $("#add").hide();
-        $("#tagsAdd").slideDown(function(){
-        	heightPhotoRel = $("#photoBackground").height();
-            $("#photoRel").css("height", heightPhotoRel);
-        });
+        $("#tagsAdd").slideDown();
     });
     
     $("#add2").click(function() {
         $("#add").show();
         $("#add2").hide();
-        $("#tagsAdd").slideUp(function () {
-        	$("#photoRel").css("height", "auto");
-        	heightPhotoRel = $("#photoBackground").height();
-            $("#photoRel").css("height", heightPhotoRel);
-        });
+        $("#tagsAdd").slideUp();
     });
     
     $("#photoTitle_tab_1").click(function() {
@@ -129,10 +122,7 @@ function basicAndEvents() {
     	$("#photoTitle_tab_2").show();
         pageResize();
         $("#map_canvas").show();
-        $("#photoRelSub").slideDown(function () {
-        	heightPhotoRel = $("#photoBackground").height();
-            $("#photoRel").css("height", heightPhotoRel);
-        });
+        $("#photoRelSub").slideDown();
         
     });
 

@@ -48,8 +48,20 @@
             });
         </script>
         <script type="text/javascript">
-            $(function() {
-                $("div#makeMeScrollable").smoothDivScroll({scrollingSpeed: 12, mouseDownSpeedBooster: 3, visibleHotSpots: "always", startAtElementId: "startAtMe"});
+            $(document).ready(function() {
+            	$("div#makeMeScrollable").smoothDivScroll({
+                    scrollingSpeed: 12,
+                    mouseDownSpeedBooster: 3,
+                    visibleHotSpots: "always",
+                    startAtElementId: "startAtMe"
+                });
+
+                $("div#makeMeScrollable2").smoothDivScroll({
+                    scrollingSpeed: 12,
+                    mouseDownSpeedBooster: 3,
+                     visibleHotSpots: "always",
+                    startAtElementId: "startAtMe"
+                });
             });
         </script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/show.js"></script>
@@ -66,6 +78,11 @@
         </c:if>
         <script type="text/javascript">
                 $(document).ready(function() {
+
+
+
+
+                    
                     $("#comments_create").hide();
                     $("#comments_bar_link2").hide();
                     $("#comments_bar_link").click(function() {
@@ -143,37 +160,7 @@
                     <photo:show foto="${photo}" photoInstance="${photoInstance}" />
                 </div>
 
-                <c:if test="${tagMgr.collablet.enabled}">
-                <div id="tagsAndEval">
-                    <div id="evalAndAdd">
-                        <div id="eval">
-                        </div>
-                        <div id="add">
-                            <a><img src="${pageContext.request.contextPath}/images/add_tag.png" alt="adicionar ou remover tag" /></a>
-                        </div>
-                        <div id="add2">
-                            <a><img src="${pageContext.request.contextPath}/images/add_tag2.png" alt="adicionar ou remover tag" /></a>
-                        </div>
-                    </div>
-                    <div id="tags">
-                        <div id="tags_left">
-                        </div>
-                        <div id="tags_content">
-                            <tag:getTags tagMgr="${tagMgr}" entity="${photo}" />
-                        </div>
-                        <div id="tags_right">
-                        </div>
-                        <div style="float:left; margin-left: 10px;">
-                            <album:buttonAdd idButton="inputAddToAlbum" albumMgr="${albumMgr}" user="${userLogin}" photo="${photo}"/>
-                        </div>
-                    </div>
-                </div>
-                <div id="tagsAdd">
-                    <tag:selectTags tagMgr="${tagMgr}" />
-                    <tag:setTags tagMgr="${tagMgr}" entity="${photo}" tagsEditorClass="mid_black_text" />
-                    <input type="submit" name="adicionar" value="Adicionar" />
-                </div>
-                </c:if>
+               
                 <div style="clear:both"></div>
                 <div id="photoRelSub">
                     <div id="caracteristicsWrap">
@@ -216,7 +203,40 @@
                         </div>
                     </c:if>
                 </div>
+                <c:if test="${tagMgr.collablet.enabled}">
+            <div id="tagsAndEval">
+                    <div id="evalAndAdd">
+                        <div id="eval">
+                        </div>
+                        <div id="add">
+                            <a><img src="${pageContext.request.contextPath}/images/add_tag.png" alt="adicionar ou remover tag" /></a>
+                        </div>
+                        <div id="add2">
+                            <a><img src="${pageContext.request.contextPath}/images/add_tag2.png" alt="adicionar ou remover tag" /></a>
+                        </div>
+                    </div>
+                    <div id="tags">
+                        <div id="tags_left">
+                        </div>
+                        <div id="tags_content">
+                            <tag:getTags tagMgr="${tagMgr}" entity="${photo}" />
+                        </div>
+                        <div id="tags_right">
+                        </div>
+                        <div style="float:left; margin-left: 10px;">
+                            <album:buttonAdd idButton="inputAddToAlbum" albumMgr="${albumMgr}" user="${userLogin}" photo="${photo}"/>
+                        </div>
+                    </div>
+                    <div id="tagsAdd">
+                        <tag:selectTags tagMgr="${tagMgr}" />
+                        <tag:setTags tagMgr="${tagMgr}" entity="${photo}" tagsEditorClass="mid_black_text" />
+                        <input type="submit" name="adicionar" value="Adicionar" />
+                    </div>
+             </div>
+            </c:if>
+                
             </div>
+            
         </div>
         <div style="height: 5px; width: 100%; clear:both"></div>
             <c:if test="${commentMgr.collablet.enabled}">
