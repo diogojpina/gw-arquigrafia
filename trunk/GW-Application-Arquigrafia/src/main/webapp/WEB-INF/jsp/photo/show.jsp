@@ -136,10 +136,13 @@
                         <span class="mid_white_text">Detalhes</span>
                     </div>
                 </div>
+
+                <div id="map_canvas" style="width: 100%; height: 100%"></div>
+
                 <div id="photo" class="resizeblePhoto1">
                     <photo:show foto="${photo}" photoInstance="${photoInstance}" />
                 </div>
-                <div id="map_canvas" style="width: 100%; height: 100%"></div>
+
                 <c:if test="${tagMgr.collablet.enabled}">
                 <div id="tagsAndEval">
                     <div id="evalAndAdd">

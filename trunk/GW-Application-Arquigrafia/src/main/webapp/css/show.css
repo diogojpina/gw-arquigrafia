@@ -130,6 +130,7 @@
 }
 #photo {
 	float: left;
+	margin-left: 15px;
 }
 #photo img {
 	border-width: 4px;
@@ -142,13 +143,13 @@
 }
 #map_canvas {
 	float: left;
-	margin-left: 15px;
 	border-width: 4px;
 	border-color: #fff;
 	border-style: solid;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
+	margin-top: 5px;
 }
 
 #tags_left {
