@@ -92,7 +92,7 @@
             <name>userMgr</name>
             <properties>
                 <property key="emailAdmin" value="arquigrafiabrasil@gmail.com" /> 
-                <property key="passwdAdmin" value="12345" />
+                <property key="passwdAdmin" value="4rquigr4fi4" />
             </properties>    
         </collablet>
 

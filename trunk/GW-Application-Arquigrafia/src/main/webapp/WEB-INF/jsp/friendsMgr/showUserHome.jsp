@@ -62,11 +62,13 @@
 			<div id="info" class="default_info">
             	<br />
             	<div class="linha">
+            		<c:if test="${friend.id == userLogin.id}">
 					<c:if test="${not empty pending}">
 						<h4 style="color: #DF4C32;font-family: Arial,Helvetica,sans-serif;font-size: 12px;font-weight: bold;">
-							Voc&ecirc; tem ${pending} convite(s)  novo(s);
+							voc&ecirc; tem ${pending} comvite(s) de amizade pendente(s), clique <a class="blue_link" href="<c:url value="/groupware-workbench/friends/${friendsMgr.id}/edit" />">aqui</a> para visualizá-las ou no link Editar Amigos.
 						</h4>
 						<br />
+					</c:if>
 					</c:if>
 				</div>
             	<div class="linha">
@@ -113,7 +115,7 @@
             </div>
 			<div class="linha">
             	<c:if test="${commentMgr2.collablet.enabled}">
-                <div id="comentario" style="width: 750px;">
+                <div id="comentario" style="width: 700px; float:left;">
                     <form name="comments" method="post" enctype="multipart/form-data" action="<c:url value="/groupware-workbench/friends/${friendsMgr.id}/show/${friend.id}" />">
                         <div id="comments_bar">
                             <div id="comments_bar_bg">

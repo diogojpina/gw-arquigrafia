@@ -9,7 +9,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta http-equiv="Cache-Control" content="no-cache">
-        <title>Sugest&otilde;es y cr&iacute;ticas</title>
+        <title>Sugest&otilde;es e Reportar Problemas</title>
         <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.ico" />
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css" />
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/arq-common.css" />
@@ -56,7 +56,7 @@
             <arq:header2 photoInstance="${photoMgr}" />
 				<div id="corpo" class="default_div">
                 <div id="info" class="default_info">
-                	<span class="input_f1" style="padding: 10px;">A sua mensagem foi encaminhada com &ecirc;xito. Obrigado por a sua colabora&ccedil;&atilde;o</span>
+                	<span class="input_f1" style="padding: 10px;">A sua mensagem foi encaminhada com &ecirc;xito. Obrigado por a sua colabora&ccedil;&atilde;o.</span>
                 </div>
             </div>
             <div style="height: 30px; background-color: #fff"></div>
