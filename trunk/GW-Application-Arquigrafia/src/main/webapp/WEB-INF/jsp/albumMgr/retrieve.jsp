@@ -6,7 +6,6 @@
 <%@ taglib prefix="photo" uri="http://www.groupwareworkbench.org.br/widgets/photomanager" %>
 <%@ taglib prefix="arq" tagdir="/WEB-INF/tags" %>
 
-
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -18,7 +17,7 @@
         <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/jquery.css" />
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/listagem.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
-        <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-ui-1.8.custom.min.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-ui.js"></script>
     </head>
     <body>
         <w:topo collabletInstance="${albumMgr.collablet}" />
@@ -26,7 +25,7 @@
             <br />
             <h1><span class="style1">Editar &aacute;lbum</span></h1>
             <br />
-            <album:edit album="${album}" albumMgr="${albumMgr}"/>
+            <album:edit album="${album}" albumMgr="${albumMgr}" />
             <div class="barra_botoes">
                 <w:voltar collabletInstance="${albumMgr.collablet}" />
             </div>

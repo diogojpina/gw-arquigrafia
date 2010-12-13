@@ -9,6 +9,6 @@
 </r:callMethod>
 <div class="album-list-block">
     <c:forEach items="${albunsByUser}" var="album">
-        <album:album album="${album}" albumMgr="${albumMgr}"/>
+        <album:album album="${album}" albumMgr="${albumMgr}" />
     </c:forEach>
 </div>

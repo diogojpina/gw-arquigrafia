@@ -9,7 +9,7 @@
 
 <c:set var="userCount" value="${trackerInstance.onlineUserCount}" />
 <c:choose>
-	<c:when test="${userCount == 0}">Nenhum usuário conectado</c:when>
-	<c:when test="${userCount == 1}">1 usuário online</c:when>
-	<c:otherwise>${userCount} usuários online</c:otherwise>
+    <c:when test="${userCount == 0}">Nenhum usu&aacute;rio conectado</c:when>
+    <c:when test="${userCount == 1}">1 usu&aacute;rio online</c:when>
+    <c:otherwise>${userCount} usu&aacute;rios online</c:otherwise>
 </c:choose>

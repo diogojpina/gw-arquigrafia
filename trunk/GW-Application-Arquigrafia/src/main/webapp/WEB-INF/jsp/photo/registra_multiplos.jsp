@@ -8,6 +8,6 @@
         <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.ico" />
     </head>
     <body>
-        Upload de Imagens Realizado.
+        <p>Upload de Imagens Realizado.</p>
     </body>
 </html>

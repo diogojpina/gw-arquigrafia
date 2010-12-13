@@ -1,8 +1,8 @@
-<!--
+<%--
     Description: Holds the header, the footer, and the tabs of the site.
     Created By: Gustavo H. Braga (gustavo.henrick@gmail.com)
     Date: 08/08/2010
--->
+--%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -38,10 +38,10 @@
         <![endif]-->
 
         <!-- BASIC JS -->
-        <script type="text/javascript" src="${pageContext.request.contextPath}/management/assets/js/jquery-1.4.2.min.js" ></script>
-        <script type="text/javascript" src="${pageContext.request.contextPath}/management/assets/js/jquery-ui-1.8.2.custom.min.js" ></script>
-        <script type="text/javascript" src="${pageContext.request.contextPath}/management/assets/js/layout.js" ></script>
-        <script type="text/javascript" src="${pageContext.request.contextPath}/management/assets/js/animations.js" ></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-ui.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/management/assets/js/layout.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/management/assets/js/animations.js"></script>
         <!-- WireIt -->
         <script type="text/javascript" src="${pageContext.request.contextPath}/management/assets/js/wireit/WireIt.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/management/assets/js/wireit/CanvasElement.js"></script>

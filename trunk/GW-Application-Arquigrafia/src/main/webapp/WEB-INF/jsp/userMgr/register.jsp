@@ -24,7 +24,7 @@
     <body>
         <w:conteudoPagina titulo="Cadastro de novo Usu&aacute;rio">
             <br />
-            Por favor ingresse os seguintes dados para realizar o seu cadastro. 
+            Por favor preencha os seguintes dados para realizar o seu cadastro:
             <br />
             <ul>
                 <c:forEach var="error" items="${errors}">
@@ -33,15 +33,18 @@
             </ul>
 
             <form id="form1" class="cmxform" name="dados" method="POST" action="<c:url value="/groupware-workbench/users/${userMgr.id}/save" />" accept-charset="UTF-8" autocomplete="off">
-                <input type="hidden" name="user.id" value="<c:out value="${user.id}" />" />
                 <div class="form_1" id="user_retrieve_form">
                     <ul class="field_line_f1">
                         <li class="label_f1"><span>Login:</span></li>
                         <li class="input_f1"><input type="text" class="required" name="user.login" value="<c:out value="${user.login}" />" /></li>
                     </ul>
                     <ul class="field_line_f1">
-                        <li class="label_f1"><span>Password:</span></li>
-                        <li class="input_f1"><input id="password" class="required" type="password" name="user.password" value="<c:out value="${user.password}" />" /></li>
+                        <li class="label_f1"><span>Senha:</span></li>
+                        <li class="input_f1"><input id="password" class="required" type="password" name="user.password" value="" /></li>
+                    </ul>
+                    <ul class="field_line_f1">
+                        <li class="label_f1"><span>Confirme sua senha:</span></li>
+                        <li class="input_f1"><input id="confirm" class="required" type="password" name="passwordConfirm" value="" /></li>
                     </ul>
                     <ul class="field_line_f1">
                         <li class="label_f1"><span>E-mail:</span></li>
@@ -62,9 +65,9 @@
                 </div>
             </form>
             <div class="barra_botoes">
-				<span class="login_link">
-                	<a href="<c:url value="/groupware-workbench/users/${userMgr.id}/login" />">Voltar</a>
-					<!-- <w:voltar collabletInstance="${photoInstance.collablet}" /> -->
+                <span class="login_link">
+                    <a href="<c:url value="/groupware-workbench/users/${userMgr.id}/login" />">Voltar</a>
+                    <%-- <w:voltar collabletInstance="${photoInstance.collablet}" /> --%>
                 </span>
             </div>
         </w:conteudoPagina>

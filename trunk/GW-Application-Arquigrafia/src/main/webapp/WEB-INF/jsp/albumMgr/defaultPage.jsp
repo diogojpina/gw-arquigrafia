@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="album" uri="http://www.groupwareworkbench.org.br/widgets/album"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="album" uri="http://www.groupwareworkbench.org.br/widgets/album" %>
 <%@ taglib prefix="arq" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="w" uri="http://www.groupwareworkbench.org.br/widgets/commons" %>
 <%@ taglib prefix="photo" uri="http://www.groupwareworkbench.org.br/widgets/photomanager" %>
@@ -9,6 +9,8 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="Cache-Control" content="no-cache">
+        <title>Arquigrafia Brasil - &Aacute;lbuns</title>
         <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.ico" />
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css" />
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/arq-common.css" />
@@ -62,24 +64,23 @@
 
             });
         </script>
-        <title>Arquigrafia Brasil - &Aacute;lbuns</title>
     </head>
-<body>
-    <arq:header2 photoInstance="${photoMgr}" />
-    <div class="main">
-        <div class="text list-albums-frame">
-            <div class="component_header"><span class="title">Meus &Aacute;lbuns</span></div>
-            <div class="criar-album">
-                <span class="span_link" id="open_album_novo">criar novo &aacute;lbum</span>
+    <body>
+        <arq:header2 photoInstance="${photoMgr}" />
+        <div class="main">
+            <div class="text list-albums-frame">
+                <div class="component_header"><span class="title">Meus &Aacute;lbuns</span></div>
+                <div class="criar-album">
+                    <span class="span_link" id="open_album_novo">criar novo &aacute;lbum</span>
+                </div>
+                <album:listAlbumByUser albumMgr="${albumMgr}" user="${userLogin}"/>
             </div>
-            <album:listAlbumByUser albumMgr="${albumMgr}" user="${userLogin}"/>
-        </div>
-        <album:listAdicionar classe="list-adicionar" albumMgr="${albumMgr}" user="${userLogin}"/>
+            <album:listAdicionar classe="list-adicionar" albumMgr="${albumMgr}" user="${userLogin}"/>
 
-        <div id="album_novo" class="text"  title="Novo álbum">
-            <album:edit classe="edit-album" afterSaveFunction="afterSave" albumMgr="${albumMgr}"/>
+            <div id="album_novo" class="text"  title="Novo �lbum">
+                <album:edit classe="edit-album" afterSaveFunction="afterSave" albumMgr="${albumMgr}"/>
+            </div>
         </div>
-    </div>
-    <arq:footer photoInstance="${photoMgr}" />
-</body>
+        <arq:footer photoInstance="${photoMgr}" />
+    </body>
 </html>

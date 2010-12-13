@@ -23,11 +23,10 @@
         <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/footer.css" />
         <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/jquery.css" />
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
-        <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-ui-1.8.custom.min.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-ui.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/plugins/sds/js/jquery.smoothDivScroll-0.9-min.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/plugins/sds/js/scroll.js"></script>
-		<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.boxy.js"></script>
-		
+        <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.boxy.js"></script>
         <script type="text/javascript">
             $(function() {
                 $("div#makeMeScrollable").smoothDivScroll({
@@ -63,9 +62,9 @@
              <photo:searchByTag photoInstance="${photoMgr}" idList="${tag.taggedObjects}" showName="true" showLocation="false" lineClass="search_line" />
          </div>
          <div style="height: 30px; clear: both"></div>
-	    <div>
-            <div style="height: 30px; background-color: #fff"></div>
-            <arq:footer photoInstance="${photoMgr}" />
-		</div>
+         <div>
+             <div style="height: 30px; background-color: #fff"></div>
+             <arq:footer photoInstance="${photoMgr}" />
+         </div>
      </body>
 </html>

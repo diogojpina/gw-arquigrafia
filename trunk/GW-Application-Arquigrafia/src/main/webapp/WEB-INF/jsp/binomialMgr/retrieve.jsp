@@ -10,26 +10,25 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta http-equiv="Cache-Control" content="no-cache">
         <title>Bin&ocirc;mios</title>
-
         <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.ico" />
-	    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css" />
-	    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/arq-common.css" />
-	    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/header.css" />
-	    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/know_more.css" />
-	    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/forms.css"  />
-	    <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/plugins/sds/css/smoothDivScroll.css" />
-	    <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/bay.css" />
-	    <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/footer.css" />
-	    <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/jquery.css" />
-	    <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/tagcloud.css" />
-	    <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/image_wall.css" />
-	    <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/boxy.css" />
-	    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
-	    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-ui-1.8.custom.min.js"></script>
-	    <script type="text/javascript" src="${pageContext.request.contextPath}/plugins/sds/js/jquery.smoothDivScroll-0.9-min.js"></script>
-	    <script type="text/javascript" src="${pageContext.request.contextPath}/plugins/sds/js/scroll.js"></script>
-		<script  type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.boxy.js"></script>
-	    <script type="text/javascript">
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css" />
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/arq-common.css" />
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/header.css" />
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/know_more.css" />
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/forms.css" />
+        <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/plugins/sds/css/smoothDivScroll.css" />
+        <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/bay.css" />
+        <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/footer.css" />
+        <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/jquery.css" />
+        <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/tagcloud.css" />
+        <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/image_wall.css" />
+        <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/boxy.css" />
+        <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-ui.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/plugins/sds/js/jquery.smoothDivScroll-0.9-min.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/plugins/sds/js/scroll.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.boxy.js"></script>
+        <script type="text/javascript">
             $(document).ready(function() {
                 $("div#makeMeScrollable").smoothDivScroll({
                     scrollingSpeed: 12,
@@ -48,7 +47,7 @@
         </script>
     </head>
     <body>
-	    <arq:header2 photoInstance="${photoMgr}" />
+        <arq:header2 photoInstance="${photoMgr}" />
         <w:conteudoPagina titulo="Bin&ocirc;mios">
             <form method="post" action="<c:url value="/groupware-workbench/binomials/${binomialMgr.id}" />" accept-charset="UTF-8">
                 <input type="hidden" name="binomial.id" value="<c:out value="${binomial.id}" />" />
@@ -96,7 +95,6 @@
                             <li class="input_f1"><input type="text" name="binomial.defaultValue" value="<c:out value="${binomial.defaultValue}" />" /></li>
                         </ul>
                     </div>
-
                     <div>
                         <ul class="bt_line_f1">
                             <li class="bt_cell_submit">
@@ -111,11 +109,11 @@
             </div>
 	    	<div>
             	<div style="height: 30px; background-color: #fff"></div>
-			</div>            
+            </div>
         </w:conteudoPagina>
-	    <div>
+        <div>
             <div style="height: 30px; background-color: #fff"></div>
             <arq:footer photoInstance="${photoMgr}" />
-		</div>        
+        </div>
     </body>
 </html>

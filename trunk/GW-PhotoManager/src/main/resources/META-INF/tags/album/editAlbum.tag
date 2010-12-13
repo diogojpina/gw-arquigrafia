@@ -4,6 +4,7 @@
 <%@ attribute name="albumMgr" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.collablet.coop.album.AlbumMgrInstance"%>
 <%@ attribute name="classe" required="true" rtexprvalue="true" type="java.lang.String" %>
 <%@ attribute name="afterSaveFunction" required="false" rtexprvalue="true" type="java.lang.String" %>
+
 <script type="text/javascript">
     $(document).ready((function() {
         $("#edithAlbum_dateInput").datepicker({
@@ -18,16 +19,15 @@
     }));
 
     function serialize() {
-        serial="";
-        $(".${classe} input, .${classe} textarea").each(function(i,item){
+        serial = "";
+        $(".${classe} input, .${classe} textarea").each(function(i, item) {
             val = $(item).val();
             nome = $(item).attr("name");
-            serial=serial + "&" +nome+"="+val
-         });
-        serial = serial.substring(1);
-        return serial;
+            serial = serial + "&" + nome + "=" + val;
+        });
+        return serial.substring(1);
     }
-    
+
     function saveAlbum() {
         var arguments = serialize();
         $.ajax({
@@ -37,8 +37,6 @@
             success: ${afterSaveFunction}
         });
     }
-
-
 </script>
 
 <div class="${classe}">
