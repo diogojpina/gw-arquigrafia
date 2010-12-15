@@ -121,6 +121,7 @@
 	margin: 2px;
 	margin-left: 0px;
 	padding-left: 3px;
+	overflow: auto;
 	
 }
 .photoTitle_tab {
@@ -138,7 +139,6 @@
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
-	margin-top: 3px;
 }
 #map_canvas {
 	float: left;
@@ -148,7 +148,6 @@
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
-	margin-top: 5px;
 }
 
 #tags_left {

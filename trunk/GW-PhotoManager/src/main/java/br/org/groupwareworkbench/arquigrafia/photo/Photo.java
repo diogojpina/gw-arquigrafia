@@ -204,7 +204,7 @@ public class Photo implements Serializable {
         }
 
         try {
-            imagemMostra = ImageUtils.createThumbnailIfNecessary(800, imagemOriginal, true);
+            imagemMostra = ImageUtils.createStandardImage(600, imagemOriginal);
             imagemThumb = ImageUtils.createThumbnailIfNecessary(100, imagemOriginal, true);
             BufferedImage imagemThumb2 = ImageUtils.createThumbnailIfNecessary(100, imagemOriginal, false);
             Point cropPoint = ImageUtils.calcSqrThumbCropPoint(imagemThumb2);
