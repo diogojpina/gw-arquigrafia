@@ -8,6 +8,6 @@
         <div class="img-container">
             <img src="${album.urlCover}" />
         </div>
-        <div class="album-name"><span><c>out value="${album.title}" /></span></div>
+        <div class="album-name"><span><c:out value="${album.title}" /></span></div>
     </a>
 </div>

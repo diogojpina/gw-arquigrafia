@@ -59,7 +59,7 @@
     $(document).ready(function(){
         $(".modalPanel_adicionar input:radio[name=radioAlbum]:first").attr("checked", "checked");
         dialog = new Boxy($(".modalPanel_adicionar"), {
-            title: "Adicionar no álbum",
+            title: "Adicionar no &aacute;lbum",
             closeable: false,
             modal: true,
             }).hide();
@@ -119,7 +119,7 @@
     <ul id="listPhotos" style="list-style: none;"></ul>
 </div>
 
-<div class="modalPanel_adicionar" title="Adicionar no album">
+<div class="modalPanel_adicionar" title="Adicionar no &aacute;lbum">
     <div>
         <h2>Escolha um &aacute;lbum para adicionar esta foto:</h2>
         <c:forEach items="${albums}" var="item">
