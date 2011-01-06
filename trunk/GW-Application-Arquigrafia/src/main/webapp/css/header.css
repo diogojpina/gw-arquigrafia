@@ -84,7 +84,7 @@ body {
 	background-repeat: repeat-x;
 	background-attachment: scroll;
 	height: 100px;
-	width: 240px;
+	width: 300px;
 	padding-left: 10px;
 }
 #top_links {
@@ -104,13 +104,15 @@ body {
 	text-align: right;
 	margin-top: 25px;
 }
-#users_online{
-	text-align: right;
-	margin-top: 25px;
-}
 #user_bottom_links {
 	margin-top: 22px;
-	margin-left: 8px;
+}
+.user_bottom_icon_links {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #777777;
+    text-decoration: none;
+    text-align: center;	
 }
 #link_pictures {
 	margin-left: 20px;

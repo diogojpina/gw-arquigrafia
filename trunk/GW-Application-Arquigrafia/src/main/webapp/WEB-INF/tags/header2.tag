@@ -23,12 +23,12 @@
 	         <a href="${pageContext.request.contextPath}/groupware-workbench/users/${userMgr.id}/suggest" class="white_link">Sugest&otilde;es e Cr&iacute;ticas</a><br />
 	         <a href="${pageContext.request.contextPath}/groupware-workbench/users/${userMgr.id}/report" class="white_link">Reportar Problema</a>
         </div>
-        <div id="users_online">
-        	<span class="black_link"><tracker:onlineUsers trackerInstance="${tracker}" /></span>
-        </div>
         <div id="user_bottom_links">
-            <!-- TODO: reativar links, quando for criado o lado de rede social do site. -->
-            <div style="height: 13px"></div>
+            <div style="height: 13px">
+                <a class="user_bottom_icon_links" href="#" onclick="return showPhotoUpload();">  <img src="${pageContext.request.contextPath}/images/icon/upload.png" /> Enviar Imagem</a>
+                <a class="user_bottom_icon_links" href="${pageContext.request.contextPath}/groupware-workbench/friends/${friendsMgr.id}/show/${userLogin.id}" onclick=""> <img src="${pageContext.request.contextPath}/images/icon/meuPerfil.png" /> Meu perfil</a>
+                <a class="user_bottom_icon_links" href="${pageContext.request.contextPath}/groupware-workbench/album/${albumMgr.id}"><img src="${pageContext.request.contextPath}/images/icon/meuArquigrafia.png" /> Meu Arquigrafia</a>
+            </div>
         </div>
     </div>
     <div id="top_links" class="blue_link">
@@ -66,10 +66,6 @@
             }
         </script>
         <a href="#" onclick="return showPhotoUpload();">Enviar Imagem</a>
-        &nbsp;|&nbsp;
-        <a href="${pageContext.request.contextPath}/groupware-workbench/album/${albumMgr.id}">Álbum de Imagens</a>
-        &nbsp;|&nbsp;
-        <a href="${pageContext.request.contextPath}/groupware-workbench/friends/${friendsMgr.id}/show/${userLogin.id}" onclick="">Meu perfil</a>
         &nbsp;|&nbsp;
         <a href="${pageContext.request.contextPath}/groupware-workbench/friends/${friendsMgr.id}/system_users">Usu&aacute;rios do sistema</a>
         <!-- TODO: solução temporária, aqui deve ser usado o papel e não o nome do usuário -->

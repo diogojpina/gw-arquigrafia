@@ -52,7 +52,7 @@ public class AlbumMgrInstance extends AbstractBusiness {
         album.setCreationDate(Calendar.getInstance().getTime());
         album.setOwner(user);
         album.setUrlCover(albumCoverPath);
-        album.setTitle("Meu arquigrafia");
+        album.setTitle("Favoritos");
         album.setDescription("Meu album arquigrafia");
         this.save(album);
     }
