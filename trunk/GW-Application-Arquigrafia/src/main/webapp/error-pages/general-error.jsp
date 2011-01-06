@@ -3,10 +3,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Error...</title>
+        <title>Erro...</title>
     </head>
     <body>
-        <h1>An error has happend</h1>
-        <p>Please contact your administrator or check the log file.</p>
+        <h1>Aconteceu um erro.</h1>
+        <p>Esta é a versão alfa do Arquigrafia-Brasil, ela esta em desenvolvimento e alguns erros podem acontecer.</p>
+        <p>Sua ajuda é muito importante para o projeto. Envie um e-mail informando as ações executadas que causaram o erro para <strong>arquigrafiabrasil@gmail.com</strong>.</p>
+        <p>Obrigado pela sua colaboração, iremos corrigir o problema assim que possível!</p>
     </body>
 </html>

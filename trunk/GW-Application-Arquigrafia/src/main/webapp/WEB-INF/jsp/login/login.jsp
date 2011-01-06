@@ -13,19 +13,28 @@
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css" />
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/login.css" />
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/know_more.css" />
+        <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
 		<script type="text/javascript">
     		function setFocus() {
       			var loginForm = document.getElementById("usuariosForm");
       			if (loginForm) {
         			loginForm["user.login"].focus();
       			}
+            	$("#login_box").hide();
+	            $("#login_easter_eeg").click(function(){
+	                $("#login_box").slideDown();
+	            });
     		}
  		</script>
     </head>
     <body onload="setFocus();">
-
-		<form id="usuariosForm" method="post" name="loginForm" action="<c:url value="/groupware-workbench/users/${userMgr.id}/login" />">
-            <div class="login_box">
+    <div class="login_box" >
+        <div class="login_messages">
+            <h1>Olá a versão de testes do arquigrafia será liberada em breve caso queira ser um usuário de teste do sistema envie um email para <strong>arquigrafiabrasil@gmail.com</strong>.</h1>
+        </div>
+        </div>
+	    <form id="usuariosForm" method="post" name="loginForm" action="<c:url value="/groupware-workbench/users/${userMgr.id}/login" />">
+            <div class="login_box" id="login_box">
                 <div class="login_fields">
                     <div class="login_fields_1">
                         <ul>
