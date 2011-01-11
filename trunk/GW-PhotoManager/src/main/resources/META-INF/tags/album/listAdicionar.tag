@@ -26,7 +26,7 @@
         var height = $(".${classe}").height();
         pageLine = (width / 100) | 0;
         marginLeft = ((width - (pageLine * 100)) / pageLine) + (100 / pageLine) | 0;
-        pageSize = (((width * height) / ((100 + marginLeft) * 127)) | 0 ) - 1;
+        pageSize = (((width * height) / ((100 + marginLeft) * 127)) | 0 ) - 6;
         sizeLastRequest = pageSize;
     }
 
