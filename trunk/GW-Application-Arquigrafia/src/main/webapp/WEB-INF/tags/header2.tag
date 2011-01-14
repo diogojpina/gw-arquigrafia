@@ -44,8 +44,8 @@
         </div>
         
         <script type="text/javascript">
-            function refreshPage() {
-                window.location.reload(true);
+            function goInitPage() {
+                window.location = "${pageContext.request.contextPath}";
             }
 
             function showPhotoUpload() {
@@ -53,7 +53,7 @@
                     title: "Use o formulário para enviar uma foto.",
                     modal: true,
                     closeText: "Fechar",
-                    afterHide: refreshPage
+                    afterHide: goInitPage
                 }).show();
             }
 

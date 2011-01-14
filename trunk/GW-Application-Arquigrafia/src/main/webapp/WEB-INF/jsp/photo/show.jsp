@@ -148,14 +148,18 @@
                             </a>
                         </div>
                         <div id="photoTitle_tab_2" class="photoTitle_tab">
+                            <span>
                             <img src="${pageContext.request.contextPath}/images/photo_view.png" alt="Visualizar a foto" />
                             &nbsp;
                             <span class="mid_white_text">Foto</span>
+                            </span>
                         </div>
                         <div id="photoTitle_tab_1" class="photoTitle_tab">
+                            <span>
                             <img src="${pageContext.request.contextPath}/images/photo_details.png" alt="Detalhes da foto" />
                             &nbsp;
                             <span class="mid_white_text">Detalhes</span>
+                            </span>
                         </div>
                     </div>
 

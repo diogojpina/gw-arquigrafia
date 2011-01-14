@@ -128,9 +128,12 @@
 	padding: 0px 0px 6px 10px;
 	float: right;
 }
+.photoTitle_tab span {
+    cursor: pointer;
+}
 #photo {
-	float: left;
-	margin-left: 15px;
+    float: left;
+    margin-left: 15px;
 }
 #photo img {
 	border-width: 4px;
@@ -251,7 +254,6 @@
 	height: 38px;
 }
 .comments_link {
-	float:right;
 	cursor: pointer;
 }
 #comments_create {
@@ -295,8 +297,8 @@
 }
 .comments_show_internal span {
 	font-family: Arial, Helvetica, sans-serif;
-	font-size: 14px;
-	font-weight: bold;
+	font-size: 16px;
+	font-style: italic;
 	color: #6A8A9A;
 }
 .comments_show_internal h4 {
