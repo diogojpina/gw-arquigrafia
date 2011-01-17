@@ -30,7 +30,7 @@
         <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/jquery.css" />
         <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/boxy.css" />
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
-        <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-ui-1.8.custom.min.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-ui.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/compiled/arquigrafia-default.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/plugins/sds/js/jquery.smoothDivScroll-0.9-min.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/plugins/sds/js/scroll.js"></script>
@@ -38,9 +38,8 @@
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/toolTips.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/ui.base.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/ui.slider.js"></script>
-
         <album:buttonAdd-script photo="${photo}"/>
-        
+
         <script type="text/javascript">
             $(document).ready(function() {
                 $('label[rel=tooltip]').tooltip();
@@ -72,7 +71,7 @@
         </script>
         <binomial:scriptBinomial />
         <tag:scriptTags />
-        
+
         <c:if test="${geoReferenceMgr.collablet.enabled}">
             <gmaps:scriptGeoReference geoReferenceMgr="${geoReferenceMgr}" entity="${photo}"/>
         </c:if>
@@ -96,7 +95,7 @@
             var _gaq = _gaq || [];
             _gaq.push(['_setAccount', 'UA-20571872-1']);
             _gaq.push(['_trackPageview']);
-            
+
             (function() {
                 var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
                 ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
