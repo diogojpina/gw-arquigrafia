@@ -92,6 +92,7 @@
                 pageResize();
             });
         </script>
+
         <script type="text/javascript">
             var _gaq = _gaq || [];
             _gaq.push(['_setAccount', 'UA-20571872-1']);
@@ -163,7 +164,7 @@
                         </div>
                     </div>
 
-                    <div id="map_canvas" style="width: 100%; height: 100%"></div>
+                    <div id="map_canvas"></div>
 
                     <div id="photo" class="resizeblePhoto1">
                         <photo:show foto="${photo}" photoInstance="${photoInstance}" />

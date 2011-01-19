@@ -29,10 +29,22 @@ function pageResize() {
     } else if (height > maxHeight) {
         var ratio = maxHeight / height; // get ratio for scaling image
         width = width * ratio;  // Reset width to match scaled image
-        $('.resizeblePhoto1 img').css("height", maxHeight);   // Set new height
-        $('.resizeblePhoto1 img').css("width", width);    // Scale width based on ratio
-        $("#map_canvas").css("width", width);
-        $("#map_canvas").css("height", maxHeight);
+        var newHeight = maxHeight;
+        if (maxWidthPhoto < width) {
+            newHeight = (maxHeight * maxWidthPhoto) / width;
+            $('.resizeblePhoto1 img').css("height", newHeight);   // Set new height
+            $("#map_canvas").css("width", $(".resizeblePhoto1 img").width());
+        }
+        else {
+            $('.resizeblePhoto1 img').css("width", width);    // Scale width based on ratio
+            $("#map_canvas").css("width", width);
+        }
+
+
+        //$('.resizeblePhoto1 img').css("height", newHeight);   // Set new height
+        //$('.resizeblePhoto1 img').css("width", width);    // Scale width based on ratio
+        //$("#map_canvas").css("width", width);
+        $("#map_canvas").css("height", newHeight);
         $("#search_input").css("width", $(window).width() - 680);
     }
     else {
