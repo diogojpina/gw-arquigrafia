@@ -1,5 +1,5 @@
 function pageResize() {
-	$("#photoRel").css("height", "auto");
+    $("#photoRel").css("height", "auto");
     var maxWidthPhoto = calcMaxWidthPhoto(); // Max width for the image
     var maxWidthLayout = calcMaxWidthLayout(); // Max width for the image
     var maxHeight = 600;       // Max height for the image
@@ -41,23 +41,23 @@ function pageResize() {
         $("#map_canvas").css("height", height);
     }
     if (width <= maxWidthPhoto) {
-    	if (maxWidthPhoto < maxWidthLayout) {
-    		var marginLeft = ((maxWidthLayout - ((2 * width) + 15)) / 2) - 30 ;
-    		if (marginLeft < 0) {
-    			marginLeft = 0;
-    		}
-    		$("#photoWrap").css("margin-left", marginLeft);
-    	}
-    	else {
-    		var marginLeft = ((maxWidthPhoto - width) / 2) - 30 ;
-    		if (marginLeft < 0) {
-    			marginLeft = 0;
-    		}
-    		$("#photoWrap").css("margin-left", marginLeft);
-    	}
-	    $("#search_input").css("width", $(window).width() - 715 - ((maxWidthLayout - width) / 2));
-	    $("#photoRelSub").css("width", (width* 2) + 10);
-	}
+        if (maxWidthPhoto < maxWidthLayout) {
+            var marginLeft = ((maxWidthLayout - ((2 * width) + 15)) / 2) - 30 ;
+            if (marginLeft < 0) {
+                marginLeft = 0;
+            }
+            $("#photoWrap").css("margin-left", marginLeft);
+        }
+        else {
+            var marginLeft = ((maxWidthPhoto - width) / 2) - 30 ;
+            if (marginLeft < 0) {
+                marginLeft = 0;
+            }
+            $("#photoWrap").css("margin-left", marginLeft);
+        }
+        $("#search_input").css("width", $(window).width() - 715 - ((maxWidthLayout - width) / 2));
+        $("#photoRelSub").css("width", (width* 2) + 10);
+    }
     else {
         $("#photoRelSub").css("width", (maxWidthPhoto* 2) + 10);
     }
@@ -67,21 +67,19 @@ function pageResize() {
 }
 
 function calcMaxWidthPhoto() {
-	if ($("#photoTitle_tab_1").is(":visible")) {
-		return $(window).width() - 355;
-	}
-	else {
-		return ($(window).width() - 355) / 2;
-	}
+    if ($("#photoTitle_tab_1").is(":visible")) {
+        return $(window).width() - 355;
+    }
+    else {
+        return ($(window).width() - 355) / 2;
+    }
 };
 function calcMaxWidthLayout() {
-	return $(window).width() - 355;
+    return $(window).width() - 355;
 };
 
-
-
 function basicAndEvents() {
-	$("#search_input").css("width", $(window).width() - 680);
+    $("#search_input").css("width", $(window).width() - 680);
     $('.resizeblePhoto1 img').load(function() {
         $("#map_canvas").hide();
         pageResize();//Triggers when document first loads
@@ -98,7 +96,7 @@ function basicAndEvents() {
             $("#binomialsAvg").fadeIn(400);
         });
     });
-    
+
     $("#myLink").click(function() {
         $("#binomialsAvg").fadeOut(400, function() {
             $("#binomialsUser").fadeIn(400);
@@ -110,34 +108,34 @@ function basicAndEvents() {
         $("#add").hide();
         $("#tagsAdd").slideDown();
     });
-    
+
     $("#add2").click(function() {
         $("#add").show();
         $("#add2").hide();
         $("#tagsAdd").slideUp();
     });
-    
+
     $("#photoTitle_tab_1").click(function() {
-    	$("#photoTitle_tab_1").hide();
-    	$("#photoTitle_tab_2").show();
+        $("#photoTitle_tab_1").hide();
+        $("#photoTitle_tab_2").show();
         pageResize();
-        $("#map_canvas").show();
+        $("#map_canvas").show("slide", { direction: "right" });
         $("#photoRelSub").slideDown();
-        
     });
 
     $("#photoTitle_tab_2").click(function() {
-    	$("#photoTitle_tab_2").hide();
-    	$("#photoTitle_tab_1").show();
-        $("#map_canvas").hide();
+        $("#photoTitle_tab_2").hide();
+        $("#photoTitle_tab_1").show();
         $("#photoRelSub").slideUp();
-        pageResize();
+        $("#map_canvas").hide("slide", { direction: "right" }, function(){
+            pageResize();
+        });
     });
-    
+
     $(window).bind("load", function() {
         $("#map_canvas").hide();
         $("#photoRelSub").hide();
-    	$("#photoTitle_tab_2").hide();
+        $("#photoTitle_tab_2").hide();
         $("#binomialsAvg").hide();
         $("#add2").hide();
         $("#tagsAdd").hide();

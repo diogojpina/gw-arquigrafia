@@ -26,7 +26,7 @@
 #binomialsTitle {
 	float: left;
 	position: relative;
-	left: -20px;
+	left: 0px;
 	padding: 0px 5px 0px 5px;
 	margin: 9px 0px 12px 0px;
 }
@@ -37,7 +37,7 @@
 }
 #binomialsWrap {
 	float: right;
-	padding-right: 35px;
+	padding-right: 0px;
 	width: 100%;
 	overflow: scroll;
 	overflow-x: hidden;
@@ -63,7 +63,7 @@
 	width: 210px;
 	margin-right: 80px;
 	padding-top: 5px;
-	padding-left: 40px;
+	
 	border-color: #FFF;
 	border-width: 1px;
 }

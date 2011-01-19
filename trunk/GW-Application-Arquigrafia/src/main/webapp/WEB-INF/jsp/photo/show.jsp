@@ -89,6 +89,7 @@
                     $("#comments_bar_link2").hide();
                     $("#comments_bar_link").show();
                 });
+                pageResize();
             });
         </script>
         <script type="text/javascript">
