@@ -23,14 +23,11 @@ package br.org.groupwareworkbench.arquigrafia.photo;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
-
 import java.io.File;
-import java.io.InputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.Serializable;
-
 import java.text.SimpleDateFormat;
-
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
@@ -42,7 +39,6 @@ import javax.imageio.ImageIO;
 import javax.imageio.ImageWriteParam;
 import javax.imageio.ImageWriter;
 import javax.imageio.stream.FileImageOutputStream;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
@@ -50,13 +46,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.Query;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.persistence.TypedQuery;
 
-import br.com.caelum.vraptor.interceptor.download.FileDownload;
+import org.apache.log4j.Logger;
 
+import br.com.caelum.vraptor.interceptor.download.FileDownload;
 import br.org.groupwareworkbench.collablet.coord.user.User;
 import br.org.groupwareworkbench.core.bd.EntityManagerProvider;
 import br.org.groupwareworkbench.core.bd.ObjectDAO;
@@ -70,6 +67,9 @@ public class Photo implements Serializable {
     private static final long serialVersionUID = -4757949223957140519L;
 
     private static final ObjectDAO<Photo, Long> DAO = new ObjectDAO<Photo, Long>(Photo.class);
+
+    @Transient
+    private final Logger log = Logger.getLogger(Photo.class);
 
     @Id
     @GeneratedValue
@@ -188,7 +188,7 @@ public class Photo implements Serializable {
         return makeImg("");
     }
 
-    public void saveImage(InputStream foto) throws IOException {
+    public void saveImage(InputStream foto) throws RuntimeException {
         BufferedImage imagemOriginal = null;
         BufferedImage imagemThumb = null;
         BufferedImage imagemCropped = null;
@@ -197,11 +197,12 @@ public class Photo implements Serializable {
         try {
             imagemOriginal = ImageIO.read(foto);
         } catch (IOException e) {
-            throw new IOException(PhotoController.MSG_FALHA_NO_UPLOAD, e);
+            log.error("Error reading image stream", e);
+            throw new RuntimeException(PhotoController.MSG_FALHA_NO_UPLOAD, e);
         }
 
         if (imagemOriginal == null) {
-            throw new IOException(PhotoController.MSG_IMAGEM_INVALIDA);
+            throw new RuntimeException(PhotoController.MSG_IMAGEM_INVALIDA);
         }
 
         try {
@@ -211,7 +212,8 @@ public class Photo implements Serializable {
             Point cropPoint = ImageUtils.calcSqrThumbCropPoint(imagemThumb2);
             imagemCropped = ImageUtils.cropImage(cropPoint, new Dimension(100, 100), imagemThumb2);
         } catch (IOException e) {
-            throw new IOException(PhotoController.MSG_NAO_FOI_POSSIVEL_REDIMENSIONAR, e);
+            log.error(PhotoController.MSG_NAO_FOI_POSSIVEL_REDIMENSIONAR, e);
+            throw new RuntimeException(PhotoController.MSG_NAO_FOI_POSSIVEL_REDIMENSIONAR, e);
         }
 
         try {
@@ -220,7 +222,8 @@ public class Photo implements Serializable {
             this.saveImage(imagemThumb, getInstance().getThumbPrefix(), getInstance().getDirImages());
             this.saveImage(imagemMostra, getInstance().getMostraPrefix(), getInstance().getDirImages());
         } catch (IOException e) {
-            throw new IOException(PhotoController.MSG_FALHA_NO_UPLOAD, e);
+            log.error(PhotoController.MSG_FALHA_NO_UPLOAD, e);
+            throw new RuntimeException(PhotoController.MSG_FALHA_NO_UPLOAD, e);
         }
     }
 

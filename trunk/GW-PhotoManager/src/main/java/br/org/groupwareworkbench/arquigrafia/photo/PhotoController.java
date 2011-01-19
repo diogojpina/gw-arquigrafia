@@ -281,7 +281,7 @@ public class PhotoController {
         try {
             photoInstance.save(photoRegister);
             photoRegister.saveImage(foto.getFile());
-        } catch (IOException e) {
+        } catch (RuntimeException e) {
             validator.add(new ValidationMessage(e.getMessage(), "Erro"));
             validator.onErrorUse(Results.logic()).redirectTo(PhotoController.class).registra(photoInstance, photoRegister);
             return;
