@@ -24,6 +24,14 @@
         var data = new Date();
         datepick.value = data.getDate() + "/" + (data.getMonth() + 1) + "/" + data.getFullYear();
     });
+    
+    function showLicence(chkbox){
+        var text = "Com uma licença Creative Commons, mantém os seus direitos de autor mas permite que outros "+
+            "copiem e distribuam a sua obra desde que façam a atribuição."+
+            "\n\n A sua imagem precisa de esta licença para poder ser enviada.";
+        alert(text);
+  		chkbox.checked = true;
+    }
 </script>
 
 <script type="text/javascript">
@@ -67,6 +75,14 @@
                <span>Descri&ccedil;&atilde;o:</span>
            </label>
            <textarea rows="3" name="photoRegister.descricao" class="${formInputClass}"><c:out value="${photoRegister.descricao}" /></textarea>
+       </div>
+       <br/>
+       <div>
+       		<br/>
+       		<span class="input_f1">
+       		<input type="checkbox" name="opcao" onclick="showLicence(this);" value="aceitar" checked /> Li e concordo com a licença do Creative Commons. 
+       		Para mais informações clic <a target="_blanck" href="http://creativecommons.org/">aqui</a>.
+       		</span>
        </div>
     </fieldset>
     

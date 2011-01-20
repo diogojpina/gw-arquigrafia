@@ -9,13 +9,13 @@
     color: white;
 }
 
-.cloud0 { font-size: 0.35em; }
-.cloud1 { font-size: 0.50em; }
-.cloud2 { font-size: 0.65em; }
-.cloud3 { font-size: 0.80em; }
-.cloud4 { font-size: 0.95em; }
-.cloud5 { font-size: 1.10em; }
-.cloud6 { font-size: 1.25em; }
-.cloud7 { font-size: 1.40em; }
-.cloud8 { font-size: 1.55em; }
-.cloud9 { font-size: 1.70em; }
+.cloud0 { font-size: 0.30em; }
+.cloud1 { font-size: 0.45em; }
+.cloud2 { font-size: 0.60em; }
+.cloud3 { font-size: 0.75em; }
+.cloud4 { font-size: 0.90em; }
+.cloud5 { font-size: 1.05em; }
+.cloud6 { font-size: 1.20em; }
+.cloud7 { font-size: 1.35em; }
+.cloud8 { font-size: 1.50em; }
+.cloud9 { font-size: 1.65em; }
