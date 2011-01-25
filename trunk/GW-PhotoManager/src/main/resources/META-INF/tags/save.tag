@@ -80,8 +80,8 @@
        <div>
        		<br/>
        		<span class="input_f1">
-       		<input type="checkbox" name="opcao" onclick="showLicence(this);" value="aceitar" checked /> Li e concordo com a licença do Creative Commons. 
-       		Para mais informações clic <a target="_blanck" href="http://creativecommons.org/">aqui</a>.
+       		<input type="checkbox" name="opcao" onclick="showLicence(this);" value="aceitar" checked /> Li e concordo com a licença Creative Commons. 
+       		Para mais informações clique <a target="_blanck" href="http://creativecommons.org/licenses/by/3.0/br/">aqui</a>.
        		</span>
        </div>
     </fieldset>
