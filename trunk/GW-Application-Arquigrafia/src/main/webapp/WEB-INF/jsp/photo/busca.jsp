@@ -29,8 +29,20 @@
         <script type="text/javascript" src="${pageContext.request.contextPath}/plugins/sds/js/jquery.smoothDivScroll-0.9-min.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/plugins/sds/js/scroll.js"></script>
         <script type="text/javascript">
-            $(function() {
-                $("div#makeMeScrollable").smoothDivScroll({scrollingSpeed: 12, mouseDownSpeedBooster: 3, visibleHotSpots: "always", startAtElementId: "startAtMe"});
+            $(document).ready(function() {
+                $("div#makeMeScrollable").smoothDivScroll({
+                    scrollingSpeed: 12,
+                    mouseDownSpeedBooster: 3,
+                    visibleHotSpots: "always",
+                    startAtElementId: "startAtMe"
+                });
+
+                $("div#makeMeScrollable2").smoothDivScroll({
+                    scrollingSpeed: 12,
+                    mouseDownSpeedBooster: 3,
+                     visibleHotSpots: "always",
+                    startAtElementId: "startAtMe"
+                });
             });
         </script>
         <script src="${pageContext.request.contextPath}/js/chili-1.7.pack.js" type="text/javascript" ></script>
