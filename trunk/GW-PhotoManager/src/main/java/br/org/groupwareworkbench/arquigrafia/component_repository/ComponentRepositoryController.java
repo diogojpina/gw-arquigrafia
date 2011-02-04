@@ -23,7 +23,6 @@ package br.org.groupwareworkbench.arquigrafia.component_repository;
 import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.util.ArrayList;
 import java.util.List;
 
 import br.com.caelum.vraptor.Delete;
@@ -33,25 +32,22 @@ import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.Validator;
-import br.com.caelum.vraptor.core.RequestInfo;
 import br.com.caelum.vraptor.interceptor.download.Download;
 import br.com.caelum.vraptor.interceptor.download.FileDownload;
 import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
 import br.com.caelum.vraptor.validator.ValidationMessage;
 import br.com.caelum.vraptor.view.Results;
-import br.org.groupwareworkbench.core.framework.Component;
 import br.org.groupwareworkbench.core.framework.MainCollablet;
+import br.org.groupwareworkbench.core.framework.android.Component;
 
 @Resource
 public class ComponentRepositoryController {
 	private final Result result;
 	private final Validator validator;
-	private final RequestInfo info;
 
-	public ComponentRepositoryController(final Validator validator, final Result result, final RequestInfo info){
+	public ComponentRepositoryController(final Validator validator, final Result result){
 		this.result = result;
 		this.validator = validator;
-		this.info = info;
 	}
 	
 	private void validateComponent(final Component component) {
@@ -121,88 +117,12 @@ public class ComponentRepositoryController {
         MainCollablet.getMainCollablet().includeDependencies(result);
 	}
 	
-	private List<Component> registerComponents(ComponentRepositoryInstance componentRepositoryInstance){
-	    try{
-            String componentRootPath = info.getServletContext().getRealPath("/WEB-INF/repository");
-            new File(componentRootPath).mkdirs();
-
-            Component binomial = new Component();
-            binomial.setName("Binomial");
-            binomial.setDescription("Gerenciador de binômios.");
-            binomial.setVersion("0.9b");
-            binomial.setAction("br.ufes.cwtools.gw.android.GWA_BINOMIAL");
-            binomial.setPackageName("br.ufes.cwtools.gw.android.components.binomial");
-            ComponentFile binomialFile = new ComponentFile(new File(componentRootPath + "/GWA-Binomial.apk"));
-            
-            Component gallery = new Component();
-            gallery.setName("Gallery");
-            gallery.setDescription("Exibe a galeria de fotos.");
-            gallery.setVersion("0.9b");
-            gallery.setAction("br.ufes.cwtools.gw.android.GWA_GALLERY");
-            gallery.setPackageName("br.ufes.cwtools.gw.android.components.gallery");
-            ComponentFile galleryFile = new ComponentFile(new File(componentRootPath + "/" + "GWA-Gallery.apk"));
-            
-            Component imageUpload = new Component();
-            imageUpload.setName("ImageUpload");
-            imageUpload.setDescription("Envia fotos para o servidor.");
-            imageUpload.setVersion("0.9b");
-            imageUpload.setAction("br.ufes.cwtools.gw.android.GWA_IMAGE_UPLOAD#br.ufes.cwtools.gw.android.GWA_IMAGE_PICKER");
-            imageUpload.setPackageName("br.ufes.cwtools.gw.android.components.image_upload");
-            ComponentFile imageUploadFile = new ComponentFile(new File(componentRootPath + "/" + "GWA-ImageUpload.apk"));
-            
-            Component map = new Component();
-            map.setName("Map");
-            map.setDescription("Mapa para exibição de usuários e objetos.");
-            map.setVersion("0.9b");
-            map.setAction("br.ufes.cwtools.gw.android.GWA_MAP");
-            map.setPackageName("br.ufes.cwtools.gw.android.components.map");
-            ComponentFile mapFile = new ComponentFile(new File(componentRootPath + "/" + "GWA-Map.apk"));
-            
-            Component tracker = new Component();
-            tracker.setName("Tracker");
-            tracker.setDescription("Localizador de usuários móveis.");
-            tracker.setVersion("0.9b");
-            tracker.setAction("br.ufes.cwtools.gw.android.GWA_TRACKER");
-            tracker.setPackageName("br.ufes.cwtools.gw.android.components.tracker");
-            ComponentFile trackerFile = new ComponentFile(new File(componentRootPath + "/" + "GWA-Tracker.apk"));
-            
-            Component joinus = new Component();
-            joinus.setName("JoinUs!");
-            joinus.setDescription("JoinUs! - rede social móvel.");
-            joinus.setVersion("1.9b");
-            joinus.setAction("br.ufes.cwtools.gw.android.GWA_JOINUS");
-            joinus.setPackageName("br.ufes.cwtools.joinus");
-            ComponentFile joinusFile = new ComponentFile(new File(componentRootPath + "/" + "JoinUs-AndroidClient.apk"));
-    
-            componentRepositoryInstance.save(binomial, binomialFile);
-            componentRepositoryInstance.save(gallery, galleryFile);
-            componentRepositoryInstance.save(imageUpload, imageUploadFile);
-            componentRepositoryInstance.save(map, mapFile);
-            componentRepositoryInstance.save(tracker, trackerFile);
-            componentRepositoryInstance.save(joinus, joinusFile);
-            
-            return componentRepositoryInstance.listAll();
-        }catch(Exception e){
-            System.out.println("Erro no cadastro inicial dos componentes APK.");
-            validator.add(new ValidationMessage("Erro na instalação dos componentes iniciais.", "Erro de Setup"));
-            validator.onErrorUsePageOf(this).list(componentRepositoryInstance);
-            
-            return new ArrayList<Component>();
-        }
-	}
-	
 	@Get
 	@Path("/groupware-workbench/repository/{componentRepositoryInstance}")
 	public List<Component> list(ComponentRepositoryInstance componentRepositoryInstance){
 	    addIncludes(componentRepositoryInstance);
 	    
-	    List<Component> lc = componentRepositoryInstance.listAll();
-	    
-    	if(lc.size() == 0){
-    	    lc = registerComponents(componentRepositoryInstance);
-    	}
-    	
-    	return lc;
+	    return componentRepositoryInstance.listAll();
 	}
 	
 	@Get
