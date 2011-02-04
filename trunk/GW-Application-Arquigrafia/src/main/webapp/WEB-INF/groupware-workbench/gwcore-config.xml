@@ -14,7 +14,73 @@
     </hibernate>
 
     <initialCollablet>photoMgr</initialCollablet>
-    <android-app displayName="Arquigrafia Brasil" textColor="#B31B1B" backgroundColor="#FFFFFF" logoImage="http://i.imgur.com/kDX43.png" /> 
+	
+	<!-- No linux se não usa absolute path assume-se $HOME como prefixo, ou seja "repository/" ficará "$HOME/repository"
+	se tiver permissões esta pasta é criada automaticamente pelo componente. -->
+    <android-app
+      displayName="Arquigrafia Brasil"
+      textColor="#B31B1B"
+      backgroundColor="#FFFFFF"
+      logoImage="http://i.imgur.com/kDX43.png"
+      componentInstallFolder="repository/"
+      >
+    	<component
+    		name="Binomial"
+    		description="Gerenciador de binômios."
+    		version="0.9b"
+    		action="br.ufes.cwtools.gw.android.GWA_BINOMIAL"
+    		package="br.ufes.cwtools.gw.android.components.binomial"
+    		file="GWA-Binomial.apk"
+    	/>
+    	<component
+    		name="Gallery"
+    		description="Exibe a galeria de fotos."
+    		version="0.9b"
+    		action="br.ufes.cwtools.gw.android.GWA_GALLERY"
+    		package="br.ufes.cwtools.gw.android.components.gallery"
+    		file="GWA-Gallery.apk"
+    	/>
+    	<component
+    		name="ImageUpload"
+    		description="Envia fotos para o servidor."
+    		version="0.9b"
+    		action="br.ufes.cwtools.gw.android.GWA_IMAGE_UPLOAD"
+    		package="br.ufes.cwtools.gw.android.components.image_upload"
+    		file="GWA-ImageUpload.apk"
+    	/>
+    	<component
+    		name="ImagePicker"
+    		description="Seleciona ou tira uma foto."
+    		version="0.9b"
+    		action="br.ufes.cwtools.gw.android.GWA_IMAGE_PICKER"
+    		package="br.ufes.cwtools.gw.android.components.image_picker"
+    		file="GWA-ImagePicker.apk"
+    	/>
+    	<component
+    		name="Map"
+    		description="Mapa para exibição de usuários e objetos."
+    		version="0.9b"
+    		action="br.ufes.cwtools.gw.android.GWA_MAP"
+    		package="br.ufes.cwtools.gw.android.components.map"
+    		file="GWA-Map.apk"
+    	/>
+    	<component
+    		name="Tracker"
+    		description="Localizador de usuários móveis."
+    		version="0.9b"
+    		action="br.ufes.cwtools.gw.android.GWA_TRACKER"
+    		package="br.ufes.cwtools.gw.android.components.tracker"
+    		file="GWA-Tracker.apk"
+    	/>
+    	<component
+    		name="JoinUs!"
+    		description="JoinUs! - Rede Social Móvel."
+    		version="0.9b"
+    		action="br.ufes.cwtools.gw.android.GWA_MAP"
+    		package="br.ufes.cwtools.joinus"
+    		file="JoinUs-AndroidClient.apk"
+    	/>
+    </android-app> 
 
     <collablets>
         <collablet>
@@ -111,7 +177,7 @@
             <android-properties>
             	<property key="menuLabel" value="Upload de Foto" />
             	<property key="tag" value="image_picker" />
-            	<property key="package" value="br.ufes.cwtools.gw.android.components.image_upload" />
+            	<property key="package" value="br.ufes.cwtools.gw.android.components.image_picker" />
             </android-properties>
             <android-properties>
             	<property key="tag" value="image_upload" />
@@ -162,13 +228,6 @@
         	<business>br.org.groupwareworkbench.arquigrafia.component_repository.ComponentRepositoryInstance</business>
             <description>Gerenciar os APKs instalados no sistema</description>
             <name>componentRepository</name>
-            <properties>
-             <property key="dirComponents" value="repository/" /> 
-             <!--
-                 No linux se não usa absolute path assume-se $HOME como prefixo, ou seja "images/" ficará "$HOME/images"
-                 se tiver permissões esta pasta é criada automaticamente pelo componente.
-             -->
-            </properties>
         </collablet>
 
     </collablets>
