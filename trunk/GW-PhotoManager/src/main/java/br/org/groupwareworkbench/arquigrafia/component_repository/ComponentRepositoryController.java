@@ -39,6 +39,7 @@ import br.com.caelum.vraptor.validator.ValidationMessage;
 import br.com.caelum.vraptor.view.Results;
 import br.org.groupwareworkbench.core.framework.MainCollablet;
 import br.org.groupwareworkbench.core.framework.android.Component;
+import br.org.groupwareworkbench.core.xmlconfig.AndroidApplication;
 
 @Resource
 public class ComponentRepositoryController {
@@ -154,7 +155,7 @@ public class ComponentRepositoryController {
 	@Delete
 	@Path("/groupware-workbench/repository/{componentRepositoryInstance}/{component.id}")
 	public void delete(ComponentRepositoryInstance componentRepositoryInstance, final Component component){
-		File componentFile = new File(componentRepositoryInstance.getCollablet().getProperty("dirComponents") + "/" + componentRepositoryInstance.find(component).getMd5hash() + ".apk");
+		File componentFile = new File(AndroidApplication.getAndroidApplication().getComponentInstallFolder() + "/" + componentRepositoryInstance.find(component).getMd5hash() + ".apk");
 		componentFile.delete();
 		componentRepositoryInstance.delete(component);
 		
@@ -165,7 +166,7 @@ public class ComponentRepositoryController {
 	@Path("/groupware-workbench/repository/{componentRepositoryInstance}/{component.id}/download")
 	public Download download(ComponentRepositoryInstance componentRepositoryInstance, final Component component){
 		Component componentComplete = componentRepositoryInstance.find(component.getId());
-		File componentFile = new File(componentRepositoryInstance.getCollablet().getProperty("dirComponents") + "/" + componentComplete.getMd5hash() + ".apk");
+		File componentFile = new File(AndroidApplication.getAndroidApplication().getComponentInstallFolder() + "/" + componentComplete.getMd5hash() + ".apk");
 		String componentFileName = componentComplete.getName() + "-" + componentComplete.getVersion() + ".apk";
         return new FileDownload(componentFile, "application/vnd.android.package-archive", componentFileName); 
 	}
