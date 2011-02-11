@@ -22,6 +22,7 @@ package br.org.groupwareworkbench.arquigrafia.photo;
 
 import static org.mockito.Mockito.*;
 import br.com.caelum.vraptor.core.Converters;
+import br.com.caelum.vraptor.core.RequestInfo;
 import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
 import br.com.caelum.vraptor.util.test.MockResult;
 import br.com.caelum.vraptor.util.test.MockValidator;
@@ -88,7 +89,8 @@ public class PhotoControllerTest {
         HttpServletRequest request = mock(HttpServletRequest.class);
         Converters converters = mock(Converters.class);        
         WidgetInfo info = new WidgetInfo(request, converters);
-        controller = new PhotoController(result, new MockValidator(), info);
+        RequestInfo requestInfo = mock(RequestInfo.class);
+        controller = new PhotoController(result, new MockValidator(), info, requestInfo);
 
         em.getTransaction().begin();
         collablet = new Collablet("photoMgr");

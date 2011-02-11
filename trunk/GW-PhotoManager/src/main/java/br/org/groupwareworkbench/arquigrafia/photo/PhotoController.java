@@ -39,6 +39,7 @@ import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.Validator;
+import br.com.caelum.vraptor.core.RequestInfo;
 import br.com.caelum.vraptor.interceptor.download.Download;
 import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
 import br.com.caelum.vraptor.ioc.RequestScoped;
@@ -65,11 +66,13 @@ public class PhotoController {
     private final Result result;
     private final WidgetInfo info;
     private final Validator validator;
+    private final RequestInfo requestInfo;
 
-    public PhotoController(Result result, Validator validator, WidgetInfo info) {
+    public PhotoController(Result result, Validator validator, WidgetInfo info, RequestInfo requestInfo) {
         this.result = result;
         this.validator = validator;
         this.info = info;
+        this.requestInfo = requestInfo;
     }
 
     @Get
@@ -288,9 +291,16 @@ public class PhotoController {
         }
 
         photoInstance.getCollablet().processWidgets(info, photoRegister);
-        addIncludes(photoInstance);
-        result.include("successMessage", MSG_SUCCESS);
-        result.use(Results.logic()).redirectTo(PhotoController.class).registra(photoInstance, new Photo());
+        
+        //FIXME: adicionar a condição do header accepts-content
+        //Melhor seria achar um jeito do vRaptor reportar esse estado, ao invés da aplicação refazer essa checagem
+        if("xml".equals(requestInfo.getRequest().getParameter("_format"))){
+            result.use(Results.representation()).from(photoRegister).serialize();
+        }else{
+            addIncludes(photoInstance);
+            result.include("successMessage", MSG_SUCCESS);
+            result.use(Results.logic()).redirectTo(PhotoController.class).registra(photoInstance, new Photo());
+        }
     }
 
     @Get
