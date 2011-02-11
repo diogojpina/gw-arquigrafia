@@ -76,7 +76,7 @@
     		name="JoinUs!"
     		description="JoinUs! - Rede Social Móvel."
     		version="0.9b"
-    		action="br.ufes.cwtools.gw.android.GWA_MAP"
+    		action="br.ufes.cwtools.gw.android.GWA_JOINUS"
     		package="br.ufes.cwtools.joinus"
     		file="JoinUs-AndroidClient.apk"
     	/>
@@ -174,7 +174,7 @@
                 -->
             </properties>
             <android>true</android>
-            <!--android-properties>
+            <android-properties>
             	<property key="menuLabel" value="Upload de Foto" />
             	<property key="tag" value="image_picker" />
             	<property key="package" value="br.ufes.cwtools.gw.android.components.image_picker" />
@@ -182,7 +182,7 @@
             <android-properties>
             	<property key="tag" value="image_upload" />
             	<property key="package" value="br.ufes.cwtools.gw.android.components.image_upload" />
-            </android-properties-->
+            </android-properties>
             <android-properties>
             	<property key="menuLabel" value="Galeria" />
             	<property key="tag" value="gallery" />
@@ -194,6 +194,12 @@
             <business>br.org.groupwareworkbench.collablet.coord.friends.FriendsMgrInstance</business>
             <description>Gerenciar amigos</description>
             <name>friendsMgr</name>
+            <android>true</android>
+            <android-properties>
+            	<property key="menuLabel" value="JoinUs!" />
+            	<property key="tag" value="joinus" />
+            	<property key="package" value="br.ufes.cwtools.joinus" />
+            </android-properties>
         </collablet>
 
         <collablet>
@@ -221,7 +227,7 @@
             	<property key="menuLabel" value="Localizador" />
             	<property key="tag" value="tracker" />
             	<property key="package" value="br.ufes.cwtools.gw.android.components.tracker" />
-            	<!-- property key="reportingPeriod" value="15000" /-->
+            	<!-- property key="reportingPeriod" value="300000" /-->
             	<!-- property key="reportingUrl" value="groupware-workbench/tracker/{trackerInstance}/update" /-->
             </android-properties>
         </collablet>
@@ -278,8 +284,8 @@
 
     <android-sequence>
         <dependency from="tracker" to="map" relatedExtra="relation"/>
-        <!--dependency from="image_picker" to="image_upload" relatedExtra="image_uri"/ -->
-		<!-- dependency from="image_upload" to="binomial" relatedExtra="default"/ -->
-		<!-- dependency from="gallery" to="binomial" relatedExtra="default"/ -->
+        <dependency from="image_picker" to="image_upload" relatedExtra="image_uri" />
+		<dependency from="image_upload" to="binomial" relatedExtra="default" />
+		<dependency from="gallery" to="binomial" relatedExtra="default" />
     </android-sequence>
 </frameworkDescriptor>
