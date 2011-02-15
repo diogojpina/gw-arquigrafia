@@ -27,12 +27,19 @@
         <script type="text/javascript" src="${pageContext.request.contextPath}/plugins/sds/js/jquery.smoothDivScroll-0.9-min.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/plugins/sds/js/scroll.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.boxy.js"></script>
-        <script type="text/javascript">
-            $(function() {
+       <script type="text/javascript">
+            $(document).ready(function() {
                 $("div#makeMeScrollable").smoothDivScroll({
                     scrollingSpeed: 12,
                     mouseDownSpeedBooster: 3,
                     visibleHotSpots: "always",
+                    startAtElementId: "startAtMe"
+                });
+
+                $("div#makeMeScrollable2").smoothDivScroll({
+                    scrollingSpeed: 12,
+                    mouseDownSpeedBooster: 3,
+                     visibleHotSpots: "always",
                     startAtElementId: "startAtMe"
                 });
             });
