@@ -29,7 +29,7 @@
 <c:if test="${not empty successMessage}">
     <div id="success" class="messages">
         <script type="text/javascript">
-            $("#success").show().delay(10000).slideUp(300);
+            $("#success").show();
         </script>
         <c:out value="${successMessage}" />
     </div>

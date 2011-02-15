@@ -61,7 +61,7 @@ public class PhotoController {
     public static final String MSG_FALHA_NO_UPLOAD = "Falha ao fazer o upload da imagem.";
     public static final String MSG_IMAGEM_INVALIDA = "O arquivo não foi reconhecido como uma imagem válida.";
     public static final String MSG_ENTIDADE_INVALIDA = "Não é uma entidade válida.";
-    public static final String MSG_SUCCESS = "A foto foi salva com sucesso.";
+    public static final String MSG_SUCCESS = "A foto foi salva com sucesso. Envie outra foto ou clique em fechar para voltar à pagina inicial.";
 
     private final Result result;
     private final WidgetInfo info;
