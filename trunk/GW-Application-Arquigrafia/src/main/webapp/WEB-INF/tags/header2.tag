@@ -35,35 +35,27 @@
         <a href="${pageContext.request.contextPath}/groupware-workbench/photo/${photoInstance.id}/index">In&iacute;cio</a>
         &nbsp;|&nbsp;
         <div id="photoUploadContent" style="visibility: hidden; display: none;">
-            <iframe name="photoUploadFrame" style="width: 800px; height: 400px; opacity: 0.95;" id="photoUploadFrame" src="${pageContext.request.contextPath}/groupware-workbench/photo/${photoInstance.id}/registra"></iframe>
+            <%--iframe id="photoUploadBody" name="photoUploadFrame" style="width: 800px; height: 400px; opacity: 0.95;" id="photoUploadFrame" src="${pageContext.request.contextPath}/groupware-workbench/photo/${photoInstance.id}/registra"></iframe --%>
+            <iframe id="photoUploadData" name="photoUploadFrame" style="width: 800px; height: 400px; opacity: 0.95;" id="photoUploadFrame"></iframe>
         </div>
         
-        <div id="albumObjectsDiv" style="visibility: hidden; display: none;">
-           <iframe name="albumContentFrame" style="width: 450px; height: 500px; opacity: 0.95;"
-                   id="albumContentFrame" src="${pageContext.request.contextPath}/groupware-workbench/albun/${albumMgr.id}/album/${-1}/listObjects"></iframe>
-        </div>
-        
+
         <script type="text/javascript">
             function goInitPage() {
                 window.location = "${pageContext.request.contextPath}";
             }
 
             function showPhotoUpload() {
+            	$("#photoUploadData").attr("src","${pageContext.request.contextPath}/groupware-workbench/photo/${photoInstance.id}/registra");
                 new Boxy($("#photoUploadContent").html(), {
                     title: "Use o formulário para enviar uma foto.",
                     modal: true,
                     closeText: "Fechar",
                     afterHide: goInitPage
                 }).show();
+                
             }
 
-            function showAlbumPhotos() {
-                new Boxy($("#albumObjectsDiv").html(), {
-                    title: "Album de Fotos",
-                    modal: true,
-                    closeText: "Fechar"
-                }).show();
-            }
         </script>
         <a href="#" onclick="return showPhotoUpload();">Enviar Imagem</a>
         &nbsp;|&nbsp;
