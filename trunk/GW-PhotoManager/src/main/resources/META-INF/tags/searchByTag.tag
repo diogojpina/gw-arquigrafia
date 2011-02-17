@@ -17,8 +17,8 @@
 </r:callMethod>        
         
 <%--
-    TODO: Evitar inserir <div> que não fecham de forma óbvia pois dependem de análise sensível ao contexto para
-    garantir que são bem formadas.
+    TODO: Evitar inserir <div> que nï¿½o fecham de forma ï¿½bvia pois dependem de anï¿½lise sensï¿½vel ao contexto para
+    garantir que sï¿½o bem formadas.
 --%>
 <c:forEach var="foto" items="${photos}">
     <div class="${lineClass}" style="float: left">
@@ -26,7 +26,7 @@
             <div>
         </c:if>
         <a class="${linkClass}" rel="linkimage" href="<c:url value="/groupware-workbench/photo/${foto.id}"/>">
-            <img src="<c:url value="/groupware-workbench/photo/img-thumb/${foto.id}"/>" alt="<c:out value="${foto.nome}" />" />
+            <img src="<c:url value="/groupware-workbench/photo/img-thumb/${foto.id}"/>?_log=no" alt="<c:out value="${foto.nome}" />" />
         </a>
         <c:if test="${showName || showLocation}">
             </div>

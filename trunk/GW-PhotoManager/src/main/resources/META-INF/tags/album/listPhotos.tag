@@ -11,7 +11,7 @@
         <c:forEach items="${album.objects}" var="item">
             <div class="photo-item">
                 <a href="<c:url value="/groupware-workbench/photo/${item.id}" />">
-                    <img src="<c:url value="/groupware-workbench/photo/img-crop/${item.id}" />" />
+                    <img src="<c:url value="/groupware-workbench/photo/img-crop/${item.id}" />?_log=no" />
                 </a>
             </div>
         </c:forEach>

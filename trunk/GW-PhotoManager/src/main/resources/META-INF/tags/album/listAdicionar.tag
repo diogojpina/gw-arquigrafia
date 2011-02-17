@@ -46,7 +46,7 @@
                var add =
                '<li class="shiftedImg">' +
                    '<a href="${pageContext.request.contextPath}/groupware-workbench/photo/' + photo.id + '">' +
-                   '<img src="${pageContext.request.contextPath}/groupware-workbench/photo/img-crop/' + photo.id + '" />' +
+                   '<img src="${pageContext.request.contextPath}/groupware-workbench/photo/img-crop/' + photo.id + '?_log=no" />' +
                    '</a>' +
                    '<div><a onclick="openPanel(' + photo.id + ');" href="#">adicionar</a></div>' +
                '</li>';

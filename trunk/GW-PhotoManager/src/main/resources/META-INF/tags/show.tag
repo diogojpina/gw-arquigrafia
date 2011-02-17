@@ -5,5 +5,5 @@
 <%@ attribute name="foto" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.arquigrafia.photo.Photo" %>
 
 <div>
-    <img alt="<c:out value="${foto.nome}" />" src="<c:url value="/groupware-workbench/photo/img-show/${foto.id}"/>" />
+    <img alt="<c:out value="${foto.nome}" />" src="<c:url value="/groupware-workbench/photo/img-show/${foto.id}"/>?_log=no" />
 </div>
