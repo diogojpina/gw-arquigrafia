@@ -3,7 +3,15 @@
 <repository>
     <components>
         <c:forEach var="cmp" items="${componentList}">
-            <component id="${cmp.id}" name="${cmp.name}" description="${cmp.description}" action="${cmp.action}" version="${cmp.version}" md5hash="${cmp.md5hash}" size="${cmp.size}" />
+            <component
+            	id="<c:out value="${cmp.id}" />"
+            	name="<c:out value="${cmp.name}" />"
+            	description="<c:out value="${cmp.description}" />"
+            	action="<c:out value="${cmp.action}" />"
+            	version="<c:out value="${cmp.version}" />"
+            	md5hash="<c:out value="${cmp.md5hash}" />"
+            	size="<c:out value="${cmp.size}" />"
+            />
         </c:forEach>
     </components>
 </repository>

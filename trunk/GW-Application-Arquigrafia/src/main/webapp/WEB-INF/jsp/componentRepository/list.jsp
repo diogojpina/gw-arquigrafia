@@ -36,7 +36,7 @@
     <body>
         <div id="wrap">
             <arq:header2 photoInstance="${photoMgr}" />
-            <div id="main_section">
+            <div class="default_div">
                 <h1>Componentes do Reposit&oacute;rio</h1>
                 <a href="<c:url value="/groupware-workbench/repository/${componentRepository.id}/new" />">Cadastrar novo componente</a>
                 <table border="1">

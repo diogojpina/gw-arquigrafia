@@ -35,7 +35,7 @@
         <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
         <script type="text/javascript">
             $(function() {
-                var myLatlng = new google.maps.LatLng(${trackRequest.latitude}, ${trackRequest.longitude});
+                var myLatlng = new google.maps.LatLng(<c:out value="${trackRequest.latitude}" />, <c:out value="${trackRequest.longitude}" />);
                 var myOptions = {
                     zoom: 13,
                     center: myLatlng,
@@ -45,7 +45,7 @@
                 var map = new google.maps.Map(document.getElementById("mapa"), myOptions);
                 <c:forEach items="${trackingInfoList}" var="ti">
 		    new google.maps.Marker({
-		    	position: new google.maps.LatLng(${ti.latitude}, ${ti.longitude}),
+		    	position: new google.maps.LatLng(<c:out value="${ti.latitude}" />, <c:out value="${ti.longitude}" />),
 		    	map: map,
 		    	title: "<c:out value="${ti.user.name}" />"
 		    });
@@ -62,38 +62,35 @@
     <body>
         <div id="wrap">
             <arq:header2 photoInstance="${photoMgr}" />
-
-            <div id="main_section">
-                <div style="left-padding: 300px;">
-                    <h1>TrackingInfo</h1>
-                    <table border="1">
-                        <tr>
-                            <th>UserId</th>
-                            <th>Accuracy</th>
-                            <th>Longitude</th>
-                            <th>Latitude</th>
-                            <th>Date</th>
-                        </tr>
-                        <c:if test="${!empty trackingInfoList}">
-                            <c:forEach var="ti" items="${trackingInfoList}">
-                                <tr>
-                                    <td><c:out value="${ti.user.id}" /></td>
-                                    <td><c:out value="${ti.accuracy}" /></td>
-                                    <td><c:out value="${ti.latitude}" /></td>
-                                    <td><c:out value="${ti.longitude}" /></td>
-                                    <td><c:out value="${ti.dateUpdate}" /></td>
-                                </tr>
-                            </c:forEach>
-                        </c:if>
-                        <c:if test="${empty trackingInfoList}">
-                            <tr>
-                                <td colspan="5">Nenhum TrackingInfo cadastrado nas proximidades.</td>
-                            </tr>
-                        </c:if>
-                    </table>
-                    <div id="mapa"></div>
-                </div>
-            </div>
+			<div class="default_div">
+			    <h1>TrackingInfo</h1>
+			    <table border="1">
+			        <tr>
+			            <th>UserId</th>
+			            <th>Accuracy</th>
+			            <th>Longitude</th>
+			            <th>Latitude</th>
+			            <th>Date</th>
+			        </tr>
+			        <c:if test="${!empty trackingInfoList}">
+			            <c:forEach var="ti" items="${trackingInfoList}">
+			                <tr>
+			                    <td><c:out value="${ti.user.id}" /></td>
+			                    <td><c:out value="${ti.accuracy}" /></td>
+			                    <td><c:out value="${ti.latitude}" /></td>
+			                    <td><c:out value="${ti.longitude}" /></td>
+			                    <td><c:out value="${ti.dateUpdate}" /></td>
+			                </tr>
+			            </c:forEach>
+			        </c:if>
+			        <c:if test="${empty trackingInfoList}">
+			            <tr>
+			                <td colspan="5">Nenhum TrackingInfo cadastrado nas proximidades.</td>
+			            </tr>
+			        </c:if>
+			    </table>
+			    <div id="mapa"></div>
+			</div>
             <div style="height: 30px; background-color: #fff;">&nbsp;</div>
             <arq:footer photoInstance="${photoMgr}" />
         </div>

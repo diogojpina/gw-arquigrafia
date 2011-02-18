@@ -32,11 +32,16 @@
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.accordion.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/bay.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.boxy.js"></script>
+        <style type="text/css">
+        	ul{ margin-left: 100px;}
+        	input[type=text], input[type=file], textarea{ width: 250px; margin-bottom: 10px; }
+        	input[type=submit]{ margin: 0 auto; }
+        </style>
     </head>
     <body>
         <div id="wrap">
             <arq:header2 photoInstance="${photoMgr}" />
-            <div id="main_section">
+            <div class="default_div">
                 <h1>Cadastre um novo componente no Reposit&oacute;rio</h1>
                 <c:if test="${!empty errors}">
                     <c:forEach var="error" items="${errors}">
@@ -45,12 +50,12 @@
                 </c:if>
                 <form method="post" action="<c:url value="/groupware-workbench/repository/${componentRepository.id}/new" />" enctype="multipart/form-data">
                     <ul>
-                        <li>Nome: <input type="text" name="component.name" value="<c:out value="${component.name}" />" /></li>
-                        <li>Descri&ccedil;&atilde;o: <textarea name="component.description"><c:out value="${component.description}" /></textarea></li>
-                        <li>Pacote: <input type="text" name="component.packageName" value="<c:out value="${component.packageName}" />" /></li>
-                        <li>A&ccedil;&atilde;o: <input type="text" name="component.action" value="<c:out value="${component.action}" />" /></li>
-                        <li>Vers&atilde;o: <input type="text" name="component.version" value="<c:out value="${component.version}" />" /></li>
-                        <li>Arquivo APK: <input type="file" name="componentUploadedFile" /></li>
+                        <li>Nome:<br /><input type="text" name="component.name" value="<c:out value="${component.name}" />" /></li>
+                        <li>Descri&ccedil;&atilde;o:<br /><textarea name="component.description"><c:out value="${component.description}" /></textarea></li>
+                        <li>Pacote:<br /><input type="text" name="component.packageName" value="<c:out value="${component.packageName}" />" /></li>
+                        <li>A&ccedil;&atilde;o:<br /><input type="text" name="component.action" value="<c:out value="${component.action}" />" /></li>
+                        <li>Vers&atilde;o:<br /><input type="text" name="component.version" value="<c:out value="${component.version}" />" /></li>
+                        <li>Arquivo APK:<br /><input type="file" name="componentUploadedFile" /></li>
                         <li><input type="submit" value="Cadastrar" /></li>
                     </ul>
                 </form>
