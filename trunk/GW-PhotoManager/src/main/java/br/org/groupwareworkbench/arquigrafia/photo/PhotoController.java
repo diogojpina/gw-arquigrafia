@@ -22,15 +22,11 @@ package br.org.groupwareworkbench.arquigrafia.photo;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.InputStream;
 import java.io.IOException;
-
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
-
 import java.util.Date;
 import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
 
 import br.com.caelum.vraptor.Delete;
 import br.com.caelum.vraptor.Get;
@@ -45,7 +41,6 @@ import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
 import br.com.caelum.vraptor.ioc.RequestScoped;
 import br.com.caelum.vraptor.validator.ValidationMessage;
 import br.com.caelum.vraptor.view.Results;
-
 import br.org.groupwareworkbench.collablet.coord.user.User;
 import br.org.groupwareworkbench.core.framework.WidgetInfo;
 
@@ -251,32 +246,34 @@ public class PhotoController {
     @Get
     @Path(value = "/groupware-workbench/photo/{photoInstance}/registra")
     public void registra(PhotoMgrInstance photoInstance, Photo photo) {
-        if (photo == null) {
-            photo = new Photo();
+        Photo newPhoto = photo;
+        if (newPhoto == null) {
+            newPhoto = new Photo();
         }
-        photo.setCollablet(photoInstance.getCollablet());
-        photo.setDataUpload(new Date());
-        result.include("photoRegister", photo);
+        newPhoto.setCollablet(photoInstance.getCollablet());
+        newPhoto.setDataUpload(new Date());
+        result.include("photoRegister", newPhoto);
         addIncludes(photoInstance);
     }
 
-    // TODO: Pegar o usuário da sessão.
     @Post
     @Path(value = "/groupware-workbench/photo/{photoInstance}/registra")
-    public void save(Photo photoRegister, UploadedFile foto, PhotoMgrInstance photoInstance, User user) {
+    public void save(Photo photoRegister, UploadedFile foto, PhotoMgrInstance photoInstance) {
         photoRegister.setNomeArquivo(foto == null ? null : foto.getFileName());
         result.include("photoRegister", photoRegister);
 
-        boolean erro = false;
+
         if (foto == null) {
             validator.add(new ValidationMessage(MSG_IMAGEM_OBRIGATORIA, "Erro"));
-            erro = true;
-        }
-        if (erro) {
             validator.onErrorUse(Results.logic()).redirectTo(PhotoController.class).registra(photoInstance, photoRegister);
             return;
         }
 
+        User user = null;
+        try{
+            user = (User) requestInfo.getRequest().getSession().getAttribute("userLogin");
+        }catch(Exception e){ }
+        
         if (user != null) {
             photoRegister.assignUser(user);
         }
@@ -294,7 +291,14 @@ public class PhotoController {
         
         //FIXME: adicionar a condição do header accepts-content
         //Melhor seria achar um jeito do vRaptor reportar esse estado, ao invés da aplicação refazer essa checagem
-        if("xml".equals(requestInfo.getRequest().getParameter("_format"))){
+        boolean xmlRequest;
+        try{
+            xmlRequest = "xml".equals(requestInfo.getRequest().getParameter("_format"));
+        }catch(Exception e){
+            xmlRequest = false;
+        }
+        
+        if(xmlRequest){
             result.use(Results.representation()).from(photoRegister).serialize();
         }else{
             addIncludes(photoInstance);

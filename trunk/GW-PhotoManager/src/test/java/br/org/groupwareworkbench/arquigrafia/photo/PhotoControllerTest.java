@@ -88,9 +88,9 @@ public class PhotoControllerTest {
         
         HttpServletRequest request = mock(HttpServletRequest.class);
         Converters converters = mock(Converters.class);        
-        WidgetInfo info = new WidgetInfo(request, converters);
+        WidgetInfo widgetInfo = new WidgetInfo(request, converters);
         RequestInfo requestInfo = mock(RequestInfo.class);
-        controller = new PhotoController(result, new MockValidator(), info, requestInfo);
+        controller = new PhotoController(result, new MockValidator(), widgetInfo, requestInfo);
 
         em.getTransaction().begin();
         collablet = new Collablet("photoMgr");
@@ -116,9 +116,6 @@ public class PhotoControllerTest {
         photo3.setCollablet(collablet);
         photo3.setNome("foto Tres");
         photo3.setNomeArquivo("fototres.jpg");
-
-
-        
     }
 
     @After
@@ -261,7 +258,7 @@ public class PhotoControllerTest {
         quatro.setNome("");
 
         try {
-            controller.save(quatro, null, photoInstance, null);
+            controller.save(quatro, null, photoInstance);
             Assert.fail();
         } catch (ValidationException e) {
             List<String> outMensagens = listErrors(e);
@@ -278,7 +275,7 @@ public class PhotoControllerTest {
         quatro.setNomeArquivo("fotoquatro.jpg");
 
         try {
-            controller.save(quatro, null, photoInstance, null);
+            controller.save(quatro, null, photoInstance);
             Assert.fail();
         } catch (ValidationException e) {
             List<String> outMensagens = listErrors(e);
@@ -294,7 +291,7 @@ public class PhotoControllerTest {
         quatro.setNome("foto Quatro");
         quatro.setNomeArquivo("fotoquatro.jpg");
         try {
-            controller.save(quatro, getImage(), photoInstance, null);
+            controller.save(quatro, getImage(), photoInstance);
         } catch (ValidationException e) {
             List<String> outMensagens = listErrors(e);
             for (String erro : outMensagens) {

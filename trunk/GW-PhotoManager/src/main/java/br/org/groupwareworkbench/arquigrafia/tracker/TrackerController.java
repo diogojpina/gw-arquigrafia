@@ -22,6 +22,8 @@ package br.org.groupwareworkbench.arquigrafia.tracker;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
@@ -39,10 +41,12 @@ public class TrackerController {
 
     private Result result;
 	private Validator validator;
-
-	public TrackerController(final Validator validator, final Result result){
+	private HttpSession session;
+	
+	public TrackerController(final Validator validator, final Result result, final HttpSession session){
 		this.result = result;
 		this.validator = validator;
+		this.session = session;
 	}
 	
 	private void addIncludes(TrackerInstance trackerInstance){
@@ -76,7 +80,9 @@ public class TrackerController {
 	
 	@Post
 	@Path("/groupware-workbench/tracker/{trackerInstance}/update")
-	public void update(TrackingInfo trackingInfo, TrackerInstance trackerInstance, User user){
+	public void update(TrackingInfo trackingInfo, TrackerInstance trackerInstance){
+	    final User user = (User) session.getAttribute("userLogin");
+	    
 		//Validação das coordenadas
 		if(Math.abs(trackingInfo.getLatitude()) > 90){
 			validator.add(new ValidationMessage("Latitude inválida.", "Dados inválidos"));
@@ -89,7 +95,7 @@ public class TrackerController {
 			validator.add(new ValidationMessage("Acuidade inválida.", "Dados inválidos"));
 		}
 		
-		validator.onErrorUsePageOf(this).update(trackingInfo, trackerInstance, user);
+		validator.onErrorUsePageOf(this).update(trackingInfo, trackerInstance);
 		
 		trackingInfo.setUser(user);
 		trackerInstance.save(trackingInfo);
