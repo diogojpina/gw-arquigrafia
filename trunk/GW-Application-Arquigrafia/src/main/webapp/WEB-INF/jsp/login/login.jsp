@@ -30,7 +30,7 @@
     <body onload="setFocus();">
     <div class="login_box" >
         <div class="login_messages">
-            <h1>Olá a versão de testes do arquigrafia será liberada em breve caso queira ser um usuário de teste do sistema envie um email para <strong>arquigrafiabrasil@gmail.com</strong>.</h1>
+            <h1>Olá, a versão de testes do Arquigrafia será liberada em breve. Caso queira ser um usuário de teste do sistema envie um email para <strong>arquigrafiabrasil@gmail.com</strong>.</h1>
         </div>
         </div>
 	    <form id="usuariosForm" method="post" name="loginForm" action="<c:url value="/groupware-workbench/users/${userMgr.id}/login" />">
