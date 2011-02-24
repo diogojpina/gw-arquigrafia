@@ -121,10 +121,10 @@ public class Photo implements Serializable {
     public void deassignUser(User user) {
         users.remove(user);
     }
-
+/*
     public static void deleteAll(Collablet collablet) {
         DAO.query().with("collablet", collablet).delete();
-    }
+    } */
 
     public void delete() {
         DAO.delete(this);

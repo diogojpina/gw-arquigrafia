@@ -41,6 +41,7 @@ import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
 import br.com.caelum.vraptor.ioc.RequestScoped;
 import br.com.caelum.vraptor.validator.ValidationMessage;
 import br.com.caelum.vraptor.view.Results;
+import br.org.groupwareworkbench.collablet.coord.counter.Observer;
 import br.org.groupwareworkbench.collablet.coord.user.User;
 import br.org.groupwareworkbench.core.framework.WidgetInfo;
 
@@ -140,6 +141,7 @@ public class PhotoController {
         result.include("photo", photo);
         PhotoMgrInstance photoInstance = (PhotoMgrInstance) photo.getCollablet().getBusinessObject();
         addIncludes(photoInstance);
+//        photoInstance.register(observer);
         photoInstance.getCollablet().processWidgets(info, photo);
         result.use(Results.representation()).from(photo).serialize();
     }
@@ -268,7 +270,7 @@ public class PhotoController {
             validator.onErrorUse(Results.logic()).redirectTo(PhotoController.class).registra(photoInstance, photoRegister);
             return;
         }
-
+        
         User user = null;
         try{
             user = (User) requestInfo.getRequest().getSession().getAttribute("userLogin");

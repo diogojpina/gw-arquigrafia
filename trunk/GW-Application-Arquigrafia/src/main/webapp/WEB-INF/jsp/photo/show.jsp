@@ -8,6 +8,7 @@
 <%@ taglib prefix="tag" uri="http://www.groupwareworkbench.org.br/widgets/tag" %>
 <%@ taglib prefix="recommend" uri="http://www.groupwareworkbench.org.br/widgets/recommend" %>
 <%@ taglib prefix="comment" uri="http://www.groupwareworkbench.org.br/widgets/comment" %>
+<%@ taglib prefix="counter" uri="http://www.groupwareworkbench.org.br/widgets/counter" %>
 <%@ taglib prefix="gmaps" uri="http://www.groupwareworkbench.org.br/widgets/georeference" %>
 <%@ taglib prefix="arq" tagdir="/WEB-INF/tags" %>
 
@@ -235,6 +236,11 @@
                                 <div style="float:left; margin-left: 10px;">
                                     <album:buttonAdd idButton="inputAddToAlbum" albumMgr="${albumMgr}" user="${userLogin}" photo="${photo}"/>
                                 </div>
+                                <c:if test="${counterMgr.collablet.enabled}">
+                                    <div>
+                                        <counter:showCounter manager="${counterMgr}" entity="${photo}" increment="true" wrapClass="counter_show" />
+                                    </div>
+                                 </c:if>
                             </div>
                             <div id="tagsAdd">
                                 <tag:selectTags tagMgr="${tagMgr}" />

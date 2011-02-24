@@ -8,16 +8,18 @@
         </layout>
     </appender>
 
-    <appender name="userTrace"
-        class="org.apache.log4j.FileAppender">
+    <appender name="userTrace" class="org.apache.log4j.FileAppender">
         <param name="File" value="${catalina.home}/logs/userTrace.log" />
         <param name="threshold" value="info" />
         <layout class="org.apache.log4j.PatternLayout">
-            <param name="ConversionPattern"
-                value="%d{dd-MM-yyyy  HH:mm:ss} %5p %c{1} - %m%n" />
+            <param name="ConversionPattern" value="%d{dd-MM-yyyy  HH:mm:ss} %5p %c{1} - %m%n" />
         </layout>
     </appender>
-    
+
+    <!-- <category name="br.org.groupwareworkbench">
+        <priority value="TRACE"></priority>
+        <appender-ref ref="stdout"/>
+    </category>	-->
 
     <category name="br.org.groupwareworkbench.core">
         <priority value="DEBUG"></priority>
@@ -37,10 +39,10 @@
     -->
 
     <!--
-            <category name="org.hibernate">
+        <category name="org.hibernate">
             <priority value="DEBUG" />
             <appender-ref ref="stdout" />
-            </category>
+        </category>
     -->
 
 </log4j:configuration>

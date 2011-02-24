@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="w" uri="http://www.groupwareworkbench.org.br/widgets/commons" %>
 <%@ taglib prefix="album" uri="http://www.groupwareworkbench.org.br/widgets/album" %>
+<%@ taglib prefix="counter" uri="http://www.groupwareworkbench.org.br/widgets/counter" %>
 <%@ taglib prefix="photo" uri="http://www.groupwareworkbench.org.br/widgets/photomanager" %>
 <%@ taglib prefix="arq" tagdir="/WEB-INF/tags" %>
 
@@ -26,6 +27,10 @@
             <h1><span class="style1">Editar &aacute;lbum</span></h1>
             <br />
             <album:edit album="${album}" albumMgr="${albumMgr}" />
+            <!-- <c:if test="${counterMgr.collablet.enabled}">
+                <counter:showCounter manager="${counterMgr}" entity="${album}" increment="true" />
+            </c:if>
+            -->
             <div class="barra_botoes">
                 <w:voltar collabletInstance="${albumMgr.collablet}" />
             </div>

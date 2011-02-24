@@ -238,6 +238,11 @@
             <description>Gerenciar os APKs instalados no sistema</description>
             <name>componentRepository</name>
         </collablet>
+        <collablet>
+            <business>br.org.groupwareworkbench.collablet.coord.counter.CounterMgrInstance</business>
+            <description>Gerenciar contador</description>
+            <name>counterMgr</name>
+        </collablet>        
 
     </collablets>
 
@@ -255,6 +260,7 @@
 		<!-- <subordination parent="friendsMgr" child="commentMgr2" /> -->
 		<subordination parent="photoMgr" child="tracker" />
 		<subordination parent="photoMgr" child="componentRepository" />
+		<subordination parent="photoMgr" child="counterMgr" />
     </collablets-subordinations>
 
     <collablets-dependencies>
@@ -281,6 +287,8 @@
         <dependency from="manager" to="photoMgr" />
         <dependency from="tracker" to="photoMgr" />
         <dependency from="componentRepository" to="photoMgr" />
+        <dependency from="counterMgr" to="albumMgr" />
+        <dependency from="counterMgr" to="photoMgr" />
     </collablets-dependencies>
 
     <android-sequence>

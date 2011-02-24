@@ -29,7 +29,7 @@
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/listagem.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/plugins/sds/js/jquery.smoothDivScroll-0.9-min.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/plugins/sds/js/scroll.js"></script>
-        <script  type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.boxy.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.boxy.js"></script>
 
         <script type="text/javascript">
             $(document).ready(function() {

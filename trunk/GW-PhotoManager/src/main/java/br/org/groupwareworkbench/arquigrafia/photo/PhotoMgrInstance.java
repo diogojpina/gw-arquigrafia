@@ -24,6 +24,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import br.org.groupwareworkbench.collablet.coord.counter.Observable;
+import br.org.groupwareworkbench.collablet.coord.counter.Observer;
 import br.org.groupwareworkbench.collablet.coord.user.User;
 import br.org.groupwareworkbench.core.framework.AbstractBusiness;
 import br.org.groupwareworkbench.core.framework.Collablet;
@@ -40,7 +42,7 @@ import br.org.groupwareworkbench.core.framework.annotations.RequiredProperty;
             @DefaultProperty(name = "mostraPrefix", defaultValue = "mostra_")
         },
         requiredProperties = {@RequiredProperty(name = "dirImages") })
-public class PhotoMgrInstance extends AbstractBusiness {
+public class PhotoMgrInstance extends AbstractBusiness { 
 
     public PhotoMgrInstance(Collablet collablet) {
         super(collablet);
