@@ -28,13 +28,8 @@
  		</script>
     </head>
     <body onload="setFocus();">
-    <div class="login_box" >
-        <div class="login_messages">
-            <h1>Olá, a versão de testes do Arquigrafia será liberada em breve. Caso queira ser um usuário de teste do sistema envie um email para <strong>arquigrafiabrasil@gmail.com</strong>.</h1>
-        </div>
-        </div>
 	    <form id="usuariosForm" method="post" name="loginForm" action="<c:url value="/groupware-workbench/users/${userMgr.id}/login" />">
-            <div class="login_box" id="login_box">
+            <div class="login_box">
                 <div class="login_fields">
                     <div class="login_fields_1">
                         <ul>
@@ -51,7 +46,9 @@
                     <div class="login_button">
                         <input tabindex="3" name="Submit" type="submit" class="botao" id="Submit" value="Entrar" />
                     </div>
+                   
                 </div>
+                
                 <div class="login_box_clear"></div>
                 <c:if test="${not sessionScope['log']}">
                     <div class="login_messages">
@@ -61,6 +58,7 @@
                     </div>
                 </c:if>
             </div>
+            
         </form>
         <arq:know_more />
     </body>

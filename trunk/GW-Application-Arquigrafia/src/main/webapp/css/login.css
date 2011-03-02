@@ -15,11 +15,12 @@
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 15px;
     text-align: center;
-    margin-top: 197px;
-    margin-left: 1px;
-    margin-right: 1px;
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
     color: #0F6197;
     background-color: #FFFFFF;
+    text-align: justify;
 }
 
 .login_error {

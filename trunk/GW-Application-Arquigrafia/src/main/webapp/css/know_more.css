@@ -2,11 +2,13 @@
 /* CSS Document */
 #know_more {
 	font-family: Arial, Helvetica, sans-serif;
-	font-size: 12px;
+	font-size: 13px;
 	padding-top: 20px;
 	padding-bottom: 30px;
 	background-color: #fff;
 	max-width: 99%;
+	color: #333;
+	text-align: justify;
 }
 
 #know_more h2 {
@@ -14,6 +16,7 @@
 	font-size: 18px;
 	margin-bottom: 20px;
 	margin-top: 20px;
+	
 }
 
 #know_more h3 {
@@ -22,6 +25,7 @@
 	margin-bottom: 20px;
 	margin-top: 20px;
 }
+
 #know_more img {
 	float: left;
 	margin-right: 10px;
@@ -48,4 +52,29 @@
 }
 #know_more_3 {
 	height: 160px;
+}
+
+#footer_bottom {
+	background-image: url(images/footer_bottom_bg.png);
+	background-repeat: repeat-x;
+	background-attachment: scroll;
+	height: 150px;
+	text-align: center;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	text-decoration: none;
+	color: #333;
+}
+
+#footer_bottom_text {
+	background-image: url(images/footer_bottom_bg.png);
+	background-repeat: repeat-x;
+	background-attachment: scroll;
+	height: 84px;
+	text-align: left;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 15px;
+	font-weight: bold;
+	padding: 10px;
+	text-decoration: none;
 }
