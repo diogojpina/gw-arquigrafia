@@ -28,6 +28,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import br.com.caelum.vraptor.Delete;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
@@ -62,12 +64,14 @@ public class PhotoController {
     private final Result result;
     private final WidgetInfo info;
     private final Validator validator;
+    private final HttpSession session;
     private final RequestInfo requestInfo;
 
-    public PhotoController(Result result, Validator validator, WidgetInfo info, RequestInfo requestInfo) {
+    public PhotoController(Result result, Validator validator, WidgetInfo info, HttpSession session, RequestInfo requestInfo) {
         this.result = result;
         this.validator = validator;
         this.info = info;
+        this.session = session;
         this.requestInfo = requestInfo;
     }
 
@@ -146,10 +150,26 @@ public class PhotoController {
         result.use(Results.representation()).from(photo).serialize();
     }
 
+    @SuppressWarnings("unchecked")
     @Get
     @Path(value = "/groupware-workbench/photo/{photoInstance}/list")
     public void busca(PhotoMgrInstance photoInstance) {
         addIncludes(photoInstance);
+
+        // FIXME: adicionar a condição do header accepts-content
+        // Melhor seria achar um jeito do vRaptor reportar esse estado, ao invés da aplicação refazer essa checagem
+        boolean xmlRequest;
+        try {
+            xmlRequest = "xml".equals(requestInfo.getRequest().getAttribute("_format"));
+        } catch (Exception e) {
+            xmlRequest = false;
+        }
+        
+        if (xmlRequest) {
+            result.use(Results.representation()).from((List<Photo>)result.included().get("fotos")).serialize();
+        } else {
+            result.of(this).busca(photoInstance);
+        }
     }
 
     @Post
@@ -164,7 +184,7 @@ public class PhotoController {
 
         addIncludes(photoInstance);
 
-        result.use(Results.logic()).redirectTo(PhotoController.class).busca(photoInstance);
+        result.use(Results.logic()).forwardTo(PhotoController.class).busca(photoInstance);
     }
 
     @Post
@@ -172,7 +192,7 @@ public class PhotoController {
     public void buscaFoto(String busca, PhotoMgrInstance photoInstance) {
         if (busca.length() < 3) {
             validator.add(new ValidationMessage(MSG_MIN_3_LETRAS, "Erro"));
-            validator.onErrorUse(Results.logic()).redirectTo(PhotoController.class).busca(photoInstance);
+            validator.onErrorUse(Results.logic()).forwardTo(PhotoController.class).busca(photoInstance);
             return;
         }
 
@@ -186,23 +206,11 @@ public class PhotoController {
     }
 
     @Post
-    @Path(value = "/groupware-workbench/photo/{photoInstance}/buscaAlternativa")
-    public void buscaFotoAlternativa(String busca, PhotoMgrInstance photoInstance) {
-        if (busca.length() < 3) {
-            validator.add(new ValidationMessage(MSG_MIN_3_LETRAS, "Erro"));
-            validator.onErrorUse(Results.logic()).redirectTo(PhotoController.class).busca(photoInstance);
-            return;
-        }
-        List<Photo> resultFotosBusca = photoInstance.buscaFoto(busca);
-        result.use(Results.representation()).from(resultFotosBusca).serialize();
-    }
-
-    @Post
     @Path(value = "/groupware-workbench/photo/{photoInstance}/buscaA")
     public void buscaFotoAvancada(String nome, String descricao, String lugar, Date date, PhotoMgrInstance photoInstance) {
         if (nome.isEmpty() && descricao.isEmpty() && lugar.isEmpty() && date == null) {
             validator.add(new ValidationMessage(MSG_NENHUM_CAMPO_PREENCHIDO, "Erro"));
-            validator.onErrorUse(Results.logic()).redirectTo(PhotoController.class).busca(photoInstance);
+            validator.onErrorUse(Results.logic()).forwardTo(PhotoController.class).busca(photoInstance);
             return;
         }
 
@@ -228,20 +236,7 @@ public class PhotoController {
         result.include("searchTerm", term.toString());
 
         addIncludes(photoInstance);
-        result.use(Results.logic()).redirectTo(PhotoController.class).busca(photoInstance);
-    }
-
-    @Post
-    @Path(value = "/groupware-workbench/photo/{photoInstance}/buscaAvancadaAlternativa")
-    public void buscaAvancadaAlternativa(String nome, String descricao, String lugar, Date date, PhotoMgrInstance photoInstance) {
-        if (nome.isEmpty() && descricao.isEmpty() && lugar.isEmpty() && date == null) {
-            validator.add(new ValidationMessage(MSG_NENHUM_CAMPO_PREENCHIDO, "Erro"));
-            validator.onErrorUse(Results.logic()).redirectTo(PhotoController.class).busca(photoInstance);
-            return;
-        }
-
-        List<Photo> resultFotosBusca = photoInstance.buscaFotoAvancada(nome, lugar, descricao, date);
-        result.use(Results.representation()).from(resultFotosBusca).serialize();
+        result.use(Results.logic()).forwardTo(PhotoController.class).busca(photoInstance);
     }
 
     // TODO: Achar uma forma de fazer isto sem ter o photo na URL.
@@ -264,17 +259,16 @@ public class PhotoController {
         photoRegister.setNomeArquivo(foto == null ? null : foto.getFileName());
         result.include("photoRegister", photoRegister);
 
-
         if (foto == null) {
             validator.add(new ValidationMessage(MSG_IMAGEM_OBRIGATORIA, "Erro"));
             validator.onErrorUse(Results.logic()).redirectTo(PhotoController.class).registra(photoInstance, photoRegister);
             return;
         }
-        
+
         User user = null;
-        try{
-            user = (User) requestInfo.getRequest().getSession().getAttribute("userLogin");
-        }catch(Exception e){ }
+        try {
+            user = (User) session.getAttribute("userLogin");
+        } catch (Exception e) { }
         
         if (user != null) {
             photoRegister.assignUser(user);
@@ -291,18 +285,18 @@ public class PhotoController {
 
         photoInstance.getCollablet().processWidgets(info, photoRegister);
         
-        //FIXME: adicionar a condição do header accepts-content
-        //Melhor seria achar um jeito do vRaptor reportar esse estado, ao invés da aplicação refazer essa checagem
+        // FIXME: adicionar a condição do header accepts-content
+        // Melhor seria achar um jeito do vRaptor reportar esse estado, ao invés da aplicação refazer essa checagem
         boolean xmlRequest;
-        try{
+        try {
             xmlRequest = "xml".equals(requestInfo.getRequest().getParameter("_format"));
-        }catch(Exception e){
+        } catch (Exception e) {
             xmlRequest = false;
         }
         
-        if(xmlRequest){
+        if (xmlRequest) {
             result.use(Results.representation()).from(photoRegister).serialize();
-        }else{
+        } else {
             addIncludes(photoInstance);
             result.include("successMessage", MSG_SUCCESS);
             result.use(Results.logic()).redirectTo(PhotoController.class).registra(photoInstance, new Photo());

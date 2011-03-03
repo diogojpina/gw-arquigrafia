@@ -45,6 +45,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -89,8 +90,9 @@ public class PhotoControllerTest {
         HttpServletRequest request = mock(HttpServletRequest.class);
         Converters converters = mock(Converters.class);        
         WidgetInfo widgetInfo = new WidgetInfo(request, converters);
+        HttpSession session = mock(HttpSession.class);
         RequestInfo requestInfo = mock(RequestInfo.class);
-        controller = new PhotoController(result, new MockValidator(), widgetInfo, requestInfo);
+        controller = new PhotoController(result, new MockValidator(), widgetInfo, session, requestInfo);
 
         em.getTransaction().begin();
         collablet = new Collablet("photoMgr");
@@ -173,21 +175,6 @@ public class PhotoControllerTest {
     }
 
     @Test
-    public void testAlternativePhotoSearchWithShortString() {
-        photo1.save();
-        photo2.save();
-        photo3.save();
-        try {
-            controller.buscaFotoAlternativa("fo", photoInstance);
-            Assert.fail();
-        } catch (ValidationException e) {
-            List<Message> errors = e.getErrors();
-            Assert.assertEquals(1, errors.size());
-            Assert.assertEquals(PhotoController.MSG_MIN_3_LETRAS, errors.get(0).getMessage());
-        }
-    }
-
-    @Test
     public void testPhotoSearchWithLongEnoughString() {
         photo1.save();
         photo2.save();
@@ -211,21 +198,6 @@ public class PhotoControllerTest {
         photo3.save();
         try {
             controller.buscaFotoAvancada("", "", "", null, photoInstance);
-            Assert.fail();
-        } catch (ValidationException e) {
-            List<Message> errors = e.getErrors();
-            Assert.assertEquals(1, errors.size());
-            Assert.assertEquals(PhotoController.MSG_NENHUM_CAMPO_PREENCHIDO, errors.get(0).getMessage());
-        }
-    }
-
-    @Test
-    public void testAlternativeAdvancedSearchWithoutAnyFields() {
-        photo1.save();
-        photo2.save();
-        photo3.save();
-        try {
-            controller.buscaAvancadaAlternativa("", "", "", null, photoInstance);
             Assert.fail();
         } catch (ValidationException e) {
             List<Message> errors = e.getErrors();
