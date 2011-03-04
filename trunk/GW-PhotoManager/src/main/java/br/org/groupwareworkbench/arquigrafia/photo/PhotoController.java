@@ -1,23 +1,23 @@
 /*
-*    UNIVERSIDADE DE SÃO PAULO.
-*    Author: Marco Aurélio Gerosa (gerosa@ime.usp.br)
-*    This project was/is sponsored by RNP and FAPESP.
-*
-*    This file is part of Groupware Workbench (http://www.groupwareworkbench.org.br).
-*
-*    Groupware Workbench is free software: you can redistribute it and/or modify
-*    it under the terms of the GNU Lesser General Public License as published by
-*    the Free Software Foundation, either version 3 of the License, or
-*    (at your option) any later version.
-*
-*    Groupware Workbench is distributed in the hope that it will be useful,
-*    but WITHOUT ANY WARRANTY; without even the implied warranty of
-*    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-*    GNU Lesser General Public License for more details.
-*
-*    You should have received a copy of the GNU Lesser General Public License
-*    along with Swift.  If not, see <http://www.gnu.org/licenses/>.
-*/
+ *    UNIVERSIDADE DE SÃO PAULO.
+ *    Author: Marco Aurélio Gerosa (gerosa@ime.usp.br)
+ *    This project was/is sponsored by RNP and FAPESP.
+ *
+ *    This file is part of Groupware Workbench (http://www.groupwareworkbench.org.br).
+ *
+ *    Groupware Workbench is free software: you can redistribute it and/or modify
+ *    it under the terms of the GNU Lesser General Public License as published by
+ *    the Free Software Foundation, either version 3 of the License, or
+ *    (at your option) any later version.
+ *
+ *    Groupware Workbench is distributed in the hope that it will be useful,
+ *    but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *    GNU Lesser General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Lesser General Public License
+ *    along with Swift.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package br.org.groupwareworkbench.arquigrafia.photo;
 
 import java.io.File;
@@ -43,7 +43,7 @@ import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
 import br.com.caelum.vraptor.ioc.RequestScoped;
 import br.com.caelum.vraptor.validator.ValidationMessage;
 import br.com.caelum.vraptor.view.Results;
-import br.org.groupwareworkbench.collablet.coord.counter.Observer;
+//import br.org.groupwareworkbench.collablet.coord.counter.Observer;
 import br.org.groupwareworkbench.collablet.coord.user.User;
 import br.org.groupwareworkbench.core.framework.WidgetInfo;
 
@@ -59,7 +59,8 @@ public class PhotoController {
     public static final String MSG_FALHA_NO_UPLOAD = "Falha ao fazer o upload da imagem.";
     public static final String MSG_IMAGEM_INVALIDA = "O arquivo não foi reconhecido como uma imagem válida.";
     public static final String MSG_ENTIDADE_INVALIDA = "Não é uma entidade válida.";
-    public static final String MSG_SUCCESS = "A foto foi salva com sucesso. Envie outra foto ou clique em fechar para voltar à pagina inicial.";
+    public static final String MSG_SUCCESS =
+            "A foto foi salva com sucesso. Envie outra foto ou clique em fechar para voltar à pagina inicial.";
 
     private final Result result;
     private final WidgetInfo info;
@@ -67,7 +68,8 @@ public class PhotoController {
     private final HttpSession session;
     private final RequestInfo requestInfo;
 
-    public PhotoController(Result result, Validator validator, WidgetInfo info, HttpSession session, RequestInfo requestInfo) {
+    public PhotoController(Result result, Validator validator, WidgetInfo info, HttpSession session,
+            RequestInfo requestInfo) {
         this.result = result;
         this.validator = validator;
         this.info = info;
@@ -145,7 +147,7 @@ public class PhotoController {
         result.include("photo", photo);
         PhotoMgrInstance photoInstance = (PhotoMgrInstance) photo.getCollablet().getBusinessObject();
         addIncludes(photoInstance);
-//        photoInstance.register(observer);
+        // photoInstance.register(observer);
         photoInstance.getCollablet().processWidgets(info, photo);
         result.use(Results.representation()).from(photo).serialize();
     }
@@ -160,13 +162,13 @@ public class PhotoController {
         // Melhor seria achar um jeito do vRaptor reportar esse estado, ao invés da aplicação refazer essa checagem
         boolean xmlRequest;
         try {
-            xmlRequest = "xml".equals(requestInfo.getRequest().getAttribute("_format"));
+            xmlRequest = "xml".equals(requestInfo.getRequest().getParameter("_format"));
         } catch (Exception e) {
             xmlRequest = false;
         }
-        
+
         if (xmlRequest) {
-            result.use(Results.representation()).from((List<Photo>)result.included().get("fotos")).serialize();
+            result.use(Results.representation()).from((List<Photo>) result.included().get("fotos")).serialize();
         } else {
             result.of(this).busca(photoInstance);
         }
@@ -261,15 +263,17 @@ public class PhotoController {
 
         if (foto == null) {
             validator.add(new ValidationMessage(MSG_IMAGEM_OBRIGATORIA, "Erro"));
-            validator.onErrorUse(Results.logic()).redirectTo(PhotoController.class).registra(photoInstance, photoRegister);
+            validator.onErrorUse(Results.logic()).redirectTo(PhotoController.class)
+                    .registra(photoInstance, photoRegister);
             return;
         }
 
         User user = null;
         try {
             user = (User) session.getAttribute("userLogin");
-        } catch (Exception e) { }
-        
+        } catch (Exception e) {
+        }
+
         if (user != null) {
             photoRegister.assignUser(user);
         }
@@ -279,12 +283,13 @@ public class PhotoController {
             photoRegister.saveImage(foto.getFile());
         } catch (RuntimeException e) {
             validator.add(new ValidationMessage(e.getMessage(), "Erro"));
-            validator.onErrorUse(Results.logic()).redirectTo(PhotoController.class).registra(photoInstance, photoRegister);
+            validator.onErrorUse(Results.logic()).redirectTo(PhotoController.class)
+                    .registra(photoInstance, photoRegister);
             return;
         }
 
         photoInstance.getCollablet().processWidgets(info, photoRegister);
-        
+
         // FIXME: adicionar a condição do header accepts-content
         // Melhor seria achar um jeito do vRaptor reportar esse estado, ao invés da aplicação refazer essa checagem
         boolean xmlRequest;
@@ -293,7 +298,7 @@ public class PhotoController {
         } catch (Exception e) {
             xmlRequest = false;
         }
-        
+
         if (xmlRequest) {
             result.use(Results.representation()).from(photoRegister).serialize();
         } else {
@@ -360,13 +365,18 @@ public class PhotoController {
     @Path("/groupware-workbench/photo/{photoMgr}/listbypage/{pageSize}/{pageNumber}")
     public void listByPageAndOrder(PhotoMgrInstance photoMgr, int pageSize, int pageNumber) {
         List<Photo> photos = photoMgr.listPhotoByPageAndOrder(pageSize, pageNumber);
-        result.use(Results.json()).from(photos).serialize();
+
+        if ("xml".equals(requestInfo.getRequest().getParameter("_format"))) {
+            result.use(Results.representation()).from(photos).serialize();
+        } else {
+            result.use(Results.json()).from(photos).serialize();
+        }
     }
 
     @Get
     @Path("/groupware-workbench/photo/{photoMgr}/listbyuserpage/{pageSize}/{pageNumber}")
     public void listByUserPageAndOrder(PhotoMgrInstance photoMgr, int pageSize, int pageNumber) {
-        User  user = (User)info.getRequest().getSession().getAttribute("userLogin");
+        User user = (User) session.getAttribute("userLogin");
         List<Photo> photos = photoMgr.listPhotoByUserPageAndOrder(user, pageSize, pageNumber);
         result.use(Results.json()).from(photos).serialize();
     }
