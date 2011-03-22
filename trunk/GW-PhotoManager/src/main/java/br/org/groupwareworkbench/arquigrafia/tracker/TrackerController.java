@@ -81,6 +81,8 @@ public class TrackerController {
 	@Post
 	@Path("/groupware-workbench/tracker/{trackerInstance}/update")
 	public void update(TrackingInfo trackingInfo, TrackerInstance trackerInstance){
+	    if (trackingInfo == null) return;
+	    
 	    final User user = (User) session.getAttribute("userLogin");
 	    
 		//Validação das coordenadas
