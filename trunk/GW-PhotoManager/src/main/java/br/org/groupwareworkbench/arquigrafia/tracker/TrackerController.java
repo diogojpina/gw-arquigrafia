@@ -82,7 +82,7 @@ public class TrackerController {
 
         Iterator<TrackingInfo> it = result.iterator();
         while (it.hasNext()) {
-            if (it.next().getId() == user.getId()) {
+            if (it.next().getUser().getId() == user.getId()) {
                 it.remove();
             }
         }
