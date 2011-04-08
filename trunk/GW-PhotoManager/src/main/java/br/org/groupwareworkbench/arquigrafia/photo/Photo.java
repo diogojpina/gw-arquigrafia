@@ -1,23 +1,23 @@
 /*
-*    UNIVERSIDADE DE SÃO PAULO.
-*    Author: Marco Aurélio Gerosa (gerosa@ime.usp.br)
-*    This project was/is sponsored by RNP and FAPESP.
-*
-*    This file is part of Groupware Workbench (http://www.groupwareworkbench.org.br).
-*
-*    Groupware Workbench is free software: you can redistribute it and/or modify
-*    it under the terms of the GNU Lesser General Public License as published by
-*    the Free Software Foundation, either version 3 of the License, or
-*    (at your option) any later version.
-*
-*    Groupware Workbench is distributed in the hope that it will be useful,
-*    but WITHOUT ANY WARRANTY; without even the implied warranty of
-*    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-*    GNU Lesser General Public License for more details.
-*
-*    You should have received a copy of the GNU Lesser General Public License
-*    along with Swift.  If not, see <http://www.gnu.org/licenses/>.
-*/
+ *    UNIVERSIDADE DE SÃO PAULO.
+ *    Author: Marco Aurélio Gerosa (gerosa@ime.usp.br)
+ *    This project was/is sponsored by RNP and FAPESP.
+ *
+ *    This file is part of Groupware Workbench (http://www.groupwareworkbench.org.br).
+ *
+ *    Groupware Workbench is free software: you can redistribute it and/or modify
+ *    it under the terms of the GNU Lesser General Public License as published by
+ *    the Free Software Foundation, either version 3 of the License, or
+ *    (at your option) any later version.
+ *
+ *    Groupware Workbench is distributed in the hope that it will be useful,
+ *    but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *    GNU Lesser General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Lesser General Public License
+ *    along with Swift.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package br.org.groupwareworkbench.arquigrafia.photo;
 
 import java.awt.Dimension;
@@ -94,14 +94,12 @@ public class Photo implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataUpload;
 
-
     private String direitosAutorais;
     private String cidade;
     private String estado;
     private String pais;
 
     private String infArquitetonicas;
-
 
     // FIXME: ManyToMany!? Por quê? Aliás, esta lista não é usada nunca!
     @ManyToMany
@@ -121,10 +119,10 @@ public class Photo implements Serializable {
     public void deassignUser(User user) {
         users.remove(user);
     }
-/*
-    public static void deleteAll(Collablet collablet) {
-        DAO.query().with("collablet", collablet).delete();
-    } */
+
+    /*
+     * public static void deleteAll(Collablet collablet) { DAO.query().with("collablet", collablet).delete(); }
+     */
 
     public void delete() {
         DAO.delete(this);
@@ -206,6 +204,8 @@ public class Photo implements Serializable {
         }
 
         try {
+            // Fix wrong colors in PNG to JPEG conversion when PNG has alpha channel
+            imagemOriginal = ImageUtils.createStandardImage(imagemOriginal.getWidth(), imagemOriginal);
             imagemMostra = ImageUtils.createStandardImage(600, imagemOriginal);
             imagemThumb = ImageUtils.createThumbnailIfNecessary(100, imagemOriginal, true);
             BufferedImage imagemThumb2 = ImageUtils.createThumbnailIfNecessary(100, imagemOriginal, false);
@@ -283,7 +283,6 @@ public class Photo implements Serializable {
                 .maxResults(pageSize)
                 .list("dataUpload DESC");
     }
-
 
     public static List<Photo> busca(Collablet collablet, String nome, String cidade, String descricao, Date date) {
         if (collablet == null) throw new IllegalArgumentException();
