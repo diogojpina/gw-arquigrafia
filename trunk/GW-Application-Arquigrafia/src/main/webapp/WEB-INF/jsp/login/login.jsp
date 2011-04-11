@@ -15,9 +15,9 @@
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/know_more.css" />
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
 		<script type="text/javascript">
-    		function setFocus() {
-      			var loginForm = document.getElementById("usuariosForm");
-      			if (loginForm) {
+            function setFocus() {
+      	        var loginForm = document.getElementById("usuariosForm");
+      	        if (loginForm) {
         			loginForm["user.login"].focus();
       			}
             	$("#login_box").hide();
