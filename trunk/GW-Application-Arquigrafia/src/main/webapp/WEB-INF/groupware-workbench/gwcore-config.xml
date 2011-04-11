@@ -142,6 +142,9 @@
             <business>br.org.groupwareworkbench.collablet.coop.rating.RatingMgrInstance</business>
             <description>Gerenciar avaliação</description>
             <name>ratingMgr</name>
+            <properties>
+                <property key="ratedEntityClassName" value="br.org.groupwareworkbench.arquigrafia.photo.Photo" /> 
+            </properties>
         </collablet>
 
         <collablet>

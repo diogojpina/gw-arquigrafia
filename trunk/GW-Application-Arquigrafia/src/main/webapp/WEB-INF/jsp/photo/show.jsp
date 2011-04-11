@@ -238,7 +238,7 @@
                                 </div>
                                 <c:if test="${counterMgr.collablet.enabled}">
                                     <div>
-                                        <counter:showCounter manager="${counterMgr}" entity="${photo}" increment="true" wrapClass="counter_show" />
+                                        <counter:showCounter manager="${counterMgr}" entity="${photo}" viewer="${sessionScope.userLogin}" increment="true" wrapClass="counter_show" />
                                     </div>
                                  </c:if>
                             </div>
