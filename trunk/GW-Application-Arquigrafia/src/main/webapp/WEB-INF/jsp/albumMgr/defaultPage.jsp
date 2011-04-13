@@ -62,6 +62,7 @@
     </head>
     <body>
         <arq:header2 photoInstance="${photoMgr}" />
+        <div class="default_div">
         <div class="main">
             <div class="text list-albums-frame">
                 <div class="component_header"><span class="title">Meus &Aacute;lbuns</span></div>
@@ -75,6 +76,7 @@
             <div id="album_novo" class="text"  title="Novo &aacute;lbum">
                 <album:edit classe="edit-album" afterSaveFunction="afterSave" albumMgr="${albumMgr}"/>
             </div>
+        </div>
         </div>
         <arq:footer photoInstance="${photoMgr}" />
     </body>

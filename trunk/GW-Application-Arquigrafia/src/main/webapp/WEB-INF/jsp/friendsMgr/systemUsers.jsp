@@ -55,9 +55,9 @@
     </head>
     <body>
         <arq:header2 photoInstance="${photoMgr}" />
-        <div style="margin-top: 20px; background: white; width: 100%; height: 500px; min-height: 300px; margin-top: 0px; padding-top: 0px; overflow: auto;">
+        <div class="default_div">
         <br />
-        <span class="big_black_title" style="text-align: right;" >Usu&aacute;rios do sistema</span>
+        <span class="big_black_title" style="text-align: right; margin-left:10px;" >Usu&aacute;rios do sistema</span>
         <br />
             <c:if test="${userMgr.collablet.enabled}">
                 <c:forEach items="${userMgr.allElements}" var="u">

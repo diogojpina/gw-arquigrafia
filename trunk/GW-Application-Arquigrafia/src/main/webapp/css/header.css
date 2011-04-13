@@ -3,19 +3,14 @@
 body {
 	background-image: url(../images/header_bg.jpg);
 	background-repeat: no-repeat;
-	background-attachment: fixed;
+	background-attachment: scroll;
 }
 #header {
 	padding-left: 10px;
 	background-image: url(../images/head1_bg.png);
 	background-repeat: repeat-x;
 	background-attachment: scroll;
-	border-style: solid;
-	border-width: thin;
-	border-color: #666;
-	border-top: none;
-	border-left: none;
-	border-right: none;
+	border:none;
 }
 
 #title {
@@ -84,7 +79,7 @@ body {
 	background-repeat: repeat-x;
 	background-attachment: scroll;
 	height: 100px;
-	width: 300px;
+	width: 340px;
 	padding-left: 10px;
 }
 #top_links {

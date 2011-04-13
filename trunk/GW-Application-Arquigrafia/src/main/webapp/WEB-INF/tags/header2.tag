@@ -25,8 +25,8 @@
         </div>
         <div id="user_bottom_links">
             <div style="height: 13px">
-                <a class="user_bottom_icon_links" href="#" onclick="return showPhotoUpload();">  <img src="${pageContext.request.contextPath}/images/icon/upload.png" /> Enviar Imagem</a>
-                <a class="user_bottom_icon_links" href="${pageContext.request.contextPath}/groupware-workbench/friends/${friendsMgr.id}/show/${userLogin.id}" onclick=""> <img src="${pageContext.request.contextPath}/images/icon/meuPerfil.png" /> Meu perfil</a>
+                <a class="user_bottom_icon_links" href="#" onclick="return showPhotoUpload();">  <img src="${pageContext.request.contextPath}/images/icon/upload.png" /> Enviar Imagem</a>&nbsp;|&nbsp;
+                <a class="user_bottom_icon_links" href="${pageContext.request.contextPath}/groupware-workbench/friends/${friendsMgr.id}/show/${userLogin.id}" onclick=""> <img src="${pageContext.request.contextPath}/images/icon/meuPerfil.png" /> Meu perfil</a>&nbsp;|&nbsp;
                 <a class="user_bottom_icon_links" href="${pageContext.request.contextPath}/groupware-workbench/album/${albumMgr.id}"><img src="${pageContext.request.contextPath}/images/icon/meuArquigrafia.png" /> Meu Arquigrafia</a>
             </div>
         </div>
