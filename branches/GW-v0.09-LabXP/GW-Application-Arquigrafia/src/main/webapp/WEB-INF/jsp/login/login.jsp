@@ -52,7 +52,7 @@
                 <div class="login_box_clear"></div>
                 <c:if test="${not sessionScope['log']}">
                     <div class="login_messages">
-                        <c:if test="${sessionScope['log'] == false}">
+                        <c:if test="${requestScope['invalidCredentials'] == true}">
                             <span class="login_error">Login ou senha incorretos</span>
                         </c:if>
                     </div>
