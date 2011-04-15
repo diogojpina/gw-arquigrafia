@@ -28,6 +28,19 @@
         <param-value>100000000</param-value>
     </context-param>
 
+	<!-- tiles configuration -->
+	<servlet>
+		<servlet-name>TilesServlet</servlet-name>
+		<servlet-class>org.apache.tiles.web.startup.TilesServlet</servlet-class>
+		<init-param>
+			<param-name>org.apache.tiles.factory.TilesContainerFactory.MUTABLE</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<load-on-startup>2</load-on-startup>
+	</servlet>
+	<!-- /tiles configuration -->
+
+
     <filter>
         <filter-name>vraptor</filter-name>
         <filter-class>br.com.caelum.vraptor.VRaptor</filter-class>
