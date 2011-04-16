@@ -15,5 +15,5 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/GW-commons-widgets"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/GW-core"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/GW-Libs"/>
-	<classpathentry kind="output" path="build/classes"/>
+	<classpathentry kind="output" path="bin"/>
 </classpath>
