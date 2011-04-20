@@ -111,7 +111,7 @@
                 </div>
                 <div class="linha">
                     <c:if test="${commentMgr2.collablet.enabled}">
-                        <div id="comentario" style="width: 700px; float:left;">
+                        <div id="comentario" style="width: 700px; float:left; margin-top: 10px;">
                             <form name="comments" method="post" enctype="multipart/form-data" action="<c:url value="/groupware-workbench/friends/${friendsMgr.id}/show/${friend.id}" />">
                                 <div id="comments_bar">
                                     <div id="comments_bar_bg">
