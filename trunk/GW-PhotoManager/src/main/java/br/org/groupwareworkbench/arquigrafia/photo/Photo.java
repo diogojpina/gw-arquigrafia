@@ -262,7 +262,8 @@ public class Photo implements Serializable {
 
         int firstElement = pageNumber * pageSize;
 
-        String queryString = "SELECT p FROM Photo p JOIN p.users AS u WHERE p.collablet = :collablet AND u = :user ORDER BY p.dataUpload DESC";
+        String queryString =
+                "SELECT p FROM Photo p JOIN p.users AS u WHERE p.collablet = :collablet AND u = :user ORDER BY p.dataUpload DESC";
         EntityManager em = EntityManagerProvider.getEntityManager();
         TypedQuery<Photo> query = em.createQuery(queryString, Photo.class);
         query.setMaxResults(pageSize);
@@ -277,73 +278,51 @@ public class Photo implements Serializable {
 
         int firstElement = pageNumber * pageSize;
 
-        return QueryBuilder.query(Photo.class)
-                .with("collablet", collablet)
-                .firstResult(firstElement)
-                .maxResults(pageSize)
-                .list("dataUpload DESC");
+        return QueryBuilder.query(Photo.class).with("collablet", collablet).firstResult(firstElement).maxResults(
+                pageSize).list("dataUpload DESC");
     }
 
     public static List<Photo> busca(Collablet collablet, String nome, String cidade, String descricao, Date date) {
         if (collablet == null) throw new IllegalArgumentException();
-        if(nome.equals("")) nome =  "!$%--6**24";
-        if(descricao.equals("")) descricao =  "!$%--6**24";
-        if(cidade.equals("")) cidade =  "!$%--6**24";
-        String queryString  = "SELECT p FROM Photo p WHERE p.collablet =:collablet AND (" +
-                              "(upper(p.nome) like :nom1 "+
-                              "OR upper(p.nome) like :nom2 "+
-                              "OR upper(p.nome) like :nom4 "+
-                              "OR upper(p.nome) like :nom3 )"+
+        if (nome.equals("")) nome = "!$%--6**24";
+        if (descricao.equals("")) descricao = "!$%--6**24";
+        if (cidade.equals("")) cidade = "!$%--6**24";
+        String queryString =
+                "SELECT p FROM Photo p WHERE p.collablet =:collablet AND (" + "(upper(p.nome) like :nom1 "
+                        + "OR upper(p.nome) like :nom2 " + "OR upper(p.nome) like :nom4 "
+                        + "OR upper(p.nome) like :nom3 )" +
 
-                              "OR ("+
+                        "OR (" +
 
-                              "upper(p.descricao) like :des1 "+
-                              "OR upper(p.descricao) like :des2 "+
-                              "OR upper(p.descricao) like :des4 "+
-                              "OR upper(p.descricao) like :des3 )"+
+                        "upper(p.descricao) like :des1 " + "OR upper(p.descricao) like :des2 "
+                        + "OR upper(p.descricao) like :des4 " + "OR upper(p.descricao) like :des3 )" +
 
-                              "OR (" +
+                        "OR (" +
 
-                              "upper(p.cidade) like :cid1 "+
-                              "OR upper(p.cidade) like :cid2 "+
-                              "OR upper(p.cidade) like :cid4 "+
-                              "OR upper(p.cidade) like :cid3 )"+
-                              "OR "+
-                              "p.dataCriacao = :dataCriacao )";
-
+                        "upper(p.cidade) like :cid1 " + "OR upper(p.cidade) like :cid2 "
+                        + "OR upper(p.cidade) like :cid4 " + "OR upper(p.cidade) like :cid3 )" + "OR "
+                        + "p.dataCriacao = :dataCriacao )";
 
         EntityManager em = EntityManagerProvider.getEntityManager();
         TypedQuery<Photo> query = em.createQuery(queryString, Photo.class);
         query.setParameter("collablet", collablet);
 
-        query.setParameter("nom1", "% "+nome.toUpperCase()+" %");
-        query.setParameter("nom2", nome.toUpperCase()+" %");
-        query.setParameter("nom3", "% "+nome.toUpperCase());
+        query.setParameter("nom1", "% " + nome.toUpperCase() + " %");
+        query.setParameter("nom2", nome.toUpperCase() + " %");
+        query.setParameter("nom3", "% " + nome.toUpperCase());
         query.setParameter("nom4", nome.toUpperCase());
 
-        
-        query.setParameter("des1", "% "+descricao.toUpperCase()+" %");
-        query.setParameter("des2", descricao.toUpperCase()+" %");
-        query.setParameter("des3", "% "+descricao.toUpperCase());
+        query.setParameter("des1", "% " + descricao.toUpperCase() + " %");
+        query.setParameter("des2", descricao.toUpperCase() + " %");
+        query.setParameter("des3", "% " + descricao.toUpperCase());
         query.setParameter("des4", descricao.toUpperCase());
 
-        query.setParameter("cid1", "% "+cidade.toUpperCase()+" %");
-        query.setParameter("cid2", cidade.toUpperCase()+" %");
-        query.setParameter("cid3", "% "+cidade.toUpperCase());
+        query.setParameter("cid1", "% " + cidade.toUpperCase() + " %");
+        query.setParameter("cid2", cidade.toUpperCase() + " %");
+        query.setParameter("cid3", "% " + cidade.toUpperCase());
         query.setParameter("cid4", cidade.toUpperCase());
 
         query.setParameter("dataCriacao", date);
-        
-        
-        
-        /*
-        QueryBuilder<Photo> q = QueryBuilder.query(Photo.class).with("collablet", collablet);
-        if (!nome.isEmpty()) q.with("nome", "%" + nome.toUpperCase() + "%").upper().like();
-        if (!descricao.isEmpty()) q.with("descricao", "%" + descricao.toUpperCase() + "%").upper().like();
-        if (!cidade.isEmpty()) q.with("cidade", "%" + cidade.toUpperCase() + "%").upper().like();
-        if (date != null) q.withDay("dataCriacao", date);
-        return q.list();
-        //*/
         return query.getResultList();
     }
 
@@ -363,14 +342,13 @@ public class Photo implements Serializable {
     public boolean equals(Object o) {
         if (!(o instanceof Photo)) return false;
         Photo other = (Photo) o;
-        return (id == null ? other.id == null : id.equals(other.id))
-                && (nome == null ? other.nome == null : nome.equals(other.nome));
+        return (id == null ? other.id == null : id.equals(other.id)) &&
+                (nome == null ? other.nome == null : nome.equals(other.nome));
     }
 
     @Override
     public int hashCode() {
-        return (id == null ? 0 : id.hashCode())
-                ^ (nome == null ? 0 : nome.hashCode());
+        return (id == null ? 0 : id.hashCode()) ^ (nome == null ? 0 : nome.hashCode());
     }
 
     public String getNome() {
