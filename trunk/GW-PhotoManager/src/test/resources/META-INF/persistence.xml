@@ -18,6 +18,7 @@
     <class>br.org.groupwareworkbench.collablet.coord.profile.Profile</class>
     <class>br.org.groupwareworkbench.collablet.coord.role.Role</class>
     <class>br.org.groupwareworkbench.collablet.coord.user.User</class>
+    <class>br.org.groupwareworkbench.collablet.coord.counter.CounterLog</class>
     <class>br.org.groupwareworkbench.tests.Fruit</class>
     <properties>
       <property name="hibernate.connection.username" value="sa"/>

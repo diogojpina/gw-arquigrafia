@@ -179,16 +179,16 @@ public class PhotoControllerTest {
         photo1.save();
         photo2.save();
         photo3.setNome("alguma");
-        photo3.save();        
-        controller.buscaFoto("fot", photoInstance);
+        photo3.save();
+        controller.buscaFoto("alguma", photoInstance);
 
         @SuppressWarnings("unchecked")
         List<Photo> fotosResult = (List<Photo>) result.included("fotos");
 
-        Assert.assertEquals(2, fotosResult.size());
-        Assert.assertTrue(fotosResult.contains(photo1));
-        Assert.assertTrue(fotosResult.contains(photo2));
-        Assert.assertFalse(fotosResult.contains(photo3));
+        Assert.assertEquals(1, fotosResult.size());
+        Assert.assertFalse(fotosResult.contains(photo1));
+        Assert.assertFalse(fotosResult.contains(photo2));
+        Assert.assertTrue(fotosResult.contains(photo3));
     }
 
     @Test
@@ -212,7 +212,7 @@ public class PhotoControllerTest {
         photo2.save();
         photo3.setNome("alguma coisa");
         photo3.save();
-        controller.buscaFotoAvancada("foto", "", "", null, photoInstance);
+        controller.buscaFotoAvancada("foto    ", "", "", null, photoInstance);
 
         @SuppressWarnings("unchecked")
         List<Photo> fotosResult = (List<Photo>) result.included("fotos");
@@ -221,6 +221,21 @@ public class PhotoControllerTest {
         Assert.assertTrue(fotosResult.contains(photo1));
         Assert.assertTrue(fotosResult.contains(photo2));
         Assert.assertFalse(fotosResult.contains(photo3));
+    }
+
+    @Test
+    public void testAdvancedSearchByNameUnique() {
+        photo1.save();
+        photo2.save();
+        photo3.setNome("alguma");
+        photo3.save();
+        controller.buscaFotoAvancada("alguma", "", "", null, photoInstance);
+
+        @SuppressWarnings("unchecked")
+        List<Photo> fotosResult = (List<Photo>) result.included("fotos");
+
+        Assert.assertEquals(1, fotosResult.size());
+        Assert.assertTrue(fotosResult.contains(photo3));
     }
 
     @Test

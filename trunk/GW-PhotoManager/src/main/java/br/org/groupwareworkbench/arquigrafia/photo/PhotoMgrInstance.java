@@ -55,7 +55,7 @@ public class PhotoMgrInstance extends AbstractBusiness {
     }
 
     public List<Photo> buscaFotoAvancada(String nome, String lugar, String descricao, Date date) {
-        return Photo.busca(getCollablet(), nome, lugar, descricao, date);
+        return Photo.busca(getCollablet(), nome.trim(), lugar.trim(), descricao.trim(), date);
     }
 
     public List<Photo> buscaFotoPorListaId(List<Object> listObjects) {
