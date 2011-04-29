@@ -23,8 +23,11 @@
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css" />
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/arq-common.css" />
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/header.css" />
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/search.css" />
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/know_more.css" />
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/forms.css" />
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/show.css" />
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/album.css" />
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/jquery-ui-1.8.custom.css" />
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/page_content.css" />
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/js/fancybox/jquery.fancybox-1.3.1.css" media="screen" />
@@ -32,9 +35,13 @@
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/listagem.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-ui.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/js/compiled/arquigrafia-default.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/plugins/sds/js/jquery.smoothDivScroll-0.9-min.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/plugins/sds/js/scroll.js"></script>
-        <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.boxy.js"></script>        
+        <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.boxy.js"></script>       
+        <script type="text/javascript" src="${pageContext.request.contextPath}/js/toolTips.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/js/ui.base.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/js/ui.slider.js"></script> 
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/chili-1.7.pack.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.easing.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.dimensions.js"></script>
@@ -42,6 +49,7 @@
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/bay.js"></script>
 		<script type="text/javascript" src="${pageContext.request.contextPath}/js/fancybox/jquery.mousewheel-3.0.2.pack.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/fancybox/jquery.fancybox-1.3.1.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/js/show.js"></script>
         
         <script type="text/javascript">
             $(document).ready(function() {
@@ -71,6 +79,8 @@
                 var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
             })();
         </script>   
+        
+        <tiles:insertAttribute name="head" ignore="true" />
     </head>
     <body>
         <div id="wrap">
