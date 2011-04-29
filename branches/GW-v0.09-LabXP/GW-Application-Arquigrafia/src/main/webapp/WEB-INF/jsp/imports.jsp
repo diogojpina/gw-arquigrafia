@@ -15,3 +15,5 @@
 <%@ taglib prefix="tracker" uri="http://www.groupwareworkbench.org.br/widgets/tracker" %>
 <%@ taglib prefix="r" uri="http://www.groupwareworkbench.org.br/taglibs/reflection" %>
 <%@ taglib prefix="tag" uri="http://www.groupwareworkbench.org.br/widgets/tag" %>
+<%@ taglib prefix="role" uri="http://www.groupwareworkbench.org.br/widgets/role" %>
+<%@ taglib prefix="profile" uri="http://www.groupwareworkbench.org.br/widgets/profile" %>

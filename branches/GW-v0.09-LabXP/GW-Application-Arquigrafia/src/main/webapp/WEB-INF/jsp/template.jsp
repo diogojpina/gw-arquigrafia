@@ -50,6 +50,9 @@
 		<script type="text/javascript" src="${pageContext.request.contextPath}/js/fancybox/jquery.mousewheel-3.0.2.pack.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/fancybox/jquery.fancybox-1.3.1.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/show.js"></script>
+        <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.maskedinput.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.validate.js"></script>
         
         <script type="text/javascript">
             $(document).ready(function() {
