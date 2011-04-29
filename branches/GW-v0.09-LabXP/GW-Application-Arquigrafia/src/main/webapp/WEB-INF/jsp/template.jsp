@@ -78,7 +78,26 @@
                 ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
                 var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
             })();
-        </script>   
+        </script>
+        <script type="text/javascript">
+            function renderizarCelulaTag(celula, coluna, elem) {
+                elem.css({"text-align": coluna.esquerda ? "left" : "right"});
+                var link = $("<a></a>");
+                elem.append(link);
+                link.attr("href", "#");
+                link.html(celula.nome);
+                link.click(function(evt) {
+                    window.open(celula.url, '_self');
+                });
+            }
+
+            function criarCelulaTag(tabela, url, nome) {
+                var celula = new CelulaCallback(renderizarCelulaTag);
+                celula.nome = nome;
+                celula.url = url;
+                tabela.addCelulaElemento(celula);
+            }
+        </script>
         
         <tiles:insertAttribute name="head" ignore="true" />
     </head>
