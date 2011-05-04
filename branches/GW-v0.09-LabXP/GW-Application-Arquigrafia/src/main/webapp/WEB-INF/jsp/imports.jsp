@@ -17,3 +17,4 @@
 <%@ taglib prefix="tag" uri="http://www.groupwareworkbench.org.br/widgets/tag" %>
 <%@ taglib prefix="role" uri="http://www.groupwareworkbench.org.br/widgets/role" %>
 <%@ taglib prefix="profile" uri="http://www.groupwareworkbench.org.br/widgets/profile" %>
+<%@ taglib prefix="category" uri="http://www.groupwareworkbench.org.br/widgets/category" %>
