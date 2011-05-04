@@ -22,6 +22,7 @@
         <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/boxy.css" />
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css" />
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/arq-common.css" />
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css" />
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/header.css" />
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/search.css" />
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/know_more.css" />
@@ -106,10 +107,11 @@
     </head>
     <body>
         <div id="wrap">
-       	 	<tiles:insertTemplate template="/WEB-INF/jsp/header2.jsp" />
-			<tiles:insertAttribute name="body" />
-            <div style="height: 30px; background-color: #fff"></div>
-            <tiles:insertTemplate template="/WEB-INF/jsp/footer.jsp" />
+       	 	<tiles:insertAttribute name="header" ignore="true" />
+            
+			<tiles:insertAttribute name="body" ignore="true" />
+            
+            <tiles:insertAttribute name="footer"  ignore="true"/>            
         </div>
     </body>
 </html>
