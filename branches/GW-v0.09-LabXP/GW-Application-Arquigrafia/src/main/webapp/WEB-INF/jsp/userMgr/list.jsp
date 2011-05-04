@@ -2,7 +2,7 @@
 
 <tiles:insertTemplate template="/WEB-INF/jsp/template.jsp">
 
-	<tiles:putAttribute name="title">Usuário</tiles:putAttribute>
+	<tiles:putAttribute name="title">Usu&aacuterio</tiles:putAttribute>
 
 	<tiles:putAttribute name="body">
         <w:tabela baseUrl="/groupware-workbench/users"
