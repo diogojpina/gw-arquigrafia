@@ -32,6 +32,7 @@
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/jquery-ui-1.8.custom.css" />
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/page_content.css" />
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/js/fancybox/jquery.fancybox-1.3.1.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/friends.css" />
         
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/listagem.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
@@ -107,11 +108,10 @@
     </head>
     <body>
         <div id="wrap">
-       	 	<tiles:insertAttribute name="header" ignore="true" />
-            
-			<tiles:insertAttribute name="body" ignore="true" />
-            
-            <tiles:insertAttribute name="footer"  ignore="true"/>            
+			<tiles:insertTemplate template="/WEB-INF/jsp/header2.jsp" />
+			<tiles:insertAttribute name="body" />
+            <div style="height: 30px; background-color: #fff"></div>
+            <tiles:insertTemplate template="/WEB-INF/jsp/footer.jsp" />           
         </div>
     </body>
 </html>

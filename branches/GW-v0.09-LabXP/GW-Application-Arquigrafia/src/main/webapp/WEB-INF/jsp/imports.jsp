@@ -18,3 +18,4 @@
 <%@ taglib prefix="role" uri="http://www.groupwareworkbench.org.br/widgets/role" %>
 <%@ taglib prefix="profile" uri="http://www.groupwareworkbench.org.br/widgets/profile" %>
 <%@ taglib prefix="category" uri="http://www.groupwareworkbench.org.br/widgets/category" %>
+<%@ taglib prefix="friends" uri="http://www.groupwareworkbench.org.br/widgets/friends" %>
