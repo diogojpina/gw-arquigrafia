@@ -44,7 +44,7 @@
                     </ul>
                     <ul class="field_line_f1">
                         <li class="label_f1"><span>Confirme sua senha:</span></li>
-                        <li class="input_f1"><input id="confirm" class="required" type="password" name="passwordConfirm" value="" /></li>
+                        <li class="input_f1"><input id="confirm" equalTo="#password" class="required" type="password" name="passwordConfirm" value="" /></li>
                     </ul>
                     <ul class="field_line_f1">
                         <li class="label_f1"><span>E-mail:</span></li>

@@ -57,8 +57,8 @@
                         </c:if>
                     </div>
                 </c:if>
+                <a href=<c:url value="/groupware-workbench/users/${userMgr.id}/register" />>Criar uma nova conta!</a>
             </div>
-            
         </form>
         <arq:know_more />
     </body>
