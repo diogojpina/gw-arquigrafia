@@ -51,7 +51,7 @@
 		<div id="photoBackground"><c:if
 			test="${flagMgr.collablet.enabled}">
 			<div id="flagDiv"><flag:flagPanel entity="${photo}"
-				flagMgr="${flagMgr}" divId="flagDiv" /></div>
+				flagMgr="${flagMgr}" user="${sessionScope.userLogin}" divId="flagDiv" /></div>
 		</c:if>
 
 		<div id="photoRel"><c:if test="${binomialMgr.collablet.enabled}">
