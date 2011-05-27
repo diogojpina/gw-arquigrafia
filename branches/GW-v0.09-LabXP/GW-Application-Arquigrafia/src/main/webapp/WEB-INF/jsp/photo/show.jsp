@@ -46,8 +46,6 @@
 	</tiles:putAttribute>
 
 	<tiles:putAttribute name="body">
-
-		<div style="clear: both;"></div>
 		<form name="tags" method="post" enctype="multipart/form-data"
 			action="<c:url value="/groupware-workbench/photo/${photo.id}" />">
 		<div id="photoBackground"><c:if

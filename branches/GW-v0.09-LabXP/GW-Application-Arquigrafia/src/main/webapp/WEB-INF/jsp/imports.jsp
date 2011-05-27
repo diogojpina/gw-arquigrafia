@@ -1,5 +1,5 @@
-<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
-<%@ taglib prefix="arq" tagdir="/WEB-INF/tags" %><!-- ToDo pra tirar -->
+<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
+<%@ taglib prefix="arq" tagdir="/WEB-INF/tags" %><%-- ToDo pra tirar  --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="w" uri="http://www.groupwareworkbench.org.br/widgets/commons" %>
@@ -19,4 +19,5 @@
 <%@ taglib prefix="profile" uri="http://www.groupwareworkbench.org.br/widgets/profile" %>
 <%@ taglib prefix="category" uri="http://www.groupwareworkbench.org.br/widgets/category" %>
 <%@ taglib prefix="friends" uri="http://www.groupwareworkbench.org.br/widgets/friends" %>
+<%@ taglib prefix="rating" uri="http://www.groupwareworkbench.org.br/widgets/rating" %>
 <%@ taglib prefix="flag" uri="http://www.groupwareworkbench.org.br/widgets/flag" %>

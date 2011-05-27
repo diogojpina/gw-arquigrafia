@@ -9,8 +9,10 @@
         <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/groupware_workbench_arquigrafia" />
         <property name="hibernate.connection.autoReconnect" value="true" />
 		<property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider" />
+        <!--  -->
         <property name="hibernate.hbm2ddl.auto" value="update" />
-        <!-- <property name="hibernate.hbm2ddl.auto" value="create-drop" /> -->
+        <!-- <property name="hibernate.hbm2ddl.auto" value="create-drop" />
+         -->
         <property name="transaction.factory_class" value="org.hibernate.transaction.JDBCTransactionFactory" />
         <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
     </hibernate>
@@ -135,17 +137,27 @@
             	<property key="package" value="br.ufes.cwtools.gw.android.components.binomial" />
             </android-properties>
         </collablet>
--
-        <collablet>
+
+		 <collablet>
             <business>br.org.groupwareworkbench.collablet.coop.flag.FlagMgrInstance</business>
             <description>Denunciar abuso</description>
             <name>flagMgr</name>
+            <properties><property key="flaggedEntityClassName" value="br.org.groupwareworkbench.arquigrafia.photo.Photo" />
+            </properties>
+        </collablet>
+        
+         <collablet>
+            <business>br.org.groupwareworkbench.collablet.coop.rating.RatingMgrInstance</business>
+            <description>Avaliar a foto</description>
+            <name>ratingMgr</name>
+            <properties><property key="ratedEntityClassName" value="br.org.groupwareworkbench.arquigrafia.photo.Photo" />
+            </properties>
         </collablet>
 
         <collablet>
             <business>br.org.groupwareworkbench.collablet.coord.profile.ProfileMgrInstance</business>
             <description>Gerenciar perfis</description>
-            <name>profileMgr</name>
+            <name>profileMgr</name>  
         </collablet>
 
         <collablet>
@@ -169,7 +181,7 @@
             <description>Registro de fotografias</description>
             <name>photoMgr</name>
             <properties>
-                <property key="dirImages" value="/home/cello/projects/imagesArquigrafia/" /> 
+                <property key="dirImages" value="/Users/pedro/GW-workbench/images/" /> 
                 <!--
                     No linux se não usa absolute path assume-se $HOME como prefixo, ou seja "images/" ficará "$HOME/images"
                     se tiver permissões esta pasta é criada automaticamente pelo componente.
@@ -261,9 +273,11 @@
         <subordination parent="photoMgr" child="commentMgr2" />
 		<!-- <subordination parent="friendsMgr" child="commentMgr2" /> -->
 		<subordination parent="photoMgr" child="tracker" />
+
+		<subordination parent="photoMgr" child="ratingMgr" />
+		<subordination parent="photoMgr" child="flagMgr" />
 		<subordination parent="photoMgr" child="componentRepository" />
 		<subordination parent="photoMgr" child="counterMgr" />
-		<subordination parent="photoMgr" child="flagMgr" />
     </collablets-subordinations>
 
     <collablets-dependencies>
