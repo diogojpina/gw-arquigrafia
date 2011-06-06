@@ -13,50 +13,50 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta http-equiv="Cache-Control" content="no-cache" />
         <title><c:out value="${Title}" /></title>
-        <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.ico" />
+        <link rel="shortcut icon" type="image/x-icon" href="<c:url value="/images/favicon.ico" />"/>
         <!-- BASIC CSS -->
-        <link type="text/css" href="${pageContext.request.contextPath}/management/assets/css/reset.css" rel="stylesheet" />
+        <link type="text/css" href="<c:url value="/management/assets/css/reset.css"/>" rel="stylesheet"/>
         <!-- YUI -->
-        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/management/assets/external/fonts-min.css" />
-        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/management/assets/external/yui/reset/reset-min.css" />
-        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/management/assets/css/Wire_it.css" />
-        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/management/assets/css/basic_layout.css" />
-        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/management/assets/css/canvas_components.css" />
+        <link rel="stylesheet" type="text/css" href="<c:url value="/management/assets/external/fonts-min.css" />"/>
+        <link rel="stylesheet" type="text/css" href="<c:url value="/management/assets/external/yui/reset/reset-min.css" />"/>
+        <link rel="stylesheet" type="text/css" href="<c:url value="/management/assets/css/Wire_it.css" />"/>
+        <link rel="stylesheet" type="text/css" href="<c:url value="/management/assets/css/basic_layout.css" />"/>
+        <link rel="stylesheet" type="text/css" href="<c:url value="/management/assets/css/canvas_components.css" />"/>
         <!--  MORE BASIC CSS -->
-        <link type="text/css" href="${pageContext.request.contextPath}/management/assets/css/themes/sunny/jquery-ui-1.8.2.custom.css" rel="stylesheet" />
-        <link type="text/css" href="${pageContext.request.contextPath}/management/assets/css/basic_layout.css" rel="stylesheet" />
-        <link type="text/css" href="${pageContext.request.contextPath}/management/assets/css/instances.css" rel="stylesheet" />
+        <link type="text/css" href="<c:url value="/management/assets/css/themes/sunny/jquery-ui-1.8.2.custom.css"/>" rel="stylesheet"/>
+        <link type="text/css" href="<c:url value="/management/assets/css/basic_layout.css"/>" rel="stylesheet" />
+        <link type="text/css" href="<c:url value="/management/assets/css/instances.css"/>" rel="stylesheet" />
         <!--  SUPPORT JS  -->
-        <script type="text/javascript" src="${pageContext.request.contextPath}/management/assets/external/utilities.js"></script>
-        <script type="text/javascript" src="${pageContext.request.contextPath}/management/assets/external/container-min.js"></script>
-        <script type="text/javascript" src="${pageContext.request.contextPath}/management/assets/external/json-min.js"></script>
-        <script type="text/javascript" src="${pageContext.request.contextPath}/management/assets/external/inputex.js"></script>
+        <script type="text/javascript" src="<c:url value="/management/assets/external/utilities.js"/>"></script>
+        <script type="text/javascript" src="<c:url value="/management/assets/external/container-min.js"/>"></script>
+        <script type="text/javascript" src="<c:url value="/management/assets/external/json-min.js"/>"></script>
+        <script type="text/javascript" src="<c:url value="/management/assets/external/inputex.js"/>"></script>
 
         <!-- Excanvas -->
         <!--[if IE]>
-            <script type="text/javascript" src="${pageContext.request.contextPath}/management/assets/external/excanvas.js"></script>
+            <script type="text/javascript" src="<c:url value="/management/assets/external/excanvas.js"/>"></script>
         <![endif]-->
 
         <!-- BASIC JS -->
-        <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
-        <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-ui.js"></script>
-        <script type="text/javascript" src="${pageContext.request.contextPath}/management/assets/js/layout.js"></script>
-        <script type="text/javascript" src="${pageContext.request.contextPath}/management/assets/js/animations.js"></script>
+        <script type="text/javascript" src="<c:url value="/js/jquery.js"/>"></script>
+        <script type="text/javascript" src="<c:url value="/js/jquery-ui.js"/>"></script>
+        <script type="text/javascript" src="<c:url value="/management/assets/js/layout.js"/>"></script>
+        <script type="text/javascript" src="<c:url value="/management/assets/js/animations.js"/>"></script>
         <!-- WireIt -->
-        <script type="text/javascript" src="${pageContext.request.contextPath}/management/assets/js/wireit/WireIt.js"></script>
-        <script type="text/javascript" src="${pageContext.request.contextPath}/management/assets/js/wireit/CanvasElement.js"></script>
-        <script type="text/javascript" src="${pageContext.request.contextPath}/management/assets/js/wireit/Wire.js"></script>
-        <script type="text/javascript" src="${pageContext.request.contextPath}/management/assets/js/wireit/Terminal.js"></script>
-        <script type="text/javascript" src="${pageContext.request.contextPath}/management/assets/js/wireit/util/DD.js"></script>
-        <script type="text/javascript" src="${pageContext.request.contextPath}/management/assets/js/wireit/util/DDResize.js"></script>
-        <script type="text/javascript" src="${pageContext.request.contextPath}/management/assets/js/wireit/Container.js"></script>
-        <script type="text/javascript" src="${pageContext.request.contextPath}/management/assets/js/wireit/Layer.js"></script>
-        <script type="text/javascript" src="${pageContext.request.contextPath}/management/assets/js/wireit/ImageContainer.js"></script>
-        <script type="text/javascript" src="${pageContext.request.contextPath}/management/assets/js/canvas_components.js" ></script>
+        <script type="text/javascript" src="<c:url value="/management/assets/js/wireit/WireIt.js"/>"></script>
+        <script type="text/javascript" src="<c:url value="/management/assets/js/wireit/CanvasElement.js"/>"></script>
+        <script type="text/javascript" src="<c:url value="/management/assets/js/wireit/Wire.js"/>"></script>
+        <script type="text/javascript" src="<c:url value="/management/assets/js/wireit/Terminal.js"/>"></script>
+        <script type="text/javascript" src="<c:url value="/management/assets/js/wireit/util/DD.js"/>"></script>
+        <script type="text/javascript" src="<c:url value="/management/assets/js/wireit/util/DDResize.js"/>"></script>
+        <script type="text/javascript" src="<c:url value="/management/assets/js/wireit/Container.js"/>"></script>
+        <script type="text/javascript" src="<c:url value="/management/assets/js/wireit/Layer.js"/>"></script>
+        <script type="text/javascript" src="<c:url value="/management/assets/js/wireit/ImageContainer.js"/>"></script>
+        <script type="text/javascript" src="<c:url value="/management/assets/js/canvas_components.js"/>" ></script>
         <!-- SPECIFIC CONFIGURATION: LAYOUT -->
-        <script type="text/javascript" src="${pageContext.request.contextPath}/management/assets/js/specific_configuration_layout.js" ></script>
+        <script type="text/javascript" src="<c:url value="/management/assets/js/specific_configuration_layout.js"/>" ></script>
         <!-- SPECIFIC CONFIGURATION: ANIMATIONS -->
-        <script type="text/javascript" src="${pageContext.request.contextPath}/management/assets/js/specific_configuration_animations.js" ></script>
+        <script type="text/javascript" src="<c:url value="/management/assets/js/specific_configuration_animations.js"/>" ></script>
         <style type="text/css">
             div.WireIt-Layer {
                 height: 1000px;

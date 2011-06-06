@@ -13,7 +13,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta http-equiv="Cache-Control" content="no-cache" />
         <title><c:out value="${Title}" /></title>
-        <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.ico" />
+        <link rel="shortcut icon" type="image/x-icon" href="<c:url value="/images/favicon.ico"/>"/>
     </head>
     <body>
         <div id="status_dialog"></div>

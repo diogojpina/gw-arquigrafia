@@ -12,13 +12,13 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta http-equiv="Cache-Control" content="no-cache">
         <title>Arquigrafia Brasil - Edi&ccedil;&atilde;o de &aacute;lbum</title>
-        <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.ico" />
-        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css" />
-        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css" />
-        <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/jquery.css" />
-        <script type="text/javascript" src="${pageContext.request.contextPath}/js/listagem.js"></script>
-        <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
-        <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-ui.js"></script>
+        <link rel="shortcut icon" type="image/x-icon" href="<c:url value="/images/favicon.ico" />"/>
+        <link rel="stylesheet" type="text/css" href="<c:url value="/css/reset.css" />"/>
+        <link rel="stylesheet" type="text/css" href="<c:url value="/css/common.css" />"/>
+        <link rel="stylesheet" type="text/css" media="screen" href="<c:url value="/css/jquery.css" />"/>
+        <script type="text/javascript" src="<c:url value="/js/listagem.js"/>"></script>
+        <script type="text/javascript" src="<c:url value="/js/jquery.js"/>"></script>
+        <script type="text/javascript" src="<c:url value="/js/jquery-ui.js"/>"></script>
     </head>
     <body>
         <w:topo collabletInstance="${albumMgr.collablet}" />

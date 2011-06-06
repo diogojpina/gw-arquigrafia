@@ -8,8 +8,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta http-equiv="Cache-Control" content="no-cache">
         <title>Configura&ccedil;&atilde;o de Not&iacute;cias</title>
-        <link href="${pageContext.request.contextPath}/css/common.css" rel="stylesheet" type="text/css" />
-        <script type="text/javascript" src="${pageContext.request.contextPath}/js/listagem.js"></script>
+        <link href="<c:url value="/css/common.css" rel="stylesheet" type="text/css" />"/>
+        <script type="text/javascript" src="<c:url value="/js/listagem.js"/>"></script>
     </head>
     <body>
         <w:topo collabletInstance="${recommendMgr.collablet}" />

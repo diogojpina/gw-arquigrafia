@@ -8,23 +8,23 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta http-equiv="Cache-Control" content="no-cache">
         <title>Arquigrafia Brasil - &Aacute;lbuns</title>
-        <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.ico" />
-        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css" />
-        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/arq-common.css" />
-        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/header.css" />
-        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/know_more.css" />
-        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/forms.css"  />
-        <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/plugins/sds/css/smoothDivScroll.css" />
-        <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/footer.css" />
-        <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/jquery.css" />
-        <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/tagcloud.css" />
-        <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/boxy.css" />
-        <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/album.css" />
-        <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
-        <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-ui.js"></script>
-        <script type="text/javascript" src="${pageContext.request.contextPath}/plugins/sds/js/jquery.smoothDivScroll-0.9-min.js"></script>
-        <script type="text/javascript" src="${pageContext.request.contextPath}/plugins/sds/js/scroll.js"></script>
-        <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.boxy.js"></script>
+        <link rel="shortcut icon" type="image/x-icon" href="<c:url value="/images/favicon.ico"/>" />
+        <link rel="stylesheet" type="text/css" href="<c:url value="/css/reset.css" />" />
+        <link rel="stylesheet" type="text/css" href="<c:url value="/css/arq-common.css" />" />
+        <link rel="stylesheet" type="text/css" href="<c:url value="/css/header.css" />" />
+        <link rel="stylesheet" type="text/css" href="<c:url value="/css/know_more.css" />" />
+        <link rel="stylesheet" type="text/css" href="<c:url value="/css/forms.css"  />" />
+        <link rel="stylesheet" type="text/css" media="screen" href="<c:url value="/plugins/sds/css/smoothDivScroll.css" />" />
+        <link rel="stylesheet" type="text/css" media="screen" href="<c:url value="/css/footer.css" />" />
+        <link rel="stylesheet" type="text/css" media="screen" href="<c:url value="/css/jquery.css" />" />
+        <link rel="stylesheet" type="text/css" media="screen" href="<c:url value="/css/tagcloud.css" />" />
+        <link rel="stylesheet" type="text/css" media="screen" href="<c:url value="/css/boxy.css" />" />
+        <link rel="stylesheet" type="text/css" media="screen" href="<c:url value="/css/album.css" />" />
+        <script type="text/javascript" src="<c:url value="/js/jquery.js"/>"></script>
+        <script type="text/javascript" src="<c:url value="/js/jquery-ui.js"/>"></script>
+        <script type="text/javascript" src="<c:url value="/plugins/sds/js/jquery.smoothDivScroll-0.9-min.js"/>"></script>
+        <script type="text/javascript" src="<c:url value="/plugins/sds/js/scroll.js"/>"></script>
+        <script type="text/javascript" src="<c:url value="/js/jquery.boxy.js"/>"></script>
         <script type="text/javascript">
             function afterSave() {
                 $("#album_novo").dialog("close");
@@ -58,7 +58,8 @@
                });
 
             });
-        </script>
+
+    </script>
     </head>
     <body>
         <arq:header2 photoInstance="${photoMgr}" />
