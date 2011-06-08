@@ -10,7 +10,7 @@
         <property name="hibernate.connection.autoReconnect" value="true" />
 		<property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider" />
         <!--  -->
-        <property name="hibernate.hbm2ddl.auto" value="update" />
+        <property name="hibernate.hbm2ddl.auto" value="create-drop" />
         <!-- <property name="hibernate.hbm2ddl.auto" value="create-drop" />
          -->
         <property name="transaction.factory_class" value="org.hibernate.transaction.JDBCTransactionFactory" />

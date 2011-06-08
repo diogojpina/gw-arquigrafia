@@ -58,6 +58,8 @@
             &nbsp;|&nbsp;
             <a href="${pageContext.request.contextPath}/groupware-workbench/users/${userMgr.id}/list">Gerenciar usu&aacute;rios</a>
             &nbsp;|&nbsp;
+            <a href="${pageContext.request.contextPath}/groupware-workbench/flags/${flagMgr.id}/list">Gerenciar Denúncias</a>
+            &nbsp;|&nbsp;            
             <a href="${pageContext.request.contextPath}/groupware-workbench/manager/${manager.id}">Gerenciar aplica&ccedil;&atilde;o</a>
             &nbsp;|&nbsp;
             <a href="${pageContext.request.contextPath}/groupware-workbench/tracker/${tracker.id}">Localizador de Usuários</a>
