@@ -131,6 +131,15 @@
 .photoTitle_tab span {
     cursor: pointer;
 }
+
+.photoTitle_tab_simple {
+	padding: 6px 0px 0px 10px;
+	float: right;
+}
+.photoTitle_tab_simple span {
+    cursor: pointer;
+}
+
 #photo {
     float: left;
     margin-left: 15px;

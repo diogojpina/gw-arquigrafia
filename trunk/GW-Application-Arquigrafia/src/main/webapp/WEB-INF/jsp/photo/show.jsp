@@ -40,7 +40,8 @@
         <script type="text/javascript" src="<c:url value="/js/ui.base.js"/>"></script>
         <script type="text/javascript" src="<c:url value="/js/ui.slider.js"/>"></script>
         <album:buttonAdd-script photo="${photo}"/>
-
+        <photo:buttonDelete-script photo="${photo}"/>
+        
         <script type="text/javascript">
             $(document).ready(function() {
                 $('label[rel=tooltip]').tooltip();
@@ -142,6 +143,17 @@
                 <div id="photoWrap">
                     <div id="photoTitle">
                         <span class="big_white_title"><c:out value="${photo.nome}" /></span>
+                        <div id="photoUploadContent" style="visibility: hidden; display: none;">
+                            <iframe id="photoUpdateData" name="photoUpdateFrame" style="width: 800px; height: 400px; opacity: 0.95;" id="photoUploadFrame"></iframe>
+                        </div>
+                        <div id="photoTitle_tab_5" class="photoTitle_tab_simple">
+                        	<photo:buttonEdit photo="${photo}" photoInstance="${photoInstance}" idButton="updatePhoto" className="mid_white_text"/>
+                        </div>
+                        <div id="photoTitle_tab_4" class="photoTitle_tab_simple">
+                            <c:if test="${not empty usuarioCriador}">
+                                <photo:buttonDelete idButton="deletePhoto" photo="${photo}" className="mid_white_text"/>
+                            </c:if>
+                        </div>
                         <div id="photoTitle_tab_3" class="photoTitle_tab">
                             <a class="mid_white_text" style="text-decoration: none;" target="_blanck" href="<c:url value="/groupware-workbench/photo/img-original/${photo.id}"/>">
                                 <img src="${pageContext.request.contextPath}/images/photo_download.png" alt="Baixar a foto" />

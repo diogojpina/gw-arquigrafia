@@ -91,7 +91,7 @@ public class PhotoMgrInstance extends AbstractBusiness {
     public String getMostraPrefix() {
         return getCollablet().getProperty("mostraPrefix");
     }
-
+    
     public List<Photo> listPhotoByUserPageAndOrder(User user, int pageSize, int pageNumber) {
         return Photo.listPhotoByUserPageAndOrder(getCollablet(), user, pageSize, pageNumber);
     }

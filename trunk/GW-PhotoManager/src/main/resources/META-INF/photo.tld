@@ -42,4 +42,16 @@
         <name>listPage</name>
         <path>/META-INF/tags/listPage.tag</path>
     </tag-file>
+    <tag-file>
+        <name>buttonDelete</name>
+        <path>/META-INF/tags/buttonDelete.tag</path>
+    </tag-file>
+    <tag-file>
+        <name>buttonDelete-script</name>
+        <path>/META-INF/tags/buttonDelete-script.tag</path>
+    </tag-file>
+    <tag-file>
+        <name>buttonEdit</name>
+        <path>/META-INF/tags/buttonEdit.tag</path>
+    </tag-file>
 </taglib>

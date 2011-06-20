@@ -25,6 +25,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -45,6 +46,8 @@ import br.com.caelum.vraptor.validator.ValidationMessage;
 import br.com.caelum.vraptor.view.Results;
 //import br.org.groupwareworkbench.collablet.coord.counter.Observer;
 import br.org.groupwareworkbench.collablet.coord.user.User;
+import br.org.groupwareworkbench.collablet.coord.user.UserMgrInstance;
+import br.org.groupwareworkbench.core.framework.Collablet;
 import br.org.groupwareworkbench.core.framework.WidgetInfo;
 
 @RequestScoped
@@ -137,17 +140,22 @@ public class PhotoController {
     @Post
     @Path(value = "/groupware-workbench/photo/{idPhoto}")
     public void show(long idPhoto) {
+        User user = (User) session.getAttribute("userLogin");
         Photo photo = Photo.findById(idPhoto);
+        User userPhoto = photo.getUsers().get(0);
+        
         if (photo == null) {
             result.notFound();
             return;
         }
-
+        if (userPhoto.getId().compareTo(user.getId()) == 0){
+            result.include("usuarioCriador", "sim");
+        } 
+            
         result.include("idPhoto", idPhoto);
         result.include("photo", photo);
         PhotoMgrInstance photoInstance = (PhotoMgrInstance) photo.getCollablet().getBusinessObject();
         addIncludes(photoInstance);
-        // photoInstance.register(observer);
         photoInstance.getCollablet().processWidgets(info, photo);
         result.use(Results.representation()).from(photo).serialize();
     }
@@ -309,6 +317,65 @@ public class PhotoController {
     }
 
     @Get
+    @Path(value = "/groupware-workbench/photo/{photoInstance}/edit/{idPhoto}")
+    public void edit(PhotoMgrInstance photoInstance, final long idPhoto) {
+        
+        Photo photo = Photo.findById(idPhoto);
+        if (photo == null) {
+            result.notFound();
+            return;
+        }
+        Collablet collablet = photo.getCollablet();
+        result.include("photoRegister", photo);
+        result.include("userOwn", photo.getUsers().get(0));
+        result.include("photoMgr", photoInstance);
+        collablet.includeDependencies(result);
+        addIncludes(photoInstance);
+        result.use(Results.representation()).from(photo).serialize();
+    }
+    
+    @Post
+    @Path(value = "/groupware-workbench/photo/{photoInstance}/update")
+    public void update(Photo photoRegister, PhotoMgrInstance photoInstance, User userOwn) {
+        User user = null;
+        try {
+            user = (User) session.getAttribute("userLogin");
+        } catch (Exception e) {
+        }
+                
+        if (user != null) {
+            photoRegister.assignUser(userOwn);
+            photoRegister.assignUser(user);
+        }
+        
+        try {
+            photoInstance.save(photoRegister);
+        } catch (RuntimeException e) {
+            validator.add(new ValidationMessage(e.getMessage(), "Erro"));
+            validator.onErrorUse(Results.logic()).redirectTo(PhotoController.class)
+                    .registra(photoInstance, photoRegister);
+            return;
+        }
+        photoInstance.getCollablet().processWidgets(info, photoRegister);
+        addIncludes(photoInstance);
+        result.include("successMessage", MSG_SUCCESS);
+        result.use(Results.logic()).redirectTo(PhotoController.class).show(photoRegister.getId());
+    }
+    
+    @Post
+    @Path(value = "/groupware-workbench/photo/delete/{idPhoto}")
+    public void deletePhoto(long idPhoto) {
+        Photo photo = Photo.findById(idPhoto);
+        if (photo == null) {
+            validator.add(new ValidationMessage(MSG_ENTIDADE_INVALIDA, "Erro"));
+            return;
+        }
+        photo.delete();
+        PhotoMgrInstance photoInstance = (PhotoMgrInstance) photo.getCollablet().getBusinessObject();
+        addIncludes(photoInstance);
+    }
+    
+    @Get
     @Path(value = "/groupware-workbench/photo/{photoInstance}/registra_multiplos/{os}/{dir}")
     public void registraMultiplos(String os, String dir, PhotoMgrInstance photoInstance) {
 
@@ -355,7 +422,6 @@ public class PhotoController {
             validator.add(new ValidationMessage(MSG_ENTIDADE_INVALIDA, "Erro"));
             return;
         }
-
         PhotoMgrInstance photoInstance = (PhotoMgrInstance) photo.getCollablet().getBusinessObject();
         photo.delete();
         addIncludes(photoInstance);

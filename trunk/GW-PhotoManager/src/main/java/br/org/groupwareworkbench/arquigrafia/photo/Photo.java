@@ -256,6 +256,18 @@ public class Photo implements Serializable {
         }
     }
 
+    public static Photo findPhotoByUser(User user, long id) {
+        if (user == null) throw new IllegalArgumentException();
+
+        String queryString =
+                "SELECT p FROM Photo p JOIN p.users AS u WHERE u = :user AND p.id=id";
+        EntityManager em = EntityManagerProvider.getEntityManager();
+        TypedQuery<Photo> query = em.createQuery(queryString, Photo.class);
+        query.setParameter("id", id);
+        query.setParameter("user", user);
+        return query.getResultList().get(0);
+    }
+    
     public static List<Photo> listPhotoByUserPageAndOrder(Collablet collablet, User user, int pageSize, int pageNumber) {
         if (collablet == null) throw new IllegalArgumentException();
         if (user == null) throw new IllegalArgumentException();
@@ -443,5 +455,9 @@ public class Photo implements Serializable {
 
     public void setInfArquitetonicas(String infArquitetonicas) {
         this.infArquitetonicas = infArquitetonicas;
+    }
+
+    public List<User> getUsers() {
+        return users;
     }
 }

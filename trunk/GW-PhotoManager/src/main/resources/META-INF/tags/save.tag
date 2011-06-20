@@ -87,7 +87,7 @@
     </fieldset>
     
     <fieldset>
-        <legend>Data e Informa&ccedil;&otilde;es arquitetonicas</legend>
+        <legend>Data e Informa&ccedil;&otilde;es arquitet&oacute;nicas</legend>
         <div class="${formLineClass}">
             <label for="photoRegister.dataCriacao" class="${formLabelClass}">
                 <span>Data da foto:</span>
