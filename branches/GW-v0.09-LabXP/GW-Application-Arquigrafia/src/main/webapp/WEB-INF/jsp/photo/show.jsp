@@ -48,13 +48,7 @@
 		<form name="tags" method="post" enctype="multipart/form-data"
 			action="<c:url value="/groupware-workbench/photo/${photo.id}" />">
 			<div id="photoBackground">
-				<c:if test="${flagMgrPhoto.collablet.enabled}">
-					<div id="flagDiv">
-						<flag:flagPanel entity="${photo}" flagMgr="${flagMgrPhoto}"
-							user="${sessionScope.userLogin}" divId="flagDiv" />
-					</div>
-				</c:if>
-
+				
 				<div id="photoRel">
 					<c:if test="${binomialMgr.collablet.enabled}">
 						<div id="binomialsTitle" class="big_white_title">Avalie esta
@@ -120,6 +114,9 @@
 					<div id="photo" class="resizeblePhoto1">
 						<photo:show foto="${photo}" photoInstance="${photoInstance}" />
 					</div>
+
+
+
 
 					<div style="clear: both"></div>
 					<div id="photoRelSub">
@@ -210,6 +207,13 @@
 											increment="true" wrapClass="counter_show" />
 									</div>
 								</c:if>
+								
+								<c:if test="${flagMgr.collablet.enabled}">
+									<div id="flagDiv">
+										<flag:flagPanel entity="${photo}" flagMgr="${flagMgr}" user="${userLogin}" divId="flagDiv" />
+									</div>
+								</c:if>
+								
 							</div>
 							<div id="tagsAdd">
 								<tag:selectTags tagMgr="${tagMgr}" />
