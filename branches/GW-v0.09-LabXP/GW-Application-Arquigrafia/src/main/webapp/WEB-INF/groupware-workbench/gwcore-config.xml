@@ -10,7 +10,7 @@
         <property name="hibernate.connection.autoReconnect" value="true" />
 		<property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider" />
         <!--  -->
-        <property name="hibernate.hbm2ddl.auto" value="create-drop" />
+        <property name="hibernate.hbm2ddl.auto" value="update" />
         <!-- <property name="hibernate.hbm2ddl.auto" value="create-drop" />
          -->
         <property name="transaction.factory_class" value="org.hibernate.transaction.JDBCTransactionFactory" />
@@ -140,12 +140,20 @@
 
 		 <collablet>
             <business>br.org.groupwareworkbench.collablet.coop.flag.FlagMgrInstance</business>
-            <description>Denunciar abuso</description>
-            <name>flagMgr</name>
+            <description>Denunciar abuso para fotos</description>
+            <name>flagMgrPhoto</name>
             <properties><property key="flaggedEntityClassName" value="br.org.groupwareworkbench.arquigrafia.photo.Photo" />
             </properties>
         </collablet>
         
+    	 <collablet>
+            <business>br.org.groupwareworkbench.collablet.coop.flag.FlagMgrInstance</business>
+            <description>Denunciar abuso para comentários</description>
+            <name>flagMgrComment</name>
+            <properties><property key="flaggedEntityClassName" value="br.org.groupwareworkbench.collablet.communic.comment.Comment" />
+            </properties>
+        </collablet>
+                    
          <collablet>
             <business>br.org.groupwareworkbench.collablet.coop.rating.RatingMgrInstance</business>
             <description>Avaliar a foto</description>
@@ -181,7 +189,7 @@
             <description>Registro de fotografias</description>
             <name>photoMgr</name>
             <properties>
-                <property key="dirImages" value="/Users/pedro/GW-workbench/images/" /> 
+                <property key="dirImages" value="/home/jefferson.ascaneo/labxp/img_arquigrafia/" /> 
                 <!--
                     No linux se não usa absolute path assume-se $HOME como prefixo, ou seja "images/" ficará "$HOME/images"
                     se tiver permissões esta pasta é criada automaticamente pelo componente.
@@ -275,7 +283,8 @@
 		<subordination parent="photoMgr" child="tracker" />
 
 		<subordination parent="photoMgr" child="ratingMgr" />
-		<subordination parent="photoMgr" child="flagMgr" />
+		<subordination parent="photoMgr" child="flagMgrPhoto" />
+		<subordination parent="commentMgr" child="flagMgrComment" />
 		<subordination parent="photoMgr" child="componentRepository" />
 		<subordination parent="photoMgr" child="counterMgr" />
     </collablets-subordinations>
@@ -291,7 +300,8 @@
         <!--<dependency from="uploadMgr" to="photoMgr" />-->
         <dependency from="binomialMgr" to="photoMgr" />
         <dependency from="albumMgr" to="photoMgr" />
-        <dependency from="flagMgr" to="photoMgr" />
+        <dependency from="flagMgrPhoto" to="photoMgr" />
+        <dependency from="flagMgrComment" to="commentMgr" />
         <dependency from="profileMgr" to="photoMgr" />
         <dependency from="profileMgr" to="friendsMgr" />
         <dependency from="roleMgr" to="photoMgr" />
