@@ -4,12 +4,7 @@
 	import="br.org.groupwareworkbench.collablet.coop.flag.FlagMgrInstance"%>
 <%@ page import="br.org.groupwareworkbench.core.framework.Collablet"%>
 <%@ page import="java.util.Collection"%>
-
-<r:callMethod methodName="listAllInstances" instance="${manager}"
-	var="flagMgrInstances">
-	<r:param type="br.org.groupwareworkbench.collablet.coop.flag.Flag"
-		value="${FlagMgrInstance.class}" />
-</r:callMethod>
+	
 
 <div id="header">
 	<div id="title">
@@ -93,7 +88,7 @@
 				usu&aacute;rios</a>
             &nbsp;|&nbsp;            
             
-			<%
+			<%			
 			Collection<Collablet> collabletCollection = Collablet.listAllInstances(FlagMgrInstance.class);
 			for (final Collablet collablet : collabletCollection)
 			{
