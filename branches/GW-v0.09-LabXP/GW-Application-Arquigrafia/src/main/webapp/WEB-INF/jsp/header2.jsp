@@ -1,10 +1,4 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-<%@ page
-	import="br.org.groupwareworkbench.collablet.coop.flag.FlagMgrInstance"%>
-<%@ page import="br.org.groupwareworkbench.core.framework.Collablet"%>
-<%@ page import="java.util.Collection"%>
-	
+<%@ include file="/WEB-INF/jsp/imports.jsp"%>
 
 <div id="header">
 	<div id="title">

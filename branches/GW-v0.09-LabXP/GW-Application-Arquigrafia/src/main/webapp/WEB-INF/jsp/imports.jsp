@@ -21,3 +21,8 @@
 <%@ taglib prefix="friends" uri="http://www.groupwareworkbench.org.br/widgets/friends" %>
 <%@ taglib prefix="rating" uri="http://www.groupwareworkbench.org.br/widgets/rating" %>
 <%@ taglib prefix="flag" uri="http://www.groupwareworkbench.org.br/widgets/flag" %>
+
+<%@ page
+	import="br.org.groupwareworkbench.collablet.coop.flag.FlagMgrInstance,
+			br.org.groupwareworkbench.core.framework.Collablet,
+			java.util.Collection"%>
