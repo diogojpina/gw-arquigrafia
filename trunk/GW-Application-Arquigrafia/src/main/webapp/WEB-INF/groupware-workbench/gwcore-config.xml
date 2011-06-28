@@ -10,8 +10,7 @@
         <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
         <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/groupware_workbench_arquigrafia?autoReconnect=true" />
         <property name="hibernate.connection.autoReconnect" value="true" />
-
-        <property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider" />
+		<property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider" />
         <property name="hibernate.hbm2ddl.auto" value="update" />
         <property name="transaction.factory_class" value="org.hibernate.transaction.JDBCTransactionFactory" />
         <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
@@ -138,19 +137,34 @@
             </android-properties>
         </collablet>
 
-        <collablet>
+		 <collablet>
+            <business>br.org.groupwareworkbench.collablet.coop.flag.FlagMgrInstance</business>
+            <description>Denunciar abuso para fotos</description>
+            <name>flagMgrPhoto</name>
+            <properties><property key="flaggedEntityClassName" value="br.org.groupwareworkbench.arquigrafia.photo.Photo" />
+            </properties>
+        </collablet>
+        
+    	 <collablet>
+            <business>br.org.groupwareworkbench.collablet.coop.flag.FlagMgrInstance</business>
+            <description>Denunciar abuso para comentários</description>
+            <name>flagMgrComment</name>
+            <properties><property key="flaggedEntityClassName" value="br.org.groupwareworkbench.collablet.communic.comment.Comment" />
+            </properties>
+        </collablet>
+                    
+         <collablet>
             <business>br.org.groupwareworkbench.collablet.coop.rating.RatingMgrInstance</business>
             <description>Gerenciar avaliação</description>
             <name>ratingMgr</name>
-            <properties>
-                <property key="ratedEntityClassName" value="br.org.groupwareworkbench.arquigrafia.photo.Photo" /> 
+            <properties><property key="ratedEntityClassName" value="br.org.groupwareworkbench.arquigrafia.photo.Photo" />
             </properties>
         </collablet>
 
         <collablet>
             <business>br.org.groupwareworkbench.collablet.coord.profile.ProfileMgrInstance</business>
             <description>Gerenciar perfis</description>
-            <name>profileMgr</name>
+            <name>profileMgr</name>  
         </collablet>
 
         <collablet>
@@ -174,7 +188,7 @@
             <description>Registro de fotografias</description>
             <name>photoMgr</name>
             <properties>
-                <property key="dirImages" value="/imagesArquigrafia/" /> 
+            	<property key="dirImages" value="/imagesArquigrafia/" /> 
                 <!--
                     No linux se não usa absolute path assume-se $HOME como prefixo, ou seja "images/" ficará "$HOME/images"
                     se tiver permissões esta pasta é criada automaticamente pelo componente.
@@ -266,6 +280,10 @@
         <subordination parent="photoMgr" child="commentMgr2" />
 		<!-- <subordination parent="friendsMgr" child="commentMgr2" /> -->
 		<subordination parent="photoMgr" child="tracker" />
+
+		<subordination parent="photoMgr" child="ratingMgr" />
+		<subordination parent="photoMgr" child="flagMgrPhoto" />
+		<subordination parent="commentMgr" child="flagMgrComment" />
 		<subordination parent="photoMgr" child="componentRepository" />
 		<subordination parent="photoMgr" child="counterMgr" />
     </collablets-subordinations>
@@ -282,6 +300,8 @@
         <dependency from="binomialMgr" to="photoMgr" />
         <dependency from="albumMgr" to="photoMgr" />
         <dependency from="ratingMgr" to="photoMgr" />
+        <dependency from="flagMgrPhoto" to="photoMgr" />
+        <dependency from="flagMgrComment" to="commentMgr" />
         <dependency from="profileMgr" to="photoMgr" />
         <dependency from="profileMgr" to="friendsMgr" />
         <dependency from="roleMgr" to="photoMgr" />
