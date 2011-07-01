@@ -6,6 +6,8 @@
 
 	<tiles:putAttribute name="head">
 		<album:buttonAdd-script photo="${photo}" />
+		<photo:buttonDelete-script photo="${photo}"/>
+		
 		<script type="text/javascript">
 			$(document).ready(function() {
 				$('label[rel=tooltip]').tooltip();
@@ -209,14 +211,13 @@
 								</div>
 								<c:if test="${counterMgr.collablet.enabled}">
 									<div>
-										<counter:showCounter manager="${counterMgr}" entity="${photo}"
-											increment="true" wrapClass="counter_show" />
+								    	<counter:showCounter manager="${counterMgr}" entity="${photo}" viewer="${sessionScope.userLogin}" increment="true" wrapClass="counter_show" />
 									</div>
 								</c:if>
 								
-								<c:if test="${flagMgr.collablet.enabled}">
+								<c:if test="${flagMgrPhoto.collablet.enabled}">
 									<div id="flagDiv">
-										<flag:flagPanel entity="${photo}" flagMgr="${flagMgr}" user="${userLogin}" divId="flagDiv" />
+										<flag:flagPanel entity="${photo}" flagMgr="${flagMgrPhoto}" user="${userLogin}" divId="flagDiv" />
 									</div>
 								</c:if>
 								
