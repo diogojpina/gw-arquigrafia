@@ -257,7 +257,7 @@
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
-                    <file>${reference.GW-PhotoManager.jar}</file>
+                    <file>${reference.GW-collablets-Arquigrafia.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
             </web-module-libraries>
@@ -306,7 +306,7 @@
                 <id>jar</id>
             </reference>
             <reference>
-                <foreign-project>GW-PhotoManager</foreign-project>
+                <foreign-project>GW-collablets-Arquigrafia</foreign-project>
                 <artifact-type>jar</artifact-type>
                 <script>nb-build.xml</script>
                 <target>jar</target>
