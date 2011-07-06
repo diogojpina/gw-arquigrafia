@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 
 <!--
-    This ant script controls the building of the GW-PhotoManager project.
+    This ant script controls the building of the GW-collablets-Arquigrafia project.
     See the worker.xml script for the runnable targets.
 
     Authors: Victoriano Alfonso Phocco Diaz
              Victor Williams Stafusa da Silva
 -->
-<project basedir="." default="rebuild-all" name="GW-PhotoManager">
+<project basedir="." default="rebuild-all" name="GW-collablets-Arquigrafia">
 
     <!--
         Since the location of the worker.xml depends on the host configuration,

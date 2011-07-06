@@ -22,7 +22,7 @@
         <dependent-module archiveName="GW-Libs.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/GW-Libs/GW-Libs">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="GW-PhotoManager.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/GW-PhotoManager/GW-PhotoManager">
+        <dependent-module deploy-path="/WEB-INF/lib" handle="module:/resource/GW-collablets-Arquigrafia/GW-collablets-Arquigrafia">
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <property name="java-output-path"/>

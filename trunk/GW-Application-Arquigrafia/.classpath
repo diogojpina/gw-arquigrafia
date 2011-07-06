@@ -9,11 +9,11 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/GW-PhotoManager"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/GW-collablet"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/GW-collabElement"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/GW-commons-widgets"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/GW-core"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/GW-Libs"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/GW-collablets-Arquigrafia"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
