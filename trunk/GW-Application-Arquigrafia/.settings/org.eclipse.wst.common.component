@@ -13,9 +13,6 @@
         <dependent-module archiveName="GW-core.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/GW-core/GW-core">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="GW-collabElement.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/GW-collabElement/GW-collabElement">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
         <dependent-module archiveName="GW-Libs.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/GW-Libs/GW-Libs">
             <dependency-type>uses</dependency-type>
         </dependent-module>
