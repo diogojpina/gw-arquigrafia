@@ -85,9 +85,25 @@
 
 .login_button {
     padding-left: 7px;
-    padding-top: 15px;
+    padding-top: 0px;
     float: right;
     padding-bottom: 15px;
+}
+
+.login-buttons {
+    margin-left: 15px;
+}
+
+.login-buttons .google img{
+    width: 110px;
+}
+
+.login-buttons .facebook img {
+    width: 144px;
+}
+
+.login-buttons .twitter img {
+    width: 131px;
 }
 
 body {

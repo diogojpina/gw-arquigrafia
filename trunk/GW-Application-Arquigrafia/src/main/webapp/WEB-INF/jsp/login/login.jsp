@@ -48,7 +48,7 @@
                     </div>
                    
                 </div>
-                
+
                 <div class="login_box_clear"></div>
                 <c:if test="${not sessionScope['log']}">
                     <div class="login_messages">
@@ -57,6 +57,20 @@
                         </c:if>
                     </div>
                 </c:if>
+
+                <div class="login-buttons">
+                      <a class="google" style="margin-right: 5px;" href="<c:url value="/groupware-workbench/users/${userMgr.id}/loginOrkutAuth"/>">
+                        <img style="border-style: solid; border-width: 1px;"  src="${pageContext.request.contextPath}/images/google.png"/>
+                      </a> 
+                      <a class="facebook" style="margin-left: 5px; margin-right: 5px;" href="<c:url value="/groupware-workbench/users/${userMgr.id}/loginFacebookAuth?auth=s"/>">
+                        <img src="${pageContext.request.contextPath}/images/facebook.jpeg"/>
+                      </a>
+                      <a class="twitter" style="margin-left: 5px;" href="<c:url value="/groupware-workbench/users/${userMgr.id}/loginTwitterAuth"/>">
+                        <img src="${pageContext.request.contextPath}/images/twitter-signin.png"/>
+                      </a>
+                 </div>
+                
+                
             </div>
             
         </form>
