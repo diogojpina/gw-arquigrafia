@@ -28,17 +28,34 @@
         <param-value>100000000</param-value>
     </context-param>
 
-	<!-- tiles configuration -->
-		<servlet>
-			<servlet-name>TilesServlet</servlet-name>
-			<servlet-class>org.apache.tiles.web.startup.TilesServlet</servlet-class>
-			<init-param>
-				<param-name>org.apache.tiles.factory.TilesContainerFactory.MUTABLE</param-name>
-				<param-value>true</param-value>
-			</init-param>
-			<load-on-startup>2</load-on-startup>
-		</servlet>
-		<!-- /tiles configuration -->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>/WEB-INF/groupware-workbench/security.xml</param-value>
+    </context-param>
+
+    <filter>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+
+
+    <!-- tiles configuration -->
+    <servlet>
+        <servlet-name>TilesServlet</servlet-name>
+        <servlet-class>org.apache.tiles.web.startup.TilesServlet</servlet-class>
+        <init-param>
+            <param-name>org.apache.tiles.factory.TilesContainerFactory.MUTABLE</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <load-on-startup>2</load-on-startup>
+    </servlet>
+    <!-- /tiles configuration -->
 
     <filter>
         <filter-name>vraptor</filter-name>
@@ -50,6 +67,10 @@
         <dispatcher>FORWARD</dispatcher>
         <dispatcher>REQUEST</dispatcher>
     </filter-mapping>
+
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
 
     <welcome-file-list>
         <welcome-file>index.html</welcome-file>
