@@ -25,11 +25,13 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 
 import br.com.caelum.vraptor.Delete;
 import br.com.caelum.vraptor.Get;
@@ -44,9 +46,7 @@ import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
 import br.com.caelum.vraptor.ioc.RequestScoped;
 import br.com.caelum.vraptor.validator.ValidationMessage;
 import br.com.caelum.vraptor.view.Results;
-//import br.org.groupwareworkbench.collablet.coord.counter.Observer;
 import br.org.groupwareworkbench.collablet.coord.user.User;
-import br.org.groupwareworkbench.collablet.coord.user.UserMgrInstance;
 import br.org.groupwareworkbench.core.framework.Collablet;
 import br.org.groupwareworkbench.core.framework.WidgetInfo;
 
@@ -65,12 +65,20 @@ public class PhotoController {
     public static final String MSG_SUCCESS =
             "A foto foi salva com sucesso. Envie outra foto ou clique em fechar para voltar à pagina inicial.";
 
-    private final Result result;
-    private final WidgetInfo info;
-    private final Validator validator;
-    private final HttpSession session;
-    private final RequestInfo requestInfo;
+    @Autowired
+    private Result result;
+    @Autowired
+    private WidgetInfo info;
+    @Autowired
+    private Validator validator;
+    @Autowired
+    private HttpSession session;
+    @Autowired
+    private RequestInfo requestInfo;
+    
+    public PhotoController(){}
 
+    /*
     public PhotoController(Result result, Validator validator, WidgetInfo info, HttpSession session,
             RequestInfo requestInfo) {
         this.result = result;
@@ -79,7 +87,9 @@ public class PhotoController {
         this.session = session;
         this.requestInfo = requestInfo;
     }
+    */
 
+    @PreAuthorize("hasRole('ROLE_PHOTO_INDEX')")
     @Get
     @Path(value = "/groupware-workbench/photo/{photoInstance}/index")
     public void index(PhotoMgrInstance photoInstance) {
@@ -136,6 +146,7 @@ public class PhotoController {
     }
 
     // FIXME: @Get e @Post ao mesmo tempo? Separar as duas coisas. Não é idempotente.
+    @PreAuthorize("hasRole('ROLE_PHOTO_SHOW')")
     @Get
     @Post
     @Path(value = "/groupware-workbench/photo/{idPhoto}")
@@ -160,6 +171,7 @@ public class PhotoController {
         result.use(Results.representation()).from(photo).serialize();
     }
 
+    @PreAuthorize("hasRole('ROLE_PHOTO_BUSCA')")
     @SuppressWarnings("unchecked")
     @Get
     @Path(value = "/groupware-workbench/photo/{photoInstance}/list")
@@ -445,5 +457,25 @@ public class PhotoController {
         User user = (User) session.getAttribute("userLogin");
         List<Photo> photos = photoMgr.listPhotoByUserPageAndOrder(user, pageSize, pageNumber);
         result.use(Results.json()).from(photos).serialize();
+    }
+
+    public void setResult(Result result) {
+        this.result = result;
+    }
+
+    public void setInfo(WidgetInfo info) {
+        this.info = info;
+    }
+
+    public void setValidator(Validator validator) {
+        this.validator = validator;
+    }
+
+    public void setSession(HttpSession session) {
+        this.session = session;
+    }
+
+    public void setRequestInfo(RequestInfo requestInfo) {
+        this.requestInfo = requestInfo;
     }
 }

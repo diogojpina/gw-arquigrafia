@@ -30,6 +30,7 @@ import br.org.groupwareworkbench.core.framework.Collablet;
 import br.org.groupwareworkbench.core.framework.annotations.ComponentInfo;
 import br.org.groupwareworkbench.core.framework.annotations.DefaultProperty;
 import br.org.groupwareworkbench.core.framework.annotations.RequiredProperty;
+import br.org.groupwareworkbench.core.framework.annotations.SecurityRole;
 
 @ComponentInfo(version = "0.1",
         configurationURL = "/groupware-workbench/photo/{photoInstance}/index",
@@ -39,7 +40,11 @@ import br.org.groupwareworkbench.core.framework.annotations.RequiredProperty;
             @DefaultProperty(name = "thumbPrefix", defaultValue = "thumb_"),
             @DefaultProperty(name = "mostraPrefix", defaultValue = "mostra_")
         },
-        requiredProperties = { @RequiredProperty(name = "dirImages") })
+        requiredProperties = { @RequiredProperty(name = "dirImages") },
+        securityRoles = {
+            @SecurityRole(code = "ROLE_PHOTO_INDEX")
+        }        
+)
 public class PhotoMgrInstance extends AbstractBusiness {
     public PhotoMgrInstance(Collablet collablet) {
         super(collablet);

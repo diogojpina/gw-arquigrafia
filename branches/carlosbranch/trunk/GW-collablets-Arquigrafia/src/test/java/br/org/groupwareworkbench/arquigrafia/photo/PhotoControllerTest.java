@@ -1,23 +1,23 @@
 /*
-*    UNIVERSIDADE DE SÃO PAULO.
-*    Author: Marco Aurélio Gerosa (gerosa@ime.usp.br)
-*    This project was/is sponsored by RNP and FAPESP.
-*
-*    This file is part of Groupware Workbench (http://www.groupwareworkbench.org.br).
-*
-*    Groupware Workbench is free software: you can redistribute it and/or modify
-*    it under the terms of the GNU Lesser General Public License as published by
-*    the Free Software Foundation, either version 3 of the License, or
-*    (at your option) any later version.
-*
-*    Groupware Workbench is distributed in the hope that it will be useful,
-*    but WITHOUT ANY WARRANTY; without even the implied warranty of
-*    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-*    GNU Lesser General Public License for more details.
-*
-*    You should have received a copy of the GNU Lesser General Public License
-*    along with Swift.  If not, see <http://www.gnu.org/licenses/>.
-*/
+ *    UNIVERSIDADE DE SÃO PAULO.
+ *    Author: Marco Aurélio Gerosa (gerosa@ime.usp.br)
+ *    This project was/is sponsored by RNP and FAPESP.
+ *
+ *    This file is part of Groupware Workbench (http://www.groupwareworkbench.org.br).
+ *
+ *    Groupware Workbench is free software: you can redistribute it and/or modify
+ *    it under the terms of the GNU Lesser General Public License as published by
+ *    the Free Software Foundation, either version 3 of the License, or
+ *    (at your option) any later version.
+ *
+ *    Groupware Workbench is distributed in the hope that it will be useful,
+ *    but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *    GNU Lesser General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Lesser General Public License
+ *    along with Swift.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package br.org.groupwareworkbench.arquigrafia.photo;
 
 import static org.mockito.Mockito.*;
@@ -65,7 +65,7 @@ public class PhotoControllerTest {
     private PhotoController controller;
     private PhotoMgrInstance photoInstance;
 
-    //private Collablet outroCollablet;
+    // private Collablet outroCollablet;
 
     private MockResult result;
 
@@ -86,33 +86,36 @@ public class PhotoControllerTest {
         em = EntityManagerProvider.getEntityManager();
 
         result = new MockResult();
-        
+
         HttpServletRequest request = mock(HttpServletRequest.class);
-        Converters converters = mock(Converters.class);        
+        Converters converters = mock(Converters.class);
         WidgetInfo widgetInfo = new WidgetInfo(request, converters);
         HttpSession session = mock(HttpSession.class);
         RequestInfo requestInfo = mock(RequestInfo.class);
-        controller = new PhotoController(result, new MockValidator(), widgetInfo, session, requestInfo);
+        controller = new PhotoController();
+        controller.setResult(result);
+        controller.setValidator(new MockValidator());
+        controller.setInfo(widgetInfo);
+        controller.setSession(session);
+        controller.setRequestInfo(requestInfo);
 
         em.getTransaction().begin();
         collablet = new Collablet("photoMgr");
         collablet.setComponentClass(PhotoMgrInstance.class);
         collablet.setProperty("dirImages", TEMP_DIR);
         photoInstance = (PhotoMgrInstance) collablet.getBusinessObject();
-        em.persist(collablet);        
+        em.persist(collablet);
         em.getTransaction().commit();
 
         photo1 = new Photo();
         photo1.setCollablet(collablet);
         photo1.setNome("foto Um");
         photo1.setNomeArquivo("fotoum.jpg");
-        
 
         photo2 = new Photo();
         photo2.setCollablet(collablet);
         photo2.setNome("foto Dois");
         photo2.setNomeArquivo("fotodois.jpg");
-
 
         photo3 = new Photo();
         photo3.setCollablet(collablet);
@@ -162,7 +165,7 @@ public class PhotoControllerTest {
     @Test
     public void testPhotoSearchWithShortString() {
         photo1.save();
-        photo2.save();        
+        photo2.save();
         photo3.save();
         try {
             controller.buscaFoto("fo", photoInstance);
@@ -255,7 +258,7 @@ public class PhotoControllerTest {
     }
 
     @Test
-    public void testSaveWithoutImage() {        
+    public void testSaveWithoutImage() {
         Photo quatro = new Photo();
         quatro.setCollablet(collablet);
         quatro.setNome("foto Quatro");
@@ -272,9 +275,9 @@ public class PhotoControllerTest {
     }
 
     @Test
-    public void testSucessfulSave() {        
+    public void testSucessfulSave() {
         Photo quatro = new Photo();
-        quatro.setCollablet(collablet); 
+        quatro.setCollablet(collablet);
         quatro.setNome("foto Quatro");
         quatro.setNomeArquivo("fotoquatro.jpg");
         try {
