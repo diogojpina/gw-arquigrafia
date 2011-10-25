@@ -17,7 +17,7 @@
         <div id="user_top_links">
             <a href="${pageContext.request.contextPath}/groupware-workbench/friends/${friendsMgr.id}/show/${userLogin.id}" class="black_link"><c:out value="${sessionScope.userLogin.name}" /></a>
             &nbsp;&nbsp;
-            <a href="<c:url value="/groupware-workbench/users/${userMgr.id}/logout" />" class="gray_link">sair</a>
+            <a href="<c:url value="/j_spring_security_logout" />" class="gray_link">sair</a>
         </div>
         <div id="suggestions">
 	         <a href="${pageContext.request.contextPath}/groupware-workbench/users/${userMgr.id}/suggest" class="white_link">Sugest&otilde;es e Cr&iacute;ticas</a><br />

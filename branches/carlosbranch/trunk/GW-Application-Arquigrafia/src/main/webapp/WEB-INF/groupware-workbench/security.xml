@@ -15,39 +15,10 @@
                                 http://www.springframework.org/schema/security/spring-security-3.0.xsd">
 
     <context:annotation-config />
-    <!--
-        context:component-scan
-        base-package="br.org.groupwareworkbench.core.bd"/
-    -->
-
-    <!--
-        beans:bean id="dataSource"
-        class="org.springframework.jdbc.datasource.DriverManagerDataSource"
-        p:driverClassName="com.mysql.jdbc.Driver"
-        p:url="jdbc:mysql://localhost:3306/testVraptor"
-        p:username="root" p:password="root" /
-    -->
-
-    <!--
-        <tx:annotation-driven transaction-manager="transactionManager"/>
-
-        <beans:bean id="transactionManager"
-        class="org.springframework.orm.jpa.JpaTransactionManager"
-        p:entityManagerFactory-ref="entityManagerFactory"/> <beans:bean
-        id="entityManagerFactory"
-        class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
-        <beans:property name="persistenceUnitName" value="default"/>
-        </beans:bean>
-    -->
-    <http auto-config="true">
-        <!--
-            intercept-url pattern="/groupware-workbench/users/7/login"
-            filters="none" /
-        -->
+    <http auto-config="true" use-expressions="true">
+        <access-denied-handler error-page="/error-pages/deny.jsp" />
         <form-login login-page="/groupware-workbench/login"
             authentication-failure-url="/groupware-workbench/login" />
-        <intercept-url pattern="/groupware-workbench/photo/**"
-            access="ROLE_ADMIN" />
     </http>
 
     <beans:bean id="groupwareUserDetailsService"
@@ -56,10 +27,9 @@
     <authentication-manager>
         <authentication-provider
             user-service-ref="groupwareUserDetailsService">
-            <password-encoder hash="plaintext" />
+            <password-encoder hash="sha-256" />
         </authentication-provider>
     </authentication-manager>
 
-    <!-- global-method-security secured-annotations="enabled" /-->
-
+    <global-method-security pre-post-annotations="enabled" />
 </beans:beans>
