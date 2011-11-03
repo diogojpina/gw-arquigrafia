@@ -65,6 +65,18 @@ public class PopulateInitialDatabase {
         userRole.setName("Usuário");
         userRole.setCollablet(role);
 
+        Role orkutRole = new Role();
+        orkutRole.setName("Orkut-User");
+        orkutRole.setCollablet(role);
+
+        Role facebookRole = new Role();
+        facebookRole.setName("Facebook-User");
+        facebookRole.setCollablet(role);
+
+        Role twitterRole = new Role();
+        twitterRole.setName("Twitter-User");
+        twitterRole.setCollablet(role);
+
         User admin = new User();
         admin.setLogin("admin");
         admin.setEmail("admin@website.com");
@@ -89,6 +101,6 @@ public class PopulateInitialDatabase {
         user02.setCollablet(user);
         user02.assign(userRole);
 
-        insertAll(adminRole, userRole, admin, user01, user02);
+        insertAll(adminRole, userRole, orkutRole, facebookRole, twitterRole,  admin, user01, user02);
     }
 }
