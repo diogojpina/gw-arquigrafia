@@ -59,18 +59,16 @@
                 </c:if>
 
                 <div class="login-buttons">
-                      <a class="google" style="margin-right: 5px;" href="<c:url value="/groupware-workbench/users/${userMgr.id}/loginOrkutAuth"/>">
+                      <a class="google" style="margin-right: 5px;" href="<c:url value="/groupware-workbench/users/${userMgr.id}/${roleMgr.id}/loginOrkutAuth"/>">
                         <img style="border-style: solid; border-width: 1px;"  src="${pageContext.request.contextPath}/images/google.png"/>
                       </a> 
-                      <a class="facebook" style="margin-left: 5px; margin-right: 5px;" href="<c:url value="/groupware-workbench/users/${userMgr.id}/loginFacebookAuth?auth=s"/>">
+                      <a class="facebook" style="margin-left: 5px; margin-right: 5px;" href="<c:url value="/groupware-workbench/users/${userMgr.id}/${roleMgr.id}/loginFacebookAuth?auth=s"/>">
                         <img src="${pageContext.request.contextPath}/images/facebook.jpeg"/>
                       </a>
-                      <a class="twitter" style="margin-left: 5px;" href="<c:url value="/groupware-workbench/users/${userMgr.id}/loginTwitterAuth"/>">
+                      <a class="twitter" style="margin-left: 5px;" href="<c:url value="/groupware-workbench/users/${userMgr.id}/${roleMgr.id}/loginTwitterAuth"/>">
                         <img src="${pageContext.request.contextPath}/images/twitter-signin.png"/>
                       </a>
                  </div>
-                
-                
             </div>
             
         </form>

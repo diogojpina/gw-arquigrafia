@@ -16,10 +16,10 @@
         </layout>
     </appender>
 
-    <!-- <category name="br.org.groupwareworkbench">
+    <category name="br.org.groupwareworkbench">
         <priority value="TRACE"></priority>
         <appender-ref ref="stdout"/>
-    </category>	-->
+    </category>
 
     <category name="br.org.groupwareworkbench.core">
         <priority value="DEBUG"></priority>
