@@ -549,8 +549,6 @@ div.user_photo_thumbnail{
 }
 
 img.user_photo_thumbnail{
-	height:44px;
-	width:44px;
 	margin:auto;
 	overflow:hidden;
 }
@@ -891,28 +889,33 @@ div.comunities_search_content{
 
 /*   IMAGE VIEW   */
 
-div.image_view_left_sidebar{
-	height:620px;
-	width:171px;
+div.image_tool_box{
+	height:355px;
+	width:170px;
+	background-color:#333333;
 	margin-top:15px;
-	margin-right:43px;
 	float:left;
-	background-color:#FFF;
 }
 
 div.image_view_content{
 	height:620px;
-	width:566px;
-	margin-top:15px;
-	margin-right:20px;
+	width:600px;
+	margin:15px;
 	float:left;
-	background-color:#F00;
 }
 
-div.image_view_right_sidebar{
-	height:620px;
-	width:200px;
+div.related_images{
+	height:590px;
+	width:170px;
+	background-color:#333333;
 	margin-top:15px;
 	float:left;
-	background-color:#FFF;
+	padding:15px;
+}
+
+a.related_image{
+	display:block;
+	width:170px;
+	height:117px;
+	margin-bottom:10px;
 }
