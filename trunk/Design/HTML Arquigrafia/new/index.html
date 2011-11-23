@@ -1,0 +1,306 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Arquigrafia - Seu universo de imagens de arquitetura</title>
+<!--   FAVICON   -->
+<link rel="icon" href="img/arquigrafia_icon.ico" type="image/x-icon" />
+<link rel="shortcut icon" href="img/arquigrafia_icon.ico" type="image/x-icon" />
+<!--   ESTILO GERAL   -->
+<link rel="stylesheet" type="text/css" href="css/estilo.css" />
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"></script> 
+<script type="text/javascript">
+
+$(document).ready(function() {	
+
+	$('a[name=modal]').click(function(e) {
+		e.preventDefault();
+		
+		var id = $(this).attr('href');
+	
+		var maskHeight = $(document).height();
+		var maskWidth = $(window).width();
+	
+		$('#mask').css({'width':maskWidth,'height':maskHeight});
+
+		$('#mask').fadeIn(1000);	
+		$('#mask').fadeTo("slow",0.8);	
+	
+		//Get the form_window height and width
+		var winH = $(window).height();
+		var winW = $(window).width();
+              
+		$(id).css('top',  winH/5-$(id).height()/5);
+		$(id).css('left', winW/2-$(id).width()/2);
+	
+		$(id).fadeIn(2000); 
+	
+	});
+	
+	$('.form_window .close').click(function (e) {
+		e.preventDefault();
+		
+		$('#mask').hide();
+		$('.form_window').hide();
+	});		
+	
+	$('#mask').click(function () {
+		$(this).hide();
+		$('.form_window').hide();
+	});			
+	
+});
+
+</script>
+
+
+</head>
+
+<body>
+  <script>
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {return;}
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/pt_BR/all.js#xfbml=1&appId=APP_ID";
+      fjs.parentNode.insertBefore(js, fjs);
+    }
+    (document, 'script', 'facebook-jssdk'));
+  </script>
+  <!--   CONTAINER   -->
+  <div id="container">
+  
+  <!--   CABEÇALHO   -->
+    <div id="header">
+	
+	  <!--   LOGO   -->
+      <a href="index.html" id="logo"><img src="img/logo.png" width="192" height="44" alt="Arquigrafia" /></a>
+	  
+      <!--   MENU INSTITUCIONAL   -->
+      <ul id="top_menu_items">
+          <li><a href="#" id="project">O PROJETO</a></li>
+          <li><a href="#" id="help">AJUDA</a></li>
+          <li><a href="#" id="contact">FALE CONOSCO</a></li>
+      </ul>
+      
+      <!--
+      <div id="arrow_sidebar_left" class="arrow_sidebar_left"></div>
+      -->
+      
+      <!--   MENU DE BUSCA   -->
+      <div id="search_area">
+        <!--   ÁREA DOS BOTÕES DE BUSCA   -->
+        <form action="" method="get" id="search_buttons_area">
+          
+          <!--   BARRA DE BUSCA   -->
+          <input type="text" class="search_bar" name="search_bar_text" />
+          <!--   BOTÃO DA BARRA DE BUSCA   -->
+          <input type="submit" class="search_bar_button" value="" name="submit_search_button" />
+          
+          <a href="#" id="complete_search"></a>
+          
+        </form>
+      </div>
+	  
+      <!--   ÁREA DE LOGIN / CADASTRO   -->
+      <div id="login_registration_bar">
+        
+        <!--   BOTÃO DE LOGIN   -->
+        <a href="#form_window" name="modal" id="login_button"></a>
+        
+        <!--   BOTÃO DE CADASTRO   -->
+        <a href="#form_window" name="modal" id="registration_button"></a>
+      
+      </div>
+      <!--   SETA DA DIREITA   -->
+      
+      <!--
+      <div id="arrow_sidebar_right" class="arrow_sidebar_right"></div>
+      -->
+      
+    </div>
+    <!--   MEIO DO SITE - ÁREA DE NAVEGAÇÃO   -->
+    <div id="content">
+      <!--   PAINEL DE IMAGENS - GALERIA - CARROSSEL   -->
+      <div id="panel">
+        <!--   COLUNA DE IMAGENS   -->
+        <div class="images_column">
+          <!--   IMAGENS   -->
+          <a href="#" id="img_01" class="image"><img src="img/45082.jpg" width="170" height="117" alt="Foto 1"/></a>
+          <a href="#" id="img_02" class="image"><img src="img/45082.jpg" width="170" height="117" alt="Foto 2"/></a>
+          <a href="#" id="img_03" class="image"><img src="img/45082.jpg" width="170" height="117" alt="Foto 3"/></a>
+        </div>
+        <!--   COLUNA DE IMAGENS   -->
+        <div class="images_column">
+          <!--   IMAGENS   -->
+          <a href="#" id="img_04" class="image"><img src="img/45082.jpg" width="170" height="117" alt="Foto 1"/></a>
+          <a href="#" id="img_05" class="image"><img src="img/45082.jpg" width="170" height="117" alt="Foto 2"/></a>
+          <a href="#" id="img_06" class="image"><img src="img/45082.jpg" width="170" height="117" alt="Foto 3"/></a>
+        </div>
+        <!--   COLUNA DE IMAGENS   -->
+        <div class="images_column">
+          <!--   IMAGENS   -->
+          <a href="#" id="img_07" class="image"><img src="img/45082.jpg" width="170" height="117" alt="Foto 1"/></a>
+          <a href="#" id="img_08" class="image"><img src="img/45082.jpg" width="170" height="117" alt="Foto 2"/></a>
+          <a href="#" id="img_09" class="image"><img src="img/45082.jpg" width="170" height="117" alt="Foto 3"/></a>
+        </div>
+        <!--   COLUNA DE IMAGENS   -->
+        <div class="images_column">
+          <!--   IMAGENS   -->
+          <a href="#" id="img_10" class="image"><img src="img/45082.jpg" width="170" height="117" alt="Foto 1"/></a>
+          <a href="#" id="img_11" class="image"><img src="img/45082.jpg" width="170" height="117" alt="Foto 2"/></a>
+          <a href="#" id="img_12" class="image"><img src="img/45082.jpg" width="170" height="117" alt="Foto 3"/></a>
+        </div>
+        <!--   COLUNA DE IMAGENS   -->
+        <div class="images_column">
+          <!--   IMAGENS   -->
+          <a href="#" id="img_13" class="image"><img src="img/45082.jpg" width="170" height="117" alt="Foto 1"/></a>
+          <a href="#" id="img_14" class="image"><img src="img/45082.jpg" width="170" height="117" alt="Foto 2"/></a>
+          <a href="#" id="img_15" class="image"><img src="img/45082.jpg" width="170" height="117" alt="Foto 3"/></a>
+        </div>
+      </div>
+      <!--   ÁREA DE TAGS   -->
+      <div class="tags_cloud">
+		  <!--<ul>
+		  	<h2>TAGS MAIS UTILIZADAS:</h2>
+		  	<li><a href="#" class="A">Cúpula</a></li>
+			<li><a href="#" class="C">Hipogeu</a></li>
+			<li><a href="#" class="B">Pilastra</a></li><br />
+			<li><a href="#" class="B">Métope</a></li>
+			<li><a href="#" class="A">Empena</a></li>
+			<li><a href="#" class="D">Cintro</a></li>
+			<li><a href="#" class="C">Abóbada</a></li><br />
+			<li><a href="#" class="D">Lintel</a></li>
+			<li><a href="#" class="B">Pináculo</a></li>
+			<li><a href="#" class="D">Arcatura</a></li>
+			<li><a href="#" class="A">Berço</a></li>
+			<li><a href="#" class="B">Arejador</a></li><br />
+			<li><a href="#" class="C">Modilbão</a></li>
+			<li><a href="#" class="D">Aterro sanitário</a></li>
+			<li><a href="#" class="C">Taipa de Pilão</a></li>
+			<li><a href="#" class="D">Imposta</a></li>
+			<li><a href="#" class="B">Parede Trombe</a></li>
+			<li><a href="#" class="C">Coletor Solar</a></li>s
+			-->
+			<!--   BOTÃO PARA VER MAIS TAGS-->
+			<!--<a href="#" class="view_all">MAIS TAGS &raquo;</a>
+		  </ul>-->
+		  <ul>
+		  	<h2>TAGS MAIS ACESSADAS:</h2>
+			<li><a href="#" class="A">Berço</a></li>
+			<li><a href="#" class="B">Arejador</a></li>
+			<li><a href="#" class="C">Modilbão</a></li><br />
+			<li><a href="#" class="D">Aterro sanitário</a></li>
+			<li><a href="#" class="C">Taipa de Pilão</a></li>
+			<li><a href="#" class="D">Imposta</a></li>
+			<li><a href="#" class="B">Parede Trombe</a></li><br />
+			<li><a href="#" class="C">Coletor Solar</a></li>
+			<li><a href="#" class="A">Laminado de madeira</a></li>
+			<li><a href="#" class="B">Voluta</a></li>
+		  	<li><a href="#" class="A">Cúpula</a></li>
+			<li><a href="#" class="C">Hipogeu</a></li>
+			
+			<!--   BOTÃO PARA VER MAIS TAGS-->
+			<a href="#" class="view_all">MAIS TAGS &raquo;</a>
+		  </ul>
+		  		  
+	  
+		  <!--   LINHA DE TAG Nº 1   -->
+<!--		  <div id="tags_line_01">
+			<a href="#">Palavra 1</a>
+			<a href="#">Palavra 2</a>
+		  </div>
+-->		  <!--   LINHA DE TAG Nº 2   -->
+<!--		  <div id="tags_line_02">
+			<a href="#">Palavra 3</a>
+			<a href="#">Palavra 4</a>
+			<a href="#">Palavra 5</a>
+		  </div>
+-->		  <!--   LINHA DE TAG Nº 3   -->
+<!--		  <div id="tags_line_03">
+			<a href="#">Palavra 6</a>
+			<a href="#">Palavra 7</a>
+			<a href="#">Palavra 8</a>
+			<a href="#">Palavra 9</a>
+		  </div>
+-->		  <!--   LINHA DE TAG Nº 4   -->
+<!--		  <div id="tags_line_04">
+			<a href="#">Palavra 10</a>
+			<a href="#">Palavra 11</a>
+			<a href="#">Palavra 12</a>
+			<a href="#">Palavra 13</a>
+			<a href="#">Palavra 14</a>
+		  </div>
+-->      </div>
+	<div class="clear"></div>
+    </div>
+	
+    <!--   FUNDO DO SITE   -->
+	  <div id="footer">
+		<!--   BARRA DE ABAS   -->
+		<ul class="tabs">
+		  <!--   ABAS   -->
+		  <li class="selected_tab">
+			<a href="#" class="selected_tab_link">NOVAS IMAGENS</a>
+		  </li>
+		  <li class="tab_not_selected">
+			<a href="#" class="tab_link">POPULARES</a>
+		  </li>
+		  <li class="tab_not_selected">
+			<a href="#" class="tab_link">CONTROVERSAS</a>
+		  </li>
+		  <li class="tab_not_selected">
+			<a href="#" class="tab_link">AVALIADAS</a>
+		  </li>
+		  <li class="tab_not_selected">
+			<a href="#" class="tab_link">COMENTADAS</a>
+		  </li>
+		</ul>
+		<!--   BARRA DE IMAGENS - (RODAPÉ)   -->
+		<div class="footer_images">
+		  <!--   LINHA DE IMAGENS - (RODAPÉ)   -->
+		  <div class="images_line">
+		  
+		  <!--   SETAS DE NAVEGAÇÃO DAS FOTOS (RODAPÉ)-->
+		  	  <a href="#" id="arrow-left" class="arrows">&laquo;</a>
+			  <a href="#" id="arrow-right" class="arrows">&raquo;</a>
+
+			<!--   IMAGENS - (RODAPÉ)   -->
+			  <a href="#" id="f_01" class="footer_image"><img src="img/450823.jpg" width="105" height="72" alt="Foto 1"/></a>
+			  <a href="#" id="f_02" class="footer_image"><img src="img/450823.jpg" width="105" height="72" alt="Foto 2"/></a>
+			  <a href="#" id="f_03" class="footer_image"><img src="img/450823.jpg" width="105" height="72" alt="Foto 3"/></a>
+			  <a href="#" id="f_04" class="footer_image"><img src="img/450823.jpg" width="105" height="72" alt="Foto 4"/></a>
+			  <a href="#" id="f_05" class="footer_image"><img src="img/450823.jpg" width="105" height="72" alt="Foto 5"/></a>
+			  <a href="#" id="f_06" class="footer_image"><img src="img/450823.jpg" width="105" height="72" alt="Foto 6"/></a>
+			  <a href="#" id="f_07" class="footer_image"><img src="img/450823.jpg" width="105" height="72" alt="Foto 7"/></a>
+			  <a href="#" id="f_08" class="footer_image"><img src="img/450823.jpg" width="105" height="72" alt="Foto 8"/></a>
+		  
+
+		  
+		  </div>
+		</div>
+			  <!--   CRÉDITOS - LOGOS   -->
+	    <div id="credits">
+			<ul>
+				<li><a href="#" title=""><img src="images/logo-usp.png" width="35" height="27" alt="USP" /></a></li>
+				<li><a href="#" title=""><img src="images/logo-fapesp.png" width="65" height="27" alt="FAPESP" /></a></li>
+				<li><a href="#" title=""><img src="images/logo-rnp.png" width="45" height="27" alt="RNP" /></a></li>
+				<li><a href="#" title=""><img src="images/logo-cnpq.png" width="55" height="27" alt="CNPQ" /></a></li>
+				<li><a href="#" title=""><img src="images/logo-fau.png" width="53" height="27" alt="FAU USP" /></a></li>
+				<li><a href="#" title=""><img src="images/logo-ime.png" width="20" height="27" alt="IME USP" /></a></li>
+				<li><a href="#" title=""><img src="images/logo-eca.png" width="36" height="27" alt="ECA USP" /></a></li>
+				<li><a href="#" title=""><img src="images/logo-ccsl.png" width="58" height="27" alt="CCSL" /></a></li>
+				<li><a href="#" title=""><img src="images/logo-vitruvius.png" width="64" height="27" alt="VITRUVIUS" /></a></li>
+				<li><a href="#" title=""><img src="images/logo-benchmark.png" width="34" height="27" alt="BENCHMARK" /></a></li>
+				<li><a href="#" title=""><img src="images/logo-brz.png" width="35" height="27" alt="BRZ" /></a></li>
+				
+			</ul>
+		  <!--   COPYRIGHT   -->
+	      <p id="copyright"><small>Arquigrafia - 20011 © All rights reserved</small></p>
+	    </div>
+	  </div>
+  </div>
+ </div>
+</body>
+</html>
