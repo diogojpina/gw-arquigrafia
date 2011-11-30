@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans:beans xmlns="http://www.springframework.org/schema/security"
+    xmlns:oauth="http://www.springframework.org/schema/security/oauth2"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:beans="http://www.springframework.org/schema/beans"
     xmlns:context="http://www.springframework.org/schema/context"
     xmlns:tx="http://www.springframework.org/schema/tx" xmlns:p="http://www.springframework.org/schema/p"
@@ -12,24 +13,75 @@
                                 http://www.springframework.org/schema/aop
                                 http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
                                 http://www.springframework.org/schema/security
-                                http://www.springframework.org/schema/security/spring-security-3.0.xsd">
+                                http://www.springframework.org/schema/security/spring-security-3.1.xsd
+                                http://www.springframework.org/schema/security/oauth2
+                                http://www.springframework.org/schema/security/spring-security-oauth2-1.0.xsd">
 
     <context:annotation-config />
     <http auto-config="true" use-expressions="true">
         <access-denied-handler error-page="/error-pages/deny.jsp" />
         <form-login login-page="/groupware-workbench/login"
             authentication-failure-url="/groupware-workbench/login" />
+        <custom-filter ref="resourceServerFilter" before="EXCEPTION_TRANSLATION_FILTER" />
     </http>
+    
+    <beans:bean id="accessDecisionManager" class="org.springframework.security.access.vote.UnanimousBased">
+        <beans:constructor-arg>
+            <beans:list>
+                <beans:bean class="org.springframework.security.oauth2.provider.vote.ScopeVoter" />
+                <beans:bean class="org.springframework.security.access.vote.RoleVoter" />
+                <beans:bean class="org.springframework.security.access.vote.AuthenticatedVoter" />
+            </beans:list>
+        </beans:constructor-arg>
+    </beans:bean>
 
     <beans:bean id="groupwareUserDetailsService"
         class="br.org.groupwareworkbench.core.session.GroupwareUserDetailsService" />
 
-    <authentication-manager>
+    <authentication-manager alias="authenticationManager">
         <authentication-provider
             user-service-ref="groupwareUserDetailsService">
             <password-encoder hash="sha-256" />
         </authentication-provider>
     </authentication-manager>
+    
+    <beans:bean id="tokenServices" class="org.springframework.security.oauth2.provider.token.RandomValueTokenServices">
+        <beans:property name="tokenStore">
+            <beans:bean class="org.springframework.security.oauth2.provider.token.InMemoryTokenStore" />
+        </beans:property>
+        <beans:property name="supportRefreshToken" value="true" />
+    </beans:bean>
+    
+    <oauth:authorization-server client-details-service-ref="clientDetails" token-services-ref="tokenServices">
+        <oauth:authorization-code />
+        <oauth:implicit />
+        <oauth:refresh-token />
+        <oauth:client-credentials />
+        <oauth:password />
+    </oauth:authorization-server>
 
-    <global-method-security pre-post-annotations="enabled" />
+    <oauth:resource-server id="resourceServerFilter" resource-id="sparklr" token-services-ref="tokenServices" />
+
+    <oauth:client-details-service id="clientDetails">
+        <oauth:client client-id="my-trusted-client" authorized-grant-types="password,authorization_code,refresh_token,implicit"
+            authorities="ROLE_CLIENT, ROLE_TRUSTED_CLIENT" scope="read,write,trust" />
+        <oauth:client client-id="my-trusted-client-with-secret" authorized-grant-types="password,authorization_code,refresh_token"
+            secret="somesecret" authorities="ROLE_CLIENT, ROLE_TRUSTED_CLIENT" />
+        <oauth:client client-id="my-less-trusted-client" authorized-grant-types="authorization_code,implicit"
+            authorities="ROLE_CLIENT" />
+        <oauth:client client-id="my-client-with-registered-redirect" authorized-grant-types="authorization_code,client_credentials"
+            authorities="ROLE_CLIENT" redirect-uri="http://anywhere" scope="trust" />
+        <oauth:client client-id="my-untrusted-client-with-registered-redirect" authorized-grant-types="authorization_code"
+            authorities="ROLE_CLIENT" redirect-uri="http://anywhere" scope="read" />
+        <oauth:client client-id="tonr" resource-ids="sparklr" authorized-grant-types="authorization_code"
+            authorities="ROLE_CLIENT" scope="read,write" secret="secret" />
+    </oauth:client-details-service>
+    
+   
+    <global-method-security pre-post-annotations="enabled" >
+        <expression-handler ref="oauthExpressionHandler" />
+    </global-method-security>
+        
+    <oauth:expression-handler id="oauthExpressionHandler" />
+    
 </beans:beans>
