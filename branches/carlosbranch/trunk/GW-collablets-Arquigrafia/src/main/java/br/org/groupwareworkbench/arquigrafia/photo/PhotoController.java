@@ -89,7 +89,7 @@ public class PhotoController {
     }
     */
 
-    @PreAuthorize("hasRole('ROLE_PHOTO_INDEX')")
+    @PreAuthorize("hasRole('ROLE_PHOTO_INDEX') or oauthClientHasRole('SCOPE_READ')")
     @Get
     @Path(value = "/groupware-workbench/photo/{photoInstance}/index")
     public void index(PhotoMgrInstance photoInstance) {
@@ -129,6 +129,7 @@ public class PhotoController {
         return photo.downloadImgCrop();
     }
 
+    @PreAuthorize("oauthClientHasRole('ROLE_PHOTO_SHOW')")
     @Get
     @Path(value = "/groupware-workbench/photo/img-original/{idPhoto}")
     public Download imgOriginal(long idPhoto) {

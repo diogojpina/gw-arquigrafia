@@ -42,7 +42,8 @@ import br.org.groupwareworkbench.core.framework.annotations.SecurityRole;
         },
         requiredProperties = { @RequiredProperty(name = "dirImages") },
         securityRoles = {
-            @SecurityRole(code = "ROLE_PHOTO_INDEX")
+            @SecurityRole(code = "ROLE_PHOTO_INDEX"),
+            @SecurityRole(code = "ROLE_PHOTO_SHOW"),
         }        
 )
 public class PhotoMgrInstance extends AbstractBusiness {
