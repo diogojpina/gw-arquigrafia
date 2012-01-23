@@ -32,6 +32,8 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.oauth2.provider.code.UnconfirmedAuthorizationCodeClientToken;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import br.com.caelum.vraptor.Delete;
 import br.com.caelum.vraptor.Get;
@@ -75,19 +77,15 @@ public class PhotoController {
     private HttpSession session;
     @Autowired
     private RequestInfo requestInfo;
-    
-    public PhotoController(){}
+
+    public PhotoController() {
+    }
 
     /*
-    public PhotoController(Result result, Validator validator, WidgetInfo info, HttpSession session,
-            RequestInfo requestInfo) {
-        this.result = result;
-        this.validator = validator;
-        this.info = info;
-        this.session = session;
-        this.requestInfo = requestInfo;
-    }
-    */
+     * public PhotoController(Result result, Validator validator, WidgetInfo info, HttpSession session, RequestInfo
+     * requestInfo) { this.result = result; this.validator = validator; this.info = info; this.session = session;
+     * this.requestInfo = requestInfo; }
+     */
 
     @PreAuthorize("hasRole('ROLE_PHOTO_INDEX') or oauthClientHasRole('SCOPE_READ')")
     @Get
@@ -155,15 +153,15 @@ public class PhotoController {
         User user = (User) session.getAttribute("userLogin");
         Photo photo = Photo.findById(idPhoto);
         User userPhoto = photo.getUsers().get(0);
-        
+
         if (photo == null) {
             result.notFound();
             return;
         }
-        if (userPhoto.getId().compareTo(user.getId()) == 0){
+        if (userPhoto.getId().compareTo(user.getId()) == 0) {
             result.include("usuarioCriador", "sim");
-        } 
-            
+        }
+
         result.include("idPhoto", idPhoto);
         result.include("photo", photo);
         PhotoMgrInstance photoInstance = (PhotoMgrInstance) photo.getCollablet().getBusinessObject();
@@ -284,8 +282,8 @@ public class PhotoController {
 
         if (foto == null) {
             validator.add(new ValidationMessage(MSG_IMAGEM_OBRIGATORIA, "Erro"));
-            validator.onErrorUse(Results.logic()).redirectTo(PhotoController.class)
-                    .registra(photoInstance, photoRegister);
+            validator.onErrorUse(Results.logic()).redirectTo(PhotoController.class).registra(photoInstance,
+                    photoRegister);
             return;
         }
 
@@ -304,8 +302,8 @@ public class PhotoController {
             photoRegister.saveImage(foto.getFile());
         } catch (RuntimeException e) {
             validator.add(new ValidationMessage(e.getMessage(), "Erro"));
-            validator.onErrorUse(Results.logic()).redirectTo(PhotoController.class)
-                    .registra(photoInstance, photoRegister);
+            validator.onErrorUse(Results.logic()).redirectTo(PhotoController.class).registra(photoInstance,
+                    photoRegister);
             return;
         }
 
@@ -332,7 +330,7 @@ public class PhotoController {
     @Get
     @Path(value = "/groupware-workbench/photo/{photoInstance}/edit/{idPhoto}")
     public void edit(PhotoMgrInstance photoInstance, final long idPhoto) {
-        
+
         Photo photo = Photo.findById(idPhoto);
         if (photo == null) {
             result.notFound();
@@ -346,7 +344,7 @@ public class PhotoController {
         addIncludes(photoInstance);
         result.use(Results.representation()).from(photo).serialize();
     }
-    
+
     @Post
     @Path(value = "/groupware-workbench/photo/{photoInstance}/update")
     public void update(Photo photoRegister, PhotoMgrInstance photoInstance, User userOwn) {
@@ -355,18 +353,18 @@ public class PhotoController {
             user = (User) session.getAttribute("userLogin");
         } catch (Exception e) {
         }
-                
+
         if (user != null) {
             photoRegister.assignUser(userOwn);
             photoRegister.assignUser(user);
         }
-        
+
         try {
             photoInstance.save(photoRegister);
         } catch (RuntimeException e) {
             validator.add(new ValidationMessage(e.getMessage(), "Erro"));
-            validator.onErrorUse(Results.logic()).redirectTo(PhotoController.class)
-                    .registra(photoInstance, photoRegister);
+            validator.onErrorUse(Results.logic()).redirectTo(PhotoController.class).registra(photoInstance,
+                    photoRegister);
             return;
         }
         photoInstance.getCollablet().processWidgets(info, photoRegister);
@@ -374,7 +372,7 @@ public class PhotoController {
         result.include("successMessage", MSG_SUCCESS);
         result.use(Results.logic()).redirectTo(PhotoController.class).show(photoRegister.getId());
     }
-    
+
     @Post
     @Path(value = "/groupware-workbench/photo/delete/{idPhoto}")
     public void deletePhoto(long idPhoto) {
@@ -387,7 +385,7 @@ public class PhotoController {
         PhotoMgrInstance photoInstance = (PhotoMgrInstance) photo.getCollablet().getBusinessObject();
         addIncludes(photoInstance);
     }
-    
+
     @Get
     @Path(value = "/groupware-workbench/photo/{photoInstance}/registra_multiplos/{os}/{dir}")
     public void registraMultiplos(String os, String dir, PhotoMgrInstance photoInstance) {
@@ -479,4 +477,6 @@ public class PhotoController {
     public void setRequestInfo(RequestInfo requestInfo) {
         this.requestInfo = requestInfo;
     }
+
+  
 }
