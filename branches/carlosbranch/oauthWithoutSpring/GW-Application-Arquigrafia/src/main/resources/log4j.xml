@@ -16,6 +16,7 @@
         </layout>
     </appender>
 
+<!-- 
     <category name="br.org.groupwareworkbench">
         <priority value="TRACE"></priority>
         <appender-ref ref="stdout"/>
@@ -30,13 +31,18 @@
         <priority value="INFO"></priority>
         <appender-ref ref="userTrace"/>
     </category>
-
-    <!--
-        <category name="org.vraptor">
-            <priority value="ERROR" />
+ -->
+    
+        <category name="br.com.caelum.vraptor">
+            <priority value="INFO" />
             <appender-ref ref="stdout" />
         </category>
-    -->
+        
+         <category name="br.org.groupwareworkbench.arquigrafia.oauth">
+            <priority value="TRACE" />
+            <appender-ref ref="stdout" />
+        </category>
+    
 
     <!--
         <category name="org.hibernate">
