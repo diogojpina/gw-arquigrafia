@@ -7,21 +7,22 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Your Friendly OAuth Provider</title>
+        <title>Arquigrafia Brasil OAuth Provider</title>
     </head>
     <body>
         <jsp:include page="banner.jsp"/>
-        
-    <h3>"${appDesc}" is trying to access your information.</h3>
-    
-    Enter the userId you want to be known as:
+
+    <h3>"${appDesc}" está intentando acessar suas informações.</h3>
+
     <form name="authZForm" action='<c:url value="/authorize"/>' method="POST">
-        <%--input type="text" name="userId" value="${sessionScope['userLogin'].id}" size="20" /><br--%>
-        <input type="text" name="userId" value="" size="20" /><br>
         <input type="hidden" name="oauth_token" value="${token}"/>
         <input type="hidden" name="oauth_callback" value="${callback}"/>
         <input type="submit" name="Authorize" value="Authorize"/>
     </form>
-    
+
+    <form name="authZForm" action='<c:url value="/"/>' method="GET">
+        <input type="submit" name="Authorize" value="Deny"/>
+    </form>
+
     </body>
 </html>
