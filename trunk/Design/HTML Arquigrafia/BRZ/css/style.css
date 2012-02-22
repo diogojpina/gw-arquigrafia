@@ -27,7 +27,7 @@ img.float_left{ margin-right:15px; }
 img.float_right{ margin-left:15px; }
 
 /* mascara para janelas popups */
-#mask {width: 100%; height: 100%; position: fixed; top: 0; left:0; background-image: url(../img/mask.png);}
+#mask {width:100%; height:100%; position:fixed; top: 0; left:0; background-image: url(../img/mask.png); display:none; }
 
 
 
@@ -92,7 +92,7 @@ a#complete_search:hover { background:url(../img/icons_sprite.png) -367px -32px; 
 /* --- PÁGINA INICIAL --- */
 
 /* lightbox - criar uma conta */
-#form_window {width: 600px; background: #fff; position:fixed; top: 50%; left:50%; margin: -240px 0 0 -340px; padding: 35px; -moz-border-radius: 7px; border-radius: 7px;}
+#form_window {width: 600px; background: #fff; position:fixed; top: 50%; left:50%; margin: -240px 0 0 -340px; padding: 35px; -moz-border-radius: 7px; border-radius: 7px; display:none;}
 #form_window label {width: 110px; display: inline-block; color: #777; text-align: right;}
 #form_window input {border: solid 1px #eee; padding: 3px; margin: 2px 0 2px 5px;}
 #form_window input.text {width: 120px;}
@@ -341,6 +341,7 @@ a#evaluate_button:hover { background:url(../img/icons_sprite.png) -339px -170px;
 a#evaluation_average { float:left; background:url(../img/icons_sprite.png) -401px -145px; width:140px; height:20px; margin:10px 0 0 10px;}
 a#evaluation_average:hover { background:url(../img/icons_sprite.png) -401px -170px;}
 
+
 /*Comentários*/
 #comments_block { margin:20px 0 ;}
 .single_comment_block { width:650px; margin: 15px 0 25px; overflow:hidden;}
@@ -355,7 +356,7 @@ input#comment_button { background:url(../img/icons_sprite.png) -262px -145px; wi
 input#comment_button:hover { background:url(../img/icons_sprite.png) -262px -170px;}
 
 /* SINGLE VIEW - AVALIATION */
-#avaliation_box { width:650px; height:200px; }
+#avaliation_box { width:650px; }
 #avaliation_box p { display:block; width:470px; float:left; }
 #avaliation_form{ text-align:right; }
 #avaliation_form input { margin-top:18px;}
@@ -365,3 +366,25 @@ input#comment_button:hover { background:url(../img/icons_sprite.png) -262px -170
 #avaliation_form input#avaliate:hover { background:url(../img/icons_sprite.png) -623px -170px; width:69px; height:21px; margin-right:25px; }
 a#watch_button { display:block; background:url(../img/icons_sprite.png) -542px -145px; width:80px; height:21px; margin-top:10px;}
 a#watch_button:hover { display:block; background:url(../img/icons_sprite.png) -542px -170px; width:80px; height:21px; margin-top:10px;}
+
+ul#avaliation_list{ margin:65px 0px; padding:0 25px; text-align:center; }
+ul#avaliation_list li{ height:50px; margin:5px 0; }
+ul#avaliation_list li .bloco{ width:430px; background:url(../img/icons_sprite.png) -286px -196px; margin-top:-9px; height:18px; float:left; text-align:center; }
+
+#slider_1,
+#slider_2,
+#slider_3,
+#slider_4,
+#slider_5,
+#slider_6 { width:430px; background:url(../img/icons_sprite.png) -286px -196px; margin-top:-9px; height:18px; float:left; text-align:center; position:relative; }
+
+.ui-slider .ui-slider-handle{ position:absolute; z-index:2; }
+.ui-slider-horizontal .ui-state-default {background:url(../img/icons_sprite.png) -753px -5px; width:13px; height:20px; margin:-16px 0 0 -6px;}
+.ui-slider-horizontal .ui-state-default:hover,
+.ui-slider-horizontal .ui-state-default:active,
+.ui-slider-horizontal .ui-state-default:focus{background:url(../img/icons_sprite.png) -753px -34px; outline:none; margin-top:-12px; }
+
+
+ul#avaliation_list li span{ width:75px; display:block; margin-top:-11px; }
+ul#avaliation_list li span.float_left{ text-align:right; padding-right:10px; }
+ul#avaliation_list li span.float_right{ text-align:left; padding-left:10px; }

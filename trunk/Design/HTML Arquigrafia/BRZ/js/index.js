@@ -2,8 +2,6 @@
 form_window_loaded = false;
 
 $(document).ready(function(){
-	$('#mask').hide();
-	$('#form_window').hide();
 	
 	$('#registration_button').click(function(){
 		$('#mask').fadeIn('fast');
@@ -23,5 +21,11 @@ $(document).ready(function(){
 		$(this).fadeOut();
 		$('#form_window').fadeOut('fast');
 	});
+	
+	$('#printer_icon').click(function() {
+		window.print();
+		return false;
+	});
+
 		
 });
