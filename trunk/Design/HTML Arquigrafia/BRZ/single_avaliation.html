@@ -32,29 +32,29 @@
 	
 	  <!--   LOGO   -->
       <a href="index.html" id="logo"></a>
+      <!--   MENU SUPERIOR   -->
 	  <div id="first_menu">
-      <!--   MENU INSTITUCIONAL   -->
-      <ul id="top_menu_items">
+        <!--   MENU INSTITUCIONAL   -->
+        <ul id="top_menu_items">
           <li><a href="#" id="project">O PROJETO</a></li>
           <li><a href="#" id="help">AJUDA</a></li>
           <li><a href="#" id="contact">FALE CONOSCO</a></li>
-      </ul>
+        </ul>
+        <!--   FIM - MENU INSTITUCIONAL   -->
             
-      <!--   MENU DE BUSCA   -->
-      
-        <!--   ÁREA DOS BOTÕES DE BUSCA   -->
+        <!--   MENU DE BUSCA   -->
         <form action="" method="get" id="search_buttons_area">
           
           <!--   BARRA DE BUSCA   -->
           <input type="text" class="search_bar" name="search_bar_text" />
           <!--   BOTÃO DA BARRA DE BUSCA   -->
           <input type="submit" class="search_bar_button cursor" value="" name="submit_search_button" />
-          
+          <!--   BOTÃO DE BUSCA AVANÇADA   -->
           <a href="#" id="complete_search"></a>
-          
         </form>
+        <!--   FIM - MENU DE BUSCA   -->
       </div>
-	  
+	  <!--   FIM - MENU SUPERIOR   -->
       <!--   ÁREA DE LOGIN / CADASTRO   -->
       <div id="loggin_area" class="right">
         
@@ -65,17 +65,19 @@
         <a href="#form_window" name="modal" id="registration_button"></a>
       
       </div>
-      <!--   SETA DA DIREITA   -->
+      <!--   FIM - ÁREA DE LOGIN / CADASTRO   -->
             
     </div>
+    <!--   FIM - CABEÇALHO   -->
     <!--   MEIO DO SITE - ÁREA DE NAVEGAÇÃO   -->
     <div id="content">
       <!--   COLUNA ESQUERDA   -->
       <div id="sub_content">
         <!--   PAINEL DE VISUALIZAÇÃO - SINGLE   -->
         <div id="single_view_block">
+          <!--   NOME / STATUS DA FOTO   -->
           <div id="single_view_header">
-          <h1>Imagem de teste</h1>
+            <h1>Imagem de teste</h1>
             <ul id="single_view_image_rating" class="right">
               <li id="graph"></li>
               <li><small>312</small></li>
@@ -85,16 +87,18 @@
               <li><small>176</small></li>
             </ul>
           </div>
-            <img src="img/photos/8806.jpg" class="single_view_image" width="600" height="410" />
-			<hr />
+          <!--   FIM - NOME / STATUS DA FOTO   -->
+          <!--   FOTO   -->
+          <img src="img/photos/8806.jpg" class="single_view_image" width="600" height="410" />
+          <hr />
         </div>
-		
+		<!--   BOX DE AVALIAÇÃO   -->
 		<div id="avaliation_box">
-		<p>Avalie a foto segundo os atributos abaixo e após finalizar, clique no botão Avaliar ao lado para contabilizar a sua avaliação e visualizar a média entre as outras avaliações.</p>
-
-        <form action="#" method="get" id="avaliation_form">
-          <input type="reset" id="clean" class="cursor" value="" />
-          <input type="submit" id="avaliate" class="cursor" value="" />
+	      <p>Avalie a foto segundo os atributos abaixo e após finalizar, clique no botão Avaliar ao lado para contabilizar a sua avaliação e visualizar a média entre as outras avaliações.</p>
+          <!--   FORMULÁRIO DE AVALIAÇÃO   -->
+          <form action="#" method="get" id="avaliation_form">
+            <input type="reset" id="clean" class="cursor" value="" />
+            <input type="submit" id="avaliate" class="cursor" value="" />
 
         	<!--   PAINEL DE AVALIAÇÃO   -->
 			<ul id="avaliation_list">
@@ -129,23 +133,24 @@
 					<span class="right">Fechado</span>
 				</li>
 			</ul>
+         </form>
+         <!--   FIM - FORMULÁRIO DE AVALIAÇÃO   -->
 			
-        </form>
-		
-			
-		
-		<script>
+		 <!--   SCRIPT DO SLIDER DE AVALIAÇÃO   -->
+	     <script>
 			$("#slider_1").slider({ value:50, min: 0, max: 100, step: 10 });
 			$("#slider_2").slider({ value:50, min: 0, max: 100, step: 10 });
 			$("#slider_3").slider({ value:50, min: 0, max: 100, step: 10 });
 			$("#slider_4").slider({ value:50, min: 0, max: 100, step: 10 });
 			$("#slider_5").slider({ value:50, min: 0, max: 100, step: 10 });
 			$("#slider_6").slider({ value:50, min: 0, max: 100, step: 10 });
-		</script>
-		
-		
-		 </div>
+		 </script>
+
+	   </div>
+       <!--   FIM - BOX DE AVALIAÇÃO   -->
       </div>
+      <!--   FIM - COLUNA ESQUERDA   -->
+      <!--   COLUNA LATERAL - DIREITA   -->
       <div id="sidebar">
         <h2 class="common_title">Avaliação de binômios</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla laoreet purus et neque sagittis et pretium turpis euismod. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Curabitur blandit mollis eros, a dictum mauris laoreet in. Curabitur ultricies aliquet ante, ac iaculis orci consectetur vel. In eu ipsum metus. Pellentesque accumsan nisl nec eros cursus vehicula.</p>
@@ -156,7 +161,9 @@
         <p>Nós te preparamos um vídeo que mostra o passo a passo da avaliação. Clique no botão abaixo para assistí-lo:</p>
         <a href="#" id="watch_button"></a>
       </div>
+      <!--   FIM - COLUNA LATERAL - DIREITA   -->
     </div>
+    <!--   FIM - MEIO DO SITE   -->
     <!--   FUNDO DO SITE   -->
     <div id="footer">
 	  <!--   BARRA DE ABAS   -->
@@ -193,11 +200,14 @@
 		  <a href="#" id="f_05" class="footer_image"><img src="img/photos/56665.jpg" width="105" height="72" alt="Foto 5"/></a>
 		  <a href="#" id="f_06" class="footer_image"><img src="img/photos/8806.jpg" width="105" height="72" alt="Foto 6"/></a>
 		  <a href="#" id="f_07" class="footer_image"><img src="img/photos/80213.jpg" width="105" height="72" alt="Foto 7"/></a>
-		  <a href="#" id="f_08" class="footer_image"><img src="img/photos/16777.jpg" width="105" height="72" alt="Foto 8"/></a>		  
+		  <a href="#" id="f_08" class="footer_image"><img src="img/photos/16777.jpg" width="105" height="72" alt="Foto 8"/></a>		
 	    </div>
+        <!--   FIM - LINHA DE IMAGENS - (RODAPÉ)   -->
 	  </div>
+	  <!--   FIM - BARRA DE IMAGENS - (RODAPÉ)   -->
 	  <!--   CRÉDITOS - LOGOS   -->
 	  <div id="credits">
+        <!--   LOGOS   -->
 		<ul>
           <li><a href="#" title="USP" id="usp"></a></li>
 		  <li><a href="#" title="FAPESP" id="fapesp"></a></li>
@@ -214,7 +224,10 @@
 		<!--   COPYRIGHT   -->
 	    <p id="copyright"><small>Arquigrafia - 20011 © All rights reserved</small></p>
 	  </div>
+      <!--   FIM - CRÉDITOS - LOGOS   -->
     </div>
+    <!--   FIM - FUNDO DO SITE   -->
+    <!--   MODAL   -->
     <div id="mask"></div>
     <div id="form_window"> 
       <!-- ÁREA DE LOGIN - JANELA MODAL --> 
@@ -222,6 +235,8 @@
       <form id="registration" name="registration" action="">
       </form>
     </div>
+    <!--   FIM - MODAL   -->
   </div>
+  <!--   FIM - CONTAINER   -->
 </body>
 </html>
