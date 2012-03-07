@@ -62,6 +62,11 @@ public class PopulateInitialDatabase {
         userRole.setName("Usuário");
         userRole.setCollablet(role);
 
+        Role guestRole = new Role();
+        guestRole.setName("Visitante");
+        guestRole.setCollablet(role);
+        
+        
         User admin = new User();
         admin.setLogin("admin");
         admin.setEmail("admin@website.com");
@@ -70,6 +75,14 @@ public class PopulateInitialDatabase {
         admin.setCollablet(user);
         admin.assign(adminRole);
 
+        User guest = new User();
+        guest.setLogin("guest");
+        guest.setEmail("");
+        guest.setName("Visitante");
+        guest.setPassword("");
+        guest.setCollablet(user);
+        guest.assign(guestRole);        
+        
         User user01 = new User();
         user01.setLogin("user01");
         user01.setEmail("user01@website.com");
@@ -86,7 +99,7 @@ public class PopulateInitialDatabase {
         user02.setCollablet(user);
         user02.assign(userRole);
 
-        insertAll(adminRole, userRole,
-                admin, user01, user02);
+        insertAll(adminRole, userRole, guestRole, 
+                admin, guest, user01, user02);
     }
 }

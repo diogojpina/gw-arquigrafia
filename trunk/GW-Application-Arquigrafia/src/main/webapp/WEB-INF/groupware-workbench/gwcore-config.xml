@@ -16,7 +16,7 @@
         <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
     </hibernate>
 
-    <initialCollablet>photoMgr</initialCollablet>
+    <initialCollablet>arquigrafiaMgr</initialCollablet>
 	
 	<!-- No linux se não usa absolute path assume-se $HOME como prefixo, ou seja "repository/" ficará "$HOME/repository"
 	se tiver permissões esta pasta é criada automaticamente pelo componente. -->
@@ -201,6 +201,12 @@
         </collablet>
 
         <collablet>
+            <business>br.org.groupwareworkbench.arquigrafia.main.ArquigrafiaMgrInstance</business>
+            <description>Arquigrafia Brasil</description>
+            <name>arquigrafiaMgr</name>
+        </collablet>
+        
+        <collablet>
             <business>br.org.groupwareworkbench.collablet.coord.friends.FriendsMgrInstance</business>
             <description>Gerenciar amigos</description>
             <name>friendsMgr</name>
@@ -256,20 +262,21 @@
     </collablets>
 
     <collablets-subordinations>
-        <subordination parent="photoMgr" child="manager" />
-        <subordination parent="photoMgr" child="userMgr" />
-        <subordination parent="photoMgr" child="albumMgr" />
-        <subordination parent="photoMgr" child="binomialMgr" />
-        <subordination parent="photoMgr" child="geoReferenceMgr" />
-        <subordination parent="photoMgr" child="tagMgr" />
-        <subordination parent="photoMgr" child="friendsMgr" />        
+        <subordination parent="arquigrafiaMgr" child="manager" />
+        <subordination parent="arquigrafiaMgr" child="userMgr" />
+        <subordination parent="arquigrafiaMgr" child="albumMgr" />
+        <subordination parent="arquigrafiaMgr" child="binomialMgr" />
+        <subordination parent="arquigrafiaMgr" child="geoReferenceMgr" />
+        <subordination parent="arquigrafiaMgr" child="tagMgr" />
+        <subordination parent="arquigrafiaMgr" child="friendsMgr" />        
         <!-- <subordination parent="photoMgr" child="albumMgr" /> -->
-        <subordination parent="photoMgr" child="commentMgr" />
-        <subordination parent="photoMgr" child="commentMgr2" />
+        <subordination parent="arquigrafiaMgr" child="commentMgr" />
+        <subordination parent="arquigrafiaMgr" child="commentMgr2" />
 		<!-- <subordination parent="friendsMgr" child="commentMgr2" /> -->
-		<subordination parent="photoMgr" child="tracker" />
-		<subordination parent="photoMgr" child="componentRepository" />
-		<subordination parent="photoMgr" child="counterMgr" />
+		<subordination parent="arquigrafiaMgr" child="tracker" />
+		<subordination parent="arquigrafiaMgr" child="componentRepository" />
+		<subordination parent="arquigrafiaMgr" child="counterMgr" />
+		<subordination parent="arquigrafiaMgr" child="photoMgr" />		
     </collablets-subordinations>
 
     <collablets-dependencies>
@@ -287,8 +294,8 @@
         <dependency from="profileMgr" to="photoMgr" />
         <dependency from="profileMgr" to="friendsMgr" />
         <dependency from="roleMgr" to="photoMgr" />
-        <dependency from="userMgr" to="photoMgr" />
-        <dependency from="userMgr" to="photoMgr" alias="--login--" />
+        <dependency from="userMgr" to="arquigrafiaMgr" />
+        <dependency from="userMgr" to="arquigrafiaMgr" alias="--login--" />
         <dependency from="friendsMgr" to="photoMgr" />
         <dependency from="commentMgr2" to="photoMgr" />
         <dependency from="userMgr" to="friendsMgr" />
