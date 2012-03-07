@@ -94,6 +94,7 @@
                             <friends:sendRequest friendsMgr="${friendsMgr}" viewer="${userLogin}" viewed="${friend}" />
                         </div>
                     </div>
+                    <div style="font-size: 12px; font-family: Calibri;"> <a href='<c:url value="/groupware-workbench/externalaccount/${externalAccountMgr.id}/manage" />'>Amigos de outras redes</a></div>
                     <div class="coluna" style="float: left;">
                         <friends:listFriends
                             user="${friend}"

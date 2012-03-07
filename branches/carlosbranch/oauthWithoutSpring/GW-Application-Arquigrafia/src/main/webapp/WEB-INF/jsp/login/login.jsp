@@ -59,7 +59,7 @@
                 </c:if>
 
                 <div class="login-buttons">
-                      <a class="google" style="margin-right: 5px;" href="<c:url value="/groupware-workbench/users/${userMgr.id}/loginOrkutAuth"/>">
+                      <a class="google" style="margin-right: 5px;" href="<c:url value="/groupware-workbench/externalaccount/${externalAccountMgr.id}/${userMgr.id}/loginOrkutAuth"/>">
                         <img style="border-style: solid; border-width: 1px;"  src="${pageContext.request.contextPath}/images/google.png"/>
                       </a> 
                       <a class="facebook" style="margin-left: 5px; margin-right: 5px;" href="<c:url value="/groupware-workbench/users/${userMgr.id}/loginFacebookAuth?auth=s"/>">
