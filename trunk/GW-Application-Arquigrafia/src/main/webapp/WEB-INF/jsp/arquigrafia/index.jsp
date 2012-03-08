@@ -10,20 +10,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Arquigrafia - Seu universo de imagens de arquitetura</title>
-<!--   FAVICON   -->
-<link rel="icon" href="<c:url value="/img/arquigrafia_icon.ico" />" type="image/x-icon" />
-<link rel="shortcut icon" href="<c:url value="/img/arquigrafia_icon.ico" />" type="image/x-icon" />
-<!--   ESTILO GERAL   -->
-<link rel="stylesheet" type="text/css" href="<c:url value="/css/style.css" />" />
-<!--[if lt IE 8]>
-<link rel="stylesheet" type="text/css" href="css/ie7.css" />
-<![endif]-->
-<link rel="stylesheet" type="text/css" media="print" href="<c:url value="/css/print.css" />" />
-
-<!--   JQUERY - Google Ajax API CDN (Also supports SSL via HTTPS)   -->
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
-<script type="text/javascript" src="<c:url value="/js/jquery-ui-1.8.17.custom.min.js" />"></script>
-<script type="text/javascript" src="<c:url value="/js/index.js" />"></script>
+<arquigrafia:includes arquigrafiaInstance="${arquigrafiaMgr}" />
 
 </head>
 

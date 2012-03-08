@@ -14,4 +14,8 @@
         <name>footer</name>
         <path>/META-INF/tags/arquigrafia/footer.tag</path>
     </tag-file>
+    <tag-file>
+        <name>includes</name>
+        <path>/META-INF/tags/arquigrafia/includes.tag</path>
+    </tag-file>    
 </taglib>
