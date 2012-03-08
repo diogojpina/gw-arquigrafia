@@ -87,6 +87,12 @@ public class PhotoController {
     }
 
     @Get
+    @Path(value = "/{photoInstance}/upload")
+    public void upload(PhotoMgrInstance photoInstance) {
+        addIncludes(photoInstance);
+    }
+    
+    @Get
     @Path(value = "/groupware-workbench/photo/img-thumb/{idPhoto}")
     public Download imgThumb(long idPhoto) {
         Photo photo = Photo.findById(idPhoto);

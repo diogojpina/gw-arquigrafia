@@ -9,12 +9,12 @@
     <div id="header">
 	
 	  <!--   LOGO   -->
-      <a href="index.html" id="logo"></a>
+      <a href="<c:url value="${arquigrafiaInstance.id}/" />" id="logo"></a>
       <!--   MENU SUPERIOR   -->
 	  <div id="first_menu">
         <!--   MENU INSTITUCIONAL   -->
         <ul id="top_menu_items">
-          <li><a href="#" id="project">O PROJETO</a></li>
+          <li><a href="<c:url value="/${arquigrafiaInstance.id}/project" />" id="project">O PROJETO</a></li>
           <li><a href="#" id="help">AJUDA</a></li>
           <li><a href="#" id="contact">FALE CONOSCO</a></li>
         </ul>

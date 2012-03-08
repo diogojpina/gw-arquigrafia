@@ -75,6 +75,12 @@ public class ArquigrafiaController {
         addIncludes(arquigrafiaInstance);
     }
 
+    @Get
+    @Path(value = "/{arquigrafiaInstance}/project")
+    public void project(ArquigrafiaMgrInstance arquigrafiaInstance) {
+        addIncludes(arquigrafiaInstance);
+    }    
+    
     private void addIncludes(ArquigrafiaMgrInstance arquigrafiaInstance) {
         result.include("arquigrafiaInstance", arquigrafiaInstance);
         arquigrafiaInstance.getCollablet().includeDependencies(result);
