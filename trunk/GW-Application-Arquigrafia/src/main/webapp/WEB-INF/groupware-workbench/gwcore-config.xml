@@ -293,6 +293,7 @@
         <dependency from="ratingMgr" to="photoMgr" />
         <dependency from="profileMgr" to="photoMgr" />
         <dependency from="profileMgr" to="friendsMgr" />
+        <dependency from="albumMgr" to="friendsMgr" />
         <dependency from="roleMgr" to="photoMgr" />
         <dependency from="userMgr" to="arquigrafiaMgr" />
         <dependency from="userMgr" to="arquigrafiaMgr" alias="--login--" />

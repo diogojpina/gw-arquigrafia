@@ -67,7 +67,7 @@
                             	<a href="<c:url value="/groupware-workbench/friends/${friendsMgr.id}/show/${u.id}"/>">
                                     <c:choose>
                                         <c:when test="${empty u.photoURL}">
-                                            <img class="imagem_user" src="<c:url value="/images/users/default.jpg" />" />
+                                            <img class="imagem_user" src="<c:url value="/img/avatar.jpg" />" />
                                         </c:when>
                                         <c:otherwise>
                                             <img class="imagem_user" src="<c:out value="${u.photoURL}" />" alt="Foto do usu&aacute;rio" />
@@ -92,8 +92,5 @@
             </c:if>
         </div>
         <div>
-        <div style="height: 30px; background-color: #fff"></div>
-            <arq:footer photoInstance="${photoMgr}" />
-        </div>
     </body>
 </html>

@@ -6,6 +6,7 @@
 <%@ taglib prefix="profile" uri="http://www.groupwareworkbench.org.br/widgets/profile" %>
 <%@ taglib prefix="role" uri="http://www.groupwareworkbench.org.br/widgets/role" %>
 <%@ taglib prefix="photo" uri="http://www.groupwareworkbench.org.br/widgets/photomanager" %>
+
 <%@ taglib prefix="arq" tagdir="/WEB-INF/tags" %>
 
 <html>
@@ -111,11 +112,7 @@
                         </c:if>
 
                         <div class="form_1">
-                            <ul class="bt_line_f1">
-                                <li class="bt_cell_submit">
-                                    <input type="submit" class="botao" value="Ok" />
-                                </li>
-                            </ul>
+                           <input type="submit" class="botao" value="Ok" />
                         </div>
                     </form>
                     <div class="voltar" align="center">
@@ -124,9 +121,9 @@
                 </w:conteudoPagina>
             </div>
         </div>
-        <div>
+        <%--<div>
             <div style="height: 30px; background-color: #fff"></div>
             <arq:footer photoInstance="${photoMgr}" />
-        </div>
+        </div>--%>
     </body>
 </html>

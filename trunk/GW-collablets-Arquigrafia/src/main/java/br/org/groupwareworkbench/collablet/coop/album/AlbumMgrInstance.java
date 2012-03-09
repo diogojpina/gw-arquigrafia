@@ -36,7 +36,7 @@ import br.org.groupwareworkbench.core.framework.annotations.ComponentInfo;
         retrieveURL = "/groupware-workbench/album/{albumMgr}/{idAlbum}"
 )
 public class AlbumMgrInstance extends AbstractBusiness {
-    public static String albumCoverPath="/GW-Application-Arquigrafia/images/album_icon.png";
+    public static String albumCoverPath="/GW-Application-Arquigrafia/img/album_icon.png";
 
     public AlbumMgrInstance(Collablet collablet) {
         super(collablet);

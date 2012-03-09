@@ -28,6 +28,10 @@
     <path>/META-INF/tags/album/listAlbumByUser.tag</path>
   </tag-file>
   <tag-file>
+    <name>listGalery</name>
+    <path>/META-INF/tags/album/listGaleryByUser.tag</path>
+  </tag-file>
+  <tag-file>
     <name>edit</name>
     <path>/META-INF/tags/album/editAlbum.tag</path>
   </tag-file>
