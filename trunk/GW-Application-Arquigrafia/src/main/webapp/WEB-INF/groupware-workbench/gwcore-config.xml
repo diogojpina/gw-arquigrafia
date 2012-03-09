@@ -313,4 +313,16 @@
 		<dependency from="image_upload" to="binomial" relatedExtra="default" />
 		<dependency from="gallery" to="binomial" relatedExtra="default" />
     </android-sequence>
+    
+    <security-policy>
+           <role name="guest">
+                   <permission name="br.org.groupwareworkbench.core.framework.Collablet-FAQ Principal-*" />
+           </role>
+           <role name="Administrador">
+                   <permission name="X-X-admin" />
+           </role>
+           <role name="Usuario">
+                   <permission name="X-X-usuario" />
+           </role>
+   </security-policy>
 </frameworkDescriptor>

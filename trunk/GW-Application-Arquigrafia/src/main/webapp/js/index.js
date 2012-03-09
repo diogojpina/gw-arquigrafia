@@ -27,7 +27,7 @@ $(document).ready(function(){
 	$('#contact').click(function(){
 		$('#mask').fadeIn('fast');
 		$('#form_window').fadeIn('slow');
-		if (!form_window_loaded) $('#registration').load('modal/contact_us.html');	
+		if (!form_window_loaded) $('#registration').load('6/upload');	
 		form_window_loaded = true;
 	});
 	

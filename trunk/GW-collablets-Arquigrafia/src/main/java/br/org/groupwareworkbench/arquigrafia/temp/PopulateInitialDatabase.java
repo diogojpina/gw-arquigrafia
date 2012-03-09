@@ -59,7 +59,7 @@ public class PopulateInitialDatabase {
         adminRole.setCollablet(role);
 
         Role userRole = new Role();
-        userRole.setName("Usuário");
+        userRole.setName("Usuario");
         userRole.setCollablet(role);
 
         Role guestRole = new Role();
