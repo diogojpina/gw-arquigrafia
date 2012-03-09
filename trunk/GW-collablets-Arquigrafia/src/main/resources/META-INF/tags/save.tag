@@ -63,18 +63,18 @@
    <fieldset>
        <legend>Nome e Descri&ccedil;&atilde;o</legend>
        <div class="${formLineClass}">
-           <label for="photoRegister.nome" class="${formLabelClass}">
+           <label for="photoRegister.name" class="${formLabelClass}">
                <span>Nome:</span>
            </label>
            <span class="${formInputClass}">
-               <input type="text" name="photoRegister.nome" value="<c:out value="${photoRegister.nome}" />" />
+               <input type="text" name="photoRegister.name" value="<c:out value="${photoRegister.name}" />" />
            </span>
        </div>
        <div class="${formLineClass}">
-           <label for="photoRegister.descricao" class="${formLabelClass}">
+           <label for="photoRegister.description" class="${formLabelClass}">
                <span>Descri&ccedil;&atilde;o:</span>
            </label>
-           <textarea rows="3" name="photoRegister.descricao" class="${formInputClass}"><c:out value="${photoRegister.descricao}" /></textarea>
+           <textarea rows="3" name="photoRegister.description" class="${formInputClass}"><c:out value="${photoRegister.description}" /></textarea>
        </div>
        <br/>
        <div>
@@ -96,40 +96,33 @@
                 <input type="text" id="datepicker" name="photoRegister.dataCriacao" />
             </span>
         </div>
-        <div class="${formLineClass}">
-            <label for="photoRegister.infoArquitetonicas" class="${formLabelClass}">
-                <span>Informa&ccedil;&otilde;es arquitetonicas:</span>
-            </label>
-            <span class="${formInputClass}">
-                <textarea name="photoRegister.infArquitetonicas" >${photoRegister.infArquitetonicas}</textarea>
-            </span>
-        </div>
+        <!-- AAMM HERE:1 -->
     </fieldset>
     
     <fieldset>
         <legend>Localiza&ccedil;&atilde;o e Direitos Autorais</legend>
         <div class="${formLineClass}">
-            <label for="photoRegister.cidade" class="${formLabelClass}">
+            <label for="photoRegister.city" class="${formLabelClass}">
                 <span>Cidade:</span>
             </label>
             <span class="${formInputClass}">
-                <input type="text" name="photoRegister.cidade" value="<c:out value="${photoRegister.cidade}" />" />
+                <input type="text" name="photoRegister.city" value="<c:out value="${photoRegister.city}" />" />
             </span>
         </div>
         <div class="${formLineClass}">
-            <label for="photoRegister.estado" class="${formLabelClass}">
+            <label for="photoRegister.state" class="${formLabelClass}">
                 <span>Estado:</span>
             </label>
             <span class="${formInputClass}">
-                <input type="text" name="photoRegister.estado" value="<c:out value="${photoRegister.estado}" />" />
+                <input type="text" name="photoRegister.state" value="<c:out value="${photoRegister.state}" />" />
             </span>            
         </div>
         <div class="${formLineClass}">
-            <label for="photoRegister.pais" class="${formLabelClass}">
+            <label for="photoRegister.country" class="${formLabelClass}">
                 <span>Pais:</span>
             </label>
             <span class="${formInputClass}">
-                <input type="text" name="photoRegister.pais" value="<c:out value="${photoRegister.pais}" />" />
+                <input type="text" name="photoRegister.country" value="<c:out value="${photoRegister.country}" />" />
             </span>            
         </div>
         <div class="${formLineClass}">

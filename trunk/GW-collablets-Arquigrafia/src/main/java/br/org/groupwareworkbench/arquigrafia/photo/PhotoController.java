@@ -272,6 +272,21 @@ public class PhotoController {
     @Post
     @Path(value = "/groupware-workbench/photo/{photoInstance}/registra")
     public void save(Photo photoRegister, UploadedFile foto, PhotoMgrInstance photoInstance) {
+        
+        System.out.println("nome => " + photoRegister.getName());
+        System.out.println("direitosAutorais => " + photoRegister.getCopyRights());
+        System.out.println("cidade => " + photoRegister.getCity());
+        System.out.println("estado => " + photoRegister.getState());
+        System.out.println("pais => " + photoRegister.getCountry());
+        System.out.println("bairro => " + photoRegister.getDistrict());
+        System.out.println("autor obra => " + photoRegister.getWorkAuthor());
+        System.out.println("data obra => " + photoRegister.getWorkdate());
+        System.out.println("rua => " + photoRegister.getStreet());
+        System.out.println("descricao => " + photoRegister.getDescription());
+
+        if(foto!=null)
+            System.out.println("file name => " + foto.getFileName());
+        
         photoRegister.setNomeArquivo(foto == null ? null : foto.getFileName());
         result.include("photoRegister", photoRegister);
 
@@ -407,7 +422,7 @@ public class PhotoController {
                 try {
                     input = new FileInputStream(file);
                     Photo imagem = new Photo();
-                    imagem.setNome(name);
+                    imagem.setName(name);
                     imagem.setNomeArquivo(nomeArquivo);
                     photoInstance.save(imagem);
                     imagem.saveImage(input);

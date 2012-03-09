@@ -104,19 +104,19 @@ public class PhotoControllerTest {
 
         photo1 = new Photo();
         photo1.setCollablet(collablet);
-        photo1.setNome("foto Um");
+        photo1.setName("foto Um");
         photo1.setNomeArquivo("fotoum.jpg");
         
 
         photo2 = new Photo();
         photo2.setCollablet(collablet);
-        photo2.setNome("foto Dois");
+        photo2.setName("foto Dois");
         photo2.setNomeArquivo("fotodois.jpg");
 
 
         photo3 = new Photo();
         photo3.setCollablet(collablet);
-        photo3.setNome("foto Tres");
+        photo3.setName("foto Tres");
         photo3.setNomeArquivo("fototres.jpg");
     }
 
@@ -178,7 +178,7 @@ public class PhotoControllerTest {
     public void testPhotoSearchWithLongEnoughString() {
         photo1.save();
         photo2.save();
-        photo3.setNome("alguma");
+        photo3.setName("alguma");
         photo3.save();
         controller.buscaFoto("alguma", photoInstance);
 
@@ -210,7 +210,7 @@ public class PhotoControllerTest {
     public void testAdvancedSearchByName() {
         photo1.save();
         photo2.save();
-        photo3.setNome("alguma coisa");
+        photo3.setName("alguma coisa");
         photo3.save();
         controller.buscaFotoAvancada("foto    ", "", "", null, photoInstance);
 
@@ -227,7 +227,7 @@ public class PhotoControllerTest {
     public void testAdvancedSearchByNameUnique() {
         photo1.save();
         photo2.save();
-        photo3.setNome("alguma");
+        photo3.setName("alguma");
         photo3.save();
         controller.buscaFotoAvancada("alguma", "", "", null, photoInstance);
 
@@ -242,7 +242,7 @@ public class PhotoControllerTest {
     public void testSaveWithoutNameNorImage() {
         Photo quatro = new Photo();
         quatro.setCollablet(collablet);
-        quatro.setNome("");
+        quatro.setName("");
 
         try {
             controller.save(quatro, null, photoInstance);
@@ -258,7 +258,7 @@ public class PhotoControllerTest {
     public void testSaveWithoutImage() {        
         Photo quatro = new Photo();
         quatro.setCollablet(collablet);
-        quatro.setNome("foto Quatro");
+        quatro.setName("foto Quatro");
         quatro.setNomeArquivo("fotoquatro.jpg");
 
         try {
@@ -275,7 +275,7 @@ public class PhotoControllerTest {
     public void testSucessfulSave() {        
         Photo quatro = new Photo();
         quatro.setCollablet(collablet); 
-        quatro.setNome("foto Quatro");
+        quatro.setName("foto Quatro");
         quatro.setNomeArquivo("fotoquatro.jpg");
         try {
             controller.save(quatro, getImage(), photoInstance);

@@ -80,13 +80,11 @@ public class Photo implements Serializable {
 
     private transient PhotoMgrInstance instance;
 
-    @Column(name = "nome", unique = false, nullable = false)
-    private String nome;
+    @Column(name = "name", unique = false, nullable = false)
+    private String name;
 
     @Column(name = "nome_arquivo", unique = false, nullable = false)
     private String nomeArquivo;
-
-    private String descricao;
 
     @Temporal(TemporalType.DATE)
     private Date dataCriacao;
@@ -94,12 +92,15 @@ public class Photo implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataUpload;
 
-    private String direitosAutorais;
-    private String cidade;
-    private String estado;
-    private String pais;
-
-    private String infArquitetonicas;
+    private String copyRights;
+    private String city;
+    private String state;
+    private String country;
+    private String district;
+    private String workAuthor;
+    private String workdate;
+    private String street;
+    private String description;
 
     // FIXME: ManyToMany!? Por quê? Aliás, esta lista não é usada nunca!
     @ManyToMany
@@ -187,6 +188,9 @@ public class Photo implements Serializable {
     }
 
     public void saveImage(InputStream foto) throws RuntimeException {
+        
+        System.out.println("============> HERE!");
+        
         BufferedImage imagemOriginal = null;
         BufferedImage imagemThumb = null;
         BufferedImage imagemCropped = null;
@@ -294,45 +298,45 @@ public class Photo implements Serializable {
                 pageSize).list("dataUpload DESC");
     }
 
-    public static List<Photo> busca(Collablet collablet, String nome, String cidade, String descricao, Date date) {
+    public static List<Photo> busca(Collablet collablet, String name, String city, String description, Date date) {
         if (collablet == null) throw new IllegalArgumentException();
-        if (nome.equals("")) nome = "!$%--6**24";
-        if (descricao.equals("")) descricao = "!$%--6**24";
-        if (cidade.equals("")) cidade = "!$%--6**24";
+        if (name.equals("")) name = "!$%--6**24";
+        if (description.equals("")) description = "!$%--6**24";
+        if (city.equals("")) city = "!$%--6**24";
         String queryString =
-                "SELECT p FROM Photo p WHERE p.collablet =:collablet AND (" + "(upper(p.nome) like :nom1 "
-                        + "OR upper(p.nome) like :nom2 " + "OR upper(p.nome) like :nom4 "
-                        + "OR upper(p.nome) like :nom3 )" +
+                "SELECT p FROM Photo p WHERE p.collablet =:collablet AND (" + "(upper(p.name) like :nom1 "
+                        + "OR upper(p.name) like :nom2 " + "OR upper(p.name) like :nom4 "
+                        + "OR upper(p.name) like :nom3 )" +
 
                         "OR (" +
 
-                        "upper(p.descricao) like :des1 " + "OR upper(p.descricao) like :des2 "
-                        + "OR upper(p.descricao) like :des4 " + "OR upper(p.descricao) like :des3 )" +
+                        "upper(p.description) like :des1 " + "OR upper(p.description) like :des2 "
+                        + "OR upper(p.description) like :des4 " + "OR upper(p.description) like :des3 )" +
 
                         "OR (" +
 
-                        "upper(p.cidade) like :cid1 " + "OR upper(p.cidade) like :cid2 "
-                        + "OR upper(p.cidade) like :cid4 " + "OR upper(p.cidade) like :cid3 )" + "OR "
+                        "upper(p.city) like :cid1 " + "OR upper(p.city) like :cid2 "
+                        + "OR upper(p.city) like :cid4 " + "OR upper(p.city) like :cid3 )" + "OR "
                         + "p.dataCriacao = :dataCriacao )";
 
         EntityManager em = EntityManagerProvider.getEntityManager();
         TypedQuery<Photo> query = em.createQuery(queryString, Photo.class);
         query.setParameter("collablet", collablet);
 
-        query.setParameter("nom1", "% " + nome.toUpperCase() + " %");
-        query.setParameter("nom2", nome.toUpperCase() + " %");
-        query.setParameter("nom3", "% " + nome.toUpperCase());
-        query.setParameter("nom4", nome.toUpperCase());
+        query.setParameter("nom1", "% " + name.toUpperCase() + " %");
+        query.setParameter("nom2", name.toUpperCase() + " %");
+        query.setParameter("nom3", "% " + name.toUpperCase());
+        query.setParameter("nom4", name.toUpperCase());
 
-        query.setParameter("des1", "% " + descricao.toUpperCase() + " %");
-        query.setParameter("des2", descricao.toUpperCase() + " %");
-        query.setParameter("des3", "% " + descricao.toUpperCase());
-        query.setParameter("des4", descricao.toUpperCase());
+        query.setParameter("des1", "% " + description.toUpperCase() + " %");
+        query.setParameter("des2", description.toUpperCase() + " %");
+        query.setParameter("des3", "% " + description.toUpperCase());
+        query.setParameter("des4", description.toUpperCase());
 
-        query.setParameter("cid1", "% " + cidade.toUpperCase() + " %");
-        query.setParameter("cid2", cidade.toUpperCase() + " %");
-        query.setParameter("cid3", "% " + cidade.toUpperCase());
-        query.setParameter("cid4", cidade.toUpperCase());
+        query.setParameter("cid1", "% " + city.toUpperCase() + " %");
+        query.setParameter("cid2", city.toUpperCase() + " %");
+        query.setParameter("cid3", "% " + city.toUpperCase());
+        query.setParameter("cid4", city.toUpperCase());
 
         query.setParameter("dataCriacao", date);
         return query.getResultList();
@@ -355,28 +359,20 @@ public class Photo implements Serializable {
         if (!(o instanceof Photo)) return false;
         Photo other = (Photo) o;
         return (id == null ? other.id == null : id.equals(other.id)) &&
-                (nome == null ? other.nome == null : nome.equals(other.nome));
+                (name == null ? other.name == null : name.equals(other.name));
     }
 
     @Override
     public int hashCode() {
-        return (id == null ? 0 : id.hashCode()) ^ (nome == null ? 0 : nome.hashCode());
+        return (id == null ? 0 : id.hashCode()) ^ (name == null ? 0 : name.hashCode());
     }
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Date getDataCriacao() {
@@ -417,46 +413,78 @@ public class Photo implements Serializable {
         this.collablet = collablet;
     }
 
-    public String getDireitosAutorais() {
-        return direitosAutorais;
+    public String getCopyRights() {
+        return copyRights;
     }
 
-    public void setDireitosAutorais(String direitosAutorais) {
-        this.direitosAutorais = direitosAutorais;
+    public void setCopyRights(String copyRights) {
+        this.copyRights = copyRights;
     }
 
-    public String getCidade() {
-        return cidade;
+    public String getCity() {
+        return city;
     }
 
-    public void setCidade(String cidade) {
-        this.cidade = cidade;
+    public void setCity(String city) {
+        this.city = city;
     }
 
-    public String getEstado() {
-        return estado;
+    public String getState() {
+        return state;
     }
 
-    public void setEstado(String estado) {
-        this.estado = estado;
+    public void setState(String estate) {
+        this.state = estate;
     }
 
-    public String getPais() {
-        return pais;
+    public String getCountry() {
+        return country;
     }
 
-    public void setPais(String pais) {
-        this.pais = pais;
+    public void setCountry(String country) {
+        this.country = country;
+    }
+    
+    public String getDistrict() {
+        return district;
     }
 
-    public String getInfArquitetonicas() {
-        return infArquitetonicas;
+    public void setDistrict(String district) {
+        this.district = district;
     }
 
-    public void setInfArquitetonicas(String infArquitetonicas) {
-        this.infArquitetonicas = infArquitetonicas;
+    public String getWorkAuthor() {
+        return workAuthor;
     }
 
+    public void setWorkAuthor(String workAuthor) {
+        this.workAuthor = workAuthor;
+    }
+
+    public String getWorkdate() {
+        return workdate;
+    }
+
+    public void setWorkdate(String workdate) {
+        this.workdate = workdate;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+    
     public List<User> getUsers() {
         return users;
     }
