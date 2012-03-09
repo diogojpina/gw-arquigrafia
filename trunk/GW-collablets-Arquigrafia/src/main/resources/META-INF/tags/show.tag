@@ -3,7 +3,7 @@
 
 <%@ attribute name="photoInstance" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.arquigrafia.photo.PhotoMgrInstance" %>
 <%@ attribute name="foto" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.arquigrafia.photo.Photo" %>
+<%@ attribute name="clazz" required="false" rtexprvalue="true" type="java.lang.String" %>
+<%@ attribute name="style" required="false" rtexprvalue="true" type="java.lang.String" %>
 
-<div>
-    <img alt="<c:out value="${foto.nome}" />" src="<c:url value="/groupware-workbench/photo/img-show/${foto.id}"/>?_log=no" />
-</div>
+<img class="${clazz}" style="${style}" alt="<c:out value="${foto.nome}" />" src="<c:url value="/groupware-workbench/photo/img-show/${foto.id}"/>?_log=no" />
