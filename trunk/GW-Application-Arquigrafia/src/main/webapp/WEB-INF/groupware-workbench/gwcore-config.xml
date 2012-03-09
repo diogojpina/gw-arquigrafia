@@ -320,6 +320,7 @@
            </role>
            <role name="Administrador">
                    <permission name="X-X-admin" />
+                   <permission name="X-X-usuario" />
            </role>
            <role name="Usuario">
                    <permission name="X-X-usuario" />

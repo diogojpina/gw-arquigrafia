@@ -97,11 +97,11 @@ a#complete_search:hover { background-position:-367px -32px; }
 #form_window textarea {border:solid 1px #EEEEEE; padding: 3px; margin: 2px 0 2px 5px; font-size:11px;}
 #form_window input {border: solid 1px #eee; padding: 3px; margin: 2px 0 2px 5px;}
 #form_window select {margin:3px;}
-#form_window input.text {width: 120px;}
+#form_window input.text {width: 123px;}
 #form_window .date {width: 29px;}
 #form_window a.close {float:right; width:58px; height:20px; background:url(../img/icons_sprite.png) -160px -195px; }
 #form_window a.close:hover { background-position:-160px -216px; }
-#form_window .email, #form_window .website { width: 150px;}
+#form_window .email, #form_window .website { width: 123px;}
 #form_window input.submit { background:url(../img/icons_sprite.png) -222px -195px; height:20px; width:54px; padding:0; margin:0; border:none;}
 #form_window input.submit:hover { background-position:-222px -216px;}
 a#creative_commons{ background:url(../img/icons_sprite.png) no-repeat 110px -240px; width:130px; display:block; }
@@ -420,14 +420,25 @@ a#gallery_photo { margin: 0 5px 0 0;}
 #gallery_photo { display:block; width:48px; height:48px; float:left;}
 #right_sidebar { float:right; color:#7B7D7F; font-size:12px; width:250px; line-height:19px;}
 
-/* IMAGE UPLOAD */
+/* IMAGE UPLOAD - MODAL */
 .progressbar { width:518px; float:left;}
 .url_bar { width:490px; float:left;}
 #select_button { width:73px; height:20px; background:url(../img/icons_sprite.png) -280px -195px no-repeat; border:0px !important; margin: 3px 0px !important; float:right;}
 #select_button:hover { background:url(../img/icons_sprite.png) -280px -215px no-repeat; cursor:pointer;}
 #state_selector { margin: 0 0 0 26px;}
-#upload_form textarea { width:120px; height:60px;}
+#upload_form textarea { width:123px; height:60px;}
 
-/* CONTACT US FORM */
+/* CONTACT US FORM - MODAL */
 #contact_us_form input.text { width:200px !important;}
 #contact_us_form textarea { width:200px; height:100px;}
+
+/* LOGIN BOX - MODAL */
+input#login_white_button { height:20px; width:58px; background:url(../img/icons_sprite.png) -160px -237px; border:none !important; margin: 43px 0 0 0;}
+input#login_white_button:hover { background-position:-160px -258px; }
+#login_facebook_icon { display:block; width:154px; height:22px; background:url(../img/icons_sprite.png) -363px -237px; margin: 10px 4px 0 0; float:left;}
+#login_facebook_icon:hover { background:url(../img/icons_sprite.png) -363px -260px;}
+#login_twitter_icon { display:block; width:138px; height:22px; background:url(../img/icons_sprite.png) -222px -237px; margin: 10px 0 0 0; float:left; clear:right;}
+#login_twitter_icon:hover { background:url(../img/icons_sprite.png) -222px -260px;}
+#login_google_icon { display:block; width:130px; height:22px; background:url(../img/icons_sprite.png) -522px -237px; margin: 10px 0 0 84px; clear:left; float:left;}
+#login_google_icon:hover { background:url(../img/icons_sprite.png) -522px -260px;}
+#login_modal_box div{ float:left; display:block; width:300px; text-align:justify;}

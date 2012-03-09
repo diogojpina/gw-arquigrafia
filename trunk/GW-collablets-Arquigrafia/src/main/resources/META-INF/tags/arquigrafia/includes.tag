@@ -25,31 +25,38 @@
 		$('#registration_button').click(function(){
 			$('#mask').fadeIn('fast');
 			$('#form_window').fadeIn('slow');
-			if (!form_window_loaded) $('#registration').load('modal/signup.html');	
+			$('#registration').load('<c:url value="/users/${userMgr.id}/singup"/>');	
 			form_window_loaded = true;
 		});
 		
 		$('#upload').click(function(){
 			$('#mask').fadeIn('fast');
 			$('#form_window').fadeIn('slow');
-			if (!form_window_loaded) $('#registration').load('modal/upload.html');	
+			$('#registration').load('<c:url value="/6/upload"/>');	
 			form_window_loaded = true;
 		});
 		
 		$('#upload_bar').click(function(){
 			$('#mask').fadeIn('fast');
 			$('#form_window').fadeIn('slow');
-			if (!form_window_loaded) $('#registration').load('modal/upload_bar.html');	
+			$('#registration').load('modal/upload_bar.html');	
 			form_window_loaded = true;
 		});
 		
 		$('#contact').click(function(){
 			$('#mask').fadeIn('fast');
 			$('#form_window').fadeIn('slow');
-			if (!form_window_loaded) $('#registration').load('<c:url value="/6/upload"/>');	
+			$('#registration').load('<c:url value="/${arquigrafiaInstance.id}/contact" />');	
 			form_window_loaded = true;
 		});
-		
+
+		$('#login_button').click(function(){
+			$('#mask').fadeIn('fast');
+			$('#form_window').fadeIn('slow');
+			$('#registration').load('<c:url value="/users/${userMgr.id}/login"/>');	
+			form_window_loaded = true;
+		});
+				
 		$('#form_window .close').click(function (e) {
 			e.preventDefault();
 			

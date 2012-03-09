@@ -63,6 +63,18 @@ public class ArquigrafiaController {
         addIncludes(arquigrafiaInstance);
     }
 
+    @Get
+    @Path(value = "/{arquigrafiaInstance}/help")
+    public void help(ArquigrafiaMgrInstance arquigrafiaInstance) {
+        addIncludes(arquigrafiaInstance);
+    }
+    
+    @Get
+    @Path(value = "/{arquigrafiaInstance}/contact")
+    public void contact(ArquigrafiaMgrInstance arquigrafiaInstance) {
+        addIncludes(arquigrafiaInstance);
+    }
+    
     private void addIncludes(ArquigrafiaMgrInstance arquigrafiaInstance) {
         result.include("arquigrafiaInstance", arquigrafiaInstance);
         arquigrafiaInstance.getCollablet().includeDependencies(result);
