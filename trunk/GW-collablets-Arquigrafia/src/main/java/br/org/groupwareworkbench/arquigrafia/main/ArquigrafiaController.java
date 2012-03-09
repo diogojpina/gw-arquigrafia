@@ -20,34 +20,16 @@
  */
 package br.org.groupwareworkbench.arquigrafia.main;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
 import javax.servlet.http.HttpSession;
 
-import br.com.caelum.vraptor.Delete;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
-import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.Validator;
 import br.com.caelum.vraptor.core.RequestInfo;
-import br.com.caelum.vraptor.interceptor.download.Download;
-import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
 import br.com.caelum.vraptor.ioc.RequestScoped;
-import br.com.caelum.vraptor.validator.ValidationMessage;
-import br.com.caelum.vraptor.view.Results;
-//import br.org.groupwareworkbench.collablet.coord.counter.Observer;
-import br.org.groupwareworkbench.collablet.coord.user.User;
-import br.org.groupwareworkbench.collablet.coord.user.UserMgrInstance;
-import br.org.groupwareworkbench.core.framework.Collablet;
+import br.org.groupwareworkbench.arquigrafia.photo.Photo;
 import br.org.groupwareworkbench.core.framework.WidgetInfo;
 
 @RequestScoped
@@ -79,10 +61,26 @@ public class ArquigrafiaController {
     @Path(value = "/{arquigrafiaInstance}/project")
     public void project(ArquigrafiaMgrInstance arquigrafiaInstance) {
         addIncludes(arquigrafiaInstance);
-    }    
-    
+    }
+
     private void addIncludes(ArquigrafiaMgrInstance arquigrafiaInstance) {
         result.include("arquigrafiaInstance", arquigrafiaInstance);
         arquigrafiaInstance.getCollablet().includeDependencies(result);
+    }
+
+    @Get
+    @Path(value = "/{arquigrafiaInstance}/photo_avaliation/{idPhoto}")
+    public void single_avaliation(ArquigrafiaMgrInstance arquigrafiaInstance, Long idPhoto) {
+        Photo foto = Photo.findById(idPhoto);
+        result.include("photo", foto);
+        addIncludes(arquigrafiaInstance);
+    }
+
+    @Get
+    @Path(value = "/{arquigrafiaInstance}/photo/{idPhoto}")
+    public void single(ArquigrafiaMgrInstance arquigrafiaInstance, Long idPhoto) {
+        Photo photo = Photo.findById(idPhoto);
+        result.include("foto", photo);
+        addIncludes(arquigrafiaInstance);
     }
 }

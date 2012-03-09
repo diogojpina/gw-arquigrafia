@@ -104,7 +104,7 @@
         </div>
 		<!--   BOX DE AVALIAÃÃO   -->
 		<div id="avaliation_box">
-	      <p>Avalie a foto segundo os atributos abaixo e apÃ³s finalizar, clique no botÃ£o Avaliar ao lado para contabilizar a sua avaliaÃ§Ã£o e visualizar a mÃ©dia entre as outras avaliaÃ§Ãµes.</p>
+	      <p>Avalie a foto segundo os atributos abaixo e após finalizar, clique no botÃ£o Avaliar ao lado para contabilizar a sua avaliação e visualizar a mídia entre as outras avaliaçoes.</p>
           <!--   FORMULÃRIO DE AVALIAÃÃO   -->
           <form action="#" method="get" id="avaliation_form">
             <input type="reset" id="clean" class="cursor" value="" />
@@ -162,13 +162,13 @@
       <!--   FIM - COLUNA ESQUERDA   -->
       <!--   COLUNA LATERAL - DIREITA   -->
       <div id="sidebar">
-        <h2 class="common_title">AvaliaÃ§Ã£o de binÃ´mios</h2>
+        <h2 class="common_title">Avaliação de binômios</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla laoreet purus et neque sagittis et pretium turpis euismod. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Curabitur blandit mollis eros, a dictum mauris laoreet in. Curabitur ultricies aliquet ante, ac iaculis orci consectetur vel. In eu ipsum metus. Pellentesque accumsan nisl nec eros cursus vehicula.</p>
         <h3>Posso avaliar mais que uma vez?</h3><br />
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla laoreet purus et neque sagittis et pretium turpis euismod.</p>
         <h3>Como faÃ§o para avaliar?</h3>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla laoreet purus et neque sagittis et pretium turpis euismod. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
-        <p>NÃ³s te preparamos um vÃ­deo que mostra o passo a passo da avaliaÃ§Ã£o. Clique no botÃ£o abaixo para assistÃ­-lo:</p>
+        <p>Nós te preparamos um vídeo que mostra o passo a passo da avaliação. Clique no botão abaixo para assistí­-lo:</p>
         <a href="#" id="watch_button"></a>
       </div>
       <!--   FIM - COLUNA LATERAL - DIREITA   -->
