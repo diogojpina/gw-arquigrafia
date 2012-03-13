@@ -24,6 +24,7 @@ import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
@@ -59,6 +60,7 @@ import br.org.groupwareworkbench.core.bd.EntityManagerProvider;
 import br.org.groupwareworkbench.core.bd.ObjectDAO;
 import br.org.groupwareworkbench.core.bd.QueryBuilder;
 import br.org.groupwareworkbench.core.framework.Collablet;
+import br.org.groupwareworkbench.core.graphics.GWImage;
 import br.org.groupwareworkbench.core.util.ImageUtils;
 
 @Entity
@@ -189,46 +191,90 @@ public class Photo implements Serializable {
 
     public void saveImage(InputStream foto) throws RuntimeException {
         
-        System.out.println("============> HERE!");
+        String fileSuffix = "";
+        if(nomeArquivo.contains("."))
+            fileSuffix = nomeArquivo.substring(nomeArquivo.lastIndexOf("."), nomeArquivo.length());
+        String originalFileName = getInstance().getDirImages() + File.separator + this.id + "_original" + fileSuffix;
+        String thumbFileName =  getInstance().getDirImages() + File.separator + this.id + "_thumb.jpg";
+        String panelFileName =  getInstance().getDirImages() + File.separator + this.id + "_panel.jpg";
+        String viewFileName =  getInstance().getDirImages() + File.separator + this.id + "_view.jpg";
         
-        BufferedImage imagemOriginal = null;
-        BufferedImage imagemThumb = null;
-        BufferedImage imagemCropped = null;
-        BufferedImage imagemMostra = null;
-
+        System.out.println("Processing this received file: " + this.nomeArquivo);
+        System.out.println("File suffix: " + fileSuffix);
+        System.out.println("Saving the original image as " + originalFileName);
+        System.out.println("Saving the thumb image as " + thumbFileName);
+        System.out.println("Saving the panel image as " + panelFileName);
+        System.out.println("Saving the view image as " + viewFileName);
+        
         try {
-            imagemOriginal = ImageIO.read(foto);
+            File originalCopy = new File(originalFileName);
+            FileOutputStream fos = new FileOutputStream(originalCopy);
+            byte[] buffer;
+            while(foto.available()>0) {
+                // Using a buffer at most 100kB in size.
+                buffer = new byte[Math.min(foto.available(), 1024*100)];
+                foto.read(buffer);
+                fos.write(buffer);
+                fos.flush();
+            }
+            fos.close();
+            foto.close();
+            
+            try {
+                // We need to blur the image to get a better zoom out. Not applying blur before causes the
+                // resulting image to have aliases.
+                new GWImage(originalCopy).blur(15).doTheBestYouCanToFitOnRectangle(105, 72).save(thumbFileName);
+                new GWImage(originalCopy).blur(7).doTheBestYouCanToFitOnRectangle(170, 117).save(panelFileName);
+                new GWImage(originalCopy).scaleToWidth(600).save(viewFileName);
+            }
+            catch (Throwable t) {
+                t.printStackTrace();
+            }
+            
         } catch (IOException e) {
             log.error("Error reading image stream", e);
             throw new RuntimeException(PhotoController.MSG_FALHA_NO_UPLOAD, e);
         }
-
-        if (imagemOriginal == null) {
-            throw new RuntimeException(PhotoController.MSG_IMAGEM_INVALIDA);
-        }
-
-        try {
-            // Fix wrong colors in PNG to JPEG conversion when PNG has alpha channel
-            imagemOriginal = ImageUtils.createStandardImage(imagemOriginal.getWidth(), imagemOriginal);
-            imagemMostra = ImageUtils.createStandardImage(600, imagemOriginal);
-            imagemThumb = ImageUtils.createThumbnailIfNecessary(100, imagemOriginal, true);
-            BufferedImage imagemThumb2 = ImageUtils.createThumbnailIfNecessary(100, imagemOriginal, false);
-            Point cropPoint = ImageUtils.calcSqrThumbCropPoint(imagemThumb2);
-            imagemCropped = ImageUtils.cropImage(cropPoint, new Dimension(100, 100), imagemThumb2);
-        } catch (IOException e) {
-            log.error(PhotoController.MSG_NAO_FOI_POSSIVEL_REDIMENSIONAR, e);
-            throw new RuntimeException(PhotoController.MSG_NAO_FOI_POSSIVEL_REDIMENSIONAR, e);
-        }
-
-        try {
-            this.saveImage(imagemOriginal, "", getInstance().getDirImages());
-            this.saveImage(imagemCropped, getInstance().getCropPrefix(), getInstance().getDirImages());
-            this.saveImage(imagemThumb, getInstance().getThumbPrefix(), getInstance().getDirImages());
-            this.saveImage(imagemMostra, getInstance().getMostraPrefix(), getInstance().getDirImages());
-        } catch (IOException e) {
-            log.error(PhotoController.MSG_FALHA_NO_UPLOAD, e);
-            throw new RuntimeException(PhotoController.MSG_FALHA_NO_UPLOAD, e);
-        }
+        
+///////////////////////////////////////////////////////////////
+//        BufferedImage imagemOriginal = null;
+//        BufferedImage imagemThumb = null;
+//        BufferedImage imagemCropped = null;
+//        BufferedImage imagemMostra = null;
+//
+//        try {
+//            imagemOriginal = ImageIO.read(foto);
+//        } catch (IOException e) {
+//            log.error("Error reading image stream", e);
+//            throw new RuntimeException(PhotoController.MSG_FALHA_NO_UPLOAD, e);
+//        }
+//
+//        if (imagemOriginal == null) {
+//            throw new RuntimeException(PhotoController.MSG_IMAGEM_INVALIDA);
+//        }
+//
+//        try {
+//            // Fix wrong colors in PNG to JPEG conversion when PNG has alpha channel
+//            imagemOriginal = ImageUtils.createStandardImage(imagemOriginal.getWidth(), imagemOriginal);
+//            imagemMostra = ImageUtils.createStandardImage(600, imagemOriginal);
+//            imagemThumb = ImageUtils.createThumbnailIfNecessary(100, imagemOriginal, true);
+//            BufferedImage imagemThumb2 = ImageUtils.createThumbnailIfNecessary(100, imagemOriginal, false);
+//            Point cropPoint = ImageUtils.calcSqrThumbCropPoint(imagemThumb2);
+//            imagemCropped = ImageUtils.cropImage(cropPoint, new Dimension(100, 100), imagemThumb2);
+//        } catch (IOException e) {
+//            log.error(PhotoController.MSG_NAO_FOI_POSSIVEL_REDIMENSIONAR, e);
+//            throw new RuntimeException(PhotoController.MSG_NAO_FOI_POSSIVEL_REDIMENSIONAR, e);
+//        }
+//
+//        try {
+//            this.saveImage(imagemOriginal, "", getInstance().getDirImages());
+//            this.saveImage(imagemCropped, getInstance().getCropPrefix(), getInstance().getDirImages());
+//            this.saveImage(imagemThumb, getInstance().getThumbPrefix(), getInstance().getDirImages());
+//            this.saveImage(imagemMostra, getInstance().getMostraPrefix(), getInstance().getDirImages());
+//        } catch (IOException e) {
+//            log.error(PhotoController.MSG_FALHA_NO_UPLOAD, e);
+//            throw new RuntimeException(PhotoController.MSG_FALHA_NO_UPLOAD, e);
+//        }
     }
 
     private void saveImage(BufferedImage input, String prefix, String path) throws IOException {
