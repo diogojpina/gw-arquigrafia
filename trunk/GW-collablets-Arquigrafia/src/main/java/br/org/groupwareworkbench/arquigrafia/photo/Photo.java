@@ -225,7 +225,8 @@ public class Photo implements Serializable {
                 // resulting image to have aliases.
                 new GWImage(originalCopy).blur(15).doTheBestYouCanToFitOnRectangle(105, 72).save(thumbFileName);
                 new GWImage(originalCopy).blur(7).doTheBestYouCanToFitOnRectangle(170, 117).save(panelFileName);
-                new GWImage(originalCopy).scaleToWidth(600).save(viewFileName);
+                if(new GWImage(originalCopy).getWidth() > 600)
+                    new GWImage(originalCopy).scaleToWidth(600).save(viewFileName);
             }
             catch (Throwable t) {
                 t.printStackTrace();
