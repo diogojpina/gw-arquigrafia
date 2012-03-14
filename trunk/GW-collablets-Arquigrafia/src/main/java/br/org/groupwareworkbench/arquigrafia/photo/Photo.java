@@ -192,13 +192,25 @@ public class Photo implements Serializable {
 
     public void saveImage(InputStream foto) throws RuntimeException {
         
+        String imagesDirName = getInstance().getDirImages();
+        if(imagesDirName.endsWith(File.separator))
+            imagesDirName = imagesDirName.substring(0, imagesDirName.length() - File.separator.length());
+        File imagesDir = new File(imagesDirName);
+        if(!imagesDir.exists()) {
+            System.out.println("Images dir ("  + imagesDirName + ") does not exist. Trying to create it and all nonexistent parents...");
+            imagesDir.mkdirs();
+            System.out.println("Directory \"" + imagesDirName + "\" created successfully.");
+        } else if(!imagesDir.isDirectory()) {
+            System.out.println("WTH!? I cannot save images inside of something that is not a directory: " + imagesDirName);
+        }
+        
         String fileSuffix = "";
         if(nomeArquivo.contains("."))
             fileSuffix = nomeArquivo.substring(nomeArquivo.lastIndexOf("."), nomeArquivo.length());
-        String originalFileName = getInstance().getDirImages() + File.separator + this.id + "_original" + fileSuffix;
-        String thumbFileName =  getInstance().getDirImages() + File.separator + this.id + "_thumb.jpg";
-        String panelFileName =  getInstance().getDirImages() + File.separator + this.id + "_panel.jpg";
-        String viewFileName =  getInstance().getDirImages() + File.separator + this.id + "_view.jpg";
+        String originalFileName = imagesDirName + File.separator + this.id + "_original" + fileSuffix;
+        String thumbFileName =  imagesDirName + File.separator + this.id + "_thumb.jpg";
+        String panelFileName =  imagesDirName + File.separator + this.id + "_panel.jpg";
+        String viewFileName =  imagesDirName + File.separator + this.id + "_view.jpg";
         
         System.out.println("Processing this received file: " + this.nomeArquivo);
         System.out.println("File suffix: " + fileSuffix);
