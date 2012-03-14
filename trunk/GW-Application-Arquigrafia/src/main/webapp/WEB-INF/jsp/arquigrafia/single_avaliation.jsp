@@ -29,11 +29,20 @@
 <script type="text/javascript" src="<c:url value="/js/index.js" />"></script>
 <script type="text/javascript" src="<c:url value="/js/field_clear.js" />"></script>
 <style type="text/css">
+.ui-slider { width: 200px; height: 25px; position: relative; background-repeat: no-repeat; background-position: center center; }
+.ui-slider-handle { position: absolute; z-index: 1; height: 23px; width: 12px; top: 0px; left: 0px; background-image: url(i/slider-handle.gif);  }
+.ui-slider-handle-active { border: 1px dotted black;  }
+.ui-slider-disabled .ui-slider-handle { opacity: 0.5; filter: alpha(opacity=50); }
+.ui-slider-range { position: absolute; background: #50A029; opacity: 0.3; filter: alpha(opacity=30); width: 100%; height: 100%; }
+
+/* Default slider backgrounds */
+.ui-slider, .ui-slider-1 { background-image: url(i/slider-bg-1.png); }
+.ui-slider-2 { background-image: url(/GW-Application-Arquigrafia/img/slider-bg-2.png); }
+
 .binWrapClass {
 	float: left;
 	padding: 3px 6px 3px 6px;
-	margin: 0px 0px 10px 0px;
-	/*background-color: #fff;*/
+	margin: 20px 110px 10px 0px;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
@@ -77,13 +86,14 @@
 #binomialSubmit input {
     width: 60px;
     height: 28px;
-    background: url("../images/save_bt1.png") no-repeat scroll;
+    background: url("/GW-Application-Arquigrafia/img/save_bt1.png") no-repeat scroll;
     cursor: pointer;
     border: 0;
     font-family: Arial, Helvetica, sans-serif;
 	font-size: 11px;
 	font-weight: bold;
 	color: #fff;
+	margin-right: 100px;
 }
 
 </style>
@@ -208,13 +218,15 @@
 			</ul>
 			--%>
 
-			<div id="binomialsUser">
-                <binomial:userAverage entity="${photo}" manager="${binomialMgr}" user="${sessionScope.userLogin}" name="userBin"
-                        labelClass="binLabelClass" valueClass="binValueClass" wrapClass="binWrapClass" />
-                <div id="binomialSubmit">
-                    <input type="submit" name="saveBinomial" value="Salvar" />
-                </div>
-            </div>
+						<div id="binomialsWrap">
+                            <div id="binomialsUser">
+                                <binomial:userAverage entity="${photo}" manager="${binomialMgr}" user="${sessionScope.userLogin}" name="userBin"
+                                        labelClass="binLabelClass" valueClass="binValueClass" wrapClass="binWrapClass" />
+                                <div id="binomialSubmit">
+                                    <input type="submit" name="saveBinomial" value="Salvar" />
+                                </div>
+                            </div>
+                        </div>
          </form>
          <!--   FIM - FORMULÃRIO DE AVALIAÃÃO   -->
 			
