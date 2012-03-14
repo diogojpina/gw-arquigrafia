@@ -59,7 +59,7 @@
 			   <li><a href="#" id="comunities" title="Comunidades">&nbsp;</a></li>
 			   <li><a href="#form_window" name="modal" id="upload" title="Subir uma imagem">&nbsp;</a></li>
       	  </ul>
-          <a href="#" id="user_name">Homer J. Simpson</a>
+          <a href="#" id="user_name">${sessionScope.userLogin.name}</a>
         </div>
         <!--   FIM - ÁREA DO USUARIO   -->      
       </s:check>         

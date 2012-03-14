@@ -54,13 +54,10 @@ public class PopulateInitialDatabase {
         Collablet role = Collablet.findByName("roleMgr");
         Collablet user = Collablet.findByName("userMgr");
 
-        Role adminRole = new Role();
-        adminRole.setName("Administrador");
-        adminRole.setCollablet(role);
+        Role adminRole = Role.findByName("Administrador", role);
 
-        Role userRole = new Role();
-        userRole.setName("Usuario");
-        userRole.setCollablet(role);
+
+        Role userRole = Role.findByName("Usuario", role);
 
         Role guestRole = new Role();
         guestRole.setName("Visitante");

@@ -144,8 +144,8 @@
     <div id="form_window"> 
       <!-- ÁREA DE LOGIN - JANELA MODAL --> 
       <a class="close" href="#" title="FECHAR"></a>
-      <form id="registration" name="registration" action="">
-      </form>
+      <div id="registration">
+      </div>
     </div>
     <!--   FIM - MODAL   -->
   </div>

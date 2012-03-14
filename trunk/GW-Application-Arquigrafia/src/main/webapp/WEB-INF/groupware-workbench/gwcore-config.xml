@@ -316,9 +316,6 @@
     </android-sequence>
     
     <security-policy>
-           <role name="guest">
-                   <permission name="br.org.groupwareworkbench.core.framework.Collablet-FAQ Principal-*" />
-           </role>
            <role name="Administrador">
                    <permission name="X-X-admin" />
                    <permission name="X-X-usuario" />
