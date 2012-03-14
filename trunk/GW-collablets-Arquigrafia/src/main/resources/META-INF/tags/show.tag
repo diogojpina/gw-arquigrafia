@@ -6,4 +6,5 @@
 <%@ attribute name="clazz" required="false" rtexprvalue="true" type="java.lang.String" %>
 <%@ attribute name="style" required="false" rtexprvalue="true" type="java.lang.String" %>
 
-<img class="${clazz}" style="${style}" alt="<c:out value="${foto.nome}" />" src="<c:url value="/groupware-workbench/photo/img-show/${foto.id}"/>?_log=no" />
+<img class="${clazz}" style="${style}" src="<c:url value="/groupware-workbench/photo/img-show/${foto.id}"/>?_log=no" />
+ <!-- alt="<c:out value="${foto.nome}" />"  --> 

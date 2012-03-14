@@ -93,7 +93,7 @@ public class PhotoController {
     }
     
     @Get
-    @Path(value = "/groupware-workbench/photo/img-thumb/{idPhoto}")
+    @Path(value = "/photo/img-thumb/{idPhoto}")
     public Download imgThumb(long idPhoto) {
         Photo photo = Photo.findById(idPhoto);
         if (photo == null) {

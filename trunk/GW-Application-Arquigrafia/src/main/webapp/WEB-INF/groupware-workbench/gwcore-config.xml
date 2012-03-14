@@ -280,6 +280,24 @@
     </collablets-subordinations>
 
     <collablets-dependencies>
+        <dependency from="roleMgr" to="arquigrafiaMgr" />
+        <dependency from="profileMgr" to="arquigrafiaMgr" />
+        <dependency from="commentMgr2" to="arquigrafiaMgr" />
+        <dependency from="commentMgr" to="arquigrafiaMgr" />
+        <dependency from="geoReferenceMgr" to="arquigrafiaMgr" />
+        <dependency from="tagMgr" to="arquigrafiaMgr" />
+        <dependency from="photoMgr" to="arquigrafiaMgr" />
+        <dependency from="binomialMgr" to="arquigrafiaMgr" />
+        <dependency from="albumMgr" to="arquigrafiaMgr" />
+        <dependency from="ratingMgr" to="arquigrafiaMgr" />
+        <dependency from="profileMgr" to="arquigrafiaMgr" />
+        <dependency from="profileMgr" to="arquigrafiaMgr" />
+        <dependency from="albumMgr" to="arquigrafiaMgr" />
+        <dependency from="roleMgr" to="arquigrafiaMgr" />
+        <dependency from="friendsMgr" to="arquigrafiaMgr" />
+        <dependency from="commentMgr2" to="arquigrafiaMgr" />
+        <dependency from="counterMgr" to="arquigrafiaMgr" />
+        
         <dependency from="roleMgr" to="userMgr" />
         <dependency from="profileMgr" to="userMgr" />
         <dependency from="commentMgr2" to="friendsMgr" />

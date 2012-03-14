@@ -22,6 +22,6 @@
 		  <li><a href="#" title="" id="brz"></a></li>	
         </ul>
 		<!--   COPYRIGHT   -->
-	    <p id="copyright"><small>Arquigrafia - 20011 © All rights reserved</small></p>
+	    <p id="copyright"><small>Arquigrafia - 2012 - Some Rights Reserved</small></p>
 	  </div>
       <!--   FIM - CRÉDITOS - LOGOS   -->

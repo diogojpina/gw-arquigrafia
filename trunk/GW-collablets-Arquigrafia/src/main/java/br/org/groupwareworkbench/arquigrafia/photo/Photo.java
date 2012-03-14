@@ -149,7 +149,7 @@ public class Photo implements Serializable {
     }
 
     private File makeImg(String prefix) {
-        String path = getInstance().getDirImages() + prefix + id;
+        String path = getInstance().getDirImages() + id + prefix;
         return new File(path);
     }
 
@@ -159,7 +159,8 @@ public class Photo implements Serializable {
     }
 
     public FileDownload downloadImgThumb() {
-        return makeDownload(getInstance().getThumbPrefix());
+        //return makeDownload(getInstance().getThumbPrefix());
+        return makeDownload("_thumb.jpg");
     }
 
     public FileDownload downloadImgCrop() {
