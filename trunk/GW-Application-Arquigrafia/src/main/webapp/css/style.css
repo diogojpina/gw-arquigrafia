@@ -359,7 +359,7 @@ input#comment_button:hover { background-position:-262px -170px;}
 
 /* SINGLE VIEW - AVALIATION */
 #avaliation_box { width:650px; }
-#avaliation_box p { display:block; width:470px; float:left; }
+#avaliation_box p { display:block; width:470px; }
 #avaliation_form{ text-align:right; }
 #avaliation_form input { margin-top:18px;}
 #avaliation_form input#clean { background:url(../img/icons_sprite.png) -694px -145px; width:52px; height:21px; }

@@ -3,6 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="arquigrafia" uri="http://www.groupwareworkbench.org.br/widgets/arquigrafia" %>
 <%@ taglib prefix="photo" uri="http://www.groupwareworkbench.org.br/widgets/photomanager" %>
+<%@ taglib prefix="binomial" uri="http://www.groupwareworkbench.org.br/widgets/binomial" %>
+<%@ taglib prefix="r" uri="http://www.groupwareworkbench.org.br/taglibs/reflection" %>
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
@@ -26,6 +28,66 @@
 <script type="text/javascript" src="<c:url value="/js/jquery-ui-1.8.17.custom.min.js" />"></script>
 <script type="text/javascript" src="<c:url value="/js/index.js" />"></script>
 <script type="text/javascript" src="<c:url value="/js/field_clear.js" />"></script>
+<style type="text/css">
+.binWrapClass {
+	float: left;
+	padding: 3px 6px 3px 6px;
+	margin: 0px 0px 10px 0px;
+	/*background-color: #fff;*/
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+.binLabelClass, .binValueClass {
+	float: left;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+}
+.binLabelClass {
+	color: #8594AF;
+	padding-right: 5px;
+}
+.binValueClass {
+	color: #8594AF;
+	padding-right: 15px;
+}
+#binomialsTitle {
+	float: left;
+	position: relative;
+	left: 0px;
+	padding: 0px 5px 0px 5px;
+	margin: 9px 0px 12px 0px;
+}
+#binLink {
+	float: left;
+	cursor: pointer;
+	margin-top: 8px;
+}
+#binomialsWrap {
+	float: right;
+	padding-right: 0px;
+	width: 100%;
+	overflow: scroll;
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+#binomialSubmit {
+	clear: both;
+}
+#binomialSubmit input {
+    width: 60px;
+    height: 28px;
+    background: url("../images/save_bt1.png") no-repeat scroll;
+    cursor: pointer;
+    border: 0;
+    font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #fff;
+}
+
+</style>
+<binomial:scriptBinomial />
 </head>
 
 <body>
@@ -107,6 +169,7 @@
 	      <p>Avalie a foto segundo os atributos abaixo e após finalizar, clique no botÃ£o Avaliar ao lado para contabilizar a sua avaliação e visualizar a mídia entre as outras avaliaçoes.</p>
           <!--   FORMULÃRIO DE AVALIAÃÃO   -->
           <form action="#" method="get" id="avaliation_form">
+          <%--
             <input type="reset" id="clean" class="cursor" value="" />
             <input type="submit" id="avaliate" class="cursor" value="" />
 
@@ -143,10 +206,20 @@
 					<span class="right">Fechado</span>
 				</li>
 			</ul>
+			--%>
+
+			<div id="binomialsUser">
+                <binomial:userAverage entity="${photo}" manager="${binomialMgr}" user="${sessionScope.userLogin}" name="userBin"
+                        labelClass="binLabelClass" valueClass="binValueClass" wrapClass="binWrapClass" />
+                <div id="binomialSubmit">
+                    <input type="submit" name="saveBinomial" value="Salvar" />
+                </div>
+            </div>
          </form>
          <!--   FIM - FORMULÃRIO DE AVALIAÃÃO   -->
 			
 		 <!--   SCRIPT DO SLIDER DE AVALIAÃÃO   -->
+	     <%--
 	     <script>
 			$("#slider_1").slider({ value:50, min: 0, max: 100, step: 10 });
 			$("#slider_2").slider({ value:50, min: 0, max: 100, step: 10 });
@@ -155,7 +228,7 @@
 			$("#slider_5").slider({ value:50, min: 0, max: 100, step: 10 });
 			$("#slider_6").slider({ value:50, min: 0, max: 100, step: 10 });
 		 </script>
-
+		 --%>
 	   </div>
        <!--   FIM - BOX DE AVALIAÃÃO   -->
       </div>
