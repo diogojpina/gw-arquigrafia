@@ -54,4 +54,16 @@
         <name>buttonEdit</name>
         <path>/META-INF/tags/buttonEdit.tag</path>
     </tag-file>
+    	<tag-file>
+		<name>listLastPhotos</name>
+		<path>/META-INF/tags/listLastPhotos.tag</path>
+	</tag-file>
+	<tag-file>
+		<name>listMostViews</name>
+		<path>/META-INF/tags/listMostViews.tag</path>
+	</tag-file>
+	<tag-file>
+		<name>moreCommented</name>
+		<path>/META-INF/tags/listMoreCommentedPhotos.tag</path>
+	</tag-file>
 </taglib>

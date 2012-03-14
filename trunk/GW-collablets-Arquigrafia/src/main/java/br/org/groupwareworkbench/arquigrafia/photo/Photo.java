@@ -67,6 +67,7 @@ import br.org.groupwareworkbench.core.util.ImageUtils;
 public class Photo implements Serializable {
 
     private static final long serialVersionUID = -4757949223957140519L;
+    private static final Integer DEFAULT_PHOTOS_COUNT = 5;
 
     private static final ObjectDAO<Photo, Long> DAO = new ObjectDAO<Photo, Long>(Photo.class);
 
@@ -310,15 +311,14 @@ public class Photo implements Serializable {
     public static Photo findPhotoByUser(User user, long id) {
         if (user == null) throw new IllegalArgumentException();
 
-        String queryString =
-                "SELECT p FROM Photo p JOIN p.users AS u WHERE u = :user AND p.id=id";
+        String queryString = "SELECT p FROM Photo p JOIN p.users AS u WHERE u = :user AND p.id=id";
         EntityManager em = EntityManagerProvider.getEntityManager();
         TypedQuery<Photo> query = em.createQuery(queryString, Photo.class);
         query.setParameter("id", id);
         query.setParameter("user", user);
         return query.getResultList().get(0);
     }
-    
+
     public static List<Photo> listPhotoByUserPageAndOrder(Collablet collablet, User user, int pageSize, int pageNumber) {
         if (collablet == null) throw new IllegalArgumentException();
         if (user == null) throw new IllegalArgumentException();
@@ -341,8 +341,8 @@ public class Photo implements Serializable {
 
         int firstElement = pageNumber * pageSize;
 
-        return QueryBuilder.query(Photo.class).with("collablet", collablet).firstResult(firstElement).maxResults(
-                pageSize).list("dataUpload DESC");
+        return QueryBuilder.query(Photo.class).with("collablet", collablet).firstResult(firstElement)
+                .maxResults(pageSize).list("dataUpload DESC");
     }
 
     public static List<Photo> busca(Collablet collablet, String name, String city, String description, Date date) {
@@ -535,4 +535,17 @@ public class Photo implements Serializable {
     public List<User> getUsers() {
         return users;
     }
+
+    public static List<Photo> listLastPhotos(Collablet collablet, Integer amount) {
+
+        if (collablet == null) throw new IllegalArgumentException("Collablet is required.");
+        Integer localCount = amount;
+        if (localCount == null || localCount < 1) {
+            localCount = DEFAULT_PHOTOS_COUNT;
+        }
+
+        return DAO.query().with("collablet", collablet).maxResults(localCount).list("id DESC");
+
+    }
+
 }

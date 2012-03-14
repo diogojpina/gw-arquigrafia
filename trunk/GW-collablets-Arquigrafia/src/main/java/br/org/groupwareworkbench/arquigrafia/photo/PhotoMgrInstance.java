@@ -95,4 +95,10 @@ public class PhotoMgrInstance extends AbstractBusiness {
     public List<Photo> listPhotoByUserPageAndOrder(User user, int pageSize, int pageNumber) {
         return Photo.listPhotoByUserPageAndOrder(getCollablet(), user, pageSize, pageNumber);
     }
+    
+    public List<Photo> listLastPhotos(Integer amount) {
+        List<Photo> photos = Photo.listLastPhotos(getCollablet(), amount );
+        return photos;
+    }
+    
 }
