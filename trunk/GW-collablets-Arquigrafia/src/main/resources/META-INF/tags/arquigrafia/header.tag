@@ -39,10 +39,10 @@
           <div id="loggin_area" class="right">
             
             <!--   BOTÃO DE LOGIN   -->
-            <a href="#form_window" name="modal-" id="login_button"></a>
+            <a href="#" name="modal-" id="login_button"></a>
         
             <!--   BOTÃO DE CADASTRO   -->
-            <a href="#form_window" name="modal" id="registration_button"></a>
+            <a href="#" name="modal" id="registration_button"></a>
           
           </div>
           <!--   FIM - ÁREA DE LOGIN / CADASTRO   -->
@@ -57,7 +57,7 @@
         	   <li><a href="#" id="messages" title="Você tem 19 mensagens">11</a></li>
 			   <li><a href="#" id="users" title="Usuários">&nbsp;</a></li>
 			   <li><a href="#" id="comunities" title="Comunidades">&nbsp;</a></li>
-			   <li><a href="#form_window" name="modal" id="upload" title="Subir uma imagem">&nbsp;</a></li>
+			   <li><a href="#" name="modal" id="upload" title="Subir uma imagem">&nbsp;</a></li>
       	  </ul>
           <a href="#" id="user_name">${sessionScope.userLogin.name}</a>
         </div>

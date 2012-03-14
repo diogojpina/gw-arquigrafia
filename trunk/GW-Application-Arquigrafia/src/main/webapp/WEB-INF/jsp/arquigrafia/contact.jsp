@@ -23,6 +23,6 @@
     <small>Campos assinalados com * são de prenchimento obrigatório.</small>
   </p>
   <p>
-    <input href="#form_window" name="enviar" type="submit" class="submit cursor" value="" />
+    <input href="#" name="enviar" type="submit" class="submit cursor" value="" />
   </p>
 </div>
