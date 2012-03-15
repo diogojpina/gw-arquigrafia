@@ -4,6 +4,7 @@
 <%@ taglib prefix="arquigrafia" uri="http://www.groupwareworkbench.org.br/widgets/arquigrafia" %>
 <%@ taglib prefix="photo" uri="http://www.groupwareworkbench.org.br/widgets/photomanager" %>
 <%@ taglib prefix="tag" uri="http://www.groupwareworkbench.org.br/widgets/tag" %>
+<%@ taglib prefix="comment" uri="http://www.groupwareworkbench.org.br/widgets/comment" %>
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
@@ -22,7 +23,7 @@
     <div id="content">
       <!--   COLUNA ESQUERDA   -->
       <div id="sub_content">
-        <!--   PAINEL DE VISUALIZAÃÃO - SINGLE   -->
+        <!--   PAINEL DE VISUALIZACAO - SINGLE   -->
         <div id="single_view_block">
           <!--   NOME / STATUS DA FOTO   -->
           <div id="single_view_header">
@@ -43,7 +44,7 @@
           
 	      <hr />
         </div>
-        <!--   BOX DE BOTÃES DA IMAGEM   -->
+        <!--   BOX DE BOTOES DA IMAGEM   -->
         <div id="single_view_buttons_box">
           <ul id="single_view_image_buttons">
             <li><a href="#" title="Adicione aos seus favoritos" id="add_favourite"></a></li>
@@ -59,26 +60,31 @@
             <li><a href="#" class="twitter"></a></li>
           </ul>
         </div>
-        <!--   FIM - BOX DE BOTÃES DA IMAGEM   -->
-        <!--   BOX DE COMENTÃRIOS   -->
+        <!--   FIM - BOX DE BOTOEES DA IMAGEM   -->
+        <!--   BOX DE COMENTARIOS   -->
         <div id="comments_block">
-          <h2>ComentÃ¡rios</h2>
+          
+          <comment:getComments commentMgr="${commentMgr}" entity="${photo}" />
+
+          <h2>Coment&aacute;rios</h2>
           <div class="single_comment_block">
             <img src="<c:url value="/img/avatar.jpg" />" width="50" height="50" name="Homer" class="user_thumbnail" />
-            <a href="#" id="name">Homer Simpson</a>&nbsp;<span class="comment_time">(3 dias atráis)</span>
+            <a href="#" id="name">Homer Simpson</a>&nbsp;<span class="comment_time">(3 dias atr&aacute;s)</span>
             <span class="comment_text">
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla laoreet purus et neque sagittis et pretium turpis euismod. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
             </span>
           </div>
           <div class="single_comment_block">
             <img src="<c:url value="/img/avatar.jpg" />" name="Homer" class="user_thumbnail"  />
-            <a href="#" id="name">Homer Simpson</a>&nbsp;<span class="comment_time">(4 dias atrÃ¡s)</span>
+            <a href="#" id="name">Homer Simpson</a>&nbsp;<span class="comment_time">(4 dias atr&aacute;s)</span>
             <span class="comment_text">
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
             </span>
           </div>
-        <!--   BOX DE COMENTÃRIO   -->
+        <!--   BOX DE COMENTARIO   -->
 		<div class="single_comment_block">
+	      <comment:addComment commentMgr="${commentMgr}" idObject="${photo.id}" user="${sessionScope.userLogin}" />
+	      
           <form id="space_to_comment" method="post" action="#">
             <img src="<c:url value="/img/avatar.jpg" />" name="Homer" class="user_thumbnail"  />
             <a href="#" id="name">${sessionScope.userLogin.name}</a><br />
@@ -86,20 +92,20 @@
             <input type="submit" id="comment_button" class="cursor" value="" />
           </form>
 		</div>
-        <!--   FIM - BOX DE COMENTÃRIO   -->
+        <!--   FIM - BOX DE COMENTARIO   -->
       </div>
-      <!--   BOX DE COMENTÃRIOS   -->
+      <!--   BOX DE COMENTARIOS   -->
 	 </div>
      <!--   FIM - COLUNA ESQUERDA   -->
 	 <!--   SIDEBAR   -->
      <div id="sidebar">
-       <!--   USUÃRIO   -->
+       <!--   USUARIO   -->
 	   <div id="single_user">
 	     <img src="<c:url value="/img/avatar.jpg" />" name="Homer" id="single_view_user_thumbnail" />
 		 <span id="single_view_owner_name">Por: <a href="#" id="name">Homer Simpson</a></span><br />
 		 <a href="#" id="single_view_contact_add">+ Adicionar contato</a><br />
 		</div>
-        <!--   FIM - USUÃRIO   -->
+        <!--   FIM - USUARIO   -->
         <h3>Equipamento:</h3>
         <p>Lorem ipsum dolor sit amet</p>
         <h3>Descrição:</h3>
