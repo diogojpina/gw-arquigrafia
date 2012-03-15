@@ -29,7 +29,7 @@
       <!--   FIM - PAINEL DE IMAGENS  -->
 
       <!--   ÁREA DE TAGS   -->
-      <arquigrafia:tagcloud arquigrafiaInstance="${arquigrafiaMgr}" />    
+      <arquigrafia:tagcloud tagMgr="${tagMgr}" />    
       <!--   FIM - ÁREA DE TAGS   -->
     </div>
     <!--   FIM - MEIO DO SITE   -->
