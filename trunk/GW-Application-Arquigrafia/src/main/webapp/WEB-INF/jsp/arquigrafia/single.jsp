@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="arquigrafia" uri="http://www.groupwareworkbench.org.br/widgets/arquigrafia" %>
 <%@ taglib prefix="photo" uri="http://www.groupwareworkbench.org.br/widgets/photomanager" %>
+<%@ taglib prefix="tag" uri="http://www.groupwareworkbench.org.br/widgets/tag" %>
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
@@ -109,7 +110,8 @@
 			<a href="http://maps.google.com.br/maps?f=q&amp;source=embed&amp;hl=pt-BR&amp;geocode=&amp;q=sp&amp;aq=&amp;sll=-18.124971,-45.878906&amp;sspn=11.093912,19.621582&amp;ie=UTF8&amp;hq=&amp;hnear=S%C3%A3o+Paulo&amp;t=m&amp;ll=-21.912471,-49.361572&amp;spn=1.019251,3.284912&amp;z=7&amp;iwloc=A" style="text-align:center; display:block; width:auto; font-size:10px;">Exibir mapa ampliado</a>
 		</p>
         <h3>Tags:</h3>
-        <p>Lorem ipsum dolor sit amet</p>
+        <p>									<tag:getTags tagMgr="${tagMgr}" entity="${photo}" />
+</p>
         <h3>Licença:</h3>
         <p>Lorem ipsum dolor sit amet</p>
         <h3>Avaliação: ${arquigrafiaMgr.id} que coisa ${photo.id}</h3>

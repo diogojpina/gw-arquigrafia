@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="tag" uri="http://www.groupwareworkbench.org.br/widgets/tag" %>
 
 <form name="dados" method="POST" action="<c:url value="/groupware-workbench/photo/${photoInstance.id}/registra" />" enctype="multipart/form-data">
 <input type="hidden" name="user.id" value="${user.id}">
@@ -69,7 +70,11 @@
   <input name="photoRegister.workdate" type="text" class="text" id="workdate" />
   <br />
   <label>TAGS:</label>
-  <textarea name="tags" class="text"></textarea>
+  <!-- <textarea name="tags" class="text"></textarea> -->
+  <tag:selectTags tagMgr="${tagMgr}" />
+  <tag:setTags tagMgr="${tagMgr}" entity="${photo}" />
+  <tag:scriptTags />
+  
   <label>Descrição:</label>
   <textarea name="photoRegister.description" class="text"></textarea>
 </p>
