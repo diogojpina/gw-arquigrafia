@@ -12,10 +12,13 @@
 <link rel="stylesheet" type="text/css" href="css/ie7.css" />
 <![endif]-->
 <link rel="stylesheet" type="text/css" media="print" href="css/print.css" />
-
+<!--   JQUERY UI 1.8.18 - CSS   -->
+<link type="text/css" href="css/ui-lightness/jquery-ui-1.8.18.custom.css" rel="stylesheet" />
 <!--   JQUERY - Google Ajax API CDN (Also supports SSL via HTTPS)   -->
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
-<script type="text/javascript" src="js/jquery-ui-1.8.17.custom.min.js"></script>
+<script type="text/javascript" src="js/jquery_javascript_library_v1.7.1.js"></script>
+<!--   JQUERY UI 1.8.18   -->
+<script type="text/javascript" src="js/jquery-ui-1.8.18.custom.min.js"></script>
+<!--   JS GERAL   -->
 <script type="text/javascript" src="js/index.js"></script>
 
 </head>
@@ -35,7 +38,7 @@
         <ul id="top_menu_items">
           <li><a href="#" id="project">O PROJETO</a></li>
           <li><a href="#" id="help">AJUDA</a></li>
-          <li><a href="#" id="contact">FALE CONOSCO</a></li>
+          <li><a href="#form_window" name="contact_us" title="Fale conosco" id="contact">FALE CONOSCO</a></li>
         </ul>
       
         <!--   MENU DE BUSCA   -->
@@ -46,10 +49,9 @@
           <!--   BARRA DE BUSCA   -->
           <input type="text" class="search_bar" name="search_bar_text" />
           <!--   BOTÃO DA BARRA DE BUSCA   -->
-          <input type="submit" class="search_bar_button cursor" value="" name="submit_search_button" />
+          <input type="button" class="search_bar_button cursor" value="" name="submit_search_button" />
           
           <a href="#" id="complete_search"></a>
-          
         </form>
       </div>
       <!--   FIM - MENU SUPERIOR   -->
@@ -62,11 +64,35 @@
 			<li><a href="#" id="messages" title="Você tem 19 mensagens">11</a></li>
 			<li><a href="#" id="users" title="Usuários">&nbsp;</a></li>
 			<li><a href="#" id="comunities" title="Comunidades">&nbsp;</a></li>
-			<li><a href="#" id="upload" title="Subir uma imagem">&nbsp;</a></li>
+			<li><a href="#form_window" name="modal" id="upload" title="Subir uma imagem">&nbsp;</a></li>
       	</ul>
         <a href="#" id="user_name">Homer J. Simpson</a>
       </div>
-      <!--   FIM - ÁREA DE LOGIN / CADASTRO   -->         
+      <!--   FIM - ÁREA DE LOGIN / CADASTRO   -->
+      <div id="complete_search_bar">
+        <script type="text/javascript">
+          $(function(){
+	        //Datepicker
+	        $(function() {
+		    $( "#searchdate" ).datepicker();
+	      });
+        });
+      </script>
+        <label>Nome:</label>
+        <input type="text" name="nome">
+        &nbsp;
+        <label>Local:</label>
+        <input type="text" name="local">
+        &nbsp;
+        <label>Data:</label>
+        <input type="text" name="data" id="searchdate">
+        &nbsp;
+        <label>TAG:</label>
+        <input type="text" class="local" name="tag">
+        &nbsp;
+        <label>Autor:</label>
+        <input type="text" class="local" name="autor">
+      </div>
     </div>
     <!--   FIM - CABEÇALHO   -->
     <!--   MEIO DO SITE - ÁREA DE NAVEGAÇÃO   -->
