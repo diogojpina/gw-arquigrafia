@@ -49,6 +49,7 @@ import br.com.caelum.vraptor.view.Results;
 //import br.org.groupwareworkbench.collablet.coord.counter.Observer;
 import br.org.groupwareworkbench.collablet.coord.user.User;
 import br.org.groupwareworkbench.collablet.coord.user.UserMgrInstance;
+import br.org.groupwareworkbench.collablet.faq.Faq;
 import br.org.groupwareworkbench.core.framework.Collablet;
 import br.org.groupwareworkbench.core.framework.WidgetInfo;
 import br.org.groupwareworkbench.core.routing.GroupwareInitController;
@@ -92,6 +93,10 @@ public class PhotoController {
     @Get
     @Path(value = "/{photoInstance}/upload")
     public void upload(PhotoMgrInstance photoInstance) {
+        Photo p = new Photo();
+        p.setCollablet(photoInstance.getCollablet());
+        result.include("photo", p);
+        
         addIncludes(photoInstance);
     }
     

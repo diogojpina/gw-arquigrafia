@@ -27,14 +27,14 @@
         </c:if>
         <a class="${linkClass}" rel="linkimage" href="<c:url value="/groupware-workbench/photo/${foto.id}"/>">
             <img src="<c:url value="/photo/img-thumb/${foto.id}"/>?_log=no" />
-            <!-- alt="<c:out value="${foto.nome}" />"  --> 
+            <!-- alt="<c:out value="${foto.name}" />"  --> 
         </a>
         <c:if test="${showName || showLocation}">
             </div>
         </c:if>
         <c:if test="${showName}">
             <div class="${nameClass}">
-                <!-- <c:out value="${foto.nome}" /> -->
+                <!-- <c:out value="${foto.name}" /> -->
                 
             </div>
         </c:if>
