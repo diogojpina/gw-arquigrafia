@@ -304,7 +304,6 @@
         <dependency from="commentMgr" to="photoMgr" />
         <dependency from="geoReferenceMgr" to="photoMgr" />
         <dependency from="tagMgr" to="photoMgr" />
-        <dependency from="tagMgr" to="arquigrafiaMgr" />
         <dependency from="photoMgr" to="tagMgr" />
         <!--<dependency from="uploadMgr" to="photoMgr" />-->
         <dependency from="binomialMgr" to="photoMgr" />

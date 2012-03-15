@@ -46,7 +46,7 @@
 		$('#contact').click(function(){
 			$('#mask').fadeIn('fast');
 			$('#form_window').fadeIn('slow');
-			$('#registration').load('<c:url value="/${arquigrafiaInstance.id}/contact" />');	
+			$('#registration').load('<c:url value="/${arquigrafiaMgr.id}/contact" />');	
 			form_window_loaded = true;
 		});
 

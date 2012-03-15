@@ -29,7 +29,7 @@
         </c:if>
         <c:if test="${showName}">
             <div class="${nameClass}">
-                <c:out value="${foto.nome}" />
+                <!-- <c:out value="${foto.nome}" /> -->
             </div>
         </c:if>
         <c:if test="${showLocation}">

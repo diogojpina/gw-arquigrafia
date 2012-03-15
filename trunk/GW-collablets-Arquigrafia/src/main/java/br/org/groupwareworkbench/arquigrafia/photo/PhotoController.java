@@ -20,6 +20,8 @@
  */
 package br.org.groupwareworkbench.arquigrafia.photo;
 
+import static br.com.caelum.vraptor.view.Results.logic;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -49,6 +51,7 @@ import br.org.groupwareworkbench.collablet.coord.user.User;
 import br.org.groupwareworkbench.collablet.coord.user.UserMgrInstance;
 import br.org.groupwareworkbench.core.framework.Collablet;
 import br.org.groupwareworkbench.core.framework.WidgetInfo;
+import br.org.groupwareworkbench.core.routing.GroupwareInitController;
 
 @RequestScoped
 @Resource
@@ -104,7 +107,7 @@ public class PhotoController {
     }
 
     @Get
-    @Path(value = "/groupware-workbench/photo/img-show/{idPhoto}")
+    @Path(value = "/photo/img-show/{idPhoto}")
     public Download imgShow(long idPhoto) {
         Photo photo = Photo.findById(idPhoto);
         if (photo == null) {
@@ -115,7 +118,7 @@ public class PhotoController {
     }
 
     @Get
-    @Path(value = "/groupware-workbench/photo/img-crop/{idPhoto}")
+    @Path(value = "/photo/img-crop/{idPhoto}")
     public Download imgCrop(long idPhoto) {
         Photo photo = Photo.findById(idPhoto);
         if (photo == null) {
@@ -126,7 +129,7 @@ public class PhotoController {
     }
 
     @Get
-    @Path(value = "/groupware-workbench/photo/img-original/{idPhoto}")
+    @Path(value = "/photo/img-original/{idPhoto}")
     public Download imgOriginal(long idPhoto) {
         Photo photo = Photo.findById(idPhoto);
         if (photo == null) {
@@ -333,7 +336,8 @@ public class PhotoController {
         } else {
             addIncludes(photoInstance);
             result.include("successMessage", MSG_SUCCESS);
-            result.use(Results.logic()).redirectTo(PhotoController.class).registra(photoInstance, new Photo());
+            result.use(logic()).redirectTo(GroupwareInitController.class).init();
+            //result.use(Results.logic()).redirectTo(PhotoController.class).registra(photoInstance, new Photo());
         }
     }
 

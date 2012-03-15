@@ -4,6 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="arquigrafia" uri="http://www.groupwareworkbench.org.br/widgets/arquigrafia" %>
 <%@ taglib prefix="s" uri="http://www.groupwareworkbench.org.br/widgets/security" %>
+<%@ taglib prefix="p" uri="http://www.groupwareworkbench.org.br/widgets/photomanager" %>
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 
@@ -25,7 +26,7 @@
     <!--   MEIO DO SITE - ÁREA DE NAVEGAÇÃO   -->
     <div id="content">
       <!--   PAINEL DE IMAGENS - GALERIA - CARROSSEL   -->
-      <arquigrafia:wall arquigrafiaInstance="${arquigrafiaMgr}" />
+      <arquigrafia:wall photoInstance="${photoMgr}" columns="3" amount="15" />
       <!--   FIM - PAINEL DE IMAGENS  -->
 
       <!--   ÁREA DE TAGS   -->
@@ -55,18 +56,5 @@
     <!--   FIM - MODAL   -->
   </div>
   <!--   FIM - CONTAINER   -->
-  
-  <s:check name="X-X-usuario">
-    <h1> Usuário ID ${sessionScope.userLogin.id} </h1> 
-  </s:check>
-  <s:check name="X-X-admin">
-    <h1> Administrador ID ${sessionScope.userLogin.id}</h1> 
-  </s:check>  
-  <s:n-check name="X-X-usuario">
-    <h1> Não é Usuário -  Guest ID ${sessionScope.userLogin.id}</h1> 
-  </s:n-check>
-  <s:n-check name="X-X-admin">
-    <h1> Não é Administrador - Guest ID ${sessionScope.userLogin.id}</h1> 
-  </s:n-check>
 </body>
 </html>

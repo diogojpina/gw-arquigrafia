@@ -26,10 +26,10 @@
         <a class="${linkClass}" rel="linkimage" href="<c:url value="/groupware-workbench/photo/${fotoA.id}" />">
             <c:choose>
                 <c:when test="${keepRatio}">
-                    <img src="<c:url value="/groupware-workbench/photo/img-thumb/${fotoA.id}"/>?_log=no" />
+                    <img src="<c:url value="/photo/img-thumb/${fotoA.id}"/>?_log=no" />
                 </c:when>
                 <c:otherwise>
-                    <img src="<c:url value="/groupware-workbench/photo/img-crop/${fotoA.id}"/>?_log=no" />
+                    <img src="<c:url value="/photo/img-crop/${fotoA.id}"/>?_log=no" />
                 </c:otherwise>
             </c:choose>
         </a>

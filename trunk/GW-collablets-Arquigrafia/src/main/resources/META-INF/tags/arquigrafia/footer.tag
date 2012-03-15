@@ -9,17 +9,17 @@
 	  <div id="credits">
         <!--   LOGOS   -->
 		<ul>
-          <li><a href="#" title="USP" id="usp"></a></li>
-		  <li><a href="#" title="FAPESP" id="fapesp"></a></li>
-		  <li><a href="#" title="" id="rnp"></a></li>
-		  <li><a href="#" title="" id="cnpq"></a></li>
-		  <li><a href="#" title="" id="fau"></a></li>
-		  <li><a href="#" title="" id="ime"></a></li>
-		  <li><a href="#" title="" id="eca"></a></li>
-		  <li><a href="#" title="" id="ccsl"></a></li>
-		  <li><a href="#" title="" id="vitruvius"></a></li>
-		  <li><a href="#" title="" id="benchmark"></a></li>
-		  <li><a href="#" title="" id="brz"></a></li>	
+          <li><a href="http://www.usp.br/" title="USP" id="usp"></a></li>
+		  <li><a href="http://www.fapesp.br/" title="FAPESP" id="fapesp"></a></li>
+		  <li><a href="http://www.rnp.br/" title="" id="rnp"></a></li>
+		  <li><a href="http://www.cnpq.br/" title="" id="cnpq"></a></li>
+		  <li><a href="http://www.usp.br/fau/" title="" id="fau"></a></li>
+		  <li><a href="http://www.ime.usp.br/" title="" id="ime"></a></li>
+		  <li><a href="http://www.eca.usp.br/" title="" id="eca"></a></li>
+		  <li><a href="http://ccsl.ime.usp.br/" title="" id="ccsl"></a></li>
+		  <li><a href="http://www.vitruvius.com.br/" title="" id="vitruvius"></a></li>
+		  <li><a href="http://www.bench.com.br/" title="" id="benchmark"></a></li>
+		  <li><a href="http://www.brzcomunicacao.com.br/" title="" id="brz"></a></li>	
         </ul>
 		<!--   COPYRIGHT   -->
 	    <p id="copyright"><small>Arquigrafia - 2012 - Some Rights Reserved</small></p>

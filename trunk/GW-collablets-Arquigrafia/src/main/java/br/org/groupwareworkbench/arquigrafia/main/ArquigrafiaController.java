@@ -54,29 +54,33 @@ public class ArquigrafiaController {
     @Get
     @Path(value = "/{arquigrafiaInstance}/")
     public void index(ArquigrafiaMgrInstance arquigrafiaInstance) {
+        result.include("arquigrafiaMgr", arquigrafiaInstance);
         addIncludes(arquigrafiaInstance);
     }
 
     @Get
     @Path(value = "/{arquigrafiaInstance}/project")
     public void project(ArquigrafiaMgrInstance arquigrafiaInstance) {
+        result.include("arquigrafiaMgr", arquigrafiaInstance);
         addIncludes(arquigrafiaInstance);
     }
 
     @Get
     @Path(value = "/{arquigrafiaInstance}/help")
     public void help(ArquigrafiaMgrInstance arquigrafiaInstance) {
+        result.include("arquigrafiaMgr", arquigrafiaInstance);
         addIncludes(arquigrafiaInstance);
     }
     
     @Get
     @Path(value = "/{arquigrafiaInstance}/contact")
     public void contact(ArquigrafiaMgrInstance arquigrafiaInstance) {
+        result.include("arquigrafiaMgr", arquigrafiaInstance);
         addIncludes(arquigrafiaInstance);
     }
     
     private void addIncludes(ArquigrafiaMgrInstance arquigrafiaInstance) {
-        result.include("arquigrafiaInstance", arquigrafiaInstance);
+        result.include("arquigrafiaMgr", arquigrafiaInstance);
         arquigrafiaInstance.getCollablet().includeDependencies(result);
     }
 
@@ -85,6 +89,7 @@ public class ArquigrafiaController {
     public void single_avaliation(ArquigrafiaMgrInstance arquigrafiaInstance, Long idPhoto) {
         Photo foto = Photo.findById(idPhoto);
         result.include("photo", foto);
+        result.include("arquigrafiaMgr", arquigrafiaInstance);
         addIncludes(arquigrafiaInstance);
     }
 
@@ -92,7 +97,8 @@ public class ArquigrafiaController {
     @Path(value = "/{arquigrafiaInstance}/photo/{idPhoto}")
     public void single(ArquigrafiaMgrInstance arquigrafiaInstance, Long idPhoto) {
         Photo photo = Photo.findById(idPhoto);
-        result.include("foto", photo);
+        result.include("photo", photo);
+        result.include("arquigrafiaMgr", arquigrafiaInstance);
         addIncludes(arquigrafiaInstance);
     }
 }

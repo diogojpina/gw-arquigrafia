@@ -164,15 +164,15 @@ public class Photo implements Serializable {
     }
 
     public FileDownload downloadImgCrop() {
-        return makeDownload(getInstance().getCropPrefix());
+        return makeDownload("_panel.jpg");
     }
 
     public FileDownload downloadImgShow() {
-        return makeDownload(getInstance().getMostraPrefix());
+        return makeDownload("_view.jpg");
     }
 
     public FileDownload downloadImgOriginal() {
-        return makeDownload("");
+        return makeDownload("_original.jpg");
     }
 
     public File getImgThumb() {
