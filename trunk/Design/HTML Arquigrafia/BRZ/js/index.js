@@ -6,35 +6,35 @@ $(document).ready(function(){
 	$('#registration_button').click(function(){
 		$('#mask').fadeIn('fast');
 		$('#form_window').fadeIn('slow');
-		if (!form_window_loaded) $('#registration').load('modal/signup.html');	
+		if (!form_window_loaded) $('#modal_box').load('modal/signup.html');	
 		form_window_loaded = true;
 	});
 	
 	$('#upload').click(function(){
 		$('#mask').fadeIn('fast');
 		$('#form_window').fadeIn('slow');
-		if (!form_window_loaded) $('#registration').load('modal/upload.html');	
+		if (!form_window_loaded) $('#modal_box').load('modal/upload.html');	
 		form_window_loaded = true;
 	});
 	
 	$('#upload_bar').click(function(){
 		$('#mask').fadeIn('fast');
 		$('#form_window').fadeIn('slow');
-		if (!form_window_loaded) $('#registration').load('modal/upload_bar.html');	
+		if (!form_window_loaded) $('#modal_box').load('modal/upload_bar.html');	
 		form_window_loaded = true;
 	});
 	
 	$('#contact').click(function(){
 		$('#mask').fadeIn('fast');
 		$('#form_window').fadeIn('slow');
-		if (!form_window_loaded) $('#registration').load('modal/contact_us.html');	
+		if (!form_window_loaded) $('#modal_box').load('modal/contact_us.html');	
 		form_window_loaded = true;
 	});
 	
 	$('#login_button').click(function(){
 		$('#mask').fadeIn('fast');
 		$('#form_window').fadeIn('slow');
-		if (!form_window_loaded) $('#registration').load('modal/login.html');	
+		if (!form_window_loaded) $('#modal_box').load('modal/login.html');	
 		form_window_loaded = true;
 	});
 	

@@ -89,9 +89,13 @@ a#complete_search:hover { background-position:-367px -32px; }
 
 /* busca avançada */
 #complete_search_bar { display:none; width:1000px; height:20px; float:left; margin: 10px 0;}
-#complete_search_bar label { float:left; line-height:20px; margin: 0 10px;}
-#complete_search_bar input { display:block; width:109px; height:20px; line-height:20px; padding: 0 3px; background:url(../img/icons_sprite.png) -651px -79px; float:left;}
+#complete_search_bar label { float:left; line-height:20px; margin: 0 10px; font-size:9px}
+#complete_search_bar input.text { display:block; width:109px; height:20px; line-height:20px; padding: 0 3px; background:url(../img/icons_sprite.png) -651px -79px; float:left;}
+#complete_search_bar input.submit { display:block; width:58px; height:20px; line-height:20px; margin: 0 0 0 20px; background:url(../img/icons_sprite.png) -23px -238px; float:left;}
+#complete_search_bar input.submit:hover { background:url(../img/icons_sprite.png) -23px -259px; cursor:pointer;}
 
+/* calendário */
+.ui-widget-header { background:none #CB9833 !important; border:1px solid #CB9833 !important;}
 
 /* --- PÁGINA INICIAL --- */
 
@@ -331,14 +335,14 @@ a.google,
 a.facebook,
 a.twitter{ display:block; width:20px; height:20px;}
 
-a.delicious { background:url(../img/icons_sprite.png) 0px -145px;}
-a.delicious:hover{ background-position:0px -166px; }
-a.google { background:url(../img/icons_sprite.png) -21px -145px;}
-a.google:hover { background-position:-21px -166px;}
-a.facebook { background:url(../img/icons_sprite.png) -42px -145px;}
-a.facebook:hover { background-position:-42px -166px;}
-a.twitter { background:url(../img/icons_sprite.png) -63px -145px;}
-a.twitter:hover { background-position:-63px -166px;}
+a.delicious { background:url(../img/icons_sprite.png) 0px -166px;}
+a.delicious:hover{ background-position:0px -145px; }
+a.google { background:url(../img/icons_sprite.png) -21px -166px;}
+a.google:hover { background-position:-21px -145px;}
+a.facebook { background:url(../img/icons_sprite.png) -42px -166px;}
+a.facebook:hover { background-position:-42px -145px;}
+a.twitter { background:url(../img/icons_sprite.png) -63px -166px;}
+a.twitter:hover { background-position:-63px -145px;}
 
 
 /*Avaliação e média de avaliação - sidebar*/
@@ -428,7 +432,7 @@ a#gallery_photo { margin: 0 5px 0 0;}
 .progressbar { width:518px; float:left;}
 .url_bar { width:490px; float:left;}
 #select_button { width:73px; height:20px; background:url(../img/icons_sprite.png) -280px -195px no-repeat; border:0px !important; margin: 3px 0px !important; float:right;}
-#select_button:hover { background:url(../img/icons_sprite.png) -280px -215px no-repeat; cursor:pointer;}
+#select_button:hover { background:url(../img/icons_sprite.png) -280px -216px no-repeat; cursor:pointer;}
 #state_selector { margin: 0 0 0 26px;}
 #upload_form textarea { width:123px; height:60px;}
 

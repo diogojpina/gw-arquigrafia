@@ -74,24 +74,26 @@
           $(function(){
 	        //Datepicker
 	        $(function() {
-		    $( "#searchdate" ).datepicker();
-	      });
-        });
-      </script>
+		      $( "#searchdate" ).datepicker();
+	        });
+          });
+        </script>
         <label>Nome:</label>
-        <input type="text" name="nome">
+        <input type="text" name="nome" class="text" />
         &nbsp;
         <label>Local:</label>
-        <input type="text" name="local">
+        <input type="text" name="local" class="text" />
         &nbsp;
         <label>Data:</label>
-        <input type="text" name="data" id="searchdate">
+        <input type="text" name="data" id="searchdate" class="text" />
         &nbsp;
         <label>TAG:</label>
-        <input type="text" class="local" name="tag">
+        <input type="text" name="tag" class="text" />
         &nbsp;
         <label>Autor:</label>
-        <input type="text" class="local" name="autor">
+        <input type="text" name="autor" class="text" />
+        &nbsp;
+        <input type="submit" value="" class="submit" name="enviar" />
       </div>
     </div>
     <!--   FIM - CABEÇALHO   -->
@@ -235,8 +237,8 @@
     <div id="form_window"> 
       <!-- ÁREA DE LOGIN - JANELA MODAL --> 
       <a class="close" href="#" title="FECHAR"></a>
-      <form id="registration" name="registration" action="">
-      </form>
+      <div id="modal_box">
+      </div>
     </div>
     <!--   FIM - MODAL   -->
   </div>
