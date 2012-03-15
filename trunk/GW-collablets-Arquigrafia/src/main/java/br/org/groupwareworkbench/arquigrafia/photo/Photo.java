@@ -241,6 +241,8 @@ public class Photo implements Serializable {
                 new GWImage(originalCopy).blur(7).doTheBestYouCanToFitOnRectangle(170, 117).save(panelFileName);
                 if(new GWImage(originalCopy).getWidth() > 600)
                     new GWImage(originalCopy).scaleToWidth(600).save(viewFileName);
+                else
+                    new GWImage(originalCopy).save(viewFileName);
             }
             catch (Throwable t) {
                 t.printStackTrace();
