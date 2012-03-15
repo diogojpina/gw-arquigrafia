@@ -93,13 +93,14 @@
 			</c:choose>
         
 			<a href="#" id="small">Trocar fotografia</a>
-			
-			<friends:friendsRequests style="width: 475px;"
+			<c:if test="${friend.id == userLogin.id}">
+				<friends:friendsRequests style="width: 475px;"
                         user="${userLogin}"
                         friendsMgr="${friendsMgr}"
                         afterRejectFunction="refreshFriendsPage"
                         afterAcceptFunction="refreshFriendsPage"
                         friendsHeader="friends_header" />
+            </c:if>
         	<!--   EVENTOS   -->
         	<h3>Eventos</h3>
         	<!--   BOX - EVENTOS   -->
@@ -117,7 +118,7 @@
 		<c:if test="${profileMgr.collablet.enabled}">
 	      	<profile:showProfile profileMgr="${profileMgr}" user="${friend}" />
         </c:if>
-      
+        
 		<!--   BARRA LATERAL - DIREITA   -->
 		<div id="right_sidebar">
         
