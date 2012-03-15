@@ -1,31 +1,22 @@
 <%@ tag body-content="empty" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="s" uri="http://www.groupwareworkbench.org.br/widgets/security" %>
+<%@ taglib prefix="r" uri="http://www.groupwareworkbench.org.br/taglibs/reflection" %>
+<%@ taglib prefix="tag" uri="http://www.groupwareworkbench.org.br/widgets/tag" %>
 
-<%@ attribute name="arquigrafiaInstance" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.arquigrafia.main.ArquigrafiaMgrInstance" %>
+<%@ attribute name="tagMgr" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.collablet.communic.tag.TagMgrInstance" %>
 
-
-      <!--   ÁREA DE TAGS   -->
-      <div class="tags_cloud">
-		<ul>
-		  <li><a href="#" class="C">Berço</a></li>
-		  <li><a href="#" class="C">Arejador</a></li>
-          <li><a href="#" class="C">Aterro sanitário</a></li>
-	      <li><a href="#" class="C">Taipa de Pilão</a></li>
-		  <li><a href="#" class="C">Modilbão</a></li><br />
-		  <li><a href="#" class="B">Aterro sanitário</a></li>
-		  <li><a href="#" class="B">Coluna</a></li>
-          <li><a href="#" class="B">Aterro sanitário</a></li>
-		  <li><a href="#" class="B">Taipa de Pilão</a></li>
-		  <li><a href="#" class="B">Imposta</a></li>
-		  <li><a href="#" class="B">Parede Trombe</a></li><br />
-		  <li><a href="#" class="A">Coletor Solar</a></li>
-          <li><a href="#" class="A">Domo</a></li>
-	      <li><a href="#" class="A">Taipa de Pilão</a></li>
-		  <li><a href="#" class="A">Laminado de madeira</a></li>
-		  <li><a href="#" class="A">Voluta</a></li>
-		  <li><a href="#" class="A">Cúpula</a></li>
-		  <li><a href="#" class="A">Hipogeu</a></li>
-	    </ul>
-      </div>
-      <!--   FIM - ÁREA DE TAGS   -->
+<c:set var="tags" value="${tagMgr.listByFrequency}" />
+<c:set var="nValue" value="${tag:normalizedAssignments(10, tags)}" />
+<c:set var="count" value="0" />
+<!--   ÁREA DE TAGS   -->
+<div class="tags_cloud">
+	<ul>
+    <c:forEach var="tag" items="${tags}">
+    	<c:if test="${count<=4}"><li><a href="<c:url value="/groupware-workbench/tags/${tag.id}" />" class="C"><c:out value="${tag.name}" /></a></li></c:if>
+    	<c:if test="${4<count && count<=11}"><li><a href="<c:url value="/groupware-workbench/tags/${tag.id}" />" class="B"><c:out value="${tag.name}" /></a></li></c:if>
+    	<c:if test="${11<count && count<=21}"><li><a href="<c:url value="/groupware-workbench/tags/${tag.id}" />" class="A"><c:out value="${tag.name}" /></a></li></c:if>
+    	<c:if test="${count==4 || count==11}"><br/></c:if>
+        <c:set var="count" value="${count + 1}" />
+    </c:forEach>
+    </ul>
+</div>
