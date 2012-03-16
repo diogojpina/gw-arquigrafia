@@ -112,33 +112,33 @@ a#creative_commons{ background:url(../img/icons_sprite.png) no-repeat 110px -240
 .images_column { width:191px; float:left; }
 
 /* coluna 1 */
-#img_01{ 
+#img_1{ 
 	        transform: matrix(1.04,0.04,0,1.03,-5,-9); -webkit-transform: matrix(1.04,0.04,0,1.03,-5,-9); 
 	   -moz-transform: matrix(1.04,0.04,0,1.03,-5,-9); 		-o-transform: matrix(1.04,0.04,0,1.03,-5,-9);
         -ms-transform: matrix(1.04,0.04,0,1.03,-5,-9);
 }
-#img_02{
+#img_2{
 	        transform: matrix(1.04,0.0,0.0,1.04,-5,0); -webkit-transform: matrix(1.04,0.0,0.0,1.04,-5,0); 
 	   -moz-transform: matrix(1.04,0.0,0.0,1.04,-5,0);      -o-transform: matrix(1.04,0.0,0.0,1.04,-5,0);
         -ms-transform: matrix(1.04,0.0,0.0,1.04,-5,0); 
 }
-#img_03{
+#img_3{
 	        transform: matrix(1.04,-0.04,0,1.03,-5,9); -webkit-transform: matrix(1.04,-0.04,0,1.03,-5,9); 
 	   -moz-transform: matrix(1.04,-0.04,0,1.03,-5,9);      -o-transform: matrix(1.04,-0.04,0,1.03,-5,9);
         -ms-transform: matrix(1.04,-0.04,0,1.03,-5,9); 
 }
 /* coluna 2 */
-#img_04{
+#img_4{
 	        transform: matrix(1.02,0.03,0,1.02,0,-2); -webkit-transform: matrix(1.02,0.03,0,1.02,0,-2); 
 	   -moz-transform: matrix(1.02,0.03,0,1.02,0,-2); 		o-transform: matrix(1.02,0.03,0,1.02,0,-2);
         -ms-transform: matrix(1.02,0.03,0,1.02,0,-2);
 }
-#img_05{
+#img_5{
 	        transform: matrix(1.02,0.0,0.0,1.02,0,0); -webkit-transform: matrix(1.02,0.0,0.0,1.02,0,0); 
 	   -moz-transform: matrix(1.02,0.0,0.0,1.02,0,0);      -o-transform: matrix(1.02,0.0,0.0,1.02,0,0);
         -ms-transform: matrix(1.02,0.0,0.0,1.02,0,0);
 }
-#img_06{
+#img_6{
 	        transform: matrix(1.02,-0.03,0,1.02,0,2); -webkit-transform: matrix(1.02,-0.03,0,1.02,0,2); 
 	   -moz-transform: matrix(1.02,-0.03,0,1.02,0,2);      -o-transform: matrix(1.02,-0.03,0,1.02,0,2);
         -ms-transform: matrix(1.02,-0.03,0,1.02,0,2);

@@ -5,7 +5,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta http-equiv="Cache-Control" content="no-cache">
-        <title>Entrance page</title>
+        <title>Arquigrafia - Seu universo de imagens de arquitetura</title>
         <script type="text/javascript">
             window.document.location = "groupware-workbench";
         </script>

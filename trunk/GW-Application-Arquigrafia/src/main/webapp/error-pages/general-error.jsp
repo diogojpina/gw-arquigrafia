@@ -9,21 +9,12 @@
         <title>Erro...</title>
     </head>
     <body>
-        <h1>Aconteceu um erro.</h1>
-        <p>Esta é a versão alfa do Arquigrafia-Brasil, ela esta em desenvolvimento e alguns erros podem acontecer.</p>
-        <p>Sua ajuda é muito importante para o projeto. Envie um e-mail informando as ações executadas que causaram o erro para <strong>arquigrafiabrasil@gmail.com</strong>.</p>
-        <p>Obrigado pela sua colaboração, iremos corrigir o problema assim que possível!</p>
-        <pre><%--
-            --%><!--<c:set var="cause" value="${pageContext.exception}" />--><%--
-             --%><!--<c:forEach begin="1" end="10">--><%--
-                 --%><!--<c:if test="${cause != null}">--><%--
-                     --%><!--<c:out value="${cause}" />--><%--
-		             --%><!--<c:forEach items="${cause.stackTrace}" var="stackTraceElement">--><%--
-		                 --%><!--<c:out value="${stackTraceElement}" />--><%--
-		             --%><!--</c:forEach>--><%--
-		             --%><!--<c:set var="cause" value="${cause.cause}" />--><%--
-		         --%><!--</c:if>--><%--
-	         --%><!--</c:forEach>--><%--
-         --%></pre>
+    	<h1>Aconteceu um erro.</h1>
+    	
+    	<p>Esta é a versão Beta 2012 do Arquigrafia-Brasil, em fase de implementação, e alguns erros podem acontecer.</p>
+
+		<p>Sua ajuda é muito importante para o projeto. Envie um e-mail informando as ações executadas que causaram o erro para <a href="mailto:arquigrafiabrasil@gmail.com">arquigrafiabrasil@gmail.com.</a></p>
+
+		<p>Obrigado por sua colaboração, e iremos corrigir o problema assim que possível!</p>
     </body>
 </html>
