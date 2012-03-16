@@ -1,58 +1,32 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="w" uri="http://www.groupwareworkbench.org.br/widgets/commons" %>
-<%@ taglib prefix="photo" uri="http://www.groupwareworkbench.org.br/widgets/photomanager" %>
-<%@ taglib prefix="arq" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="arquigrafia" uri="http://www.groupwareworkbench.org.br/widgets/arquigrafia" %>
+<%@ taglib prefix="s" uri="http://www.groupwareworkbench.org.br/widgets/security" %>
+<%@ taglib prefix="p" uri="http://www.groupwareworkbench.org.br/widgets/photomanager" %>
 
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta http-equiv="Cache-Control" content="no-cache">
-        <title>Arquigrafia Brasil - Busca por tags</title>
-        <link rel="shortcut icon" type="image/x-icon" href="<c:url value="/images/favicon.ico" />"/>
-        <link rel="stylesheet" type="text/css" href="<c:url value="/css/reset.css" />"/>
-        <link rel="stylesheet" type="text/css" href="<c:url value="/css/arq-common.css" />"/>
-        <link rel="stylesheet" type="text/css" href="<c:url value="/css/header.css" />"/>
-        <link rel="stylesheet" type="text/css" href="<c:url value="/css/search.css" />"/>
-        <link rel="stylesheet" type="text/css" href="<c:url value="/css/forms.css" />"/>
-        <link rel="stylesheet" type="text/css" media="screen" href="<c:url value="/plugins/sds/css/smoothDivScroll.css" />"/>
-        <link rel="stylesheet" type="text/css" media="screen" href="<c:url value="/css/bay.css" />"/>
-        <link rel="stylesheet" type="text/css" media="screen" href="<c:url value="/css/tagcloud.css" />"/>
-        <link rel="stylesheet" type="text/css" media="screen" href="<c:url value="/css/footer.css" />"/>
-        <link rel="stylesheet" type="text/css" media="screen" href="<c:url value="/css/jquery.css" />"/>
-        <script type="text/javascript" src="<c:url value="/js/jquery.js"/>"></script>
-        <script type="text/javascript" src="<c:url value="/js/jquery-ui.js"/>"></script>
-        <script type="text/javascript" src="<c:url value="/plugins/sds/js/jquery.smoothDivScroll-0.9-min.js"/>"></script>
-        <script type="text/javascript" src="<c:url value="/plugins/sds/js/scroll.js"/>"></script>
-        <script type="text/javascript" src="<c:url value="/js/jquery.boxy.js"/>"></script>
-       <script type="text/javascript">
-            $(document).ready(function() {
-                $("div#makeMeScrollable").smoothDivScroll({
-                    scrollingSpeed: 12,
-                    mouseDownSpeedBooster: 3,
-                    visibleHotSpots: "always",
-                    startAtElementId: "startAtMe"
-                });
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 
-                $("div#makeMeScrollable2").smoothDivScroll({
-                    scrollingSpeed: 12,
-                    mouseDownSpeedBooster: 3,
-                     visibleHotSpots: "always",
-                    startAtElementId: "startAtMe"
-                });
-            });
-        </script>
-        <script src="<c:url value="/js/chili-1.7.pack.js"/>" type="text/javascript"></script>
-        <script src="<c:url value="/js/jquery.easing.js"/>" type="text/javascript"></script>
-        <script src="<c:url value="/js/jquery.dimensions.js"/>" type="text/javascript"></script>
-        <script src="<c:url value="/js/jquery.accordion.js"/>" type="text/javascript"></script>
-        <script src="<c:url value="/js/bay.js"/>" type="text/javascript"></script>
-     </head>
-     <body>
-         <arq:header2 photoInstance="${photoMgr}" />
-         <div id="search_statistics">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Arquigrafia - Seu universo de imagens de arquitetura</title>
+<arquigrafia:includes arquigrafiaInstance="${arquigrafiaMgr}" />
+
+</head>
+
+<body>
+  <!--   CONTAINER   -->
+  <div id="container">
+  
+  <!--   CABEÇALHO   -->
+    <arquigrafia:header arquigrafiaInstance="${arquigrafiaMgr}" />
+
+    <!--   MEIO DO SITE - ÁREA DE NAVEGAÇÃO   -->
+    <div id="content">
+      <!--   PAINEL DE IMAGENS - GALERIA - CARROSSEL   -->
+
              <span id="resultTerm">Voc&ecirc; buscou por objetos com a tag: <c:out value="${tag.name}" /></span>
              <span id="resultCount"> (<c:out value="${tag.size}" /> resultados)</span>
              <br/>
@@ -62,16 +36,33 @@
              </c:forEach>
          </div>
          <br />
-         <div id="search_refinement">
-             <img src="${pageContext.request.contextPath}/images/filtragem.png" alt="" />
-         </div>
          <div id="search_scroll">
-             <photo:searchByTag photoInstance="${photoMgr}" idList="${tag.taggedObjects}" showName="true" showLocation="false" lineClass="search_line" />
+             <p:searchByTag photoInstance="${photoMgr}" idList="${tag.taggedObjects}" />
          </div>
-         <div style="height: 30px; clear: both"></div>
-         <div>
-             <div style="height: 30px; background-color: #fff"></div>
-             <arq:footer photoInstance="${photoMgr}" />
-         </div>
-     </body>
-</html>
+
+         
+    <!--   FIM - MEIO DO SITE   -->
+    <!--   FUNDO DO SITE   -->
+    <div id="footer">
+	  <!--   BARRA DE ABAS   -->
+	  <arquigrafia:tabs arquigrafiaInstance="${arquigrafiaMgr}" />
+	  <!--   FIM - BARRA DE IMAGENS - (RODAPÉ)   -->
+	  
+	  
+	  <!--   CRÉDITOS - LOGOS   -->
+      <arquigrafia:footer arquigrafiaInstance="${arquigrafiaMgr}" />
+    </div>
+    <!--   FIM - FUNDO DO SITE   -->
+    <!--   MODAL   -->
+    <div id="mask"></div>
+    <div id="form_window"> 
+      <!-- ÁREA DE LOGIN - JANELA MODAL --> 
+      <a class="close" href="#" title="FECHAR"></a>
+      <div id="registration">
+      </div>
+    </div>
+    <!--   FIM - MODAL   -->
+  </div>
+  <!--   FIM - CONTAINER   -->
+</body>
+</html>         

@@ -21,15 +21,15 @@
         <c:if test="${showName || showLocation}">
             <div>
         </c:if>
-        <a class="${linkClass}" rel="linkimage" href="<c:url value="/groupware-workbench/photo/${foto.id}"/>">
-            <img src="<c:url value="/groupware-workbench/photo/img-thumb/${foto.id}"/>?_log=no" />
+        <a  class="search_image" rel="linkimage" href="<c:url value="/16/photo/${foto.id}"/>">
+            <img src="<c:url value="/photo/img-thumb/${foto.id}"/>?_log=no" />
         </a>
         <c:if test="${showName || showLocation}">
             </div>
         </c:if>
         <c:if test="${showName}">
             <div class="${nameClass}">
-                <!-- <c:out value="${foto.nome}" /> -->
+                <c:out value="${foto.name}" />
             </div>
         </c:if>
         <c:if test="${showLocation}">

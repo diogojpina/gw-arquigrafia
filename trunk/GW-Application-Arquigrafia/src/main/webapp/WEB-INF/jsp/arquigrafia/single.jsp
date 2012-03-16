@@ -32,7 +32,7 @@
 				<div id="single_view_block">
 					<!--   NOME / STATUS DA FOTO   -->
 					<div id="single_view_header">
-						<h1>Imagem de teste</h1>
+						<h1><c:out value="${photo.name}"/></h1>
 						<ul id="single_view_image_rating" class="right">
 							<li id="graph"></li>
 							<li><small>312</small></li>
@@ -135,16 +135,10 @@
 						Adicionar contato</a><br />
 				</div>
 				<!--   FIM - USUARIO   -->
-				<h3>Equipamento:</h3>
-				<p>Lorem ipsum dolor sit amet</p>
+				<!-- <h3>Equipamento:</h3>
+				<p>Lorem ipsum dolor sit amet</p> -->
 				<h3>Descrição:</h3>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-					Nulla laoreet purus et neque sagittis et pretium turpis euismod.
-					Pellentesque habitant morbi tristique senectus et netus et
-					malesuada fames ac turpis egestas. Curabitur blandit mollis eros, a
-					dictum mauris laoreet in. Curabitur ultricies aliquet ante, ac
-					iaculis orci consectetur vel. In eu ipsum metus. Pellentesque
-					accumsan nisl nec eros cursus vehicula.</p>
+				<p><c:out value="${photo.description}"/></p>
 				<h3>Localização:</h3>
 				<p>
 					<iframe width="300" height="100" frameborder="0" scrolling="no"
@@ -160,12 +154,9 @@
 					<tag:getTags tagMgr="${tagMgr}" entity="${photo}" />
 				</p>
 				<h3>Licença:</h3>
-				<p>Lorem ipsum dolor sit amet</p>
-				<h3>Avaliação: ${arquigrafiaMgr.id} que coisa ${photo.id}</h3>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-					Nulla laoreet purus et neque sagittis et pretium turpis euismod.
-					Pellentesque habitant morbi tristique senectus et netus et
-					malesuada fames ac turpis egestas.</p>
+				<p><c:out value="${photo.copyRights}"/></p>
+				<h3>Avaliação:</h3>
+				<p>Avalie esta imagem de acordo com seus aspectos, compare também sua avaliação com as do outros usuários.</p>
 				<a
 					href="<c:url value="/${arquigrafiaMgr.id}/photo_avaliation/${photo.id}" />"
 					title="Avalie a foto" id="evaluate_button"></a> <a href="#"

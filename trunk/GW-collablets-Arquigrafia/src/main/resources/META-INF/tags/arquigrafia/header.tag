@@ -9,26 +9,25 @@
     <div id="header">
 	
 	  <!--   LOGO   -->
-      <a href="<c:url value="/${arquigrafiaMgr.id}/" />" id="logo"></a>
+      <a href="<c:url value="/16/" />" id="logo"></a>
       <!--   MENU SUPERIOR   -->
 	  <div id="first_menu">
         <!--   MENU INSTITUCIONAL   -->
         <ul id="top_menu_items">
-          <li><a href="<c:url value="/${arquigrafiaMgr.id}/project" />" id="project">O PROJETO</a></li>
-          <li><a href="<c:url value="/${arquigrafiaMgr.id}/help" />" id="help">AJUDA</a></li>
+          <li><a href="<c:url value="/16/project" />" id="project">O PROJETO</a></li>
+          <li><a href="<c:url value="/16/help" />" id="help">AJUDA</a></li>
           <li><a href="#" id="contact">FALE CONOSCO</a></li>
         </ul>
         <!--   FIM - MENU INSTITUCIONAL   -->
             
         <!--   MENU DE BUSCA   -->
-        <form action="" method="get" id="search_buttons_area">
-          
+        <form id="search_buttons_area" action="<c:url value="/photo/6/busca" />" method="post">
           <!--   BARRA DE BUSCA   -->
-          <input type="text" class="search_bar" name="search_bar_text" />
+          <input type="text" class="search_bar" name="busca" />
           <!--   BOTÃO DA BARRA DE BUSCA   -->
           <input type="submit" class="search_bar_button cursor" value="" name="submit_search_button" />
           <!--   BOTÃO DE BUSCA AVANÇADA   -->
-          <a href="#" id="complete_search"></a>
+          <!--  <a href="#" id="complete_search"></a> -->
         </form>
         <!--   FIM - MENU DE BUSCA   -->
       </div>
@@ -42,7 +41,7 @@
             <a href="#" name="modal-" id="login_button"></a>
         
             <!--   BOTÃO DE CADASTRO   -->
-            <a href="#" name="modal" id="registration_button"></a>
+            <!-- <a href="#" name="modal" id="registration_button"></a>  -->
           
           </div>
           <!--   FIM - ÁREA DE LOGIN / CADASTRO   -->
@@ -54,9 +53,9 @@
         <img src="<c:url value="/img/avatar.jpg" />" width="50" height="50" class="user_photo_thumbnail" />
         <a href="<c:url value="/users/${userMgr.id}/logout" />" id="logout">Sair</a><br />
 		 <ul id="logged_menu">
-        	   <li><a href="#" id="messages" title="Você tem 19 mensagens">11</a></li>
-			   <li><a href="#" id="users" title="Usuários">&nbsp;</a></li>
-			   <li><a href="#" id="comunities" title="Comunidades">&nbsp;</a></li>
+        	   <!-- <li><a href="#" id="messages" title="Você tem 19 mensagens">11</a></li>  -->
+			   <li> <a href=" <c:url value="/groupware-workbench/friends/10/show/${sessionScope.userLogin.id}" />" id="users" title="Usuários">&nbsp;</a></li>
+			   <!-- <li><a href="#" id="comunities" title="Comunidades">&nbsp;</a></li> -->
 			   <li><a href="#" name="modal" id="upload" title="Subir uma imagem">&nbsp;</a></li>
       	  </ul>
           <a href="#" id="user_name">${sessionScope.userLogin.name}</a>

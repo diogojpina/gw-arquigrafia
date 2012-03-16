@@ -9,7 +9,7 @@
         <title>Erro...</title>
     </head>
     <body>
-    	<h1>Aconteceu um erro.</h1>
+    	<p>Aconteceu um erro.</p>
     	
     	<p>Esta é a versão Beta 2012 do Arquigrafia-Brasil, em fase de implementação, e alguns erros podem acontecer.</p>
 

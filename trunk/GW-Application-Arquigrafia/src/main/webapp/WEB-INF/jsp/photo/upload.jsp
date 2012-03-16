@@ -29,11 +29,11 @@
     });
   </script>-->
   <h2>Upload</h2><br />
-  <h3>Selecione as imagens / pasta para fazer o upload:</h3>
+  <h3>Selecione a imagem para o upload:</h3>
   <br />
   <!-- AAMM --><input id="imageUpload" type="file" name="foto" value="" /><br /><!-- AAMM -->
-  <input type="url" class="url_bar" />
-  <input name="selecionar" type="submit" id="select_button" value="" /><br /><br />
+  <!-- <input type="url" class="url_bar" />
+  <input name="selecionar" type="submit" id="select_button" value="" /><br /><br />  -->
 </div><br />
 <div id="upload_form" action="#" method="get">
   <h3>Características (preenchimento opcional)</h3>
@@ -71,9 +71,9 @@
   <br />
   <label>TAGS:</label>
   <!-- <textarea name="tags" class="text"></textarea> -->
-  <tag:selectTags tagMgr="${tagMgr}" />
+  <!-- <tag:scriptTags />
+  <tag:selectTags tagMgr="${tagMgr}" /> -->
   <tag:setTags tagMgr="${tagMgr}" entity="${photo}" />
-  <tag:scriptTags />
   
   <label>Descrição:</label>
   <textarea name="photoRegister.description" class="text"></textarea>
