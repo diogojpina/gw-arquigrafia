@@ -12,12 +12,8 @@
 <link rel="stylesheet" type="text/css" href="css/ie7.css" />
 <![endif]-->
 <link rel="stylesheet" type="text/css" media="print" href="css/print.css" />
-<!--   JQUERY UI 1.8.18 - CSS   -->
-<link type="text/css" href="css/ui-lightness/jquery-ui-1.8.18.custom.css" rel="stylesheet" />
-<!--   JQUERY - Google Ajax API CDN (Also supports SSL via HTTPS)   -->
-<script type="text/javascript" src="js/jquery_javascript_library_v1.7.1.js"></script>
 <!--   JQUERY UI 1.8.18   -->
-<script type="text/javascript" src="js/jquery-ui-1.8.18.custom.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <!--   JS GERAL   -->
 <script type="text/javascript" src="js/index.js"></script>
 
@@ -66,6 +62,39 @@
       
       </div>
       <!--   FIM - ÁREA DE LOGIN / CADASTRO   -->
+	  
+	  <!--   ÁREA DE BUSCA AVANÇADA   -->
+      <div id="complete_search_bar">
+        <script type="text/javascript">
+          $(function(){
+	        //Datepicker
+	        $(function() {
+		      $( "#searchdate" ).datepicker();
+	        });
+          });
+        </script>
+		<form action="" method="get" id="advanced_search_area">
+		
+			<label><small>NOME:</small></label>
+			<input type="text" name="nome" class="text" />
+			&nbsp;
+			<label><small>LOCAL:</small></label>
+			<input type="text" name="local" class="text" />
+			&nbsp;
+			<label><small>DATA:</small></label>
+			<input type="text" name="data" id="searchdate" class="text" />
+			&nbsp;
+			<label><small>TAG:</small></label>
+			<input type="text" name="tag" class="text" />
+			&nbsp;
+			<label><small>AUTOR:</small></label>
+			<input type="text" name="autor" class="text" />
+			&nbsp;
+			<input type="submit" value="" class="submit" name="enviar" />
+		</form>
+		
+      </div>
+	  <!--   FIM - ÁREA DE BUSCA AVANÇADA   -->
             
     </div>
     <!--   FIM - CABEÇALHO   -->
@@ -164,23 +193,44 @@
       </ul>
 	  <!--   BARRA DE IMAGENS - (RODAPÉ)   -->
 	  <div class="footer_images">
-	    <!--   LINHA DE IMAGENS - (RODAPÉ)   -->
-		<div class="images_line">  
-		  <!--   SETAS DE NAVEGAÇÃO DAS FOTOS (RODAPÉ)-->
-		  <a href="#" id="arrow-left" class="arrows">&laquo;</a>
-		  <a href="#" id="arrow-right" class="arrows">&raquo;</a>
-		  <!--   IMAGENS - (RODAPÉ)   -->
-		  <a href="#" id="f_01" class="footer_image"><img src="img/photos/52926.jpg" width="105" height="72" alt="Foto 1"/></a>
-		  <a href="#" id="f_02" class="footer_image"><img src="img/photos/45044.jpg" width="105" height="72" alt="Foto 2"/></a>
-		  <a href="#" id="f_03" class="footer_image"><img src="img/photos/69363.jpg" width="105" height="72" alt="Foto 3"/></a>
-		  <a href="#" id="f_04" class="footer_image"><img src="img/photos/74618.jpg" width="105" height="72" alt="Foto 4"/></a>
-		  <a href="#" id="f_05" class="footer_image"><img src="img/photos/56665.jpg" width="105" height="72" alt="Foto 5"/></a>
-		  <a href="#" id="f_06" class="footer_image"><img src="img/photos/8806.jpg" width="105" height="72" alt="Foto 6"/></a>
-		  <a href="#" id="f_07" class="footer_image"><img src="img/photos/80213.jpg" width="105" height="72" alt="Foto 7"/></a>
-		  <a href="#" id="f_08" class="footer_image"><img src="img/photos/16777.jpg" width="105" height="72" alt="Foto 8"/></a>		
-	    </div>
-        <!--   FIM - LINHA DE IMAGENS - (RODAPÉ)   -->
-	  </div>
+	    
+		<!--   SETAS DE NAVEGAÇÃO DAS FOTOS (RODAPÉ)-->
+		<a href="#" id="arrow-left" class="arrows">&laquo;</a>
+		<a href="#" id="arrow-right" class="arrows">&raquo;</a>
+		
+		<!--  CONTAINER DAS IMAGENS - (RODAPÉ)  -->
+		<div id="images_container">
+		
+			<!--   LINHA DE IMAGENS - (RODAPÉ)   -->
+			<div class="images_line">  
+			  <!--   IMAGENS - (RODAPÉ)   -->
+			  <a href="#" id="f_01" class="footer_image"><img src="img/photos/52926.jpg" width="105" height="72" alt="Foto 1"/></a>
+			  <a href="#" id="f_02" class="footer_image"><img src="img/photos/45044.jpg" width="105" height="72" alt="Foto 2"/></a>
+			  <a href="#" id="f_03" class="footer_image"><img src="img/photos/69363.jpg" width="105" height="72" alt="Foto 3"/></a>
+			  <a href="#" id="f_04" class="footer_image"><img src="img/photos/74618.jpg" width="105" height="72" alt="Foto 4"/></a>
+			  <a href="#" id="f_05" class="footer_image"><img src="img/photos/56665.jpg" width="105" height="72" alt="Foto 5"/></a>
+			  <a href="#" id="f_06" class="footer_image"><img src="img/photos/8806.jpg" width="105" height="72" alt="Foto 6"/></a>
+			  <a href="#" id="f_07" class="footer_image"><img src="img/photos/80213.jpg" width="105" height="72" alt="Foto 7"/></a>
+			  <a href="#" id="f_08" class="footer_image"><img src="img/photos/16777.jpg" width="105" height="72" alt="Foto 8"/></a>	
+			  <a href="#" id="f_09" class="footer_image"><img src="img/photos/52926.jpg" width="105" height="72" alt="Foto 1"/></a>
+			  <a href="#" id="f_10" class="footer_image"><img src="img/photos/45044.jpg" width="105" height="72" alt="Foto 2"/></a>
+			  <a href="#" id="f_11" class="footer_image"><img src="img/photos/69363.jpg" width="105" height="72" alt="Foto 3"/></a>
+			  <a href="#" id="f_12" class="footer_image"><img src="img/photos/74618.jpg" width="105" height="72" alt="Foto 4"/></a>
+			  <a href="#" id="f_13" class="footer_image"><img src="img/photos/56665.jpg" width="105" height="72" alt="Foto 5"/></a>
+			  <a href="#" id="f_14" class="footer_image"><img src="img/photos/8806.jpg" width="105" height="72" alt="Foto 6"/></a>
+			  <a href="#" id="f_15" class="footer_image"><img src="img/photos/80213.jpg" width="105" height="72" alt="Foto 7"/></a>
+			  <a href="#" id="f_16" class="footer_image"><img src="img/photos/16777.jpg" width="105" height="72" alt="Foto 8"/></a>	
+			  <a href="#" id="f_17" class="footer_image"><img src="img/photos/52926.jpg" width="105" height="72" alt="Foto 1"/></a>
+			  <a href="#" id="f_18" class="footer_image"><img src="img/photos/45044.jpg" width="105" height="72" alt="Foto 2"/></a>
+			  <a href="#" id="f_19" class="footer_image"><img src="img/photos/69363.jpg" width="105" height="72" alt="Foto 3"/></a>
+			  <a href="#" id="f_20" class="footer_image"><img src="img/photos/74618.jpg" width="105" height="72" alt="Foto 4"/></a>
+			  <a href="#" id="f_21" class="footer_image"><img src="img/photos/56665.jpg" width="105" height="72" alt="Foto 5"/></a>
+			  <a href="#" id="f_22" class="footer_image"><img src="img/photos/8806.jpg" width="105" height="72" alt="Foto 6"/></a>
+			  <a href="#" id="f_23" class="footer_image"><img src="img/photos/80213.jpg" width="105" height="72" alt="Foto 7"/></a>
+			  <a href="#" id="f_24" class="footer_image"><img src="img/photos/16777.jpg" width="105" height="72" alt="Foto 8"/></a>		  
+			</div>
+		  </div>
+		 </div>
 	  <!--   FIM - BARRA DE IMAGENS - (RODAPÉ)   -->
 	  <!--   CRÉDITOS - LOGOS   -->
 	  <div id="credits">
