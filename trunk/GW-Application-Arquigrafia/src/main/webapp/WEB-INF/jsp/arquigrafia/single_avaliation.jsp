@@ -1,8 +1,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="arquigrafia" uri="http://www.groupwareworkbench.org.br/widgets/arquigrafia" %>
-<%@ taglib prefix="photo" uri="http://www.groupwareworkbench.org.br/widgets/photomanager" %>
+<%@ taglib prefix="s" uri="http://www.groupwareworkbench.org.br/widgets/security" %>
+<%@ taglib prefix="p" uri="http://www.groupwareworkbench.org.br/widgets/photomanager"%>
 <%@ taglib prefix="binomial" uri="http://www.groupwareworkbench.org.br/widgets/binomial" %>
 <%@ taglib prefix="r" uri="http://www.groupwareworkbench.org.br/taglibs/reflection" %>
 
@@ -169,16 +171,17 @@
           
           
           <!-- img src="img/photos/8806.jpg" class="single_view_image" width="600" height="410" /-->
-          <photo:show clazz="single_view_image" style="width: 600px; height:410px"  foto="${photo}" photoInstance="${photoInstance}"/>
+          <p:show clazz="single_view_image" style="width: 600px; height:410px"  foto="${photo}" photoInstance="${photoInstance}"/>
           
           
           <hr />
         </div>
 		<!--   BOX DE AVALIAÃÃO   -->
 		<div id="avaliation_box">
-	      <p>Avalie a foto segundo os atributos abaixo e após finalizar, clique no botÃ£o Avaliar ao lado para contabilizar a sua avaliação e visualizar a mídia entre as outras avaliaçoes.</p>
+	      <p>Avalie a foto segundo os atributos abaixo e após finalizar, clique no botão Avaliar ao lado para contabilizar a sua avaliação e visualizar a mídia entre as outras avaliaçoes.</p>
           <!--   FORMULÃRIO DE AVALIAÃÃO   -->
-          <form action="#" method="get" id="avaliation_form">
+          <form name="tags" method="post" enctype="multipart/form-data"
+			action="<c:url value="/groupware-workbench/photo/${photo.id}" />">
           <%--
             <input type="reset" id="clean" class="cursor" value="" />
             <input type="submit" id="avaliate" class="cursor" value="" />
@@ -251,7 +254,7 @@
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla laoreet purus et neque sagittis et pretium turpis euismod. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Curabitur blandit mollis eros, a dictum mauris laoreet in. Curabitur ultricies aliquet ante, ac iaculis orci consectetur vel. In eu ipsum metus. Pellentesque accumsan nisl nec eros cursus vehicula.</p>
         <h3>Posso avaliar mais que uma vez?</h3><br />
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla laoreet purus et neque sagittis et pretium turpis euismod.</p>
-        <h3>Como faÃ§o para avaliar?</h3>
+        <h3>Como faço para avaliar?</h3>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla laoreet purus et neque sagittis et pretium turpis euismod. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
         <p>Nós te preparamos um vídeo que mostra o passo a passo da avaliação. Clique no botão abaixo para assistí­-lo:</p>
         <a href="#" id="watch_button"></a>
@@ -262,73 +265,21 @@
     <!--   FUNDO DO SITE   -->
     <div id="footer">
 	  <!--   BARRA DE ABAS   -->
-	  <ul class="tabs">
-        <!--   ABAS   -->
-        <li class="selected_tab">
-	      <a href="#" class="selected_tab_link">NOVAS IMAGENS</a>
-		</li>
-		<li class="tab_not_selected">
-		  <a href="#" class="tab_link">POPULARES</a>
-		</li>
-		<li class="tab_not_selected">
-		  <a href="#" class="tab_link">CONTROVERSAS</a>
-		</li>
-		<li class="tab_not_selected">
-		  <a href="#" class="tab_link">AVALIADAS</a>
-		</li>
-		<li class="tab_not_selected">
-		  <a href="#" class="tab_link">COMENTADAS</a>
-		</li>
-      </ul>
-	  <!--   BARRA DE IMAGENS - (RODAPÃ)   -->
-	  <div class="footer_images">
-	    <!--   LINHA DE IMAGENS - (RODAPÃ)   -->
-		<div class="images_line">  
-		  <!--   SETAS DE NAVEGAÃÃO DAS FOTOS (RODAPÃ)-->
-		  <a href="#" id="arrow-left" class="arrows">&laquo;</a>
-		  <a href="#" id="arrow-right" class="arrows">&raquo;</a>
-		  <!--   IMAGENS - (RODAPÃ)   -->
-		  <a href="#" id="f_01" class="footer_image"><img src="img/photos/52926.jpg" width="105" height="72" alt="Foto 1"/></a>
-		  <a href="#" id="f_02" class="footer_image"><img src="img/photos/45044.jpg" width="105" height="72" alt="Foto 2"/></a>
-		  <a href="#" id="f_03" class="footer_image"><img src="img/photos/69363.jpg" width="105" height="72" alt="Foto 3"/></a>
-		  <a href="#" id="f_04" class="footer_image"><img src="img/photos/74618.jpg" width="105" height="72" alt="Foto 4"/></a>
-		  <a href="#" id="f_05" class="footer_image"><img src="img/photos/56665.jpg" width="105" height="72" alt="Foto 5"/></a>
-		  <a href="#" id="f_06" class="footer_image"><img src="img/photos/8806.jpg" width="105" height="72" alt="Foto 6"/></a>
-		  <a href="#" id="f_07" class="footer_image"><img src="img/photos/80213.jpg" width="105" height="72" alt="Foto 7"/></a>
-		  <a href="#" id="f_08" class="footer_image"><img src="img/photos/16777.jpg" width="105" height="72" alt="Foto 8"/></a>		
-	    </div>
-        <!--   FIM - LINHA DE IMAGENS - (RODAPÃ)   -->
-	  </div>
-	  <!--   FIM - BARRA DE IMAGENS - (RODAPÃ)   -->
-	  <!--   CRÃDITOS - LOGOS   -->
-	  <div id="credits">
-        <!--   LOGOS   -->
-		<ul>
-          <li><a href="#" title="USP" id="usp"></a></li>
-		  <li><a href="#" title="FAPESP" id="fapesp"></a></li>
-		  <li><a href="#" title="" id="rnp"></a></li>
-		  <li><a href="#" title="" id="cnpq"></a></li>
-		  <li><a href="#" title="" id="fau"></a></li>
-		  <li><a href="#" title="" id="ime"></a></li>
-		  <li><a href="#" title="" id="eca"></a></li>
-		  <li><a href="#" title="" id="ccsl"></a></li>
-		  <li><a href="#" title="" id="vitruvius"></a></li>
-		  <li><a href="#" title="" id="benchmark"></a></li>
-		  <li><a href="#" title="" id="brz"></a></li>	
-        </ul>
-		<!--   COPYRIGHT   -->
-	    <p id="copyright"><small>Arquigrafia - 20011 Â© All rights reserved</small></p>
-	  </div>
-      <!--   FIM - CRÃDITOS - LOGOS   -->
+	  <arquigrafia:tabs arquigrafiaInstance="${arquigrafiaMgr}" />
+	  <!--   FIM - BARRA DE IMAGENS - (RODAPÉ)   -->
+	  
+	  
+	  <!--   CRÉDITOS - LOGOS   -->
+      <arquigrafia:footer arquigrafiaInstance="${arquigrafiaMgr}" />
     </div>
     <!--   FIM - FUNDO DO SITE   -->
     <!--   MODAL   -->
     <div id="mask"></div>
     <div id="form_window"> 
-      <!-- ÃREA DE LOGIN - JANELA MODAL --> 
+      <!-- ÁREA DE LOGIN - JANELA MODAL --> 
       <a class="close" href="#" title="FECHAR"></a>
-      <form id="registration" name="registration" action="">
-      </form>
+      <div id="registration">
+      </div>
     </div>
     <!--   FIM - MODAL   -->
   </div>
