@@ -41,7 +41,7 @@
             <a href="#" name="modal-" id="login_button"></a>
         
             <!--   BOTÃO DE CADASTRO   -->
-            <!-- <a href="#" name="modal" id="registration_button"></a>  -->
+            <a href="#" name="modal" id="registration_button"></a>
           
           </div>
           <!--   FIM - ÁREA DE LOGIN / CADASTRO   -->

@@ -19,13 +19,45 @@
 
 <script type="text/javascript">
 	form_window_loaded = false;
-	
+
 	$(document).ready(function(){
+
+		$('#edit_perfil_button').click(function(){
+			var part = "perfil";
+			$('#mask').fadeIn('fast');
+			$('#form_window').fadeIn('slow');
+			$('#registration').load('<c:url value="/groupware-workbench/user/edit/${userLogin.id}/'+part+'"/>');	
+			form_window_loaded = true;
+		});
+
+		$('#edit_formacao_button').click(function(){
+			var part = "formacao";
+			$('#mask').fadeIn('fast');
+			$('#form_window').fadeIn('slow');
+			$('#registration').load('<c:url value="/groupware-workbench/user/edit/${userLogin.id}/'+part+'"/>');	
+			form_window_loaded = true;
+		});
+
+		$('#edit_localizacao_button').click(function(){
+			var part = "localizacao";
+			$('#mask').fadeIn('fast');
+			$('#form_window').fadeIn('slow');
+			$('#registration').load('<c:url value="/groupware-workbench/user/edit/${userLogin.id}/'+part+'"/>');	
+			form_window_loaded = true;
+		});
+
+		$('#edit_contato_button').click(function(){
+			var part = "contato";
+			$('#mask').fadeIn('fast');
+			$('#form_window').fadeIn('slow');
+			$('#registration').load('<c:url value="/groupware-workbench/user/edit/${userLogin.id}/'+part+'"/>');	
+			form_window_loaded = true;
+		});
 		
 		$('#registration_button').click(function(){
 			$('#mask').fadeIn('fast');
 			$('#form_window').fadeIn('slow');
-			$('#registration').load('<c:url value="/users/${userMgr.id}/singup"/>');	
+			$('#registration').load('<c:url value="/users/${userMgr.id}/signup"/>');	
 			form_window_loaded = true;
 		});
 		
@@ -73,7 +105,5 @@
 			window.print();
 			return false;
 		});
-	
-			
 	});
 </script>	
