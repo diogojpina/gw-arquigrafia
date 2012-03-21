@@ -104,6 +104,15 @@ public class Photo implements Serializable {
     private String workdate;
     private String street;
     private String description;
+    private String collection;
+    private String imageAuthor;
+    private String aditionalImageComments;
+    private String characterization;
+    private String tombo;
+    
+    @Temporal(TemporalType.DATE)
+    private Date cataloguingTime;
+    
 
     // FIXME: ManyToMany!? Por quê? Aliás, esta lista não é usada nunca!
     @ManyToMany
@@ -549,6 +558,54 @@ public class Photo implements Serializable {
     
     public List<User> getUsers() {
         return users;
+    }
+    
+    public String getCollection() {
+        return collection;
+    }
+
+    public void setCollection(String collection) {
+        this.collection = collection;
+    }
+
+    public String getImageAuthor() {
+        return imageAuthor;
+    }
+
+    public void setImageAuthor(String imageAuthor) {
+        this.imageAuthor = imageAuthor;
+    }
+
+    public String getAditionalImageComments() {
+        return aditionalImageComments;
+    }
+
+    public void setAditionalImageComments(String aditionalImageComments) {
+        this.aditionalImageComments = aditionalImageComments;
+    }
+
+    public String getCharacterization() {
+        return characterization;
+    }
+
+    public void setCharacterization(String characterization) {
+        this.characterization = characterization;
+    }
+
+    public String getTombo() {
+        return tombo;
+    }
+
+    public void setTombo(String tombo) {
+        this.tombo = tombo;
+    }
+
+    public Date getCataloguingTime() {
+        return cataloguingTime;
+    }
+
+    public void setCataloguingTime(Date cataloguingTime) {
+        this.cataloguingTime = cataloguingTime;
     }
 
     public static List<Photo> listLastPhotos(Collablet collablet, Integer amount) {
