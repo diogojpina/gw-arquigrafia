@@ -86,17 +86,19 @@
       Permitir o uso comercial da sua obra?
       <br />
       <c:forEach items="${allowCommercialUsesList}" var="allowCommercialUses"> 
-        <input type="radio" name="field_comercial" value="${allowCommercialUses}" id="question_3-4"  <c:if test="${allowCommercialUses==allowCommercialUses.default}">checked="checked"</c:if> />
-        <label for="question_3-4">${allowCommercialUses.nome}</label>
+        <input type="radio" name="photoRegister.allowCommercialUses" value="${allowCommercialUses}" id="photoRegister.allowCommercialUses"  
+        <c:if test="${allowCommercialUses==allowCommercialUses.default}">checked="checked"</c:if> />
+        <label for="photoRegister.allowCommercialUses">${allowCommercialUses.name}</label>
         <br />
       </c:forEach>
     </p>
     <p class="creative_commons_form" id="creative_commons_right_form">
       Permitir modificações em sua obra?
       <br />
-      <c:forEach items="${allowModificationsList}" var="allowModifications"> 
-        <input type="radio" name="field_derivatives" value="${allowModifications}" id="question_3-5"  <c:if test="${allowModifications==allowModifications.default}">checked="checked"</c:if> />
-        <label for="question_3-5">${allowModifications.nome}</label>
+      <c:forEach items="${allowModificationsList}" var="allowModifications">
+        <input type="radio" name="photoRegister.allowModifications" value="${allowModifications}" id="photoRegister.allowModifications"
+        <c:if test="${allowModifications==allowModifications.default}">checked="checked"</c:if> />
+        <label for="question_3-5">${allowModifications.name}</label>
         <br />
       </c:forEach>
     </p> 

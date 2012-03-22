@@ -72,37 +72,39 @@ public class Photo implements Serializable {
     public enum AllowModifications {  
         YES("Sim"), YES_SA("Sim, contanto que os outros compartilhem de forma semelhante"), NO("Não");  
       
-        private final String nome;  
+        private final String name;  
       
-        AllowModifications(String nome) {  
-            this.nome = nome;  
+        AllowModifications(String name) {  
+            this.name = name;  
         }  
       
-        public String getNome() {  
-            return nome;  
+        public String getName() {  
+            return name;  
         }  
         
         public AllowModifications getDefault(){
             return YES;
         }
+        
     } 
     
     public enum AllowCommercialUses {  
         YES("Sim"), NO("Não");  
       
-        private final String nome;  
+        private final String name;  
       
-        AllowCommercialUses(String nome) {  
-            this.nome = nome;  
+        AllowCommercialUses(String name) {  
+            this.name = name;  
         }  
       
-        public String getNome() {  
-            return nome;  
+        public String getName() {  
+            return name;  
         }  
         
         public AllowCommercialUses getDefault(){
             return YES;
         }
+        
     } 
     
     private static final long serialVersionUID = -4757949223957140519L;
@@ -134,7 +136,6 @@ public class Photo implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataUpload;
 
-    private String copyRights;
     private String city;
     private String state;
     private String country;
@@ -157,7 +158,6 @@ public class Photo implements Serializable {
     
     @Temporal(TemporalType.DATE)
     private Date cataloguingTime;
-    
 
     // FIXME: ManyToMany!? Por quê? Aliás, esta lista não é usada nunca!
     @ManyToMany
@@ -529,14 +529,6 @@ public class Photo implements Serializable {
         this.collablet = collablet;
     }
 
-    public String getCopyRights() {
-        return copyRights;
-    }
-
-    public void setCopyRights(String copyRights) {
-        this.copyRights = copyRights;
-    }
-
     public String getCity() {
         return city;
     }
@@ -665,20 +657,39 @@ public class Photo implements Serializable {
 
     }
 
+    public AllowModifications getAllowModifications() {
+        return allowModifications;
+    }
+
     public void setAllowModifications(AllowModifications allowModifications) {
         this.allowModifications = allowModifications;
     }
 
-    public AllowModifications getAllowModifications() {
-        return allowModifications;
+    public AllowCommercialUses getAllowCommercialUses() {
+        return allowCommercialUses;
     }
 
     public void setAllowCommercialUses(AllowCommercialUses allowCommercialUses) {
         this.allowCommercialUses = allowCommercialUses;
     }
 
-    public AllowCommercialUses getAllowCommercialUses() {
-        return allowCommercialUses;
-    }
+//    public void setAllowModifications(AllowModifications allowModifications) {
+//        this.allowModifications = allowModifications;
+//    }
+//
+//    public AllowModifications getAllowModifications() {
+//        return allowModifications;
+//    }
+//
+//    public void setAllowCommercialUses(AllowCommercialUses allowCommercialUses) {
+//        this.allowCommercialUses = allowCommercialUses;
+//    }
+//
+//    public AllowCommercialUses getAllowCommercialUses() {
+//        return allowCommercialUses;
+//    }
+
+    
+    
     
 }

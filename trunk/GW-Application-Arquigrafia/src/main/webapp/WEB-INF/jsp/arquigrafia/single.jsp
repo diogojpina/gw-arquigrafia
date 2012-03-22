@@ -32,7 +32,9 @@
 				<div id="single_view_block">
 					<!--   NOME / STATUS DA FOTO   -->
 					<div id="single_view_header">
-						<h1><c:out value="${photo.name}"/></h1>
+						<h1>
+							<c:out value="${photo.name}" />
+						</h1>
 						<ul id="single_view_image_rating" class="right">
 							<li id="graph"></li>
 							<li><small>312</small></li>
@@ -42,10 +44,9 @@
 							<c:if test="${counterMgr.collablet.enabled}">
 								<li id="views"></li>
 								<li><small><span><counter:showCounter
-													manager="${counterMgr}" entity="${photo}"
-													viewer="${sessionScope.userLogin}" increment="true"
-													wrapClass="counter_show" />
-										</span></small></li>
+												manager="${counterMgr}" entity="${photo}"
+												viewer="${sessionScope.userLogin}" increment="true"
+												wrapClass="counter_show" /> </span></small></li>
 							</c:if>
 							<li id="favourite"></li>
 							<li><small>176</small></li>
@@ -82,44 +83,22 @@
 				<!--   FIM - BOX DE BOTOEES DA IMAGEM   -->
 				<!--   BOX DE COMENTARIOS   -->
 				<div id="comments_block">
-
-					<comment:getComments commentMgr="${commentMgr}" entity="${photo}" />
-
-					<h2>Coment&aacute;rios</h2>
-					<div class="single_comment_block">
-						<img src="<c:url value="/img/avatar.jpg" />" width="50"
-							height="50" name="Homer" class="user_thumbnail" /> <a href="#"
-							id="name">Homer Simpson</a>&nbsp;<span class="comment_time">(3
-							dias atr&aacute;s)</span> <span class="comment_text">
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-								Nulla laoreet purus et neque sagittis et pretium turpis euismod.
-								Pellentesque habitant morbi tristique senectus et netus et
-								malesuada fames ac turpis egestas.</p>
-						</span>
-					</div>
-					<div class="single_comment_block">
-						<img src="<c:url value="/img/avatar.jpg" />" name="Homer"
-							class="user_thumbnail" /> <a href="#" id="name">Homer
-							Simpson</a>&nbsp;<span class="comment_time">(4 dias
-							atr&aacute;s)</span> <span class="comment_text">
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-						</span>
-					</div>
-					<!--   BOX DE COMENTARIO   -->
-					<div class="single_comment_block">
-						<comment:addComment commentMgr="${commentMgr}"
-							idObject="${photo.id}" user="${sessionScope.userLogin}" />
-
-						<form id="space_to_comment" method="post" action="#">
-							<img src="<c:url value="/img/avatar.jpg" />" name="Homer"
-								class="user_thumbnail" /> <a href="#" id="name">${sessionScope.userLogin.name}</a><br />
-							<textarea type="text" id="comment_field"
-								onclick="clickclear(this, 'default text')"
-								onblur="clickrecall(this,'default text')">Escreva o seu comentário aqui...</textarea>
-							<input type="submit" id="comment_button" class="cursor" value="" />
-						</form>
-					</div>
-					<!--   FIM - BOX DE COMENTARIO   -->
+					<s:check name="X-X-usuario">
+						<c:if test="${commentMgr.collablet.enabled}">
+							<comment:getComments commentMgr="${commentMgr}" entity="${photo}" />
+						</c:if>
+					</s:check>
+					<s:check name="X-X-usuario">
+						<c:if test="${commentMgr.collablet.enabled}">
+							<%-- 							<comment:addComment commentMgr="${commentMgr}" --%>
+							<%-- 								idObject="${photo.id}" user="${sessionScope.userLogin}" /> --%>
+							<comment:addComment commentMgr="${commentMgr}"
+								genericReference="${photo}" user="${sessionScope.userLogin}" />
+						</c:if>
+					</s:check>
+					<s:n-check name="X-X-usuario">
+						<div class="${wrapClass}">Fa&ccedil;a o login para comentar.</div>
+					</s:n-check>
 				</div>
 				<!--   BOX DE COMENTARIOS   -->
 			</div>
@@ -138,7 +117,9 @@
 				<!-- <h3>Equipamento:</h3>
 				<p>Lorem ipsum dolor sit amet</p> -->
 				<h3>Descrição:</h3>
-				<p><c:out value="${photo.description}"/></p>
+				<p>
+					<c:out value="${photo.description}" />
+				</p>
 				<h3>Localização:</h3>
 				<p>
 					<iframe width="300" height="100" frameborder="0" scrolling="no"
@@ -154,9 +135,13 @@
 					<tag:getTags tagMgr="${tagMgr}" entity="${photo}" />
 				</p>
 				<h3>Licença:</h3>
-				<p><c:out value="${photo.copyRights}"/></p>
+				<p>
+					Permitir modificações: <c:out value="${photo.allowModifications.name}" /><br />
+					Permitir uso comercial: <c:out value="${photo.allowCommercialUses.name}" />
+				</p>
 				<h3>Avaliação:</h3>
-				<p>Avalie esta imagem de acordo com seus aspectos, compare também sua avaliação com as do outros usuários.</p>
+				<p>Avalie esta imagem de acordo com seus aspectos, compare
+					também sua avaliação com as do outros usuários.</p>
 				<a
 					href="<c:url value="/${arquigrafiaMgr.id}/photo_avaliation/${photo.id}" />"
 					title="Avalie a foto" id="evaluate_button"></a> <a href="#"
