@@ -29,8 +29,10 @@ import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Enumeration;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import br.com.caelum.vraptor.Delete;
@@ -74,14 +76,16 @@ public class PhotoController {
     private final Validator validator;
     private final HttpSession session;
     private final RequestInfo requestInfo;
+    private final HttpServletRequest request;
 
     public PhotoController(Result result, Validator validator, WidgetInfo info, HttpSession session,
-            RequestInfo requestInfo) {
+            RequestInfo requestInfo, HttpServletRequest request) {
         this.result = result;
         this.validator = validator;
         this.info = info;
         this.session = session;
         this.requestInfo = requestInfo;
+        this.request = request;
     }
 
     @Get
@@ -156,17 +160,23 @@ public class PhotoController {
     @Post
     @Path(value = "/groupware-workbench/photo/{idPhoto}")
     public void show(long idPhoto) {
+        
         User user = (User) session.getAttribute("userLogin");
         Photo photo = Photo.findById(idPhoto);
         User userPhoto = photo.getUsers().get(0);
         
         if (photo == null) {
+            
             result.notFound();
             return;
+            
         }
+        
         if (userPhoto.getId().compareTo(user.getId()) == 0){
+            
             result.include("usuarioCriador", "sim");
-        } 
+            
+        }
             
         result.include("idPhoto", idPhoto);
         result.include("photo", photo);
@@ -304,10 +314,11 @@ public class PhotoController {
 
     @Post
     @Path(value = "/groupware-workbench/photo/{photoInstance}/registra")
-    public void save(Photo photoRegister, UploadedFile foto, PhotoMgrInstance photoInstance) {
-        
+    public void save(Photo photoRegister, UploadedFile foto, PhotoMgrInstance photoInstance ) {
+
         System.out.println("nome => " + photoRegister.getName());
-        System.out.println("direitosAutorais => " + photoRegister.getCopyRights());
+        System.out.println("AllowCommercialUses => " + photoRegister.getAllowCommercialUses());
+        System.out.println("AllowModifications => " + photoRegister.getAllowModifications());
         System.out.println("cidade => " + photoRegister.getCity());
         System.out.println("estado => " + photoRegister.getState());
         System.out.println("pais => " + photoRegister.getCountry());
