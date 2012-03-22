@@ -22,6 +22,6 @@
 		  <li><a href="http://www.brzcomunicacao.com.br/" title="" id="brz" target="_blank"></a></li>	
         </ul>
 		<!--   COPYRIGHT   -->
-	    <p id="copyright"><small>Arquigrafia - 2012 - Some Rights Reserved</small></p>
+	    <p id="copyright"><small>Arquigrafia - 2012 - Este site é licenciado sob uma licença <a href="http://creativecommons.org/licenses/by/3.0/deed.pt_BR" target="_blank">Creative Commons Attribution 3.0</a></small></p>
 	  </div>
       <!--   FIM - CRÉDITOS - LOGOS   -->

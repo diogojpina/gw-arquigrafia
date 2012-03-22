@@ -1,83 +1,80 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="w" uri="http://www.groupwareworkbench.org.br/widgets/commons" %>
-<%@ taglib prefix="coll" uri="http://www.groupwareworkbench.org.br/widgets/collections" %>
-<%@ taglib prefix="photo" uri="http://www.groupwareworkbench.org.br/widgets/photomanager" %>
-<%@ taglib prefix="arq" tagdir="/WEB-INF/tags" %>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta http-equiv="Cache-Control" content="no-cache">
-        <title>Perguntas frequentes</title>
-        <link rel="shortcut icon" type="image/x-icon" href="<c:url value="/images/favicon.ico" />"/>
-        <link rel="stylesheet" type="text/css" href="<c:url value="/css/page_content.css" />"/>       
-        <link rel="stylesheet" type="text/css" href="<c:url value="/css/reset.css" />"/>
-        <link rel="stylesheet" type="text/css" href="<c:url value="/css/arq-common.css" />"/>
-        <link rel="stylesheet" type="text/css" href="<c:url value="/css/header.css" />"/>
-        <link rel="stylesheet" type="text/css" href="<c:url value="/css/know_more.css" />"/>
-        <link rel="stylesheet" type="text/css" href="<c:url value="/css/forms.css" />"/>
-        <link rel="stylesheet" type="text/css" media="screen" href="<c:url value="/plugins/sds/css/smoothDivScroll.css" />"/>
-        <link rel="stylesheet" type="text/css" media="screen" href="<c:url value="/css/bay.css" />"/>
-        <link rel="stylesheet" type="text/css" media="screen" href="<c:url value="/css/footer.css" />"/>
-        <link rel="stylesheet" type="text/css" media="screen" href="<c:url value="/css/jquery.css" />"/>
-        <link rel="stylesheet" type="text/css" media="screen" href="<c:url value="/css/tagcloud.css" />"/>
-        <link rel="stylesheet" type="text/css" media="screen" href="<c:url value="/css/image_wall.css" />"/>
-        <link rel="stylesheet" type="text/css" media="screen" href="<c:url value="/css/boxy.css" />"/>
-        <script type="text/javascript" src="<c:url value="/js/jquery.js"/>"></script>
-        <script type="text/javascript" src="<c:url value="/js/jquery-ui.js"/>"></script>
-        <script type="text/javascript" src="<c:url value="/js/listagem.js"/>"></script>
-        <script type="text/javascript" src="<c:url value="/plugins/sds/js/jquery.smoothDivScroll-0.9-min.js"/>"></script>
-        <script type="text/javascript" src="<c:url value="/plugins/sds/js/scroll.js"/>"></script>
-        <script  type="text/javascript" src="<c:url value="/js/jquery.boxy.js"/>"></script>
-        <script type="text/javascript">
-            $(document).ready(function() {
-                $("div#makeMeScrollable").smoothDivScroll({
-                    scrollingSpeed: 12,
-                    mouseDownSpeedBooster: 3,
-                    visibleHotSpots: "always",
-                    startAtElementId: "startAtMe"
-                });
+<%@ taglib prefix="arquigrafia" uri="http://www.groupwareworkbench.org.br/widgets/arquigrafia" %>
+<%@ taglib prefix="s" uri="http://www.groupwareworkbench.org.br/widgets/security" %>
 
-                $("div#makeMeScrollable2").smoothDivScroll({
-                    scrollingSpeed: 12,
-                    mouseDownSpeedBooster: 3,
-                    visibleHotSpots: "always",
-                    startAtElementId: "startAtMe"
-                });
-            });
-        </script>
-        
-        <w:tabela baseUrl="/groupware-workbench/faq"
-                  createUrl="/groupware-workbench/faq/${faqMgr.id}/create"
-                  msgAdd="Adicionar nova pergunta"
-                  msgDelete="Tem certeza que deseja excluir a pergunta?"
-                  msgVazio="Não há perguntas no FAQ."
-                  target="tabela-perguntas"
-                  titles="${coll:asList1('Pergunta')}"
-                  columns="${coll:asList1('pergunta')}"
-                  elements="${faqList}" />
-    </head>
-    <body>
-       	<arq:header2 photoInstance="${photoMgr}" />
-        <w:conteudoPagina titulo="Faq">
-            <div class="page_element">
-                <span class="subTitulo">Lista de perguntas e respostas frequentes</span>
-                <div id="tabela-perguntas"></div>
-            </div>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 
-            <div class="page_element">
-                <span class="subTitulo">Collablets</span>
-                <w:menuFerramentas collabletInstance="${faqMgr.collablet}" />
-            </div>
 
-            <div class="barra_botoes">
-                <w:voltar collabletInstance="${faqMgr.collablet.parent}" />
-            </div>
-        </w:conteudoPagina>
-        <div>
-            <div style="height: 30px; background-color: #fff"></div>
-            <arq:footer photoInstance="${photoMgr}" />
-        </div>
-    </body>
-</html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Arquigrafia - Seu universo de imagens de arquitetura</title>
+<arquigrafia:includes arquigrafiaInstance="${arquigrafiaMgr}" />
+</head>
+
+<body>
+  <!--   CONTAINER   -->
+  <div id="container">
+  
+  <!--   CABEÇALHO   -->
+    <arquigrafia:header arquigrafiaInstance="${arquigrafiaMgr}" />
+    
+    <!--   MEIO DO SITE - ÁREA DE NAVEGAÇÃO   -->
+    <div id="content">
+      <!--   COLUNA ESQUERDA   -->
+      <div id="sub_content">
+        <!--   CONTEÚDO SOBRE O PROJETO   -->
+        <h1>Ajuda -  Perguntas e respostas frequentes</h1>
+        <a href="#"  id="printer_icon"></a>
+        <!--   TEXTO DO PROJETO   -->
+        <div id="project_text">
+        <br />
+        <c:forEach items="${faqList}" var="faq">
+           <h2> <c:out value="${faq.pergunta}"></c:out> <s:check name="X-X-admin"> <a href="<c:url value="/faq/${faq.id}/create" />"> Excluir </a>  <a href="<c:url value="/faq/${faq.id}" />"> Editar </a> </s:check></h2>
+           <c:out value="${faq.resposta}"></c:out>
+           <br />
+           <br />
+        </c:forEach>
+        <s:check name="X-X-admin">
+           <a href="<c:url value="/faq/${faqMgr.id}/create" />"> Adicione uma nova pergunta ao FAQ.</a>
+        </s:check>
+        <br />
+ </div>
+        <!--   FIM - TEXTO DO PROJETO   -->
+      </div>
+      <!--   FIM - COLUNA ESQUERDA   -->
+      <!--   COLUNA DIREITA   -->
+      <div id="sidebar">
+        <h2>Lorem ipsum</h2>
+		<h3>Dolor sit</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras pulvinar elementum accumsan. Cras non convallis nunc. Donec at purus eget lacus rutrum lacinia vel rhoncus velit. Nam sollicitudin, odio ut ultricies cursus, felis leo lacinia mi, quis rhoncus magna urna eu nibh. Nam quis erat nibh. Mauris viverra urna neque. Sed ut lobortis risus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed sed neque tellus. Nunc tempor ornare dignissim. Vivamus luctus nisi in lorem tempus faucibus. Sed sed mauris id mi faucibus dignissim ac nec ipsum.</p>
+      </div>
+      <!--   FIM - COLUNA DIREITA   -->
+    </div>
+    <!--   FIM - MEIO DO SITE-->
+    <!--   FUNDO DO SITE   -->
+       <div id="footer">
+	  <!--   BARRA DE ABAS   -->
+	  <arquigrafia:tabs arquigrafiaInstance="${arquigrafiaMgr}" />
+	  <!--   FIM - BARRA DE IMAGENS - (RODAPÉ)   -->
+	  
+	  
+	  <!--   CRÉDITOS - LOGOS   -->
+      <arquigrafia:footer arquigrafiaInstance="${arquigrafiaMgr}" />
+    </div>
+    <!--   FIM - FUNDO DO SITE   -->
+    <!--   MODAL   -->
+    <div id="mask"></div>
+    <div id="form_window"> 
+      <!-- ÁREA DE LOGIN - JANELA MODAL --> 
+      <a class="close" href="#" title="FECHAR"></a>
+      <div id="registration">
+      </div>
+    </div>
+    <!--   FIM - MODAL   -->
+  </div>
+  <!--   FIM - CONTAINER   -->
+</body>
+</html>    

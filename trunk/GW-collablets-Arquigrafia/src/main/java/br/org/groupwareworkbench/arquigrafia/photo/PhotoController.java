@@ -173,7 +173,30 @@ public class PhotoController {
         photoInstance.getCollablet().processWidgets(info, photo);
         result.use(Results.representation()).from(photo).serialize();
     }
-
+    
+    @Get
+    @Path(value = "/groupware-workbench/photo/{idPhoto}/evaluate")
+    public void evaluate(long idPhoto) {
+        User user = (User) session.getAttribute("userLogin");
+        Photo photo = Photo.findById(idPhoto);
+        User userPhoto = photo.getUsers().get(0);
+        
+        if (photo == null) {
+            result.notFound();
+            return;
+        }
+        if (userPhoto.getId().compareTo(user.getId()) == 0){
+            result.include("usuarioCriador", "sim");
+        } 
+            
+        result.include("idPhoto", idPhoto);
+        result.include("photo", photo);
+        PhotoMgrInstance photoInstance = (PhotoMgrInstance) photo.getCollablet().getBusinessObject();
+        addIncludes(photoInstance);
+        photoInstance.getCollablet().processWidgets(info, photo);
+        result.use(Results.representation()).from(photo).serialize();
+    }
+    
     @SuppressWarnings("unchecked")
     @Get
     @Path(value = "/photo/{photoInstance}/list")

@@ -259,10 +259,18 @@
             <name>counterMgr</name>
         </collablet>        
 
+
+        <collablet>
+            <business>br.org.groupwareworkbench.collablet.faq.FaqMgrInstance</business>
+            <description>FAQ Ajuda</description>
+            <name>faqMgr</name>
+        </collablet>
+        
     </collablets>
 
     <collablets-subordinations>
         <subordination parent="arquigrafiaMgr" child="manager" />
+        <subordination parent="arquigrafiaMgr" child="faqMgr" />
         <subordination parent="arquigrafiaMgr" child="userMgr" />
         <subordination parent="arquigrafiaMgr" child="albumMgr" />
         <subordination parent="arquigrafiaMgr" child="binomialMgr" />
@@ -281,6 +289,7 @@
 
     <collablets-dependencies>
         <dependency from="roleMgr" to="arquigrafiaMgr" />
+        <dependency from="faqMgr" to="arquigrafiaMgr" />
         <dependency from="profileMgr" to="arquigrafiaMgr" />
         <dependency from="commentMgr2" to="arquigrafiaMgr" />
         <dependency from="commentMgr" to="arquigrafiaMgr" />

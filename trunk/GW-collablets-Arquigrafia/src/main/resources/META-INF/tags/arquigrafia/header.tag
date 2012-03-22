@@ -9,13 +9,13 @@
     <div id="header">
 	
 	  <!--   LOGO   -->
-      <a href="<c:url value="/16/" />" id="logo"></a>
+      <a href="<c:url value="/17/" />" id="logo"></a>
       <!--   MENU SUPERIOR   -->
 	  <div id="first_menu">
         <!--   MENU INSTITUCIONAL   -->
         <ul id="top_menu_items">
-          <li><a href="<c:url value="/16/project" />" id="project">O PROJETO</a></li>
-          <li><a href="<c:url value="/16/help" />" id="help">AJUDA</a></li>
+          <li><a href="<c:url value="/17/project" />" id="project">O PROJETO</a></li>
+          <li><a href="<c:url value="/faq/16/list" />" id="help">AJUDA</a></li>
           <li><a href="#" id="contact">FALE CONOSCO</a></li>
         </ul>
         <!--   FIM - MENU INSTITUCIONAL   -->

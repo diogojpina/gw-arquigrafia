@@ -77,13 +77,35 @@
   
   <label>Descrição:</label>
   <textarea name="photoRegister.description" class="text"></textarea>
-</p>
-<p>
-  Li e aceito os
-  <a href="#" style="text-decoration: underline;">termos de compromisso</a>: 
-  <input name="terms" type="checkbox" value="read" /><br />
-  <a href="#" id="creative_commons" style="text-decoration:underline;">Creative Commons</a>
-</p>
+  <br />
+  </p>
+  
+     Escolho a licença <a href="http://creativecommons.org/licenses/?lang=pt_BR" id="creative_commons" target="_blank" style="text-decoration:underline; line-height:16px;">Creative Commons</a>, para publicar minha obra, com as seguintes permissões:
+      <br /><br />
+      <p  class="creative_commons_form" id="creative_commons_left_form">
+      Permitir o uso comercial da sua obra?
+      <br />
+      <input type="radio" name="field_commercial" value="y" id="question_2-3"/>
+      <label for="question_2-3">Sim</label>
+      <br />
+      <input type="radio" checked="checked" name="field_commercial" value="n" id="question_2-4"/>
+      <label for="question_2-4">Não</label>
+    </p>
+    <p class="creative_commons_form" id="creative_commons_right_form">
+      Permitir modificações em sua obra?
+      <br />
+      <input type="radio" name="field_derivatives" value="y" id="question_3-5" />
+      <label for="question_3-5">Sim</label>
+      <br />
+      <input type="radio" name="field_derivatives" value="sa" id="question_3-6" />
+      <label for="question_3-6">
+        Sim, contanto que os outros compartilhem de forma semelhante
+      </label>
+      <br />
+      <input type="radio"  name="field_derivatives" value="n" id="question_3-7" checked="checked"/>
+      <label for="question_3-7">Não</label>
+    </p> 
+
 <p>
   <input href="#form_window" name="enviar" type="submit" class="submit cursor" value="" />
 </p>

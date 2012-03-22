@@ -20,6 +20,7 @@
  */
 package br.org.groupwareworkbench.arquigrafia.main;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import br.com.caelum.vraptor.Get;
@@ -41,19 +42,24 @@ public class ArquigrafiaController {
     private final Validator validator;
     private final HttpSession session;
     private final RequestInfo requestInfo;
+    private final HttpServletRequest request;
 
     public ArquigrafiaController(Result result, Validator validator, WidgetInfo info, HttpSession session,
-            RequestInfo requestInfo) {
+            RequestInfo requestInfo, HttpServletRequest request) {
         this.result = result;
         this.validator = validator;
         this.info = info;
         this.session = session;
         this.requestInfo = requestInfo;
+        this.request = request;
     }
 
     @Get
     @Path(value = "/{arquigrafiaInstance}/")
     public void index(ArquigrafiaMgrInstance arquigrafiaInstance) {
+        if("yes".equals(request.getParameter("firstTime"))) {
+            result.include("firstTime", 1);
+        }
         result.include("arquigrafiaMgr", arquigrafiaInstance);
         addIncludes(arquigrafiaInstance);
     }
@@ -68,6 +74,13 @@ public class ArquigrafiaController {
     @Get
     @Path(value = "/{arquigrafiaInstance}/help")
     public void help(ArquigrafiaMgrInstance arquigrafiaInstance) {
+        result.include("arquigrafiaMgr", arquigrafiaInstance);
+        addIncludes(arquigrafiaInstance);
+    }
+
+    @Get
+    @Path(value = "/{arquigrafiaInstance}/welcome")
+    public void welcome(ArquigrafiaMgrInstance arquigrafiaInstance) {
         result.include("arquigrafiaMgr", arquigrafiaInstance);
         addIncludes(arquigrafiaInstance);
     }

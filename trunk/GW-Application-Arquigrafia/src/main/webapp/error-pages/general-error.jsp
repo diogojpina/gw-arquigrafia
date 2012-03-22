@@ -13,7 +13,7 @@
     	
     	<p>Esta é a versão Beta 2012 do Arquigrafia-Brasil, em fase de implementação, e alguns erros podem acontecer.</p>
 
-		<p>Sua ajuda é muito importante para o projeto. Envie um e-mail informando as ações executadas que causaram o erro para <a href="mailto:arquigrafiabrasil@gmail.com">arquigrafiabrasil@gmail.com.</a></p>
+		<p>Sua ajuda é muito importante para o projeto. Envie um e-mail informando as ações executadas que causaram o erro para <a href="mailto:arquigrafiabrasil@gmail.com">arquigrafiabrasil@gmail.com</a>.</p>
 
 		<p>Obrigado por sua colaboração, e iremos corrigir o problema assim que possível!</p>
     </body>

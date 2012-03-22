@@ -1,266 +1,189 @@
-<%@ include file="/WEB-INF/jsp/imports.jsp"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="arquigrafia"
+	uri="http://www.groupwareworkbench.org.br/widgets/arquigrafia"%>
+<%@ taglib prefix="photo"
+	uri="http://www.groupwareworkbench.org.br/widgets/photomanager"%>
+<%@ taglib prefix="tag"
+	uri="http://www.groupwareworkbench.org.br/widgets/tag"%>
+<%@ taglib prefix="comment"
+	uri="http://www.groupwareworkbench.org.br/widgets/comment"%>
 
-<tiles:insertTemplate template="/WEB-INF/jsp/template.jsp">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Arquigrafia - Seu universo de imagens de arquitetura</title>
+<arquigrafia:includes arquigrafiaInstance="${arquigrafiaMgr}" />
+</head>
 
-	<tiles:putAttribute name="title">Arquigrafia Brasil - Visualiza&ccedil;&atilde;o de fotos</tiles:putAttribute>
+<body>
+	<!--   CONTAINER   -->
+	<div id="container">
 
-	<tiles:putAttribute name="head">
-		<album:buttonAdd-script photo="${photo}" />
-		<photo:buttonDelete-script photo="${photo}"/>
-		
-		<script type="text/javascript">
-			$(document).ready(function() {
-				$('label[rel=tooltip]').tooltip();
-				$("#inputAddToAlbum").addClass("buttonAddAlbum");
-			});
-		</script>
+		<!--   CABEZALHO   -->
+		<arquigrafia:header arquigrafiaInstance="${arquigrafiaMgr}" />
+		<!--   MEIO DO SITE - ÃREA DE NAVEGAÃÃO   -->
+		<div id="content">
+			<!--   COLUNA ESQUERDA   -->
+			<div id="sub_content">
+				<!--   PAINEL DE VISUALIZACAO - SINGLE   -->
+				<div id="single_view_block">
+					<!--   NOME / STATUS DA FOTO   -->
+					<div id="single_view_header">
+						<h1><c:out value="${photo.name}"/></h1>
+						<ul id="single_view_image_rating" class="right">
+							<li id="graph"></li>
+							<li><small>312</small></li>
+							<li id="comments"></li>
+							<li><small>345</small></li>
 
-		<script type="text/javascript">
-			$(document).ready(function() {
-				basicAndEvents();
-			});
-		</script>
-		<binomial:scriptBinomial />
-		<tag:scriptTags />
+							<c:if test="${counterMgr.collablet.enabled}">
+								<li id="views"></li>
+								<li><small><span><counter:showCounter
+													manager="${counterMgr}" entity="${photo}"
+													viewer="${sessionScope.userLogin}" increment="true"
+													wrapClass="counter_show" />
+										</span></small></li>
+							</c:if>
+							<li id="favourite"></li>
+							<li><small>176</small></li>
+						</ul>
+					</div>
+					<!--   FIM - NOME / STATUS DA FOTO   -->
+					<!--   FOTO   -->
+					<%--img src="img/photos/8806.jpg" class="single_view_image" width="600" height="410" alt="" title="" /--%>
+					<photo:show clazz="single_view_image"
+						style="width: 600px; height:410px" foto="${photo}"
+						photoInstance="${photoInstance}" />
 
-		<c:if test="${geoReferenceMgr.collablet.enabled}">
-			<gmaps:scriptGeoReference geoReferenceMgr="${geoReferenceMgr}"
-				entity="${photo}" />
-		</c:if>
-		<script type="text/javascript">
-			$(document).ready(function() {
-				$("#comments_create").hide();
-				$("#comments_bar_link2").hide();
-				$("#comments_bar_link").click(function() {
-					$("#comments_create").slideDown();
-					$("#comments_bar_link").hide();
-					$("#comments_bar_link2").show();
-				});
-				$("#comments_bar_link2").click(function() {
-					$("#comments_create").slideUp();
-					$("#comments_bar_link2").hide();
-					$("#comments_bar_link").show();
-				});
-				pageResize();
-			});
-		</script>
-	</tiles:putAttribute>
-
-	<tiles:putAttribute name="body">
-		<form name="tags" method="post" enctype="multipart/form-data"
-			action="<c:url value="/groupware-workbench/photo/${photo.id}" />">
-			<div id="photoBackground">
-				
-				<div id="photoRel">
-					<c:if test="${binomialMgr.collablet.enabled}">
-						<div id="binomialsTitle" class="big_white_title">Avalie esta foto</div>
-                        <div id="binLink">
-                            <a id="myLink">
-                                <label rel="tooltip" title="Como voc&ecirc; interpreta esta imagem?"><img src="${pageContext.request.contextPath}/images/bin_user.png" /></label>
-                            </a>
-                            &nbsp;&nbsp;
-                            <a id="avgLink">
-                                <label rel="tooltip" title="Veja a m&eacute;dia das avaliações desta imagem."><img src="${pageContext.request.contextPath}/images/bin_avg.png" /></label>
-                            </a>
-                        </div>
-
-                        <div id="binomialsWrap">
-                            <div id="binomialsUser">
-                                <binomial:userAverage entity="${photo}" manager="${binomialMgr}" user="${sessionScope.userLogin}" name="userBin"
-                                        labelClass="binLabelClass" valueClass="binValueClass" wrapClass="binWrapClass" />
-                                <div id="binomialSubmit">
-                                    <input type="submit" name="saveBinomial" value="Salvar" />
-                                </div>
-                            </div>
-                            <div id="binomialsAvg">
-                                <binomial:generalAverage entity="${photo}" manager="${binomialMgr}" name="avgBin"
-                                        labelClass="binLabelClass" valueClass="binValueClass" wrapClass="binWrapClass" />
-                            </div>
-                        </div>
-					</c:if>
+					<hr />
 				</div>
-
-				<div id="photoWrap">
-					<div id="photoTitle">
-						<span class="big_white_title"><c:out value="${photo.nome}" /></span>
-						 <div id="photoUploadContent" style="visibility: hidden; display: none;">
-                            <iframe id="photoUpdateData" name="photoUpdateFrame" style="width: 800px; height: 400px; opacity: 0.95;" id="photoUploadFrame"></iframe>
-                        </div>
-                        <div id="photoTitle_tab_5" class="photoTitle_tab_simple">
-                        	<photo:buttonEdit photo="${photo}" photoInstance="${photoInstance}" idButton="updatePhoto" className="mid_white_text"/>
-                        </div>
-                        <div id="photoTitle_tab_4" class="photoTitle_tab_simple">
-                            <c:if test="${not empty usuarioCriador}">
-                                <photo:buttonDelete idButton="deletePhoto" photo="${photo}" className="mid_white_text"/>
-                            </c:if>
-                        </div>
-					   <div id="photoTitle_tab_3" class="photoTitle_tab">
-                            <a class="mid_white_text" style="text-decoration: none;" target="_blanck" href="<c:url value="/groupware-workbench/photo/img-original/${photo.id}"/>">
-                                <img src="${pageContext.request.contextPath}/images/photo_download.png" alt="Baixar a foto" />
-                                &nbsp;
-                                Download
-                            </a>
-                        </div>
-                        <div id="photoTitle_tab_2" class="photoTitle_tab">
-                            <span>
-                            <img src="${pageContext.request.contextPath}/images/photo_view.png" alt="Visualizar a foto" />
-                            &nbsp;
-                            <span class="mid_white_text">Foto</span>
-                            </span>
-                        </div>
-                        <div id="photoTitle_tab_1" class="photoTitle_tab">
-                            <span>
-                            <img src="${pageContext.request.contextPath}/images/photo_details.png" alt="Detalhes da foto" />
-                            &nbsp;
-                            <span class="mid_white_text">Detalhes</span>
-                            </span>
-                        </div>
-					</div>
-
-					<div id="map_canvas"></div>
-
-					<div id="photo" class="resizeblePhoto1">
-						<photo:show foto="${photo}" photoInstance="${photoInstance}" />
-					</div>
-
-
-
-
-					<div style="clear: both"></div>
-					<div id="photoRelSub">
-						<div id="caracteristicsWrap">
-							<div id="caracteristicsTitle" style="background-color: #B8C7CF">Caracter&iacute;sticas</div>
-							<c:if test="${not empty photo.dataCriacaoFormatada}">
-								<div
-									style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; color: #6A8A9A; padding-left: 20px; margin-top: 5px;">
-									Tirada em:
-									<c:out value="${photo.dataCriacaoFormatada}" />
-								</div>
-							</c:if>
-							<c:if test="${not empty photo.cidade}">
-								<div
-									style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; color: #6A8A9A; padding-left: 20px; margin-top: 5px;">
-									Cidade:
-									<c:out value="${photo.cidade}" />
-								</div>
-							</c:if>
-							<c:if test="${not empty photo.estado}">
-								<div
-									style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; color: #6A8A9A; padding-left: 20px; margin-top: 5px;">
-									Estado:
-									<c:out value="${photo.estado}" />
-								</div>
-							</c:if>
-							<c:if test="${not empty photo.pais}">
-								<div
-									style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; color: #6A8A9A; padding-left: 20px; margin-top: 5px;">
-									Pais:
-									<c:out value="${photo.pais}" />
-								</div>
-							</c:if>
-							<c:if test="${not empty photo.direitosAutorais}">
-								<div
-									style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; color: #6A8A9A; padding-left: 20px; margin-top: 5px;">
-									Direitos Autorais:
-									<c:out value="${photo.direitosAutorais}" />
-								</div>
-							</c:if>
-							<c:if test="${not empty photo.infArquitetonicas}">
-								<div
-									style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; color: #6A8A9A; padding-left: 20px; margin-top: 5px;">
-									Informa&ccedil;&otilde;es arquitetonicas:
-									<c:out value="${photo.infArquitetonicas}" />
-								</div>
-							</c:if>
-						</div>
-						<c:if test="${not empty photo.descricao}">
-							<div id="descriptionWrap">
-								<div id="descriptionTitle"
-									style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; font-weight: bold; color: #6A8A9A; margin-top: 15px; background-color: #B8C7CF">Descri&ccedil;&atilde;o</div>
-								<p
-									style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; color: #6A8A9A; padding-left: 20px; margin-top: 5px;">
-									<c:out value="${photo.descricao}" />
-								</p>
-							</div>
-						</c:if>
-					</div>
-					<c:if test="${tagMgr.collablet.enabled}">
-						<div id="tagsAndEval">
-							<div id="evalAndAdd">
-								<div id="eval"></div>
-								<div id="add">
-									<a><img
-										src="${pageContext.request.contextPath}/images/add_tag.png"
-										alt="adicionar ou remover tag" /> </a>
-								</div>
-								<div id="add2">
-									<a><img
-										src="${pageContext.request.contextPath}/images/add_tag2.png"
-										alt="adicionar ou remover tag" /> </a>
-								</div>
-							</div>
-							<div id="tags">
-								<div id="tags_left"></div>
-								<div id="tags_content">
-									<tag:getTags tagMgr="${tagMgr}" entity="${photo}" />
-								</div>
-								<div id="tags_right"></div>
-								<div style="float: left; margin-left: 10px;">
-									<album:buttonAdd idButton="inputAddToAlbum"
-										albumMgr="${albumMgr}" user="${userLogin}" photo="${photo}" />
-								</div>
-								<c:if test="${counterMgr.collablet.enabled}">
-									<div>
-								    	<counter:showCounter manager="${counterMgr}" entity="${photo}" viewer="${sessionScope.userLogin}" increment="true" wrapClass="counter_show" />
-									</div>
-								</c:if>
-								
-								<c:if test="${flagMgrPhoto.collablet.enabled}">
-									<div id="flagDiv">
-										<flag:flagPanel entity="${photo}" flagMgr="${flagMgrPhoto}" user="${userLogin}" divId="flagDiv" />
-									</div>
-								</c:if>
-								
-							</div>
-							<div id="tagsAdd">
-								<tag:selectTags tagMgr="${tagMgr}" />
-								<tag:setTags tagMgr="${tagMgr}" entity="${photo}"
-									tagsEditorClass="mid_black_text" />
-								<input type="submit" name="adicionar" value="Adicionar" />
-							</div>
-						</div>
-					</c:if>
+				<!--   BOX DE BOTOES DA IMAGEM   -->
+				<div id="single_view_buttons_box">
+					<ul id="single_view_image_buttons">
+						<li><a href="#" title="Adicione aos seus favoritos"
+							id="add_favourite"></a></li>
+						<li><a href="#" title="Adicione ao seu album" id="plus"></a></li>
+						<li><a href="#" title="Avalie a foto" id="eyedroppper"></a></li>
+						<li><a href="#" title="Denuncie esta foto" id="denounce"></a></li>
+						<li><a
+							href="<c:url value="/photo/img-original/${photo.id}" />"
+							title="Faça o download" id="download" target="_blank"></a></li>
+					</ul>
+					<ul id="single_view_social_network_buttons">
+						<li><a href="#" class="delicious"></a></li>
+						<li><a href="#" class="google"></a></li>
+						<li><a href="#" class="facebook"></a></li>
+						<li><a href="#" class="twitter"></a></li>
+					</ul>
 				</div>
+				<!--   FIM - BOX DE BOTOEES DA IMAGEM   -->
+				<!--   BOX DE COMENTARIOS   -->
+				<div id="comments_block">
+
+					<comment:getComments commentMgr="${commentMgr}" entity="${photo}" />
+
+					<h2>Coment&aacute;rios</h2>
+					<div class="single_comment_block">
+						<img src="<c:url value="/img/avatar.jpg" />" width="50"
+							height="50" name="Homer" class="user_thumbnail" /> <a href="#"
+							id="name">Homer Simpson</a>&nbsp;<span class="comment_time">(3
+							dias atr&aacute;s)</span> <span class="comment_text">
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+								Nulla laoreet purus et neque sagittis et pretium turpis euismod.
+								Pellentesque habitant morbi tristique senectus et netus et
+								malesuada fames ac turpis egestas.</p>
+						</span>
+					</div>
+					<div class="single_comment_block">
+						<img src="<c:url value="/img/avatar.jpg" />" name="Homer"
+							class="user_thumbnail" /> <a href="#" id="name">Homer
+							Simpson</a>&nbsp;<span class="comment_time">(4 dias
+							atr&aacute;s)</span> <span class="comment_text">
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+						</span>
+					</div>
+					<!--   BOX DE COMENTARIO   -->
+					<div class="single_comment_block">
+						<comment:addComment commentMgr="${commentMgr}"
+							idObject="${photo.id}" user="${sessionScope.userLogin}" />
+
+						<form id="space_to_comment" method="post" action="#">
+							<img src="<c:url value="/img/avatar.jpg" />" name="Homer"
+								class="user_thumbnail" /> <a href="#" id="name">${sessionScope.userLogin.name}</a><br />
+							<textarea type="text" id="comment_field"
+								onclick="clickclear(this, 'default text')"
+								onblur="clickrecall(this,'default text')">Escreva o seu comentário aqui...</textarea>
+							<input type="submit" id="comment_button" class="cursor" value="" />
+						</form>
+					</div>
+					<!--   FIM - BOX DE COMENTARIO   -->
+				</div>
+				<!--   BOX DE COMENTARIOS   -->
 			</div>
-			<div style="height: 5px; width: 100%; clear: both"></div>
-			<c:if test="${commentMgr.collablet.enabled}">
-				<div id="comments_bar">
-					<div id="comments_bar_bg">
-						<div id="comments_bar_title" class="big_blue_title2">Coment&aacute;rios</div>
-						<div id="comments_bar_link" class="comments_link">
-							<a class="white_link"><img
-								src="${pageContext.request.contextPath}/images/add_comment.png"
-								alt="Adicionar Coment&aacute;rio" /> </a>
-						</div>
-						<div id="comments_bar_link2" class="comments_link">
-							<a class="white_link"><img
-								src="${pageContext.request.contextPath}/images/add_comment2.png"
-								alt="Adicionar Coment&aacute;rio" /> </a>
-						</div>
-					</div>
+			<!--   FIM - COLUNA ESQUERDA   -->
+			<!--   SIDEBAR   -->
+			<div id="sidebar">
+				<!--   USUARIO   -->
+				<div id="single_user">
+					<img src="<c:url value="/img/avatar.jpg" />" name="Homer"
+						id="single_view_user_thumbnail" /> <span
+						id="single_view_owner_name">Por: <a href="#" id="name">Homer
+							Simpson</a></span><br /> <a href="#" id="single_view_contact_add">+
+						Adicionar contato</a><br />
 				</div>
-				<div id="comments_create" style="height: 130px;">
-					<comment:addComment commentMgr="${commentMgr}"
-						idObject="${photo.id}" user="${sessionScope.userLogin}"
-						editorClass="editorClass" wrapClass="comments_create_internal" />
-					<input name="commentAdd" value="Adicionar" type="submit" />
-				</div>
-				<div id="comments_show">
-					<comment:getComments commentMgr="${commentMgr}" entity="${photo}"
-						wrapClass="comments_show_internal" />
-				</div>
-			</c:if>
-		</form>
+				<!--   FIM - USUARIO   -->
+				<!-- <h3>Equipamento:</h3>
+				<p>Lorem ipsum dolor sit amet</p> -->
+				<h3>Descrição:</h3>
+				<p><c:out value="${photo.description}"/></p>
+				<h3>Localização:</h3>
+				<p>
+					<iframe width="300" height="100" frameborder="0" scrolling="no"
+						marginheight="0" marginwidth="0"
+						src="http://maps.google.com.br/maps?f=q&amp;source=s_q&amp;hl=pt-BR&amp;geocode=&amp;q=sp&amp;aq=&amp;sll=-18.124971,-45.878906&amp;sspn=11.093912,19.621582&amp;ie=UTF8&amp;hq=&amp;hnear=S%C3%A3o+Paulo&amp;t=m&amp;ll=-21.912471,-49.361572&amp;spn=1.019251,3.284912&amp;z=7&amp;iwloc=A&amp;output=embed"></iframe>
+					<a
+						href="http://maps.google.com.br/maps?f=q&amp;source=embed&amp;hl=pt-BR&amp;geocode=&amp;q=sp&amp;aq=&amp;sll=-18.124971,-45.878906&amp;sspn=11.093912,19.621582&amp;ie=UTF8&amp;hq=&amp;hnear=S%C3%A3o+Paulo&amp;t=m&amp;ll=-21.912471,-49.361572&amp;spn=1.019251,3.284912&amp;z=7&amp;iwloc=A"
+						style="text-align: center; display: block; width: auto; font-size: 10px;">Exibir
+						mapa ampliado</a>
+				</p>
+				<h3>Tags:</h3>
+				<p>
+					<tag:getTags tagMgr="${tagMgr}" entity="${photo}" />
+				</p>
+				<h3>Licença:</h3>
+				<p><c:out value="${photo.copyRights}"/></p>
+				<h3>Avaliação:</h3>
+				<p>Avalie esta imagem de acordo com seus aspectos, compare também sua avaliação com as do outros usuários.</p>
+				<a
+					href="<c:url value="/${arquigrafiaMgr.id}/photo_avaliation/${photo.id}" />"
+					title="Avalie a foto" id="evaluate_button"></a> <a href="#"
+					title="MÃ©dia das avaliaÃ§Ãµes da foto" id="evaluation_average"></a>
+			</div>
+			<!--   FIM - SIDEBAR   -->
+		</div>
+		<!--   FUNDO DO SITE   -->
+		<div id="footer">
+			<!--   BARRA DE ABAS   -->
+			<arquigrafia:tabs arquigrafiaInstance="${arquigrafiaMgr}" />
+			<!--   FIM - BARRA DE IMAGENS - (RODAPÉ)   -->
 
-	</tiles:putAttribute>
-</tiles:insertTemplate>
+
+			<!--   CRÉDITOS - LOGOS   -->
+			<arquigrafia:footer arquigrafiaInstance="${arquigrafiaMgr}" />
+		</div>
+		<!--   FIM - FUNDO DO SITE   -->
+		<!--   MODAL   -->
+		<div id="mask"></div>
+		<div id="form_window">
+			<!-- ÁREA DE LOGIN - JANELA MODAL -->
+			<a class="close" href="#" title="FECHAR"></a>
+			<div id="registration"></div>
+		</div>
+		<!--   FIM - MODAL   -->
+	</div>
+	<!--   FIM - CONTAINER   -->
+</body>
+</html>

@@ -51,27 +51,15 @@
         </script>
         
         <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-ui.js"></script>
-        <tag:scriptTags />
-        <binomial:scriptBinomial />
     </head>
     <body>
-        <arq:header2 photoInstance="${photoMgr}" />
-        <w:conteudoPagina titulo="Faq:">
             <br />
             <h1><span class="style1">Cadastro</span></h1>
             <br />
-            <form name="dados" method="post" action="<c:url value="/groupware-workbench/faq/${faqMgr.id}" />">
+            <form name="dados" method="post" action="<c:url value="/faq/${faqMgr.id}" />">
                 <input type="hidden" name="faq.id" value="<c:out value="${faq.id}" />" />
                 <%-- TODO: Tableless! --%>
                 <table cellpadding="3">
-                    <c:if test="${categoryMgr.collablet.enabled}">
-                        <tr>
-                            <td>Categoria</td>
-                            <td>
-                                <category:simpleDropDownBox entity="${faq}" categoryMgr="${categoryMgr}" />
-                            </td>
-                        </tr>
-                    </c:if>
                     <tr>
                         <td>Pergunta</td>
                         <td><input size="60" type="text" name="faq.pergunta" value="<c:out value="${faq.pergunta}" />" /></td>
@@ -83,18 +71,8 @@
                     <tr>
                         <td></td>
                         <td>
-                            <c:if test="${tagMgr.collablet.enabled}">
-                                Tags clique em uma das tags abaixo para adicion&aacute;-la ao FAQ.
-                                <br />
-                                <tag:selectTags tagMgr="${tagMgr}" />
-                                <tag:setTags tagMgr="${tagMgr}" entity="${faq}" />
-                            </c:if>
                         </td>
                         <td>
-                            <c:if test="${binomialMgr.collablet.enabled}">
-                                <%-- FIXME: binomial:setBinomial não existe e nem nunca existiu! --%>
-                                <binomial:setBinomial binomialMgr="${binomialMgr}" entity="${faq}" user="${sessionScope.userLogin}" />
-                            </c:if>
                         </td>
                     </tr>
                     <tr>
@@ -111,10 +89,7 @@
             <div class="barra_botoes">
                 <w:voltar collabletInstance="${faqMgr.collablet}" />
             </div>
-        </w:conteudoPagina>
         <div>
-            <div style="height: 30px; background-color: #fff"></div>
-            <arq:footer photoInstance="${photoMgr}" />
         </div>
     </body>
 </html>
