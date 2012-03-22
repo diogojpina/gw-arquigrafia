@@ -95,6 +95,8 @@ public class PhotoController {
     public void upload(PhotoMgrInstance photoInstance) {
         Photo p = new Photo();
         p.setCollablet(photoInstance.getCollablet());
+        result.include("allowModificationsList", Photo.AllowModifications.values());
+        result.include("allowCommercialUsesList", Photo.AllowCommercialUses.values());
         result.include("photo", p);
         
         addIncludes(photoInstance);

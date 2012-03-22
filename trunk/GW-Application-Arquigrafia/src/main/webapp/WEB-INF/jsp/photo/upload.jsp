@@ -85,25 +85,20 @@
       <p  class="creative_commons_form" id="creative_commons_left_form">
       Permitir o uso comercial da sua obra?
       <br />
-      <input type="radio" name="field_commercial" value="y" id="question_2-3"/>
-      <label for="question_2-3">Sim</label>
-      <br />
-      <input type="radio" checked="checked" name="field_commercial" value="n" id="question_2-4"/>
-      <label for="question_2-4">Não</label>
+      <c:forEach items="${allowCommercialUsesList}" var="allowCommercialUses"> 
+        <input type="radio" name="field_comercial" value="${allowCommercialUses}" id="question_3-4"  <c:if test="${allowCommercialUses==allowCommercialUses.default}">checked="checked"</c:if> />
+        <label for="question_3-4">${allowCommercialUses.nome}</label>
+        <br />
+      </c:forEach>
     </p>
     <p class="creative_commons_form" id="creative_commons_right_form">
       Permitir modificações em sua obra?
       <br />
-      <input type="radio" name="field_derivatives" value="y" id="question_3-5" />
-      <label for="question_3-5">Sim</label>
-      <br />
-      <input type="radio" name="field_derivatives" value="sa" id="question_3-6" />
-      <label for="question_3-6">
-        Sim, contanto que os outros compartilhem de forma semelhante
-      </label>
-      <br />
-      <input type="radio"  name="field_derivatives" value="n" id="question_3-7" checked="checked"/>
-      <label for="question_3-7">Não</label>
+      <c:forEach items="${allowModificationsList}" var="allowModifications"> 
+        <input type="radio" name="field_derivatives" value="${allowModifications}" id="question_3-5"  <c:if test="${allowModifications==allowModifications.default}">checked="checked"</c:if> />
+        <label for="question_3-5">${allowModifications.nome}</label>
+        <br />
+      </c:forEach>
     </p> 
 
 <p>

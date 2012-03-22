@@ -43,6 +43,8 @@ import javax.imageio.stream.FileImageOutputStream;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
@@ -63,9 +65,46 @@ import br.org.groupwareworkbench.core.framework.Collablet;
 import br.org.groupwareworkbench.core.graphics.GWImage;
 import br.org.groupwareworkbench.core.util.ImageUtils;
 
+
 @Entity
 public class Photo implements Serializable {
 
+    public enum AllowModifications {  
+        YES("Sim"), YES_SA("Sim, contanto que os outros compartilhem de forma semelhante"), NO("Não");  
+      
+        private final String nome;  
+      
+        AllowModifications(String nome) {  
+            this.nome = nome;  
+        }  
+      
+        public String getNome() {  
+            return nome;  
+        }  
+        
+        public AllowModifications getDefault(){
+            return YES;
+        }
+    } 
+    
+    public enum AllowCommercialUses {  
+        YES("Sim"), NO("Não");  
+      
+        private final String nome;  
+      
+        AllowCommercialUses(String nome) {  
+            this.nome = nome;  
+        }  
+      
+        public String getNome() {  
+            return nome;  
+        }  
+        
+        public AllowCommercialUses getDefault(){
+            return YES;
+        }
+    } 
+    
     private static final long serialVersionUID = -4757949223957140519L;
     private static final Integer DEFAULT_PHOTOS_COUNT = 5;
 
@@ -109,6 +148,12 @@ public class Photo implements Serializable {
     private String aditionalImageComments;
     private String characterization;
     private String tombo;
+    
+    @Enumerated(EnumType.STRING)
+    private AllowModifications allowModifications;
+    
+    @Enumerated(EnumType.STRING)
+    private AllowCommercialUses allowCommercialUses;
     
     @Temporal(TemporalType.DATE)
     private Date cataloguingTime;
@@ -620,4 +665,20 @@ public class Photo implements Serializable {
 
     }
 
+    public void setAllowModifications(AllowModifications allowModifications) {
+        this.allowModifications = allowModifications;
+    }
+
+    public AllowModifications getAllowModifications() {
+        return allowModifications;
+    }
+
+    public void setAllowCommercialUses(AllowCommercialUses allowCommercialUses) {
+        this.allowCommercialUses = allowCommercialUses;
+    }
+
+    public AllowCommercialUses getAllowCommercialUses() {
+        return allowCommercialUses;
+    }
+    
 }
