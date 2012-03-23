@@ -70,18 +70,26 @@ import br.org.groupwareworkbench.core.util.ImageUtils;
 public class Photo implements Serializable {
 
     public enum AllowModifications {  
-        YES("Sim"), YES_SA("Sim, contanto que os outros compartilhem de forma semelhante"), NO("Não");  
+        YES("Sim",""),
+        YES_SA("Sim, contanto que os outros compartilhem de forma semelhante", "-sa"), 
+        NO("Não", "-nd");  
       
-        private final String name;  
+        private final String name;
+        private final String abrev;
       
-        AllowModifications(String name) {  
-            this.name = name;  
+        AllowModifications(String name, String abrev) {  
+            this.name = name;
+            this.abrev = abrev;
         }  
       
         public String getName() {  
             return name;  
-        }  
+        }
         
+        public String getAbrev() {
+            return abrev;
+        }
+
         public AllowModifications getDefault(){
             return YES;
         }
@@ -89,14 +97,20 @@ public class Photo implements Serializable {
     } 
     
     public enum AllowCommercialUses {  
-        YES("Sim"), NO("Não");  
+        YES("Sim",""), NO("Não","-nc");  
       
-        private final String name;  
+        private final String name; 
+        private final String abrev;
       
-        AllowCommercialUses(String name) {  
+        AllowCommercialUses(String name, String abrev) {  
             this.name = name;  
+            this.abrev = abrev;
         }  
-      
+
+        public String getAbrev() {
+            return abrev;
+        }
+        
         public String getName() {  
             return name;  
         }  

@@ -136,8 +136,15 @@
 				</p>
 				<h3>Licença:</h3>
 				<p>
-					Permitir modificações: <c:out value="${photo.allowModifications.name}" /><br />
-					Permitir uso comercial: <c:out value="${photo.allowCommercialUses.name}" />
+					<a href="http://creativecommons.org/licenses/by
+							<c:out value="${photo.allowCommercialUses.abrev}"/>
+							<c:out value="${photo.allowModifications.abrev}"/>
+						/3.0/deed.pt_BR">
+						<img src="<c:url value="/img/ccIcons/by"/>
+							<c:out value="${photo.allowCommercialUses.abrev}"/>
+							<c:out value="${photo.allowModifications.abrev}"/>
+						88x31.png" id="ccicons" alt="license" />
+					</a>
 				</p>
 				<h3>Avaliação:</h3>
 				<p>Avalie esta imagem de acordo com seus aspectos, compare
