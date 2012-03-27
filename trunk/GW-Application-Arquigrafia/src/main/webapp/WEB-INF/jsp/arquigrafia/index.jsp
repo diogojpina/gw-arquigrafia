@@ -15,7 +15,7 @@
 	<arquigrafia:includes arquigrafiaInstance="${arquigrafiaMgr}" />
 </head>
 
-<body onload="load(${firstTime})">
+<body onload='load("${firsTime}","${showMessage}")'>
   <!--   CONTAINER   -->
   <div id="container">
   

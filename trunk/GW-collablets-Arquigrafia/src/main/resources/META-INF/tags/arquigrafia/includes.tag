@@ -105,16 +105,23 @@
 			window.print();
 			return false;
 		});
-	
 			
 	});
 
-	function load(firstTime) {
-		if ( firstTime == 1) {
+	function load(firstTime, showMessage) {
+
+		if ( firsTime ) {
 			$('#mask').fadeIn('fast');
 			$('#form_window').fadeIn('slow');
 			$('#registration').load('<c:url value="/${arquigrafiaMgr.id}/welcome" />');	
 			form_window_loaded = true;
 		}
+		if ( showMessage ) {
+			$('#mask').fadeIn('fast');
+			$('#form_window').fadeIn('slow');
+			$('#registration').load('<c:url value="/${arquigrafiaMgr.id}/showMessage" />');	
+			form_window_loaded = true;
+		}
+		
 	}
 </script>	

@@ -86,6 +86,13 @@ public class ArquigrafiaController {
     }
     
     @Get
+    @Path(value = "/{arquigrafiaInstance}/showMessage")
+    public void showMessage(ArquigrafiaMgrInstance arquigrafiaInstance) {
+        result.include("arquigrafiaMgr", arquigrafiaInstance);
+        addIncludes(arquigrafiaInstance);
+    }
+    
+    @Get
     @Path(value = "/{arquigrafiaInstance}/contact")
     public void contact(ArquigrafiaMgrInstance arquigrafiaInstance) {
         result.include("arquigrafiaMgr", arquigrafiaInstance);

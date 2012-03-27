@@ -235,6 +235,19 @@
         </collablet>
         
         <collablet>
+            <business>br.org.groupwareworkbench.collablet.communic.mail.MailMgrInstance</business>
+            <description>Gerenciar Envio de emails</description>
+            <name>mailMgrInstance</name>
+            <properties>
+                <property key="mailServerAddress" value="smtp.gmail.com" />
+        		<property key="mailServerPort" value="465" />
+        		<property key="mailUserAddress" value="email usado para envio" />
+        		<property key="mailUserPassword" value="senha do email de envio" />
+        		<property key="mailDestination" value="email de destino" />
+            </properties>
+        </collablet>
+        
+        <collablet>
         	<business>br.org.groupwareworkbench.arquigrafia.tracker.TrackerInstance</business>
             <description>Gerenciar localização de usuários</description>
             <name>tracker</name>
@@ -268,6 +281,8 @@
         
     </collablets>
 
+
+<!-- Ze agora tem que limpar o banco e deve funcionar qq coisa me chama denovo pra vermos o q esta acontecendo -->
     <collablets-subordinations>
         <subordination parent="arquigrafiaMgr" child="manager" />
         <subordination parent="arquigrafiaMgr" child="faqMgr" />
@@ -284,10 +299,12 @@
 		<subordination parent="arquigrafiaMgr" child="tracker" />
 		<subordination parent="arquigrafiaMgr" child="componentRepository" />
 		<subordination parent="arquigrafiaMgr" child="counterMgr" />
-		<subordination parent="arquigrafiaMgr" child="photoMgr" />		
+		<subordination parent="arquigrafiaMgr" child="photoMgr" />	
+		<subordination parent="arquigrafiaMgr" child="mailMgrInstance" />	
     </collablets-subordinations>
 
     <collablets-dependencies>
+   	    <dependency from="mailMgrInstance" to="arquigrafiaMgr" />
         <dependency from="roleMgr" to="arquigrafiaMgr" />
         <dependency from="faqMgr" to="arquigrafiaMgr" />
         <dependency from="profileMgr" to="arquigrafiaMgr" />
@@ -351,4 +368,5 @@
                    <permission name="X-X-usuario" />
            </role>
    </security-policy>
+   
 </frameworkDescriptor>

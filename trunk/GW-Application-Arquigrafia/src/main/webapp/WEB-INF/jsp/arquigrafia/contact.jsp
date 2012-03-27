@@ -1,28 +1,29 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <div id="contact_us_form">
-  <h2>Fale conosco</h2><br />
-  <h3>Escreva-nos criticas / dúvidas / sugestões:</h3>
-  <br />
-  <p>
-  <label>* Nome:</label>
-  <input name="firstname" type="text" class="text" />
-  <br />
-  <label>* Email:</label>
-  <input name="email" type="text" class="text" />
-  <br />
-  <label>* Assunto:</label>
-  <select name="subject">
-    <option value="duvida" selected="selected">Dúvida</option>
-    <option value="critica">Crítica</option>
-    <option value="sugestao">Sugestão</option>
-  </select>
-  <br />
-  <label>* Mensagem:</label>
-  <textarea cols="34" rows="3" name="message"></textarea>
-  </p>
-  <p>
-    <small>Campos assinalados com * são de prenchimento obrigatório.</small>
-  </p>
-  <p>
-    <input href="#" name="enviar" type="submit" class="submit cursor" value="" />
-  </p>
+	<form action="<c:url value="/groupware-workbench/sendmail/${mailMgrInstance.id}/send"/>" method="post">
+		<h2>Fale conosco</h2>
+		<br />
+		<h3>Escreva-nos criticas / dúvidas / sugestões:</h3>
+		<br />
+		<p>
+			<label>* Nome:</label> <input name="mail.firstname" type="text"
+				class="text" /> <br /> <label>* Email:</label> <input
+				name="mail.email" type="text" class="text" /> <br /> <label>*
+				Assunto:</label> <select name="mail.subject">
+				<option value="duvida" selected="selected">Dúvida</option>
+				<option value="critica">Crítica</option>
+				<option value="sugestao">Sugestão</option>
+			</select> <br /> <label>* Mensagem:</label>
+			<textarea cols="34" rows="3" name="mail.message"></textarea>
+		</p>
+		<p>
+			<small>Campos assinalados com * são de prenchimento
+				obrigatório.</small>
+		</p>
+		<p>
+			<input name="enviar" type="submit" class="submit cursor" value="" />
+		</p>
+		
+	</form>
 </div>
