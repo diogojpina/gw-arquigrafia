@@ -76,26 +76,24 @@ public class PhotoController {
     private final Validator validator;
     private final HttpSession session;
     private final RequestInfo requestInfo;
-    private final HttpServletRequest request;
 
     public PhotoController(Result result, Validator validator, WidgetInfo info, HttpSession session,
-            RequestInfo requestInfo, HttpServletRequest request) {
+            RequestInfo requestInfo) {
         this.result = result;
         this.validator = validator;
         this.info = info;
         this.session = session;
         this.requestInfo = requestInfo;
-        this.request = request;
     }
 
     @Get
-    @Path(value = "/groupware-workbench/photo/{photoInstance}/index")
+    @Path(value = "/photo/{photoInstance}/index")
     public void index(PhotoMgrInstance photoInstance) {
         addIncludes(photoInstance);
     }
 
     @Get
-    @Path(value = "/{photoInstance}/upload")
+    @Path(value = "/photo/{photoInstance}/upload")
     public void upload(PhotoMgrInstance photoInstance) {
         Photo p = new Photo();
         p.setCollablet(photoInstance.getCollablet());
@@ -156,9 +154,9 @@ public class PhotoController {
     }
 
     // FIXME: @Get e @Post ao mesmo tempo? Separar as duas coisas. Não é idempotente.
-    @Get
     @Post
-    @Path(value = "/groupware-workbench/photo/{idPhoto}")
+    @Get
+    @Path(value = "/photo/{idPhoto}")
     public void show(long idPhoto) {
         
         User user = (User) session.getAttribute("userLogin");
@@ -187,7 +185,7 @@ public class PhotoController {
     }
     
     @Get
-    @Path(value = "/groupware-workbench/photo/{idPhoto}/evaluate")
+    @Path(value = "/photo/{idPhoto}/evaluate")
     public void evaluate(long idPhoto) {
         User user = (User) session.getAttribute("userLogin");
         Photo photo = Photo.findById(idPhoto);
@@ -232,7 +230,7 @@ public class PhotoController {
     }
 
     @Post
-    @Path(value = "/groupware-workbench/photo/{photoInstance}/buscaTag/{tagName}")
+    @Path(value = "/photo/{photoInstance}/buscaTag/{tagName}")
     public void buscaFotoPorId(String tagName, List<Object> photos, PhotoMgrInstance photoInstance) {
         List<Photo> resultFotosBusca = photoInstance.buscaFotoPorListaId(photos);
 
@@ -265,7 +263,7 @@ public class PhotoController {
     }
 
     @Post
-    @Path(value = "/groupware-workbench/photo/{photoInstance}/buscaA")
+    @Path(value = "/photo/{photoInstance}/buscaA")
     public void buscaFotoAvancada(String nome, String descricao, String lugar, Date date, PhotoMgrInstance photoInstance) {
         if (nome.isEmpty() && descricao.isEmpty() && lugar.isEmpty() && date == null) {
             validator.add(new ValidationMessage(MSG_NENHUM_CAMPO_PREENCHIDO, "Erro"));
@@ -300,7 +298,7 @@ public class PhotoController {
 
     // TODO: Achar uma forma de fazer isto sem ter o photo na URL.
     @Get
-    @Path(value = "/groupware-workbench/photo/{photoInstance}/registra")
+    @Path(value = "/photo/{photoInstance}/registra")
     public void registra(PhotoMgrInstance photoInstance, Photo photo) {
         Photo newPhoto = photo;
         if (newPhoto == null) {
@@ -313,7 +311,7 @@ public class PhotoController {
     }
 
     @Post
-    @Path(value = "/groupware-workbench/photo/{photoInstance}/registra")
+    @Path(value = "/photo/{photoInstance}/registra")
     public void save(Photo photoRegister, UploadedFile foto, PhotoMgrInstance photoInstance ) {
 
         System.out.println("nome => " + photoRegister.getName());
@@ -383,7 +381,7 @@ public class PhotoController {
     }
 
     @Get
-    @Path(value = "/groupware-workbench/photo/{photoInstance}/edit/{idPhoto}")
+    @Path(value = "/photo/{photoInstance}/edit/{idPhoto}")
     public void edit(PhotoMgrInstance photoInstance, final long idPhoto) {
         
         Photo photo = Photo.findById(idPhoto);
@@ -401,7 +399,7 @@ public class PhotoController {
     }
     
     @Post
-    @Path(value = "/groupware-workbench/photo/{photoInstance}/update")
+    @Path(value = "/photo/{photoInstance}/update")
     public void update(Photo photoRegister, PhotoMgrInstance photoInstance, User userOwn) {
         User user = null;
         try {
@@ -429,7 +427,7 @@ public class PhotoController {
     }
     
     @Post
-    @Path(value = "/groupware-workbench/photo/delete/{idPhoto}")
+    @Path(value = "/photo/delete/{idPhoto}")
     public void deletePhoto(long idPhoto) {
         Photo photo = Photo.findById(idPhoto);
         if (photo == null) {
@@ -442,7 +440,7 @@ public class PhotoController {
     }
     
     @Get
-    @Path(value = "/groupware-workbench/photo/{photoInstance}/registra_multiplos/{os}/{dir}")
+    @Path(value = "/photo/{photoInstance}/registra_multiplos/{os}/{dir}")
     public void registraMultiplos(String os, String dir, PhotoMgrInstance photoInstance) {
 
         // TODO: Não deveria depender em saber qual é o sistema operacional.
@@ -481,7 +479,7 @@ public class PhotoController {
     }
 
     @Delete
-    @Path(value = "/groupware-workbench/photo/{idPhoto}")
+    @Path(value = "/photo/{idPhoto}")
     public void delete(long idPhoto) {
         Photo photo = Photo.findById(idPhoto);
         if (photo == null) {
@@ -494,7 +492,7 @@ public class PhotoController {
     }
 
     @Get
-    @Path("/groupware-workbench/photo/{photoMgr}/listbypage/{pageSize}/{pageNumber}")
+    @Path("/photo/{photoMgr}/listbypage/{pageSize}/{pageNumber}")
     public void listByPageAndOrder(PhotoMgrInstance photoMgr, int pageSize, int pageNumber) {
         List<Photo> photos = photoMgr.listPhotoByPageAndOrder(pageSize, pageNumber);
 
@@ -506,7 +504,7 @@ public class PhotoController {
     }
 
     @Get
-    @Path("/groupware-workbench/photo/{photoMgr}/listbyuserpage/{pageSize}/{pageNumber}")
+    @Path("/photo/{photoMgr}/listbyuserpage/{pageSize}/{pageNumber}")
     public void listByUserPageAndOrder(PhotoMgrInstance photoMgr, int pageSize, int pageNumber) {
         User user = (User) session.getAttribute("userLogin");
         List<Photo> photos = photoMgr.listPhotoByUserPageAndOrder(user, pageSize, pageNumber);
