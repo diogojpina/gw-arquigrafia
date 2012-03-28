@@ -59,10 +59,7 @@ public class ArquigrafiaController {
     public void index(ArquigrafiaMgrInstance arquigrafiaInstance) {
         if("yes".equals(request.getParameter("firstTime"))) {
             result.include("firstTime", 1);
-        }
-        if(!(request.getParameter("showMessage")).isEmpty()) {
-            result.include("showMessage", request.getParameter("showMessage"));
-        }               
+        }          
         result.include("arquigrafiaMgr", arquigrafiaInstance);
         addIncludes(arquigrafiaInstance);
     }
@@ -91,10 +88,7 @@ public class ArquigrafiaController {
     @Get
     @Path(value = "/{arquigrafiaInstance}/showMessage")
     public void showMessage(ArquigrafiaMgrInstance arquigrafiaInstance) {
-        result.include("arquigrafiaMgr", arquigrafiaInstance);
-        if(!(request.getParameter("showMessage")).isEmpty()) {
-            result.include("showMessage", request.getParameter("showMessage"));
-        }        
+        result.include("arquigrafiaMgr", arquigrafiaInstance);    
         addIncludes(arquigrafiaInstance);
     }
     
