@@ -9,7 +9,7 @@
     <div id="header">
 	
 	  <!--   LOGO   -->
-      <a href="<c:url value="/18/?firstTime=no" />" id="logo"></a>  <p id="beta">beta</p>
+      <a href="<c:url value="/18/index" />" id="logo"></a>  <p id="beta">beta</p>
       <!--   MENU SUPERIOR   -->
 	  <div id="first_menu">
         <!--   MENU INSTITUCIONAL   -->

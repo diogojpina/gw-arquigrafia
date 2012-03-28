@@ -57,13 +57,27 @@ public class ArquigrafiaController {
     @Get
     @Path(value = "/{arquigrafiaInstance}/")
     public void index(ArquigrafiaMgrInstance arquigrafiaInstance) {
-        if("yes".equals(request.getParameter("firstTime"))) {
+        if("no".equals(request.getParameter("firstTime"))) {
+            result.include("firstTime", 0);
+        } else {
             result.include("firstTime", 1);
-        }          
+        }
         result.include("arquigrafiaMgr", arquigrafiaInstance);
         addIncludes(arquigrafiaInstance);
     }
 
+    @Get
+    @Path(value = "/{arquigrafiaInstance}/index")
+    public void index2(ArquigrafiaMgrInstance arquigrafiaInstance) {
+        if("no".equals(request.getParameter("firstTime"))) {
+            result.include("firstTime", 0);
+        } else {
+            result.include("firstTime", 1);
+        }
+        result.include("arquigrafiaMgr", arquigrafiaInstance);
+        addIncludes(arquigrafiaInstance);
+    }
+    
     @Get
     @Path(value = "/{arquigrafiaInstance}/project")
     public void project(ArquigrafiaMgrInstance arquigrafiaInstance) {

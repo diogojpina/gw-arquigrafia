@@ -35,9 +35,9 @@ img.right{ margin-left:15px; }
 /* --- HEADER --- */
 
 #header { border-bottom:solid 1px #666; min-height:102px; height:auto; margin-bottom:24px; overflow:hidden; }
-#header a#logo { float:left; display:block; width:225px; height:51px; margin:33px 115px 0 25px; background:url(../img/icons_sprite.png) 0 0; }
+#header a#logo { float:left; display:block; width:225px; height:51px; margin:33px 8px 0 25px; background:url(../img/icons_sprite.png) 0 0; no-repeat;}
 #header a#logo:hover { background-position:0 -52px; width:225px; height:52px; }
-p#beta{ float:left; margin:48px 83px 0 0; color:#FFF; font-size:12px; }
+#header p#beta{ float:left; margin:48px 83px 0 0; color:#FFF; font-size:12px; }
 
 
 /* itens do menu */
@@ -117,6 +117,20 @@ a#complete_search:hover { background-position:-367px -32px; }
 #form_window input.submit:hover { background-position:-222px -216px;}
 a#creative_commons{ background:url(../img/icons_sprite.png) no-repeat 110px -240px; width:130px; display:inline-block; }
 
+
+/* lightbox - boas vindas */
+#form_window_welcome {width: 600px; background: #fff; position:fixed; top: 50%; left:50%; margin: -240px 0 0 -340px; padding: 35px; -moz-border-radius: 7px; border-radius: 7px; display:none;}
+#form_window_welcome label {width: 110px; display: inline-block; color: #777; text-align: right; vertical-align:top; line-height:27px;}
+#form_window_welcome textarea {border:solid 1px #EEEEEE; padding: 3px; margin: 2px 0 2px 5px; font-size:11px;}
+#form_window_welcome input {border: solid 1px #eee; padding: 3px; margin: 2px 0 2px 5px;}
+#form_window_welcome select {margin:3px;}
+#form_window_welcome input.text {width: 123px;}
+#form_window_welcome .date {width: 29px;}
+#form_window_welcome a.close {float:right; width:58px; height:20px; background:url(../img/icons_sprite.png) -160px -195px; }
+#form_window_welcome a.close:hover { background-position:-160px -216px; }
+#form_window_welcome .email, #form_window .website { width: 123px;}
+#form_window_welcome input.submit { background:url(../img/icons_sprite.png) -222px -195px; height:20px; width:54px; padding:0; margin:0; border:none;}
+#form_window_welcome input.submit:hover { background-position:-222px -216px;}
 
 /* imagens painel */
 #panel { min-height:425px; }

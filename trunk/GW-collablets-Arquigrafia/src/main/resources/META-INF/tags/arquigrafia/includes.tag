@@ -176,20 +176,18 @@
 	});
 
 	
-	function load(firstTime, showMessage) {
+	function load(firstTime) {
 
-		if ( firsTime ) {
 			$('#mask').fadeIn('fast');
-			$('#form_window').fadeIn('slow');
-			$('#registration').load('<c:url value="/18/welcome" />');	
+			$('#form_window_welcome').fadeIn('slow');
+			$('#registration_welcome').load('<c:url value="/18/welcome" />');	
 			form_window_loaded = true;
-		}
-		if ( null!== showMessage ) {
-			$('#mask').fadeIn('fast');
-			$('#form_window').fadeIn('slow');
-			$('#registration').load('<c:url value="/18/showMessage" />');	
-			form_window_loaded = true;
-		}
+//		if ( null!== showMessage ) {
+//			$('#mask').fadeIn('fast');
+//			$('#form_window').fadeIn('slow');
+//			$('#registration').load('<c:url value="/18/showMessage" />');	
+//			form_window_loaded = true;
+//		}
 		
 	}
 </script>	

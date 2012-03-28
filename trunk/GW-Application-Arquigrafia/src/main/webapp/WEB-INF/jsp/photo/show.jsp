@@ -53,8 +53,8 @@
 					<ul id="single_view_image_buttons">
 						<!-- <li><a href="#" title="Adicione aos seus favoritos" id="add_favourite"></a></li>
 						<li><a href="#" title="Denuncie esta foto" id="denounce"></a></li>
-						<li><a href="#" title="Adicione ao seu album" id="plus"></a></li>  -->
-						<li><a href="<c:url value="/18/photo_avaliation/${photo.id}" />" title="Avalie a foto" id="eyedroppper"></a></li>
+						<li><a href="#" title="Adicione ao seu album" id="plus"></a></li>  
+						<li><a href="<c:url value="/18/photo_avaliation/${photo.id}" />" title="Avalie a foto" id="eyedroppper"></a></li>-->
 						<li><a href="<c:url value="/photo/img-original/${photo.id}" />" title="Faça o download" id="download" target="_blank"></a></li>
 					</ul>
 					<ul id="single_view_social_network_buttons">
@@ -121,12 +121,12 @@
 						88x31.png" id="ccicons" alt="license" />
 					</a>
 				</p>				
-				<h3>Avaliação:</h3>
+				<!-- <h3>Avaliação:</h3>
 				<p>Avalie esta imagem de acordo com seus aspectos, compare também sua avaliação com as do outros usuários.</p>
 				<a
 					href="<c:url value="/18/photo_avaliation/${photo.id}" />"
 					title="Avalie a foto" id="evaluate_button"></a> <a href="#"
-					title="MÃ©dia das avaliaÃ§Ãµes da foto" id="evaluation_average"></a>
+					title="MÃ©dia das avaliaÃ§Ãµes da foto" id="evaluation_average"></a> -->
 			</div>
 			<!--   FIM - SIDEBAR   -->
 		</div>
