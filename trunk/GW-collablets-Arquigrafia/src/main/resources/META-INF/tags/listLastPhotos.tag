@@ -12,7 +12,7 @@
 	</r:callMethod>
 	<c:forEach var="foto" items="${photos}">
 			<a class="footer_image" 
-				href="<c:url value="/16/photo/${foto.id}"/>"> <img
+				href="<c:url value="/photo/${foto.id}"/>"> <img
 				src="<c:url value="/photo/img-thumb/${foto.id}"/>?_log=no" />
 			</a>
 	</c:forEach>

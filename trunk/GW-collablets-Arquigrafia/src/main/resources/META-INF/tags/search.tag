@@ -11,7 +11,7 @@
             "changeMonth": true,
             "changeYear": true,
             "width": 15,
-            "dateFormat": "dd/mm/yy", <%-- Atenção: De acordo com a documentação, yy é o ano com 4 dígitos. --%>
+            "dateFormat": "dd/mm/yy", <%-- Atenï¿½ï¿½o: De acordo com a documentaï¿½ï¿½o, yy ï¿½ o ano com 4 dï¿½gitos. --%>
             "buttonImage": "${pageContext.request.contextPath}/images/calendar.gif",
             "buttonImageOnly": true
         });
@@ -19,7 +19,7 @@
 </script>
 
 <div id="form1">
-    <form name="formBusca" action="<c:url value="/groupware-workbench/photo/${photoInstance.id}/busca"/>" method="post">
+    <form name="formBusca" action="<c:url value="/photo/${photoInstance.id}/busca"/>" method="post">
         <%-- TODO: Tableless! --%>
         <table>
             <tr>
@@ -35,7 +35,7 @@
 </div>
 
 <div id="form2">
-    <form name="formBuscaAvancada" action="<c:url value="/groupware-workbench/photo/${photoInstance.id}/buscaA" />" method="post">
+    <form name="formBuscaAvancada" action="<c:url value="/photo/${photoInstance.id}/buscaA" />" method="post">
         <%-- TODO: Tableless! --%>
         <table>
             <tr>

@@ -27,16 +27,25 @@
       </ul>
 	  <!--   BARRA DE IMAGENS - (RODAPÉ)   -->
 	  <div class="footer_images">
-	    <!--   LINHA DE IMAGENS - (RODAPÉ)   -->
-		<div class="images_line">  
-		  <!--   SETAS DE NAVEGAÇÃO DAS FOTOS (RODAPÉ)-->
-		  <!-- <a href="#" id="arrow-left" class="arrows">&laquo;</a>
-		  <a href="#" id="arrow-right" class="arrows">&raquo;</a>  -->
+	    
+		<!--   SETAS DE NAVEGAÇÃO DAS FOTOS (RODAPÉ)-->
+		<a href="#" id="arrow-left" class="arrows">&laquo;</a>
+		<a href="#" id="arrow-right" class="arrows">&raquo;</a>
+		
+		<!--  CONTAINER DAS IMAGENS - (RODAPÉ)  -->
+		<div id="images_container">
+		
+			<!--   LINHA DE IMAGENS - (RODAPÉ)   -->
+			<div class="images_line">  
+			  <!--   IMAGENS - (RODAPÉ)   -->
+			  
 		  <!--   IMAGENS - (RODAPÉ)   -->
-		  <p:listLastPhotos photoInstance="${photoMgr}" amount="8" />
-		  
-	    </div>
-        <!--   FIM - LINHA DE IMAGENS - (RODAPÉ)   -->
+		  <p:listLastPhotos photoInstance="${photoMgr}" amount="24" />
+		  				
+		  	</div>
+		  	</div>
+		 </div>
+	  <!--   FIM - BARRA DE IMAGENS - (RODAPÉ)   -->
 	  </div>
 	  
 	  

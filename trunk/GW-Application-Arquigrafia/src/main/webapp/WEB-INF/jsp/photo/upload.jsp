@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="tag" uri="http://www.groupwareworkbench.org.br/widgets/tag" %>
 
-<form name="dados" method="POST" action="<c:url value="/groupware-workbench/photo/${photoInstance.id}/registra" />" enctype="multipart/form-data">
+<form name="dados" method="POST" action="<c:url value="/photo/${photoInstance.id}/registra" />" enctype="multipart/form-data">
 <input type="hidden" name="user.id" value="${user.id}">
 <input type="hidden" name="photoRegister.id" value="">
 

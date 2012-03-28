@@ -9,13 +9,13 @@
     <div id="header">
 	
 	  <!--   LOGO   -->
-      <a href="<c:url value="/17/" />" id="logo"></a>
+      <a href="<c:url value="/18/?firstTime=no" />" id="logo"></a>  <p id="beta">beta</p>
       <!--   MENU SUPERIOR   -->
 	  <div id="first_menu">
         <!--   MENU INSTITUCIONAL   -->
         <ul id="top_menu_items">
-          <li><a href="<c:url value="/17/project" />" id="project">O PROJETO</a></li>
-          <li><a href="<c:url value="/faq/16/list" />" id="help">AJUDA</a></li>
+          <li><a href="<c:url value="/18/project" />" id="project">O PROJETO</a></li>
+          <li><a href="<c:url value="/faq/17/list" />" id="help">AJUDA</a></li>
           <li><a href="#" id="contact">FALE CONOSCO</a></li>
         </ul>
         <!--   FIM - MENU INSTITUCIONAL   -->
@@ -38,10 +38,10 @@
           <div id="loggin_area" class="right">
             
             <!--   BOTÃO DE LOGIN   -->
-            <a href="#" name="modal-" id="login_button"></a>
+            <a href="#" name="modal" id="login_button"></a>
         
             <!--   BOTÃO DE CADASTRO   -->
-            <a href="#" name="modal" id="registration_button"></a>
+            <!-- <a href="#" name="modal" id="registration_button"></a> -->
           
           </div>
           <!--   FIM - ÁREA DE LOGIN / CADASTRO   -->
@@ -51,14 +51,14 @@
         <!--   ÁREA DO USUARIO   -->
         <div id="loggin_area">
         <img src="<c:url value="/img/avatar.jpg" />" width="50" height="50" class="user_photo_thumbnail" />
-        <a href="<c:url value="/users/${userMgr.id}/logout" />" id="logout">Sair</a><br />
+        <a href="<c:url value="/users/8/logout" />" id="logout">Sair</a><br />
 		 <ul id="logged_menu">
         	   <!-- <li><a href="#" id="messages" title="Você tem 19 mensagens">11</a></li>  -->
-			   <li> <a href=" <c:url value="/groupware-workbench/friends/10/show/${sessionScope.userLogin.id}" />" id="users" title="Usuários">&nbsp;</a></li>
+			   <li> <a href=" <c:url value="/groupware-workbench/friends/11/show/${sessionScope.userLogin.id}" />" id="users" title="Usuários">&nbsp;</a></li>
 			   <!-- <li><a href="#" id="comunities" title="Comunidades">&nbsp;</a></li> -->
 			   <li><a href="#" name="modal" id="upload" title="Subir uma imagem">&nbsp;</a></li>
       	  </ul>
-          <a href="#" id="user_name">${sessionScope.userLogin.name}</a>
+          <a href="href="<c:url value="/groupware-workbench/friends/11/show/${sessionScope.userLogin.id}" />" id="user_name">${sessionScope.userLogin.name}</a>
         </div>
         <!--   FIM - ÁREA DO USUARIO   -->      
       </s:check>         

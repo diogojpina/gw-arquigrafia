@@ -23,7 +23,7 @@
         <c:if test="${showInDiv}">
             <div class="${divClass}">
         </c:if>
-        <a class="${linkClass}" rel="linkimage" href="<c:url value="/groupware-workbench/photo/${fotoA.id}" />">
+        <a class="${linkClass}" rel="linkimage" href="<c:url value="/photo/${fotoA.id}" />">
             <c:choose>
                 <c:when test="${keepRatio}">
                     <img src="<c:url value="/photo/img-thumb/${fotoA.id}"/>?_log=no" />

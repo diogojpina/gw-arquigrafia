@@ -32,7 +32,7 @@
 
     function loadImages() {
         calcMargins();
-        $.getJSON("${pageContext.request.contextPath}/groupware-workbench/photo/${photoMgr.id}/listbyuserpage/"+pageSize+"/"+actualPage,
+        $.getJSON("${pageContext.request.contextPath}/photo/${photoMgr.id}/listbyuserpage/"+pageSize+"/"+actualPage,
            function(json) {
            sizeLastRequest = json.list.length;
            if(sizeLastRequest > 0) {
@@ -45,8 +45,8 @@
            $.each(json.list, function(i, photo) {
                var add =
                '<li class="shiftedImg">' +
-                   '<a href="${pageContext.request.contextPath}/groupware-workbench/photo/' + photo.id + '">' +
-                   '<img src="${pageContext.request.contextPath}/groupware-workbench/photo/img-crop/' + photo.id + '?_log=no" />' +
+                   '<a href="${pageContext.request.contextPath}/photo/' + photo.id + '">' +
+                   '<img src="${pageContext.request.contextPath}/photo/img-crop/' + photo.id + '?_log=no" />' +
                    '</a>' +
                    '<div><a onclick="openPanel(' + photo.id + ');" href="#">adicionar</a></div>' +
                '</li>';

@@ -18,7 +18,7 @@ var="photos" >
        <div id="panel">
 	       <div class="images_column">
 	               <c:forEach var="foto" items="${photos}" varStatus="counter">
-	                               <a href="<c:url value="/16/photo/${foto.id}"/>" id="img_${counter.count}" class="image"> 
+	                               <a href="<c:url value="/photo/${foto.id}"/>" id="img_${counter.count}" class="image"> 
 	                                  <img src="<c:url value="/photo/img-crop/${foto.id}"/>?_log=no" width="170" height="117" />
 	                               </a>
 	                               <c:if test="${ ( (counter.count > 0) and ((counter.count mod columns) eq 0 ))}">

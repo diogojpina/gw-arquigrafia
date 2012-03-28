@@ -12,8 +12,8 @@
 	<c:forEach var="foto" items="${photos}">
 		<div class="${lineClass}" style="float: left">
 			<a class="${linkClass}" rel="linkimage"
-				href="<c:url value="/groupware-workbench/photo/${foto.id}"/>"> <img
-				src="<c:url value="/groupware-workbench/photo/img-thumb/${foto.id}"/>?_log=no" />
+				href="<c:url value="/photo/${foto.id}"/>"> <img
+				src="<c:url value="/photo/img-thumb/${foto.id}"/>?_log=no" />
 			</a>
 		</div>
 	</c:forEach>

@@ -20,7 +20,7 @@
     
     function deletePhoto() {
     	dialogDelete.hide();
-        $.post("${pageContext.request.contextPath}/groupware-workbench/photo/delete/" + ${photo.id}, function(data) {});
+        $.post("${pageContext.request.contextPath}/photo/delete/" + ${photo.id}, function(data) {});
         goInitPage();
     }
     

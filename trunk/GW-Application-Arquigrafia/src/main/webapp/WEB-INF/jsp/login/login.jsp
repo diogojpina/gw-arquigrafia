@@ -2,7 +2,7 @@
 
 <div id="login_modal_box">
 <h2>Login</h2>
-<p>Faça seu login para poder publicar fotos no Arquigrafia.</p>
+<p>Faça seu login para poder compartilhar fotos no Arquigrafia.</p>
 <br />
 <div>
   <form id="usuariosForm" method="post" name="loginForm" action="<c:url value="/users/${userMgr.id}/login" />">

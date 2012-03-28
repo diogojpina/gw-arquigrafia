@@ -3,7 +3,7 @@
 <div id="header">
 	<div id="title">
 		<a
-			href="${pageContext.request.contextPath}/groupware-workbench/photo/${photoMgr.id}/index">
+			href="${pageContext.request.contextPath}/photo/${photoMgr.id}/index">
 			<img
 			src="${pageContext.request.contextPath}/images/head1_left_top.png"
 			width="350" height="100" alt="Arquigrafia Brasil" /> </a>
@@ -42,11 +42,11 @@
 	</div>
 	<div id="top_links" class="blue_link">
 		<a
-			href="${pageContext.request.contextPath}/groupware-workbench/photo/${photoMgr.id}/index">In&iacute;cio</a>
+			href="${pageContext.request.contextPath}/photo/${photoMgr.id}/index">In&iacute;cio</a>
 		&nbsp;|&nbsp;
 		<div id="photoUploadContent"
 			style="visibility: hidden; display: none;">
-			<%--iframe id="photoUploadBody" name="photoUploadFrame" style="width: 800px; height: 400px; opacity: 0.95;" id="photoUploadFrame" src="${pageContext.request.contextPath}/groupware-workbench/photo/${photoInstance.id}/registra"></iframe --%>
+			<%--iframe id="photoUploadBody" name="photoUploadFrame" style="width: 800px; height: 400px; opacity: 0.95;" id="photoUploadFrame" src="${pageContext.request.contextPath}/photo/${photoInstance.id}/registra"></iframe --%>
 			<iframe id="photoUploadData" name="photoUploadFrame"
 				style="width: 800px; height: 400px; opacity: 0.95;"
 				id="photoUploadFrame"></iframe>
@@ -59,7 +59,7 @@
             }
 
             function showPhotoUpload() {
-            	$("#photoUploadData").attr("src","${pageContext.request.contextPath}/groupware-workbench/photo/${photoInstance.id}/registra");
+            	$("#photoUploadData").attr("src","${pageContext.request.contextPath}/photo/${photoInstance.id}/registra");
                 new Boxy($("#photoUploadContent").html(), {
                     title: "Use o formulário para enviar uma foto.",
                     modal: true,

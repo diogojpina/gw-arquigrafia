@@ -4,7 +4,7 @@
   </h2>
   <br/>
   <h3>
-  		Esta é a versão de testes do Arquigrafia. Caso queira participar como um usuário de teste do sistema envie um email para <a href="mailto:arquigrafiabrasil@gmail.com">arquigrafiabrasil@gmail.com</a>.
+  		Esta é a versão beta de testes do Arquigrafia. Caso queira participar como um usuário de teste do sistema envie um email para <a href="mailto:arquigrafiabrasil@gmail.com">arquigrafiabrasil@gmail.com</a>.
   </h3>
         <p>O Arquigrafia é um ambiente colaborativo onde você pode visualizar fotografias de arquitetura georeferenciadas, avaliar essas imagens, fazer downloads e também postar as suas próprias imagens. </p>
 		<p>Ao inserir seu acervo pessoal de imagens de edifícios e espaços urbanos no Arquigrafia, você estará participando da construção de um acervo digital original, público e aberto, especializado na arquitetura brasileira.</p>

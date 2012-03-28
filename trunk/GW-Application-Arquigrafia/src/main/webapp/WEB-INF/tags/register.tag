@@ -37,7 +37,7 @@
 <div id="internal_wrap">
     <div class="mid_blue_text" style="margin-left: 30px; background-color: #fff;">
         <form name="photoRegisterForm" id="photoRegisterForm" method="post" enctype="multipart/form-data"
-                action="<c:url value="/groupware-workbench/photo/${photoInstance.id}/registra" />">
+                action="<c:url value="/photo/${photoInstance.id}/registra" />">
             <photo:save photoRegister="${photoRegister}"
                     photoInstance="${photoInstance}" tagMgr="${tagMgr}"
                     geoReferenceMgr="${geoReferenceMgr}"

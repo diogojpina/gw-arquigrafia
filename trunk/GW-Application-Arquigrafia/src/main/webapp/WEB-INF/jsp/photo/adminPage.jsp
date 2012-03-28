@@ -72,7 +72,7 @@
             <br />
             <br />
             <br />
-            <a href="<c:url value="/groupware-workbench/photo/${photoInstance.id}/registra"/>">Registrar uma nova foto</a>
+            <a href="<c:url value="/photo/${photoInstance.id}/registra"/>">Registrar uma nova foto</a>
             <br />
             <br />
             <div>

@@ -33,8 +33,8 @@
           <h2>Ambiente colaborativo para o compartilhamento de imagens de arquitetura</h2>
 
 		  <p>O projeto Arquigrafia reúne desde 2009 uma equipe multidisciplinar de pesquisadores  da FAUUSP, IMEUSP e ECAUSP para a criação de um ambiente colaborativo para a visualização, interação e compartilhamento de imagens digitais de arquitetura – fotografias, desenhos e vídeos –, na Internet.</p>
-          <img class="left" src="<c:url value="/img/project_photos/equipe1.jpg" />" width="377" height="261" alt="Texto alternativo da foto" title="Título da foto" />
 		  <p>Em breve o sistema também pode ser acessado por dispositivos móveis – smartphones e tablets –, valendo-se de aplicativos da plataforma Android/Google, de modo que os usuários – estudantes de arquitetura, professores, arquitetos, fotógrafos e demais interessados no assunto –, podem navegar no acervo georeferenciado do Arquigrafia enquanto circulam pelas cidades, visualizando as imagens disponíveis, interagindo com outros usuários, e também colaborando para o crescimento contínuo do acervo sempre que enviarem suas próprias imagens para o sistema, com os direitos autorais preservados pelo Creative Commons.</p>
+          <img class="left" src="<c:url value="/img/project_photos/equipe1.jpg" />" width="377" height="261" alt="Texto alternativo da foto" title="Título da foto" />
           <p>Tendo contado inicialmente com o apoio da RNP, o Arquigrafia conta hoje com o apoio da FAPESP, da Pró-reitoria de Pesquisa da USP, e recebeu o primeiro prêmio da Agência de Inovação USP na categoria de Tecnologias Sociais Aplicadas e Humanas em 2011. </p>
           <p>O objetivo principal do projeto é contribuir para o estudo, a docência, a pesquisa e a difusão da cultura arquitetônica e urbanística, ao promover interações colaborativas entre pessoas e instituições.</p>          
           <p>Considerando a inexistência de um acervo específico de imagens de arquitetura, organizado e disponível para amplo acesso na Internet, esse projeto permite a criação coletiva e colaborativa de um conjunto iconográfico que virá a complementar o material visual existente a respeito da arquitetura brasileira, colaborando para estimular a cultura arquitetônica, e promover a interação entre diferentes perfis de usuários na Internet, e também em diferentes espaços urbanos reais. </p>
@@ -92,9 +92,9 @@
 		
 		<h3>Parceiros de desenvolvimento</h3>
 		<ul>
-			<li><small><a href="#" target="_blank">Jean Pierre Chamouton,</small></li>
-			<li><small><a href="http://www.bench.com.br/" target="_blank">Benchmark Design Total,</small></li>
-			<li><small><a href="http://www.brzcomunicacao.com.br/" target="_blank">BRZ Comunicação.</small></li>
+			<li><small><a href="#" target="_blank">Jean Pierre Chamouton</small></li>
+			<li><small><a href="http://www.bench.com.br/" target="_blank">Benchmark Design Total</small></li>
+			<li><small><a href="http://www.brzcomunicacao.com.br/" target="_blank">BRZ Comunicação</small></li>
 		</ul>
       </div>
       <!--   FIM - COLUNA DIREITA   -->

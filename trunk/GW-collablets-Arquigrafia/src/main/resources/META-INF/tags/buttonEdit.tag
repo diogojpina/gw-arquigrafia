@@ -11,8 +11,8 @@
 <script type="text/javascript">
     
     function editPhoto() {
-    	$.post("${pageContext.request.contextPath}/groupware-workbench/photo/" + ${photoInstance.id} + "/photo/" + ${photo.id}, function(data) {});
+    	$.post("${pageContext.request.contextPath}/photo/" + ${photoInstance.id} + "/photo/" + ${photo.id}, function(data) {});
     }
 </script>
 
-<a class="${className}" style="text-decoration: none; padding:0px;" id="idEdit" href="${pageContext.request.contextPath}/groupware-workbench/photo/${photoInstance.id}/edit/${photo.id}" onclick="">Editar</a>
+<a class="${className}" style="text-decoration: none; padding:0px;" id="idEdit" href="${pageContext.request.contextPath}/photo/${photoInstance.id}/edit/${photo.id}" onclick="">Editar</a>

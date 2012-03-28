@@ -4,7 +4,7 @@
 	<form action="<c:url value="/groupware-workbench/sendmail/${mailMgrInstance.id}/send"/>" method="post">
 		<h2>Fale conosco</h2>
 		<br />
-		<h3>Escreva-nos criticas / dúvidas / sugestões:</h3>
+		<h3>Envie suas criticas, dúvidas e sugestões:</h3>
 		<br />
 		<p>
 			<label>* Nome:</label> <input name="mail.firstname" type="text"

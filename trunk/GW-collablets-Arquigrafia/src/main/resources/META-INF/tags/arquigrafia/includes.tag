@@ -57,14 +57,14 @@
 		$('#registration_button').click(function(){
 			$('#mask').fadeIn('fast');
 			$('#form_window').fadeIn('slow');
-			$('#registration').load('<c:url value="/users/${userMgr.id}/signup"/>');	
+			$('#registration').load('<c:url value="/users/8/signup"/>');	
 			form_window_loaded = true;
 		});
 		
 		$('#upload').click(function(){
 			$('#mask').fadeIn('fast');
 			$('#form_window').fadeIn('slow');
-			$('#registration').load('<c:url value="/6/upload"/>');	
+			$('#registration').load('<c:url value="/photo/7/upload"/>');	
 			form_window_loaded = true;
 		});
 		
@@ -74,21 +74,28 @@
 			$('#registration').load('modal/upload_bar.html');	
 			form_window_loaded = true;
 		});
-		
+
 		$('#contact').click(function(){
 			$('#mask').fadeIn('fast');
 			$('#form_window').fadeIn('slow');
-			$('#registration').load('<c:url value="/${arquigrafiaMgr.id}/contact" />');	
+			$('#registration').load('<c:url value="/18/contact" />');	
 			form_window_loaded = true;
 		});
 
 		$('#login_button').click(function(){
 			$('#mask').fadeIn('fast');
 			$('#form_window').fadeIn('slow');
-			$('#registration').load('<c:url value="/users/${userMgr.id}/login"/>');	
+			$('#registration').load('<c:url value="/users/8/login"/>');	
 			form_window_loaded = true;
 		});
-				
+
+		$('#comment_login_link').click(function(){
+			$('#mask').fadeIn('fast');
+			$('#form_window').fadeIn('slow');
+			$('#registration').load('<c:url value="/users/8/login"/>');	
+			form_window_loaded = true;
+		});
+		
 		$('#form_window .close').click(function (e) {
 			e.preventDefault();
 			
@@ -100,26 +107,87 @@
 			$(this).fadeOut();
 			$('#form_window').fadeOut('fast');
 		});
-		
+			
 		$('#printer_icon').click(function() {
-			window.print();
-			return false;
+		  window.print();
+		  return false;
 		});
 			
+		// IMAGES HOVERS
+		
+		$('.image').mouseenter(function(){
+			$('.image').css('opacity',0.6);
+			$(this).css('opacity',1);
+		});
+
+		$('#panel').mouseleave(function(){ 
+			$('.image').css('opacity',1);
+		});
+		
+		$('.footer_image').mouseenter(function(){
+			$('.footer_image img').css('opacity',0.6);
+			$($(this).children('img'),this).css('opacity',1);
+		});
+
+		$('.images_line').mouseleave(function(){ 
+			$('.footer_image img').css('opacity',1);
+		});
+		
+		// FOOTER
+		
+		var Dist = 905;
+		var Qtd = 0;
+		//var Local = $('.images_line').css('margin-left');
+			
+		$('#arrow-left').click(function(){
+			if(Qtd != 0){
+				Qtd--;
+				$('.images_line').animate({marginLeft : - (Qtd * Dist)}, 500);
+			}
+		});
+		
+		
+		$('#arrow-right').click(function(){
+			if(Qtd != 2){
+				Qtd++
+				$('.images_line').animate({marginLeft: - (Qtd * Dist)}, 500);
+			}
+		});
+		
+		// ADVANCED SEARCH
+		
+		var ON = false;
+		
+		$('a#complete_search').click(function(){
+			if(ON == false){
+				ON = true;
+				$('#header').animate({height:142}, 200, function(){
+					$('#complete_search_bar').fadeIn(200);	
+				});
+					
+			} else {
+				ON = false;
+				$('#header').animate({height:102}, 200, function(){
+					$('#complete_search_bar').fadeOut(200);	
+				
+				});
+			}
+		})
 	});
 
+	
 	function load(firstTime, showMessage) {
 
 		if ( firsTime ) {
 			$('#mask').fadeIn('fast');
 			$('#form_window').fadeIn('slow');
-			$('#registration').load('<c:url value="/${arquigrafiaMgr.id}/welcome" />');	
+			$('#registration').load('<c:url value="/18/welcome" />');	
 			form_window_loaded = true;
 		}
-		if ( showMessage ) {
+		if ( null!== showMessage ) {
 			$('#mask').fadeIn('fast');
 			$('#form_window').fadeIn('slow');
-			$('#registration').load('<c:url value="/${arquigrafiaMgr.id}/showMessage" />');	
+			$('#registration').load('<c:url value="/18/showMessage" />');	
 			form_window_loaded = true;
 		}
 		

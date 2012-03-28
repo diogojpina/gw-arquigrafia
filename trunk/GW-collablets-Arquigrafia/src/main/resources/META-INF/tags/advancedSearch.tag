@@ -18,14 +18,14 @@
             "changeMonth": true,
             "changeYear": true,
             "width": 15,
-            "dateFormat": "dd/mm/yy", <%-- Atenção: De acordo com a documentação, yy é o ano com 4 dígitos. --%>
+            "dateFormat": "dd/mm/yy", <%-- Atenï¿½ï¿½o: De acordo com a documentaï¿½ï¿½o, yy ï¿½ o ano com 4 dï¿½gitos. --%>
             "buttonImage": "${pageContext.request.contextPath}/images/calendar.gif",
             "buttonImageOnly": true
         });
     });
 </script>
 
-<form name="formBuscaAvancada" action="<c:url value="/groupware-workbench/photo/${photoInstance.id}/buscaA"/>" method="post">
+<form name="formBuscaAvancada" action="<c:url value="/photo/${photoInstance.id}/buscaA"/>" method="post">
     <div class="${formClass}">
         <ul class="${formLineClass}">
             <li class="${formLabelClass}"><span>Nome:</span></li>

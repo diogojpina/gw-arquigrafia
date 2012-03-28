@@ -32,7 +32,7 @@
         <div id="project_text">
         <br />
         <c:forEach items="${faqList}" var="faq">
-           <h2> <c:out value="${faq.pergunta}"></c:out> <s:check name="X-X-admin"> <a href="<c:url value="/faq/${faq.id}/create" />"> Excluir </a>  <a href="<c:url value="/faq/${faq.id}" />"> Editar </a> </s:check></h2>
+           <h2> <c:out value="${faq.pergunta}"></c:out> </h2> <s:check name="X-X-admin"> <a href="<c:url value="/faq/${faq.id}/create" />"> Excluir </a>  <a href="<c:url value="/faq/${faq.id}" />"> Editar </a> </s:check>
            <c:out value="${faq.resposta}"></c:out>
            <br />
            <br />
@@ -41,6 +41,8 @@
            <a href="<c:url value="/faq/${faqMgr.id}/create" />"> Adicione uma nova pergunta ao FAQ.</a>
         </s:check>
         <br />
+        
+        <p> Caso ainda tenha dúvidas entre contato com nossa equipe usando o email <a href="mailto:arquigrafia@gmail.com " target="_blank">arquigrafia@gmail.com</a>.</p>
  </div>
         <!--   FIM - TEXTO DO PROJETO   -->
       </div>

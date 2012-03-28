@@ -2,14 +2,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="arquigrafia"
-	uri="http://www.groupwareworkbench.org.br/widgets/arquigrafia"%>
-<%@ taglib prefix="photo"
-	uri="http://www.groupwareworkbench.org.br/widgets/photomanager"%>
-<%@ taglib prefix="tag"
-	uri="http://www.groupwareworkbench.org.br/widgets/tag"%>
-<%@ taglib prefix="comment"
-	uri="http://www.groupwareworkbench.org.br/widgets/comment"%>
+<%@ taglib prefix="arquigrafia" uri="http://www.groupwareworkbench.org.br/widgets/arquigrafia"%>
+<%@ taglib prefix="photo" uri="http://www.groupwareworkbench.org.br/widgets/photomanager"%>
+<%@ taglib prefix="tag" uri="http://www.groupwareworkbench.org.br/widgets/tag"%>
+<%@ taglib prefix="comment" uri="http://www.groupwareworkbench.org.br/widgets/comment"%>
+<%@ taglib prefix="counter" uri="http://www.groupwareworkbench.org.br/widgets/counter" %>
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
@@ -32,23 +29,14 @@
 				<div id="single_view_block">
 					<!--   NOME / STATUS DA FOTO   -->
 					<div id="single_view_header">
-						<h1><c:out value="${photo.name}"/></h1>
+						<h1><c:out value="${photo.name}"/>    	</h1>
 						<ul id="single_view_image_rating" class="right">
 							<li id="graph"></li>
-							<li><small>312</small></li>
-							<li id="comments"></li>
-							<li><small>345</small></li>
-
-							<c:if test="${counterMgr.collablet.enabled}">
-								<li id="views"></li>
-								<li><small><span><counter:showCounter
-													manager="${counterMgr}" entity="${photo}"
-													viewer="${sessionScope.userLogin}" increment="true"
-													wrapClass="counter_show" />
-										</span></small></li>
-							</c:if>
-							<li id="favourite"></li>
-							<li><small>176</small></li>
+							<li><small><counter:showCounter
+												manager="${counterMgr}" entity="${photo}"
+												viewer="${sessionScope.userLogin}" increment="true"
+												wrapClass="counter_show" />
+									</small></li>
 						</ul>
 					</div>
 					<!--   FIM - NOME / STATUS DA FOTO   -->
@@ -63,14 +51,11 @@
 				<!--   BOX DE BOTOES DA IMAGEM   -->
 				<div id="single_view_buttons_box">
 					<ul id="single_view_image_buttons">
-						<li><a href="#" title="Adicione aos seus favoritos"
-							id="add_favourite"></a></li>
-						<li><a href="#" title="Adicione ao seu album" id="plus"></a></li>
-						<li><a href="#" title="Avalie a foto" id="eyedroppper"></a></li>
+						<!-- <li><a href="#" title="Adicione aos seus favoritos" id="add_favourite"></a></li>
 						<li><a href="#" title="Denuncie esta foto" id="denounce"></a></li>
-						<li><a
-							href="<c:url value="/photo/img-original/${photo.id}" />"
-							title="Faça o download" id="download" target="_blank"></a></li>
+						<li><a href="#" title="Adicione ao seu album" id="plus"></a></li>  -->
+						<li><a href="<c:url value="/18/photo_avaliation/${photo.id}" />" title="Avalie a foto" id="eyedroppper"></a></li>
+						<li><a href="<c:url value="/photo/img-original/${photo.id}" />" title="Faça o download" id="download" target="_blank"></a></li>
 					</ul>
 					<ul id="single_view_social_network_buttons">
 						<li><a href="#" class="delicious"></a></li>
@@ -82,44 +67,9 @@
 				<!--   FIM - BOX DE BOTOEES DA IMAGEM   -->
 				<!--   BOX DE COMENTARIOS   -->
 				<div id="comments_block">
-
+					<h2>Comentários</h2>
 					<comment:getComments commentMgr="${commentMgr}" entity="${photo}" />
-
-					<h2>Coment&aacute;rios</h2>
-					<div class="single_comment_block">
-						<img src="<c:url value="/img/avatar.jpg" />" width="50"
-							height="50" name="Homer" class="user_thumbnail" /> <a href="#"
-							id="name">Homer Simpson</a>&nbsp;<span class="comment_time">(3
-							dias atr&aacute;s)</span> <span class="comment_text">
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-								Nulla laoreet purus et neque sagittis et pretium turpis euismod.
-								Pellentesque habitant morbi tristique senectus et netus et
-								malesuada fames ac turpis egestas.</p>
-						</span>
-					</div>
-					<div class="single_comment_block">
-						<img src="<c:url value="/img/avatar.jpg" />" name="Homer"
-							class="user_thumbnail" /> <a href="#" id="name">Homer
-							Simpson</a>&nbsp;<span class="comment_time">(4 dias
-							atr&aacute;s)</span> <span class="comment_text">
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-						</span>
-					</div>
-					<!--   BOX DE COMENTARIO   -->
-					<div class="single_comment_block">
-						<comment:addComment commentMgr="${commentMgr}"
-							idObject="${photo.id}" user="${sessionScope.userLogin}" />
-
-						<form id="space_to_comment" method="post" action="#">
-							<img src="<c:url value="/img/avatar.jpg" />" name="Homer"
-								class="user_thumbnail" /> <a href="#" id="name">${sessionScope.userLogin.name}</a><br />
-							<textarea type="text" id="comment_field"
-								onclick="clickclear(this, 'default text')"
-								onblur="clickrecall(this,'default text')">Escreva o seu comentário aqui...</textarea>
-							<input type="submit" id="comment_button" class="cursor" value="" />
-						</form>
-					</div>
-					<!--   FIM - BOX DE COMENTARIO   -->
+					<comment:addComment commentMgr="${commentMgr}"	idObject="${photo.id}" user="${sessionScope.userLogin}" />
 				</div>
 				<!--   BOX DE COMENTARIOS   -->
 			</div>
@@ -128,11 +78,17 @@
 			<div id="sidebar">
 				<!--   USUARIO   -->
 				<div id="single_user">
+				<c:forEach items="${photo.users}" var="user">
 					<img src="<c:url value="/img/avatar.jpg" />" name="Homer"
 						id="single_view_user_thumbnail" /> <span
-						id="single_view_owner_name">Por: <a href="#" id="name">Homer
-							Simpson</a></span><br /> <a href="#" id="single_view_contact_add">+
-						Adicionar contato</a><br />
+						id="single_view_owner_name">Por: <a href="<c:url value="/groupware-workbench/friends/10/show/${user.id}" />" id="name">
+						${user.name}
+						</a></span>
+						<br /> 
+						<!-- <s:check name="X-X-usuario"> 
+							<a href="<c:url value="/groupware-workbench/friends/10/sendRequest/${user.id}" />" id="single_view_contact_add">+ Adicionar contato</a><br />
+						</s:check>  -->
+				</c:forEach>
 				</div>
 				<!--   FIM - USUARIO   -->
 				<!-- <h3>Equipamento:</h3>
@@ -154,11 +110,21 @@
 					<tag:getTags tagMgr="${tagMgr}" entity="${photo}" />
 				</p>
 				<h3>Licença:</h3>
-				<p><c:out value="${photo.copyRights}"/></p>
+                <p>
+					<a href="http://creativecommons.org/licenses/by
+							<c:out value="${photo.allowCommercialUses.abrev}"/>
+							<c:out value="${photo.allowModifications.abrev}"/>
+						/3.0/deed.pt_BR" target="_blank" >
+						<img src="<c:url value="/img/ccIcons/by"/>
+							<c:out value="${photo.allowCommercialUses.abrev}"/>
+							<c:out value="${photo.allowModifications.abrev}"/>
+						88x31.png" id="ccicons" alt="license" />
+					</a>
+				</p>				
 				<h3>Avaliação:</h3>
 				<p>Avalie esta imagem de acordo com seus aspectos, compare também sua avaliação com as do outros usuários.</p>
 				<a
-					href="<c:url value="/${arquigrafiaMgr.id}/photo_avaliation/${photo.id}" />"
+					href="<c:url value="/18/photo_avaliation/${photo.id}" />"
 					title="Avalie a foto" id="evaluate_button"></a> <a href="#"
 					title="MÃ©dia das avaliaÃ§Ãµes da foto" id="evaluation_average"></a>
 			</div>

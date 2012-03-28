@@ -181,7 +181,7 @@
 	      <p>Avalie a foto segundo os atributos abaixo e após finalizar, clique no botão Avaliar ao lado para contabilizar a sua avaliação e visualizar a mídia entre as outras avaliaçoes.</p>
           <!--   FORMULÃRIO DE AVALIAÃÃO   -->
           <form name="tags" method="post" enctype="multipart/form-data"
-			action="<c:url value="/groupware-workbench/photo/${photo.id}" />">
+			action="<c:url value="/photo/${photo.id}" />">
           <%--
             <input type="reset" id="clean" class="cursor" value="" />
             <input type="submit" id="avaliate" class="cursor" value="" />
