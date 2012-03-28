@@ -57,11 +57,15 @@ import javax.persistence.TypedQuery;
 import org.apache.log4j.Logger;
 
 import br.com.caelum.vraptor.interceptor.download.FileDownload;
+import br.org.groupwareworkbench.arquigrafia.photo.transformations.Panel;
+import br.org.groupwareworkbench.arquigrafia.photo.transformations.Thumb;
+import br.org.groupwareworkbench.arquigrafia.photo.transformations.View;
 import br.org.groupwareworkbench.collablet.coord.user.User;
 import br.org.groupwareworkbench.core.bd.EntityManagerProvider;
 import br.org.groupwareworkbench.core.bd.ObjectDAO;
 import br.org.groupwareworkbench.core.bd.QueryBuilder;
 import br.org.groupwareworkbench.core.framework.Collablet;
+import br.org.groupwareworkbench.core.graphics.BatchImageProcessor;
 import br.org.groupwareworkbench.core.graphics.GWImage;
 import br.org.groupwareworkbench.core.util.ImageUtils;
 
@@ -123,6 +127,7 @@ public class Photo implements Serializable {
     
     private static final long serialVersionUID = -4757949223957140519L;
     private static final Integer DEFAULT_PHOTOS_COUNT = 5;
+    public static final String ORIGINAL_FILE_SUFFIX = "_original";
 
     private static final ObjectDAO<Photo, Long> DAO = new ObjectDAO<Photo, Long>(Photo.class);
 
@@ -240,7 +245,7 @@ public class Photo implements Serializable {
     }
 
     public FileDownload downloadImgOriginal() {
-        return makeDownload("_original.jpg");
+        return makeDownload(ORIGINAL_FILE_SUFFIX + ".jpg");
     }
 
     public File getImgThumb() {
@@ -276,17 +281,14 @@ public class Photo implements Serializable {
         String fileSuffix = "";
         if(nomeArquivo.contains("."))
             fileSuffix = nomeArquivo.substring(nomeArquivo.lastIndexOf("."), nomeArquivo.length());
-        String originalFileName = imagesDirName + File.separator + this.id + "_original" + fileSuffix;
-        String thumbFileName =  imagesDirName + File.separator + this.id + "_thumb.jpg";
-        String panelFileName =  imagesDirName + File.separator + this.id + "_panel.jpg";
-        String viewFileName =  imagesDirName + File.separator + this.id + "_view.jpg";
+        String originalFileName = imagesDirName + File.separator + this.id + ORIGINAL_FILE_SUFFIX + fileSuffix;
+//        String thumbFileName =  imagesDirName + File.separator + this.id + "_thumb.jpg";
+//        String panelFileName =  imagesDirName + File.separator + this.id + "_panel.jpg";
+//        String viewFileName =  imagesDirName + File.separator + this.id + "_view.jpg";
         
         System.out.println("Processing this received file: " + this.nomeArquivo);
         System.out.println("File suffix: " + fileSuffix);
         System.out.println("Saving the original image as " + originalFileName);
-        System.out.println("Saving the thumb image as " + thumbFileName);
-        System.out.println("Saving the panel image as " + panelFileName);
-        System.out.println("Saving the view image as " + viewFileName);
         
         try {
             File originalCopy = new File(originalFileName);
@@ -303,14 +305,18 @@ public class Photo implements Serializable {
             foto.close();
             
             try {
-                // We need to blur the image to get a better zoom out. Not applying blur before causes the
-                // resulting image to have aliases.
-                new GWImage(originalCopy).blur(15).doTheBestYouCanToFitOnRectangle(105, 72).save(thumbFileName);
-                new GWImage(originalCopy).blur(7).doTheBestYouCanToFitOnRectangle(170, 117).save(panelFileName);
-                if(new GWImage(originalCopy).getWidth() > 600)
-                    new GWImage(originalCopy).scaleToWidth(600).save(viewFileName);
-                else
-                    new GWImage(originalCopy).save(viewFileName);
+                BatchImageProcessor bip = new BatchImageProcessor(originalCopy, imagesDir, ORIGINAL_FILE_SUFFIX);
+                bip.addImageTransformation(new Thumb());
+                bip.addImageTransformation(new Panel());
+                bip.addImageTransformation(new View());
+                bip.runBatch();
+                
+//                new GWImage(originalCopy).blur(5).doTheBestYouCanToFitOnRectangle(105, 72).save(thumbFileName);
+//                new GWImage(originalCopy).blur(7).doTheBestYouCanToFitOnRectangle(170, 117).save(panelFileName);
+//                if(new GWImage(originalCopy).getWidth() > 600)
+//                    new GWImage(originalCopy).scaleToWidth(600).save(viewFileName);
+//                else
+//                    new GWImage(originalCopy).save(viewFileName);
             }
             catch (Throwable t) {
                 t.printStackTrace();
