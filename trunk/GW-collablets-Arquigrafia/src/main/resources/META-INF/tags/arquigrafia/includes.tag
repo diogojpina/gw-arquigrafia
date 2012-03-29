@@ -177,11 +177,13 @@
 
 	
 	function load(firstTime) {
+			if (firstTime == 1) {
 
-			$('#mask').fadeIn('fast');
-			$('#form_window_welcome').fadeIn('slow');
-			$('#registration_welcome').load('<c:url value="/18/welcome" />');	
-			form_window_loaded = true;
+				$('#mask').fadeIn('fast');
+				$('#form_window').fadeIn('slow');
+				$('#registration').load('<c:url value="/18/welcome" />');	
+				form_window_loaded = true;
+			}
 //		if ( null!== showMessage ) {
 //			$('#mask').fadeIn('fast');
 //			$('#form_window').fadeIn('slow');

@@ -81,12 +81,12 @@
 				<c:forEach items="${photo.users}" var="user">
 					<img src="<c:url value="/img/avatar.jpg" />" name="Homer"
 						id="single_view_user_thumbnail" /> <span
-						id="single_view_owner_name">Por: <a href="<c:url value="/groupware-workbench/friends/10/show/${user.id}" />" id="name">
+						id="single_view_owner_name">Por: <a href="<c:url value="/groupware-workbench/friends/11/show/${user.id}" />" id="name">
 						${user.name}
 						</a></span>
 						<br /> 
 						<!-- <s:check name="X-X-usuario"> 
-							<a href="<c:url value="/groupware-workbench/friends/10/sendRequest/${user.id}" />" id="single_view_contact_add">+ Adicionar contato</a><br />
+							<a href="<c:url value="/groupware-workbench/friends/11/sendRequest/${user.id}" />" id="single_view_contact_add">+ Adicionar contato</a><br />
 						</s:check>  -->
 				</c:forEach>
 				</div>

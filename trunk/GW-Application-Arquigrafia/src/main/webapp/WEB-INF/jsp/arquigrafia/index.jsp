@@ -15,7 +15,7 @@
 	<arquigrafia:includes arquigrafiaInstance="${arquigrafiaMgr}" />
 </head>
 
-<body onload="load()">
+<body onload="load(<c:out value="${firstTime}" />)">
   <!--   CONTAINER   -->
   <div id="container">
   
@@ -50,11 +50,6 @@
       <!-- ÁREA DE LOGIN - JANELA MODAL --> 
       <a class="close" href="#" title="FECHAR"></a>
       <div id="registration">
-      </div>
-    </div>
-    <div id="form_window_welcome"> 
-      <!-- ÁREA DE LOGIN - JANELA MODAL --> 
-      <div id="registration_welcome">
       </div>
     </div>
     <!--   FIM - MODAL   -->

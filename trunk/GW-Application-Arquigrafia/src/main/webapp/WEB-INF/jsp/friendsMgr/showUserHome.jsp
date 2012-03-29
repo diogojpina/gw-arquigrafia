@@ -43,7 +43,7 @@
 				</c:otherwise>
 			</c:choose>
         
-			<a href="#" id="small">Trocar fotografia</a>
+			<!-- <a href="#" id="small">Trocar fotografia</a> -->
 			<c:if test="${friend.id == userLogin.id}">
 				<friends:friendsRequests style="width: 475px;"
                         user="${userLogin}"
@@ -59,11 +59,12 @@
           		<p>Nenhum evento no momento.</p>
         	</div>
         	<!--   ENVIAR CONVITE   -->
-        	<h3>Convites</h3>
+        	<!-- <h3>Convites</h3>
         	<p>Envie um e-mail para seus amigos e convide-os para participarem do Arquigrafia.</p>
         	<input type="email" id="invite_email" name="invite_email" value="exemplo@email.com.br" />
         	<br />
         	<a href="#" id="right_alignment">Enviar</a>
+        	 -->
 		</div>
 		
 		<!--   CONTEÚDO   -->
@@ -77,7 +78,7 @@
 	            friendsMgr="${friendsMgr}" friendsHeader="friends_header"
 	            style="width: 400px;" />
 	            
-	        <h2 id="profile_block_title">Comunidades</h2>
+	        <!-- <h2 id="profile_block_title">Comunidades</h2>
 	        <a href="#" id="small" class="profile_block_link">Ver todas</a>
 			<div id="profile_box">
 				<ul id="communities_list">
@@ -91,7 +92,7 @@
 	            	<li><a href="#">Lorem ipsum</a></li>
 	          	</ul>
 	        </div>
-	        
+	         -->
  			<album:listGalery albumMgr="${albumMgr}" user="${friend}"/>
 
 		</div>

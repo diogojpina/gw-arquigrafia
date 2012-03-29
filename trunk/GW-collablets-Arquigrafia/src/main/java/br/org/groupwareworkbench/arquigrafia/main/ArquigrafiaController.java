@@ -31,6 +31,7 @@ import br.com.caelum.vraptor.Validator;
 import br.com.caelum.vraptor.core.RequestInfo;
 import br.com.caelum.vraptor.ioc.RequestScoped;
 import br.org.groupwareworkbench.arquigrafia.photo.Photo;
+import br.org.groupwareworkbench.collablet.coord.user.User;
 import br.org.groupwareworkbench.core.framework.WidgetInfo;
 
 @RequestScoped
@@ -57,10 +58,12 @@ public class ArquigrafiaController {
     @Get
     @Path(value = "/{arquigrafiaInstance}/")
     public void index(ArquigrafiaMgrInstance arquigrafiaInstance) {
-        if("no".equals(request.getParameter("firstTime"))) {
+        if("0".equals(request.getParameter("firstTime"))) {
             result.include("firstTime", 0);
         } else {
-            result.include("firstTime", 1);
+            if (((User) session.getAttribute("userLogin")).getId() == 2L) {
+                result.include("firstTime", 1);
+            }
         }
         result.include("arquigrafiaMgr", arquigrafiaInstance);
         addIncludes(arquigrafiaInstance);
