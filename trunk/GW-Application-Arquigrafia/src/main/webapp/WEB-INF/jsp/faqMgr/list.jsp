@@ -43,21 +43,21 @@
         <br />
         
         <p> Caso ainda tenha dúvidas entre contato com nossa equipe usando o email <a href="mailto:arquigrafia@gmail.com " target="_blank">arquigrafia@gmail.com</a>.</p>
- </div>
+	 	</div>
         <!--   FIM - TEXTO DO PROJETO   -->
       </div>
       <!--   FIM - COLUNA ESQUERDA   -->
       <!--   COLUNA DIREITA   -->
       <div id="sidebar">
-        <h2>Lorem ipsum</h2>
-		<h3>Dolor sit</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras pulvinar elementum accumsan. Cras non convallis nunc. Donec at purus eget lacus rutrum lacinia vel rhoncus velit. Nam sollicitudin, odio ut ultricies cursus, felis leo lacinia mi, quis rhoncus magna urna eu nibh. Nam quis erat nibh. Mauris viverra urna neque. Sed ut lobortis risus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed sed neque tellus. Nunc tempor ornare dignissim. Vivamus luctus nisi in lorem tempus faucibus. Sed sed mauris id mi faucibus dignissim ac nec ipsum.</p>
+        <h2>Ainda precisando de Ajuda?</h2>
+		<h3>Contate nossa equipe</h3>
+        <p>Esta é a versão beta do Arquigrafia, ela ainda pode conter erros, caso tenha alguma dificuldade ou problemas ao usar o Arquigrafia escreva para gente <a href="mailto:arquigrafia@gmail.com " target="_blank">arquigrafia@gmail.com</a>.</p>
       </div>
       <!--   FIM - COLUNA DIREITA   -->
     </div>
     <!--   FIM - MEIO DO SITE-->
-    <!--   FUNDO DO SITE   -->
-       <div id="footer">
+   <!--   FUNDO DO SITE   -->
+    <div id="footer">
 	  <!--   BARRA DE ABAS   -->
 	  <arquigrafia:tabs arquigrafiaInstance="${arquigrafiaMgr}" />
 	  <!--   FIM - BARRA DE IMAGENS - (RODAPÉ)   -->
@@ -79,4 +79,4 @@
   </div>
   <!--   FIM - CONTAINER   -->
 </body>
-</html>    
+</html>

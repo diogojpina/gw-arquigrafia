@@ -58,7 +58,7 @@
 			   <!-- <li><a href="#" id="comunities" title="Comunidades">&nbsp;</a></li> -->
 			   <li><a href="#" name="modal" id="upload" title="Subir uma imagem">&nbsp;</a></li>
       	  </ul>
-          <a href="href="<c:url value="/groupware-workbench/friends/11/show/${sessionScope.userLogin.id}" />" id="user_name">${sessionScope.userLogin.name}</a>
+          <a href="<c:url value="/groupware-workbench/friends/11/show/${sessionScope.userLogin.id}" />" id="user_name">${sessionScope.userLogin.name}</a>
         </div>
         <!--   FIM - ÁREA DO USUARIO   -->      
       </s:check>         
