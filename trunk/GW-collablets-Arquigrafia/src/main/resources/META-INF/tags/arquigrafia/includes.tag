@@ -114,24 +114,27 @@
 		});
 			
 		// IMAGES HOVERS
-		
-		$('.image').mouseenter(function(){
-			$('.image').css('opacity',0.6);
-			$(this).css('opacity',1);
-		});
+        
+        var ua = $.browser;
+        // desativa para ff 11
+        if ( !(ua.mozilla && parseInt(ua.version.slice(0,2)) == 11) ) {
+            $('.image').mouseenter(function(){
+                $('.image').css('opacity',0.6);
+                $(this).css('opacity',1);
+            });
+            $('#panel').mouseleave(function(){ 
+                $('.image').css('opacity',1);
+            });
+        }
+        
+        $('.footer_image').mouseenter(function(){
+            $('.footer_image img').css('opacity',0.6);
+            $($(this).children('img'),this).css('opacity',1);
+        });
 
-		$('#panel').mouseleave(function(){ 
-			$('.image').css('opacity',1);
-		});
-		
-		$('.footer_image').mouseenter(function(){
-			$('.footer_image img').css('opacity',0.6);
-			$($(this).children('img'),this).css('opacity',1);
-		});
-
-		$('.images_line').mouseleave(function(){ 
-			$('.footer_image img').css('opacity',1);
-		});
+        $('.images_line').mouseleave(function(){ 
+            $('.footer_image img').css('opacity',1);
+        });
 		
 		// FOOTER
 		
@@ -178,12 +181,17 @@
 	
 	function load(firstTime) {
 			if (firstTime == 1) {
-
 				$('#mask').fadeIn('fast');
 				$('#form_window').fadeIn('slow');
 				$('#registration').load('<c:url value="/18/welcome" />');	
 				form_window_loaded = true;
 			}
+			if (firstTime == 2) {
+				$('#mask').fadeIn('fast');
+				$('#form_window').fadeIn('slow');
+				$('#registration').load('<c:url value="/users/8/signup"/>');	
+				form_window_loaded = true;
+			}			
 //		if ( null!== showMessage ) {
 //			$('#mask').fadeIn('fast');
 //			$('#form_window').fadeIn('slow');

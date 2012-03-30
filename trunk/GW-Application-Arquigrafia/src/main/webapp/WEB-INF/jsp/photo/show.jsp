@@ -43,7 +43,7 @@
 					<!--   FOTO   -->
 					<%--img src="img/photos/8806.jpg" class="single_view_image" width="600" height="410" alt="" title="" /--%>
 					<photo:show clazz="single_view_image"
-						style="width: 600px; height:410px" foto="${photo}"
+						 foto="${photo}"
 						photoInstance="${photoInstance}" />
 
 					<hr />

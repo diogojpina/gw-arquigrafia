@@ -61,8 +61,12 @@ public class ArquigrafiaController {
         if("0".equals(request.getParameter("firstTime"))) {
             result.include("firstTime", 0);
         } else {
-            if (((User) session.getAttribute("userLogin")).getId() == 2L) {
-                result.include("firstTime", 1);
+            if("2".equals(request.getParameter("firstTime"))) {
+                result.include("firstTime", 2);
+            } else {
+                if (((User) session.getAttribute("userLogin")).getId() == 2L) {
+                    result.include("firstTime", 1);
+                }
             }
         }
         result.include("arquigrafiaMgr", arquigrafiaInstance);
