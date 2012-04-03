@@ -26,7 +26,7 @@
       <div id="sub_content">
         <!--   CONTEÚDO SOBRE O PROJETO   -->
         <h1>O Projeto</h1>
-        <a href="#"  id="printer_icon"></a>
+        <a href="#"  title="Imprimir" id="printer_icon"></a>
         <!--   TEXTO DO PROJETO   -->
         <div id="project_text">
           <br />

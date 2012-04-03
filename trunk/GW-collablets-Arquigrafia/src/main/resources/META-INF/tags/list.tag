@@ -21,7 +21,7 @@
         <c:if test="${showName || showLocation}">
             <div>
         </c:if>
-        <a  class="search_image" rel="linkimage" href="<c:url value="/16/photo/${foto.id}"/>">
+        <a  class="search_image" rel="linkimage" href="<c:url value="/photo/${foto.id}"/>">
             <img src="<c:url value="/photo/img-thumb/${foto.id}"/>?_log=no" />
         </a>
         <c:if test="${showName || showLocation}">

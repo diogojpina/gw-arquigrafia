@@ -10,8 +10,8 @@
 }
 </script>
 
-<h2>Cadastro user</h2>
-	<p>Faça seu cadastro para poder publicar fotos no site Arquigrafia.<br />
+<h2>Cadastro</h2>
+	<p>Faça seu cadastro para poder compartilhar imagens no Arquigrafia.<br />
   	<small>* Todos os campos a seguir são obrigatórios.</small></p>
 	<form id="cadastroForm" method="post" name="cadastroForm" action='<c:url value="/groupware-workbench/users/${userMgr.id}/save"  />' onsubmit="return checkCheckBox();">
 	<p>

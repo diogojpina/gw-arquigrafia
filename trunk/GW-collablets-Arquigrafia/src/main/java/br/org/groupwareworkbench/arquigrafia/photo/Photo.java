@@ -28,6 +28,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -516,9 +517,13 @@ public class Photo implements Serializable {
     }
 
     public String getDataCriacaoFormatada() {
-        if (dataCriacao == null) return null;
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-        return sdf.format(dataCriacao);
+        try {
+            if (dataCriacao == null) return null;
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+            return sdf.format(dataCriacao);
+        } catch (Exception e) {
+            return "";
+        } 
     }
 
     public void setDataCriacao(Date dataCriacao) {
@@ -597,6 +602,16 @@ public class Photo implements Serializable {
         this.workdate = workdate;
     }
 
+    public String getFormattedWorkdate() {
+        try {
+            if (workdate == null) return null;
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+            return sdf.format(workdate);
+        } catch (Exception e) {
+            return "";
+        }
+    }
+
     public String getStreet() {
         return street;
     }
@@ -665,6 +680,16 @@ public class Photo implements Serializable {
         this.cataloguingTime = cataloguingTime;
     }
 
+    public String getFormattedCataloguingTime() {
+        try {
+            if (cataloguingTime == null) return null;
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+            return sdf.format(cataloguingTime);
+        } catch (Exception e) {
+            return "";
+        }
+    }    
+    
     public static List<Photo> listLastPhotos(Collablet collablet, Integer amount) {
 
         if (collablet == null) throw new IllegalArgumentException("Collablet is required.");

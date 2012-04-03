@@ -21,7 +21,7 @@
         <!--   FIM - MENU INSTITUCIONAL   -->
             
         <!--   MENU DE BUSCA   -->
-        <form id="search_buttons_area" action="<c:url value="/photo/6/busca" />" method="post">
+        <form id="search_buttons_area" action="<c:url value="/photo/7/busca" />" method="post">
           <!--   BARRA DE BUSCA   -->
           <input type="text" class="search_bar" name="busca" />
           <!--   BOTÃO DA BARRA DE BUSCA   -->
@@ -56,7 +56,7 @@
         	   <!-- <li><a href="#" id="messages" title="Você tem 19 mensagens">11</a></li>  -->
 			   <li> <a href=" <c:url value="/groupware-workbench/friends/11/show/${sessionScope.userLogin.id}" />" id="users" title="Usuários">&nbsp;</a></li>
 			   <!-- <li><a href="#" id="comunities" title="Comunidades">&nbsp;</a></li> -->
-			   <li><a href="#" name="modal" id="upload" title="Subir uma imagem">&nbsp;</a></li>
+			   <li><a href="#" name="modal" id="upload" title="Enviar uma imagem">&nbsp;</a></li>
       	  </ul>
           <a href="<c:url value="/groupware-workbench/friends/11/show/${sessionScope.userLogin.id}" />" id="user_name">${sessionScope.userLogin.name}</a>
         </div>

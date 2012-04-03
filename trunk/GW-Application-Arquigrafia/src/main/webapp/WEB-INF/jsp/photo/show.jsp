@@ -93,8 +93,38 @@
 				<!--   FIM - USUARIO   -->
 				<!-- <h3>Equipamento:</h3>
 				<p>Lorem ipsum dolor sit amet</p> -->
-				<h3>Descrição:</h3>
-				<p><c:out value="${photo.description}"/></p>
+				<c:if test="${not empty photo.description}">
+					<h3>Descrição:</h3>
+					<p><c:out value="${photo.description}"/></p>
+				</c:if>
+				<c:if test="${not empty photo.collection}">
+					<h3>Coleção:</h3>
+					<p><c:out value="${photo.collection}"/></p>
+				</c:if>
+				<c:if test="${not empty photo.imageAuthor}">
+					<h3>Autor da Imagem:</h3>
+					<p><c:out value="${photo.imageAuthor}"/></p>
+				</c:if>
+				<c:if test="${not empty photo.dataCriacaoFormatada}">
+					<h3>Data da Imagem:</h3>
+					<p><c:out value="${photo.dataCriacaoFormatada}"/></p>
+				</c:if>		
+				<c:if test="${not empty photo.workAuthor}">
+					<h3>Autor da Obra:</h3>
+					<p><c:out value="${photo.workAuthor}"/></p>
+				</c:if>		
+				<c:if test="${not empty photo.formattedWorkdate}">
+					<h3>Data da Obra:</h3>
+					<p><c:out value="${photo.formattedWorkdate}"/></p>
+				</c:if>										
+				<c:if test="${not empty photo.formattedCataloguingTime}">
+					<h3>Data de Catalogação:</h3>
+					<p><c:out value="${photo.formattedCataloguingTime}"/></p>
+				</c:if>		
+				<c:if test="${not empty photo.aditionalImageComments}">
+					<h3>Observações:</h3>
+					<p><c:out value="${photo.aditionalImageComments}"/></p>
+				</c:if>				
 				<h3>Localização:</h3>
 				<p>
 					<iframe width="300" height="100" frameborder="0" scrolling="no"
@@ -102,7 +132,7 @@
 						src="http://maps.google.com.br/maps?f=q&amp;source=s_q&amp;hl=pt-BR&amp;geocode=&amp;q=sp&amp;aq=&amp;sll=-18.124971,-45.878906&amp;sspn=11.093912,19.621582&amp;ie=UTF8&amp;hq=&amp;hnear=S%C3%A3o+Paulo&amp;t=m&amp;ll=-21.912471,-49.361572&amp;spn=1.019251,3.284912&amp;z=7&amp;iwloc=A&amp;output=embed"></iframe>
 					<a
 						href="http://maps.google.com.br/maps?f=q&amp;source=embed&amp;hl=pt-BR&amp;geocode=&amp;q=sp&amp;aq=&amp;sll=-18.124971,-45.878906&amp;sspn=11.093912,19.621582&amp;ie=UTF8&amp;hq=&amp;hnear=S%C3%A3o+Paulo&amp;t=m&amp;ll=-21.912471,-49.361572&amp;spn=1.019251,3.284912&amp;z=7&amp;iwloc=A"
-						style="text-align: center; display: block; width: auto; font-size: 10px;">Exibir
+						style="text-align: center; display: block; width: auto; font-size: 10px;" target="_blank">Exibir
 						mapa ampliado</a>
 				</p>
 				<h3>Tags:</h3>

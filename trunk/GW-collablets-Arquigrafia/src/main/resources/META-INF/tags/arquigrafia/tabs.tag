@@ -10,7 +10,7 @@
 	  <ul class="tabs">
         <!--   ABAS   -->
         <li class="selected_tab">
-	      <a href="#" class="selected_tab_link">NOVAS IMAGENS</a>
+	      <a class="selected_tab_link">NOVAS IMAGENS</a>
 		</li>
 		<!-- <li class="tab_not_selected">
 		  <a href="#" class="tab_link">POPULARES</a>

@@ -18,8 +18,7 @@
 			<textarea cols="34" rows="3" name="mail.message"></textarea>
 		</p>
 		<p>
-			<small>Campos assinalados com * são de prenchimento
-				obrigatório.</small>
+			<small>* Preenchimento obrigatório.</small>
 		</p>
 		<p>
 			<input name="enviar" type="submit" class="submit cursor" value="" />

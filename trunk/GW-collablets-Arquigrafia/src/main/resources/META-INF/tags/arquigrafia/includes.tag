@@ -116,8 +116,8 @@
 		// IMAGES HOVERS
         
         var ua = $.browser;
-        // desativa para ff 11
-        if ( !(ua.mozilla && parseInt(ua.version.slice(0,2)) == 11) ) {
+        // desativa para ff 
+        if ( !(ua.mozilla) ) {
             $('.image').mouseenter(function(){
                 $('.image').css('opacity',0.6);
                 $(this).css('opacity',1);

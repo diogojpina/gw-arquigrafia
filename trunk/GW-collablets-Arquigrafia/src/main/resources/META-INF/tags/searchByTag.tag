@@ -11,7 +11,7 @@
         
 <c:forEach var="foto" items="${photos}">
 
-        <a class="foto" rel="linkimage" href="<c:url value="/16/photo/${foto.id}"/>" class="search_image">
+        <a class="foto" rel="linkimage" href="<c:url value="/photo/${foto.id}"/>" class="search_image">
             <img src="<c:url value="/photo/img-thumb/${foto.id}"/>?_log=no"  alt="<c:out value="${foto.name}" />" />
         </a>
 
