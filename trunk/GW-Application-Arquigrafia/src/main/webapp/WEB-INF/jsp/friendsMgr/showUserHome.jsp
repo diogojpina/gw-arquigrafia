@@ -93,7 +93,7 @@
 	          	</ul>
 	        </div>
 	         -->
- 			<album:listGalery albumMgr="${albumMgr}" user="${friend}"/>
+ 			<!-- <album:listGalery albumMgr="${albumMgr}" user="${friend}"/> -->
 
 		</div>
 	</div>
