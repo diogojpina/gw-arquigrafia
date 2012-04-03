@@ -58,10 +58,10 @@
 						<li><a href="<c:url value="/photo/img-original/${photo.id}" />" title="Faça o download" id="download" target="_blank"></a></li>
 					</ul>
 					<ul id="single_view_social_network_buttons">
-						<li><a href="#" class="delicious"></a></li>
+						<!-- <li><a href="#" class="delicious"></a></li>
 						<li><a href="#" class="google"></a></li>
 						<li><a href="#" class="facebook"></a></li>
-						<li><a href="#" class="twitter"></a></li>
+						<li><a href="#" class="twitter"></a></li>  -->
 					</ul>
 				</div>
 				<!--   FIM - BOX DE BOTOEES DA IMAGEM   -->
