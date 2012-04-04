@@ -7,6 +7,8 @@
 <%@ taglib prefix="tag" uri="http://www.groupwareworkbench.org.br/widgets/tag"%>
 <%@ taglib prefix="comment" uri="http://www.groupwareworkbench.org.br/widgets/comment"%>
 <%@ taglib prefix="counter" uri="http://www.groupwareworkbench.org.br/widgets/counter" %>
+<%@ taglib prefix="s" uri="http://www.groupwareworkbench.org.br/widgets/security" %>
+
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
@@ -50,19 +52,24 @@
 				</div>
 				<!--   BOX DE BOTOES DA IMAGEM   -->
 				<div id="single_view_buttons_box">
-					<ul id="single_view_image_buttons">
-						<!-- <li><a href="#" title="Adicione aos seus favoritos" id="add_favourite"></a></li>
-						<li><a href="#" title="Denuncie esta foto" id="denounce"></a></li>
-						<li><a href="#" title="Adicione ao seu album" id="plus"></a></li>  
-						<li><a href="<c:url value="/18/photo_avaliation/${photo.id}" />" title="Avalie a foto" id="eyedroppper"></a></li>-->
-						<li><a href="<c:url value="/photo/img-original/${photo.id}" />" title="Faça o download" id="download" target="_blank"></a></li>
-					</ul>
-					<ul id="single_view_social_network_buttons">
-						<!-- <li><a href="#" class="delicious"></a></li>
-						<li><a href="#" class="google"></a></li>
-						<li><a href="#" class="facebook"></a></li>
-						<li><a href="#" class="twitter"></a></li>  -->
-					</ul>
+					<s:n-check name="X-X-usuario">
+				        <h3> <a href="#" id="comment_login_link" > Faça o login para fazer o download e comentar as imagens. </a></h3>
+					</s:n-check>
+					<s:check name="X-X-usuario">
+						<ul id="single_view_image_buttons">
+							<!-- <li><a href="#" title="Adicione aos seus favoritos" id="add_favourite"></a></li>
+							<li><a href="#" title="Denuncie esta foto" id="denounce"></a></li>
+							<li><a href="#" title="Adicione ao seu album" id="plus"></a></li>  
+							<li><a href="<c:url value="/18/photo_avaliation/${photo.id}" />" title="Avalie a foto" id="eyedroppper"></a></li>-->
+							<li><a href="<c:url value="/photo/img-original/${photo.id}" />" title="Faça o download" id="download" target="_blank"></a></li>
+						</ul>
+						<ul id="single_view_social_network_buttons">
+							<!-- <li><a href="#" class="delicious"></a></li>
+							<li><a href="#" class="google"></a></li>
+							<li><a href="#" class="facebook"></a></li>
+							<li><a href="#" class="twitter"></a></li>  -->
+						</ul>
+					</s:check>
 				</div>
 				<!--   FIM - BOX DE BOTOEES DA IMAGEM   -->
 				<!--   BOX DE COMENTARIOS   -->

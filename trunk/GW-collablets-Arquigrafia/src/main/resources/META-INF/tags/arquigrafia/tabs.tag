@@ -29,8 +29,8 @@
 	  <div class="footer_images">
 	    
 		<!--   SETAS DE NAVEGAÇÃO DAS FOTOS (RODAPÉ)-->
-		<a href="#" id="arrow-left" class="arrows">&laquo;</a>
-		<a href="#" id="arrow-right" class="arrows">&raquo;</a>
+		<div id="arrow-left" class="arrows">&laquo;</div>
+		<div id="arrow-right" class="arrows">&raquo;</div>
 		
 		<!--  CONTAINER DAS IMAGENS - (RODAPÉ)  -->
 		<div id="images_container">

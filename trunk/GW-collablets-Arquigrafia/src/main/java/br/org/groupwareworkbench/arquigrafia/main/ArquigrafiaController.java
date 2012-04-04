@@ -20,24 +20,36 @@
  */
 package br.org.groupwareworkbench.arquigrafia.main;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
+import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.Validator;
 import br.com.caelum.vraptor.core.RequestInfo;
 import br.com.caelum.vraptor.ioc.RequestScoped;
+import br.com.caelum.vraptor.validator.ValidationMessage;
+import br.com.caelum.vraptor.view.Results;
 import br.org.groupwareworkbench.arquigrafia.photo.Photo;
+import br.org.groupwareworkbench.arquigrafia.photo.PhotoController;
+import br.org.groupwareworkbench.arquigrafia.photo.PhotoMgrInstance;
+import br.org.groupwareworkbench.collablet.communic.tag.Tag;
+import br.org.groupwareworkbench.collablet.communic.tag.TagMgrInstance;
 import br.org.groupwareworkbench.collablet.coord.user.User;
+import br.org.groupwareworkbench.core.framework.Collablet;
 import br.org.groupwareworkbench.core.framework.WidgetInfo;
 
 @RequestScoped
 @Resource
 public class ArquigrafiaController {
 
+    public static final String MSG_MIN_3_LETRAS = "Você deve digitar no mínimo 3 letras.";
+    
     private final Result result;
     private final WidgetInfo info;
     private final Validator validator;
@@ -128,6 +140,42 @@ public class ArquigrafiaController {
         Photo photo = Photo.findById(idPhoto);
         result.include("photo", photo);
         result.include("arquigrafiaMgr", arquigrafiaInstance);
+        addIncludes(arquigrafiaInstance);
+    }
+    
+    @Post
+    @Path(value = "/photo/busca")
+    public void doSearch(String busca, ArquigrafiaMgrInstance arquigrafiaInstance, PhotoMgrInstance photoInstance, TagMgrInstance tagInstance) {
+        if (busca.length() < 3) {
+            validator.add(new ValidationMessage(MSG_MIN_3_LETRAS, "Erro"));
+            validator.onErrorUse(Results.logic()).forwardTo(ArquigrafiaController.class).searchResult(arquigrafiaInstance);
+            return;
+        }
+
+        List<Photo> resultFotosBusca = photoInstance.buscaFoto(busca);
+
+        Tag tag = Tag.findByName(busca, tagInstance.getCollablet());
+        if (tag == null) {
+            this.result.notFound();
+            return;
+        }
+
+        result.include("tag", tag);
+
+        Collablet tagCollablet = tag.getCollablet();
+        TagMgrInstance tagMgr = (TagMgrInstance) tagCollablet.getBusinessObject();
+        tagCollablet.includeDependencies(result);
+        result.include("tagMgr", tagMgr);
+        result.use(Results.representation()).from(tag).serialize();
+        
+        result.include("fotos", resultFotosBusca);
+        result.include("searchTerm", busca);
+        result.use(Results.logic()).forwardTo(PhotoController.class).busca(photoInstance);
+    }
+    
+    @Get
+    @Path(value = "/photo/{photoInstance}/list")
+    public void searchResult(ArquigrafiaMgrInstance arquigrafiaInstance) {
         addIncludes(arquigrafiaInstance);
     }
 }
