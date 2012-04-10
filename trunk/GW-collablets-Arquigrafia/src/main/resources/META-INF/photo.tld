@@ -63,6 +63,10 @@
 		<path>/META-INF/tags/listMostViews.tag</path>
 	</tag-file>
 	<tag-file>
+		<name>countAllPhotos</name>
+		<path>/META-INF/tags/countAllPhotos.tag</path>
+	</tag-file>
+	<tag-file>
 		<name>moreCommented</name>
 		<path>/META-INF/tags/listMoreCommentedPhotos.tag</path>
 	</tag-file>
