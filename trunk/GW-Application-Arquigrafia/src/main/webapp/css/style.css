@@ -104,7 +104,7 @@ a#complete_search:hover { background-position:-367px -32px; }
 
 /* lightbox - criar uma conta */
 #form_window {width: 600px; background: #fff; position:fixed; top: 50%; left:50%; margin: -240px 0 0 -340px; padding: 35px; -moz-border-radius: 7px; border-radius: 7px; display:none;}
-#form_window label {width: 110px; display: inline-block; color: #777; text-align: right; vertical-align:top; line-height:27px;}
+#form_window label {width: 100px; display: inline-block; color: #777; text-align: right; vertical-align:top; line-height:27px;}
 #form_window textarea {border:solid 1px #EEEEEE; padding: 3px; margin: 2px 0 2px 5px; font-size:11px;}
 #form_window input {border: solid 1px #eee; padding: 3px; margin: 2px 0 2px 5px;}
 #form_window select {margin:3px;}
@@ -273,6 +273,9 @@ a.selected_tab_link:hover { color:#CB9833; }
 
 .images_line { height:80px; width:2715px; }
 a.footer_image { display:block; margin:4px; float:left; border:none; width:105px; height:72px; background:#000; }
+
+/*frase - contador de imagens*/
+#image_counter { display:block; float:left; text-align:center; width:100%; margin: 10px 0; overflow:hidden;}
 
 /*créditos*/
 #credits { padding-top:5px; text-align:center; }
@@ -476,10 +479,14 @@ a#gallery_photo { margin: 0 5px 0 0;}
 #select_button { width:73px; height:20px; background:url(../img/icons_sprite.png) -280px -195px no-repeat; border:0px !important; margin: 3px 0px !important; float:right;}
 #select_button:hover { background:url(../img/icons_sprite.png) -280px -216px no-repeat; cursor:pointer;}
 #state_selector { margin: 0 0 0 26px;}
-#upload_form textarea { width:123px; height:60px;}
+#upload_form textarea { width:153px; height:60px; border: solid 1px #EEE; padding: 3px; margin: 2px 0 2px 5px;}
+#upload_form select {width: 161px; padding: 3px; margin: 2px 0 2px 5px;}
+#upload_form input.text {width: 153px;}
 .creative_commons_form{ display:block; float:left; width:290px; margin: 0;}
 #creative_commons_left_form{ margin: 0 20px 0 0;}
 #creative_commons_left_form label, #creative_commons_right_form label{ margin:0; display:inline; line-height:18px;}
+.left_form_label_column { margin: 0 0 0 -60px;}
+
 
 /* CONTACT US FORM - MODAL */
 #contact_us_form input.text { width:200px !important;}

@@ -95,6 +95,13 @@
 			$('#registration').load('<c:url value="/users/8/login"/>');	
 			form_window_loaded = true;
 		});
+
+		$('#footer_login_link').click(function(){
+			$('#mask').fadeIn('fast');
+			$('#form_window').fadeIn('slow');
+			$('#registration').load('<c:url value="/users/8/login"/>');	
+			form_window_loaded = true;
+		});
 		
 		$('#form_window .close').click(function (e) {
 			e.preventDefault();

@@ -57,8 +57,8 @@
   <label>Data da imagem:</label>
   <input name="imagedate" type="text" class="text" id="imagedate" />
   <br />
-  <label id="state_selector">Estado:</label>
-  <select name="photoRegister.state">
+  <label>Estado:</label>
+  <select name="photoRegister.state" class="input_content">
   	<option selected="" value="" >Escolha o Estado</option>
     <option value="AC">Acre</option>
 	<option value="AL">Alagoas</option>
@@ -89,7 +89,7 @@
     <option value="TO">Tocantins</option>
   </select>
   <label>País:</label>
-  <select name="photoRegister.country">
+  <select name="photoRegister.country" class="input_content">
 	<option value="Afeganistão">Afeganistão</option>
 	<option value="África do Sul">África do Sul</option>
 	<option value="Albânia">Albânia</option>
@@ -260,7 +260,7 @@
   <tag:setTags tagMgr="${tagMgr}" entity="${photo}" />
   
   <label>Descrição:</label>
-  <textarea name="photoRegister.description" class="text"></textarea>
+  <textarea name="photoRegister.description" class="input_content"></textarea>
   <br />
   </p>
   <p> 

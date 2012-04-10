@@ -46,9 +46,5 @@
 		  	</div>
 		 </div>
 	  <!--   FIM - BARRA DE IMAGENS - (RODAPÉ)   -->
-	  </div>
 	  
-	  
-	  <div>
-	  </div>
-	  <!--   FIM - BARRA DE IMAGENS - (RODAPÉ)   -->
+	   <p:countAllPhotos photoInstance="${photoMgr}" />

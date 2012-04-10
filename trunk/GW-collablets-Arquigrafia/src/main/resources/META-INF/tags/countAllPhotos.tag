@@ -7,5 +7,5 @@
 
 <c:if test="${photoInstance.collablet.enabled}">
 	<r:callMethod methodName="countAllPhotos" instance="${photoInstance}" var="count" />
-	<span>"${count}"</span>
+	<p id="image_counter">O Arquigrafia conta com um total de <c:out value="${count}"/> imagens. <s:n-check name="X-X-usuario"> <a href="#" id="footer_login_link" >  Faça o login e compartilhe também suas imagens. </a></s:n-check></p>
 </c:if>
