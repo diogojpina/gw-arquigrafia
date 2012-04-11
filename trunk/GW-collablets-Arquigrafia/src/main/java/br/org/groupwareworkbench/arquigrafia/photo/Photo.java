@@ -20,21 +20,20 @@
  */
 package br.org.groupwareworkbench.arquigrafia.photo;
 
-import java.awt.Dimension;
-import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import javax.imageio.IIOImage;
 import javax.imageio.ImageIO;
@@ -67,8 +66,6 @@ import br.org.groupwareworkbench.core.bd.ObjectDAO;
 import br.org.groupwareworkbench.core.bd.QueryBuilder;
 import br.org.groupwareworkbench.core.framework.Collablet;
 import br.org.groupwareworkbench.core.graphics.BatchImageProcessor;
-import br.org.groupwareworkbench.core.graphics.GWImage;
-import br.org.groupwareworkbench.core.util.ImageUtils;
 
 
 @Entity
@@ -169,6 +166,7 @@ public class Photo implements Serializable {
     private String aditionalImageComments;
     private String characterization;
     private String tombo;
+    private boolean deleted;
     
     @Enumerated(EnumType.STRING)
     private AllowModifications allowModifications;
@@ -212,7 +210,12 @@ public class Photo implements Serializable {
     }
 
     public static List<Photo> list(Collablet collablet) {
-        return DAO.listByField("collablet", collablet);
+        // TODO Not fully tested.
+        Map<String, Object> fields = new HashMap<String, Object>();
+        fields.put("collablet", collablet);
+        fields.put("deleted", false);
+//        return DAO.listByField("collablet", collablet);
+        return DAO.listByFields(fields);
     }
 
     private PhotoMgrInstance getInstance() {
@@ -401,7 +404,7 @@ public class Photo implements Serializable {
     public static Photo findPhotoByUser(User user, long id) {
         if (user == null) throw new IllegalArgumentException();
 
-        String queryString = "SELECT p FROM Photo p JOIN p.users AS u WHERE u = :user AND p.id=id";
+        String queryString = "SELECT p FROM Photo p JOIN p.users AS u WHERE u = :user AND p.id=id AND p.deleted = false";
         EntityManager em = EntityManagerProvider.getEntityManager();
         TypedQuery<Photo> query = em.createQuery(queryString, Photo.class);
         query.setParameter("id", id);
@@ -410,13 +413,15 @@ public class Photo implements Serializable {
     }
 
     public static List<Photo> listPhotoByUserPageAndOrder(Collablet collablet, User user, int pageSize, int pageNumber) {
+        System.out.println("CP5");
+
         if (collablet == null) throw new IllegalArgumentException();
         if (user == null) throw new IllegalArgumentException();
 
         int firstElement = pageNumber * pageSize;
 
         String queryString =
-                "SELECT p FROM Photo p JOIN p.users AS u WHERE p.collablet = :collablet AND u = :user ORDER BY p.dataUpload DESC";
+                "SELECT p FROM Photo p JOIN p.users AS u WHERE p.deleted = false AND p.collablet = :collablet AND u = :user ORDER BY p.dataUpload DESC";
         EntityManager em = EntityManagerProvider.getEntityManager();
         TypedQuery<Photo> query = em.createQuery(queryString, Photo.class);
         query.setMaxResults(pageSize);
@@ -427,21 +432,24 @@ public class Photo implements Serializable {
     }
 
     public static List<Photo> listPhotoByPageAndOrder(Collablet collablet, int pageSize, int pageNumber) {
+        System.out.println("CP4");
         if (collablet == null) throw new IllegalArgumentException();
 
         int firstElement = pageNumber * pageSize;
 
-        return QueryBuilder.query(Photo.class).with("collablet", collablet).firstResult(firstElement)
+        return QueryBuilder.query(Photo.class).with("collablet", collablet).with("deleted", false).firstResult(firstElement)
                 .maxResults(pageSize).list("dataUpload DESC");
     }
 
     public static List<Photo> busca(Collablet collablet, String name, String city, String description, Date date) {
+        System.out.println("CP2");
+
         if (collablet == null) throw new IllegalArgumentException();
         if (name.equals("")) name = "!$%--6**24";
         if (description.equals("")) description = "!$%--6**24";
         if (city.equals("")) city = "!$%--6**24";
         String queryString =
-                "SELECT p FROM Photo p WHERE p.collablet =:collablet AND (" + "(upper(p.name) like :nom1 "
+                "SELECT p FROM Photo p WHERE p.deleted = false AND p.collablet =:collablet AND (" + "(upper(p.name) like :nom1 "
                         + "OR upper(p.name) like :nom2 " + "OR upper(p.name) like :nom4 "
                         + "OR upper(p.name) like :nom3 )" +
 
@@ -672,6 +680,14 @@ public class Photo implements Serializable {
         this.tombo = tombo;
     }
 
+    public boolean getDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
+    }
+
     public Date getCataloguingTime() {
         return cataloguingTime;
     }
@@ -691,14 +707,13 @@ public class Photo implements Serializable {
     }    
     
     public static List<Photo> listLastPhotos(Collablet collablet, Integer amount) {
-
         if (collablet == null) throw new IllegalArgumentException("Collablet is required.");
         Integer localCount = amount;
         if (localCount == null || localCount < 1) {
             localCount = DEFAULT_PHOTOS_COUNT;
         }
 
-        return DAO.query().with("collablet", collablet).maxResults(localCount).list("id DESC");
+        return DAO.query().with("collablet", collablet).with("deleted", false).maxResults(localCount).list("id DESC");
 
     }
 

@@ -27,12 +27,9 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.Enumeration;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import br.com.caelum.vraptor.Delete;
@@ -48,13 +45,11 @@ import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
 import br.com.caelum.vraptor.ioc.RequestScoped;
 import br.com.caelum.vraptor.validator.ValidationMessage;
 import br.com.caelum.vraptor.view.Results;
-//import br.org.groupwareworkbench.collablet.coord.counter.Observer;
 import br.org.groupwareworkbench.collablet.coord.user.User;
-import br.org.groupwareworkbench.collablet.coord.user.UserMgrInstance;
-import br.org.groupwareworkbench.collablet.faq.Faq;
 import br.org.groupwareworkbench.core.framework.Collablet;
 import br.org.groupwareworkbench.core.framework.WidgetInfo;
 import br.org.groupwareworkbench.core.routing.GroupwareInitController;
+import br.org.groupwareworkbench.core.security.util.SecurityUtil;
 
 @RequestScoped
 @Resource
@@ -68,8 +63,7 @@ public class PhotoController {
     public static final String MSG_FALHA_NO_UPLOAD = "Falha ao fazer o upload da imagem.";
     public static final String MSG_IMAGEM_INVALIDA = "O arquivo não foi reconhecido como uma imagem válida.";
     public static final String MSG_ENTIDADE_INVALIDA = "Não é uma entidade válida.";
-    public static final String MSG_SUCCESS =
-            "A foto foi salva com sucesso. Envie outra foto ou clique em fechar para voltar à pagina inicial.";
+    public static final String MSG_SUCCESS = "A foto foi salva com sucesso. Envie outra foto ou clique em fechar para voltar à pagina inicial.";
 
     private final Result result;
     private final WidgetInfo info;
@@ -147,6 +141,30 @@ public class PhotoController {
         }
         return photo.downloadImgOriginal();
     }
+
+//    @Get
+//    @Path(value = "/photo/delete/{idPhoto}")
+//    public void imgDelete(long idPhoto) {
+//        Photo photo = Photo.findById(idPhoto);
+//        if (photo == null) {
+//            result.notFound();
+//        } else {
+//            /* TODO review the design of the field users in Photo.
+//             * Now we are getting an array of users, but we just
+//             * need a single user. At follows we assume that there
+//             * is always at least one user and that the first
+//             * user is the photo's owner.
+//             */
+//            
+//            if(SecurityUtil.checkOwnership(session, photo.getUsers().get(0).getLogin())) {
+//                photo.setDeleted(true);
+//                photo.save();
+//            } else {
+//                System.out.println("Someone tried to delete a photo that he does not own.");
+//            }
+//            result.redirectTo("/");
+//        }
+//    }
 
     private void addIncludes(PhotoMgrInstance photoInstance) {
         result.include("photoInstance", photoInstance);
@@ -426,15 +444,39 @@ public class PhotoController {
         result.use(Results.logic()).redirectTo(PhotoController.class).show(photoRegister.getId());
     }
     
+    @Get
     @Post
     @Path(value = "/photo/delete/{idPhoto}")
     public void deletePhoto(long idPhoto) {
+        
         Photo photo = Photo.findById(idPhoto);
         if (photo == null) {
-            validator.add(new ValidationMessage(MSG_ENTIDADE_INVALIDA, "Erro"));
+            result.notFound();
             return;
         }
-        photo.delete();
+        
+        /* TODO review the design of the field users in Photo.
+         * Now we are getting an array of users, but we just
+         * need a single user. At follows we assume that there
+         * is always at least one user and that the first
+         * user is the photo's owner.
+         */
+        
+        if(SecurityUtil.checkOwnership(session, photo.getUsers().get(0).getLogin())) {
+            photo.setDeleted(true);
+            photo.save();
+        } else {
+            System.out.println("Someone tried to delete a photo that he does not own.");
+        }
+        result.redirectTo("/");
+        
+        // Previous implementation, that actually removed the Photos from the database.
+//        Photo photo = Photo.findById(idPhoto);
+//        if (photo == null) {
+//            validator.add(new ValidationMessage(MSG_ENTIDADE_INVALIDA, "Erro"));
+//            return;
+//        }
+//        photo.delete();
         PhotoMgrInstance photoInstance = (PhotoMgrInstance) photo.getCollablet().getBusinessObject();
         addIncludes(photoInstance);
     }
