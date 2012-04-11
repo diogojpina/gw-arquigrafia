@@ -176,7 +176,7 @@
             <description>Registro de fotografias</description>
             <name>photoMgr</name>
             <properties>
-                <property key="dirImages" value="imagesArquigrafia/" /> 
+                <property key="dirImages" value="/home/gw/imagesArquigrafia/" /> 
                 <!--
                     No linux se não usa absolute path assume-se $HOME como prefixo, ou seja "images/" ficará "$HOME/images"
                     se tiver permissões esta pasta é criada automaticamente pelo componente.
@@ -241,9 +241,9 @@
             <properties>
                 <property key="mailServerAddress" value="smtp.gmail.com" />
         		<property key="mailServerPort" value="465" />
-        		<property key="mailUserAddress" value="email usado para envio" />
-        		<property key="mailUserPassword" value="senha do email de envio" />
-        		<property key="mailDestination" value="email de destino" />
+        		<property key="mailUserAddress" value="arquigrafiabrasil@gmail.com" />
+        		<property key="mailUserPassword" value="4rquigr4fi4" />
+        		<property key="mailDestination" value="arquigrafiabrasil@gmail.com" />
             </properties>
         </collablet>
         

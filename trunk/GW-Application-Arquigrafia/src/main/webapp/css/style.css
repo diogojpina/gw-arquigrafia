@@ -369,6 +369,9 @@ a#denounce { background:url(../img/icons_sprite.png) -540px 0;}
 a#denounce:hover { background-position:-540px -33px;}
 a#download { background:url(../img/icons_sprite.png) -505px 0;}
 a#download:hover { background-position:-505px -33px;}
+#delete { display:block; width:22px; height:22px;}
+a#delete { background:url(../img/excluir.png)}
+a#delete:hover { background:url(../img/excluir-hover.png)}
 
 /*redes sociais*/
 #single_view_social_network_buttons { float:right; margin-right:20px; }

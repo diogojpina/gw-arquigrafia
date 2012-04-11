@@ -62,6 +62,11 @@
 							<li><a href="#" title="Adicione ao seu album" id="plus"></a></li>  
 							<li><a href="<c:url value="/18/photo_avaliation/${photo.id}" />" title="Avalie a foto" id="eyedroppper"></a></li>-->
 							<li><a href="<c:url value="/photo/img-original/${photo.id}" />" title="Faça o download" id="download" target="_blank"></a></li>
+							<c:forEach items="${photo.users}" var="user">
+								<s:owner userName="${user.login}">
+								<li><a href="<c:url value="/photo/delete/${photo.id}" />" title="Remover foto" id="delete"></a></li>
+								</s:owner>
+							</c:forEach>
 						</ul>
 						<ul id="single_view_social_network_buttons">
 							<!-- <li><a href="#" class="delicious"></a></li>
