@@ -26,31 +26,15 @@
 			var part = "perfil";
 			$('#mask').fadeIn('fast');
 			$('#form_window').fadeIn('slow');
-			$('#registration').load('<c:url value="/groupware-workbench/user/edit/${userLogin.id}/'+part+'"/>');	
+			$('#registration').load('<c:url value="/groupware-workbench/profile/${profileMgr.id}/edit/${userLogin.id}"/>');	
 			form_window_loaded = true;
 		});
-
-		$('#edit_formacao_button').click(function(){
-			var part = "formacao";
+		
+		$('#edit_user_button').click(function(){
+			var part = "perfil";
 			$('#mask').fadeIn('fast');
 			$('#form_window').fadeIn('slow');
-			$('#registration').load('<c:url value="/groupware-workbench/user/edit/${userLogin.id}/'+part+'"/>');	
-			form_window_loaded = true;
-		});
-
-		$('#edit_localizacao_button').click(function(){
-			var part = "localizacao";
-			$('#mask').fadeIn('fast');
-			$('#form_window').fadeIn('slow');
-			$('#registration').load('<c:url value="/groupware-workbench/user/edit/${userLogin.id}/'+part+'"/>');	
-			form_window_loaded = true;
-		});
-
-		$('#edit_contato_button').click(function(){
-			var part = "contato";
-			$('#mask').fadeIn('fast');
-			$('#form_window').fadeIn('slow');
-			$('#registration').load('<c:url value="/groupware-workbench/user/edit/${userLogin.id}/'+part+'"/>');	
+			$('#registration').load('<c:url value="/groupware-workbench/users/${userMgr.id}/edit/${userLogin.id}"/>');	
 			form_window_loaded = true;
 		});
 		

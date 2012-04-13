@@ -9,6 +9,7 @@
 <%@ taglib prefix="w" uri="http://www.groupwareworkbench.org.br/widgets/commons" %>
 <%@ taglib prefix="friends" uri="http://www.groupwareworkbench.org.br/widgets/friends" %>
 <%@taglib  prefix="profile" uri="http://www.groupwareworkbench.org.br/widgets/profile" %>
+<%@taglib  prefix="user" uri="http://www.groupwareworkbench.org.br/widgets/user" %>
 <%@ taglib prefix="photo" uri="http://www.groupwareworkbench.org.br/widgets/photomanager" %>
 <%@ taglib prefix="album" uri="http://www.groupwareworkbench.org.br/widgets/album" %>
 <%@ taglib prefix="arq" tagdir="/WEB-INF/tags" %>
@@ -68,7 +69,11 @@
 		</div>
 		
 		<!--   CONTEÚDO   -->
-     	<profile:showProfile profileMgr="${profileMgr}" user="${friend}" />
+		<h1>
+			<c:out value="${friend.name}" />
+		</h1>
+		<user:show user="${userLogin}"  editUserButtonId="edit_user_button" editUserButtonClass="user_edit" />
+     	<profile:showProfile profileMgr="${profileMgr}" user="${friend}" editProfileButtonId="edit_perfil_button" editProfileButtonClass="profile_edit"/>
         
 		<!--   BARRA LATERAL - DIREITA   -->
 		<div id="right_sidebar">
