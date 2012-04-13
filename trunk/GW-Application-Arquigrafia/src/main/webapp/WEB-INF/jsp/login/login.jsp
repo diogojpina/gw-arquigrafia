@@ -4,16 +4,14 @@
 <h2>Login</h2>
 <p>Faça seu login para poder compartilhar imagens no Arquigrafia.</p>
 <br />
+<form id="usuariosForm" method="post" name="loginForm" action="<c:url value="/users/${userMgr.id}/login" />">
 <div>
-  <form id="usuariosForm" method="post" name="loginForm" action="<c:url value="/users/${userMgr.id}/login" />">
   <label>Login:</label>
   <input name="user.login" type="text" class="email" />
   <br />
   <label>Senha:</label>
   <input name="user.password" type="password" class="text" />
   <br />
-  <input name="enviar" type="submit" value="" id="login_white_button" />
-  </form>
 </div>
 <div>
   Ainda não e usuário do arquigrafia?
@@ -28,4 +26,6 @@
   <a href="#" name="Twitter" id="login_twitter_icon"></a><br />
   <a href="#" name="Google" id="login_google_icon"></a>  -->
 </div>
+<input name="enviar" type="submit" value="" id="login_white_button" />
+</form>
 </div>

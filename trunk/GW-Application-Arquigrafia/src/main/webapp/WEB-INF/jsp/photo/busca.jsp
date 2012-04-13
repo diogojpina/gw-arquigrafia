@@ -30,7 +30,7 @@
       
       
          <div id="search_statistics">
-             <span id="resultTerm">Voc&ecirc; buscou: <c:out value="${searchTerm}" /></span>
+             <span id="resultTerm">Voc&ecirc; buscou: <c:out value="${searchTerm}" />. <a href="<c:url value="/tags/<c:out value="${searchTerm}" />"/>">Clique aqui caso queira imagens com a tag <c:out value="${searchTerm}" /></a></span>
              <c:set var="qtdFotos" value="${fn:length(fotos)}" />
              <span id="resultCount">
                  <c:choose>

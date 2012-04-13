@@ -72,7 +72,7 @@
 		<h1>
 			<c:out value="${friend.name}" />
 		</h1>
-		<user:show user="${userLogin}"  editUserButtonId="edit_user_button" editUserButtonClass="user_edit" />
+		<user:show user="${friend}"  editUserButtonId="edit_user_button" editUserButtonClass="profile_edit" />
      	<profile:showProfile profileMgr="${profileMgr}" user="${friend}" editProfileButtonId="edit_perfil_button" editProfileButtonClass="profile_edit"/>
         
 		<!--   BARRA LATERAL - DIREITA   -->

@@ -47,17 +47,17 @@
 </div>
 <div id="upload_form" action="#" method="get">
   <p>
-  <label>Título:</label>
+  <label class="left_form_label_column">Título:</label>
   <input name="photoRegister.name" type="text" class="text" />
   <label>Autor da imagem:</label>
   <input name="photoRegister.copyRights" type="text" class="text" />
   <br />
-  <label>Cidade:</label>
+  <label class="left_form_label_column" >Cidade:</label>
   <input name="photoRegister.city" type="text" class="text" />
   <label>Data da imagem:</label>
   <input name="imagedate" type="text" class="text" id="imagedate" />
   <br />
-  <label>Estado:</label>
+  <label class="left_form_label_column">Estado:</label>
   <select name="photoRegister.state" class="input_content">
   	<option selected="" value="" >Escolha o Estado</option>
     <option value="AC">Acre</option>
@@ -243,17 +243,17 @@
 	<option value="Zimbabwe">Zimbabwe</option>
   </select>
   <br />
-  <label>Bairro:</label>
+  <label class="left_form_label_column">Bairro:</label>
   <input name="photoRegister.district" type="text" class="text" />
   <label>Autor da obra:</label>
   <input name="photoRegister.workAuthor" type="text" class="text" />
   <br />
-  <label>Rua:</label>
+  <label class="left_form_label_column" >Rua:</label>
   <input name="photoRegister.street" type="text" class="text" />
   <label>Data da obra:</label>
   <input name="photoRegister.workdate" type="text" class="text" id="workdate" />
   <br />
-  <label>Tags:</label>
+  <label class="left_form_label_column">Tags:</label>
   <!-- <textarea name="tags" class="text"></textarea> -->
   <!-- <tag:scriptTags />
   <tag:selectTags tagMgr="${tagMgr}" /> -->
@@ -264,7 +264,8 @@
   <br />
   </p>
   <p> 
-  	 <input name="terms" type="checkbox" value="read" onclick="javascript:validar(this);"/> Sou o autor da imagem ou possuo permissão expressa do autor para disponibilizá-la no Arquigrafia.
+  	 <input name="terms" type="checkbox" value="read" id="creative_commons_text_checkbox" onclick="javascript:validar(this);"/> Sou o autor da imagem ou possuo permissão expressa do autor para disponibilizá-la no Arquigrafia. 
+  	 <br />
      Escolho a licença <a href="http://creativecommons.org/licenses/?lang=pt_BR" id="creative_commons" target="_blank" style="text-decoration:underline; line-height:16px;">Creative Commons</a>, para publicar minha obra, com as seguintes permissões:
   </p>
       <p  class="creative_commons_form" id="creative_commons_left_form">
