@@ -289,9 +289,6 @@ public class Photo implements Serializable {
         if(nomeArquivo.contains("."))
             fileSuffix = nomeArquivo.substring(nomeArquivo.lastIndexOf("."), nomeArquivo.length());
         String originalFileName = imagesDirName + File.separator + this.id + ORIGINAL_FILE_SUFFIX + fileSuffix;
-//        String thumbFileName =  imagesDirName + File.separator + this.id + "_thumb.jpg";
-//        String panelFileName =  imagesDirName + File.separator + this.id + "_panel.jpg";
-//        String viewFileName =  imagesDirName + File.separator + this.id + "_view.jpg";
         
         System.out.println("Processing this received file: " + this.nomeArquivo);
         System.out.println("File suffix: " + fileSuffix);
@@ -299,25 +296,6 @@ public class Photo implements Serializable {
         
         try {
             File originalCopy = new File(originalFileName);
-            
-            try {
-                BatchImageProcessor bip = new BatchImageProcessor(originalCopy, imagesDir, ORIGINAL_FILE_SUFFIX);
-                bip.addImageTransformation(new Thumb());
-                bip.addImageTransformation(new Panel());
-                bip.addImageTransformation(new View());
-                bip.runBatch();
-                
-//                new GWImage(originalCopy).blur(5).doTheBestYouCanToFitOnRectangle(105, 72).save(thumbFileName);
-//                new GWImage(originalCopy).blur(7).doTheBestYouCanToFitOnRectangle(170, 117).save(panelFileName);
-//                if(new GWImage(originalCopy).getWidth() > 600)
-//                    new GWImage(originalCopy).scaleToWidth(600).save(viewFileName);
-//                else
-//                    new GWImage(originalCopy).save(viewFileName);
-            }
-            catch (Throwable t) {
-                t.printStackTrace();
-            }
-            
             FileOutputStream fos = new FileOutputStream(originalCopy);
             byte[] buffer;
             while(foto.available()>0) {
@@ -330,6 +308,19 @@ public class Photo implements Serializable {
             fos.close();
             foto.close();
             
+            try {
+                BatchImageProcessor bip = new BatchImageProcessor(originalCopy, imagesDir, ORIGINAL_FILE_SUFFIX);
+                bip.addImageTransformation(new Thumb());
+                bip.addImageTransformation(new Panel());
+                bip.addImageTransformation(new View());
+                bip.runBatch();
+            }
+            catch (Throwable t) {
+                t.printStackTrace();
+                System.out.println("Since we had a problem with the uploaded file, we will erase it from the file system.");
+                new File(originalFileName).delete();
+                throw new RuntimeException("Problem reading image. Perhaps the file is not an image?", t);
+            }
         } catch (IOException e) {
             log.error("Error reading image stream", e);
             throw new RuntimeException(PhotoController.MSG_FALHA_NO_UPLOAD, e);
