@@ -249,7 +249,10 @@ public class Photo implements Serializable {
     }
 
     public FileDownload downloadImgOriginal() {
-        return makeDownload(ORIGINAL_FILE_SUFFIX + ".jpg");
+        String fileSuffix = "";
+        if(nomeArquivo.contains("."))
+            fileSuffix = nomeArquivo.substring(nomeArquivo.lastIndexOf("."), nomeArquivo.length());
+        return makeDownload(ORIGINAL_FILE_SUFFIX + fileSuffix);
     }
 
     public File getImgThumb() {
