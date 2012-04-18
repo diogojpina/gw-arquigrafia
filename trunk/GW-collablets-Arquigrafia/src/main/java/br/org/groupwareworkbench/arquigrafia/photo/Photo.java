@@ -299,17 +299,6 @@ public class Photo implements Serializable {
         
         try {
             File originalCopy = new File(originalFileName);
-            FileOutputStream fos = new FileOutputStream(originalCopy);
-            byte[] buffer;
-            while(foto.available()>0) {
-                // Using a buffer at most 100kB in size.
-                buffer = new byte[Math.min(foto.available(), 1024*100)];
-                foto.read(buffer);
-                fos.write(buffer);
-                fos.flush();
-            }
-            fos.close();
-            foto.close();
             
             try {
                 BatchImageProcessor bip = new BatchImageProcessor(originalCopy, imagesDir, ORIGINAL_FILE_SUFFIX);
@@ -328,6 +317,18 @@ public class Photo implements Serializable {
             catch (Throwable t) {
                 t.printStackTrace();
             }
+            
+            FileOutputStream fos = new FileOutputStream(originalCopy);
+            byte[] buffer;
+            while(foto.available()>0) {
+                // Using a buffer at most 100kB in size.
+                buffer = new byte[Math.min(foto.available(), 1024*100)];
+                foto.read(buffer);
+                fos.write(buffer);
+                fos.flush();
+            }
+            fos.close();
+            foto.close();
             
         } catch (IOException e) {
             log.error("Error reading image stream", e);

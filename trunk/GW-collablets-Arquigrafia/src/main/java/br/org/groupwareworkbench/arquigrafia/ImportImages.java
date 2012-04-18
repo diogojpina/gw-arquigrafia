@@ -3,9 +3,11 @@ package br.org.groupwareworkbench.arquigrafia;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.Date;
 
 import org.odftoolkit.simple.SpreadsheetDocument;
@@ -14,7 +16,6 @@ import org.odftoolkit.simple.table.Row;
 import org.odftoolkit.simple.table.Table;
 
 import br.org.groupwareworkbench.arquigrafia.photo.Photo;
-import br.org.groupwareworkbench.collablet.communic.tag.Tag;
 
 import com.ibm.icu.text.SimpleDateFormat;
 import com.ibm.icu.util.Calendar;
@@ -22,6 +23,8 @@ import com.ibm.icu.util.Calendar;
 public class ImportImages {
 
     public static final int BUFFER_SIZE = 1024;
+    
+    public static final String reportSuccessMessage = "End of report - Magic number: 8490283492384235832432435344839547\n";
     
     public static final String CONTENT_BOOLEAN = "boolean";
     public static final String CONTENT_CURRENCY = "currency";
@@ -39,11 +42,23 @@ public class ImportImages {
 
         try {
             String date = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").format(new Date());
-
+            
+            String dirName = "/home/gw/testImports";
+            
+            File dir = new File(dirName);
+            if(!dir.isDirectory()) {
+                throw new IllegalArgumentException(dirName + " is not a directory. Giving up."); 
+            }
+            
+            ArrayList<File> odsFiles = new ArrayList<File>();
+            recursiveSearchODS(odsFiles, dir);
+            System.out.println("--------------> " + odsFiles);
+            System.exit(0);
+            
             FileOutputStream fos;
             BufferedOutputStream bos;
             PrintStream ps;
-
+            
             if (outputToStdout) {
                 fos = null;
                 bos = null;
@@ -53,7 +68,7 @@ public class ImportImages {
                 bos = new BufferedOutputStream(fos, BUFFER_SIZE);
                 ps = new PrintStream(bos);
             }
-
+            
             try {
                 ps.println(String.format("Import report (%s) - Automatically generated.", date));
                 FileInputStream fis = new FileInputStream(new File("/home/gw/CL15_03_12.ods"));
@@ -281,5 +296,43 @@ public class ImportImages {
         }
         ps.println(String.format("Wrong data format in cell %c%d. Could not import row %d. This is the format: %s", 'A' + columnNumber, rowNumber, rowNumber, cell.getValueType()));
         throw new InvalidCellContents();
+    }
+    
+    public void recursiveSearchODS(ArrayList<File> list, File dir) {
+        for (File file : dir.listFiles()) {
+            String path = file.getAbsolutePath();
+            System.out.println("Checking " + path);
+            if (file.isFile() && path.toLowerCase().endsWith(".ods")) {
+                String reportName = path.substring(0, path.length() - 3) + "report";
+                File report = new File(reportName);
+                if (!report.exists()) {
+                    list.add(file);
+                } else {
+                    // Checking if the report reached the end.
+                    try {
+                        FileInputStream fis = new FileInputStream(report);
+                        if (fis.available() > reportSuccessMessage.length() - 1) {
+                            fis.skip(fis.available() - reportSuccessMessage.length() - 1);
+                            byte[] b = new byte[reportSuccessMessage.length()];
+                            fis.read(b);
+                            if (!new String(b).equals(reportSuccessMessage)) {
+                                list.add(file);
+                            }
+                        } else {
+                            list.add(file);
+                        }
+                    } catch (FileNotFoundException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+                }
+            }
+            if(file.isDirectory()) {
+                recursiveSearchODS(list, file);
+            }
+        }
     }
 }
