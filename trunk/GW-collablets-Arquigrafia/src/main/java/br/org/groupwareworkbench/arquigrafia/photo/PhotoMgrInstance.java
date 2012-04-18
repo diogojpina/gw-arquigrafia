@@ -23,6 +23,7 @@ package br.org.groupwareworkbench.arquigrafia.photo;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 import br.org.groupwareworkbench.collablet.coord.user.User;
 import br.org.groupwareworkbench.core.framework.AbstractBusiness;
@@ -104,6 +105,18 @@ public class PhotoMgrInstance extends AbstractBusiness {
     public List<Photo> listLastPhotos(Integer amount) {
         List<Photo> photos = Photo.listLastPhotos(getCollablet(), amount );
         return photos;
+    }
+    
+    public List<Photo> listRandomPhotos(Integer amount) {
+        List<Photo> result = new ArrayList<Photo>();
+        List<Photo> photos = Photo.list(getCollablet());
+        int size = photos.size();
+        Random rand = new Random();
+        for ( int i = 0; i < amount ; i++ ) {
+            result.add( photos.get( rand.nextInt(size) ) );
+        }
+        
+        return result;
     }
     
 }

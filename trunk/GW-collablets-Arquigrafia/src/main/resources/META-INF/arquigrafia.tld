@@ -26,8 +26,12 @@
         <name>tagcloud</name>
         <path>/META-INF/tags/arquigrafia/tagcloud.tag</path>
     </tag-file>
-                 <tag-file>
+    <tag-file>
         <name>wall</name>
         <path>/META-INF/tags/arquigrafia/wall.tag</path>
     </tag-file> 
+    <tag-file>
+        <name>randomWall</name>
+        <path>/META-INF/tags/arquigrafia/randomWall.tag</path>
+    </tag-file>
 </taglib>
