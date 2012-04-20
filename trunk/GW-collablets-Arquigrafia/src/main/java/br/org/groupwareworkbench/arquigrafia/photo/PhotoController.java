@@ -352,8 +352,8 @@ public class PhotoController {
 
         if (foto == null) {
             validator.add(new ValidationMessage(MSG_IMAGEM_OBRIGATORIA, "Erro"));
-            validator.onErrorUse(Results.logic()).redirectTo(PhotoController.class)
-                    .registra(photoInstance, photoRegister);
+            validator.onErrorUse(Results.logic()).redirectTo(GroupwareInitController.class).init();
+            //redirectTo(PhotoController.class).registra(photoInstance, photoRegister);
             return;
         }
 
@@ -372,8 +372,8 @@ public class PhotoController {
             photoRegister.saveImage(foto.getFile());
         } catch (RuntimeException e) {
             validator.add(new ValidationMessage(e.getMessage(), "Erro"));
-            validator.onErrorUse(Results.logic()).redirectTo(PhotoController.class)
-                    .registra(photoInstance, photoRegister);
+            validator.onErrorUse(Results.logic()).redirectTo(GroupwareInitController.class).init();
+            //redirectTo(PhotoController.class).registra(photoInstance, photoRegister);
             return;
         }
 
@@ -393,6 +393,7 @@ public class PhotoController {
         } else {
             addIncludes(photoInstance);
             result.include("successMessage", MSG_SUCCESS);
+            validator.add(new ValidationMessage("Imagem adicionada com sucesso.", "Upload finalizado"));
             result.use(logic()).redirectTo(GroupwareInitController.class).init();
             //result.use(Results.logic()).redirectTo(PhotoController.class).registra(photoInstance, new Photo());
         }

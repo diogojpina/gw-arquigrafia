@@ -33,7 +33,7 @@
 					<div id="single_view_header">
 						<h1><c:out value="${photo.name}"/>    	</h1>
 						<ul id="single_view_image_rating" class="right">
-							<li id="graph"></li>
+							<li id="graph" ></li>
 							<li><small><counter:showCounter
 												manager="${counterMgr}" entity="${photo}"
 												viewer="${sessionScope.userLogin}" increment="true"

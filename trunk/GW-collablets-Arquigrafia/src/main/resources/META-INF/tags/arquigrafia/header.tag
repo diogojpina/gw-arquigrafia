@@ -67,6 +67,13 @@
 	  <div id="message_delivery" class="message_delivery" >Mensagem enviada!</div>
       <div id="fail_message_delivery" class="message_delivery" >Falha no envio.</div>
       <div id="message_upload_ok" class="message_delivery" >Upload efetuado com sucesso!</div>
+      <div id="message_upload_error" class="message_delivery" >Erro - Arquivo inválido!</div>
+      <div id="message_login_error" class="message_delivery" >Erro - Login ou senha inválidos!</div>   
+      <div id="generic_error" class="message_delivery_generic" >
+	      <c:forEach var="error" items="${errors}">
+	            <c:out value="${error.category}" /> - <c:out value="${error.message}" />
+	      </c:forEach>
+      </div>   
       <script type="text/javascript" src="js/message_delivery.js"></script>
       <!--   TESTE DE FUNCIONAMENTO DA FUNÇÃO   -->
       

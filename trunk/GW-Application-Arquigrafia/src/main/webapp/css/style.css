@@ -92,7 +92,7 @@ a#complete_search:hover { background-position:-367px -32px; }
 
 /* mensagem de envio / falha de envio */ 
 .message_delivery { color:#CB9833; font-size:12px; margin:3px auto; height:20px; width:120px; clear:both; text-align:center; display:none;}
-
+.message_delivery_generic { color:#CB9833; font-size:12px; margin:3px auto; clear:both; text-align:center;}
 /* busca avançada */
 #complete_search_bar { display:none; width:1000px; height:20px; float:left; margin: 10px 0;}
 #complete_search_bar label { float:left; line-height:20px; margin: 0 10px; font-size:9px}

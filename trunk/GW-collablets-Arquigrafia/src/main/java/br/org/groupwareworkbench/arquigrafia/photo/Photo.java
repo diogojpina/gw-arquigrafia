@@ -522,7 +522,7 @@ public class Photo implements Serializable {
     public String getDataCriacaoFormatada() {
         try {
             if (dataCriacao == null) return null;
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
             return sdf.format(dataCriacao);
         } catch (Exception e) {
             return "";
@@ -608,7 +608,7 @@ public class Photo implements Serializable {
     public String getFormattedWorkdate() {
         try {
             if (workdate == null) return null;
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
             return sdf.format(workdate);
         } catch (Exception e) {
             return "";
@@ -694,7 +694,7 @@ public class Photo implements Serializable {
     public String getFormattedCataloguingTime() {
         try {
             if (cataloguingTime == null) return null;
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
             return sdf.format(cataloguingTime);
         } catch (Exception e) {
             return "";

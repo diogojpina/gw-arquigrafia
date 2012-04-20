@@ -15,9 +15,8 @@
 
 
 <!--   JQUERY - Google Ajax API CDN (Also supports SSL via HTTPS)   -->
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+<script type="text/javascript" src="<c:url value="/js/jquery_javascript_library_v1.7.1.js" />"></script>
 <script type="text/javascript" src="<c:url value="/js/jquery-ui-1.8.17.custom.min.js" />"></script>
-<script type="text/javascript" src="<c:url value="/js/jquery.validate.js" />" ></script>
 
 <script type="text/javascript">
 	form_window_loaded = false;
@@ -174,9 +173,10 @@
 	
 	function load(firstTime) {
 
-			
-		message_delivery(firstTime); // 1=Mensagem enviada!; 2=Falha no envio.
+	
+			message_delivery(firstTime); // 1=Mensagem enviada!; 2=Falha no envio.
 
+		
 					
 //		if ( null!== showMessage ) {
 //			$('#mask').fadeIn('fast');
@@ -208,6 +208,12 @@
 		}
 		else if(message_delivery_value==5){
 			$('#message_upload_ok').fadeIn('fast');
+		}		
+		else if(message_delivery_value==6){
+			$('#message_upload_error').fadeIn('fast');
+		}
+		else if(message_delivery_value==7){
+			$('#message_login_error').fadeIn('fast');
 		}		
 		else{
 			$('#fail_message_delivery, message_delivery').fadeOut('fast');
