@@ -90,6 +90,9 @@ input.search_bar_button:hover { background-position:-328px -34px; }
 a#complete_search { float:right; margin-top:-3px; height:24px; width:24px; background:url(../img/icons_sprite.png) -367px 0; }
 a#complete_search:hover { background-position:-367px -32px; }
 
+/* mensagem de envio / falha de envio */ 
+.message_delivery { color:#CB9833; font-size:12px; margin:3px auto; height:20px; width:120px; clear:both; text-align:center; display:none;}
+
 /* busca avançada */
 #complete_search_bar { display:none; width:1000px; height:20px; float:left; margin: 10px 0;}
 #complete_search_bar label { float:left; line-height:20px; margin: 0 10px; font-size:9px}

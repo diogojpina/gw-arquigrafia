@@ -62,6 +62,14 @@
         </div>
         <!--   FIM - ÁREA DO USUARIO   -->      
       </s:check>         
+      
+            <!--   MENSAGENS DE ENVIO / FALHA DE ENVIO   -->
+	  <div id="message_delivery" class="message_delivery" >Mensagem enviada!</div>
+      <div id="fail_message_delivery" class="message_delivery" >Falha no envio.</div>
+      <div id="message_upload_ok" class="message_delivery" >Upload efetuado com sucesso!</div>
+      <script type="text/javascript" src="js/message_delivery.js"></script>
+      <!--   TESTE DE FUNCIONAMENTO DA FUNÇÃO   -->
+      
     </div>
     <!--   FIM - CABEÇALHO   -->
 

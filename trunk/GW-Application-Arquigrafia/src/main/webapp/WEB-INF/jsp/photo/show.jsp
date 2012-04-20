@@ -137,8 +137,26 @@
 					<h3>Observações:</h3>
 					<p><c:out value="${photo.aditionalImageComments}"/></p>
 				</c:if>				
-				<h3>Localização:</h3>
-				<p>
+				<h3>Endereço:</h3>
+					<p>
+						<c:if test="${not empty photo.street}">
+							<c:out value="${photo.street}"/>, 
+						</c:if>
+						<c:if test="${not empty photo.district}">
+							<c:out value="${photo.district}"/>
+						<br />
+						</c:if>
+						<c:if test="${not empty photo.city}">
+							<c:out value="${photo.city}"/> - 
+						</c:if>	
+						<c:if test="${not empty photo.state}">
+							<c:out value="${photo.state}"/> , 
+						</c:if>
+						<c:if test="${not empty photo.country}">
+							<c:out value="${photo.country}"/>
+						</c:if> 
+					</p>
+					<!-- 
 					<iframe width="300" height="100" frameborder="0" scrolling="no"
 						marginheight="0" marginwidth="0"
 						src="http://maps.google.com.br/maps?f=q&amp;source=s_q&amp;hl=pt-BR&amp;geocode=&amp;q=sp&amp;aq=&amp;sll=-18.124971,-45.878906&amp;sspn=11.093912,19.621582&amp;ie=UTF8&amp;hq=&amp;hnear=S%C3%A3o+Paulo&amp;t=m&amp;ll=-21.912471,-49.361572&amp;spn=1.019251,3.284912&amp;z=7&amp;iwloc=A&amp;output=embed"></iframe>
@@ -146,6 +164,7 @@
 						href="http://maps.google.com.br/maps?f=q&amp;source=embed&amp;hl=pt-BR&amp;geocode=&amp;q=sp&amp;aq=&amp;sll=-18.124971,-45.878906&amp;sspn=11.093912,19.621582&amp;ie=UTF8&amp;hq=&amp;hnear=S%C3%A3o+Paulo&amp;t=m&amp;ll=-21.912471,-49.361572&amp;spn=1.019251,3.284912&amp;z=7&amp;iwloc=A"
 						style="text-align: center; display: block; width: auto; font-size: 10px;" target="_blank">Exibir
 						mapa ampliado</a>
+						 -->
 				</p>
 				<h3>Tags:</h3>
 				<p>

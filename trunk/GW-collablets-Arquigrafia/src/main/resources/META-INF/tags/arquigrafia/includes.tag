@@ -13,9 +13,11 @@
 <![endif]-->
 <link rel="stylesheet" type="text/css" media="print" href="<c:url value="/css/print.css" />" />
 
+
 <!--   JQUERY - Google Ajax API CDN (Also supports SSL via HTTPS)   -->
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
 <script type="text/javascript" src="<c:url value="/js/jquery-ui-1.8.17.custom.min.js" />"></script>
+<script type="text/javascript" src="<c:url value="/js/jquery.validate.js" />" ></script>
 
 <script type="text/javascript">
 	form_window_loaded = false;
@@ -171,18 +173,11 @@
 
 	
 	function load(firstTime) {
-			if (firstTime == 1) {
-				$('#mask').fadeIn('fast');
-				$('#form_window').fadeIn('slow');
-				$('#registration').load('<c:url value="/18/welcome" />');	
-				form_window_loaded = true;
-			}
-			if (firstTime == 2) {
-				$('#mask').fadeIn('fast');
-				$('#form_window').fadeIn('slow');
-				$('#registration').load('<c:url value="/users/8/signup"/>');	
-				form_window_loaded = true;
-			}			
+
+			
+		message_delivery(firstTime); // 1=Mensagem enviada!; 2=Falha no envio.
+
+					
 //		if ( null!== showMessage ) {
 //			$('#mask').fadeIn('fast');
 //			$('#form_window').fadeIn('slow');
@@ -190,5 +185,32 @@
 //			form_window_loaded = true;
 //		}
 		
+	}
+
+	function message_delivery (message_delivery_value){
+		if (message_delivery_value == 1) {
+			$('#mask').fadeIn('fast');
+			$('#form_window').fadeIn('slow');
+			$('#registration').load('<c:url value="/18/welcome" />');	
+			form_window_loaded = true;
+		}
+		else if (message_delivery_value == 2) {
+			$('#mask').fadeIn('fast');
+			$('#form_window').fadeIn('slow');
+			$('#registration').load('<c:url value="/users/8/signup"/>');	
+			form_window_loaded = true;
+		}		
+		else if (message_delivery_value==3){
+			$('#message_delivery').fadeIn('fast');
+		}
+		else if(message_delivery_value==4){
+			$('#fail_message_delivery').fadeIn('fast');
+		}
+		else if(message_delivery_value==5){
+			$('#message_upload_ok').fadeIn('fast');
+		}		
+		else{
+			$('#fail_message_delivery, message_delivery').fadeOut('fast');
+		}
 	}
 </script>	

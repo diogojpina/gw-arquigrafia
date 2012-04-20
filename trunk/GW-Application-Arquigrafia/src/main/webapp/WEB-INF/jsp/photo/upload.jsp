@@ -1,7 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="tag" uri="http://www.groupwareworkbench.org.br/widgets/tag" %>
 
-<form name="dados" method="POST" action="<c:url value="/photo/${photoInstance.id}/registra" />" enctype="multipart/form-data">
+
+<form id="upload" name="dados" method="POST" action="<c:url value="/photo/${photoInstance.id}/registra" />" enctype="multipart/form-data">
 <input type="hidden" name="user.id" value="${user.id}">
 <input type="hidden" name="photoRegister.id" value="">
 
@@ -41,9 +42,8 @@
   <h2>Upload</h2><br />
   <h3>Selecione a imagem para o upload:</h3>
   <br />
-  <!-- AAMM --><input id="imageUpload" type="file" name="foto" value="" /><br /><!-- AAMM -->
-  <!-- <input type="url" class="url_bar" />
-  <input name="selecionar" type="submit" id="select_button" value="" /><br /><br />  -->
+     <input id="imageUpload" type="file" name="foto" value="" />
+  <br />
 </div>
 <div id="upload_form" action="#" method="get">
   <p>
@@ -290,7 +290,7 @@
     </p> 
 
 <p>
-  <input href="#form_window" name="enviar" type="submit" class="submit cursor" value="" />
+  <input href="#form_window" name="enviar" type="submit" class="submit cursor" value="" disabled/>
 </p>
 </div>
 

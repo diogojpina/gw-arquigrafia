@@ -27,13 +27,15 @@
     <div id="content">
       <!--   PAINEL DE IMAGENS - GALERIA - CARROSSEL   -->
 
+		<c:if test="${empty error}">
              <span id="resultTerm">Voc&ecirc; buscou por objetos com a tag: <c:out value="${tag.name}" /></span>
              <span id="resultCount"> (<c:out value="${tag.size}" /> resultados)</span>
              <br/>
-             <c:forEach var="error" items="${errors}">
-                 <c:out value="${error.category}" /> - <c:out value="${error.message}" />
+        </c:if>
+        <c:if test="${not empty error}">
+        	Erro - <c:out value="${error}" />
+        </c:if> 
                  <br />
-             </c:forEach>
          </div>
          <br />
          <div id="search_scroll">

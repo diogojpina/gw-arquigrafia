@@ -70,16 +70,8 @@ public class ArquigrafiaController {
     @Get
     @Path(value = "/{arquigrafiaInstance}/")
     public void index(ArquigrafiaMgrInstance arquigrafiaInstance) {
-        if("0".equals(request.getParameter("firstTime"))) {
-            result.include("firstTime", 0);
-        } else {
-            if("2".equals(request.getParameter("firstTime"))) {
-                result.include("firstTime", 2);
-            } else {
-                if (((User) session.getAttribute("userLogin")).getId() == 2L) {
-                    result.include("firstTime", 1);
-                }
-            }
+        if((request.getParameter("firstTime"))!=null) {
+            result.include("firstTime", request.getParameter("firstTime"));
         }
         result.include("arquigrafiaMgr", arquigrafiaInstance);
         addIncludes(arquigrafiaInstance);
