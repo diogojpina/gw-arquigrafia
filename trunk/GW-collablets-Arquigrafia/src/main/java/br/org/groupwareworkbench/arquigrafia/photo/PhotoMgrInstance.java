@@ -110,10 +110,17 @@ public class PhotoMgrInstance extends AbstractBusiness {
     public List<Photo> listRandomPhotos(Integer amount) {
         List<Photo> result = new ArrayList<Photo>();
         List<Photo> photos = Photo.list(getCollablet());
+        
         int size = photos.size();
         Random rand = new Random();
-        for ( int i = 0; i < amount ; i++ ) {
-            result.add( photos.get( rand.nextInt(size) ) );
+        
+        for ( int i = 0; i < amount && photos.size() > 0 ; i++ ) {
+            
+            size = photos.size();
+            Photo tmp = photos.get( rand.nextInt(size) );
+            result.add( tmp );
+            photos.remove(tmp);
+            
         }
         
         return result;
