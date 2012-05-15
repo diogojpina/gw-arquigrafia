@@ -394,6 +394,7 @@ public class PhotoController {
             addIncludes(photoInstance);
             result.include("successMessage", MSG_SUCCESS);
             validator.add(new ValidationMessage("Imagem adicionada com sucesso.", "Upload finalizado"));
+            validator.onErrorUse(Results.logic()).redirectTo(GroupwareInitController.class).init();
             result.use(logic()).redirectTo(GroupwareInitController.class).init();
             //result.use(Results.logic()).redirectTo(PhotoController.class).registra(photoInstance, new Photo());
         }
