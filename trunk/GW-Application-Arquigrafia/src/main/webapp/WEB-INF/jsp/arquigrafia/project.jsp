@@ -66,7 +66,7 @@
 			<li><small><a href="#" target="_blank">Profa. Dra. Roberta Lima Gomes - Informática, UFES</a></small></li>
 			<li><small><a href="#" target="_blank">Prof. Dr. Magnos Martinello - Informática, UFES</a></small></li>
 			<li><small><a href="#" target="_blank">Dina Uliana - Diretora biblioteca FAUUSP</a></small></li>
-			<li><small><a href="http://buscatextual.cnpq.br/buscatextual/visualizacv.do?id=K4796813P6" target="_blank">Eliana de Azevedo Marques - Biblioteca FAUUSP</a></small></li>
+			<li><small><a href="http://lattes.cnpq.br/4131992141506749" target="_blank">Eliana de Azevedo Marques - Biblioteca FAUUSP</a></small></li>
 			<li><small><a href="#" target="_blank">Elizabete da Cruz Neves - Biblioteca FAUUSP</a></small></li>
 			<li><small><a href="#" target="_blank">Rejane Alves - Biblioteca FAUUSP</a></small></li>
 			<li><small><a href="#" target="_blank">Prof. Dr. Cristiano Mascaro - Consultor de fotografia</a></small></li>
@@ -77,7 +77,7 @@
 		<h3>Alunos participantes</h3>
 		<ul>
 			<li><small><a href="http://lattes.cnpq.br/3098839514190572" target="_blank">Aurelio Akira M. Matsui - Doutorando Universidade de Tokyo</a></small></li>
-			<li><small><a href="#" target="_blank">Ana Paula Oliveira dos Santos - Mestranda IMEUSP</a></small></li>
+			<li><small><a href="http://lattes.cnpq.br/0999376629124379" target="_blank">Ana Paula Oliveira dos Santos - Mestre IMEUSP</a></small></li>
 			<li><small><a href="http://lattes.cnpq.br/8776038016041917" target="_blank">Straus Michalsky - Mestrando IMEUSP</a></small></li>
 			<li><small><a href="http://lattes.cnpq.br/2605934447999302" target="_blank">José Teodoro - Mestrando IMEUSP</a></small></li>
 			<li><small><a href="http://lattes.cnpq.br/2350572278366806" target="_blank">Carlos Leonardo Herrera Muñoz - Mestrando IMEUSP</a></small></li>
@@ -90,7 +90,7 @@
 			<li><small><a href="http://lattes.cnpq.br/8004254725476493" target="_blank">Ruth Cuiá Troncarelli - graduanda, FAUUSP</a></small></li>
 			<li><small><a href="http://lattes.cnpq.br/3715644973427707" target="_blank">Bhakta Krpa das Santos - graduando, FAUUSP</a></small></li>
 			<li><small><a href="#" target="_blank">Guilherme A. Nogueira Cesar - graduando, FAUUSP</a></small></li>
-			<li><small><a href="http://buscatextual.cnpq.br/buscatextual/visualizacv.do?id=K4318706E0" target="_blank">Enzo Toshio S. L. de Mello - FITO</a></small></li>
+			<li><small><a href="http://lattes.cnpq.br/1387924249101546" target="_blank">Enzo Toshio S. L. de Mello - FITO</a></small></li>
 		</ul>
 		
 		<h3>Parceiros de desenvolvimento</h3>

@@ -14,6 +14,8 @@
 				<option value="duvida" selected="selected">Dúvida</option>
 				<option value="critica">Crítica</option>
 				<option value="sugestao">Sugestão</option>
+				<option value="elogio">Elogio</option>
+				<option value="outros">Outros</option>
 			</select> <br /> <label>* Mensagem:</label>
 			<textarea cols="34" rows="3" name="mail.message"></textarea>
 		</p>

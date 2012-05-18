@@ -48,7 +48,7 @@
              </c:forEach>
              <br />
              <c:if test="${not empty searchTerm}">
-                <a href='<c:url value="/tags/${tagMgr.id}/${searchTerm}"/>' >Clique aqui caso queira imagens com a tag <c:out value="${searchTerm}" /></a>
+                <a href='<c:url value="/tags/${tagMgr.id}/${searchTerm}"/>' >Imagens com a tag <c:out value="${searchTerm}" /></a>
              </c:if>
          </div>
          <br />

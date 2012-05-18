@@ -73,6 +73,9 @@
 	      <c:forEach var="error" items="${errors}">
 	            <c:out value="${error.category}" /> - <c:out value="${error.message}" />
 	      </c:forEach>
+	      <c:if test="${not empty erros}">
+	      	<c:out value="${erros}" />
+	      </c:if>
       </div>   
       <script type="text/javascript" src="js/message_delivery.js"></script>
       <!--   TESTE DE FUNCIONAMENTO DA FUNÇÃO   -->
