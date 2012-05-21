@@ -16,6 +16,8 @@ import org.odftoolkit.simple.table.Row;
 import org.odftoolkit.simple.table.Table;
 
 import br.org.groupwareworkbench.arquigrafia.photo.Photo;
+import br.org.groupwareworkbench.arquigrafia.photo.Photo.AllowCommercialUses;
+import br.org.groupwareworkbench.arquigrafia.photo.Photo.AllowModifications;
 import br.org.groupwareworkbench.collablet.communic.tag.Tag;
 import br.org.groupwareworkbench.collablet.coord.user.User;
 import br.org.groupwareworkbench.collablet.coord.user.User.AccountType;
@@ -104,15 +106,9 @@ public class ImportImages {
                             
                             // A - 0 - Tombo
                             int tombo = intValue(sheet, ps, 0, i);
-                            // Checking if the file exists. If it doesn't, give it up right now.
+                            
                             String fileName = tombo + ".jpg";
-//                            File file = new File(fileName);
-//                            if (!file.exists()) {
-//                                ps.println(String.format("File %s not found. Could not import row %d.", fileName, i));
-//                                throw new InvalidCellContents();
-//                            }
-                            
-                            
+                            // Checking if the file exists. If it doesn't, give it up right now.
                             File imageFile = new File(dirName + "/" + fileName);
                             if(!imageFile.exists()) {
                                 System.out.println("File " + imageFile + " does not exist. Giving up.");
@@ -186,9 +182,9 @@ public class ImportImages {
 //                            String allowModifications = licenca.substring(licenca.indexOf(',') + 1, licenca.length());
                             
                             //org.apache.xerces.dom.ElementNSImpl
-                            // TODO
-                            // photo.setAllowModifications
-                            // photo.setAllowCommercialUses
+                            // TODO Set the right license 
+                            photo.setAllowModifications(AllowModifications.NO);
+                            photo.setAllowCommercialUses(AllowCommercialUses.NO);
                             
                             // O - 14 - Descrição
                             String descricao = stringValue(sheet, ps, 14, i);
@@ -240,19 +236,6 @@ public class ImportImages {
                             }
                             
                             System.out.println(System.currentTimeMillis() + ": Tags saved.");
-                            
-
-// // OLD HACK                            
-//                            String idName = Long.toHexString(i).toUpperCase();
-//                            while(idName.length()<16)
-//                                idName = "0" + idName;
-//                            System.out.println(idName);
-//                            for(String tagName : tagList) {
-//                                String x = String.format("INSERT INTO gw_collab_Tag_Assignments SET className='br.org.groupwareworkbench.arquigrafia.photo.Photo', pk=0xACED00057372000E6A6176612E6C616E672E4C6F6E673B8BE490CC8F23DF0200014A000576616C7565787200106A6176612E6C616E672E4E756D62657286AC951D0B94E08B0200007870%s, Tag_id=(SELECT id FROM gw_collab_Tag WHERE name='%s');", idName, tagName);
-//                                System.out.println(x);
-//                            }
-                            
-                            
                         } catch (InvalidCellContents e) {
                         }
                     }
