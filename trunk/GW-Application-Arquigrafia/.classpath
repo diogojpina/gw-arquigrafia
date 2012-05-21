@@ -14,5 +14,10 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/GW-Libs"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/GW-collablets-Arquigrafia"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/GW-collablets"/>
+	<classpathentry kind="lib" path="/GW-Libs/lib/odf/odfdom-java-0.8.8-incubating.jar"/>
+	<classpathentry kind="lib" path="/GW-Libs/lib/odf/simple-odf-0.7-incubating.jar"/>
+	<classpathentry kind="lib" path="/GW-Libs/lib/odf/xercesImpl.jar"/>
+	<classpathentry kind="lib" path="/GW-Libs/lib/odf/xml-apis.jar"/>
+	<classpathentry kind="lib" path="/GW-Libs/lib/odf/xslt-runner-task-1.2.1-incubating.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
