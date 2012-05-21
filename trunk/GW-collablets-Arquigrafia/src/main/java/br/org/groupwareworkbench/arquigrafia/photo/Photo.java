@@ -22,6 +22,7 @@ package br.org.groupwareworkbench.arquigrafia.photo;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -66,6 +67,7 @@ import br.org.groupwareworkbench.core.bd.ObjectDAO;
 import br.org.groupwareworkbench.core.bd.QueryBuilder;
 import br.org.groupwareworkbench.core.framework.Collablet;
 import br.org.groupwareworkbench.core.graphics.BatchImageProcessor;
+import br.org.groupwareworkbench.core.util.debug.TimeLog;
 
 
 @Entity
@@ -309,11 +311,93 @@ public class Photo implements Serializable {
             foto.close();
             
             try {
-                BatchImageProcessor bip = new BatchImageProcessor(originalCopy, imagesDir, ORIGINAL_FILE_SUFFIX);
-                bip.addImageTransformation(new Thumb());
-                bip.addImageTransformation(new Panel());
-                bip.addImageTransformation(new View());
-                bip.runBatch();
+                TimeLog tl = new TimeLog("GM");
+                
+                String viewName = imagesDirName + File.separator + this.id + "_view.jpg";
+                String panelName = imagesDirName + File.separator + this.id + "_panel.jpg";
+                String thumbName = imagesDirName + File.separator + this.id + "_thumb.jpg";
+                
+                Runtime r = Runtime.getRuntime();
+                
+                {
+                    Process p = r.exec(new String[]{"gm", "convert", originalFileName, "jpg:" + viewName});
+                    p.waitFor();
+                    if(p.exitValue()!=0) {
+                        System.err.println("Problems!");
+                    }
+                }
+                
+                tl.log("Convertion to JPG");
+                
+                // Getting original image dimensions
+                Process p = r.exec(new String[]{"gm", "identify", originalFileName});
+                p.waitFor();
+                InputStream is = p.getInputStream();
+                byte[] buff = new byte[is.available()]; 
+                is.read(buff);
+                String output = new String(buff);
+                output = output.substring(output.indexOf(' ')+1);
+                output = output.substring(output.indexOf(' ')+1);
+                int width = Integer.parseInt(output.substring(0, output.indexOf('x')));
+                int height = Integer.parseInt(output.substring(output.indexOf('x')+1, output.indexOf('+')));
+                
+                tl.log("Retrieval properties of " + originalFileName);
+                
+                {
+                    double scale = ((double) 600) / ((double) width);
+                    width = 600;
+                    height = (int) Math.ceil(height*scale);
+                    
+                    r.exec(new String[]{"gm", "mogrify", "-geometry", "600x" + height, viewName}).waitFor();
+                }
+                
+                tl.log("Creation of " + viewName);
+                
+                copyFile(viewName, panelName);
+                
+                {
+                    double xScale = ((double) 170) / ((double) width);
+                    double yScale = ((double) 117) / ((double) height);
+                    double factor = Math.max(xScale, yScale);
+                    int newWidth = (int)(width*factor);
+                    int newHeight = (int)(height*factor);
+                    
+                    r.exec(new String[]{"gm", "mogrify", "-geometry", newWidth + "x" + newHeight, panelName}).waitFor();
+                    
+                    int x = xScale > yScale ? 0 : (int) ((width * factor) / 2 - 170 / 2);
+                    int y = xScale > yScale ? (int) ((height * factor) / 2 - 117 / 2) : 0;
+                    
+                    r.exec(new String[]{"gm", "mogrify", "-crop", "170x117+" + x + "+" + y, panelName}).waitFor();
+                }
+                
+                tl.log("Creation of " + panelName);
+                
+                copyFile(panelName, thumbName);
+                
+                {
+                    // TODO Refactor!! We don't need to calculate any of the following every time we run this procedure.
+                    double xScale = ((double) 105) / ((double) 170);
+                    double yScale = ((double) 72) / ((double) 117);
+                    double factor = Math.max(xScale, yScale);
+                    int newWidth = (int)(170*factor);
+                    int newHeight = (int)(117*factor);
+                    
+                    r.exec(new String[]{"gm", "mogrify", "-geometry", newWidth + "x" + newHeight, thumbName}).waitFor();
+                    
+                    int x = xScale > yScale ? 0 : (int) ((170 * factor) / 2 - 105 / 2);
+                    int y = xScale > yScale ? (int) ((117 * factor) / 2 - 72 / 2) : 0;
+                    
+                    r.exec(new String[]{"gm", "mogrify", "-crop", "105x72+" + x + "+" + y, thumbName}).waitFor();
+                }
+                
+                tl.log("Creation of " + thumbName);
+                tl.total();
+
+//                BatchImageProcessor bip = new BatchImageProcessor(originalCopy, imagesDir, ORIGINAL_FILE_SUFFIX);
+//                bip.addImageTransformation(new Thumb());
+//                bip.addImageTransformation(new Panel());
+//                bip.addImageTransformation(new View());
+//                bip.runBatch();
             }
             catch (Throwable t) {
                 t.printStackTrace();
@@ -325,46 +409,6 @@ public class Photo implements Serializable {
             log.error("Error reading image stream", e);
             throw new RuntimeException(PhotoController.MSG_FALHA_NO_UPLOAD, e);
         }
-        
-///////////////////////////////////////////////////////////////
-//        BufferedImage imagemOriginal = null;
-//        BufferedImage imagemThumb = null;
-//        BufferedImage imagemCropped = null;
-//        BufferedImage imagemMostra = null;
-//
-//        try {
-//            imagemOriginal = ImageIO.read(foto);
-//        } catch (IOException e) {
-//            log.error("Error reading image stream", e);
-//            throw new RuntimeException(PhotoController.MSG_FALHA_NO_UPLOAD, e);
-//        }
-//
-//        if (imagemOriginal == null) {
-//            throw new RuntimeException(PhotoController.MSG_IMAGEM_INVALIDA);
-//        }
-//
-//        try {
-//            // Fix wrong colors in PNG to JPEG conversion when PNG has alpha channel
-//            imagemOriginal = ImageUtils.createStandardImage(imagemOriginal.getWidth(), imagemOriginal);
-//            imagemMostra = ImageUtils.createStandardImage(600, imagemOriginal);
-//            imagemThumb = ImageUtils.createThumbnailIfNecessary(100, imagemOriginal, true);
-//            BufferedImage imagemThumb2 = ImageUtils.createThumbnailIfNecessary(100, imagemOriginal, false);
-//            Point cropPoint = ImageUtils.calcSqrThumbCropPoint(imagemThumb2);
-//            imagemCropped = ImageUtils.cropImage(cropPoint, new Dimension(100, 100), imagemThumb2);
-//        } catch (IOException e) {
-//            log.error(PhotoController.MSG_NAO_FOI_POSSIVEL_REDIMENSIONAR, e);
-//            throw new RuntimeException(PhotoController.MSG_NAO_FOI_POSSIVEL_REDIMENSIONAR, e);
-//        }
-//
-//        try {
-//            this.saveImage(imagemOriginal, "", getInstance().getDirImages());
-//            this.saveImage(imagemCropped, getInstance().getCropPrefix(), getInstance().getDirImages());
-//            this.saveImage(imagemThumb, getInstance().getThumbPrefix(), getInstance().getDirImages());
-//            this.saveImage(imagemMostra, getInstance().getMostraPrefix(), getInstance().getDirImages());
-//        } catch (IOException e) {
-//            log.error(PhotoController.MSG_FALHA_NO_UPLOAD, e);
-//            throw new RuntimeException(PhotoController.MSG_FALHA_NO_UPLOAD, e);
-//        }
     }
 
     private void saveImage(BufferedImage input, String prefix, String path) throws IOException {
@@ -744,7 +788,17 @@ public class Photo implements Serializable {
 //        return allowCommercialUses;
 //    }
 
-    
-    
-    
+    // TODO Move this to a better place.
+    public static void copyFile(String name, String newName) throws IOException {
+        FileInputStream fis = new FileInputStream(new File(name));
+        FileOutputStream fos = new FileOutputStream(new File(newName));
+        while(fis.available()>0) {
+            byte[] buff = new byte[Math.min(fis.available(), 1024)];
+            fis.read(buff);
+            fos.write(buff);
+        }
+        fos.flush();
+        fos.close();
+        fis.close();
+    }
 }

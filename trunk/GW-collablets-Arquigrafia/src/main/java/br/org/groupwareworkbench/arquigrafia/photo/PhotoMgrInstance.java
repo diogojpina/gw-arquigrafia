@@ -32,15 +32,10 @@ import br.org.groupwareworkbench.core.framework.annotations.ComponentInfo;
 import br.org.groupwareworkbench.core.framework.annotations.DefaultProperty;
 import br.org.groupwareworkbench.core.framework.annotations.RequiredProperty;
 
-@ComponentInfo(version = "0.1",
-        configurationURL = "/photo/{photoInstance}/index",
-        retrieveURL = "/photo/{id}",
-        defaultProperties = {
-            @DefaultProperty(name = "cropPrefix", defaultValue = "crop_"),
-            @DefaultProperty(name = "thumbPrefix", defaultValue = "thumb_"),
-            @DefaultProperty(name = "mostraPrefix", defaultValue = "mostra_")
-        },
-        requiredProperties = { @RequiredProperty(name = "dirImages") })
+@ComponentInfo(version = "0.1", configurationURL = "/photo/{photoInstance}/index", retrieveURL = "/photo/{id}", defaultProperties = {
+        @DefaultProperty(name = "cropPrefix", defaultValue = "crop_"),
+        @DefaultProperty(name = "thumbPrefix", defaultValue = "thumb_"),
+        @DefaultProperty(name = "mostraPrefix", defaultValue = "mostra_")}, requiredProperties = {@RequiredProperty(name = "dirImages")})
 public class PhotoMgrInstance extends AbstractBusiness {
     public PhotoMgrInstance(Collablet collablet) {
         super(collablet);
@@ -72,7 +67,7 @@ public class PhotoMgrInstance extends AbstractBusiness {
     public List<Photo> list() {
         return Photo.list(getCollablet());
     }
-    
+
     public Integer countAllPhotos() {
         List<Photo> list = Photo.list(getCollablet());
         return list.size();
@@ -97,33 +92,32 @@ public class PhotoMgrInstance extends AbstractBusiness {
     public String getMostraPrefix() {
         return getCollablet().getProperty("mostraPrefix");
     }
-    
+
     public List<Photo> listPhotoByUserPageAndOrder(User user, int pageSize, int pageNumber) {
         return Photo.listPhotoByUserPageAndOrder(getCollablet(), user, pageSize, pageNumber);
     }
-    
+
     public List<Photo> listLastPhotos(Integer amount) {
-        List<Photo> photos = Photo.listLastPhotos(getCollablet(), amount );
+        List<Photo> photos = Photo.listLastPhotos(getCollablet(), amount);
         return photos;
     }
-    
+
     public List<Photo> listRandomPhotos(Integer amount) {
         List<Photo> result = new ArrayList<Photo>();
         List<Photo> photos = Photo.list(getCollablet());
-        
         int size = photos.size();
-        Random rand = new Random();
-        
-        for ( int i = 0; i < amount && photos.size() > 0 ; i++ ) {
-            
-            size = photos.size();
-            Photo tmp = photos.get( rand.nextInt(size) );
-            result.add( tmp );
-            photos.remove(tmp);
-            
+
+        if (size > 0) {
+            Random rand = new Random();
+            for ( int i = 0; i < amount && photos.size() > 0 ; i++ ) {
+                size = photos.size();
+                Photo tmp = photos.get( rand.nextInt(size) );
+                result.add( tmp );
+                photos.remove(tmp);
+            }
         }
-        
+
         return result;
     }
-    
+
 }

@@ -45,11 +45,13 @@ import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
 import br.com.caelum.vraptor.ioc.RequestScoped;
 import br.com.caelum.vraptor.validator.ValidationMessage;
 import br.com.caelum.vraptor.view.Results;
+import br.org.groupwareworkbench.arquigrafia.ImportImages;
 import br.org.groupwareworkbench.collablet.coord.user.User;
 import br.org.groupwareworkbench.core.framework.Collablet;
 import br.org.groupwareworkbench.core.framework.WidgetInfo;
 import br.org.groupwareworkbench.core.routing.GroupwareInitController;
 import br.org.groupwareworkbench.core.security.util.SecurityUtil;
+import br.org.groupwareworkbench.core.util.debug.TimeLog;
 
 @RequestScoped
 @Resource
@@ -177,9 +179,13 @@ public class PhotoController {
     @Path(value = "/photo/{idPhoto}")
     public void show(long idPhoto) {
         
+        TimeLog log = new TimeLog("CP");
         User user = (User) session.getAttribute("userLogin");
+        log.log("1");
         Photo photo = Photo.findById(idPhoto);
+        log.log("2");
         User userPhoto = photo.getUsers().get(0);
+        log.log("3");
         
         if (photo == null) {
             
@@ -188,18 +194,25 @@ public class PhotoController {
             
         }
         
+        log.log("4");
         if (userPhoto.getId().compareTo(user.getId()) == 0){
             
             result.include("usuarioCriador", "sim");
-            
+            log.log("5");
         }
             
         result.include("idPhoto", idPhoto);
+        log.log("6");
         result.include("photo", photo);
+        log.log("7");
         PhotoMgrInstance photoInstance = (PhotoMgrInstance) photo.getCollablet().getBusinessObject();
+        log.log("8");
         addIncludes(photoInstance);
+        log.log("9");
         photoInstance.getCollablet().processWidgets(info, photo);
+        log.log("10");
         result.use(Results.representation()).from(photo).serialize();
+        log.log("11");
     }
     
     @Get
@@ -553,5 +566,18 @@ public class PhotoController {
         User user = (User) session.getAttribute("userLogin");
         List<Photo> photos = photoMgr.listPhotoByUserPageAndOrder(user, pageSize, pageNumber);
         result.use(Results.json()).from(photos).serialize();
+    }
+
+    @Get
+    @Path("/photo/import")
+    public void importPhotos() {
+        try {
+            ImportImages i = new ImportImages();
+            i.run();
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        System.out.println("IMPORT PHOTOS");
     }
 }
