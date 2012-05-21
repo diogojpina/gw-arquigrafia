@@ -32,7 +32,7 @@
 <script type="text/javascript" src="<c:url value="/js/field_clear.js" />"></script>
 <style type="text/css">
 .ui-slider { width: 200px; height: 25px; position: relative; background-repeat: no-repeat; background-position: center center; }
-.ui-slider-handle { position: absolute; z-index: 1; height: 23px; width: 12px; top: 0px; left: 0px; background-image: url(i/slider-handle.gif);  }
+.ui-slider-handle { position: absolute; z-index: 1; height: 23px; width: 12px; background-image: url(i/slider-handle.gif);  }
 .ui-slider-handle-active { border: 1px dotted black;  }
 .ui-slider-disabled .ui-slider-handle { opacity: 0.5; filter: alpha(opacity=50); }
 .ui-slider-range { position: absolute; background: #50A029; opacity: 0.3; filter: alpha(opacity=30); width: 100%; height: 100%; }
