@@ -53,7 +53,7 @@
          </div>
          <br />
          <div id="search_scroll">
-             <p:list photos="${fotos}" photoInstance="${photoInstance}" showName="true" showLocation="false" lineClass="search_line"/>
+             <p:list photos="${fotos}" photoInstance="${photoInstance}" showName="false" showLocation="false" lineClass="search_line"/>
          </div>
 
 
