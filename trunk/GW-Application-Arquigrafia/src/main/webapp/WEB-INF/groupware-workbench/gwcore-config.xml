@@ -5,7 +5,7 @@
     <hibernate>
         <!--property name="hibernate.connection.datasource" value="java:/comp/env/jdbc/Arquigrafia-DS"/-->
 
-        <!-- Producao -->
+        <!-- Producao
         <property name="hibernate.connection.username" value="groupwareSecond" />
         <property name="hibernate.connection.password" value="102938Second" />
         <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
@@ -15,9 +15,9 @@
         <property name="hibernate.hbm2ddl.auto" value="update" />
         <property name="transaction.factory_class" value="org.hibernate.transaction.JDBCTransactionFactory" />
         <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
-		<!--  -->
+		-->
 
-		<!-- Testes locais
+		<!-- Testes locais -->
         <property name="hibernate.connection.username" value="groupwareUser" />
         <property name="hibernate.connection.password" value="102938" />
         <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
@@ -27,7 +27,7 @@
         <property name="hibernate.hbm2ddl.auto" value="update" />
         <property name="transaction.factory_class" value="org.hibernate.transaction.JDBCTransactionFactory" />
         <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
-        -->
+        <!-- -->
     </hibernate>
 
     <initialCollablet>arquigrafiaMgr</initialCollablet>

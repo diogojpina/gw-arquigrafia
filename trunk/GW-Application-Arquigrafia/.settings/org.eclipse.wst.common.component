@@ -37,6 +37,9 @@
         <dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/GW-Libs/lib/odf/xslt-runner-task-1.2.1-incubating.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/GW-Libs/lib/imgscalr-lib-4.2.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="java-output-path"/>
         <property name="context-root" value="GW-Application-Arquigrafia"/>
     </wb-module>
