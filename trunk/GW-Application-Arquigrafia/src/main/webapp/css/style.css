@@ -432,7 +432,7 @@ ul#avaliation_list{ margin:65px 0px; padding:0 25px; text-align:center; }
 ul#avaliation_list li{ height:50px; margin:5px 0; }
 ul#avaliation_list li .bloco{ width:430px; background:url(../img/icons_sprite.png) -286px -196px !important; margin-top:-9px; height:18px; float:left; text-align:center; border:none; }
 
-#slider_1,
+/*#slider_1,
 #slider_2,
 #slider_3,
 #slider_4,
@@ -443,8 +443,91 @@ ul#avaliation_list li .bloco{ width:430px; background:url(../img/icons_sprite.pn
 .ui-slider-horizontal .ui-state-default {background:url(../img/icons_sprite.png) -753px -5px !important; width:13px; height:20px; margin:-16px 0 0 -6px; border:none !important;}
 .ui-slider-horizontal .ui-state-default:hover,
 .ui-slider-horizontal .ui-state-default:active,
-.ui-slider-horizontal .ui-state-default:focus{background-position:-753px -34px !important; outline:none; margin-top:-12px; }
+.ui-slider-horizontal .ui-state-default:focus{background-position:-753px -34px !important; outline:none; margin-top:-12px; } */
 
+.ui-slider { width: 200px; height: 25px; position: relative; background-repeat: no-repeat; background-position: center center; }
+.ui-slider-handle { position: absolute; z-index: 1; height: 23px; width: 12px; background-image: url(../img/slider-handle.gif);  }
+.ui-slider-handle-active { border: 1px dotted black;  }
+.ui-slider-disabled .ui-slider-handle { opacity: 0.5; filter: alpha(opacity=50); }
+.ui-slider-range { position: absolute; background: #50A029; opacity: 0.3; filter: alpha(opacity=30); width: 100%; height: 100%; }
+
+/* Default slider backgrounds */
+.ui-slider, .ui-slider-1 { background-image: url(../img/slider-bg-1.png); }
+.ui-slider-2 { background-image: url(../img/slider-bg-2.png); }
+
+.binWrapClass {
+	float: left;
+	padding: 3px 6px 3px 6px;
+	margin: 20px 110px 10px 0px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+
+.binLabelClass, .binValueClass {
+	float: left;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+}
+
+.binLabelClass {
+	color: #8594AF;
+	padding-right: 5px;
+}
+
+.binValueClass {
+	color: #8594AF;
+}
+
+#binomialsTitle {
+	float: left;
+	position: relative;
+	left: 0px;
+	padding: 0px 5px 0px 5px;
+	margin: 9px 0px 12px 0px;
+}
+
+#binLink {
+	float: left;
+	cursor: pointer;
+	margin-top: 8px;
+}
+
+#binomialsWrap {
+	float: right;
+	padding-right: 0px;
+	width: 100%;
+	overflow: scroll;
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+
+#binomialSubmit {
+	clear: both;
+}
+
+#binomialSubmit input {
+    width: 58px;
+    height: 20px;
+    background: url("../img/icons_sprite.png") repeat scroll -84px -238px transparent;
+    cursor: pointer;
+    border: 0;
+    font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #fff;
+	margin-right: 100px;
+}
+
+.left_avaliation_value{
+	width: auto;
+	float: left;
+}
+
+.right_avaliation_value{
+	width: auto;
+	float: right;
+}
 
 ul#avaliation_list li span{ width:75px; display:block; margin-top:-11px; }
 ul#avaliation_list li span.left{ text-align:right; padding-right:10px; }
