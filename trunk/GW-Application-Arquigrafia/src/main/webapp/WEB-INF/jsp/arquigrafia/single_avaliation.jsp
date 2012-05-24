@@ -1,85 +1,32 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="arquigrafia" uri="http://www.groupwareworkbench.org.br/widgets/arquigrafia" %>
 <%@ taglib prefix="s" uri="http://www.groupwareworkbench.org.br/widgets/security" %>
-<%@ taglib prefix="p" uri="http://www.groupwareworkbench.org.br/widgets/photomanager"%>
+<%@ taglib prefix="p" uri="http://www.groupwareworkbench.org.br/widgets/photomanager" %>
 <%@ taglib prefix="binomial" uri="http://www.groupwareworkbench.org.br/widgets/binomial" %>
 <%@ taglib prefix="r" uri="http://www.groupwareworkbench.org.br/taglibs/reflection" %>
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Arquigrafia - Seu universo de imagens de arquitetura</title>
-<!--   FAVICON   -->
-<link rel="icon" href="<c:url value="/img/arquigrafia_icon.ico" />" type="image/x-icon" />
-<link rel="shortcut icon" href="<c:url value="/img/arquigrafia_icon.ico" />" type="image/x-icon" />
-<!--   ESTILO GERAL   -->
-<link rel="stylesheet" type="text/css" href="<c:url value="/css/style.css" />"/>
-<!--[if lt IE 8]>
-<link rel="stylesheet" type="text/css" href="<c:url value="/css/ie7.css" />" />
-<![endif]-->
-<link rel="stylesheet" type="text/css" media="print" href="<c:url value="/css/print.css" />" />
-
-
-
-
-<!--   JQUERY - Google Ajax API CDN (Also supports SSL via HTTPS)   -->
-<script type="text/javascript" src="<c:url value="/js/jquery-1.7.1.min.js" />"></script>
-<script type="text/javascript" src="<c:url value="/js/jquery-ui-1.8.17.custom.min.js" />"></script>
-<script type="text/javascript" src="<c:url value="/js/index.js" />"></script>
-<script type="text/javascript" src="<c:url value="/js/field_clear.js" />"></script>
-<binomial:scriptBinomial />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Arquigrafia - Seu universo de imagens de arquitetura</title>
+	<arquigrafia:includes arquigrafiaInstance="${arquigrafiaMgr}" />
 </head>
 
-<body>
+  <binomial:scriptBinomial />
+
+<body onload="load(<c:out value="${firstTime}" />)">
   <!--   CONTAINER   -->
   <div id="container">
   
-  <!--   CABEÃALHO   -->
-    <div id="header">
-	
-	  <!--   LOGO   -->
-      <a href="index.html" id="logo"></a>
-      <!--   MENU SUPERIOR   -->
-	  <div id="first_menu">
-        <!--   MENU INSTITUCIONAL   -->
-        <ul id="top_menu_items">
-          <li><a href="#" id="project">O PROJETO</a></li>
-          <li><a href="#" id="help">AJUDA</a></li>
-          <li><a href="#" id="contact">FALE CONOSCO</a></li>
-        </ul>
-        <!--   FIM - MENU INSTITUCIONAL   -->
-            
-        <!--   MENU DE BUSCA   -->
-        <form action="" method="get" id="search_buttons_area">
-          
-          <!--   BARRA DE BUSCA   -->
-          <input type="text" class="search_bar" name="search_bar_text" />
-          <!--   BOTÃO DA BARRA DE BUSCA   -->
-          <input type="submit" class="search_bar_button cursor" value="" name="submit_search_button" />
-          <!--   BOTÃO DE BUSCA AVANÃADA   -->
-          <a href="#" id="complete_search"></a>
-        </form>
-        <!--   FIM - MENU DE BUSCA   -->
-      </div>
-	  <!--   FIM - MENU SUPERIOR   -->
-      <!--   ÃREA DE LOGIN / CADASTRO   -->
-      <div id="loggin_area" class="right">
-        
-        <!--   BOTÃO DE LOGIN   -->
-        <a href="index_logged.html" name="modal-" id="login_button"></a>
-        
-        <!--   BOTÃO DE CADASTRO   -->
-        <a href="#form_window" name="modal" id="registration_button"></a>
-      
-      </div>
-      <!--   FIM - ÃREA DE LOGIN / CADASTRO   -->
-            
-    </div>
-    <!--   FIM - CABEÃALHO   -->
-    <!--   MEIO DO SITE - ÃREA DE NAVEGAÃÃO   -->
+  <!--   CABEÇALHO   -->
+    <arquigrafia:header arquigrafiaInstance="${arquigrafiaMgr}" />
+
+    <!--   MEIO DO SITE - ÁREA DE NAVEGAÇÃO   -->
     <div id="content">
       <!--   COLUNA ESQUERDA   -->
       <div id="sub_content">
@@ -217,3 +164,4 @@
   <!--   FIM - CONTAINER   -->
 </body>
 </html>
+
