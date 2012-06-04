@@ -334,8 +334,9 @@ a#printer_icon:hover{ background-position:-713px -33px; }
 
 /* SINGLE VIEW */
 #single_view_block { text-align:center; margin-bottom:5px; }
-#single_view_block h1{text-align:left; }
-#single_view_header { overflow:hidden; border-bottom:solid #333 1px; line-height:25px;}
+#single_view_block h1{ text-align:left; }
+#single_view_header { overflow:hidden; border-bottom:solid #333 1px; line-height:25px; }
+#single_view_header h1 { display:block; float:left; overflow:hidden; width:530px; }
 .single_view_image { margin: 15px 0; }
 
 /*usuário*/
@@ -345,7 +346,7 @@ a#printer_icon:hover{ background-position:-713px -33px; }
 #single_view_contact_add { font-size:11px; }
 
 /*infos da foto*/
-#single_view_image_rating { margin-top:-22px; }
+#single_view_image_rating { margin-top:-22px; display:block; width:auto; }
 #single_view_image_rating li { float:left; height:25px;}
 #single_view_image_rating li small{ margin:0 14px 0 5px; }
 #single_view_image_rating li:last-child small{ margin:0 25px 0 3px;}
@@ -447,7 +448,7 @@ ul#avaliation_list li .bloco{ width:430px; background:url(../img/icons_sprite.pn
 
 .ui-slider { width: 200px; height: 25px; position: relative; background-repeat: no-repeat; background-position: center center; }
 .ui-slider-handle { margin: -11px 0 0 -5px; position: absolute; z-index: 1; height: 15px; width: 10px; 	background: url("../img/icons_sprite.png") repeat scroll -755px -5px transparent;  }
-.ui-slider-handle:hover, .ui-slider-handle:active, .ui-slider-horizontal .ui-state-default:hover, .ui-slider-horizontal .ui-state-default:active, .ui-slider-horizontal .ui-state-default:focus { margin: -4px 0 0 -5px; background: url("../img/icons_sprite.png") repeat scroll -755px -38px transparent;  }
+.ui-slider-handle:hover, .ui-slider-handle:active { margin: -4px 0 0 -5px; background: url("../img/icons_sprite.png") repeat scroll -755px -38px transparent;  }
 .ui-slider-handle-active { border: 1px dotted black;  }
 .ui-slider-disabled .ui-slider-handle { opacity: 0.5; filter: alpha(opacity=50); }
 .ui-slider-range { position: absolute; background: #50A029; opacity: 0.3; filter: alpha(opacity=30); width: 100%; height: 100%; }
