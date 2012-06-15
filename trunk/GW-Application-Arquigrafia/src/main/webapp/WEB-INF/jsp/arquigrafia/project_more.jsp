@@ -25,7 +25,7 @@
       <!--   COLUNA ESQUERDA   -->
       <div id="sub_content">
         <!--   CONTEÚDO SOBRE O PROJETO   -->
-        <h1 id="project_title">O Projeto</h1>
+        <h1 id="project_title">Mais sobre o Projeto</h1>
         <div id="project_text_tools">
 	        <a href="#" title="Diminuir fonte" class="dec-font">A-</a>
 	        <a href="#" title="Restaurar fonte" class="res-font">A</a>
@@ -35,30 +35,70 @@
         <!--   TEXTO DO PROJETO   -->
         <div id="project_text">
           <br />
-          <h2>Ambiente colaborativo para o compartilhamento de imagens de arquitetura</h2>
 
 
-<p>O projeto da Rede Social Arquigrafia reúne desde 2009 uma equipe multidisciplinar de pesquisadores da FAUUSP, IMEUSP e ECAUSP para a criação de um ambiente colaborativo para a visualização, interação e compartilhamento de imagens digitais de arquitetura – fotografias, desenhos e vídeos –, na Internet.</p>
-           <img class="left" src="<c:url value="/img/project_photos/equipe1.jpg" />" alt="Texto alternativo da foto" title="Título da foto" />
-<p>Tendo contado inicialmente com o apoio da RNP, o Arquigrafia conta hoje com o apoio da FAPESP, da Pró-reitoria de Pesquisa da USP, e recebeu o primeiro prêmio da Agência de Inovação USP na categoria de Tecnologias Sociais Aplicadas e Humanas em 2011.</p>
-<p>O objetivo principal do projeto é contribuir para o estudo, a docência, a pesquisa e a difusão da cultura arquitetônica e urbanística, ao promover interações colaborativas entre pessoas e instituições.</p>
-<p>A iniciativa colaborativa que, entre os anos 60 e 80, em outro contexto e com outros recursos técnicos, formou o acervo atual de slides da FAUUSP, pode ser reformulada hoje no Arquigrafia, com o mesmo caráter, mas em uma escala muito mais abrangente, em um ambiente virtual na Web 2.0, de crescimento contínuo, configurando, assim, uma dinâmica referenciada no Museu de Crescimento Ilimitado proposto por Le Corbusier (1939).</p>
-          <img class="left" src="<c:url value="/img/project_photos/equipe2.jpg" />" alt="Texto alternativo da foto" title="Título da foto" />
-<p>No momento, a equipe do projeto trabalha na integração gradual dos slides do acervo da Biblioteca da FAUUSP referentes à arquitetura brasileira (cerca de 37 mil slides), catalogando individualmente as imagens, reconhecendo os direitos autorais de cada autor, e as características específicas desse acervo fotográfico singular, especialmente rico quanto à arquitetura paulista e brasileira.</p>
-<p>O protótipo experimental do Arquigrafia, Beta perpétuo, desenvolvido com procedimentos de DCU (Design Centrado no Usuário) apresenta-se aqui com um primeiro rol de funcionalidades para amplo acesso público e gratuito, e irá incorporar gradativamente novas mídias, opções de navegação e funcionalidades.</p>
-           <img class="left" src="<c:url value="/img/project_photos/equipe3.jpg" />" alt="Texto alternativo da foto" title="Título da foto" />
-<p>Em breve o sistema também pode ser acessado por dispositivos móveis – smartphones e tablets –, valendo-se de aplicativos da plataforma Android/Google, de modo que os usuários – estudantes de arquitetura, professores, arquitetos, fotógrafos e demais interessados no assunto –, podem navegar no acervo georeferenciado do Arquigrafia enquanto circulam pelas cidades, visualizando as imagens disponíveis, interagindo com outros usuários, e também colaborando para o crescimento contínuo do acervo sempre que enviarem suas próprias imagens para o sistema, com os direitos autorais preservados pelo Creative Commons.</p>
-<p><a href="<c:url value="/18/projectMore" />" > Saiba mais...</a></p>
+<h2>Publicações científicas</h2>
+<p> <strong>Arquigrafia - ambiente colaborativo para o compartilhamento de imagens de arquitetura (2011)</strong> <br />
+2o Seminário Ibero Americano Arquitetura e Documentação, UFMG, Belo Horizonte. Ana Paula Oliveira dos Santos, Artur Simões Rozestraten, Eliana de Azevedo Marques, Elisabete da C. Neves, Fabio Kon, Marco Aurélio Gerosa, Maria Laura Martinez, Rejane Alves, Samuel Fukumoto, Straus Michalsky. <br />
+<a href="http://www.slideshare.net/rozestraten/arquigrafia-seminario-ibero-americano-bh" > http://www.slideshare.net/rozestraten/arquigrafia-seminario-ibero-americano-bh</a></p>
 
-<!--  		  <p>O projeto Arquigrafia reúne desde 2009 uma equipe multidisciplinar de pesquisadores  da FAUUSP, IMEUSP e ECAUSP para a criação de um ambiente colaborativo para a visualização, interação e compartilhamento de imagens digitais de arquitetura – fotografias, desenhos e vídeos –, na Internet.</p>
-		  <p>Em breve o sistema também pode ser acessado por dispositivos móveis – smartphones e tablets –, valendo-se de aplicativos da plataforma Android/Google, de modo que os usuários – estudantes de arquitetura, professores, arquitetos, fotógrafos e demais interessados no assunto –, podem navegar no acervo georeferenciado do Arquigrafia enquanto circulam pelas cidades, visualizando as imagens disponíveis, interagindo com outros usuários, e também colaborando para o crescimento contínuo do acervo sempre que enviarem suas próprias imagens para o sistema, com os direitos autorais preservados pelo Creative Commons.</p>
-          <p>Tendo contado inicialmente com o apoio da RNP, o Arquigrafia conta hoje com o apoio da FAPESP, da Pró-reitoria de Pesquisa da USP, e recebeu o primeiro prêmio da Agência de Inovação USP na categoria de Tecnologias Sociais Aplicadas e Humanas em 2011. </p>
-          <p>O objetivo principal do projeto é contribuir para o estudo, a docência, a pesquisa e a difusão da cultura arquitetônica e urbanística, ao promover interações colaborativas entre pessoas e instituições.</p>          
-          <p>Considerando a inexistência de um acervo específico de imagens de arquitetura, organizado e disponível para amplo acesso na Internet, esse projeto permite a criação coletiva e colaborativa de um conjunto iconográfico que virá a complementar o material visual existente a respeito da arquitetura brasileira, colaborando para estimular a cultura arquitetônica, e promover a interação entre diferentes perfis de usuários na Internet, e também em diferentes espaços urbanos reais. </p>
-          <p>A iniciativa colaborativa que, entre os anos 60 e 80, em outro contexto e com outros recursos técnicos, formou o acervo atual de slides da FAUUSP, pode ser reformulada hoje no Arquigrafia, com o mesmo caráter, mas em uma escala muito mais abrangente, em um ambiente virtual na Web 2.0, de crescimento contínuo e ilimitado, configurando, assim, uma dinâmica que se referencia no Museu de Crescimento Infinito proposto por Le Corbusier.  </p>
-          <p>No momento, a equipe do projeto trabalha na integração gradual dos slides do acervo da Biblioteca da FAUUSP, catalogando individualmente as imagens, reconhecendo os direitos autorais de cada autor, e as características específicas desse acervo fotográfico singular, especialmente rico quanto à arquitetura paulista e brasileira.</p>
-          <p>O protótipo experimental do Arquigrafia, Beta perpétuo, desenvolvido com procedimentos de DCU (Design Centrado no Usuário) apresenta-se aqui com um primeiro rol de funcionalidades para amplo acesso público e gratuito, e irá incorporar gradativamente novas mídias, opções de navegação e funcionalidades.</p>
--->
+<p> <strong>Da coleta de dados ao conhecimento obtido durante o desenvolvimento do projeto Arquigrafia-Brasil (2011)</strong> <br />
+5o CIDI Congresso Internacional de Design da Informação, Florianópolis, SC. Ana Paula Oliveira dos Santos, Artur Simões Rozestraten, Fabio Kon, Marco Aurélio Gerosa, Maria Laura Martinez, Straus Michalsky. <br />
+<a href="http://ccsl.ime.usp.br/pt-br/system/files/CIDI2011.pdf" > http://ccsl.ime.usp.br/pt-br/system/files/CIDI2011.pdf</a></p>
+
+<p> <strong>Rede Social Arquigrafia-Brasil: estudos fotográficos da arquitetura brasileira na Web 2.0 (2010)</strong> <br />
+Seminário Nacional Documentação do Patrimônio Arquitetônico com o uso de Tecnologias Digitais, UFBA, Salvador, Bahia. Ana Paula Oliveira dos Santos, Artur Simões Rozestraten, Fabio Kon, Marco Aurélio Gerosa, Maria Laura Martinez. Apresentado com os alunos Diogo Augusto e Lucas Caracik.<br />
+<a href="http://www.lcad.ufba.br/arqdoc/trabalhos/Trab_07.pdf" >http://www.lcad.ufba.br/arqdoc/trabalhos/Trab_07.pdf</a></p>
+
+<p> <strong>Rede Social Arquigrafia-Brasil: design de um ambiente online baseado em transdisciplinaridade e colaboração (2010)</strong> <br />
+VII Simpósio Brasileiro de Sistemas Colaborativos – SBSC 20120, Belo Horizonte, Minas Gerais. Ana Paula Oliveira dos Santos, Artur Simões Rozestraten, Carlos Herrera Muñoz, Gustavo H. Braga, Lucas Santos de Oliveira, Marco Aurélio Gerosa, Maria Laura Martinez, Straus Michalsky, Victor Williams Stafusa. <br />
+<a href="http://www.groupwareworkbench.org.br/publicacoes" >http://www.groupwareworkbench.org.br/publicacoes</a></p>
+
+<h2> Arquigrafia na mídia</h2>
+
+<p>Olimpíada USP de Inovação divulga projetos vencedores (28/11/2011) <br />
+<a href="http://agencia.fapesp.br/14833" > http://agencia.fapesp.br/14833</a></p>  
+
+<p>Faculdade de Arquitetura e Urbanismo da USP cria rede social (16/03/2012) <br />
+<a href="http://www.saopaulo.sp.gov.br/spnoticias/lenoticia.php?id=218043&c=5225&q=Faculdade+de+Arquitetura+e+Urbanismo+da+USP+cria+rede+social" > http://www.saopaulo.sp.gov.br/spnoticias/lenoticia.php</a></p>
+
+<p>Urbanismo on-line (28/03/2012) <br />
+<a href="http://espaber.uspnet.usp.br/jorusp/?p=21101" > http://espaber.uspnet.usp.br/jorusp/?p=21101</a></p>
+
+<p>USP lança plataforma colaborativa sobre arquitetura brasileira (12/04/2012) <br />
+<a href="http://portal.aprendiz.uol.com.br/2012/04/12/usp-lanca-plataforma-colaborativa-sobre-arquitetura-brasileira/" > http://portal.aprendiz.uol.com.br/2012/04/12/usp-lanca-plataforma-colaborativa-sobre-arquitetura-brasileira/</a></p>
+
+<p>Mídia social apresenta acervo online da arquitetura brasileira (13/05/2012) <br />
+<a href="http://www.usp.br/agen/?p=90563" > http://www.usp.br/agen/?p=90563</a></p>
+
+<p>Novo olhar sobre a arquitetura urbana (22/05/2012) <br />
+<a href="http://cienciahoje.uol.com.br/blogues/bussola/2012/05/novo-olhar-sobre-a-arquitetura-urbana" > http://cienciahoje.uol.com.br/blogues/bussola/2012/05/novo-olhar-sobre-a-arquitetura-urbana</a></p>
+
+<p>As cidades em imagens (05/2012) <br />
+<a href="http://revistapesquisa.fapesp.br/2012/05/11/as-cidades-em-imagens/" > http://revistapesquisa.fapesp.br/2012/05/11/as-cidades-em-imagens/</a></p>
+
+<p>Arquigrafia: arquitetura brasileira na web (14/07/2012) <br />
+<a href="http://gentequecooperacresce.com.br/site/post.php?t=arquigrafia-arquitetura-brasileira-na-web&id=311" > http://gentequecooperacresce.com.br/site/post.php?t=arquigrafia-arquitetura-brasileira-na-web&id=311</a></p>
+
+<h2> Pesquisas relacionadas </h2>
+
+
+<p>Integração de imagens digitalizadas de parte do acervo de slides da biblioteca da FAUUSP à Rede Social Arquigrafia-Brasil. Samuel Carvalho Gomes Fukumoto <br />
+<a href="http://www.bv.fapesp.br/pt/bolsas/126220/integracao-imagens-digitalizadas-acervo-slides/" >http://www.bv.fapesp.br/pt/bolsas/126220/integracao-imagens-digitalizadas-acervo-slides/</a></p>
+
+<p>Apoio ao Webdesign da Rede Social ARQUIGRAFIA-BRASIL. Enzo Toshio Shida Luchesi De Mello  <br />
+<a href="http://www.bv.fapesp.br/pt/bolsas/125821/apoio-webdesign-rede-social-arquigrafia/" >http://www.bv.fapesp.br/pt/bolsas/125821/apoio-webdesign-rede-social-arquigrafia/</a></p>
+
+<p>O audiovisual como representação da arquitetura e de espaços urbanos. Bhakta Krpa Das Santos  <br />
+<a href="http://www.bv.fapesp.br/pt/bolsas/127331/audiovisual-representacao-arquitetura-espacos-urbanos/" >http://www.bv.fapesp.br/pt/bolsas/127331/audiovisual-representacao-arquitetura-espacos-urbanos/</a></p>
+
+<p>Infraestrutura de execução e segurança dos componentes dos estudos de caso Arquigrafia, AUN e Balcão de dúvidas. Aurelio Akira Mello Matsui  <br />
+<a href="http://www.bv.fapesp.br/pt/bolsas/126195/infraestrutura-execucao-seguranca-componentes-estudos/" >http://www.bv.fapesp.br/pt/bolsas/126195/infraestrutura-execucao-seguranca-componentes-estudos/</a></p>
+
+<p>A imagem fotográfica como meio para a exposição, interação e interpretação de espaços urbanos e arquiteturas: fundamentos conceituais e possibilidades contemporâneas na Web. Diogo Augusto Pereira</p>
+
+<p>Estudo de conceitos plástico-espaciais aplicados à visualização e interpretação de imagens fotográficas de arquitetura. Lucas Caracik de Camargo Andrade</p>
+     
         </div>
         <!--   FIM - TEXTO DO PROJETO   -->
       </div>

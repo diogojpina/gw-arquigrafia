@@ -248,7 +248,7 @@
   <label>Autor da obra:</label>
   <input name="photoRegister.workAuthor" type="text" class="text" />
   <br />
-  <label class="left_form_label_column" >Rua:</label>
+  <label class="left_form_label_column" >Logradouro:</label>
   <input name="photoRegister.street" type="text" class="text" />
   <label>Data da obra:</label>
   <input name="photoRegister.workdate" type="text" class="text" id="workdate" />

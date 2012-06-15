@@ -83,6 +83,13 @@ public class ArquigrafiaController {
         result.include("arquigrafiaMgr", arquigrafiaInstance);
         addIncludes(arquigrafiaInstance);
     }
+    
+    @Get
+    @Path(value = "/{arquigrafiaInstance}/projectMore")
+    public void project_more(ArquigrafiaMgrInstance arquigrafiaInstance) {
+        result.include("arquigrafiaMgr", arquigrafiaInstance);
+        addIncludes(arquigrafiaInstance);
+    }    
 
     @Get
     @Path(value = "/{arquigrafiaInstance}/help")
@@ -126,6 +133,15 @@ public class ArquigrafiaController {
         addIncludes(arquigrafiaInstance);
     }
 
+    @Get
+    @Path(value = "/{arquigrafiaInstance}/photo_avaliation_avarage/{idPhoto}")
+    public void avarage_avaliation(ArquigrafiaMgrInstance arquigrafiaInstance, Long idPhoto) {
+        Photo foto = Photo.findById(idPhoto);
+        result.include("photo", foto);
+        result.include("arquigrafiaMgr", arquigrafiaInstance);
+        addIncludes(arquigrafiaInstance);
+    }
+    
     @Get
     @Path(value = "/{arquigrafiaInstance}/photo/{idPhoto}")
     public void single(ArquigrafiaMgrInstance arquigrafiaInstance, Long idPhoto) {

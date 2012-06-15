@@ -9,7 +9,7 @@ $(document).ready(function() {
 		
 		size = size.replace('px', '');
 		
-		if(size < 16){
+		if(size < 20){
 			size = parseInt(size) + 1;
 	
 			$("#project_text p").animate({'font-size' : size + 'px'});

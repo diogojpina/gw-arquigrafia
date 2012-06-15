@@ -317,7 +317,8 @@ a.search_image:hover { opacity: 0.6; filter:alpha(opacity=60); }
 #sub_content { width:650px; float:left;}
 
 /* THE PROJECT */
-.dec-font { float:left; display:block; line-height:25px; margin:0 10px 0 466px;}
+#project_text_tools { float: right; width: auto; }
+.dec-font { float:left; display:block; line-height:25px; margin:0 10px 0 0;}
 .res-font, .inc-font { float:left; display:block; line-height:25px; margin:0 10px 0 0;}
 #project_title { float:left;}
 #project_text {	float:left; width:610px; background:#FFF; text-align:justify; padding:0 20px; margin:10px 0 40px 0;}

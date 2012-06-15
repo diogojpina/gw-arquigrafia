@@ -101,11 +101,11 @@
 
 						<div id="binomialsWrap">
                             <div id="binomialsUser">
-                                <binomial:userAverage entity="${photo}" manager="${binomialMgr}" user="${sessionScope.userLogin}" name="userBin"
+                                <binomial:generalAverage entity="${photo}" manager="${binomialMgr}" name="userBin"
                                         labelClass="binLabelClass" valueClass="binValueClass" wrapClass="binWrapClass" />
-                                <div id="binomialSubmit">
+                                <!-- <div id="binomialSubmit">
                                     <input type="submit" name="saveBinomial" value="" />
-                                </div>
+                                </div>  -->
                             </div>
                         </div>
          </form>
