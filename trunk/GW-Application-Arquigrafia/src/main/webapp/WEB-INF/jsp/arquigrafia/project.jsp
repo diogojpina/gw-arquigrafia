@@ -25,7 +25,10 @@
       <!--   COLUNA ESQUERDA   -->
       <div id="sub_content">
         <!--   CONTEÚDO SOBRE O PROJETO   -->
-        <h1>O Projeto</h1>
+        <h1 id="project_title">O Projeto</h1>
+        <a href="#" title="Diminuir fonte" class="dec-font">A-</a>
+        <a href="#" title="Restaurar fonte" class="res-font">A</a>
+        <a href="#" title="Aumentar fonte" class="inc-font">A+</a>
         <a href="#"  title="Imprimir" id="printer_icon"></a>
         <!--   TEXTO DO PROJETO   -->
         <div id="project_text">

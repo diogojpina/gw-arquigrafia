@@ -18,6 +18,9 @@
 <script type="text/javascript" src="<c:url value="/js/jquery_javascript_library_v1.7.1.js" />"></script>
 <script type="text/javascript" src="<c:url value="/js/jquery-ui-1.8.17.custom.min.js" />"></script>
 
+<!-- JS - Font size increment and decrement -->
+<script type="text/javascript" src="<c:url value="/js/font_increment.js" />"></script>
+
 <script type="text/javascript">
 	form_window_loaded = false;
 
@@ -132,9 +135,19 @@
 		
 		var Dist = 905;
 		var Qtd = 0;
+		var FooterCont = 0;
 		//var Local = $('.images_line').css('margin-left');
-			
+		
+		
 		$('#arrow-left').click(function(){
+			FooterCont = FooterCont - 1;
+			
+			$('#arrow-right').css({'display':'inline-block'});
+			
+			if(FooterCont <= 0){
+				$('#arrow-left').css({'display':'none'});
+			}
+
 			if(Qtd != 0){
 				Qtd--;
 				$('.images_line').animate({marginLeft : - (Qtd * Dist)}, 500);
@@ -143,6 +156,14 @@
 		
 		
 		$('#arrow-right').click(function(){
+			FooterCont = FooterCont + 1;
+			
+			$('#arrow-left').css({'display':'inline-block'});
+			
+			if(FooterCont >= 2){
+				$('#arrow-right').css({'display':'none'});
+			}
+
 			if(Qtd != 2){
 				Qtd++
 				$('.images_line').animate({marginLeft: - (Qtd * Dist)}, 500);
@@ -167,7 +188,7 @@
 				
 				});
 			}
-		})
+		});
 	});
 
 	
