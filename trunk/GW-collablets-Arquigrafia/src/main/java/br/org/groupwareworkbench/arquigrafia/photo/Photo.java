@@ -378,6 +378,26 @@ public class Photo implements Serializable {
         return query.getResultList();
     }
 
+    public static List<Photo> listPhotosByUser(Collablet collablet, User user) {
+        
+
+            if (collablet == null) throw new IllegalArgumentException();
+            if (user == null) throw new IllegalArgumentException();
+
+            String queryString =
+                    "SELECT p FROM Photo p JOIN p.users AS u WHERE p.deleted = false AND p.collablet = :collablet AND u = :user ORDER BY p.dataUpload DESC";
+            EntityManager em = EntityManagerProvider.getEntityManager();
+            TypedQuery<Photo> query = em.createQuery(queryString, Photo.class);
+            query.setParameter("collablet", collablet);
+            query.setParameter("user", user);
+            return query.getResultList();
+
+
+//      if (collablet == null) throw new IllegalArgumentException();
+//        if (user == null) throw new IllegalArgumentException();
+//        return DAO.query().with("collablet", collablet).with("deleted", false).with("user", user).list();
+    }
+    
     public static List<Photo> listPhotoByPageAndOrder(Collablet collablet, int pageSize, int pageNumber) {
         System.out.println("CP4");
         if (collablet == null) throw new IllegalArgumentException();

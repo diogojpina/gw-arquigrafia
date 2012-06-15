@@ -96,11 +96,15 @@
 	            	<li><a href="#">Lorem ipsum</a></li>
 	            	<li><a href="#">Lorem ipsum</a></li>
 	          	</ul>
-	        </div>
-	         -->
+	        </div> 
+
  			<!-- <album:listGalery albumMgr="${albumMgr}" user="${friend}"/> -->
 
 		</div>
+        <!-- FIM-BARRA LATERAL - DIREITA -->
+       <div id="added_images_bar">
+       		<p:photosByUser photoInstance="${photoMgr}" user="${friend}"/>
+       </div> 
 	</div>
     <!--   FUNDO DO SITE   -->
     <div id="footer">

@@ -570,6 +570,7 @@ a#friend_photo { margin:1px}
 a#gallery_photo { margin: 0 5px 0 0;}
 #gallery_photo { display:block; width:48px; height:48px; float:left;}
 #right_sidebar { float:right; color:#7B7D7F; font-size:12px; width:250px; line-height:19px;}
+#added_images_bar { clear: both; height: 82px; margin: 30px 0 0; width: 100%;}
 
 /* IMAGE UPLOAD - MODAL */
 .progressbar { width:518px; float:left;}
