@@ -478,12 +478,7 @@ ul#avaliation_list li .bloco{ width:430px; background:url(../img/icons_sprite.pn
 }
 
 .binLabelClass {
-	color: #8594AF;
 	padding-right: 5px;
-}
-
-.binValueClass {
-	color: #8594AF;
 }
 
 #binomialsTitle {
@@ -507,6 +502,7 @@ ul#avaliation_list li .bloco{ width:430px; background:url(../img/icons_sprite.pn
 	overflow: scroll;
 	overflow-x: hidden;
 	overflow-y: auto;
+	color:#A6A6A6;
 }
 
 #binomialSubmit {
