@@ -69,10 +69,12 @@
 							</c:forEach>
 						</ul>
 						<ul id="single_view_social_network_buttons">
-							<!-- <li><a href="#" class="delicious"></a></li>
-							<li><a href="#" class="google"></a></li> -->
-							<li><a href="http://www.facebook.com/sharer.php?u=<c:url value="photo/${photo.id}" />" class="facebook" target="_blank"></a></li>
-							<!-- <li><a href="#" class="twitter"></a></li>  -->
+						<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4fdf62121c50304d"></script>
+							<!-- <li><a href="#" class="delicious"></a></li> -->
+							<li><a href="#" class="more_sare_buttons addthis_button_compact"><span class="more_sare_buttons">+ redes</span></a></li>
+							<li><a href="#" class="google addthis_button_google_plusone_share"><span class="google"></span></a></li>
+							<li><a href="#" class="facebook addthis_button_facebook"><span class="facebook"></span></a></li>
+							<li><a href="#" class="twitter addthis_button_twitter"><span class="twitter"></span></a></li>
 						</ul>
 					</s:check>
 				</div>

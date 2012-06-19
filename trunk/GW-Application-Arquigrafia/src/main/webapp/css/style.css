@@ -386,18 +386,19 @@ a#delete:hover { background:url(../img/excluir-hover.png)}
 #single_view_social_network_buttons li { margin: 2px 5px; float:right;}
 #single_view_social_network_buttons li,
 a.delicious,
-a.google,
-a.facebook,
-a.twitter{ display:block; width:20px; height:20px;}
+.google,
+.facebook, 
+.twitter { display:block; width:20px; height:20px;}
 
 a.delicious { background:url(../img/icons_sprite.png) 0px -166px;}
 a.delicious:hover{ background-position:0px -145px; }
-a.google { background:url(../img/icons_sprite.png) -21px -166px;}
-a.google:hover { background-position:-21px -145px;}
-a.facebook { background:url(../img/icons_sprite.png) -42px -166px;}
-a.facebook:hover { background-position:-42px -145px;}
-a.twitter { background:url(../img/icons_sprite.png) -63px -166px;}
-a.twitter:hover { background-position:-63px -145px;}
+span.google { background:url(../img/icons_sprite.png) -21px -166px;}
+span.google:hover { background-position:-21px -145px;}
+span.facebook { background:url(../img/icons_sprite.png) -42px -166px;}
+span.facebook:hover { background-position:-42px -145px;}
+span.twitter { background:url(../img/icons_sprite.png) -63px -166px;}
+span.twitter:hover { background-position:-63px -145px;}
+.more_sare_buttons { display:block; width:41px; height:20px; font-size: 12px; line-height: 19px;}
 
 
 /*Creative Commons Icon, avaliação e média de avaliação - sidebar*/
