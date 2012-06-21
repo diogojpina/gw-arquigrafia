@@ -21,6 +21,9 @@
 <!-- JS - Font size increment and decrement -->
 <script type="text/javascript" src="<c:url value="/js/font_increment.js" />"></script>
 
+<!-- Google Maps API -->
+<script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=true"></script>
+
 <script type="text/javascript">
 	form_window_loaded = false;
 
@@ -239,6 +242,42 @@
 		else{
 			$('#fail_message_delivery, message_delivery').fadeOut('fast');
 		}
+	}
+	
+	//MAP AND GEOREFERENCING CREATION AND SETTING
+	var geocoder;
+	var map;
+	
+	function initialize() {
+		var street = "<c:out value="${photo.street}"/>";
+		var district = "<c:out value="${photo.district}"/>";
+		var city = "<c:out value="${photo.city}"/>";
+		var state = "<c:out value="${photo.state}"/>";
+		var country = "<c:out value="${photo.country}"/>";
+		var address = street + "," + district + "," + city + "-" + state + "," + country;
+		
+		geocoder = new google.maps.Geocoder();
+		
+		var latlng = new google.maps.LatLng(-34.397, 150.644);
+		var myOptions = {
+		  zoom: 15,
+		  center: latlng,
+		  mapTypeId: google.maps.MapTypeId.ROADMAP
+		}						    
+
+		map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+		
+		geocoder.geocode( { 'address': address}, function(results, status) {
+			if (status == google.maps.GeocoderStatus.OK) {
+				map.setCenter(results[0].geometry.location);
+				var marker = new google.maps.Marker({
+					map: map,
+					position: results[0].geometry.location
+			});
+			} else {
+				alert("Geocode was not successful for the following reason: " + status);
+			}
+		});
 	}
 </script>	
 

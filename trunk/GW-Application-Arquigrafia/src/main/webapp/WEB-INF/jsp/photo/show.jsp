@@ -158,6 +158,8 @@
 							<c:out value="${photo.country}"/>
 						</c:if> 
 					</p>
+				<h3>Localização:</h3>
+					<div id="map_canvas" class="single_view_map" style="width:300px; height:200px;"></div>
 				<h3>Tags:</h3>
 				<p>
 					<tag:getTags tagMgr="${tagMgr}" entity="${photo}" />
