@@ -577,13 +577,13 @@ a#gallery_photo { margin: 0 5px 0 0;}
 #select_button { width:73px; height:20px; background:url(../img/icons_sprite.png) -280px -195px no-repeat; border:0px !important; margin: 3px 0px !important; float:right;}
 #select_button:hover { background:url(../img/icons_sprite.png) -280px -216px no-repeat; cursor:pointer;}
 #state_selector { margin: 0 0 0 26px;}
-#upload_form textarea { width:203px; height:60px; border: solid 1px #EEE; padding: 3px; margin: 2px 0 2px 5px;}
-#upload_form select {width: 211px; padding: 3px; margin: 2px 0 2px 5px;}
-#upload_form input.text {width: 203px;}
+#upload_form textarea { width:198px; height:60px; border: solid 1px #EEE; padding: 3px; margin: 2px 0 2px 5px;}
+#upload_form select { width: 206px; padding: 3px; margin: 2px 0 2px 5px;}
+#upload_form input.text {width: 198px;}
 .creative_commons_form{ display:block; float:left; width:290px; margin: 0;}
 #creative_commons_left_form{ margin: 0 20px 0 0;}
 #creative_commons_left_form label, #creative_commons_right_form label{ margin:0; display:inline; line-height:18px;}
-.left_form_label_column { width: 45px !important;}
+.left_form_label_column { width: 67px !important;}
 #creative_commons_text_checkbox {margin: 0px !important;}
 
 
