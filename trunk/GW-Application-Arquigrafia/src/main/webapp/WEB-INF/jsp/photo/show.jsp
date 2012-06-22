@@ -13,7 +13,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Arquigrafia - Seu universo de imagens de arquitetura</title>
+<title>Arquigrafia - <c:out value="${photo.name}"/></title>
 <arquigrafia:includes arquigrafiaInstance="${arquigrafiaMgr}" />
 </head>
 
@@ -71,7 +71,7 @@
 						<ul id="single_view_social_network_buttons">
 						<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4fdf62121c50304d"></script>
 							<!-- <li><a href="#" class="delicious"></a></li> -->
-							<li><a href="#" class="more_sare_buttons addthis_button_compact"><span class="more_sare_buttons">+ redes</span></a></li>
+							<li><a href="#" class="more_sare_buttons addthis_button_compact"><span class="more_sare_buttons">+ outros</span></a></li>
 							<li><a href="#" class="google addthis_button_google_plusone_share"><span class="google"></span></a></li>
 							<li><a href="#" class="facebook addthis_button_facebook"><span class="facebook"></span></a></li>
 							<li><a href="#" class="twitter addthis_button_twitter"><span class="twitter"></span></a></li>

@@ -398,7 +398,7 @@ span.facebook { background:url(../img/icons_sprite.png) -42px -166px;}
 span.facebook:hover { background-position:-42px -145px;}
 span.twitter { background:url(../img/icons_sprite.png) -63px -166px;}
 span.twitter:hover { background-position:-63px -145px;}
-.more_sare_buttons { display:block; width:41px; height:20px; font-size: 12px; line-height: 19px;}
+.more_sare_buttons { display:block; width:44px; height:20px; font-size: 12px; line-height: 19px;}
 
 
 /*Creative Commons Icon, mapa (georreferenciamento) avaliação e média de avaliação - sidebar*/
