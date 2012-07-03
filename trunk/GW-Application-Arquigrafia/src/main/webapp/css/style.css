@@ -345,7 +345,7 @@ a#printer_icon:hover{ background-position:-713px -33px; }
 
 /*usuário*/
 #single_view_user_thumbnail { width:28px; height:28px; float:left; margin-right:10px;}
-#single_view_owner_name { line-height:10px; margin-bottom:3px;}
+#single_view_owner_name { margin-bottom:3px; font-size: 20px; line-height: 28px;}
 #name { color:#CB9833;}
 #single_view_contact_add { font-size:11px; }
 

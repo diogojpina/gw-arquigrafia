@@ -95,7 +95,7 @@
 				<c:forEach items="${photo.users}" var="user">
 					<img src="<c:url value="/img/avatar.jpg" />" name="Homer"
 						id="single_view_user_thumbnail" /> <span
-						id="single_view_owner_name">Por: <a href="<c:url value="/groupware-workbench/friends/11/show/${user.id}" />" id="name">
+						id="single_view_owner_name"><a href="<c:url value="/groupware-workbench/friends/11/show/${user.id}" />" id="name">
 						${user.name}
 						</a></span>
 						<br /> 
