@@ -92,6 +92,13 @@ public class ArquigrafiaController {
     }    
 
     @Get
+    @Path(value = "/{arquigrafiaInstance}/termsOfService")
+    public void terms_of_service(ArquigrafiaMgrInstance arquigrafiaInstance) {
+        result.include("arquigrafiaMgr", arquigrafiaInstance);
+        addIncludes(arquigrafiaInstance);
+    }
+    
+    @Get
     @Path(value = "/{arquigrafiaInstance}/help")
     public void help(ArquigrafiaMgrInstance arquigrafiaInstance) {
         result.include("arquigrafiaMgr", arquigrafiaInstance);

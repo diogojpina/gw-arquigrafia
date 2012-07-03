@@ -32,7 +32,7 @@
 	  	<label>Repita a senha*:</label>
 	  		<input name="passwordConfirm" type="password" class="required" id="confirm" value="" />
 	</p>
-	<p>Li e aceito os <a href="#" style="text-decoration: underline;">termos de compromisso</a>: <input name="terms" type="checkbox" value="read" onclick="javascript:validar(this);"/> <br /><a href="#" id="creative_commons" style="text-decoration:underline;">Creative Commons</a></p>
+	<p>Li e aceito os <a href="<c:url value="/18/termsOfService" />"  target="_blank" style="text-decoration: underline;">termos de compromisso</a>: <input name="terms" type="checkbox" value="read" onclick="javascript:validar(this);"/> <br /> <br /><a href="http://creativecommons.org/licenses/?lang=pt" id="creative_commons" style="text-decoration:underline;">Creative Commons</a></p>
 	<p>
   	    <input name="enviar" type="submit" class="submit cursor" value="" disabled/>
 	</p>
