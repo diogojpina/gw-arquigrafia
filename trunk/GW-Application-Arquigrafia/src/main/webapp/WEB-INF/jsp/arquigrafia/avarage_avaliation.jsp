@@ -129,7 +129,7 @@
       <!--   COLUNA LATERAL - DIREITA   -->
       <div id="sidebar">
         <h2 class="common_title">Avaliação</h2>
-        <p>Como você avaliaria a arquitetura apresentada na fotografia ao lado? </p>
+        <p>Como você avaliaria a arquitetura apresentada na imagem ao lado? </p>
 		<p>Há um predomínio de elementos horizontais ou verticais, e em que proporção?</p>
 		<p>Experimente posicionar os marcadores(controle deslizante) em um ponto que corresponda à sua avaliação da arquitetura visível na imagem para cada par de qualidades opostas.</p>
 		<p>Salve a sua resposta e, se tiver curiosidade, veja como outros usuários avaliaram esta mesma imagem.</p>

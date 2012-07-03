@@ -178,7 +178,7 @@
 				</p>	
 				<s:check name="X-X-usuario">			
 			        <h3>Avaliação:</h3>
-					<p>Avalie esta imagem de acordo com seus aspectos, compare também sua avaliação com as do outros usuários.</p>
+					<p>Avalie a arquitetura apresentada nesta imagem de acordo com seus aspectos, compare também sua avaliação com as dos outros usuários.</p>
 					<a href="<c:url value="/18/photo_avaliation/${photo.id}" />" title="Avalie a foto" id="evaluate_button"></a> 
 					<a href="<c:url value="/18/photo_avaliation_avarage/${photo.id}" />" title="Média das avaliações da foto" id="evaluation_average"></a>
 				</s:check>

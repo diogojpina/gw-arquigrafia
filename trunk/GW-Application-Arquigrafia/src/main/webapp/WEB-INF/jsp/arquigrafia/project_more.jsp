@@ -150,6 +150,7 @@ VII Simpósio Brasileiro de Sistemas Colaborativos – SBSC 20120, Belo Horizont
 			<li><small><a href="http://lattes.cnpq.br/3715644973427707" target="_blank">Bhakta Krpa das Santos - Graduando FAUUSP</a></small></li>
 			<li><small><a href="#" target="_blank">Guilherme A. Nogueira Cesar - Graduando FAUUSP</a></small></li>
 			<li><small><a href="#" target="_blank">Rodrigo Ciorciari Salandim - Graduando EACHUSP</a></small></li>
+			<li><small><a href="#" target="_blank">Bruna Sellin Trevelin - Graduanda Direito USP</a></small></li>			
 			<li><small><a href="http://lattes.cnpq.br/1387924249101546" target="_blank">Enzo Toshio S. L. de Mello - FITO</a></small></li>
 		</ul>
 		
