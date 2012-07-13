@@ -12,8 +12,6 @@
        		<p>
 				<label>Login*:</label>
      				<input type="text" class="required" name="user.login" value="<c:out value="${user.login}" />" />
-     			<label>Senha*:</label>
-     				<input type="password" class="required" name="user.password" value="<c:out value="${user.password}" />" id="password" /></li>
      			<br />
      			<label>E-mail*:</label>
      				<input type="text" class="required email" name="user.email" value="<c:out value="${user.email}" />" id="email" /></li>
