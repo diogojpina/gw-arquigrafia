@@ -71,7 +71,7 @@
       <div id="message_login_error" class="message_delivery" >Erro - Login ou senha inválidos!</div>   
       <div id="generic_error" class="message_delivery_generic" >
 	      <c:forEach var="error" items="${errors}">
-	            <c:out value="${error.category}" /> - <c:out value="${error.message}" />
+	            <c:out value="${error.message}" /><br/>
 	      </c:forEach>
 	      <c:if test="${not empty erros}">
 	      	<c:out value="${erros}" />
