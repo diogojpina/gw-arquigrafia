@@ -44,6 +44,14 @@
 			$('#registration').load('<c:url value="/groupware-workbench/users/${userMgr.id}/edit/${userLogin.id}"/>');	
 			form_window_loaded = true;
 		});
+
+		$('#edit_user_password_button').click(function(){
+			var part = "perfil";
+			$('#mask').fadeIn('fast');
+			$('#form_window').fadeIn('slow');
+			$('#registration').load('<c:url value="/groupware-workbench/users/${userMgr.id}/edit/${userLogin.id}/password"/>');	
+			form_window_loaded = true;
+		});
 		
 		$('#registration_button').click(function(){
 			$('#mask').fadeIn('fast');
