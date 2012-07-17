@@ -99,8 +99,10 @@ public class ImportImages {
                             
                             Photo photo = new Photo();
                             
-                            //User user = User.findById(1);
-                            User user = User.findByLogin("admin", userMgr, AccountType.NATIVE);
+                            User user = User.findByLogin("acervofau", userMgr, AccountType.NATIVE);
+                            if (user==null) {
+                                throw new Exception("User acervofau does not exist. Cannot import any image. Please make sure this user exists before trying to import images.");
+                            }
                             
                             photo.assignUser(user);
                             
@@ -169,22 +171,28 @@ public class ImportImages {
                             photo.setWorkdate(dataDaObra.toString());
                             
                             // N - 13 - Licença
-                            String licenca = stringValue(sheet, ps, 13, i);
-//                            if(licenca.equals("")) {
-//                              ps.println(String.format("Copyright data not found at row %d.", i));
-//                              throw new InvalidCellContents();
-//                            }
-//                            if(!licenca.contains(",")) {
-//                                ps.println(String.format("Invalid copyright data at row %d: %s", i, licenca));
-//                                throw new InvalidCellContents();
-//                            }
-//                            String allowCommercialUse = licenca.substring(0, licenca.indexOf(','));
-//                            String allowModifications = licenca.substring(licenca.indexOf(',') + 1, licenca.length());
-                            
-                            //org.apache.xerces.dom.ElementNSImpl
-                            // TODO Set the right license 
-                            photo.setAllowModifications(AllowModifications.NO);
-                            photo.setAllowCommercialUses(AllowCommercialUses.NO);
+                            String licenca = stringValue(sheet, ps, 13, i).trim();
+                            if(licenca.equals("")) {
+                                ps.println(String.format("Copyright data not found at row %d.", i));
+                                throw new InvalidCellContents();
+                            }
+                            if(!licenca.contains("-")) {
+                                ps.println(String.format("Invalid copyright data at row %d: %s. This cell should have a hyphen character.", i, licenca));
+                                throw new InvalidCellContents();
+                            }
+                            try {
+                                AllowCommercialUses allowCommercialUses = AllowCommercialUses.valueOf(licenca.substring(0, licenca.indexOf('-')).toUpperCase().trim());
+                                AllowModifications allowModifications = AllowModifications.valueOf(licenca.substring(licenca.indexOf('-') + 1, licenca.length()).toUpperCase().trim());
+                                photo.setAllowCommercialUses(allowCommercialUses);
+                                photo.setAllowModifications(allowModifications);
+                            } catch (Exception e) {
+                                /* If anything happens, especially if an IllegalArgumentException happens
+                                 * (which means there was a problem parsing a string to an enumeration
+                                 * value in the Enumeration.valueOf method), we abort the import of this row.
+                                 */
+                                ps.println(String.format("Error reading copyright data. This is the data from the spreadsheet: \"%s\" and this is the exception message: \"%s\"", licenca, e.getMessage()));
+                                throw new InvalidCellContents();
+                            }
                             
                             // O - 14 - Descrição
                             String descricao = stringValue(sheet, ps, 14, i);

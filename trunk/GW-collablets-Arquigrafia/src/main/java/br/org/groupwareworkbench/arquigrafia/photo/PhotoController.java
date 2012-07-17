@@ -353,6 +353,7 @@ public class PhotoController {
         System.out.println("pais => " + photoRegister.getCountry());
         System.out.println("bairro => " + photoRegister.getDistrict());
         System.out.println("autor obra => " + photoRegister.getWorkAuthor());
+        System.out.println("autor imagem => " + photoRegister.getImageAuthor());
         System.out.println("data obra => " + photoRegister.getWorkdate());
         System.out.println("rua => " + photoRegister.getStreet());
         System.out.println("descricao => " + photoRegister.getDescription());

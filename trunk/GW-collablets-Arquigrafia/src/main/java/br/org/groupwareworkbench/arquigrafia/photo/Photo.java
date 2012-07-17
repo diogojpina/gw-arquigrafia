@@ -20,9 +20,7 @@
  */
 package br.org.groupwareworkbench.arquigrafia.photo;
 
-import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -31,16 +29,10 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import javax.imageio.IIOImage;
-import javax.imageio.ImageIO;
-import javax.imageio.ImageWriteParam;
-import javax.imageio.ImageWriter;
-import javax.imageio.stream.FileImageOutputStream;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
@@ -58,21 +50,19 @@ import javax.persistence.TypedQuery;
 import org.apache.log4j.Logger;
 
 import br.com.caelum.vraptor.interceptor.download.FileDownload;
-import br.org.groupwareworkbench.arquigrafia.photo.transformations.Panel;
-import br.org.groupwareworkbench.arquigrafia.photo.transformations.Thumb;
-import br.org.groupwareworkbench.arquigrafia.photo.transformations.View;
+import br.org.groupwareworkbench.arquigrafia.license.CreativeCommons_3_0;
 import br.org.groupwareworkbench.collablet.coord.user.User;
 import br.org.groupwareworkbench.core.bd.EntityManagerProvider;
 import br.org.groupwareworkbench.core.bd.ObjectDAO;
 import br.org.groupwareworkbench.core.bd.QueryBuilder;
 import br.org.groupwareworkbench.core.framework.Collablet;
 import br.org.groupwareworkbench.core.graphics.BatchImageProcessor;
-import br.org.groupwareworkbench.core.util.debug.TimeLog;
 
 
 @Entity
 public class Photo implements Serializable {
 
+    //FIXME Extract this enum to top level (not inside of a class) and move it to the license package.
     public enum AllowModifications {  
         YES("Sim",""),
         YES_SA("Sim, contanto que os outros compartilhem de forma semelhante", "-sa"), 
@@ -128,7 +118,11 @@ public class Photo implements Serializable {
     private static final long serialVersionUID = -4757949223957140519L;
     private static final Integer DEFAULT_PHOTOS_COUNT = 5;
     public static final String ORIGINAL_FILE_SUFFIX = "_original";
-
+    public static final String VIEW_FILE_SUFFIX = "_view";
+    public static final String PANEL_FILE_SUFFIX = "_panel";
+    public static final String THUMB_FILE_SUFFIX = "_thumb";
+    public static final String[] ADDITIONAL_FILE_SUFIXES = new String[] {VIEW_FILE_SUFFIX, PANEL_FILE_SUFFIX, THUMB_FILE_SUFFIX};
+    public static final String DEFAULT_EXTENSION = "jpg";
     private static final ObjectDAO<Photo, Long> DAO = new ObjectDAO<Photo, Long>(Photo.class);
 
     @Transient
@@ -234,27 +228,27 @@ public class Photo implements Serializable {
 
     private FileDownload makeDownload(String prefix) {
         File file = makeImg(prefix);
-        return new FileDownload(file, "image/jpg", file.getName());
+        return new FileDownload(file, "image/" + DEFAULT_EXTENSION, file.getName());
     }
 
     public FileDownload downloadImgThumb() {
         //return makeDownload(getInstance().getThumbPrefix());
-        return makeDownload("_thumb.jpg");
+        return makeDownload("_thumb." + DEFAULT_EXTENSION);
     }
 
     public FileDownload downloadImgCrop() {
-        return makeDownload("_panel.jpg");
+        return makeDownload("_panel." + DEFAULT_EXTENSION);
     }
 
     public FileDownload downloadImgShow() {
-        return makeDownload("_view.jpg");
+        return makeDownload("_view." + DEFAULT_EXTENSION);
     }
 
     public FileDownload downloadImgOriginal() {
-        String fileSuffix = "";
+        String fileExtension = "";
         if(nomeArquivo.contains("."))
-            fileSuffix = nomeArquivo.substring(nomeArquivo.lastIndexOf("."), nomeArquivo.length());
-        return makeDownload(ORIGINAL_FILE_SUFFIX + fileSuffix);
+            fileExtension = nomeArquivo.substring(nomeArquivo.lastIndexOf("."), nomeArquivo.length());
+        return makeDownload(ORIGINAL_FILE_SUFFIX + fileExtension);
     }
 
     public File getImgThumb() {
@@ -287,13 +281,13 @@ public class Photo implements Serializable {
             System.out.println("WTH!? I cannot save images inside of something that is not a directory: " + imagesDirName);
         }
         
-        String fileSuffix = "";
+        String originalFileExtension = "";
         if(nomeArquivo.contains("."))
-            fileSuffix = nomeArquivo.substring(nomeArquivo.lastIndexOf("."), nomeArquivo.length());
-        String originalFileName = imagesDirName + File.separator + this.id + ORIGINAL_FILE_SUFFIX + fileSuffix;
+            originalFileExtension = nomeArquivo.substring(nomeArquivo.lastIndexOf(".") + 1, nomeArquivo.length());
+        String originalFileName = imagesDirName + File.separator + this.id + ORIGINAL_FILE_SUFFIX + "." + originalFileExtension;
         
         System.out.println("Processing this received file: " + this.nomeArquivo);
-        System.out.println("File suffix: " + fileSuffix);
+        System.out.println("File extension: " + originalFileExtension);
         System.out.println("Saving the original image as " + originalFileName);
         
         try {
@@ -307,11 +301,29 @@ public class Photo implements Serializable {
                 fos.write(buffer);
                 fos.flush();
             }
+            
             fos.close();
             foto.close();
             
             BatchImageProcessor bip = new BatchImageProcessor(originalCopy, imagesDir, ORIGINAL_FILE_SUFFIX);
             bip.convert(originalFileName, this.id);
+            
+            // Creating a string containing the list of image owners
+            String owners = "";
+            for (User user : users) {
+                owners += user.getName() + ", ";
+            }
+            if (users.size() > 0) {
+                owners = owners.substring(0, owners.length()-2);
+            }
+            
+            // Adding metadata to the image set
+            Exiv2 imw = new Exiv2(originalFileExtension, this.id, imagesDirName);
+            imw.setAuthor(this.workAuthor);
+            imw.setArtist(this.workAuthor, owners);
+            imw.setCopyRight(this.imageAuthor, new CreativeCommons_3_0(this.allowCommercialUses, this.allowModifications));
+            imw.setDescription(this.description);
+            imw.setUserComment(this.aditionalImageComments);
             
         } catch (IOException e) {
             log.error("Error reading image stream", e);
@@ -319,34 +331,34 @@ public class Photo implements Serializable {
         }
     }
 
-    private void saveImage(BufferedImage input, String prefix, String path) throws IOException {
-        File photoDirectory = new File(path);
-
-        if (!photoDirectory.exists()) {
-            photoDirectory.mkdir();
-        } else if (photoDirectory.exists() && photoDirectory.isFile()) {
-            photoDirectory.delete();
-            photoDirectory.mkdir();
-        }
-
-        Iterator<ImageWriter> iter = ImageIO.getImageWritersByFormatName("JPG");
-        if (iter.hasNext()) {
-            ImageWriter writer = iter.next();
-            ImageWriteParam iwp = writer.getDefaultWriteParam();
-            iwp.setCompressionMode(ImageWriteParam.MODE_EXPLICIT);
-            iwp.setCompressionQuality(0.95f);
-            File outFile = new File(path + File.separator + prefix + id);
-            FileImageOutputStream output = null;
-            try {
-                output = new FileImageOutputStream(outFile);
-                writer.setOutput(output);
-                IIOImage image = new IIOImage(input, null, null);
-                writer.write(null, image, iwp);
-            } finally {
-                if (output != null) output.close();
-            }
-        }
-    }
+//    private void saveImage(BufferedImage input, String prefix, String path) throws IOException {
+//        File photoDirectory = new File(path);
+//
+//        if (!photoDirectory.exists()) {
+//            photoDirectory.mkdir();
+//        } else if (photoDirectory.exists() && photoDirectory.isFile()) {
+//            photoDirectory.delete();
+//            photoDirectory.mkdir();
+//        }
+//
+//        Iterator<ImageWriter> iter = ImageIO.getImageWritersByFormatName("JPG");
+//        if (iter.hasNext()) {
+//            ImageWriter writer = iter.next();
+//            ImageWriteParam iwp = writer.getDefaultWriteParam();
+//            iwp.setCompressionMode(ImageWriteParam.MODE_EXPLICIT);
+//            iwp.setCompressionQuality(0.95f);
+//            File outFile = new File(path + File.separator + prefix + id);
+//            FileImageOutputStream output = null;
+//            try {
+//                output = new FileImageOutputStream(outFile);
+//                writer.setOutput(output);
+//                IIOImage image = new IIOImage(input, null, null);
+//                writer.write(null, image, iwp);
+//            } finally {
+//                if (output != null) output.close();
+//            }
+//        }
+//    }
 
     public static Photo findPhotoByUser(User user, long id) {
         if (user == null) throw new IllegalArgumentException();
@@ -409,7 +421,6 @@ public class Photo implements Serializable {
     }
 
     public static List<Photo> busca(Collablet collablet, String name, String city, String description, Date date) {
-        System.out.println("CP2");
 
         if (collablet == null) throw new IllegalArgumentException();
         if (name.equals("")) name = "!$%--6**24";
