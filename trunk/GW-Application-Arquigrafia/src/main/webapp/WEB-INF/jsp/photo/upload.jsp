@@ -50,7 +50,7 @@
   <label class="left_form_label_column">Título:</label>
   <input name="photoRegister.name" type="text" class="text" />
   <label>Autor da imagem:</label>
-  <input name="photoRegister.copyRights" type="text" class="text" />
+  <input name="photoRegister.imageAuthor" type="text" class="text" />
   <br />
   <label class="left_form_label_column" >Cidade:</label>
   <input name="photoRegister.city" type="text" class="text" />
