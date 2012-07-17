@@ -67,7 +67,7 @@
 		<path>/META-INF/tags/countAllPhotos.tag</path>
 	</tag-file>
 	<tag-file>
-		<name>moreCommented</name>
+		<name>listMoreCommented</name>
 		<path>/META-INF/tags/listMoreCommentedPhotos.tag</path>
 	</tag-file>
 	<tag-file>

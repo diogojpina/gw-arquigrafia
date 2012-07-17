@@ -15,7 +15,7 @@
 		  <a class="tab_link" href="#images_line_2">POPULARES</a>
 		</li>
 		<li>
-		  <a class="tab_link" href="#images_line_3">CONTROVERSAS</a>
+		  <a class="tab_link" href="#images_line_3">+ COMENTADAS</a>
 		</li>
 		<!-- <li class="tab_not_selected">
 		  <a href="#" class="tab_link">AVALIADAS</a>
@@ -45,14 +45,14 @@
 		  	<div class="images_line" id="images_line_2" style="display:none;">  
 			  
 		  		<!--   IMAGENS - (RODAPÉ)   -->
-		  		<p:listLastPhotos photoInstance="${photoMgr}" amount="24" />
+		  		<p:listMostViews counterMgr="${counterMgr}" amount="24" />
 		  				
 		  	</div>
 		  	
 		  	<div class="images_line" id="images_line_3" style="display:none;">  
 			  
 		  		<!--   IMAGENS - (RODAPÉ)   -->
-		  		<p:listLastPhotos photoInstance="${photoMgr}" amount="24" />
+		  		<p:listMoreCommented commentMgr="${commentMgr}" amount="24" />
 		  				
 		  	</div>
 		</div>
