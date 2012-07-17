@@ -5,20 +5,19 @@
 
 <%@ attribute name="arquigrafiaInstance" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.arquigrafia.main.ArquigrafiaMgrInstance" %>
 
-
 	  <!--   BARRA DE ABAS   -->
 	  <ul class="tabs">
         <!--   ABAS   -->
-        <li class="selected_tab">
-	      <a class="selected_tab_link">NOVAS IMAGENS</a>
+        <li>
+	      <a class="tab_link selected_tab_link" href="#images_line_1">NOVAS IMAGENS</a>
+		</li>
+		<li>
+		  <a class="tab_link" href="#images_line_2">POPULARES</a>
+		</li>
+		<li>
+		  <a class="tab_link" href="#images_line_3">CONTROVERSAS</a>
 		</li>
 		<!-- <li class="tab_not_selected">
-		  <a href="#" class="tab_link">POPULARES</a>
-		</li>
-		<li class="tab_not_selected">
-		  <a href="#" class="tab_link">CONTROVERSAS</a>
-		</li>
-		<li class="tab_not_selected">
 		  <a href="#" class="tab_link">AVALIADAS</a>
 		</li>
 		<li class="tab_not_selected">
@@ -36,15 +35,28 @@
 		<div id="images_container">
 		
 			<!--   LINHA DE IMAGENS - (RODAPÉ)   -->
-			<div class="images_line">  
-			  <!--   IMAGENS - (RODAPÉ)   -->
+			<div class="images_line" id="images_line_1">  
 			  
-		  <!--   IMAGENS - (RODAPÉ)   -->
-		  <p:listLastPhotos photoInstance="${photoMgr}" amount="24" />
+		  		<!--   IMAGENS - (RODAPÉ)   -->
+		  		<p:listLastPhotos photoInstance="${photoMgr}" amount="24" />
 		  				
 		  	</div>
+		  	
+		  	<div class="images_line" id="images_line_2" style="display:none;">  
+			  
+		  		<!--   IMAGENS - (RODAPÉ)   -->
+		  		<p:listLastPhotos photoInstance="${photoMgr}" amount="24" />
+		  				
 		  	</div>
-		 </div>
+		  	
+		  	<div class="images_line" id="images_line_3" style="display:none;">  
+			  
+		  		<!--   IMAGENS - (RODAPÉ)   -->
+		  		<p:listLastPhotos photoInstance="${photoMgr}" amount="24" />
+		  				
+		  	</div>
+		</div>
+	  </div>
 	  <!--   FIM - BARRA DE IMAGENS - (RODAPÉ)   -->
 	  
 	   <p:countAllPhotos photoInstance="${photoMgr}" />
