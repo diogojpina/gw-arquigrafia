@@ -141,6 +141,14 @@
         $('.images_line').mouseleave(function(){ 
             $('.footer_image img').css('opacity',1);
         });
+        
+	    	$('#album_gallery_box').mouseleave(function(){ 
+	    		$('.image').css('opacity',1);
+	    	});
+	    	
+	    	$('#album_bar').mouseleave(function(){ 
+	    		$('.image').css('opacity',1);
+	    	});
 		
 		// FOOTER
 		
