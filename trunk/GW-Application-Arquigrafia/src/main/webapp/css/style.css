@@ -570,6 +570,13 @@ a#gallery_photo { margin: 0 5px 0 0;}
 #added_images_bar { clear:both; height:auto; margin:50px 0; width:100%; overflow:hidden; float:left;}
 #added_images_bar h3 { border-bottom:1px solid #7B7D7F; margin:0 0 5px 0;}
 
+
+/* ALBUNS / ALBUM GALLERY */
+#album_bar { float:left; color:#7B7D7F; overflow:hidden; font-size:11px; width:193px; line-height:19px; margin:0 25px 0 0; border-right:1px solid #404040;}
+#album_gallery_box { width:736px; height:auto; overflow:hidden; float:left; color:#7B7D7F;}
+#album_gallery_box .image, #album_bar .image { float:left; margin: 7px 7px !important;}
+
+
 /* IMAGE UPLOAD - MODAL */
 .progressbar { width:518px; float:left;}
 .url_bar { width:490px; float:left;}
