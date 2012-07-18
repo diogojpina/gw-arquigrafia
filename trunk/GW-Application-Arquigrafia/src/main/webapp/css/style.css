@@ -567,7 +567,8 @@ a#friend_photo { margin:1px}
 a#gallery_photo { margin: 0 5px 0 0;}
 #gallery_photo { display:block; width:48px; height:48px; float:left;}
 #right_sidebar { float:right; color:#7B7D7F; font-size:12px; width:250px; line-height:19px;}
-#added_images_bar { clear: both; height: 82px; margin: 30px 0 0; width: 100%;}
+#added_images_bar { clear:both; height:auto; margin:50px 0; width:100%; overflow:hidden; float:left;}
+#added_images_bar h3 { border-bottom:1px solid #7B7D7F; margin:0 0 5px 0;}
 
 /* IMAGE UPLOAD - MODAL */
 .progressbar { width:518px; float:left;}

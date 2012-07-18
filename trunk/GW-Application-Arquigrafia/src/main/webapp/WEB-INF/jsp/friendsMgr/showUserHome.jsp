@@ -69,11 +69,10 @@
 		</div>
 		
 		<!--   CONTEÚDO   -->
-		<h1>
-			<c:out value="${friend.name}" />
-		</h1>
-		<user:show user="${friend}"  editUserButtonId="edit_user_button" editUserButtonClass="profile_edit" />
-     	<profile:showProfile profileMgr="${profileMgr}" user="${friend}" editProfileButtonId="edit_perfil_button" editProfileButtonClass="profile_edit"/>
+		<div id="middle_content">
+			<user:show user="${friend}"  editUserButtonId="edit_user_button" editUserButtonClass="profile_edit" />
+     		<profile:showProfile profileMgr="${profileMgr}" user="${friend}" editProfileButtonId="edit_perfil_button" editProfileButtonClass="profile_edit"/>
+     	</div>
         
 		<!--   BARRA LATERAL - DIREITA   -->
 		<div id="right_sidebar">
@@ -101,10 +100,11 @@
  			<!-- <album:listGalery albumMgr="${albumMgr}" user="${friend}"/> -->
 
 		</div>
-        <!-- FIM-BARRA LATERAL - DIREITA -->
-       <div id="added_images_bar">
-       		<p:photosByUser photoInstance="${photoMgr}" user="${friend}"/>
-       </div> 
+		<!-- FIM-BARRA LATERAL - DIREITA -->
+		<div id="added_images_bar">
+			<h3>Minhas imagens:</h3>
+			<p:photosByUser photoInstance="${photoMgr}" user="${friend}"/>
+		</div> 
 	</div>
     <!--   FUNDO DO SITE   -->
     <div id="footer">
