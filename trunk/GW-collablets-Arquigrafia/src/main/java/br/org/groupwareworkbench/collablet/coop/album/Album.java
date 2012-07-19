@@ -86,6 +86,10 @@ public class Album implements Serializable {
         DAO.save(this);
     }
 
+    public void update() {
+        DAO.update(this);
+    }
+
     public void delete() {
         DAO.delete(this);
     }
@@ -120,7 +124,7 @@ public class Album implements Serializable {
         if (!this.objects.contains(reference))
             this.objects.add(new GenericReference(object));
     }
-
+    
     public void remove(Object object) {
         if (object == null) throw new IllegalArgumentException();
         this.objects.remove(new GenericReference(object));
