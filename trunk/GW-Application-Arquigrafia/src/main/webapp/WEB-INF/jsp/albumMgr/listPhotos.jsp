@@ -4,6 +4,6 @@
 <%@ taglib prefix="album" uri="http://www.groupwareworkbench.org.br/widgets/album"%>
 
 
-<album:listPhotos album="${album}" />
+<album:listPhotos album="${album}"/>
 
 

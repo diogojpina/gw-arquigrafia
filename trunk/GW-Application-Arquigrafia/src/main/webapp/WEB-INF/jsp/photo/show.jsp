@@ -3,6 +3,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="arquigrafia" uri="http://www.groupwareworkbench.org.br/widgets/arquigrafia"%>
+<%@ taglib prefix="album" uri="http://www.groupwareworkbench.org.br/widgets/album"%>
 <%@ taglib prefix="photo" uri="http://www.groupwareworkbench.org.br/widgets/photomanager"%>
 <%@ taglib prefix="tag" uri="http://www.groupwareworkbench.org.br/widgets/tag"%>
 <%@ taglib prefix="comment" uri="http://www.groupwareworkbench.org.br/widgets/comment"%>
@@ -15,6 +16,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Arquigrafia - <c:out value="${photo.name}"/></title>
 <arquigrafia:includes arquigrafiaInstance="${arquigrafiaMgr}" />
+<album:buttonAdd-script />
 </head>
 
 <body>
@@ -59,8 +61,8 @@
 						<ul id="single_view_image_buttons">
 							<!-- <li><a href="#" title="Adicione aos seus favoritos" id="add_favourite"></a></li>
 							<li><a href="#" title="Denuncie esta foto" id="denounce"></a></li>
-							<li><a href="#" title="Adicione ao seu album" id="plus"></a></li>  
 							<li><a href="<c:url value="/18/photo_avaliation/${photo.id}" />" title="Avalie a foto" id="eyedroppper"></a></li>-->
+							<li><a href="<c:url value="/groupware-workbench/album/${albumMgr.id}/add/${photo.id}" />" title="Adicione ao seu album" id="plus"></a></li>  
 							<li><a href="<c:url value="/photo/img-original/${photo.id}" />" title="Faça o download" id="download" target="_blank"></a></li>
 							<c:forEach items="${photo.users}" var="user">
 								<s:owner userName="${user.login}">
