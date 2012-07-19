@@ -35,4 +35,12 @@
     <name>edit</name>
     <path>/META-INF/tags/album/editAlbum.tag</path>
   </tag-file>
+  <function>
+    <name>contains</name>
+    <function-class>br.org.groupwareworkbench.collablet.coop.album.AlbumFunction</function-class>
+    <function-signature>
+      boolean contains(br.org.groupwareworkbench.collablet.coop.album.Album, br.org.groupwareworkbench.arquigrafia.photo.Photo)
+    </function-signature>
+  </function>
+  
 </taglib>
