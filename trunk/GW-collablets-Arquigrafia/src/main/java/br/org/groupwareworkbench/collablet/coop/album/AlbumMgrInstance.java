@@ -20,11 +20,11 @@
 */
 package br.org.groupwareworkbench.collablet.coop.album;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import br.org.groupwareworkbench.arquigrafia.photo.Photo;
 import br.org.groupwareworkbench.collablet.coord.user.User;
 import br.org.groupwareworkbench.core.framework.AbstractBusiness;
 import br.org.groupwareworkbench.core.framework.Collablet;
@@ -80,5 +80,38 @@ public class AlbumMgrInstance extends AbstractBusiness {
         }
         return album;
     }
+    
+    public void updateGenericReferencesOf(User user, List<Long> idAlbums, Long idObject) {
+        Photo photo = Photo.findById(idObject); 
+        List<Album> albums = Album.listByUser(user, getCollablet()); 
+
+        if (idAlbums != null) {
+            for (Long idAlbum : idAlbums) {
+                Album album = Album.findById(idAlbum);
+                update(album, photo);
+                albums.remove(album);
+            }
+        }
+        removeGenericReferences(albums, photo);
+    }
+
+    private void update(Album album, Photo photo) {
+        if (!album.contains(photo)) {
+            album.add(photo);
+            album.update();
+        }
+    }
+
+    public void removeGenericReferences(List<Album> albums, Photo photo) {
+        for (Album album : albums) {
+            if (album.contains(photo)) {
+                album.remove(photo);
+                album.update();
+            }
+        }
+    }
+    
+    
+    
 }
 

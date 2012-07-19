@@ -37,6 +37,7 @@ import br.com.caelum.vraptor.ioc.RequestScoped;
 import br.com.caelum.vraptor.validator.Validations;
 import br.com.caelum.vraptor.view.Results;
 import br.org.groupwareworkbench.arquigrafia.photo.Photo;
+import br.org.groupwareworkbench.arquigrafia.photo.PhotoController;
 import br.org.groupwareworkbench.collablet.coord.user.User;
 import br.org.groupwareworkbench.core.framework.MainCollablet;
 
@@ -124,16 +125,22 @@ public class AlbumMgrController {
         albumMgr.save(album);
         result.nothing();
     }
+    
+    
+    
+    @Get
+    @Path(value = "/groupware-workbench/album/{albumMgr}/add/{photo.id}")
+    public void addToAlbum(AlbumMgrInstance albumMgr, Photo photo) {
+        result.include("photo", Photo.findById(photo.getId()));
+        addIncludes(albumMgr);
+    }
 
     @Post
-    @Path(value = "/groupware-workbench/album/{albumMgr}/add/{idAlbum}/{idObject}")
-    public void addToAlbum(AlbumMgrInstance albumMgr, Long idAlbum, Long idObject) {
-        Photo photo = Photo.findById(idObject); //Por enquanto amarrado a Photo
-        Album album = Album.findById(idAlbum);
-        album.add(photo);
-        album.save();
-        addIncludes(albumMgr);
-        result.nothing();
+    @Path(value = "/groupware-workbench/album/{albumMgr}/add/{idObject}")
+    public void addToAlbum(AlbumMgrInstance albumMgr, List<Long> albums, Long idObject) {
+        User user = (User) request.getSession().getAttribute("userLogin");
+        albumMgr.updateGenericReferencesOf(user, albums, idObject);
+        result.use(logic()).redirectTo(PhotoController.class).show(idObject);
     }
 
     private void addIncludes(AlbumMgrInstance albumMgr) {
