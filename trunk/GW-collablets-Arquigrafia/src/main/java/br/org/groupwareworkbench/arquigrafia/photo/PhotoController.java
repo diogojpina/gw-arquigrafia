@@ -104,7 +104,7 @@ public class PhotoController {
     @Path(value = "/photo/img-thumb/{idPhoto}")
     public Download imgThumb(long idPhoto) {
         Photo photo = Photo.findById(idPhoto);
-        if (photo == null) {
+        if (photo == null|| photo.getDeleted() ) {
             result.notFound();
             return null;
         }
@@ -115,7 +115,7 @@ public class PhotoController {
     @Path(value = "/photo/img-show/{idPhoto}")
     public Download imgShow(long idPhoto) {
         Photo photo = Photo.findById(idPhoto);
-        if (photo == null) {
+        if (photo == null|| photo.getDeleted() ) {
             result.notFound();
             return null;
         }
@@ -126,7 +126,7 @@ public class PhotoController {
     @Path(value = "/photo/img-crop/{idPhoto}")
     public Download imgCrop(long idPhoto) {
         Photo photo = Photo.findById(idPhoto);
-        if (photo == null) {
+        if (photo == null|| photo.getDeleted() ) {
             result.notFound();
             return null;
         }
@@ -137,7 +137,7 @@ public class PhotoController {
     @Path(value = "/photo/img-original/{idPhoto}")
     public Download imgOriginal(long idPhoto) {
         Photo photo = Photo.findById(idPhoto);
-        if (photo == null) {
+        if (photo == null|| photo.getDeleted() ) {
             result.notFound();
             return null;
         }
@@ -181,19 +181,17 @@ public class PhotoController {
         
         TimeLog log = new TimeLog("CP");
         User user = (User) session.getAttribute("userLogin");
-        log.log("1");
         Photo photo = Photo.findById(idPhoto);
-        log.log("2");
-        User userPhoto = photo.getUsers().get(0);
-        log.log("3");
-        
-        if (photo == null) {
+
+        if (photo == null|| photo.getDeleted() ) {
             
             result.notFound();
             return;
             
-        }
+        }        
         
+        User userPhoto = photo.getUsers().get(0);
+                
         log.log("4");
         if (userPhoto.getId().compareTo(user.getId()) == 0){
             
@@ -222,7 +220,7 @@ public class PhotoController {
         Photo photo = Photo.findById(idPhoto);
         User userPhoto = photo.getUsers().get(0);
         
-        if (photo == null) {
+        if (photo == null|| photo.getDeleted() ) {
             result.notFound();
             return;
         }
@@ -419,7 +417,7 @@ public class PhotoController {
     public void edit(PhotoMgrInstance photoInstance, final long idPhoto) {
         
         Photo photo = Photo.findById(idPhoto);
-        if (photo == null) {
+        if (photo == null|| photo.getDeleted() ) {
             result.notFound();
             return;
         }
@@ -466,7 +464,7 @@ public class PhotoController {
     public void deletePhoto(long idPhoto) {
         
         Photo photo = Photo.findById(idPhoto);
-        if (photo == null) {
+        if (photo == null|| photo.getDeleted() ) {
             result.notFound();
             return;
         }
@@ -540,7 +538,7 @@ public class PhotoController {
     @Path(value = "/photo/{idPhoto}")
     public void delete(long idPhoto) {
         Photo photo = Photo.findById(idPhoto);
-        if (photo == null) {
+        if (photo == null|| photo.getDeleted() ) {
             validator.add(new ValidationMessage(MSG_ENTIDADE_INVALIDA, "Erro"));
             return;
         }
@@ -581,4 +579,82 @@ public class PhotoController {
         }
         System.out.println("IMPORT PHOTOS");
     }
+    
+    
+    @Post
+    @Path(value = "/photo/{photoInstance}/savePhotoProfile")
+    public void savePhotoProfile(Photo photoRegister, UploadedFile foto, PhotoMgrInstance photoInstance ) {
+
+        photoRegister.setNomeArquivo(foto == null ? null : foto.getFileName());
+        result.include("photoRegister", photoRegister);
+
+        if (foto == null) {
+            validator.add(new ValidationMessage(MSG_IMAGEM_OBRIGATORIA, "Erro"));
+            validator.onErrorUse(Results.logic()).redirectTo(GroupwareInitController.class).init();
+            return;
+        }
+
+        User user = null;
+        try {
+            user = (User) session.getAttribute("userLogin");
+        } catch (Exception e) {
+        }
+
+        if (user != null) {
+            photoRegister.assignUser(user);
+        }
+
+        try {
+            
+            photoInstance.save(photoRegister);
+            photoRegister.saveImage(foto.getFile());
+            
+            //atualiza o usuario
+            user.setPhotoURL(photoRegister.getImgShow().getName());
+            user.save();
+        } catch (RuntimeException e) {
+            
+            validator.add(new ValidationMessage(e.getMessage(), "Erro"));
+            validator.onErrorUse(Results.logic()).redirectTo(GroupwareInitController.class).init();
+            //redirectTo(PhotoController.class).registra(photoInstance, photoRegister);
+            return;
+            
+        }
+
+        photoInstance.getCollablet().processWidgets(info, photoRegister);
+
+        // FIXME: adicionar a condição do header accepts-content
+        // Melhor seria achar um jeito do vRaptor reportar esse estado, ao invés da aplicação refazer essa checagem
+        boolean xmlRequest;
+        try {
+            xmlRequest = "xml".equals(requestInfo.getRequest().getParameter("_format"));
+        } catch (Exception e) {
+            xmlRequest = false;
+        }
+
+        if (xmlRequest) {
+            result.use(Results.representation()).from(photoRegister).serialize();
+        } else {
+            addIncludes(photoInstance);
+            result.include("successMessage", MSG_SUCCESS);
+            validator.add(new ValidationMessage("Imagem adicionada com sucesso.", "Upload finalizado"));
+            validator.onErrorUse(Results.logic()).redirectTo(GroupwareInitController.class).init();
+            result.use(logic()).redirectTo(GroupwareInitController.class).init();
+        }
+        
+    }
+    
+    @Get
+    @Path(value = "/photo/{photoInstance}/savePhotoProfile")
+    public void savePhotoProfile(PhotoMgrInstance photoInstance, Photo photo) {
+        Photo newPhoto = photo;
+        if (newPhoto == null) {
+            newPhoto = new Photo();
+        }
+        newPhoto.setCollablet(photoInstance.getCollablet());
+        newPhoto.setDataUpload(new Date());
+        result.include("photoRegister", newPhoto);
+        addIncludes(photoInstance);
+    }
+    
 }
