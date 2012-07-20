@@ -21,14 +21,14 @@
 			<input id="context_path" type="hidden" value="${pageContext.request.contextPath}"/>
 			
       <div id="<c:out value="${albumBarId}" default="album_bar"/>">
-				<a id="new_album" href="<c:url value="/groupware-workbench/album/${albumMgr.id}"/>">Novo álbum</a>
-        <h1>Álbuns:</h1>
+		<h1>Álbuns:</h1>
+		<a id="new_album" href="<c:url value="/groupware-workbench/album/${albumMgr.id}"/>">+ Adicionar</a>
         <br />
 
-		    <c:forEach items="${albunsByUser}" var="album">
-		        <album:album album="${album}" albumMgr="${albumMgr}" />
-						<a id="edit_album" href="<c:url value="/groupware-workbench/album/${albumMgr.id}/edit/${album.id}"/>">Editar</a>
-		    </c:forEach>
+		<c:forEach items="${albunsByUser}" var="album">
+			<album:album album="${album}" albumMgr="${albumMgr}" />
+			<a id="edit_album" href="<c:url value="/groupware-workbench/album/${albumMgr.id}/edit/${album.id}"/>">Editar</a>
+		</c:forEach>
     
     </div>
 </div>
