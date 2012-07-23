@@ -16,7 +16,7 @@
 <div>
   Ainda não e usuário do arquigrafia?
   <br />
-  Envie um email para <a href="mailto:arquigrafia@gmail.com " target="_blank">arquigrafia@gmail.com</a> e assim que possível convidaremos você para participar.
+  Envie um email para <a href="mailto:arquigrafiabrasil@gmail.com " target="_blank">arquigrafiabrasil@gmail.com</a> e assim que possível convidaremos você para participar.
   <!-- Não possui cadastro, pois então não perca tempo, <a href="#" name="Cadastre-se">cadastre-se</a> e comece a publicar e compartilhar fotos no site.
   <br />
   <br />

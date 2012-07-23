@@ -42,7 +42,7 @@
         </s:check>
         <br />
         
-        <p> Caso ainda tenha dúvidas entre contato com nossa equipe usando o email <a href="mailto:arquigrafia@gmail.com " target="_blank">arquigrafia@gmail.com</a>.</p>
+        <p> Caso ainda tenha dúvidas entre contato com nossa equipe usando o email <a href="mailto:arquigrafiabrasil@gmail.com " target="_blank">arquigrafiabrasil@gmail.com</a>.</p>
 	 	</div>
         <!--   FIM - TEXTO DO PROJETO   -->
       </div>
@@ -51,7 +51,7 @@
       <div id="sidebar">
         <h2>Ainda precisando de Ajuda?</h2>
 		<h3>Contate nossa equipe</h3>
-        <p>Esta é a versão beta do Arquigrafia, ela ainda pode conter erros, caso tenha alguma dificuldade ou problemas ao usar o Arquigrafia escreva para gente <a href="mailto:arquigrafia@gmail.com " target="_blank">arquigrafia@gmail.com</a>.</p>
+        <p>Esta é a versão beta do Arquigrafia, ela ainda pode conter erros, caso tenha alguma dificuldade ou problemas ao usar o Arquigrafia escreva para gente <a href="mailto:arquigrafiabrasil@gmail.com " target="_blank">arquigrafiabrasil@gmail.com</a>.</p>
       </div>
       <!--   FIM - COLUNA DIREITA   -->
     </div>
