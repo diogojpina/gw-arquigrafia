@@ -27,7 +27,7 @@
 		<arquigrafia:header arquigrafiaInstance="${arquigrafiaMgr}" />
 		<!--   MEIO DO SITE - ÃREA DE NAVEGAÃÃO   -->
 		<div id="content">
-    		<p>O recurso solicitado não foi encontrado. Ele não existe ou foi removido!</p>
+    		<center><h1>O recurso solicitado não foi encontrado. Ele não existe ou foi removido!</h1></center>
 		</div>
 		<!--   FUNDO DO SITE   -->
 		<div id="footer">

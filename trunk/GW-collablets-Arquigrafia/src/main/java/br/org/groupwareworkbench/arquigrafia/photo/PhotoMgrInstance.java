@@ -116,8 +116,14 @@ public class PhotoMgrInstance extends AbstractBusiness {
             for ( int i = 0; i < amount && photos.size() > 0 ; i++ ) {
                 size = photos.size();
                 Photo tmp = photos.get( rand.nextInt(size) );
+                if ( tmp == null || tmp.getDeleted() ) {
+                    //nao adiciona fotos excluidas
+                    continue;
+                }
+                
                 result.add( tmp );
                 photos.remove(tmp);
+                
             }
         }
 
