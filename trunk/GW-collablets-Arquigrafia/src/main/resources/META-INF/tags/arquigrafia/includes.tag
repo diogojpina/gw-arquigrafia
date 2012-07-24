@@ -88,6 +88,15 @@
 			form_window_loaded = true;
 		});
 
+		$('#forgot_password').live("click", function(e){
+			e.preventDefault();
+			$('#mask').fadeOut('fast');
+			$('#form_window').fadeOut('slow');
+			$('#mask').fadeIn('fast');
+			$('#form_window').fadeIn('slow');
+			$('#registration').load(this.href);	
+		});
+
 		$('#comment_login_link').click(function(){
 			$('#mask').fadeIn('fast');
 			$('#form_window').fadeIn('slow');
