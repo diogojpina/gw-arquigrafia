@@ -25,6 +25,8 @@
   <a href="#" name="Facebook" id="login_facebook_icon"></a>
   <a href="#" name="Twitter" id="login_twitter_icon"></a><br />
   <a href="#" name="Google" id="login_google_icon"></a>  -->
+  <br/><br/>
+  <a id="forgot_password" href="<c:url value="/groupware-workbench/users/${userMgr.id}/forgotPassword"/>" >Esqueceu sua senha?</a>
 </div>
 <input name="enviar" type="submit" value="" id="login_white_button" />
 </form>
