@@ -576,8 +576,8 @@ a#gallery_photo { margin: 0 5px 0 0;}
 #album_bar h1 { float:left;}
 #album_gallery_box { width:736px; height:auto; overflow:hidden; float:left; color:#7B7D7F;}
 #album_gallery_box .image, #album_bar .image { float:left; margin: 7px 7px !important;}
-#new_album { display:block; float:right; margin:0 16px 0 0; line-height:19px;}
-#edit_album { display:inline-block; float:right; margin:0 17px 0 0;}
+#new_album, .name_album { display:block; float:right; margin:0 16px 0 0; line-height:19px;}
+#edit_album, #delete_album { display:inline-block; float:right; margin:0 17px 0 0;}
 
 
 /* IMAGE UPLOAD - MODAL */

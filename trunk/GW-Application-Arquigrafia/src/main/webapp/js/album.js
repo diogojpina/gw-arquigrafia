@@ -30,5 +30,9 @@ $(function(){
 		$('#registration').load(this.href);	
 		form_window_loaded = true;
 	});
+	
+	$('#delete_album').live('click', function(e){
+		return confirm('Tem certeza que deseja deletar o álbum?');
+	});
 
 });
