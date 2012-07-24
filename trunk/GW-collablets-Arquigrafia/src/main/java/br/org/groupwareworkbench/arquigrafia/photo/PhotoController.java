@@ -104,11 +104,13 @@ public class PhotoController {
     @Path(value = "/photo/img-thumb/{idPhoto}")
     public Download imgThumb(long idPhoto) {
         Photo photo = Photo.findById(idPhoto);
+        
         if (photo == null|| photo.getDeleted() ) {
-            result.notFound();
+            this.photoNotFound(photo);
             return null;
         }
         return photo.downloadImgThumb();
+        
     }
 
     @Get
@@ -116,7 +118,7 @@ public class PhotoController {
     public Download imgShow(long idPhoto) {
         Photo photo = Photo.findById(idPhoto);
         if (photo == null|| photo.getDeleted() ) {
-            result.notFound();
+            this.photoNotFound(photo);
             return null;
         }
         return photo.downloadImgShow();
@@ -127,7 +129,7 @@ public class PhotoController {
     public Download imgCrop(long idPhoto) {
         Photo photo = Photo.findById(idPhoto);
         if (photo == null|| photo.getDeleted() ) {
-            result.notFound();
+            this.photoNotFound(photo);
             return null;
         }
         return photo.downloadImgCrop();
@@ -138,7 +140,7 @@ public class PhotoController {
     public Download imgOriginal(long idPhoto) {
         Photo photo = Photo.findById(idPhoto);
         if (photo == null|| photo.getDeleted() ) {
-            result.notFound();
+            this.photoNotFound(photo);
             return null;
         }
         return photo.downloadImgOriginal();
@@ -184,8 +186,7 @@ public class PhotoController {
         Photo photo = Photo.findById(idPhoto);
 
         if (photo == null|| photo.getDeleted() ) {
-            
-            result.notFound();
+            this.photoNotFound(photo);
             return;
             
         }        
@@ -221,8 +222,7 @@ public class PhotoController {
         User userPhoto = photo.getUsers().get(0);
         
         if (photo == null|| photo.getDeleted() ) {
-            result.notFound();
-            return;
+            this.photoNotFound(photo);
         }
         if (userPhoto.getId().compareTo(user.getId()) == 0){
             result.include("usuarioCriador", "sim");
@@ -418,7 +418,7 @@ public class PhotoController {
         
         Photo photo = Photo.findById(idPhoto);
         if (photo == null|| photo.getDeleted() ) {
-            result.notFound();
+            this.photoNotFound(photo);
             return;
         }
         Collablet collablet = photo.getCollablet();
@@ -465,7 +465,7 @@ public class PhotoController {
         
         Photo photo = Photo.findById(idPhoto);
         if (photo == null|| photo.getDeleted() ) {
-            result.notFound();
+            this.photoNotFound(photo);
             return;
         }
         
@@ -655,6 +655,17 @@ public class PhotoController {
         newPhoto.setDataUpload(new Date());
         result.include("photoRegister", newPhoto);
         addIncludes(photoInstance);
+    }
+    
+    private void photoNotFound(Photo photo) {
+        
+        if ( photo != null ) {
+            PhotoMgrInstance photoInstance = (PhotoMgrInstance) photo.getCollablet().getBusinessObject();
+            addIncludes(photoInstance);
+        }
+                
+        result.notFound();
+        return;
     }
     
 }
