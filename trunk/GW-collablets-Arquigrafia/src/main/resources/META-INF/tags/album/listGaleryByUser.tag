@@ -17,14 +17,7 @@
 		<c:forEach items="${albunsByUser}" var="album">
 	     	<div id="gallery_box">
 	        	<a href="${pageContext.request.contextPath}/groupware-workbench/album/${albumMgr.id}/default/${album.id}" id="gallery_photo">
-		        	<c:choose>
-                    	<c:when test="${empty album.urlCover}">
-                  	    	<img src="<c:url value="/img/album_icon.png" />" id="gallery_photo" />
-	                  	</c:when>
-    	                <c:otherwise>
-        	          	    <img src="${album.urlCover}" id="gallery_photo" />
-            	      	</c:otherwise>
-					</c:choose> 
+         	    	<img src="<c:url value="/img/album_icon-1.png" />" id="gallery_photo" />
 	       		</a>
 	        		
 	         	<a href="${pageContext.request.contextPath}/groupware-workbench/album/${albumMgr.id}/default/${album.id}" id="name"><c:out value="${album.title}" /></a>

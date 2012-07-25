@@ -5,6 +5,6 @@
 
 
 <a href="${pageContext.request.contextPath}/groupware-workbench/album/${albumMgr.id}/listPhotos/${album.id}" class="image">
-	<img src="<c:out value="${album.urlCover}" default="${pageContext.request.contextPath}/img/album_icon.png"/>" width="170" height="117" alt="<c:out value="${album.title}" />"/>
+	<img src="<c:out value="${pageContext.request.contextPath}/img/album_icon-1.png" default="${pageContext.request.contextPath}/img/album_icon-1.png"/>" width="170" height="117" alt="<c:out value="${album.title}" />"/>
 </a>
 
