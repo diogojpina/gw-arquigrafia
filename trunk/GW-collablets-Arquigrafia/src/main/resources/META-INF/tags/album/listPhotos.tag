@@ -6,7 +6,7 @@
 
 
  <div id="<c:out value="${albumGalleryBox}" default="album_gallery_box"/>">
-   <h1>Nome do álbum:</h1>
+   <h1>${album.title}</h1>
    <br />
    <c:forEach items="${album.objects}" var="item">
 	   <a href="<c:url value="/photo/${item.id}" />" class="image">
