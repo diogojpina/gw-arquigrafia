@@ -82,24 +82,27 @@
 	            friendsMgr="${friendsMgr}" friendsHeader="friends_header"
 	            style="width: 400px;" />
 	            
-	        <!-- <h2 id="profile_block_title">Comunidades</h2>
-	        <a href="#" id="small" class="profile_block_link">Ver todas</a>
-			<div id="profile_box">
-				<ul id="communities_list">
-	            	<li><a href="#">Arquitetura moderna</a></li>
-	            	<li><a href="#">Arquitetos USP</a></li>
-	            	<li><a href="#">Lorem ipsum</a></li>
-	            	<li><a href="#">Lorem ipsum</a></li>
-	            	<li><a href="#">Lorem ipsum</a></li>
-	            	<li><a href="#">Lorem ipsum</a></li>
-	            	<li><a href="#">Lorem ipsum</a></li>
-	            	<li><a href="#">Lorem ipsum</a></li>
+<!-- 		       <h2 id="profile_block_title">Comunidades</h2>
+		       <a href="#" id="small" class="profile_block_link">Ver todas</a>
+ -->			
+ 
+<!--  					<div id="profile_box">
+							<ul id="communities_list">
+		            	<li><a href="#">Arquitetura moderna</a></li>
+		            	<li><a href="#">Arquitetos USP</a></li>
+		            	<li><a href="#">Lorem ipsum</a></li>
+		            	<li><a href="#">Lorem ipsum</a></li>
+		            	<li><a href="#">Lorem ipsum</a></li>
+		            	<li><a href="#">Lorem ipsum</a></li>
+		            	<li><a href="#">Lorem ipsum</a></li>
+		            	<li><a href="#">Lorem ipsum</a></li>
 	          	</ul>
 	        </div> 
-
- 			<!-- <album:listGalery albumMgr="${albumMgr}" user="${friend}"/> -->
+ -->
+		 			<album:listGalery albumMgr="${albumMgr}" user="${friend}"/>
 
 		</div>
+		
 		<!-- FIM-BARRA LATERAL - DIREITA -->
 		<div id="added_images_bar">
 			<h3>Minhas imagens:</h3>
