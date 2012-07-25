@@ -9,9 +9,11 @@
    <h1>${album.title}</h1>
    <br />
    <c:forEach items="${album.objects}" var="item">
-	   <a href="<c:url value="/photo/${item.id}" />" class="image">
-	   		<img src="<c:url value="/photo/img-crop/${item.id}"/>" width="170" height="117"/>
-	   </a>
+   		<c:if test="${!item.deleted}">
+		   <a href="<c:url value="/photo/${item.id}" />" class="image">
+		   		<img src="<c:url value="/photo/img-crop/${item.id}"/>" width="170" height="117"/>
+		   </a>
+	   </c:if>
    </c:forEach>
    
  </div>
