@@ -5,7 +5,7 @@
 <%@ taglib prefix="album" uri="http://www.groupwareworkbench.org.br/widgets/album" %>
 <%@ attribute name="albumMgr" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.collablet.coop.album.AlbumMgrInstance" %>
 <%@ attribute name="user" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.collablet.coord.user.User" %>
-<r:callMethod methodName="listByUser" instance="${albumMgr}" var="albunsByUser" >
+<r:callMethod methodName="limitListByUser" instance="${albumMgr}" var="albunsByUser" >
     <r:param type="br.org.groupwareworkbench.collablet.coord.user.User" value="${user}" />
 </r:callMethod>
 

@@ -66,6 +66,10 @@ public class AlbumMgrInstance extends AbstractBusiness {
         return albuns;
     }
 
+    public List<Album> limitListByUser(User user) {
+        return Album.limitListByUser(user, getCollablet());
+    }
+
     public Album getAlbumByDefault(User user) {
         List<Album> albuns = this.listByUser(user);
         Album album;

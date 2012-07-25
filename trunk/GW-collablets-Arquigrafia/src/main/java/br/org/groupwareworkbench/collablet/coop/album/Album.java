@@ -118,6 +118,12 @@ public class Album implements Serializable {
         return DAO.query().with("collablet", collablet).with("owner.id", user.getId()).list();
     }
 
+    public static List<Album> limitListByUser(User user, Collablet collablet) {
+        if (user == null) throw new IllegalArgumentException("User is required.");
+        if (collablet == null) throw new IllegalArgumentException();
+        return DAO.query().with("collablet", collablet).with("owner.id", user.getId()).maxResults(6).list();
+    }
+
     public void add(Object object) {
         if (object == null) throw new IllegalArgumentException();
         GenericReference reference = new GenericReference(object);
