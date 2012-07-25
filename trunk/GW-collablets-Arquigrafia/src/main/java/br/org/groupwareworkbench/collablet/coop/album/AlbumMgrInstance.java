@@ -110,7 +110,12 @@ public class AlbumMgrInstance extends AbstractBusiness {
             }
         }
     }
-    
+
+    public void deleteGenericReference(Album album, Long idObject) {
+        Photo photo = Photo.findById(idObject); 
+        album.remove(photo);
+        album.update();
+    }
     
     
 }

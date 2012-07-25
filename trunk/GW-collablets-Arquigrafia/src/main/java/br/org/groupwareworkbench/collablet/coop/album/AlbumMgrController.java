@@ -83,7 +83,7 @@ public class AlbumMgrController {
     
     
     @Get
-    @Path(value = "/groupware-workbench/album/{albumMgr}/delete/{idAlbum}")
+    @Path(value = "/groupware-workbench/album/{albumMgr}/destroy/{idAlbum}")
     public void destroy(AlbumMgrInstance albumMgr, Long idAlbum) {
         final Album album = Album.findById(idAlbum);
         final User user = (User) request.getSession().getAttribute("userLogin");
@@ -171,6 +171,15 @@ public class AlbumMgrController {
         User user = (User) request.getSession().getAttribute("userLogin");
         albumMgr.updateGenericReferencesOf(user, albums, idObject);
         result.use(logic()).redirectTo(PhotoController.class).show(idObject);
+    }
+
+    @Get
+    @Path(value = "/groupware-workbench/album/{idAlbum}/delete/{idObject}")
+    public void deleteToAlbum(Long idAlbum, Long idObject) {
+        Album album = Album.findById(idAlbum);
+        AlbumMgrInstance albumMgr = (AlbumMgrInstance) album.getCollablet().getBusinessObject();
+        albumMgr.deleteGenericReference(album, idObject);
+        result.use(logic()).redirectTo(AlbumMgrController.class).listByAlbum(albumMgr, idAlbum);
     }
 
     private void addIncludes(AlbumMgrInstance albumMgr) {

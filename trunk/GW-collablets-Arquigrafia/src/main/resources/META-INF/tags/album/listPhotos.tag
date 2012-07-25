@@ -13,6 +13,8 @@
 		   <a href="<c:url value="/photo/${item.id}" />" class="image">
 		   		<img src="<c:url value="/photo/img-crop/${item.id}"/>" width="170" height="117"/>
 		   </a>
+		   <a href="<c:url value="/groupware-workbench/album/${album.id}/delete/${item.id}"/>">Excluir</a>
+		   
 	   </c:if>
    </c:forEach>
    
