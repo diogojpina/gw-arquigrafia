@@ -29,7 +29,7 @@
 			<album:album album="${album}" albumMgr="${albumMgr}" />
 			<a id="edit_album" href="<c:url value="/groupware-workbench/album/${albumMgr.id}/edit/${album.id}"/>">Editar</a>
 			<a id="delete_album" href="<c:url value="/groupware-workbench/album/${albumMgr.id}/delete/${album.id}"/>">Excluir</a>
-			<strong class="name_album">${album.title}</strong>
+			<strong id="name" class="name_album">${album.title}</strong>
 		</c:forEach>
     
     </div>
