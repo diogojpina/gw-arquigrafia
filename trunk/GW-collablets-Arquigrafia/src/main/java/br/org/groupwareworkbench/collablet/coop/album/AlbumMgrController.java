@@ -59,11 +59,25 @@ public class AlbumMgrController {
     @Path(value = "/groupware-workbench/album/{albumMgr}/list/{idUser}")
     public void list(AlbumMgrInstance albumMgr, Long idUser) {
         User user = User.findById(idUser);
-        List<Album> albunList = albumMgr.listByUser(user);
-        result.include("albumList", albunList);
-        result.include("album", albunList.get(0));
+        List<Album> albumList = albumMgr.listByUser(user);
+        result.include("albumList", albumList);
+        result.include("album", albumList.get(0));
         result.include("user", user);
         addIncludes(albumMgr);
+        result.use(Results.representation()).from(albumList).serialize();
+    }
+
+    @Get
+    @Path(value = "/groupware-workbench/album/{albumMgr}/default/{idAlbum}")
+    public void listByAlbum(AlbumMgrInstance albumMgr, Long idAlbum) {
+        final User user = (User) request.getSession().getAttribute("userLogin");
+        List<Album> albunList = albumMgr.listByUser(user);
+        Album album = Album.findById(idAlbum);
+        addIncludes(albumMgr);
+        result.include("albumList", albunList)
+        .include("album", album)
+        .include("user", user)
+        .forwardTo("/WEB-INF/jsp/albumMgr/list.jsp");
         result.use(Results.representation()).from(albunList).serialize();
     }
     

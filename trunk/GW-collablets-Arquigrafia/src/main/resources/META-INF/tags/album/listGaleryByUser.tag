@@ -1,5 +1,6 @@
 <%@ tag body-content="empty" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="r" uri="http://www.groupwareworkbench.org.br/taglibs/reflection" %>
 <%@ taglib prefix="album" uri="http://www.groupwareworkbench.org.br/widgets/album" %>
 <%@ attribute name="albumMgr" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.collablet.coop.album.AlbumMgrInstance" %>
@@ -15,7 +16,7 @@
 	<div id="profile_box">
 		<c:forEach items="${albunsByUser}" var="album">
 	     	<div id="gallery_box">
-	        	<a href="${pageContext.request.contextPath}/groupware-workbench/album/${albumMgr.id}/listPhotos/${album.id}" id="gallery_photo">
+	        	<a href="${pageContext.request.contextPath}/groupware-workbench/album/${albumMgr.id}/default/${album.id}" id="gallery_photo">
 		        	<c:choose>
                     	<c:when test="${empty album.urlCover}">
                   	    	<img src="<c:url value="/img/album_icon.png" />" id="gallery_photo" />
@@ -26,9 +27,9 @@
 					</c:choose> 
 	       		</a>
 	        		
-	         	<a href="#" id="name"><c:out value="${album.title}" /></a>
+	         	<a href="${pageContext.request.contextPath}/groupware-workbench/album/${albumMgr.id}/default/${album.id}" id="name"><c:out value="${album.title}" /></a>
 	         	<br />
-	         	<span id="small">15 fotos</span>
+	         	<span id="small">${fn:length(album.objects)} foto(s)</span>
 			</div>
 		</c:forEach>          	
 	</div>
