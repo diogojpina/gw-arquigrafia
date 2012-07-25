@@ -66,7 +66,23 @@ public class AlbumMgrController {
         addIncludes(albumMgr);
         result.use(Results.representation()).from(albunList).serialize();
     }
+    
+    
+    @Get
+    @Path(value = "/groupware-workbench/album/{albumMgr}/delete/{idAlbum}")
+    public void destroy(AlbumMgrInstance albumMgr, Long idAlbum) {
+        final Album album = Album.findById(idAlbum);
+        final User user = (User) request.getSession().getAttribute("userLogin");
+        validator.checking(new Validations(){{
+            that(album.getOwner().equals(user), "album", "album.is.not.user");
+        }});
+        validator.onErrorUse(logic()).redirectTo(AlbumMgrController.class).list(albumMgr, user.getId());
+        
+        album.delete();
+        result.use(logic()).redirectTo(AlbumMgrController.class).list(albumMgr, user.getId());
 
+
+    }
     
     @Get
     @Path(value = "/groupware-workbench/album/{albumMgr}/listPhotos/{idAlbum}")
