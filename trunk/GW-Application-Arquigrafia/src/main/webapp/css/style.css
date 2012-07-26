@@ -375,9 +375,9 @@ a#denounce { background:url(../img/icons_sprite.png) -540px 0;}
 a#denounce:hover { background-position:-540px -33px;}
 a#download { background:url(../img/icons_sprite.png) -505px 0;}
 a#download:hover { background-position:-505px -33px;}
-#delete { display:block; width:22px; height:22px;}
-a#delete { background:url(../img/excluir.png)}
-a#delete:hover { background:url(../img/excluir-hover.png)}
+#delete { display:block; width:24px; height:25px;}
+a#delete { background:url(../img/icons_sprite.png) -776px -145px;}
+a#delete:hover { background-position:-776px -177px;}
 
 /*redes sociais*/
 #single_view_social_network_buttons { float:right; margin-right:20px; }
@@ -555,6 +555,7 @@ ul#avaliation_list li span.right{ text-align:left; padding-left:10px; }
 #middle_content div { font-size:12px; font-weight:bold; margin:20px 0 5px 0; width:430px; height:auto; float:left;}
 #middle_content h3 { font-size:12px; font-weight:bold; line-height:12px; border-bottom:solid 1px #7B7D7F; float:left; display:block; width:399px;}
 .profile_edit { font-size:10px; float:right; line-height:12px; display:block; width:31px;  border-bottom:solid 1px #7B7D7F; height:12px;}
+#edit_user_password_button { float:left; display:block; clear:both; font-weight:normal; font-size:11px; margin:10px 0 0 0;}
 #import_profile_button { display:block; background:url(../img/icons_sprite.png) transparent no-repeat 0px -195px; width:157px; height:20px; margin:10px 0 0 0; float:left; clear:left;}
 #import_profile_button:hover { background:url(../img/icons_sprite.png) transparent no-repeat 0px -215px; cursor:pointer;}
 #profile_block_title { width:auto; float:left;}
@@ -595,6 +596,10 @@ a#gallery_photo { margin: 0 5px 0 0;}
 .left_form_label_column { width: 67px !important;}
 #creative_commons_text_checkbox {margin: 0px !important;}
 
+/* PASSWORD CHANGE - MODAL */
+#new_password_confirm_label {
+	width:150px !important;
+}
 
 /* CONTACT US FORM - MODAL */
 #contact_us_form input.text { width:200px !important;}

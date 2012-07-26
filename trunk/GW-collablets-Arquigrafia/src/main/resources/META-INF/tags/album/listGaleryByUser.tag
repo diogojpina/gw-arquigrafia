@@ -12,7 +12,7 @@
 
      <h2 id="profile_block_title">Minhas&nbsp;galerias</h2>
      
-     <a href="#" id="small" class="profile_block_link">Ver todas</a>
+     <a href="<c:url value="/groupware-workbench/album/15/list/1" />" id="small" class="profile_block_link">Ver todas</a>
 	<div id="profile_box">
 		<c:forEach items="${albunsByUser}" var="album">
 	     	<div id="gallery_box">

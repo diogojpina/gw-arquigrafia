@@ -16,7 +16,7 @@
    			<br />
    			<label>Nova senha*:</label>
  				<input type="password" class="required" name="newPassword" id="password" />
-   			<label>Confirmar nova senha*:</label>
+   			<label id="new_password_confirm_label">Confirmar nova senha*:</label>
  				<input type="password" class="required" name="confirmationPassword" />
    		</p>
 		</div>
