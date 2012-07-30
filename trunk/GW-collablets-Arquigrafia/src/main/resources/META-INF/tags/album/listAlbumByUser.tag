@@ -27,8 +27,10 @@
 
 		<c:forEach items="${albunsByUser}" var="album">
 			<album:album album="${album}" albumMgr="${albumMgr}" />
-			<a id="edit_album" href="<c:url value="/groupware-workbench/album/${albumMgr.id}/edit/${album.id}"/>">Editar</a>
-			<a id="delete_album" href="<c:url value="/groupware-workbench/album/${albumMgr.id}/destroy/${album.id}"/>">Excluir</a>
+			<c:if test="${sessionScope.userLogin.id eq album.owner.id}">
+				<a id="edit_album" href="<c:url value="/groupware-workbench/album/${albumMgr.id}/edit/${album.id}"/>">Editar</a>
+				<a id="delete_album" href="<c:url value="/groupware-workbench/album/${albumMgr.id}/destroy/${album.id}"/>">Excluir</a>
+			</c:if>
 			<strong id="name" class="name_album">${album.title}</strong>
 		</c:forEach>
     
