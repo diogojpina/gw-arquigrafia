@@ -56,7 +56,7 @@
         <a href="<c:url value="/users/8/logout" />" id="logout">Sair</a><br />
 		 <ul id="logged_menu">
         	   <!-- <li><a href="#" id="messages" title="Você tem 19 mensagens">11</a></li>  -->
-			   <li> <a href="<c:url value="/groupware-workbench/album/15/list/1" />" id="users" title="Meu Arquigrafia">&nbsp;</a></li>
+			   <li> <a href="<c:url value="/groupware-workbench/album/15/list/${sessionScope.userLogin.id}" />" id="users" title="Meu Arquigrafia">&nbsp;</a></li>
 			   <!-- <li><a href="#" id="comunities" title="Comunidades">&nbsp;</a></li> -->
 			   <li><a href="#" name="modal" id="upload" title="Enviar uma imagem">&nbsp;</a></li>
       	  </ul>
