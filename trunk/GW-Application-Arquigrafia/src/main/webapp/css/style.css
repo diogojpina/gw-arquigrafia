@@ -576,9 +576,14 @@ a#gallery_photo { margin: 0 5px 0 0;}
 #album_bar { float:left; color:#7B7D7F; overflow:hidden; font-size:11px; width:193px; line-height:19px; margin:0 25px 0 0; border-right:1px solid #404040;}
 #album_bar h1 { float:left;}
 #album_gallery_box { width:736px; height:auto; overflow:hidden; float:left; color:#7B7D7F;}
-#album_gallery_box .image, #album_bar .image { float:left; margin: 7px 7px !important;}
+#album_bar .image { float:left; margin: 7px 7px !important;}
+.album_image_box { float:left; margin: 7px 0 7px 4px !important;}
+.album_image_box .image { margin:0px !important; float:left;}
+.album_image_box { height:117px; width:180px}
 #new_album, .name_album { display:block; float:right; margin:0 16px 0 0; line-height:19px;}
 #edit_album, #delete_album { display:inline-block; float:right; margin:0 17px 0 0;}
+.album_image_delete_button { display:none; float:left; height:20px; width:20px; background:url("../img/excluir.png"); margin:0 0 0 -10px; z-index:9999;}
+.album_image_delete_button:hover { background:url("../img/excluir-hover.png");}
 
 
 /* IMAGE UPLOAD - MODAL */
