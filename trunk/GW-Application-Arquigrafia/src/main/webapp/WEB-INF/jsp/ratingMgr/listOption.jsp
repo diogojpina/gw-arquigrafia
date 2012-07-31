@@ -264,7 +264,7 @@
         </style>
     </head>
     <body>
-        <arq:header2 photoInstance="${photoMgr}" />
+        <arq:header2 photoMgr="${photoMgr}" />
         <w:conteudoPagina titulo="Star Rating Bar">
             <div class="title">jQuery Raty - A Star Rating Plugin</div>
 
@@ -427,7 +427,7 @@
         </w:conteudoPagina>
         <div>
             <div style="height: 30px; background-color: #fff"></div>
-            <arq:footer photoInstance="${photoMgr}" />
+            <arq:footer photoMgr="${photoMgr}" />
         </div>
     </body>
 </html>

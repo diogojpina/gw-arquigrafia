@@ -63,7 +63,7 @@ public class PhotoControllerTest {
     private EntityManager em;
     private Collablet collablet;
     private PhotoController controller;
-    private PhotoMgrInstance photoInstance;
+    private PhotoMgrInstance photoMgr;
 
     //private Collablet outroCollablet;
 
@@ -98,7 +98,7 @@ public class PhotoControllerTest {
         collablet = new Collablet("photoMgr");
         collablet.setComponentClass(PhotoMgrInstance.class);
         collablet.setProperty("dirImages", TEMP_DIR);
-        photoInstance = (PhotoMgrInstance) collablet.getBusinessObject();
+        photoMgr = (PhotoMgrInstance) collablet.getBusinessObject();
         em.persist(collablet);        
         em.getTransaction().commit();
 
@@ -165,7 +165,7 @@ public class PhotoControllerTest {
         photo2.save();        
         photo3.save();
         try {
-            controller.buscaFoto("fo", photoInstance);
+            controller.buscaFoto("fo", photoMgr);
             Assert.fail();
         } catch (ValidationException e) {
             List<Message> errors = e.getErrors();
@@ -180,7 +180,7 @@ public class PhotoControllerTest {
         photo2.save();
         photo3.setName("alguma");
         photo3.save();
-        controller.buscaFoto("alguma", photoInstance);
+        controller.buscaFoto("alguma", photoMgr);
 
         @SuppressWarnings("unchecked")
         List<Photo> fotosResult = (List<Photo>) result.included("fotos");
@@ -197,7 +197,7 @@ public class PhotoControllerTest {
         photo2.save();
         photo3.save();
         try {
-            controller.buscaFotoAvancada("", "", "", null, photoInstance);
+            controller.buscaFotoAvancada("", "", "", null, photoMgr);
             Assert.fail();
         } catch (ValidationException e) {
             List<Message> errors = e.getErrors();
@@ -212,7 +212,7 @@ public class PhotoControllerTest {
         photo2.save();
         photo3.setName("alguma coisa");
         photo3.save();
-        controller.buscaFotoAvancada("foto    ", "", "", null, photoInstance);
+        controller.buscaFotoAvancada("foto    ", "", "", null, photoMgr);
 
         @SuppressWarnings("unchecked")
         List<Photo> fotosResult = (List<Photo>) result.included("fotos");
@@ -229,7 +229,7 @@ public class PhotoControllerTest {
         photo2.save();
         photo3.setName("alguma");
         photo3.save();
-        controller.buscaFotoAvancada("alguma", "", "", null, photoInstance);
+        controller.buscaFotoAvancada("alguma", "", "", null, photoMgr);
 
         @SuppressWarnings("unchecked")
         List<Photo> fotosResult = (List<Photo>) result.included("fotos");
@@ -245,7 +245,7 @@ public class PhotoControllerTest {
         quatro.setName("");
 
         try {
-            controller.save(quatro, null, photoInstance);
+            controller.save(quatro, null, photoMgr);
             Assert.fail();
         } catch (ValidationException e) {
             List<String> outMensagens = listErrors(e);
@@ -262,7 +262,7 @@ public class PhotoControllerTest {
         quatro.setNomeArquivo("fotoquatro.jpg");
 
         try {
-            controller.save(quatro, null, photoInstance);
+            controller.save(quatro, null, photoMgr);
             Assert.fail();
         } catch (ValidationException e) {
             List<String> outMensagens = listErrors(e);
@@ -278,7 +278,7 @@ public class PhotoControllerTest {
         quatro.setName("foto Quatro");
         quatro.setNomeArquivo("fotoquatro.jpg");
         try {
-            controller.save(quatro, getImage(), photoInstance);
+            controller.save(quatro, getImage(), photoMgr);
         } catch (ValidationException e) {
             List<String> outMensagens = listErrors(e);
             for (String erro : outMensagens) {

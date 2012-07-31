@@ -5,11 +5,11 @@
 <%@ taglib prefix="tracker" uri="http://www.groupwareworkbench.org.br/widgets/tracker" %>
 <%@ taglib prefix="r" uri="http://www.groupwareworkbench.org.br/taglibs/reflection" %>
 
-<%@ attribute name="photoInstance" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.arquigrafia.photo.PhotoMgrInstance" %>
+<%@ attribute name="photoMgr" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.arquigrafia.photo.PhotoMgrInstance" %>
 
 <div id="header">
     <div id="title">
-        <a href="${pageContext.request.contextPath}/photo/${photoInstance.id}/index">
+        <a href="${pageContext.request.contextPath}/photo/${photoMgr.id}/index">
             <img src="${pageContext.request.contextPath}/images/head1_left_top.png" width="350" height="100" alt="Arquigrafia Brasil" />
         </a>
     </div>
@@ -32,10 +32,10 @@
         </div>
     </div>
     <div id="top_links" class="blue_link">
-        <a href="${pageContext.request.contextPath}/photo/${photoInstance.id}/index">In&iacute;cio</a>
+        <a href="${pageContext.request.contextPath}/photo/${photoMgr.id}/index">In&iacute;cio</a>
         &nbsp;|&nbsp;
         <div id="photoUploadContent" style="visibility: hidden; display: none;">
-            <%--iframe id="photoUploadBody" name="photoUploadFrame" style="width: 800px; height: 400px; opacity: 0.95;" id="photoUploadFrame" src="${pageContext.request.contextPath}/photo/${photoInstance.id}/registra"></iframe --%>
+            <%--iframe id="photoUploadBody" name="photoUploadFrame" style="width: 800px; height: 400px; opacity: 0.95;" id="photoUploadFrame" src="${pageContext.request.contextPath}/photo/${photoMgr.id}/registra"></iframe --%>
             <iframe id="photoUploadData" name="photoUploadFrame" style="width: 800px; height: 400px; opacity: 0.95;" id="photoUploadFrame"></iframe>
         </div>
         
@@ -46,7 +46,7 @@
             }
 
             function showPhotoUpload() {
-            	$("#photoUploadData").attr("src","${pageContext.request.contextPath}/photo/${photoInstance.id}/registra");
+            	$("#photoUploadData").attr("src","${pageContext.request.contextPath}/photo/${photoMgr.id}/registra");
                 new Boxy($("#photoUploadContent").html(), {
                     title: "Use o formulário para enviar uma foto.",
                     modal: true,
@@ -77,7 +77,7 @@
         <div id="search_input">
             <ul style="list-style: none">
                 <li style="display: inline">
-                    <photo:simpleSearch photoInstance="${photoInstance}" />
+                    <photo:simpleSearch photoMgr="${photoMgr}" />
                 </li>
                 <li style="display: inline">
                     <div id="search_options1">
@@ -104,7 +104,7 @@
     </div>
     <div id="advancedSearchField" class="mid_blue_text">
         <div>
-            <photo:advancedSearch photoInstance="${photoInstance}" formClass="form1" formLineClass="field_line_f1" formLabelClass="label_f1" formInputClass="input_f1"
+            <photo:advancedSearch photoMgr="${photoMgr}" formClass="form1" formLineClass="field_line_f1" formLabelClass="label_f1" formInputClass="input_f1"
                     formLineBtClass="bt_line_f1" formSubmitBtClass="bt_cell_submit" />
         </div>
         <div></div>

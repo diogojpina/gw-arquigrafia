@@ -58,7 +58,7 @@
               elements="${userList}" />
     </head>
     <body>
-        <arq:header2 photoInstance="${photoMgr}" />
+        <arq:header2 photoMgr="${photoMgr}" />
 
         <div id="corpo" class="default_div">
             <div id="info" class="default_info">
@@ -72,7 +72,7 @@
         </div>
         <div>
             <div style="height: 30px; background-color: #fff"></div>
-            <arq:footer photoInstance="${photoMgr}" />
+            <arq:footer photoMgr="${photoMgr}" />
         </div>
     </body>
 </html>

@@ -63,28 +63,28 @@
         </script>
     </head>
     <body>
-        <arq:header2 photoInstance="${photoMgr}" />
+        <arq:header2 photoMgr="${photoMgr}" />
         <w:conteudoPagina titulo="Busca Fotos">
             <span class="subTitulo">Collablets</span>
             <br />
             <br />
-            <w:menuFerramentas collabletInstance="${photoInstance.collablet}" />
+            <w:menuFerramentas collabletInstance="${photoMgr.collablet}" />
             <br />
             <br />
             <br />
-            <a href="<c:url value="/photo/${photoInstance.id}/registra"/>">Registrar uma nova foto</a>
+            <a href="<c:url value="/photo/${photoMgr.id}/registra"/>">Registrar uma nova foto</a>
             <br />
             <br />
             <div>
                 <h1>Busca de Fotos</h1>
-                <photo:search photoInstance="${photoInstance}" />
+                <photo:search photoMgr="${photoMgr}" />
             </div>
             <div>
-                <photo:list photos="${fotos}" photoInstance="${photoInstance}" showName="true" showLocation="true" />
+                <photo:list photos="${fotos}" photoMgr="${photoMgr}" showName="true" showLocation="true" />
             </div>
             <div>
                 <h1>Lista Fotos</h1>
-                <photo:listAll photoInstance="${photoInstance}" keepRatio="true" />
+                <photo:listAll photoMgr="${photoMgr}" keepRatio="true" />
             </div>
 
             <c:forEach var="error" items="${errors}">
@@ -93,12 +93,12 @@
             </c:forEach>
 
             <div class="barra_botoes">
-                <w:voltar collabletInstance="${photoInstance.collablet}" />
+                <w:voltar collabletInstance="${photoMgr.collablet}" />
             </div>
         </w:conteudoPagina>
         <div>
             <div style="height: 30px; background-color: #fff"></div>
-            <arq:footer photoInstance="${photoMgr}" />
+            <arq:footer photoMgr="${photoMgr}" />
         </div>
     </body>
 </html>

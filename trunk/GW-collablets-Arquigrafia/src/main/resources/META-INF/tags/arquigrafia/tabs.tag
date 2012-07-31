@@ -4,6 +4,9 @@
 <%@ taglib prefix="p" uri="http://www.groupwareworkbench.org.br/widgets/photomanager" %>
 
 <%@ attribute name="arquigrafiaInstance" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.arquigrafia.main.ArquigrafiaMgrInstance" %>
+<%@ attribute name="counterMgr" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.collablet.coord.counter.CounterMgrInstance" %>
+<%@ attribute name="photoMgr" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.arquigrafia.photo.PhotoMgrInstance" %>
+<%@ attribute name="commentMgr" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.collablet.communic.comment.CommentMgrInstance" %>
 
 	  <!--   BARRA DE ABAS   -->
 	  <ul class="tabs">
@@ -38,7 +41,7 @@
 			<div class="images_line" id="images_line_1">  
 			  
 		  		<!--   IMAGENS - (RODAPÉ)   -->
-		  		<p:listLastPhotos photoInstance="${photoMgr}" amount="24" />
+		  		<p:listLastPhotos photoMgr="${photoMgr}" amount="24" />
 		  				
 		  	</div>
 		  	
@@ -59,4 +62,4 @@
 	  </div>
 	  <!--   FIM - BARRA DE IMAGENS - (RODAPÉ)   -->
 	  
-	   <p:countAllPhotos photoInstance="${photoMgr}" />
+	   <p:countAllPhotos photoMgr="${photoMgr}" />

@@ -38,7 +38,7 @@
     <!--   MEIO DO SITE - ÁREA DE NAVEGAÇÃO   -->
     <div id="content">
       <!--   PAINEL DE IMAGENS - GALERIA - CARROSSEL   -->
-      <arquigrafia:randomWall photoInstance="${photoMgr}" columns="3" amount="15" />
+      <arquigrafia:randomWall photoMgr="${photoMgr}" columns="3" amount="15" />
       <!--   FIM - PAINEL DE IMAGENS  -->
 
       <!--   ÁREA DE TAGS   -->
@@ -49,7 +49,7 @@
     <!--   FUNDO DO SITE   -->
     <div id="footer">
 	  <!--   BARRA DE ABAS   -->
-	  <arquigrafia:tabs arquigrafiaInstance="${arquigrafiaMgr}" />
+	  <arquigrafia:tabs counterMgr="${counterMgr}" photoMgr="${photoMgr}" commentMgr="${commentMgr}" arquigrafiaInstance="${arquigrafiaMgr}" />
 	  <!--   FIM - BARRA DE IMAGENS - (RODAPÉ)   -->
 	  
 	  

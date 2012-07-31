@@ -47,7 +47,7 @@
          </div>
          <br />
          <div id="search_scroll">
-             <p:list photos="${fotos}" photoInstance="${photoInstance}" showName="true" showLocation="false" lineClass="search_line"/>
+             <p:list photos="${fotos}" photoMgr="${photoMgr}" showName="true" showLocation="false" lineClass="search_line"/>
          </div>
 
 
@@ -61,14 +61,14 @@
          </div>
          <br />
          <div id="search_scroll">
-             <p:searchByTag photoInstance="${photoMgr}" idList="${tag.taggedObjects}" />
+             <p:searchByTag photoMgr="${photoMgr}" idList="${tag.taggedObjects}" />
          </div>
 
              <!--   FIM - MEIO DO SITE   -->
     <!--   FUNDO DO SITE   -->
     <div id="footer">
 	  <!--   BARRA DE ABAS   -->
-	  <arquigrafia:tabs arquigrafiaInstance="${arquigrafiaMgr}" />
+	  <arquigrafia:tabs counterMgr="${counterMgr}" photoMgr="${photoMgr}" commentMgr="${commentMgr}" arquigrafiaInstance="${arquigrafiaMgr}" />
 	  <!--   FIM - BARRA DE IMAGENS - (RODAPÉ)   -->
 	  
 	  

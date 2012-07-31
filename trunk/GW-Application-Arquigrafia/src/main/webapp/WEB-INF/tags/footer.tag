@@ -5,7 +5,7 @@
 <%@ taglib prefix="photo" uri="http://www.groupwareworkbench.org.br/widgets/photomanager" %>
 <%@ taglib prefix="arq" tagdir="/WEB-INF/tags" %>
 
-<%@ attribute name="photoInstance" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.arquigrafia.photo.PhotoMgrInstance" %>
+<%@ attribute name="photoMgr" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.arquigrafia.photo.PhotoMgrInstance" %>
 
 <div id="footer_wrap">
     <div style="float: left; margin-left: 20px;margin-top: 20px; ">
@@ -14,7 +14,7 @@
     </div>
 
     <c:if test="${tagMgr.collablet.enabled}">
-        <tag:tagCloud tagMgr="${tagMgr}" collabletInstance="${photoInstance.collablet}" />
+        <tag:tagCloud tagMgr="${tagMgr}" collabletInstance="${photoMgr.collablet}" />
     </c:if>
 
     <div id="footer_carrousel_wrap">
@@ -31,7 +31,7 @@
                 <div class="scrollWrapper">
                     <div id="footer_scroll_list" class="scrollableArea" >
                         <%-- Modelo para inserção de imagens aqui. --%>
-                        <photo:listPage linkClass="" photoInstance="${photoInstance}" keepRatio="true" pageSize="15" pageNumber="0" showInDiv="true"/>
+                        <photo:listPage linkClass="" photoMgr="${photoMgr}" keepRatio="true" pageSize="15" pageNumber="0" showInDiv="true"/>
                     </div>
                 </div>
                 </div>

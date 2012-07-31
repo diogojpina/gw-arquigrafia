@@ -59,7 +59,7 @@
    <!--   FUNDO DO SITE   -->
     <div id="footer">
 	  <!--   BARRA DE ABAS   -->
-	  <arquigrafia:tabs arquigrafiaInstance="${arquigrafiaMgr}" />
+	  <arquigrafia:tabs counterMgr="${counterMgr}" photoMgr="${photoMgr}" commentMgr="${commentMgr}" arquigrafiaInstance="${arquigrafiaMgr}" />
 	  <!--   FIM - BARRA DE IMAGENS - (RODAPÉ)   -->
 	  
 	  

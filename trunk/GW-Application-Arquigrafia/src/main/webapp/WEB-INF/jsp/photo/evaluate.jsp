@@ -171,7 +171,7 @@
           
           
           <!-- img src="img/photos/8806.jpg" class="single_view_image" width="600" height="410" /-->
-          <p:show clazz="single_view_image" style="width: 600px; height:410px"  foto="${photo}" photoInstance="${photoInstance}"/>
+          <p:show clazz="single_view_image" style="width: 600px; height:410px"  foto="${photo}" photoMgr="${photoMgr}"/>
           
           
           <hr />
@@ -265,7 +265,7 @@
     <!--   FUNDO DO SITE   -->
     <div id="footer">
 	  <!--   BARRA DE ABAS   -->
-	  <arquigrafia:tabs arquigrafiaInstance="${arquigrafiaMgr}" />
+	  <arquigrafia:tabs counterMgr="${counterMgr}" photoMgr="${photoMgr}" commentMgr="${commentMgr}" arquigrafiaInstance="${arquigrafiaMgr}" />
 	  <!--   FIM - BARRA DE IMAGENS - (RODAPÉ)   -->
 	  
 	  

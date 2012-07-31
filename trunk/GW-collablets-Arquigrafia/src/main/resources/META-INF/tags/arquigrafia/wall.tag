@@ -3,15 +3,15 @@
 <%@ taglib prefix="r"
 uri="http://www.groupwareworkbench.org.br/taglibs/reflection"%>
 
-<%@ attribute name="photoInstance" required="true" rtexprvalue="true"
+<%@ attribute name="photoMgr" required="true" rtexprvalue="true"
        type="br.org.groupwareworkbench.arquigrafia.photo.PhotoMgrInstance"%>
 <%@ attribute name="amount" required="false" rtexprvalue="false"
 type="java.lang.Integer" %>
 <%@ attribute name="columns" required="false" rtexprvalue="false"
 type="java.lang.Integer" %>
 
-<c:if test="${photoInstance.collablet.enabled}">
-       <r:callMethod methodName="listLastPhotos" instance="${photoInstance}"
+<c:if test="${photoMgr.collablet.enabled}">
+       <r:callMethod methodName="listLastPhotos" instance="${photoMgr}"
 var="photos" >
        <r:param type="java.lang.Integer" value="${amount}" />
        </r:callMethod>

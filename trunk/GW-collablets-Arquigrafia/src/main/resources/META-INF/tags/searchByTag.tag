@@ -2,10 +2,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="r" uri="http://www.groupwareworkbench.org.br/taglibs/reflection" %>
 
-<%@ attribute name="photoInstance" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.arquigrafia.photo.PhotoMgrInstance" %>
+<%@ attribute name="photoMgr" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.arquigrafia.photo.PhotoMgrInstance" %>
 <%@ attribute name="idList" required="true" type="java.util.Collection" %>
 
-<r:callMethod methodName="buscaFotoPorListaId" instance="${photoInstance}" var="photos">
+<r:callMethod methodName="buscaFotoPorListaId" instance="${photoMgr}" var="photos">
     <r:param type="java.util.List" value="${idList}" />
 </r:callMethod>        
         

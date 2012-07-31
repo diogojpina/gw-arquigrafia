@@ -63,7 +63,7 @@
     </head>
     <body>
         <div id="wrap">
-            <arq:header2 photoInstance="${photoMgr}" />
+            <arq:header2 photoMgr="${photoMgr}" />
 
             <div id="main_section">
                 <div id="makeMeScrollable" style="border-style: solid; border-width: thin; border-color: #666; padding-left: 0px; height: 500px;">
@@ -73,7 +73,7 @@
                         <div class="scrollableArea">
                             <div class="wallBackground">
                                 <c:forEach begin="0" end="21" var="indice">
-                                    <photo:listPage linkClass="" photoInstance="${photoMgr}" keepRatio="false" showInDiv="true" divClass="wallImage" pageSize="5" pageNumber="${indice}" wrapClass="imageColumn" />
+                                    <photo:listPage linkClass="" photoMgr="${photoMgr}" keepRatio="false" showInDiv="true" divClass="wallImage" pageSize="5" pageNumber="${indice}" wrapClass="imageColumn" />
                                 </c:forEach>
                             </div>
                             <div class="image_line">
@@ -90,7 +90,7 @@
                 </div>
             </div>
             <div style="height: 30px; background-color: #fff"></div>
-            <arq:footer photoInstance="${photoMgr}" />
+            <arq:footer photoMgr="${photoMgr}" />
         </div>
     </body>
 </html>

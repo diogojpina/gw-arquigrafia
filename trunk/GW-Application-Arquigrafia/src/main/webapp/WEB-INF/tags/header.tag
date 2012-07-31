@@ -3,7 +3,7 @@
 <%@ taglib prefix="w" uri="http://www.groupwareworkbench.org.br/widgets/commons" %>
 <%@ taglib prefix="photo" uri="http://www.groupwareworkbench.org.br/widgets/photomanager" %>
 
-<%@ attribute name="photoInstance" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.arquigrafia.photo.PhotoMgrInstance" %>
+<%@ attribute name="photoMgr" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.arquigrafia.photo.PhotoMgrInstance" %>
 
 <div class="backgrounded_bay" id="bay">
     <div>
@@ -35,4 +35,4 @@
         <a href="#know_more"><span>Registrar-se</span></a>
     </div>
 </div>
-<photo:simpleSearch photoInstance="${photoInstance}" />
+<photo:simpleSearch photoMgr="${photoMgr}" />

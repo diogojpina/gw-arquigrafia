@@ -54,7 +54,7 @@
         </script>
     </head>
     <body style="margin: 0px; background: url(../../../images/header_bg.jpg) no-repeat scroll 0 0 transparent;">
-        <arq:header2 photoInstance="${photoMgr}" />
+        <arq:header2 photoMgr="${photoMgr}" />
         <div id="corpo" class="default_div">
             <div id="info" class="default_info">
                 <div id="top_links" class="blue_link"></div>
@@ -79,7 +79,7 @@
         </div>
         <div>
             <div style="height: 30px; background-color: #fff"></div>
-            <arq:footer photoInstance="${photoMgr}" />
+            <arq:footer photoMgr="${photoMgr}" />
         </div>
     </body>
 </html>

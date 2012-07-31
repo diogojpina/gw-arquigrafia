@@ -47,7 +47,7 @@
         </script>
     </head>
     <body>
-        <arq:header2 photoInstance="${photoMgr}" />
+        <arq:header2 photoMgr="${photoMgr}" />
         <w:conteudoPagina titulo="Bin&ocirc;mios">
             <form method="post" action="<c:url value="/groupware-workbench/binomials/${binomialMgr.id}" />" accept-charset="UTF-8">
                 <input type="hidden" name="binomial.id" value="<c:out value="${binomial.id}" />" />
@@ -113,7 +113,7 @@
         </w:conteudoPagina>
         <div>
             <div style="height: 30px; background-color: #fff"></div>
-            <arq:footer photoInstance="${photoMgr}" />
+            <arq:footer photoMgr="${photoMgr}" />
         </div>
     </body>
 </html>

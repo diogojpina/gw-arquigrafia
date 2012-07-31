@@ -35,7 +35,7 @@
     </head>
     <body>
         <div id="wrap">
-            <arq:header2 photoInstance="${photoMgr}" />
+            <arq:header2 photoMgr="${photoMgr}" />
             <div class="default_div">
                 <h1>Componentes do Reposit&oacute;rio</h1>
                 <a href="<c:url value="/groupware-workbench/repository/${componentRepository.id}/new" />">Cadastrar novo componente</a>
@@ -81,7 +81,7 @@
                 </table>
             </div>
             <div style="height:30px;background-color:#fff;">&nbsp;</div>
-            <arq:footer photoInstance="${photoMgr}" />
+            <arq:footer photoMgr="${photoMgr}" />
         </div>
     </body>
 </html>

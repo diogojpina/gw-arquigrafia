@@ -61,7 +61,7 @@
     </head>
     <body>
         <div id="wrap">
-            <arq:header2 photoInstance="${photoMgr}" />
+            <arq:header2 photoMgr="${photoMgr}" />
 			<div class="default_div">
 			    <h1>TrackingInfo</h1>
 			    <table border="1">
@@ -92,7 +92,7 @@
 			    <div id="mapa"></div>
 			</div>
             <div style="height: 30px; background-color: #fff;">&nbsp;</div>
-            <arq:footer photoInstance="${photoMgr}" />
+            <arq:footer photoMgr="${photoMgr}" />
         </div>
     </body>
 </html>

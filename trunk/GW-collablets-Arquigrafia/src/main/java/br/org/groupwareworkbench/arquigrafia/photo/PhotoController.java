@@ -83,21 +83,21 @@ public class PhotoController {
     }
 
     @Get
-    @Path(value = "/photo/{photoInstance}/index")
-    public void index(PhotoMgrInstance photoInstance) {
-        addIncludes(photoInstance);
+    @Path(value = "/photo/{photoMgr}/index")
+    public void index(PhotoMgrInstance photoMgr) {
+        addIncludes(photoMgr);
     }
 
     @Get
-    @Path(value = "/photo/{photoInstance}/upload")
-    public void upload(PhotoMgrInstance photoInstance) {
+    @Path(value = "/photo/{photoMgr}/upload")
+    public void upload(PhotoMgrInstance photoMgr) {
         Photo p = new Photo();
-        p.setCollablet(photoInstance.getCollablet());
+        p.setCollablet(photoMgr.getCollablet());
         result.include("allowModificationsList", Photo.AllowModifications.values());
         result.include("allowCommercialUsesList", Photo.AllowCommercialUses.values());
         result.include("photo", p);
         
-        addIncludes(photoInstance);
+        addIncludes(photoMgr);
     }
     
     @Get
@@ -170,9 +170,9 @@ public class PhotoController {
 //        }
 //    }
 
-    private void addIncludes(PhotoMgrInstance photoInstance) {
-        result.include("photoInstance", photoInstance);
-        photoInstance.getCollablet().includeDependencies(result);
+    private void addIncludes(PhotoMgrInstance photoMgr) {
+        result.include(photoMgr.getCollablet().getName(), photoMgr);
+        photoMgr.getCollablet().includeDependencies(result);
     }
 
     // FIXME: @Get e @Post ao mesmo tempo? Separar as duas coisas. Não é idempotente.
@@ -204,11 +204,11 @@ public class PhotoController {
         log.log("6");
         result.include("photo", photo);
         log.log("7");
-        PhotoMgrInstance photoInstance = (PhotoMgrInstance) photo.getCollablet().getBusinessObject();
+        PhotoMgrInstance photoMgr = (PhotoMgrInstance) photo.getCollablet().getBusinessObject();
         log.log("8");
-        addIncludes(photoInstance);
+        addIncludes(photoMgr);
         log.log("9");
-        photoInstance.getCollablet().processWidgets(info, photo);
+        photoMgr.getCollablet().processWidgets(info, photo);
         log.log("10");
         result.use(Results.representation()).from(photo).serialize();
         log.log("11");
@@ -230,17 +230,17 @@ public class PhotoController {
             
         result.include("idPhoto", idPhoto);
         result.include("photo", photo);
-        PhotoMgrInstance photoInstance = (PhotoMgrInstance) photo.getCollablet().getBusinessObject();
-        addIncludes(photoInstance);
-        photoInstance.getCollablet().processWidgets(info, photo);
+        PhotoMgrInstance photoMgr = (PhotoMgrInstance) photo.getCollablet().getBusinessObject();
+        addIncludes(photoMgr);
+        photoMgr.getCollablet().processWidgets(info, photo);
         result.use(Results.representation()).from(photo).serialize();
     }
     
     @SuppressWarnings("unchecked")
     @Get
-    @Path(value = "/photo/{photoInstance}/list")
-    public void busca(PhotoMgrInstance photoInstance) {
-        addIncludes(photoInstance);
+    @Path(value = "/photo/{photoMgr}/list")
+    public void busca(PhotoMgrInstance photoMgr) {
+        addIncludes(photoMgr);
 
         // FIXME: adicionar a condição do header accepts-content
         // Melhor seria achar um jeito do vRaptor reportar esse estado, ao invés da aplicação refazer essa checagem
@@ -254,53 +254,53 @@ public class PhotoController {
         if (xmlRequest) {
             result.use(Results.representation()).from((List<Photo>) result.included().get("fotos")).serialize();
         } else {
-            result.of(this).busca(photoInstance);
+            result.of(this).busca(photoMgr);
         }
     }
 
     @Post
-    @Path(value = "/photo/{photoInstance}/buscaTag/{tagName}")
-    public void buscaFotoPorId(String tagName, List<Object> photos, PhotoMgrInstance photoInstance) {
-        List<Photo> resultFotosBusca = photoInstance.buscaFotoPorListaId(photos);
+    @Path(value = "/photo/{photoMgr}/buscaTag/{tagName}")
+    public void buscaFotoPorId(String tagName, List<Object> photos, PhotoMgrInstance photoMgr) {
+        List<Photo> resultFotosBusca = photoMgr.buscaFotoPorListaId(photos);
 
         result.use(Results.representation()).from(resultFotosBusca).serialize();
         result.include("fotos", resultFotosBusca);
         result.include("tagTerm", tagName);
         result.include("numResults", resultFotosBusca.size());
 
-        addIncludes(photoInstance);
+        addIncludes(photoMgr);
 
-        result.use(Results.logic()).forwardTo(PhotoController.class).busca(photoInstance);
+        result.use(Results.logic()).forwardTo(PhotoController.class).busca(photoMgr);
     }
 
     @Post
-    @Path(value = "/photo/{photoInstance}/busca")
-    public void buscaFoto(String busca, PhotoMgrInstance photoInstance) {
+    @Path(value = "/photo/{photoMgr}/busca")
+    public void buscaFoto(String busca, PhotoMgrInstance photoMgr) {
         if (busca.length() < 3) {
             validator.add(new ValidationMessage(MSG_MIN_3_LETRAS, "Erro"));
-            validator.onErrorUse(Results.logic()).forwardTo(PhotoController.class).busca(photoInstance);
+            validator.onErrorUse(Results.logic()).forwardTo(PhotoController.class).busca(photoMgr);
             return;
         }
 
-        List<Photo> resultFotosBusca = photoInstance.buscaFoto(busca);
+        List<Photo> resultFotosBusca = photoMgr.buscaFoto(busca);
 
         result.include("fotos", resultFotosBusca);
         result.include("searchTerm", busca);
 
-        addIncludes(photoInstance);
-        result.use(Results.logic()).forwardTo(PhotoController.class).busca(photoInstance);
+        addIncludes(photoMgr);
+        result.use(Results.logic()).forwardTo(PhotoController.class).busca(photoMgr);
     }
 
     @Post
-    @Path(value = "/photo/{photoInstance}/buscaA")
-    public void buscaFotoAvancada(String nome, String descricao, String lugar, Date date, PhotoMgrInstance photoInstance) {
+    @Path(value = "/photo/{photoMgr}/buscaA")
+    public void buscaFotoAvancada(String nome, String descricao, String lugar, Date date, PhotoMgrInstance photoMgr) {
         if (nome.isEmpty() && descricao.isEmpty() && lugar.isEmpty() && date == null) {
             validator.add(new ValidationMessage(MSG_NENHUM_CAMPO_PREENCHIDO, "Erro"));
-            validator.onErrorUse(Results.logic()).forwardTo(PhotoController.class).busca(photoInstance);
+            validator.onErrorUse(Results.logic()).forwardTo(PhotoController.class).busca(photoMgr);
             return;
         }
 
-        List<Photo> resultFotosBusca = photoInstance.buscaFotoAvancada(nome, lugar, descricao, date);
+        List<Photo> resultFotosBusca = photoMgr.buscaFotoAvancada(nome, lugar, descricao, date);
         result.include("fotos", resultFotosBusca);
 
         StringBuilder term = new StringBuilder();
@@ -321,27 +321,27 @@ public class PhotoController {
         }
         result.include("searchTerm", term.toString());
 
-        addIncludes(photoInstance);
-        result.use(Results.logic()).forwardTo(PhotoController.class).busca(photoInstance);
+        addIncludes(photoMgr);
+        result.use(Results.logic()).forwardTo(PhotoController.class).busca(photoMgr);
     }
 
     // TODO: Achar uma forma de fazer isto sem ter o photo na URL.
     @Get
-    @Path(value = "/photo/{photoInstance}/registra")
-    public void registra(PhotoMgrInstance photoInstance, Photo photo) {
+    @Path(value = "/photo/{photoMgr}/registra")
+    public void registra(PhotoMgrInstance photoMgr, Photo photo) {
         Photo newPhoto = photo;
         if (newPhoto == null) {
             newPhoto = new Photo();
         }
-        newPhoto.setCollablet(photoInstance.getCollablet());
+        newPhoto.setCollablet(photoMgr.getCollablet());
         newPhoto.setDataUpload(new Date());
         result.include("photoRegister", newPhoto);
-        addIncludes(photoInstance);
+        addIncludes(photoMgr);
     }
 
     @Post
-    @Path(value = "/photo/{photoInstance}/registra")
-    public void save(Photo photoRegister, UploadedFile foto, PhotoMgrInstance photoInstance ) {
+    @Path(value = "/photo/{photoMgr}/registra")
+    public void save(Photo photoRegister, UploadedFile foto, PhotoMgrInstance photoMgr ) {
 
         System.out.println("nome => " + photoRegister.getName());
         System.out.println("AllowCommercialUses => " + photoRegister.getAllowCommercialUses());
@@ -365,7 +365,7 @@ public class PhotoController {
         if (foto == null) {
             validator.add(new ValidationMessage(MSG_IMAGEM_OBRIGATORIA, "Erro"));
             validator.onErrorUse(Results.logic()).redirectTo(GroupwareInitController.class).init();
-            //redirectTo(PhotoController.class).registra(photoInstance, photoRegister);
+            //redirectTo(PhotoController.class).registra(photoMgr, photoRegister);
             return;
         }
 
@@ -380,16 +380,16 @@ public class PhotoController {
         }
 
         try {
-            photoInstance.save(photoRegister);
+            photoMgr.save(photoRegister);
             photoRegister.saveImage(foto.getFile());
         } catch (RuntimeException e) {
             validator.add(new ValidationMessage(e.getMessage(), "Erro"));
             validator.onErrorUse(Results.logic()).redirectTo(GroupwareInitController.class).init();
-            //redirectTo(PhotoController.class).registra(photoInstance, photoRegister);
+            //redirectTo(PhotoController.class).registra(photoMgr, photoRegister);
             return;
         }
 
-        photoInstance.getCollablet().processWidgets(info, photoRegister);
+        photoMgr.getCollablet().processWidgets(info, photoRegister);
 
         // FIXME: adicionar a condição do header accepts-content
         // Melhor seria achar um jeito do vRaptor reportar esse estado, ao invés da aplicação refazer essa checagem
@@ -403,18 +403,18 @@ public class PhotoController {
         if (xmlRequest) {
             result.use(Results.representation()).from(photoRegister).serialize();
         } else {
-            addIncludes(photoInstance);
+            addIncludes(photoMgr);
             result.include("successMessage", MSG_SUCCESS);
             validator.add(new ValidationMessage("Imagem adicionada com sucesso.", "Upload finalizado"));
             validator.onErrorUse(Results.logic()).redirectTo(GroupwareInitController.class).init();
             result.use(logic()).redirectTo(GroupwareInitController.class).init();
-            //result.use(Results.logic()).redirectTo(PhotoController.class).registra(photoInstance, new Photo());
+            //result.use(Results.logic()).redirectTo(PhotoController.class).registra(photoMgr, new Photo());
         }
     }
 
     @Get
-    @Path(value = "/photo/{photoInstance}/edit/{idPhoto}")
-    public void edit(PhotoMgrInstance photoInstance, final long idPhoto) {
+    @Path(value = "/photo/{photoMgr}/edit/{idPhoto}")
+    public void edit(PhotoMgrInstance photoMgr, final long idPhoto) {
         
         Photo photo = Photo.findById(idPhoto);
         if (photo == null|| photo.getDeleted() ) {
@@ -424,15 +424,15 @@ public class PhotoController {
         Collablet collablet = photo.getCollablet();
         result.include("photoRegister", photo);
         result.include("userOwn", photo.getUsers().get(0));
-        result.include("photoMgr", photoInstance);
+        result.include("photoMgr", photoMgr);
         collablet.includeDependencies(result);
-        addIncludes(photoInstance);
+        addIncludes(photoMgr);
         result.use(Results.representation()).from(photo).serialize();
     }
     
     @Post
-    @Path(value = "/photo/{photoInstance}/update")
-    public void update(Photo photoRegister, PhotoMgrInstance photoInstance, User userOwn) {
+    @Path(value = "/photo/{photoMgr}/update")
+    public void update(Photo photoRegister, PhotoMgrInstance photoMgr, User userOwn) {
         User user = null;
         try {
             user = (User) session.getAttribute("userLogin");
@@ -445,15 +445,15 @@ public class PhotoController {
         }
         
         try {
-            photoInstance.save(photoRegister);
+            photoMgr.save(photoRegister);
         } catch (RuntimeException e) {
             validator.add(new ValidationMessage(e.getMessage(), "Erro"));
             validator.onErrorUse(Results.logic()).redirectTo(PhotoController.class)
-                    .registra(photoInstance, photoRegister);
+                    .registra(photoMgr, photoRegister);
             return;
         }
-        photoInstance.getCollablet().processWidgets(info, photoRegister);
-        addIncludes(photoInstance);
+        photoMgr.getCollablet().processWidgets(info, photoRegister);
+        addIncludes(photoMgr);
         result.include("successMessage", MSG_SUCCESS);
         result.use(Results.logic()).redirectTo(PhotoController.class).show(photoRegister.getId());
     }
@@ -491,13 +491,13 @@ public class PhotoController {
 //            return;
 //        }
 //        photo.delete();
-        PhotoMgrInstance photoInstance = (PhotoMgrInstance) photo.getCollablet().getBusinessObject();
-        addIncludes(photoInstance);
+        PhotoMgrInstance photoMgr = (PhotoMgrInstance) photo.getCollablet().getBusinessObject();
+        addIncludes(photoMgr);
     }
     
     @Get
-    @Path(value = "/photo/{photoInstance}/registra_multiplos/{os}/{dir}")
-    public void registraMultiplos(String os, String dir, PhotoMgrInstance photoInstance) {
+    @Path(value = "/photo/{photoMgr}/registra_multiplos/{os}/{dir}")
+    public void registraMultiplos(String os, String dir, PhotoMgrInstance photoMgr) {
 
         // TODO: Não deveria depender em saber qual é o sistema operacional.
         String pDir = dir.replace("|", "/");
@@ -523,7 +523,7 @@ public class PhotoController {
                     Photo imagem = new Photo();
                     imagem.setName(name);
                     imagem.setNomeArquivo(nomeArquivo);
-                    photoInstance.save(imagem);
+                    photoMgr.save(imagem);
                     imagem.saveImage(input);
                 } finally {
                     if (input != null) input.close();
@@ -542,9 +542,9 @@ public class PhotoController {
             validator.add(new ValidationMessage(MSG_ENTIDADE_INVALIDA, "Erro"));
             return;
         }
-        PhotoMgrInstance photoInstance = (PhotoMgrInstance) photo.getCollablet().getBusinessObject();
+        PhotoMgrInstance photoMgr = (PhotoMgrInstance) photo.getCollablet().getBusinessObject();
         photo.delete();
-        addIncludes(photoInstance);
+        addIncludes(photoMgr);
     }
 
     @Get
@@ -582,8 +582,8 @@ public class PhotoController {
     
     
     @Post
-    @Path(value = "/photo/{photoInstance}/savePhotoProfile")
-    public void savePhotoProfile(Photo photoRegister, UploadedFile foto, PhotoMgrInstance photoInstance ) {
+    @Path(value = "/photo/{photoMgr}/savePhotoProfile")
+    public void savePhotoProfile(Photo photoRegister, UploadedFile foto, PhotoMgrInstance photoMgr ) {
 
         photoRegister.setNomeArquivo(foto == null ? null : foto.getFileName());
         result.include("photoRegister", photoRegister);
@@ -606,7 +606,7 @@ public class PhotoController {
 
         try {
             
-            photoInstance.save(photoRegister);
+            photoMgr.save(photoRegister);
             photoRegister.saveImage(foto.getFile());
             
             //atualiza o usuario
@@ -616,12 +616,12 @@ public class PhotoController {
             
             validator.add(new ValidationMessage(e.getMessage(), "Erro"));
             validator.onErrorUse(Results.logic()).redirectTo(GroupwareInitController.class).init();
-            //redirectTo(PhotoController.class).registra(photoInstance, photoRegister);
+            //redirectTo(PhotoController.class).registra(photoMgr, photoRegister);
             return;
             
         }
 
-        photoInstance.getCollablet().processWidgets(info, photoRegister);
+        photoMgr.getCollablet().processWidgets(info, photoRegister);
 
         // FIXME: adicionar a condição do header accepts-content
         // Melhor seria achar um jeito do vRaptor reportar esse estado, ao invés da aplicação refazer essa checagem
@@ -635,7 +635,7 @@ public class PhotoController {
         if (xmlRequest) {
             result.use(Results.representation()).from(photoRegister).serialize();
         } else {
-            addIncludes(photoInstance);
+            addIncludes(photoMgr);
             result.include("successMessage", MSG_SUCCESS);
             validator.add(new ValidationMessage("Imagem adicionada com sucesso.", "Upload finalizado"));
             validator.onErrorUse(Results.logic()).redirectTo(GroupwareInitController.class).init();
@@ -645,23 +645,23 @@ public class PhotoController {
     }
     
     @Get
-    @Path(value = "/photo/{photoInstance}/savePhotoProfile")
-    public void savePhotoProfile(PhotoMgrInstance photoInstance, Photo photo) {
+    @Path(value = "/photo/{photoMgr}/savePhotoProfile")
+    public void savePhotoProfile(PhotoMgrInstance photoMgr, Photo photo) {
         Photo newPhoto = photo;
         if (newPhoto == null) {
             newPhoto = new Photo();
         }
-        newPhoto.setCollablet(photoInstance.getCollablet());
+        newPhoto.setCollablet(photoMgr.getCollablet());
         newPhoto.setDataUpload(new Date());
         result.include("photoRegister", newPhoto);
-        addIncludes(photoInstance);
+        addIncludes(photoMgr);
     }
     
     private void photoNotFound(Photo photo) {
         
         if ( photo != null ) {
-            PhotoMgrInstance photoInstance = (PhotoMgrInstance) photo.getCollablet().getBusinessObject();
-            addIncludes(photoInstance);
+            PhotoMgrInstance photoMgr = (PhotoMgrInstance) photo.getCollablet().getBusinessObject();
+            addIncludes(photoMgr);
         }
                 
         result.notFound();

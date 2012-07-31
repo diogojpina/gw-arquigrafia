@@ -49,6 +49,6 @@
         </script>
     </head>
     <body>
-        <arq:register photoRegister="${photoRegister}" tagMgr="${tagMgr}" photoInstance="${photoInstance}" />
+        <arq:register photoRegister="${photoRegister}" tagMgr="${tagMgr}" photoMgr="${photoMgr}" />
     </body>
 </html>

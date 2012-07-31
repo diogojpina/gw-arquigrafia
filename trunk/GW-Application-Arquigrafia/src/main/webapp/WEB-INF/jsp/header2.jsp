@@ -46,7 +46,7 @@
 		&nbsp;|&nbsp;
 		<div id="photoUploadContent"
 			style="visibility: hidden; display: none;">
-			<%--iframe id="photoUploadBody" name="photoUploadFrame" style="width: 800px; height: 400px; opacity: 0.95;" id="photoUploadFrame" src="${pageContext.request.contextPath}/photo/${photoInstance.id}/registra"></iframe --%>
+			<%--iframe id="photoUploadBody" name="photoUploadFrame" style="width: 800px; height: 400px; opacity: 0.95;" id="photoUploadFrame" src="${pageContext.request.contextPath}/photo/${photoMgr.id}/registra"></iframe --%>
 			<iframe id="photoUploadData" name="photoUploadFrame"
 				style="width: 800px; height: 400px; opacity: 0.95;"
 				id="photoUploadFrame"></iframe>
@@ -59,7 +59,7 @@
             }
 
             function showPhotoUpload() {
-            	$("#photoUploadData").attr("src","${pageContext.request.contextPath}/photo/${photoInstance.id}/registra");
+            	$("#photoUploadData").attr("src","${pageContext.request.contextPath}/photo/${photoMgr.id}/registra");
                 new Boxy($("#photoUploadContent").html(), {
                     title: "Use o formulário para enviar uma foto.",
                     modal: true,
@@ -114,7 +114,7 @@
 		<div id="search_input">
 			<ul style="list-style: none">
 				<li style="display: inline"><photo:simpleSearch
-						photoInstance="${photoMgr}" /></li>
+						photoMgr="${photoMgr}" /></li>
 				<li style="display: inline">
 					<div id="search_options1">
 						<!-- <span class="option_on">Texto</span>
@@ -135,7 +135,7 @@
 	</div>
 	<div id="advancedSearchField" class="mid_blue_text">
 		<div>
-			<photo:advancedSearch photoInstance="${photoMgr}" formClass="form1"
+			<photo:advancedSearch photoMgr="${photoMgr}" formClass="form1"
 				formLineClass="field_line_f1" formLabelClass="label_f1"
 				formInputClass="input_f1" formLineBtClass="bt_line_f1"
 				formSubmitBtClass="bt_cell_submit" />

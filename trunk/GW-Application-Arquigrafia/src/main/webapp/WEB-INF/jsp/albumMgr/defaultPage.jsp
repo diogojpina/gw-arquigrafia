@@ -62,7 +62,7 @@
     </script>
     </head>
     <body>
-        <arq:header2 photoInstance="${photoMgr}" />
+        <arq:header2 photoMgr="${photoMgr}" />
         <div class="default_div">
         <div class="main">
             <div class="text list-albums-frame">
@@ -79,6 +79,6 @@
             </div>
         </div>
         </div>
-        <arq:footer photoInstance="${photoMgr}" />
+        <arq:footer photoMgr="${photoMgr}" />
     </body>
 </html>

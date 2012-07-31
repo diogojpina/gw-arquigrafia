@@ -67,7 +67,7 @@
             <div class="barra_botoes">
                 <span class="login_link">
                     <a href="<c:url value="/groupware-workbench/users/${userMgr.id}/login" />">Voltar</a>
-                    <%-- <w:voltar collabletInstance="${photoInstance.collablet}" /> --%>
+                    <%-- <w:voltar collabletInstance="${photoMgr.collablet}" /> --%>
                 </span>
             </div>
         </w:conteudoPagina>

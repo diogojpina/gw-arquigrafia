@@ -54,7 +54,7 @@
         </script>
     </head>
     <body>
-        <arq:header2 photoInstance="${photoMgr}" />
+        <arq:header2 photoMgr="${photoMgr}" />
         <div class="default_div">
         <br />
         <span class="big_black_title" style="text-align: right; margin-left:10px;" >Usu&aacute;rios do sistema</span>

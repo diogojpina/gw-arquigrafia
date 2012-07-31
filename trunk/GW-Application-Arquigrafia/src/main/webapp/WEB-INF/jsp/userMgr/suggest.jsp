@@ -71,7 +71,7 @@
     </head>
     <body>
         <div id="wrap">
-            <arq:header2 photoInstance="${photoMgr}" />
+            <arq:header2 photoMgr="${photoMgr}" />
             <div id="corpo" class="default_div">
                 <form id="form1" class="cmxform" name="formulario" method="POST" action="<c:url value="/groupware-workbench/user/${userMgr.id}/sendEmail/${userLogin.id}" />" accept-charset="UTF-8" onSubmit="return validaForm()" autocomplete="off">
                     <div id="info" class="default_info">
@@ -103,7 +103,7 @@
                 </form>
             </div>
             <div style="height: 30px; background-color: #fff"></div>
-            <arq:footer photoInstance="${photoMgr}" />
+            <arq:footer photoMgr="${photoMgr}" />
         </div>
     </body>
 </html>

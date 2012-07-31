@@ -3,10 +3,10 @@
 <%@ taglib prefix="r" uri="http://www.groupwareworkbench.org.br/taglibs/reflection"%>
 <%@ taglib prefix="s" uri="http://www.groupwareworkbench.org.br/widgets/security" %>
 
-<%@ attribute name="photoInstance" required="true" rtexprvalue="true"
+<%@ attribute name="photoMgr" required="true" rtexprvalue="true"
 	type="br.org.groupwareworkbench.arquigrafia.photo.PhotoMgrInstance"%>
 
-<c:if test="${photoInstance.collablet.enabled}">
-	<r:callMethod methodName="countAllPhotos" instance="${photoInstance}" var="count" />
+<c:if test="${photoMgr.collablet.enabled}">
+	<r:callMethod methodName="countAllPhotos" instance="${photoMgr}" var="count" />
 	<p id="image_counter">O Arquigrafia conta com um total de <c:out value="${count}"/> imagens. <s:n-check name="X-X-usuario"> <a href="#" id="footer_login_link" >  Faça o login e compartilhe também suas imagens. </a></s:n-check></p>
 </c:if>

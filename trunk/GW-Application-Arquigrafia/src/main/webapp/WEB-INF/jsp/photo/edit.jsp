@@ -86,10 +86,10 @@
         </script>
     </head>
     <body style="background: url(../../../../images/header_bg.jpg) no-repeat scroll 0 0 transparent;">
-    	<arq:header2 photoInstance="${photoMgr}" />
+    	<arq:header2 photoMgr="${photoMgr}" />
         <div id="corpo" class="default_div">
         <div id="info" class="default_info">
-        <form id="form1" class="cmxform" name="dados" method="POST" action="<c:url value="/photo/${photoInstance.id}/update" />" accept-charset="UTF-8" autocomplete="off">
+        <form id="form1" class="cmxform" name="dados" method="POST" action="<c:url value="/photo/${photoMgr.id}/update" />" accept-charset="UTF-8" autocomplete="off">
 	    <!-- <input type="hidden" name="user.id" value="<c:out value="${user.id}" />" />  -->
         <input type="hidden" name="photoRegister.id" value="<c:out value="${photoRegister.id}" />" />
         <input type="hidden" name="photoRegister.nomeArquivo" value="<c:out value="${photoRegister.nomeArquivo}" />" />
@@ -202,7 +202,7 @@
        </div>
        <div>
             <div style="height: 30px; background-color: #fff"></div>
-            <arq:footer photoInstance="${photoMgr}" />
+            <arq:footer photoMgr="${photoMgr}" />
         </div>
     </body>
 </html>

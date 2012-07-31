@@ -4,7 +4,7 @@
 <%@ taglib prefix="photo" uri="http://www.groupwareworkbench.org.br/widgets/photomanager" %>
 
 <%@ attribute name="photoRegister" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.arquigrafia.photo.Photo" %>
-<%@ attribute name="photoInstance" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.arquigrafia.photo.PhotoMgrInstance" %>
+<%@ attribute name="photoMgr" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.arquigrafia.photo.PhotoMgrInstance" %>
 <%@ attribute name="tagMgr" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.collablet.communic.tag.TagMgrInstance" %>
 <%@ attribute name="geoReferenceMgr" required="false" rtexprvalue="true" type="br.org.groupwareworkbench.collablet.communic.georeference.GeoReferenceMgrInstance" %>
 
@@ -37,9 +37,9 @@
 <div id="internal_wrap">
     <div class="mid_blue_text" style="margin-left: 30px; background-color: #fff;">
         <form name="photoRegisterForm" id="photoRegisterForm" method="post" enctype="multipart/form-data"
-                action="<c:url value="/photo/${photoInstance.id}/registra" />">
+                action="<c:url value="/photo/${photoMgr.id}/registra" />">
             <photo:save photoRegister="${photoRegister}"
-                    photoInstance="${photoInstance}" tagMgr="${tagMgr}"
+                    photoMgr="${photoMgr}" tagMgr="${tagMgr}"
                     geoReferenceMgr="${geoReferenceMgr}"
                     user="${sessionScope.userLogin}" formClass="form1"
                     formLineClass="field_line_f1 upload_form" formLabelClass="label_f1"

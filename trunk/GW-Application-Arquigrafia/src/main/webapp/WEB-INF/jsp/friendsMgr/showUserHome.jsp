@@ -106,13 +106,13 @@
 		<!-- FIM-BARRA LATERAL - DIREITA -->
 		<div id="added_images_bar">
 			<h3>Minhas imagens:</h3>
-			<p:photosByUser photoInstance="${photoMgr}" user="${friend}"/>
+			<p:photosByUser photoMgr="${photoMgr}" user="${friend}"/>
 		</div> 
 	</div>
     <!--   FUNDO DO SITE   -->
     <div id="footer">
 	  <!--   BARRA DE ABAS   -->
-	  <arquigrafia:tabs arquigrafiaInstance="${arquigrafiaMgr}" />
+	  <arquigrafia:tabs counterMgr="${counterMgr}" photoMgr="${photoMgr}" commentMgr="${commentMgr}" arquigrafiaInstance="${arquigrafiaMgr}" />
 	  <!--   FIM - BARRA DE IMAGENS - (RODAPÉ)   -->
 	  
 	  

@@ -2,7 +2,7 @@
 <%@ taglib prefix="tag" uri="http://www.groupwareworkbench.org.br/widgets/tag" %>
 
 
-<form id="upload" name="dados" method="POST" action="<c:url value="/photo/${photoInstance.id}/registra" />" enctype="multipart/form-data">
+<form id="upload" name="dados" method="POST" action="<c:url value="/photo/${photoMgr.id}/registra" />" enctype="multipart/form-data">
 <input type="hidden" name="user.id" value="${user.id}">
 <input type="hidden" name="photoRegister.id" value="">
 

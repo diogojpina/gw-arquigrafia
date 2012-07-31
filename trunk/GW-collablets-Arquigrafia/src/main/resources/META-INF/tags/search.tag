@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="r" uri="http://www.groupwareworkbench.org.br/taglibs/reflection" %>
 
-<%@ attribute name="photoInstance" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.arquigrafia.photo.PhotoMgrInstance" %>
+<%@ attribute name="photoMgr" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.arquigrafia.photo.PhotoMgrInstance" %>
 
 <script type="text/javascript">
     $(function() {
@@ -19,7 +19,7 @@
 </script>
 
 <div id="form1">
-    <form name="formBusca" action="<c:url value="/photo/${photoInstance.id}/busca"/>" method="post">
+    <form name="formBusca" action="<c:url value="/photo/${photoMgr.id}/busca"/>" method="post">
         <%-- TODO: Tableless! --%>
         <table>
             <tr>
@@ -35,7 +35,7 @@
 </div>
 
 <div id="form2">
-    <form name="formBuscaAvancada" action="<c:url value="/photo/${photoInstance.id}/buscaA" />" method="post">
+    <form name="formBuscaAvancada" action="<c:url value="/photo/${photoMgr.id}/buscaA" />" method="post">
         <%-- TODO: Tableless! --%>
         <table>
             <tr>

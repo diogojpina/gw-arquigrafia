@@ -65,7 +65,7 @@
         <profile:scriptProfile />
     </head>
     <body onload="setFocus();">
-        <arq:header2 photoInstance="${photoMgr}" />
+        <arq:header2 photoMgr="${photoMgr}" />
         <div id="corpo" class="default_div">
             <%-- <div id="info" class="default_info"> --%>
             <div id="info" style="display: block; width: 500px; margin-left: auto; margin-right: auto; margin-top: 10px; background: transparent;">
@@ -131,7 +131,7 @@
         </div>
         <div>
             <div style="height: 30px; background-color: #fff"></div>
-            <arq:footer photoInstance="${photoMgr}" />
+            <arq:footer photoMgr="${photoMgr}" />
         </div>
     </body>
 </html>

@@ -127,7 +127,7 @@ public class ArquigrafiaController {
     }
     
     private void addIncludes(ArquigrafiaMgrInstance arquigrafiaInstance) {
-        result.include("arquigrafiaMgr", arquigrafiaInstance);
+        result.include(arquigrafiaInstance.getCollablet().getName(), arquigrafiaInstance);
         arquigrafiaInstance.getCollablet().includeDependencies(result);
     }
 
@@ -160,14 +160,14 @@ public class ArquigrafiaController {
     
     @Post
     @Path(value = "/photo/busca")
-    public void doSearch(String busca, ArquigrafiaMgrInstance arquigrafiaInstance, PhotoMgrInstance photoInstance, TagMgrInstance tagInstance) {
+    public void doSearch(String busca, ArquigrafiaMgrInstance arquigrafiaInstance, PhotoMgrInstance photoMgr, TagMgrInstance tagInstance) {
         if (busca.length() < 3) {
             validator.add(new ValidationMessage(MSG_MIN_3_LETRAS, "Erro"));
             validator.onErrorUse(Results.logic()).forwardTo(ArquigrafiaController.class).searchResult(arquigrafiaInstance);
             return;
         }
 
-        List<Photo> resultFotosBusca = photoInstance.buscaFoto(busca);
+        List<Photo> resultFotosBusca = photoMgr.buscaFoto(busca);
 
         Tag tag = Tag.findByName(busca, tagInstance.getCollablet());
         if (tag == null) {
@@ -185,11 +185,11 @@ public class ArquigrafiaController {
         
         result.include("fotos", resultFotosBusca);
         result.include("searchTerm", busca);
-        result.use(Results.logic()).forwardTo(PhotoController.class).busca(photoInstance);
+        result.use(Results.logic()).forwardTo(PhotoController.class).busca(photoMgr);
     }
     
     @Get
-    @Path(value = "/photo/{photoInstance}/list")
+    @Path(value = "/photo/{photoMgr}/list")
     public void searchResult(ArquigrafiaMgrInstance arquigrafiaInstance) {
         addIncludes(arquigrafiaInstance);
     }
