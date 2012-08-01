@@ -23,6 +23,7 @@ package br.org.groupwareworkbench.arquigrafia.photo;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import br.org.groupwareworkbench.collablet.coord.user.User;
@@ -31,6 +32,8 @@ import br.org.groupwareworkbench.core.framework.Collablet;
 import br.org.groupwareworkbench.core.framework.annotations.ComponentInfo;
 import br.org.groupwareworkbench.core.framework.annotations.DefaultProperty;
 import br.org.groupwareworkbench.core.framework.annotations.RequiredProperty;
+
+import com.google.common.collect.Maps;
 
 @ComponentInfo(version = "0.1", configurationURL = "/photo/{photoMgr}/index", retrieveURL = "/photo/{id}", defaultProperties = {
         @DefaultProperty(name = "cropPrefix", defaultValue = "crop_"),
@@ -63,6 +66,19 @@ public class PhotoMgrInstance extends AbstractBusiness {
         }
         return photos;
     }
+    
+    public Map<String, List<Photo>> searchForAttributesOfThePhoto(String term, int page, int perPage) {
+        Map<String, List<Photo>> results = Maps.newHashMap();
+        for (String attr : SearchTerm.getNames()) {
+            results.put(attr, Photo.findByAttribute(getCollablet(), attr, term, page, perPage));
+        }
+        return results;
+    }
+
+    public List<Photo> searchForAttributeOfThePhoto(String term, String q, int page, int perPage) {
+        return Photo.findByAttribute(getCollablet(), term, q, page, perPage);
+    }
+
 
     public List<Photo> list() {
         return Photo.list(getCollablet());

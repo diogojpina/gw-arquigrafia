@@ -21,11 +21,11 @@
         <!--   FIM - MENU INSTITUCIONAL   -->
             
         <!--   MENU DE BUSCA   -->
-        <form id="search_buttons_area" action="<c:url value="/photo/7/busca" />" method="post">
+        <form id="search_buttons_area" action="<c:url value="/photo/7/search" />" method="get">
           <!--   BARRA DE BUSCA   -->
-          <input type="text" class="search_bar" name="busca" />
+          <input type="text" class="search_bar" name="q" />
           <!--   BOTÃO DA BARRA DE BUSCA   -->
-          <input type="submit" class="search_bar_button cursor" value="" name="submit_search_button" />
+          <input type="submit" class="search_bar_button cursor" value="" />
           <!--   BOTÃO DE BUSCA AVANÇADA   -->
           <!--  <a href="#" id="complete_search"></a> -->
         </form>

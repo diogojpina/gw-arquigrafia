@@ -27,6 +27,10 @@
         <path>/META-INF/tags/list.tag</path>
     </tag-file>
     <tag-file>
+        <name>listSearch</name>
+        <path>/META-INF/tags/listSearch.tag</path>
+    </tag-file>
+    <tag-file>
         <name>show</name>
         <path>/META-INF/tags/show.tag</path>
     </tag-file>

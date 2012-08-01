@@ -29,6 +29,7 @@ import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -43,7 +44,9 @@ import br.com.caelum.vraptor.core.RequestInfo;
 import br.com.caelum.vraptor.interceptor.download.Download;
 import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
 import br.com.caelum.vraptor.ioc.RequestScoped;
+import br.com.caelum.vraptor.serialization.RepresentationResult;
 import br.com.caelum.vraptor.validator.ValidationMessage;
+import br.com.caelum.vraptor.validator.Validations;
 import br.com.caelum.vraptor.view.Results;
 import br.org.groupwareworkbench.arquigrafia.ImportImages;
 import br.org.groupwareworkbench.collablet.coord.user.User;
@@ -273,22 +276,28 @@ public class PhotoController {
         result.use(Results.logic()).forwardTo(PhotoController.class).busca(photoMgr);
     }
 
-    @Post
-    @Path(value = "/photo/{photoMgr}/busca")
-    public void buscaFoto(String busca, PhotoMgrInstance photoMgr) {
-        if (busca.length() < 3) {
-            validator.add(new ValidationMessage(MSG_MIN_3_LETRAS, "Erro"));
-            validator.onErrorUse(Results.logic()).forwardTo(PhotoController.class).busca(photoMgr);
-            return;
-        }
-
-        List<Photo> resultFotosBusca = photoMgr.buscaFoto(busca);
-
-        result.include("fotos", resultFotosBusca);
-        result.include("searchTerm", busca);
-
+    @Get
+    @Path(value = "/photo/{photoMgr}/search")
+    public void buscaFoto(PhotoMgrInstance photoMgr, final String q, int page, int perPage) {
+        validator.checking(new Validations() {{
+            that(q.length() > 2, "length", "search.length");
+        }});
+        validator.onErrorForwardTo(this).busca(photoMgr);
+        
+        Map<String, List<Photo>> results = photoMgr.searchForAttributesOfThePhoto(q, page, perPage);
+        
+        result.include("photos", results);
+        result.include("searchTerm", q);
         addIncludes(photoMgr);
-        result.use(Results.logic()).forwardTo(PhotoController.class).busca(photoMgr);
+        result.use(logic()).forwardTo(PhotoController.class).busca(photoMgr);
+    }
+    
+    @Get
+    @Path("/photos/{photoMgr}/search/term")
+    public void searchPhotosByAttribute(PhotoMgrInstance photoMgr, String term, String q, int page, int perPage) {
+        List<Photo> results = photoMgr.searchForAttributeOfThePhoto(term, q, page, perPage);
+        result.include("photos", results);
+        addIncludes(photoMgr);
     }
 
     @Post

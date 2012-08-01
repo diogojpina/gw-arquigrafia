@@ -165,7 +165,7 @@ public class PhotoControllerTest {
         photo2.save();        
         photo3.save();
         try {
-            controller.buscaFoto("fo", photoMgr);
+            controller.buscaFoto(photoMgr, "fo", 1, 20);
             Assert.fail();
         } catch (ValidationException e) {
             List<Message> errors = e.getErrors();
@@ -180,8 +180,7 @@ public class PhotoControllerTest {
         photo2.save();
         photo3.setName("alguma");
         photo3.save();
-        controller.buscaFoto("alguma", photoMgr);
-
+        controller.buscaFoto(photoMgr, "alguma", 1, 20);
         @SuppressWarnings("unchecked")
         List<Photo> fotosResult = (List<Photo>) result.included("fotos");
 

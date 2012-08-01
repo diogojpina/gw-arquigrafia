@@ -42,6 +42,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.Query;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
@@ -57,6 +58,7 @@ import br.org.groupwareworkbench.core.bd.ObjectDAO;
 import br.org.groupwareworkbench.core.bd.QueryBuilder;
 import br.org.groupwareworkbench.core.framework.Collablet;
 import br.org.groupwareworkbench.core.graphics.BatchImageProcessor;
+import br.org.groupwareworkbench.core.util.Pagination;
 
 
 @Entity
@@ -418,6 +420,34 @@ public class Photo implements Serializable {
 
         return QueryBuilder.query(Photo.class).with("collablet", collablet).with("deleted", false).firstResult(firstElement)
                 .maxResults(pageSize).list("dataUpload DESC");
+    }
+    
+    @SuppressWarnings("unchecked")
+    public static List<Photo> findByAttribute(Collablet collablet, String fieldName, String value, int page, int perPage) {
+        if (SearchTerm.contains(fieldName)) {
+            check(value);
+            Pagination pagination = new Pagination(page, perPage);
+            String queryString = 
+                    "select p from Photo p where p.deleted = false AND p.collablet =:collablet AND (" + "upper(p." + fieldName + ") like :nom1 "
+                            + "OR upper(p." + fieldName + ") like :nom2 " + "OR upper(p." + fieldName + ") like :nom4 "
+                            + "OR upper(p." + fieldName + ") like :nom3 ) order by dataUpload DESC";
+            
+            EntityManager em = EntityManagerProvider.getEntityManager();
+            Query query = em.createQuery(queryString);
+    
+            return query.setParameter("collablet", collablet)
+                        .setParameter("nom1", "%" + value.toUpperCase() + "%")
+                        .setParameter("nom2", value.toUpperCase() + "%")
+                        .setParameter("nom3", "%" + value.toUpperCase())
+                        .setParameter("nom4", value.toUpperCase())
+                        .setFirstResult(pagination.firstResult()).setMaxResults(pagination.getPerPage())
+                        .getResultList();
+        }
+        return null;
+    }
+
+    private static void check(String value) {
+        if (value.equals("")) value = "!$%--6**24";        
     }
 
     public static List<Photo> busca(Collablet collablet, String name, String city, String description, Date date) {
