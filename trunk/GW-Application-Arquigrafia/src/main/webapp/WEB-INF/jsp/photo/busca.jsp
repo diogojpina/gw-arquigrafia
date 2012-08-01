@@ -15,6 +15,42 @@
 <title>Arquigrafia - Seu universo de imagens de arquitetura</title>
 <arquigrafia:includes arquigrafiaInstance="${arquigrafiaMgr}" />
 
+
+<script type="text/javascript">
+
+		$(function(){
+		  $('.list_photos a.load_photos').click(function(e){
+		    e.preventDefault();
+		    return_photos(this);
+		  });
+		});
+		
+		
+		
+		function return_photos(load_photos){
+			var load = $('<li class="load">Aguarde, carregando...</li>'),
+					$load_photos = $(load_photos),
+					list = $load_photos.data('list'),
+					page = $load_photos.data('page');
+			$load_photos.hide();
+		  $(list).append(load);
+
+		  $.get(load_photos.href, {page: $load_photos.data('page')}, function(photos){
+			  if (isFinite(photos)) {
+				  $load_photos.remove();
+			  } else {
+			    load.fadeOut(function(){
+			    	$load_photos.parent().append(photos);
+			      $(this).remove();
+			      $load_photos.data('page', page + 1).fadeIn();
+			    });
+			  }
+		  });
+		  
+		}
+
+</script>
+
 </head>
 
 <body>
@@ -31,9 +67,7 @@
       
          <div id="search_statistics">
              <!-- <span id="resultTerm">Voc&ecirc; buscou: <c:out value="${searchTerm}" />. </span> -->
-             <span id="resultTerm">Voc&ecirc; buscou: <c:out value="${searchTerm}" />. 
-             </span>             
-             <c:set var="qtdFotos" value="${fn:length(fotos)}" />
+<%--              <c:set var="qtdFotos" value="${fn:length(fotos)}" />
              <span id="resultCount">
                  <c:choose>
                      <c:when test="${qtdFotos == 0}">(nenhum resultado)</c:when>
@@ -42,18 +76,15 @@
                  </c:choose>
              </span>
              <br />
-             <c:forEach var="error" items="${errors}">
-                 <c:out value="${error.category}" /> - <c:out value="${error.message}" />
-                 <br />
-             </c:forEach>
-             <br />
-             <c:if test="${not empty searchTerm}">
+ --%>         <c:if test="${not empty searchTerm}">
+		             <span id="resultTerm">Voc&ecirc; buscou: <c:out value="${searchTerm}" />. </span>
+		             <br/>             
                 <a href='<c:url value="/tags/${tagMgr.id}/${searchTerm}"/>' >Imagens com a tag <c:out value="${searchTerm}" /></a>
              </c:if>
          </div>
          <br />
          <div id="search_scroll">
-             <p:list photos="${fotos}" photoMgr="${photoMgr}" showName="false" showLocation="false" lineClass="search_line"/>
+             <p:listSearch photos="${photos}" photoInstance="${photoMgr}" showName="false" showLocation="false" lineClass="search_line"/>
          </div>
 
 
