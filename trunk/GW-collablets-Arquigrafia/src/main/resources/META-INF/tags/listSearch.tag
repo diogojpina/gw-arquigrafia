@@ -24,9 +24,13 @@
 	    <c:if test="${not empty photo.value}">
 	    
 	    	<div class="list_photos">
+	    		
 					<fmt:message key="${photo.key}"/>
 						
 						<c:forEach items="${photo.value}" var="p">
+							<a href="<c:url value="/photos/${photoInstance.id}/search/term?q=${searchTerm}&term=${photo.key}&perPage=10"/>" class="load_photos" data-page="2">Mais</a>
+	    					<hr/>
+	    					<br />
 						    <div class="${lineClass}" style="float: left">
 						        <c:if test="${showName || showLocation}">
 						            <div>
@@ -49,9 +53,7 @@
 						        </c:if>
 						    </div>
 				  </c:forEach>
-					<a href="<c:url value="/photos/${photoInstance.id}/search/term?q=${searchTerm}&term=${photo.key}&perPage=10"/>" class="load_photos" data-page="2">Mais</a>
 			</div>
-			<hr/>
 		</c:if>	
 </c:forEach>
 

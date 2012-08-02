@@ -78,7 +78,7 @@
              <br />
  --%>         <c:if test="${not empty searchTerm}">
 		             <span id="resultTerm">Voc&ecirc; buscou: <c:out value="${searchTerm}" />. </span>
-		             <br/>             
+		             <br />             
                 <a href='<c:url value="/tags/${tagMgr.id}/${searchTerm}"/>' >Imagens com a tag <c:out value="${searchTerm}" /></a>
              </c:if>
          </div>
