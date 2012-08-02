@@ -1,0 +1,205 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Arquigrafia - Seu universo de imagens de arquitetura</title>
+  <!--   FAVICON   -->
+  <link rel="icon" href="img/arquigrafia_icon.ico" type="image/x-icon" />
+  <link rel="shortcut icon" href="img/arquigrafia_icon.ico" type="image/x-icon" />
+  <!--   ESTILO GERAL   -->
+  <link rel="stylesheet" type="text/css" href="css/estilo.css" />
+  <!--   BIBLIOTECA - JQUERY   -->
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"></script> 
+  <!--   FUNÇÃO LIGHTBOX - MODAL   -->
+  <script type="text/javascript">
+    $(document).ready(function() {	
+
+      $('a[name=modal]').click(function(e) {
+	    e.preventDefault();
+	
+	    var id = $(this).attr('href');
+
+	    var maskHeight = $(document).height();
+	    var maskWidth = $(window).width();
+
+	    $('#mask').css({'width':maskWidth,'height':maskHeight});
+
+        $('#mask').fadeIn(1000);	
+        $('#mask').fadeTo("slow",0.8);	
+
+        //Get the form_window height and width
+        var winH = $(window).height();
+        var winW = $(window).width();
+      
+        $(id).css('top',  winH/5-$(id).height()/5);
+        $(id).css('left', winW/2-$(id).width()/2);
+
+        $(id).fadeIn(2000); 
+
+      });
+
+      $('.form_window .close').click(function (e) {
+        e.preventDefault();
+
+        $('#mask').hide();
+        $('.form_window').hide();
+      });		
+
+      $('#mask').click(function () {
+        $(this).hide();
+        $('.form_window').hide();
+      });			
+
+    });
+  </script>
+</head>
+
+<body>
+  <!--   TOPO DO SITE   -->
+  <div id="header" class="header">
+    <!--   LOGO   -->
+    <a href="index.html" id="logo" name="Arquigrafia">
+    </a>
+    <!--   MENU PRINCIPAL   -->
+    <ul id="top_menu_items" class="top_menu_items">
+      <li><a href="#">O projeto</a></li>
+      <li><a href="#">Ajuda</a></li>
+      <li><a href="#">Fale conosco</a></li>
+      <li id="top_menu_items_logged"><a href="#">Meu Arquigrafia</a></li>
+    </ul>
+    <!--   ÁREA DE LOGIN / CADASTRO   -->
+    <div id="login_registration_bar" class="login_registration_bar">
+      <div id="user_infos" class="user_infos">
+        <div id="user_infos_message" class="user_infos_message">
+          <div id="user_infos_message_header" class="user_infos_message_header">
+          </div>
+          <div id="user_infos_message_number" class="user_infos_message_number">
+            <a href="#" class="message_number_link">10</a>
+          </div>
+        </div>
+        <a href="#" class="name_link">Nome do usuário</a>
+      </div>
+      <div id="user_photo_thumbnail" class="user_photo_thumbnail">
+        <img src="img/45082.jpg" width="44" height="44" class="user_photo_thumbnail" />
+      </div>
+        <a href="#" id="logout" class="logout">Sair</a>
+    </div>
+    <div id="arrow_sidebar_left" class="arrow_sidebar_left">
+    </div>
+    <!--   MENU DE BUSCA   -->
+    <div id="search_area" class="search_area">
+      <!--   CONTAINER DO MENU DE BUSCA   -->
+      <div id="search_area_logged" class="search_area_logged">
+        <!--   ÁREA DOS BOTÕES DE UPLOAD   -->
+        <div id="upload_area" class="upload_area">
+          <!--   BOTÃO DE UPLOAD  -->
+          <div id="upload_button" class="upload_button">
+          </div>
+          <!--   TEXTO DO BOTÃO DE UPLOAD  -->
+          <div id="upload_button_text" class="upload_button_text">
+            <a href="#" class="loged_menu_links">Enviar Imagem</a>
+          </div>
+        </div>
+        <!--   ÁREA DOS BOTÕES DE BUSCA   -->
+        <form action="" method="get" id="search_buttons_area_logged">
+          <!--   BARRA DE BUSCA   -->
+          <p class="none_paragraph"><input type="text" class="search_bar" name="search_bar_text" /></p>
+          <!--   BOTÃO DA BARRA DE BUSCA   -->
+          <p class="none_paragraph"><input type="submit" class="search_bar_button" value="" name="submit_search_button" /></p>
+          <!--   BOTÃO DE BUSCA COMPLETA   -->
+          <div id="complete_search_button" class="complete_search_button">
+          </div>
+        </form>
+        <!--   ÁREA DO BOTÃO DE COMUNIDADES  -->
+        <div id="community_area" class="community_area">
+          <!--   BOTÃO DE COMUNIDADES  -->
+          <div id="community_button" class="community_button">
+          </div>
+          <!--   TEXTO DO BOTÃO DE COMUNIDADES  -->
+          <div id="community_button_text" class="community_button_text">
+            <a href="#" class="loged_menu_links">Comunidades</a>
+          </div>
+        </div>
+        <!--   ÁREA DO BOTÃO DE USUÁRIO  -->
+        <div id="users_area" class="users_area">
+          <!--   BOTÃO DE USUÁRIO  -->
+          <div id="users_button" class="users_button">
+          </div>
+          <!--   TEXTO DO BOTÃO DE USUÁRIO  -->
+          <div id="users_button_text" class="users_button_text">
+            <a href="#" class="loged_menu_links">Usuários</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--   SETA DA DIREITA   -->
+    <div id="arrow_sidebar_right" class="arrow_sidebar_right">
+    </div>
+  </div>
+  <!--   MEIO DO SITE - ÁREA DE NAVEGAÇÃO   -->
+  <div id="content" class="content">
+    <div id="image_tool_box" class="image_tool_box">
+    </div>
+    <div id="image_view_content" class="image_view_content">
+      <img src="img/45082.jpg" width="600" height="400" alt="Foto 1" name="Foto 1" />
+      <form action="" method="get" id="form_image_view">
+      </form>
+    </div>
+    <div id="related_images" class="related_images">
+      <!--   IMAGENS   -->
+      <a href="#" id="img_01" class="related_image"><img src="img/45082.jpg" width="170" height="117" alt="Foto 1"/></a>
+      <a href="#" id="img_02" class="related_image"><img src="img/45082.jpg" width="170" height="117" alt="Foto 2"/></a>
+      <a href="#" id="img_03" class="related_image"><img src="img/45082.jpg" width="170" height="117" alt="Foto 3"/></a>
+      <a href="#" id="img_04" class="related_image"><img src="img/45082.jpg" width="170" height="117" alt="Foto 4"/></a>
+    </div>
+  </div>
+  <!--   FUNDO DO SITE   -->
+  <div id="bottom" class="bottom">
+    <!--   RODAPÉ   -->
+    <div id="footer" class="footer">
+      <!--   BARRA DE ABAS   -->
+      <ul id="tabs" class="tabs">
+        <!--   ABAS   -->
+        <li id="tab1" class="selected_tab">
+          <a href="#" class="selected_tab_link">Novas Imagens</a>
+        </li>
+        <li id="tab2" class="tab_not_selected">
+          <a href="#" class="tab_link">Populares</a>
+        </li>
+        <li id="tab3" class="tab_not_selected">
+          <a href="#" class="tab_link">Controversas</a>
+        </li>
+        <li id="tab4" class="tab_not_selected">
+          <a href="#" class="tab_link">Avaliadas</a>
+        </li>
+        <li id="tab5" class="tab_not_selected">
+          <a href="#" class="tab_link">Comentadas</a>
+        </li>
+      </ul>
+      <!--   BARRA DE IMAGENS - (RODAPÉ)   -->
+      <div id="footer_images" class="footer_images">
+        <!--   LINHA DE IMAGENS - (RODAPÉ)   -->
+        <div id="images_line" class="images_line">
+          <!--   IMAGENS - (RODAPÉ)   -->
+          <a href="#" id="f_01" class="footer_image"><img src="img/450823.jpg" width="105" height="72" alt="Foto 1"/></a>
+          <a href="#" id="f_02" class="footer_image"><img src="img/450823.jpg" width="105" height="72" alt="Foto 2"/></a>
+          <a href="#" id="f_03" class="footer_image"><img src="img/450823.jpg" width="105" height="72" alt="Foto 3"/></a>
+          <a href="#" id="f_04" class="footer_image"><img src="img/450823.jpg" width="105" height="72" alt="Foto 4"/></a>
+          <a href="#" id="f_05" class="footer_image"><img src="img/450823.jpg" width="105" height="72" alt="Foto 5"/></a>
+          <a href="#" id="f_06" class="footer_image"><img src="img/450823.jpg" width="105" height="72" alt="Foto 6"/></a>
+          <a href="#" id="f_07" class="footer_image"><img src="img/450823.jpg" width="105" height="72" alt="Foto 7"/></a>
+          <a href="#" id="f_08" class="footer_image"><img src="img/450823.jpg" width="105" height="72" alt="Foto 8"/></a>
+        </div>
+      </div>
+    </div>
+    <!--   CRÉDITOS - LOGOS   -->
+    <div id="credits" class="credits">
+      <img src="img/credits.png" width="962" height="44" alt="Créditos" />
+    </div>
+    <!--   COPYRIGHT   -->
+    <p id="copyright" class="copyright">
+      © All rights reserved
+    </p>
+  </div>
+</body>
+</html>
