@@ -1,5 +1,6 @@
 <%@ tag body-content="empty" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="r" uri="http://www.groupwareworkbench.org.br/taglibs/reflection" %>
 
 <%@ attribute name="photoInstance" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.arquigrafia.photo.PhotoMgrInstance" %>
@@ -21,16 +22,23 @@
 
 <c:forEach var="photo" items="${photos}">
 
-	    <c:if test="${not empty photo.value}">
-	    
 	    	<div class="list_photos">
 	    		
 					<fmt:message key="${photo.key}"/>
+					
+						<c:choose>
+							<c:when test="${fn:length(photo.value) >= 8 }">
+								<a href="<c:url value="/photos/${photoInstance.id}/search/term?q=${searchTerm}&term=${photo.key}&perPage=8"/>" class="load_photos" data-page="2">Ver mais 8 fotos</a>
+							</c:when>
+							<c:when test="${fn:length(photo.value) eq 0 }">
+								<a class="not_load_photos">Nenhuma imagem encontrada</a>
+							</c:when>
 						
+						</c:choose>
+					  <hr/>
+					  
 						<c:forEach items="${photo.value}" var="p">
-							<a href="<c:url value="/photos/${photoInstance.id}/search/term?q=${searchTerm}&term=${photo.key}&perPage=10"/>" class="load_photos" data-page="2">Mais</a>
-	    					<hr/>
-	    					<br />
+	    					
 						    <div class="${lineClass}" style="float: left">
 						        <c:if test="${showName || showLocation}">
 						            <div>
@@ -53,7 +61,9 @@
 						        </c:if>
 						    </div>
 				  </c:forEach>
+				  <br/><br/>
 			</div>
-		</c:if>	
+			<br/>
+			<br/>
 </c:forEach>
 

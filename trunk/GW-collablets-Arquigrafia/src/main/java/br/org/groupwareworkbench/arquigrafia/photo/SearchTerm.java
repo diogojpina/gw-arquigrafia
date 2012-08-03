@@ -4,7 +4,7 @@ import com.google.common.collect.ImmutableSet;
 
 public final class SearchTerm {
     
-    private static ImmutableSet<String> names = ImmutableSet.of("name", "city");
+    private static ImmutableSet<String> names = ImmutableSet.of("name", "city", "district", "street", "workAuthor");
     
     public static boolean contains(String term) {
         return names.contains(term);
