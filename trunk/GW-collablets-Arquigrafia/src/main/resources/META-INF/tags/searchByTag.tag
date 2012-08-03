@@ -11,10 +11,11 @@
         
 <c:forEach var="foto" items="${photos}">
 
+     	<c:if test="${entity.deleted}">
         <a class="foto" rel="linkimage" href="<c:url value="/photo/${foto.id}"/>" class="search_image">
             <img src="<c:url value="/photo/img-thumb/${foto.id}"/>?_log=no"  alt="<c:out value="${foto.name}" />" />
         </a>
-
+			</c:if>
        
 </c:forEach>
 
