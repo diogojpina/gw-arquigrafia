@@ -24,6 +24,8 @@
         <form id="search_buttons_area" action="<c:url value="/photo/7/search" />" method="get">
           <!--   BARRA DE BUSCA   -->
           <input type="text" class="search_bar" name="q" />
+
+          <input type="hidden" value="8" name="perPage" />
           <!--   BOTÃO DA BARRA DE BUSCA   -->
           <input type="submit" class="search_bar_button cursor" value="" />
           <!--   BOTÃO DE BUSCA AVANÇADA   -->

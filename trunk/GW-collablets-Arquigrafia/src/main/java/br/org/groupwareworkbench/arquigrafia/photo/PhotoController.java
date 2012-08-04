@@ -49,6 +49,7 @@ import br.com.caelum.vraptor.validator.ValidationMessage;
 import br.com.caelum.vraptor.validator.Validations;
 import br.com.caelum.vraptor.view.Results;
 import br.org.groupwareworkbench.arquigrafia.ImportImages;
+import br.org.groupwareworkbench.collablet.communic.tag.Tag;
 import br.org.groupwareworkbench.collablet.coord.user.User;
 import br.org.groupwareworkbench.core.framework.Collablet;
 import br.org.groupwareworkbench.core.framework.WidgetInfo;
@@ -279,17 +280,21 @@ public class PhotoController {
     @Get
     @Path(value = "/photo/{photoMgr}/search")
     public void buscaFoto(PhotoMgrInstance photoMgr, final String q, int page, int perPage) {
+        validate(photoMgr, q);
+        Tag tag = Tag.findByName(q, photoMgr.getCollablet().getDependency("tagMgr"));
+        if (tag != null) {
+            result.include("tag", tag).include("photosByTag", tag.getAssignments(8));
+        }
+        result.include("photos", photoMgr.searchForAttributesOfThePhoto(q, page, perPage)).include("searchTerm", q);
+        addIncludes(photoMgr);
+        result.use(logic()).forwardTo(PhotoController.class).busca(photoMgr);
+    }
+
+    private void validate(PhotoMgrInstance photoMgr, final String q) {
         validator.checking(new Validations() {{
             that(q.length() > 2, "length", "search.length");
         }});
         validator.onErrorForwardTo(this).busca(photoMgr);
-        
-        Map<String, List<Photo>> results = photoMgr.searchForAttributesOfThePhoto(q, page, perPage);
-        
-        result.include("photos", results);
-        result.include("searchTerm", q);
-        addIncludes(photoMgr);
-        result.use(logic()).forwardTo(PhotoController.class).busca(photoMgr);
     }
     
     @Get
