@@ -11,7 +11,7 @@
 
 <div class="list_photos">
 
-		Imagens com a tag ${tag.name}
+		Imagens com a tag ${searchTerm}
 		
 		<c:if test="${not empty photosByTag}">
 			<a class="load_photos_by_tag" href='<c:url value="/tags/${tagMgr.id}/${searchTerm}"/>' >Ver todas as imagens</a>		
