@@ -91,7 +91,7 @@ a#complete_search { float:right; margin-top:-3px; height:24px; width:24px; backg
 a#complete_search:hover { background-position:-367px -32px; }
 #search_scroll { width:100%; }
 .list_photos { height:auto; overflow:hidden; width:100%; }
-.load_photos, .not_load_photos { float:right; }
+.load_photos, .not_load_photos, .load_photos_by_tag { float:right; }
 
 /* mensagem de envio / falha de envio */ 
 .message_delivery { color:#CB9833; font-size:12px; margin:3px auto; height:20px; width:120px; clear:both; text-align:center; display:none;}
