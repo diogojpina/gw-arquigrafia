@@ -203,7 +203,10 @@ public class PhotoController {
             result.include("usuarioCriador", "sim");
             log.log("5");
         }
-            
+        
+        result.include("previousPhoto", Photo.previous(photo))
+              .include("nextPhoto", Photo.next(photo));
+        
         result.include("idPhoto", idPhoto);
         log.log("6");
         result.include("photo", photo);

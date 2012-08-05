@@ -499,6 +499,10 @@ public class Photo implements Serializable {
         return DAO.findById(id);
     }
 
+    public static Photo findByPhotoNotDeleted(long id) {
+        return QueryBuilder.query(Photo.class).with("id", id).with("deleted", false).find();
+    }
+
     public String getNomeArquivo() {
         return nomeArquivo;
     }
@@ -741,6 +745,47 @@ public class Photo implements Serializable {
         this.allowCommercialUses = allowCommercialUses;
     }
 
+    public static Photo previous(Photo photo) {
+        Photo firstPhoto = Photo.first(), previousPhoto = null;
+        long currentPhoto = photo.getId();
+        while (currentPhoto >= firstPhoto.getId()) {
+            currentPhoto = currentPhoto - 1;
+            previousPhoto = findByPhotoNotDeleted(currentPhoto);
+            if (previousPhoto != null) {
+                return previousPhoto;
+            }
+        }
+        
+        return previousPhoto;
+    }
+
+    public static Photo first() {
+        return QueryBuilder.query(Photo.class).with("deleted", false).maxResults(1).find();
+
+    }
+
+    public static Photo next(Photo photo) {
+        Long lastPhoto = count(), currentPhoto = photo.getId();
+        Photo nextPhoto = null;
+        while (currentPhoto < lastPhoto) {
+            currentPhoto = currentPhoto + 1;
+            nextPhoto = findByPhotoNotDeleted(currentPhoto);
+            if (nextPhoto != null) {
+                return nextPhoto;
+            }
+        }
+        return nextPhoto;
+    }
+
+    
+    public static Long count() {
+        EntityManager em = EntityManagerProvider.getEntityManager();
+        Query query = em.createQuery("select count(*) from Photo p");
+
+        return (Long) query.getSingleResult();
+    }
+
+    
 //    public void setAllowModifications(AllowModifications allowModifications) {
 //        this.allowModifications = allowModifications;
 //    }
