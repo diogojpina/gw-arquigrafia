@@ -13,6 +13,7 @@
 <%@ taglib prefix="photo" uri="http://www.groupwareworkbench.org.br/widgets/photomanager" %>
 <%@ taglib prefix="album" uri="http://www.groupwareworkbench.org.br/widgets/album" %>
 <%@ taglib prefix="arq" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="s" uri="http://www.groupwareworkbench.org.br/widgets/security" %> 
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 
@@ -69,16 +70,16 @@
             </c:if>
             
     <!-- rodrigo -->
-          <s:n-check name="X-X-usuario">
+          <s:check name="X-X-usuario">
              <c:if test="${friend.id == userLogin.id}">
                    <form class="cmxform" name="edit" method="POST" action="<c:url value="/groupware-workbench/user/" />" accept-charset="UTF-8" autocomplete="off">
                           <input type="hidden" id="idUser" name="idUser" value="<c:out value="${friend.id}" />" />
                           <input type="hidden" id="url" name="url" value="/groupware-workbench/friends/${friendsMgr.id}/show/${friend.id}" />
                    </form>
              </c:if>
-             
+           
                           <friends:sendRequest friendsMgr="${friendsMgr}" viewer="${userLogin}" viewed="${friend}" />
-			 </s:n-check>
+			</s:check>
                    
         
         	<!--   EVENTOS   -->
@@ -193,7 +194,7 @@
     <!--   FUNDO DO SITE   -->
     <div id="footer">
 	  <!--   BARRA DE ABAS   -->
-	  <arquigrafia:tabs counterMgr="${counterMgr}" photoMgr="${photoMgr}" commentMgr="${commentMgr}" arquigrafiaInstance="${arquigrafiaMgr}" />
+	  <arquigrafia:tabs arquigrafiaInstance="${arquigrafiaMgr}" />
 	  <!--   FIM - BARRA DE IMAGENS - (RODAPÉ)   -->
 	  
 	  
