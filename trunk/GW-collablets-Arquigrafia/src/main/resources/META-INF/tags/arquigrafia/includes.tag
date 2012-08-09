@@ -18,6 +18,12 @@
 <script type="text/javascript" src="<c:url value="/js/jquery_javascript_library_v1.7.1.js" />"></script>
 <script type="text/javascript" src="<c:url value="/js/jquery-ui-1.8.17.custom.min.js" />"></script>
 
+<!--   JQUERY - Validate   -->
+<script type="text/javascript" src="<c:url value="/js/jquery.validate.js" />"></script>
+
+<!--   JS - Masked input   -->
+<script type="text/javascript" src="<c:url value="/js/masked-input.js" />"></script>
+
 <!-- JS - Font size increment and decrement -->
 <script type="text/javascript" src="<c:url value="/js/font_increment.js" />"></script>
 
@@ -132,7 +138,7 @@
         
         var ua = $.browser;
         // desativa para ff 
-        if ( !(ua.mozilla) ) {
+        //if ( !(ua.mozilla) ) {
             $('.image').mouseenter(function(){
                 $('.image').css('opacity',0.6);
                 $(this).css('opacity',1);
@@ -140,7 +146,7 @@
             $('#panel').mouseleave(function(){ 
                 $('.image').css('opacity',1);
             });
-        }
+        //}
         
         $('.footer_image').mouseenter(function(){
             $('.footer_image img').css('opacity',0.6);
@@ -213,6 +219,7 @@
 				
 				$(tabDestiny).css({'display':'block'});
 				$(tabDestinyPreview).css({'display':'none'});
+				//FooterCarouselAnimation(0);
 				
 				$(".selected_tab_link").removeClass("selected_tab_link");
 				

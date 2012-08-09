@@ -7,7 +7,7 @@
 <form id="usuariosForm" method="post" name="loginForm" action="<c:url value="/users/${userMgr.id}/login" />">
 <div>
   <label>Login:</label>
-  <input name="user.login" type="text" class="email" />
+  <input name="user.login" type="text" class="email" autofocus="autofocus" />
   <br />
   <label>Senha:</label>
   <input name="user.password" type="password" class="text" />
