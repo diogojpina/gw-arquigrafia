@@ -785,6 +785,10 @@ public class Photo implements Serializable {
         return (Long) query.getSingleResult();
     }
 
+    public static Photo findByTombo(String tombo) {
+        return QueryBuilder.query(Photo.class).with("tombo", tombo).with("deleted", false).find();
+    }
+
     
 //    public void setAllowModifications(AllowModifications allowModifications) {
 //        this.allowModifications = allowModifications;

@@ -31,6 +31,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import br.com.caelum.vraptor.Delete;
@@ -184,10 +185,20 @@ public class PhotoController {
     @Get
     @Path(value = "/photo/{idPhoto}")
     public void show(long idPhoto) {
-        
+        Photo photo = Photo.findById(idPhoto);
+        showById(photo);
+    }
+
+    @Get
+    @Path(value = "/photo/tombo/{tombo}")
+    public void showByTombo(String tombo) {
+        Photo photo = Photo.findByTombo(tombo);
+        showById(photo);
+    }
+
+    private void showById(Photo photo) {
         TimeLog log = new TimeLog("CP");
         User user = (User) session.getAttribute("userLogin");
-        Photo photo = Photo.findById(idPhoto);
 
         if (photo == null|| photo.getDeleted() ) {
             this.photoNotFound(photo);
@@ -207,7 +218,7 @@ public class PhotoController {
         result.include("previousPhoto", Photo.previous(photo))
               .include("nextPhoto", Photo.next(photo));
         
-        result.include("idPhoto", idPhoto);
+        result.include("idPhoto", photo.getId());
         log.log("6");
         result.include("photo", photo);
         log.log("7");
@@ -220,6 +231,9 @@ public class PhotoController {
         result.use(Results.representation()).from(photo).serialize();
         log.log("11");
     }
+    
+
+    
     
     @Get
     @Path(value = "/photo/{idPhoto}/evaluate")
