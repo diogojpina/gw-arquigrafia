@@ -25,7 +25,7 @@
 
 		<!--   CABEZALHO   -->
 		<arquigrafia:header arquigrafiaInstance="${arquigrafiaMgr}" />
-		<!--   MEIO DO SITE - ÃREA DE NAVEGAÃÃO   -->
+		<!--   MEIO DO SITE - ÁREA DE NAVEGAÇÃO   -->
 		<div id="content">
 			<!--   COLUNA ESQUERDA   -->
 			<div id="sub_content">
@@ -70,8 +70,8 @@
 					<s:check name="X-X-usuario">
 						<ul id="single_view_image_buttons">
 							<!-- <li><a href="#" title="Adicione aos seus favoritos" id="add_favourite"></a></li>
-							<li><a href="#" title="Denuncie esta foto" id="denounce"></a></li>
-							<li><a href="<c:url value="/18/photo_avaliation/${photo.id}" />" title="Avalie a foto" id="eyedroppper"></a></li>-->
+							<li><a href="#" title="Denuncie esta foto" id="denounce"></a></li>-->
+							<li><a href="<c:url value="/18/photo_avaliation/${photo.id}" />" title="Avalie a foto" id="eyedroppper"></a></li>
 							<li><a href="<c:url value="/groupware-workbench/album/${albumMgr.id}/add/${photo.id}" />" title="Adicione ao seu album" id="plus"></a></li>  
 							<li><a href="<c:url value="/photo/img-original/${photo.id}" />" title="Faça o download" id="download" target="_blank"></a></li>
 							<c:forEach items="${photo.users}" var="user">
@@ -172,6 +172,13 @@
 					</p>
 				<h3>Localização:</h3>
 					<div id="map_canvas" class="single_view_map" style="width:300px; height:200px;"></div>
+				<s:check name="X-X-usuario">			
+			        <h3>Avaliação:</h3>
+					<p>Avalie a arquitetura apresentada nesta imagem de acordo com seus aspectos, compare também sua avaliação com as dos outros usuários.</p>
+					<a href="<c:url value="/18/photo_avaliation/${photo.id}" />" title="Avalie a foto" id="evaluate_button"></a> 
+					<a href="<c:url value="/18/photo_avaliation_avarage/${photo.id}" />" title="Média das avaliações da foto" id="evaluation_average"></a>
+					<br />
+				</s:check>
 				<h3>Tags:</h3>
 				<p>
 					<tag:getTags tagMgr="${tagMgr}" entity="${photo}" />
@@ -188,12 +195,6 @@
 						88x31.png" id="ccicons" alt="license" />
 					</a>
 				</p>	
-				<s:check name="X-X-usuario">			
-			        <h3>Avaliação:</h3>
-					<p>Avalie a arquitetura apresentada nesta imagem de acordo com seus aspectos, compare também sua avaliação com as dos outros usuários.</p>
-					<a href="<c:url value="/18/photo_avaliation/${photo.id}" />" title="Avalie a foto" id="evaluate_button"></a> 
-					<a href="<c:url value="/18/photo_avaliation_avarage/${photo.id}" />" title="Média das avaliações da foto" id="evaluation_average"></a>
-				</s:check>
 			</div>
 			<!--   FIM - SIDEBAR   -->
 		</div>

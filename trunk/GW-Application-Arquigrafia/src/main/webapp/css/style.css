@@ -331,11 +331,13 @@ a#printer_icon { float:left; width:24px; height:25px; background:url(../img/icon
 a#printer_icon:hover{ background-position:-713px -33px; }
 
 /* SIDEBAR */
-#sidebar { float:right; width:290px; line-height:19px;}
-#sidebar ul { list-style:none; margin: 5px 0 10px 0;}
-#sidebar h2{ font-weight:normal; font-size:20px; color:#CB9833; }
-#sidebar h3 { margin-top:28px; line-height:12px;}
-#sidebar #single_user{margin-top:28px;}
+#sidebar { float:right; width:290px; line-height:19px; }
+#sidebar br { clear:both; }
+#sidebar p { margin: 3px 0 10px 0; }
+#sidebar ul { list-style:none; margin: 5px 0 10px 0; }
+#sidebar h2 { font-weight:normal; font-size:20px; color:#CB9833; }
+#sidebar h3 { margin-top:10px; line-height:12px; }
+#sidebar #single_user { margin-top:0px; }
 
 
 
@@ -408,11 +410,11 @@ span.twitter:hover { background-position:-63px -145px;}
 
 /*Creative Commons Icon, mapa (georreferenciamento) avaliação e média de avaliação - sidebar*/
 #ccicons { display:block; margin: 10px 0 0 0; width:88px;}
-a#evaluate_button { float:left; background:url(../img/icons_sprite.png) -339px -145px; width:59px; height:20px; margin-top:10px;}
+a#evaluate_button { float:left; background:url(../img/icons_sprite.png) -339px -145px; width:59px; height:20px; }
 a#evaluate_button:hover { background-position:-339px -170px;}
-a#evaluation_average { float:left; background:url(../img/icons_sprite.png) -401px -145px; width:140px; height:20px; margin:10px 0 0 10px;}
+a#evaluation_average { float:left; background:url(../img/icons_sprite.png) -401px -145px; width:140px; height:20px; margin: 0 0 0 10px;}
 a#evaluation_average:hover { background-position:-401px -170px;}
-.single_view_map { margin:15px 0;}
+.single_view_map { margin:5px 0;}
 
 
 /*Comentários*/
