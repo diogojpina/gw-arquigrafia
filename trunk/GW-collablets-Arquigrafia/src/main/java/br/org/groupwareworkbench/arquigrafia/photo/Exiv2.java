@@ -6,10 +6,12 @@ import java.io.InputStream;
 import java.util.Arrays;
 
 import br.org.groupwareworkbench.arquigrafia.license.CreativeCommons_3_0;
+import br.org.groupwareworkbench.core.graphics.BatchImageProcessor;
 
 /**
  * Wrapper for the exiv2 utility which changes image metadata. This class performs all operations
- * on the set of images and assumes that all images have the ".jpg" extension.
+ * on the set of images and assumes that all derivated images (the ones obtained from the original)
+ * have the ".jpg" extension.
  * 
  * @author AAMM
  */
@@ -52,6 +54,32 @@ public class Exiv2 {
         this.imagesDirName = imagesDirName;
     }
     
+    public Exiv2(final String originalFileAbsolutePath) {
+        this(originalFileAbsolutePath, true);
+    }
+    
+    public Exiv2(final String originalFileAbsolutePath, final boolean checkFileExists) {
+        File originalFile = new File(originalFileAbsolutePath);
+        if(checkFileExists && !originalFile.exists()) {
+            throw new IllegalArgumentException("File " + originalFileAbsolutePath + " does not exist.");
+        }
+        this.originalFileExtension = originalFile.getName().substring(originalFile.getName().lastIndexOf('.') + 1, originalFile.getName().length());
+        this.imageId = Long.valueOf(originalFile.getName().substring(0, originalFile.getName().indexOf('_')));
+        this.imagesDirName = originalFile.getParent();
+    }
+    
+    public String getOriginalFileExtension() {
+        return originalFileExtension;
+    }
+
+    public long getImageId() {
+        return imageId;
+    }
+
+    public String getImagesDirName() {
+        return imagesDirName;
+    }
+
     public void setAuthor(final String author) {
         runExif2("Exif.Image.XPAuthor %s", toXP(author));
     }
@@ -71,6 +99,52 @@ public class Exiv2 {
     
     public void setUserComment(final String userComment) {
         runExif2("Exif.Photo.UserComment %s", userComment);
+    }
+    
+    /**
+     * Copies all meta data from the original image to the additional images.
+     */
+    public void copyMetadataFromOriginal() {
+        try {
+            String originalEXVFileName = String.format("%s/%d%s.exv", imagesDirName, imageId, Photo.ORIGINAL_FILE_SUFFIX);
+            String originalImageFileName = String.format("%s/%d%s.%s", imagesDirName, imageId, Photo.ORIGINAL_FILE_SUFFIX, originalFileExtension);
+            
+            String[] additionalEXVFileNames = new String[Photo.ADDITIONAL_FILE_SUFIXES.length];
+            String[] additionalImageFileNames = new String[Photo.ADDITIONAL_FILE_SUFIXES.length];
+            
+            for(int i=0; i<Photo.ADDITIONAL_FILE_SUFIXES.length; i++) {
+                additionalEXVFileNames[i] = String.format("%s/%d%s.exv", imagesDirName, imageId, Photo.ADDITIONAL_FILE_SUFIXES[i]);
+                additionalImageFileNames[i] = String.format("%s/%d%s.%s", imagesDirName, imageId, Photo.ADDITIONAL_FILE_SUFIXES[i], Photo.DEFAULT_EXTENSION);
+            }
+            
+            // Let us assume the original file is called /a/b/c/987_original.bmp
+            
+            // Extracting metadata to file /a/b/c/987_original.exv
+            
+            String[] command1 = new String[] {"exiv2", "extract", originalImageFileName};
+            Runtime.getRuntime().exec(command1).waitFor();
+            
+            for(int i=0; i<Photo.ADDITIONAL_FILE_SUFIXES.length; i++) {
+                // Copying file /a/b/c/987_original.exv to file /a/b/c/987_view.exv etc... 
+                BatchImageProcessor.copyFile(originalEXVFileName, additionalEXVFileNames[i]);
+                // Inserting metadata to file /a/b/c/987_view.jpg etc...
+                String[] command2 = new String[] {"exiv2", "insert", additionalImageFileNames[i]};
+                Runtime.getRuntime().exec(command2).waitFor();
+                // Cleaning up. Removing exv file
+                new File(additionalEXVFileNames[i]).delete();
+            }
+            
+            // Cleaning up. Removing exv file of the original image
+            new File(originalEXVFileName).delete();
+            
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
     }
     
     private void runExif2(final String command, final Object... args) {
