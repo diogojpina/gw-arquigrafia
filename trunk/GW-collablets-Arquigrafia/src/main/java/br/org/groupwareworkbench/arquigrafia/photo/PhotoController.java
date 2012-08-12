@@ -190,8 +190,8 @@ public class PhotoController {
     }
 
     @Get
-    @Path(value = "/photo/tombo/{tombo}")
-    public void showByTombo(String tombo) {
+    @Path(value = "/acervo/fauusp/{tombo}")
+    public void showByTumbling(String tombo) {
         Photo photo = Photo.findByTombo(tombo);
         showById(photo);
     }
