@@ -3,10 +3,11 @@
 <%@ taglib prefix="coll" uri="http://www.groupwareworkbench.org.br/widgets/collections" %>
 
 <h2>Editar perfil</h2>
-<form id="form1" class="cmxform" name="dados" method="POST"
-	action="<c:url value="/groupware-workbench/profile/${profileMgr.id}/save" />"
-	accept-charset="UTF-8" autocomplete="off">
-	<input type="hidden" name="user.id" value='<c:out value="${user.id}" />' />
+<p>
+<small>* Todos os campos a seguir são obrigatórios.</small><p/>
+
+<form id="form1" class="cmxform" name="dados" method="POST" action="<c:url value="/groupware-workbench/profile/${profileMgr.id}/save" />" accept-charset="UTF-8" autocomplete="off">
+	<input type="hidden" name="_method" value="put" />
 	<input type="hidden" name="profile.id" value='<c:out value="${profile.id}" />' />
 	<input type="hidden" name="profile.birthday" value='<c:out value="${profile.birthday}" />' />
 	<input type="hidden" name="profile.nativeLanguage" value='<c:out value="${profile.nativeLanguage}" />' /> 
@@ -21,30 +22,26 @@
 	<input type="hidden" name="profile.profession" value='<c:out value="${profile.profession}" />' />
 	<input type="hidden" name="profile.company" value='<c:out value="${profile.company}" />' />
 
-	<h1>Profile Manager <c:out value="${profileMgr}" default="NAO ESTA ALOCADO"/></h1>
-	<h1>Profile <c:out value="${profile}" default="NAO ESTA ALOCADO"/></h1>
-
 	<c:if test="${profileMgr.collablet.enabled}">
 			<div>
-				<h3>Perfil</h3>
+				<h3>Dados do perfil</h3>
 				<p>
 					<label>Sobrenome:</label>
-					<input type="text" class="required" name="profile.secondName" value="<c:out value="${profile.secondName}" />" />
+					<input type="text" class="required" name="profile.secondName" value="<c:out value="${profile.secondName}" />" /><br/>
 					<label>Escolaridade:</label>
-           			<select name="<c:out value="${profileMgr.collablet.name}" />.profile.scholarity">
-                		<c:forEach var="scholarity" items="${coll:enumValues('br.org.groupwareworkbench.collablet.coord.profile.Profile$Scholarity')}" >
-                    		<option <c:if test="${profile.scholarity == scholarity}">selected</c:if>>
-                        		<c:out value="${scholarity.name}" />
-                    		</option>
-                		</c:forEach>
-            		</select>
-					
+     			<select name="profile.scholarity">
+          		<c:forEach var="scholarity" items="${coll:enumValues('br.org.groupwareworkbench.collablet.coord.profile.Profile$Scholarity')}" >
+              		<option value="${scholarity}" <c:if test="${profile.scholarity == scholarity}">selected</c:if>>
+                  		<c:out value="${scholarity.name}" />
+              		</option>
+          		</c:forEach>
+      		</select><br/>
 					<label>Curso:</label>
-					<input type="text" class="required" name="profile.course" value='<c:out value="${profile.course}" />' />
+					<input type="text" class="required" name="profile.course" value='<c:out value="${profile.course}" />' /><br/>
 					<label>Instituição:</label>
-					<input type="text" class="required" name="profile.institution" value='<c:out value="${profile.institution}" />' />
+					<input type="text" class="required" name="profile.institution" value='<c:out value="${profile.institution}" />' /><br/>
 					<label>Ocupação:</label>
-					<input type="text" class="required" name="profile.occupation" value='<c:out value="${profile.occupation}" />' />
+					<input type="text" class="required" name="profile.occupation" value='<c:out value="${profile.occupation}" />' /><br/>
 				</p>
 			</div>
 	</c:if>
