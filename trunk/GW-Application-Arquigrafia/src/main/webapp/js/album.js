@@ -35,13 +35,13 @@ $(function(){
 		return confirm('Tem certeza que deseja deletar o álbum?');
 	});
 	
-	$('.album_image_box').hover(
-			function(){
+	$('.album_image_box').live({
+			mouseover: function(){
 				$('.album_image_delete_button').fadeIn('fast');
 			},
-			function(){
+			mouseout: function(){
 				$('.album_image_delete_button').fadeOut('fast');
 			}
-	);
+	});
 
 });
