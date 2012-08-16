@@ -153,7 +153,7 @@ public class AlbumMgrController {
         User user = (User) request.getSession().getAttribute("userLogin");
         album.setOwner(user);
         albumMgr.save(album);
-        result.nothing();
+        result.use(logic()).redirectTo(AlbumMgrController.class).list(albumMgr, user.getId());
     }
     
     
