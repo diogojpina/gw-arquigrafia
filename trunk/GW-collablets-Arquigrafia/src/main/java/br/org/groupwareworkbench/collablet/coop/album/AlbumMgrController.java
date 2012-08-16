@@ -128,15 +128,31 @@ public class AlbumMgrController {
     public void save(AlbumMgrInstance albumMgr, final Album album) {
         User user = (User) request.getSession().getAttribute("userLogin");
 
+        validate(albumMgr, album, user);
+        
+        album.setOwner(user);
+        albumMgr.save(album);
+        result.use(logic()).redirectTo(AlbumMgrController.class).list(albumMgr, user.getId());
+    }
+
+    @Put
+    @Path(value = "/groupware-workbench/album/{albumMgr}/save")
+    public void update(AlbumMgrInstance albumMgr, Album album) {
+        User user = (User) request.getSession().getAttribute("userLogin");
+        validate(albumMgr, album, user);
+        Album albumFound = Album.findById(album.getId());
+        albumFound.setTitle(album.getTitle());
+        albumFound.setDescription(album.getDescription());
+        albumMgr.save(albumFound);
+        result.use(logic()).redirectTo(AlbumMgrController.class).list(albumMgr, user.getId());
+    }
+
+    private void validate(AlbumMgrInstance albumMgr, final Album album, User user) {
         validator.checking(new Validations() {{
             that(!album.getTitle().isEmpty(), "title", "album.title.not.empty");
         }});
         
         validator.onErrorUse(logic()).redirectTo(AlbumMgrController.class).list(albumMgr, user.getId());
-        
-        album.setOwner(user);
-        albumMgr.save(album);
-        result.use(logic()).redirectTo(AlbumMgrController.class).list(albumMgr, user.getId());
     }
 
     @Get
@@ -146,17 +162,6 @@ public class AlbumMgrController {
         result.include("album", album);
         addIncludes(albumMgr);
     }
-
-    @Put
-    @Path(value = "/groupware-workbench/album/{albumMgr}/save")
-    public void update(AlbumMgrInstance albumMgr, Album album) {
-        User user = (User) request.getSession().getAttribute("userLogin");
-        album.setOwner(user);
-        albumMgr.save(album);
-        result.use(logic()).redirectTo(AlbumMgrController.class).list(albumMgr, user.getId());
-    }
-    
-    
     
     @Get
     @Path(value = "/groupware-workbench/album/{albumMgr}/add/{photo.id}")
