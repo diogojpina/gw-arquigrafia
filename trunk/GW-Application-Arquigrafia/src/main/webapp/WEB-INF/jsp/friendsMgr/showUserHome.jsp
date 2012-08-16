@@ -22,19 +22,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>Arquigrafia - Seu universo de imagens de arquitetura</title>
 	<arquigrafia:includes arquigrafiaInstance="${arquigrafiaMgr}" />
-	
-    <script type="text/javascript">
-        function acceptFriend(id) {
-            var url = "${pageContext.request.contextPath}/groupware-workbench/friends/${friendsMgr.id}/acceptRequest/" + id;
-            $.post(url <c:if test="${afterAcceptFunction != null}">, ${afterAcceptFunction}</c:if>);
-        }
-
-        function rejectFriend(id) {
-            var url = "${pageContext.request.contextPath}/groupware-workbench/friends/${friendsMgr.id}/rejectRequest/" + id;
-            $.post(url <c:if test="${afterRejectFunction != null}">, ${afterRejectFunction}</c:if>);
-        }
-    </script>
-
+	<script type="text/javascript" src="<c:url value="/js/friend.js" />"></script>
 	
 </head>
 
@@ -111,7 +99,8 @@
 	            friendsMgr="${friendsMgr}" friendsHeader="friends_header"
 	            style="width: 400px;" />
 	            
-<!-- rodrigo -->	             <c:choose>
+<!-- rodrigo -->	             
+									<c:choose>
                      <c:when test="${empty friend.photoURL}">
                         <img class="imagem_user" src="<c:url value="/images/users/default.jpg" />" />
                      </c:when>
@@ -167,20 +156,6 @@
                                 <div id="comments_show">
                                     <comment:getComments commentMgr="${commentMgr2}" entity="${friend}" wrapClass="comments_show_internal" />
                                 </div>
-                                <script type="text/javascript">
-                                    $("#comments_create").hide();
-                                    $("#comments_bar_link2").hide();
-                                    $("#comments_bar_link").click(function(){
-                                        $("#comments_create").slideDown();
-                                        $("#comments_bar_link").hide();
-                                        $("#comments_bar_link2").show();
-                                    });
-                                    $("#comments_bar_link2").click(function(){
-                                        $("#comments_create").slideUp();
-                                        $("#comments_bar_link2").hide();
-                                        $("#comments_bar_link").show();
-                                    });
-                                </script>
                             </form>
                         </div>
                     </c:if>
