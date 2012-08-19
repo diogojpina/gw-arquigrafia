@@ -8,7 +8,7 @@ $(function(){
 		$(this).parent().remove();
 	}); 
 	
-	$('#to-invite').click(function(e) {
+	$('.to-invite').click(function(e) {
 		e.preventDefault();
 		$.post($(this).data('url'));
 		$(this).remove();

@@ -376,7 +376,8 @@ a#printer_icon:hover{ background-position:-713px -33px; }
 #download { display:block; width:24px; height:25px;}
 a#add_favourite { background:url(../img/icons_sprite.png) -575px 0;}
 a#add_favourite:hover{ background-position:-575px -33px;}
-a#plus { background:url(../img/icons_sprite.png) -471px 0;}
+a#plus { background:url(../img/icons_sprite.png) -471px 0;
+padding-top: 4px;}
 a#plus:hover { background-position:-471px -33px;}
 a#eyedroppper { background:url(../img/icons_sprite.png) -436px 0;}
 a#eyedroppper:hover { background-position:-436px -33px;}

@@ -65,9 +65,10 @@
                           <input type="hidden" id="url" name="url" value="/groupware-workbench/friends/${friendsMgr.id}/show/${friend.id}" />
                    </form>
              </c:if>
-           
-                          <friends:sendRequest friendsMgr="${friendsMgr}" viewer="${userLogin}" viewed="${friend}" />
-			</s:check>
+             
+            
+            <friends:sendRequest friendsMgr="${friendsMgr}" viewer="${userLogin}" viewed="${friend}" />
+					</s:check>
                    
         
         	<!--   EVENTOS   -->
@@ -100,7 +101,7 @@
 	            style="width: 400px;" />
 	            
 <!-- rodrigo -->	             
-									<c:choose>
+<%-- 									<c:choose>
                      <c:when test="${empty friend.photoURL}">
                         <img class="imagem_user" src="<c:url value="/images/users/default.jpg" />" />
                      </c:when>
@@ -108,7 +109,7 @@
                          <img class="imagem_user" src="${friend.photoURL}" />
                      </c:otherwise>
                  </c:choose>
-	            
+ --%>	            
 <!-- 		       <h2 id="profile_block_title">Comunidades</h2>
 		       <a href="#" id="small" class="profile_block_link">Ver todas</a>
  -->			
