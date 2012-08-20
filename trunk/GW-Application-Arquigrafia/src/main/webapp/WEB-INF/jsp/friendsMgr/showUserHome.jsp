@@ -12,6 +12,7 @@
 <%@taglib  prefix="user" uri="http://www.groupwareworkbench.org.br/widgets/user" %>
 <%@ taglib prefix="photo" uri="http://www.groupwareworkbench.org.br/widgets/photomanager" %>
 <%@ taglib prefix="album" uri="http://www.groupwareworkbench.org.br/widgets/album" %>
+<%@ taglib prefix="comment" uri="http://www.groupwareworkbench.org.br/widgets/comment"%>
 <%@ taglib prefix="arq" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="s" uri="http://www.groupwareworkbench.org.br/widgets/security" %> 
 
@@ -133,35 +134,43 @@
 		
 		<!-- FIM-BARRA LATERAL - DIREITA -->
 		
-<!-- rodrigo -->				<div class="linha">
+<!-- rodrigo -->				
+ 						<div class="linha">
                     <c:if test="${commentMgr2.collablet.enabled}">
                         <div id="comentario" style="width: 700px; float:left;">
-                            <form name="comments" method="post" enctype="multipart/form-data" action="<c:url value="/groupware-workbench/friends/${friendsMgr.id}/show/${friend.id}" />">
                                 <div id="comments_bar">
                                     <div id="comments_bar_bg">
-                                        <div id="comments_bar_title" class="big_blue_title2">
+<%--                                         <div id="comments_bar_title" class="big_blue_title2">
                                             <p>Mensagens</p>
                                         </div>
-                                        <div id="comments_bar_link" class="comments_link">
-                                            <a class="white_link"><img src="${pageContext.request.contextPath}/images/add_comment.png" alt="Adicionar Mensagem" /></a>
+ --%>                                   <div id="comments_bar_link" class="comments_link">
+                                            <a id="plus" href="#" class="white_link" title="Ver mensagens">
+                                            	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ver mensagens
+                                            </a>
                                         </div>
                                         <div id="comments_bar_link2" class="comments_link">
-                                            <a class="white_link"><img src="${pageContext.request.contextPath}/images/add_comment2.png" alt="Adicionar Mensagem" /></a>
+                                            <a  href="#" title="Ocultar mensagens" id="delete">
+                                            	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ocultar mensagens
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
                                 <div id="comments_create" style="height: 130px;">
-                                    <comment:addComment commentMgr="${commentMgr2}" idObject="${friend.id}" user="${sessionScope.userLogin}" editorClass="editorClass" wrapClass="comments_create_internal" />
-                                    <input name="commentAdd" value="Adicionar" type="submit" />
+	          												<comment:getComments commentMgr="${commentMgr2}" entity="${friend}" />	
+													          <comment:addComment commentMgr="${commentMgr2}" uri="/friends/${friendsMgr.id}/${friend.id}" idObject="${friend.id}" user="${sessionScope.userLogin}" />
+	          												<br/><br/><br/><br/>
                                 </div>
-                                <div id="comments_show">
-                                    <comment:getComments commentMgr="${commentMgr2}" entity="${friend}" wrapClass="comments_show_internal" />
-                                </div>
-                            </form>
                         </div>
                     </c:if>
                 </div>
-		
+ 
+ 
+ 
+ 				<div id="comments_block">
+			
+				</div>
+ 
+ 		
 		<div id="added_images_bar">
 			<h3>Minhas imagens:</h3>
 			<p:photosByUser photoMgr="${photoMgr}" user="${friend}"/>

@@ -95,7 +95,7 @@
 				<div id="comments_block">
 					<h2>Comentários</h2>
 					<comment:getComments commentMgr="${commentMgr}" entity="${photo}" />
-					<comment:addComment commentMgr="${commentMgr}"	idObject="${photo.id}" user="${sessionScope.userLogin}" />
+					<comment:addComment commentMgr="${commentMgr}"	uri="/photo/${photo.id}" idObject="${photo.id}" user="${sessionScope.userLogin}" />
 				</div>
 				<!--   BOX DE COMENTARIOS   -->
 			</div>

@@ -18,13 +18,15 @@ $(function(){
     $('#comments_create').hide();
     $('#comments_bar_link2').hide();
 
-    $('#comments_bar_link').click(function(){
+    $('#comments_bar_link').click(function(e){
+    	e.preventDefault();
         $('#comments_create').slideDown();
         $('#comments_bar_link').hide();
         $('#comments_bar_link2').show();
     });
 
-    $('#comments_bar_link2').click(function(){
+    $('#comments_bar_link2').click(function(e){
+    	e.preventDefault();
         $('#comments_create').slideUp();
         $('#comments_bar_link2').hide();
         $('#comments_bar_link').show();
