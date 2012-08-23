@@ -8,9 +8,9 @@ $(function(){
 		$(this).parent().remove();
 	}); 
 	
-	$('.to-invite').click(function(e) {
+	$('#single_view_contact_add').click(function(e) {
 		e.preventDefault();
-		$.post($(this).data('url'));
+		$.post(this.href);
 		$(this).remove();
 	});
 	
