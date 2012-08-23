@@ -44,6 +44,11 @@
 												viewer="${sessionScope.userLogin}" increment="true"
 												wrapClass="counter_show" />
 									</small></li>
+              <li id="comments"></li>
+              <li><small>
+              <comment:count commentMgr="${commentMgr}" entity="${photo}"/>
+												</small></li>
+									
 						</ul>
 					</div>
 					<!--   FIM - NOME / STATUS DA FOTO   -->
