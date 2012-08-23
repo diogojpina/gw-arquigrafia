@@ -8,6 +8,7 @@
 <%@ taglib prefix="tag" uri="http://www.groupwareworkbench.org.br/widgets/tag"%>
 <%@ taglib prefix="comment" uri="http://www.groupwareworkbench.org.br/widgets/comment"%>
 <%@ taglib prefix="counter" uri="http://www.groupwareworkbench.org.br/widgets/counter" %>
+<%@ taglib prefix="friends" uri="http://www.groupwareworkbench.org.br/widgets/friends" %>
 <%@ taglib prefix="s" uri="http://www.groupwareworkbench.org.br/widgets/security" %>
 
 
@@ -17,6 +18,8 @@
 <title>Arquigrafia - <c:out value="${photo.name}"/></title>
 <arquigrafia:includes arquigrafiaInstance="${arquigrafiaMgr}" />
 <album:buttonAdd-script />
+<script type="text/javascript" src="<c:url value="/js/friend.js" />"></script>
+
 </head>
 
 <body>
@@ -110,7 +113,8 @@
 						id="single_view_owner_name"><a href="<c:url value="/groupware-workbench/friends/11/show/${user.id}" />" id="name">
 						${user.name}
 						</a></span>
-						<br /> 
+						<br />
+						<friends:sendRequest friendsMgr="${friendsMgr}" viewer="${userLogin}" viewed="${user}" /> 
 						<!-- <s:check name="X-X-usuario"> 
 							<a href="<c:url value="/groupware-workbench/friends/11/sendRequest/${user.id}" />" id="single_view_contact_add">+ Adicionar contato</a><br />
 						</s:check>  -->
