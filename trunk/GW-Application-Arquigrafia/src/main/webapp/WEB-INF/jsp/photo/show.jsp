@@ -119,10 +119,9 @@
 						${user.name}
 						</a></span>
 						<br />
-						<friends:sendRequest friendsMgr="${friendsMgr}" viewer="${userLogin}" viewed="${user}" /> 
-						<!-- <s:check name="X-X-usuario"> 
-							<a href="<c:url value="/groupware-workbench/friends/11/sendRequest/${user.id}" />" id="single_view_contact_add">+ Adicionar contato</a><br />
-						</s:check>  -->
+						<s:check name="X-X-usuario">
+						<friends:sendRequest friendsMgr="${friendsMgr}" viewer="${userLogin}" viewed="${user}" />
+						</s:check> 
 				</c:forEach>
 				</div>
 				<!--   FIM - USUARIO   -->
