@@ -45,10 +45,11 @@
 												wrapClass="counter_show" />
 									</small></li>
               <li id="comments"></li>
-              <li><small>
-              <comment:count commentMgr="${commentMgr}" entity="${photo}"/>
-												</small></li>
-									
+              <li>
+              	<small>
+              		<comment:count commentMgr="${commentMgr}" entity="${photo}"/>
+								</small>
+							</li>
 						</ul>
 					</div>
 					<!--   FIM - NOME / STATUS DA FOTO   -->
@@ -120,7 +121,7 @@
 						</a></span>
 						<br />
 						<s:check name="X-X-usuario">
-						<friends:sendRequest friendsMgr="${friendsMgr}" viewer="${userLogin}" viewed="${user}" />
+							<friends:sendRequest friendsMgr="${friendsMgr}" viewer="${userLogin}" viewed="${user}" />
 						</s:check> 
 				</c:forEach>
 				</div>
