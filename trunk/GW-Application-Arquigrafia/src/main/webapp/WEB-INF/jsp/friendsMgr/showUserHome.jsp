@@ -144,13 +144,13 @@
                                             <p>Mensagens</p>
                                         </div>
  --%>                                   <div id="comments_bar_link" class="comments_link">
-                                            <a id="plus" href="#" class="white_link" title="Ver mensagens">
-                                            	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ver mensagens
+                                            <a id="single_view_message_open" href="#" class="white_link" title="Ver mensagens">
+                                            	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; + Ver mensagens
                                             </a>
                                         </div>
                                         <div id="comments_bar_link2" class="comments_link">
-                                            <a  href="#" title="Ocultar mensagens" id="delete">
-                                            	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ocultar mensagens
+                                            <a  href="#" title="Ocultar mensagens" id="single_view_message_close">
+                                            	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; + Ocultar mensagens
                                             </a>
                                         </div>
                                     </div>
