@@ -6,11 +6,10 @@
 	type="br.org.groupwareworkbench.arquigrafia.photo.PhotoMgrInstance"%>
 <%@ attribute name="user" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.collablet.coord.user.User" %>
 
-<c:if test="${photoInstance.collablet.enabled}">
+<c:if test="${photoMgr.collablet.enabled}">
 	<r:callMethod methodName="listPhotosByUser" instance="${photoMgr}" var="photos" >
     	<r:param type="br.org.groupwareworkbench.collablet.coord.user.User" value="${user}" />
 	</r:callMethod>
-	
 	<c:forEach var="foto" items="${photos}">
 			<a class="search_image" 
 				href="<c:url value="/photo/${foto.id}"/>"> <img
