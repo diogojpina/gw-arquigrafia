@@ -28,7 +28,7 @@
       <!--   PAINEL DE IMAGENS - GALERIA - CARROSSEL   -->
 
 		<c:if test="${empty error}">
-             <span id="resultTerm">Voc&ecirc; buscou por objetos com a tag: <c:out value="${tag.name}" /></span>
+             <span id="resultTerm">Voc&ecirc; buscou por imagens com a tag: <c:out value="${tag.name}" /></span>
              <span id="resultCount"> (<c:out value="${tag.size}" /> resultados)</span>
              <br/>
         </c:if>
