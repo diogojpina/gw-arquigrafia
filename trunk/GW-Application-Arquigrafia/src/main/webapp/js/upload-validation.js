@@ -1,4 +1,4 @@
-$("#imagedate, #workdate").mask("99/99/9999");
+$("#imagedate, #workdate, #cataloguingTime").mask("99/99/9999");
 
 $(document).ready(function() {
 	var validationDateName = "dateBR";
