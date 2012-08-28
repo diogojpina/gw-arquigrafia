@@ -56,7 +56,7 @@
 				</div>
 		<!--   BOX DE AVALIAÃÃO   -->
 		<div id="avaliation_box">
-	      <p>Avalie a imagem conforme os pares de qualidades opostas abaixo e ao terminar clique no botão Salvar para registrar a sua interpretação e ver a avaliação de outros usuários. </p>
+	      <p>Esta é a média das avaliações desta imagem. </p> 
           <!--   FORMULÃRIO DE AVALIAÃÃO   -->
           <form name="tags" method="post" enctype="multipart/form-data"
 			action="<c:url value="/photo/${photo.id}" />">
@@ -128,13 +128,17 @@
       <!--   FIM - COLUNA ESQUERDA   -->
       <!--   COLUNA LATERAL - DIREITA   -->
       <div id="sidebar">
-        <h2 class="common_title">Avaliação</h2>
-        <p>Como você avaliaria a arquitetura apresentada na imagem ao lado? </p>
-		<p>Há um predomínio de elementos horizontais ou verticais, e em que proporção?</p>
-		<p>Experimente posicionar os marcadores(controle deslizante) em um ponto que corresponda à sua avaliação da arquitetura visível na imagem para cada par de qualidades opostas.</p>
-		<p>Salve a sua resposta e, se tiver curiosidade, veja como outros usuários avaliaram esta mesma imagem.</p>
-        <h3>Como faço para avaliar?</h3><br />
-        <p>Deslize os marcadores até encontrar a posição ou os percentuais que correspondam à sua interpretação da arquitetura visível na imagem para cada par de qualidades.</p>
+		<h2 class="common_title">Avaliação</h2>
+        <p>Como você avaliaria a arquitetura apresentada na imagem ao lado? <br /> 
+        Há um predomínio de elementos horizontais ou verticais, e em que proporção? <br /> 
+        Deslize os marcadores até encontrar a posição ou os percentuais que correspondam à sua interpretação da arquitetura visível na imagem para cada par de qualidades.<br /> 
+		Salve a sua resposta e, se tiver curiosidade, veja como outros usuários avaliaram esta mesma imagem.</p>
+		
+		<h3>Faça sua Avaliação:</h3>
+				<p>Avalie esta imagem de acordo com seus aspectos, compare
+					também sua avaliação com as do outros usuários.</p>
+				<a href="<c:url value="/${arquigrafiaMgr.id}/photo_avaliation/${photo.id}" />"
+					title="Avalie a foto" id="evaluate_button"></a>
         <!--<p>Nós te preparamos um vídeo que mostra o passo a passo da avaliação. Clique no botão abaixo para assistí­-lo:</p>
         <a href="#" id="watch_button"></a> -->
       </div>

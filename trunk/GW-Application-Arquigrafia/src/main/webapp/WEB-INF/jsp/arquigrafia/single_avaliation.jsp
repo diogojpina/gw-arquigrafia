@@ -133,6 +133,10 @@
         Há um predomínio de elementos horizontais ou verticais, e em que proporção? <br /> 
         Deslize os marcadores até encontrar a posição ou os percentuais que correspondam à sua interpretação da arquitetura visível na imagem para cada par de qualidades.<br /> 
 		Salve a sua resposta e, se tiver curiosidade, veja como outros usuários avaliaram esta mesma imagem.</p>
+		
+		<h3>Compare as avaliações:</h3>
+				<p>Compare sua avaliação com as do outros usuários.</p>
+					<a href="#" title="Média das avaliações da foto" id="evaluation_average"></a>
         <!--<p>Nós te preparamos um vídeo que mostra o passo a passo da avaliação. Clique no botão abaixo para assistí­-lo:</p>
         <a href="#" id="watch_button"></a> -->
       </div>
