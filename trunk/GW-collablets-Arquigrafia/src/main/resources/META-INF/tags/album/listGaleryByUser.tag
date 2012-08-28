@@ -16,11 +16,11 @@
 	<div id="profile_box">
 		<c:forEach items="${albunsByUser}" var="album">
 	     	<div id="gallery_box">
-	        	<a href="${pageContext.request.contextPath}/groupware-workbench/album/${albumMgr.id}/default/${album.id}" id="gallery_photo">
+	        	<a href="${pageContext.request.contextPath}/groupware-workbench/album/${albumMgr.id}/show/${album.id}/list/${user.id}" id="gallery_photo">
          	    	<img src="<c:url value="/img/album_icon-1.png" />" id="gallery_photo" />
 	       		</a>
 	        		
-	         	<a href="${pageContext.request.contextPath}/groupware-workbench/album/${albumMgr.id}/default/${album.id}" id="name"><c:out value="${album.title}" /></a>
+	         	<a href="${pageContext.request.contextPath}/groupware-workbench/album/${albumMgr.id}/show/${album.id}/list/${user.id}" id="name"><c:out value="${album.title}" /></a>
 	         	<br />
 	         	<span id="small">${fn:length(album.objects)} foto(s)</span>
 			</div>

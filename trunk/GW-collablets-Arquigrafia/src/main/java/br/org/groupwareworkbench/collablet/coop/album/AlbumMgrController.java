@@ -68,9 +68,9 @@ public class AlbumMgrController {
     }
 
     @Get
-    @Path(value = "/groupware-workbench/album/{albumMgr}/default/{idAlbum}")
-    public void listByAlbum(AlbumMgrInstance albumMgr, Long idAlbum) {
-        final User user = (User) request.getSession().getAttribute("userLogin");
+    @Path(value = "/groupware-workbench/album/{albumMgr}/show/{idAlbum}/list/{idUser}")
+    public void listByAlbum(AlbumMgrInstance albumMgr, Long idAlbum, Long idUser) {
+        User user = User.findById(idUser);
         List<Album> albunList = albumMgr.listByUser(user);
         Album album = Album.findById(idAlbum);
         addIncludes(albumMgr);
@@ -78,7 +78,7 @@ public class AlbumMgrController {
         .include("album", album)
         .include("user", user)
         .forwardTo("/WEB-INF/jsp/albumMgr/list.jsp");
-        result.use(Results.representation()).from(albunList).serialize();
+//        result.use(Results.representation()).from(albunList).serialize();
     }
     
     
@@ -179,12 +179,12 @@ public class AlbumMgrController {
     }
 
     @Get
-    @Path(value = "/groupware-workbench/album/{idAlbum}/delete/{idObject}")
-    public void deleteToAlbum(Long idAlbum, Long idObject) {
+    @Path(value = "/groupware-workbench/album/{idAlbum}/delete/{idObject}/list/{idUser}")
+    public void deleteToAlbum(Long idAlbum, Long idObject, Long idUser) {
         Album album = Album.findById(idAlbum);
         AlbumMgrInstance albumMgr = (AlbumMgrInstance) album.getCollablet().getBusinessObject();
         albumMgr.deleteGenericReference(album, idObject);
-        result.use(logic()).redirectTo(AlbumMgrController.class).listByAlbum(albumMgr, idAlbum);
+        result.use(logic()).redirectTo(AlbumMgrController.class).listByAlbum(albumMgr, idAlbum, idUser);
     }
 
     private void addIncludes(AlbumMgrInstance albumMgr) {
