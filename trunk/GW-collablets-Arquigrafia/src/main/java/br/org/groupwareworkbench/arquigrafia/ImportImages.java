@@ -116,62 +116,79 @@ public class ImportImages {
                                 System.out.println("File " + imageFile + " does not exist. Giving up.");
                                 continue;
                             }
-                            
                             photo.setNomeArquivo(fileName);
+                            photo.setTombo(Integer.toString(tombo));
                             
                             // B - 1 - Caracterização
                             
                             // C - 2 - Nome
-                            String nome = stringValue(sheet, ps, 2, i);
+                            String nome = stringValue(sheet, ps, 2, i, true);
                             photo.setName(nome);
                             
                             // D - 3 - País
-                            String pais = stringValue(sheet, ps, 3, i);
+                            String pais = stringValue(sheet, ps, 3, i, true);
                             photo.setCountry(pais);
                             
                             // E - 4 - Estado
-                            String estado = stringValue(sheet, ps, 4, i);
+                            String estado = stringValue(sheet, ps, 4, i, true);
                             photo.setState(estado);
                             
                             // F - 5 - Cidade
-                            String cidade = stringValue(sheet, ps, 5, i);
+                            String cidade = stringValue(sheet, ps, 5, i, true);
                             photo.setCity(cidade);
                             
                             // G - 6 - Bairro
-                            String bairro = stringValue(sheet, ps, 6, i);
+                            String bairro = stringValue(sheet, ps, 6, i, true);
                             photo.setDistrict(bairro);
                             
                             // H - 7 - Rua
-                            String rua = stringValue(sheet, ps, 7, i);
+                            String rua = stringValue(sheet, ps, 7, i, true);
                             photo.setStreet(rua);
                             
                             // I - 8 - Coleção
-                            String colecao = stringValue(sheet, ps, 8, i);
+                            String colecao = stringValue(sheet, ps, 8, i, true);
                             photo.setCollection(colecao);
                             
                             // J - 9 - Autor da Imagem
-                            String autorImagem = stringValue(sheet, ps, 9, i);
+                            String autorImagem = stringValue(sheet, ps, 9, i, true);
                             photo.setImageAuthor(autorImagem);
                             
                             // K - 10 - Data da Imagem
-                            Calendar c = Calendar.getInstance();
-                            c.set(Calendar.YEAR, intValue(sheet, ps, 10, i));
-                            Date dataDaImagem = c.getTime();
-                            photo.setDataCriacao(dataDaImagem);
+                            {
+                                String d = "";
+                                try {
+                                    d = stringValue(sheet, ps, 10, i, false);
+                                } catch (InvalidCellContents e) {
+                                    
+                                }
+                                if(d.trim().equalsIgnoreCase("null")) {
+                                    photo.setDataCriacao(null);
+                                } else {
+                                    Calendar c = Calendar.getInstance();
+                                    c.set(Calendar.YEAR, intValue(sheet, ps, 10, i));
+                                    Date dataDaImagem = c.getTime();
+                                    photo.setDataCriacao(dataDaImagem);
+                                }
+                            }
                             
                             // L - 11 - Autor da Obra
-                            String autorDaObra = stringValue(sheet, ps, 11, i);
-                            photo.setWorkAuthor(autorDaObra);
+                            String autorDaObra = stringValue(sheet, ps, 11, i, true);
+                            if(autorDaObra.trim().equalsIgnoreCase("null")) {
+                                photo.setWorkAuthor(null);
+                            } else {
+                                photo.setWorkAuthor(autorDaObra);
+                            }
                             
                             // M - 12 - Data da Obra
-                            //Date dataDaObra = dateValue(sheet, ps, 12, i);
-                            c = Calendar.getInstance();
-                            c.set(Calendar.YEAR, intValue(sheet, ps, 12, i));
-                            Date dataDaObra = c.getTime();
-                            photo.setWorkdate(dataDaObra.toString());
+                            {
+                                Calendar c = Calendar.getInstance();
+                                c.set(Calendar.YEAR, intValue(sheet, ps, 12, i));
+                                Date dataDaObra = c.getTime();
+                                photo.setWorkdate(dataDaObra.toString());
+                            }
                             
                             // N - 13 - Licença
-                            String licenca = stringValue(sheet, ps, 13, i).trim();
+                            String licenca = stringValue(sheet, ps, 13, i, true).trim();
                             if(licenca.equals("")) {
                                 ps.println(String.format("Copyright data not found at row %d.", i));
                                 throw new InvalidCellContents();
@@ -195,33 +212,37 @@ public class ImportImages {
                             }
                             
                             // O - 14 - Descrição
-                            String descricao = stringValue(sheet, ps, 14, i);
+                            String descricao = stringValue(sheet, ps, 14, i, true);
                             photo.setDescription(descricao);
                             
                             // P - 15 - Tags Materiais
-                            String tagsMateriais = stringValue(sheet, ps, 15, i);
+                            String tagsMateriais = stringValue(sheet, ps, 15, i, true);
                             
                             // Q - 16 - Tags Elementos
-                            String tagsElementos = stringValue(sheet, ps, 16, i);
+                            String tagsElementos = stringValue(sheet, ps, 16, i, true);
                             
                             // R - 17 - Tags Tipologia
-                            String tagsTipologia = stringValue(sheet, ps, 17, i);
+                            String tagsTipologia = stringValue(sheet, ps, 17, i, true);
                             
                             // S - 18 - Observações
-                            String observacoes = stringValue(sheet, ps, 18, i);
+                            String observacoes = stringValue(sheet, ps, 18, i, true);
                             // TODO: where to put this?
                             
                             // T - 19 - Data de Catalogação
                             Date dataDeCatalogacao = dateValue(sheet, ps, 19, i);
                             photo.setCataloguingTime(dataDeCatalogacao);
                             
-                            ps.println(String.format("row %d : %d - %s - %s (%s)", i, tombo, nome, pais, dataDeCatalogacao));
+                            ps.println(String.format("[ %s - row %d ] :: tombo = %d - nome = %s - pais = %s (data catalogacao = %s)", odsFile.getCanonicalPath(), i, tombo, nome, pais, dataDeCatalogacao));
+                            
+                            ps.flush();
                             
                             System.out.println(System.currentTimeMillis() + ": Finished gathering data. Will save the photo object now...");
                             
                             photo.setCollablet(photoMgr);
                             photo.save();
                             photo.saveImage(new FileInputStream(imageFile));
+                            
+                            // TODO We should write to the report on this line and we should add the image ID.  
                             
                             System.out.println(System.currentTimeMillis() + ": Photo object saved. Will save tags now...");
                             
@@ -272,7 +293,7 @@ public class ImportImages {
         return string.replaceAll("\\S", "");
     }
 
-    public String stringValue(Table sheet, PrintStream ps, int columnNumber, int rowNumber) throws InvalidCellContents {
+    public String stringValue(Table sheet, PrintStream ps, int columnNumber, int rowNumber, boolean logError) throws InvalidCellContents {
         Row row = sheet.getRowByIndex(rowNumber-1);
         Cell cell = row.getCellByIndex(columnNumber);
         if(cell==null)
@@ -284,7 +305,9 @@ public class ImportImages {
         if (cell.getValueType().equals(CONTENT_STRING)) {
             return cell.getStringValue();
         }
-        ps.println(String.format("Wrong data format in cell %c%d. Could not import row %d. This is the format: %s", 'A' + columnNumber, rowNumber, rowNumber, cell.getValueType()));
+        if(logError) {
+            ps.println(String.format("Wrong data format in cell %c%d. Could not import row %d. This is the format: %s", 'A' + columnNumber, rowNumber, rowNumber, cell.getValueType()));
+        }
         throw new InvalidCellContents();
     }
     
