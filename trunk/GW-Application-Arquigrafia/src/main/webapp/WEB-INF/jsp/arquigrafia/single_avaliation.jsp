@@ -129,12 +129,10 @@
       <!--   COLUNA LATERAL - DIREITA   -->
       <div id="sidebar">
         <h2 class="common_title">Avaliação</h2>
-        <p>Como você avaliaria a arquitetura apresentada na imagem ao lado? </p>
-		<p>Há um predomínio de elementos horizontais ou verticais, e em que proporção?</p>
-		<p>Experimente posicionar os marcadores(controle deslizante) em um ponto que corresponda à sua avaliação da arquitetura visível na imagem para cada par de qualidades opostas.</p>
-		<p>Salve a sua resposta e, se tiver curiosidade, veja como outros usuários avaliaram esta mesma imagem.</p>
-        <h3>Como faço para avaliar?</h3><br />
-        <p>Deslize os marcadores até encontrar a posição ou os percentuais que correspondam à sua interpretação da arquitetura visível na imagem para cada par de qualidades.</p>
+        <p>Como você avaliaria a arquitetura apresentada na imagem ao lado? <br /> 
+        Há um predomínio de elementos horizontais ou verticais, e em que proporção? <br /> 
+        Deslize os marcadores até encontrar a posição ou os percentuais que correspondam à sua interpretação da arquitetura visível na imagem para cada par de qualidades.<br /> 
+		Salve a sua resposta e, se tiver curiosidade, veja como outros usuários avaliaram esta mesma imagem.</p>
         <!--<p>Nós te preparamos um vídeo que mostra o passo a passo da avaliação. Clique no botão abaixo para assistí­-lo:</p>
         <a href="#" id="watch_button"></a> -->
       </div>
