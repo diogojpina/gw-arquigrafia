@@ -243,8 +243,8 @@
             <description>Gerenciar comentários</description>
             <name>commentMgr2</name>
             <properties>
-                <property key="msgAddComment" value="Digite um comentário para o seu amigo" />
-                <property key="msgGetComment" value="Ninguém comentou ainda a seu amigo	. Seja o primeiro!" />
+                <property key="msgAddComment" value="Digite uma mensagem." />
+                <property key="msgGetComment" value="Não existem mensagens para serem exibidas." />
             </properties>
         </collablet>
         
