@@ -21,7 +21,7 @@
         <!--   FIM - MENU INSTITUCIONAL   -->
             
         <!--   MENU DE BUSCA   -->
-        <form id="search_buttons_area" action="<c:url value="/photo/7/search" />" method="get">
+        <form id="search_buttons_area" action="<c:url value="/photo/7/search" />" method="post" accept-charset="UTF-8">
           <!--   BARRA DE BUSCA   -->
           <input type="text" class="search_bar" name="q" />
 

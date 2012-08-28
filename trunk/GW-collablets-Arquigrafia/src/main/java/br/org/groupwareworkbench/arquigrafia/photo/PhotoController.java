@@ -36,6 +36,7 @@ import br.com.caelum.vraptor.Delete;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
+import br.com.caelum.vraptor.Put;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.Validator;
@@ -291,7 +292,7 @@ public class PhotoController {
         result.use(Results.logic()).forwardTo(PhotoController.class).busca(photoMgr);
     }
 
-    @Get
+    @Post
     @Path(value = "/photo/{photoMgr}/search")
     public void buscaFoto(PhotoMgrInstance photoMgr, final String q, int page, int perPage) {
         validate(photoMgr, q);
@@ -458,32 +459,46 @@ public class PhotoController {
         result.use(Results.representation()).from(photo).serialize();
     }
     
-    @Post
+    @Put
     @Path(value = "/photo/{photoMgr}/update")
     public void update(Photo photoRegister, PhotoMgrInstance photoMgr, User userOwn) {
-        User user = null;
-        try {
-            user = (User) session.getAttribute("userLogin");
-        } catch (Exception e) {
-        }
-                
-        if (user != null) {
-            photoRegister.assignUser(userOwn);
-            photoRegister.assignUser(user);
-        }
+        Photo photo = Photo.findById(photoRegister.getId());
         
-        try {
-            photoMgr.save(photoRegister);
-        } catch (RuntimeException e) {
-            validator.add(new ValidationMessage(e.getMessage(), "Erro"));
-            validator.onErrorUse(Results.logic()).redirectTo(PhotoController.class)
-                    .registra(photoMgr, photoRegister);
+        
+        if (photo == null|| photo.getDeleted() ) {
+            this.photoNotFound(photo);
             return;
         }
-        photoMgr.getCollablet().processWidgets(info, photoRegister);
+        
+        User user = (User) session.getAttribute("userLogin");
+                
+        if (user != null) {
+            photo.assignUser(userOwn);
+            photo.assignUser(user);
+        }
+        
+        attributesToUpdate(photoRegister, photo);
+        
+        photoMgr.update(photo);
+        photoMgr.getCollablet().processWidgets(info, photo);
         addIncludes(photoMgr);
         result.include("successMessage", MSG_SUCCESS);
-        result.use(Results.logic()).redirectTo(PhotoController.class).show(photoRegister.getId());
+        result.use(Results.logic()).redirectTo(PhotoController.class).show(photo.getId());
+    }
+
+    private void attributesToUpdate(Photo photoRegister, Photo photo) {
+        photo.setName(photoRegister.getName());
+        photo.setImageAuthor(photoRegister.getImageAuthor());
+        photo.setCity(photoRegister.getCity());
+        photo.setDataCriacao(photoRegister.getDataCriacao());
+        photo.setDistrict(photoRegister.getDistrict());
+        photo.setWorkAuthor(photoRegister.getWorkAuthor());
+        photo.setStreet(photoRegister.getStreet());
+        photo.setWorkdate(photoRegister.getWorkdate());
+        photo.setCataloguingTime(photoRegister.getCataloguingTime());
+        photo.setTombo(photoRegister.getTombo());
+        photo.setAditionalImageComments(photoRegister.getAditionalImageComments());
+        photo.setDescription(photoRegister.getDescription());
     }
     
     @Get

@@ -207,6 +207,10 @@ public class Photo implements Serializable {
         DAO.save(this);
     }
 
+    public void update() {
+        DAO.update(this);
+    }
+
     public static List<Photo> list(Collablet collablet) {
         // TODO Not fully tested.
         Map<String, Object> fields = new HashMap<String, Object>();

@@ -49,6 +49,11 @@ public class PhotoMgrInstance extends AbstractBusiness {
         photo.save();
     }
 
+    public void update(Photo photo) {
+        photo.setCollablet(getCollablet());
+        photo.update();
+    }
+
     public List<Photo> buscaFoto(String busca) {
         return Photo.busca(getCollablet(), busca, "", "", null);
     }
