@@ -11,9 +11,10 @@
 
 <div class="list_photos">
 
-		Imagens com a tag ${searchTerm}
+		Imagens com a tag: ${searchTerm}
 		
 		<c:if test="${not empty photosByTag}">
+		
 			<a class="load_photos_by_tag" href='<c:url value="/tags/${tagMgr.id}/${searchTerm}"/>' >Ver todas as imagens</a>		
 		
 		</c:if>
@@ -42,7 +43,7 @@
 
 	    	<div class="list_photos">
 	    		
-					<fmt:message key="${photo.key}"/>
+					<fmt:message key="${photo.key}"/> ${searchTerm}
 					
 						<c:choose>
 							<c:when test="${fn:length(photo.value) >= 8 }">
