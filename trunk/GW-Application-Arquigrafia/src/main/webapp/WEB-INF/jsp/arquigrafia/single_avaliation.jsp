@@ -30,30 +30,15 @@
     <!--   MEIO DO SITE - ÁREA DE NAVEGAÇÃO   -->
     <div id="content">
       <!--   COLUNA ESQUERDA   -->
-      <div id="sub_content">
-        <!--   PAINEL DE VISUALIZAÃÃO - SINGLE   -->
-				<div id="single_view_block">
-					<!--   NOME / STATUS DA FOTO   -->
-					<div id="single_view_header">
-						<h1><c:out value="${photo.name}"/>    	</h1>
-						<ul id="single_view_image_rating" class="right">
-							<li id="graph" ></li>
-							<li><small><counter:showCounter
-												manager="${counterMgr}" entity="${photo}"
-												viewer="${sessionScope.userLogin}" increment="true"
-												wrapClass="counter_show" />
-									</small></li>
-						</ul>
-					</div>
-					<!--   FIM - NOME / STATUS DA FOTO   -->
-					<!--   FOTO   -->
-					<%--img src="img/photos/8806.jpg" class="single_view_image" width="600" height="410" alt="" title="" /--%>
-					<p:show clazz="single_view_image"
-						 foto="${photo}"
-						photoMgr="${photoMgr}" />
-
-					<hr />
-				</div>
+      
+       <div id="sub_content_avaliation">
+        <h2 class="common_title">Avaliação</h2>
+        <p>Como você avaliaria a arquitetura apresentada na imagem ao lado? <br /> 
+        Há um predomínio de elementos horizontais ou verticais, e em que proporção? <br /> 
+        Deslize os marcadores até encontrar a posição ou os percentuais que correspondam à sua interpretação da arquitetura visível na imagem para cada par de qualidades.<br /> 
+		Salve a sua resposta e, se tiver curiosidade, veja como outros usuários avaliaram esta mesma imagem.</p>
+		
+		
 		<!--   BOX DE AVALIAÃÃO   -->
 		<div id="avaliation_box">
 	      <p>Avalie a imagem conforme os pares de qualidades opostas abaixo e ao terminar clique no botão Salvar para registrar a sua interpretação e ver a avaliação de outros usuários. </p>
@@ -124,22 +109,51 @@
 		 --%>
 	   </div>
        <!--   FIM - BOX DE AVALIAÃÃO   -->
-      </div>
-      <!--   FIM - COLUNA ESQUERDA   -->
-      <!--   COLUNA LATERAL - DIREITA   -->
-      <div id="sidebar">
-        <h2 class="common_title">Avaliação</h2>
-        <p>Como você avaliaria a arquitetura apresentada na imagem ao lado? <br /> 
-        Há um predomínio de elementos horizontais ou verticais, e em que proporção? <br /> 
-        Deslize os marcadores até encontrar a posição ou os percentuais que correspondam à sua interpretação da arquitetura visível na imagem para cada par de qualidades.<br /> 
-		Salve a sua resposta e, se tiver curiosidade, veja como outros usuários avaliaram esta mesma imagem.</p>
 		
-		<h3>Compare as avaliações:</h3>
+		
+		
+		
+      </div>
+      
+      
+      <!--   FIM - COLUNA ESQUERDA   -->
+      
+      <!--   COLUNA LATERAL - DIREITA   -->
+      
+      <div id="sidebar_avaliation">
+        <!--   PAINEL DE VISUALIZAÃÃO - SINGLE   -->
+				<div id="single_view_block">
+					<!--   NOME / STATUS DA FOTO   -->
+					<div id="single_view_header">
+						<h1><c:out value="${photo.name}"/>    	</h1>
+						<ul id="single_view_image_rating" class="right">
+							<li id="graph" ></li>
+							<li><small><counter:showCounter
+												manager="${counterMgr}" entity="${photo}"
+												viewer="${sessionScope.userLogin}" increment="true"
+												wrapClass="counter_show" />
+									</small></li>
+						</ul>
+					</div>
+					<!--   FIM - NOME / STATUS DA FOTO   -->
+					<!--   FOTO   -->
+					<%--img src="img/photos/8806.jpg" class="single_view_image" width="600" height="410" alt="" title="" /--%>
+					<p:show clazz="single_view_image"
+						 foto="${photo}"
+						photoMgr="${photoMgr}" />
+
+					<hr />
+				</div>
+				
+				<h3>Compare as avaliações:</h3>
 				<p>Compare sua avaliação com as do outros usuários.</p>
 					<a href="#" title="Média das avaliações da foto" id="evaluation_average"></a>
         <!--<p>Nós te preparamos um vídeo que mostra o passo a passo da avaliação. Clique no botão abaixo para assistí­-lo:</p>
         <a href="#" id="watch_button"></a> -->
+		
       </div>
+      
+     
       <!--   FIM - COLUNA LATERAL - DIREITA   -->
     </div>
     <!--   FIM - MEIO DO SITE   -->

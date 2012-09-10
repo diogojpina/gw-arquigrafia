@@ -319,6 +319,7 @@ a.search_image:hover { opacity: 0.6; filter:alpha(opacity=60); }
 
 
 /* --- PÁGINAS INTERNAS --- */
+#sub_content_avaliation { float:left; width:470px; line-height:19px; }
 #sub_content { width:650px; float:left;}
 
 /* THE PROJECT */
@@ -331,6 +332,7 @@ a#printer_icon { float:left; width:24px; height:25px; background:url(../img/icon
 a#printer_icon:hover{ background-position:-713px -33px; }
 
 /* SIDEBAR */
+#sidebar_avaliation { width:470px; float:right; }
 #sidebar { float:right; width:290px; line-height:19px; }
 #sidebar br { clear:both; }
 #sidebar p { margin: 3px 0 10px 0; }
@@ -432,9 +434,9 @@ input#comment_button { background:url(../img/icons_sprite.png) -262px -145px; wi
 input#comment_button:hover { background-position:-262px -170px;}
 
 /* SINGLE VIEW - AVALIATION */
-#avaliation_box { width:650px; }
+#avaliation_box { width:470px; }
 #avaliation_box p { display:block; width:470px; float:left; }
-#avaliation_form{ text-align:right; }
+#avaliation_form{ text-align:left; }
 #avaliation_form input { margin-top:18px;}
 #avaliation_form input#clean { background:url(../img/icons_sprite.png) -694px -145px; width:52px; height:21px; }
 #avaliation_form input#clean:hover { background-position:-694px -170px; }
@@ -505,7 +507,7 @@ ul#avaliation_list li .bloco{ width:430px; background:url(../img/icons_sprite.pn
 }
 
 #binomialsWrap {
-	float: right;
+	float: left;
 	padding-right: 0px;
 	width: 100%;
 	overflow: scroll;
@@ -528,7 +530,7 @@ ul#avaliation_list li .bloco{ width:430px; background:url(../img/icons_sprite.pn
 	font-size: 11px;
 	font-weight: bold;
 	color: #fff;
-	margin-left: 472px;
+	margin-left: 200px;
 }
 
 #binomialSubmit input:hover {
