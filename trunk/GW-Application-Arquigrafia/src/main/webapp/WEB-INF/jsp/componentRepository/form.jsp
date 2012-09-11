@@ -48,7 +48,7 @@
                         <p><c:out value="${error.category}" />: <c:out value="${error.message}" /></p>
                     </c:forEach>
                 </c:if>
-                <form method="post" action="<c:url value="/groupware-workbench/repository/${componentRepository.id}/new" />" enctype="multipart/form-data">
+                <form method="post" action="<c:url value="/repository/${componentRepository.id}/new" />" enctype="multipart/form-data">
                     <ul>
                         <li>Nome:<br /><input type="text" name="component.name" value="<c:out value="${component.name}" />" /></li>
                         <li>Descri&ccedil;&atilde;o:<br /><textarea name="component.description"><c:out value="${component.description}" /></textarea></li>
