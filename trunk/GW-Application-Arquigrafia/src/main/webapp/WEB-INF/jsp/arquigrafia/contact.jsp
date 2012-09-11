@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <div id="contact_us_form">
-	<form action="<c:url value="/groupware-workbench/sendmail/${mailMgrInstance.id}/send"/>" method="post">
+	<form action="<c:url value="/sendmail/${mailMgrInstance.id}/send"/>" method="post">
 		<h2>Fale conosco</h2>
 		<br />
 		<h3>Envie suas criticas, dúvidas e sugestões:</h3>
