@@ -181,7 +181,7 @@ public class PhotoController {
     // FIXME: @Get e @Post ao mesmo tempo? Separar as duas coisas. Não é idempotente.
     @Post
     @Get
-    @Path(value = "/photo/{idPhoto}")
+    @Path(value = {"/photo/{idPhoto}", "/photo/{idPhoto}.jpeg"})
     public void show(long idPhoto) {
         Photo photo = Photo.findById(idPhoto);
         showById(photo);
