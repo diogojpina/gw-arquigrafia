@@ -7,7 +7,7 @@
 <h2>${message}</h2>
 <br />
 <small>* Todos os campos a seguir são obrigatórios.</small></p>
-<form id="form1" class="cmxform" name="dados" method="POST" action="<c:url value="/groupware-workbench/album/${albumMgr.id}/save" />" accept-charset="UTF-8" autocomplete="off">
+<form id="form1" class="cmxform" name="dados" method="POST" action="<c:url value="/album/${albumMgr.id}/save" />" accept-charset="UTF-8" autocomplete="off">
   	
 		 <c:if test="${not empty album.id}">
 		   <input type="hidden" name="album.id" value="${album.id}"/>

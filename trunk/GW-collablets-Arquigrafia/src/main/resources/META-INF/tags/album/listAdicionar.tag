@@ -73,7 +73,7 @@
     function addToAlbum() {
         var object = $("#modalPanel_hidden").val();
         var album = $(".modalPanel_adicionar input:radio[name=radioAlbum]:checked").val();
-        $.post("${pageContext.request.contextPath}/groupware-workbench/album/${albumMgr.id}/add/" + album + "/" + object, function(data) {
+        $.post("${pageContext.request.contextPath}/album/${albumMgr.id}/add/" + album + "/" + object, function(data) {
             dialog.hide();
         });
     }

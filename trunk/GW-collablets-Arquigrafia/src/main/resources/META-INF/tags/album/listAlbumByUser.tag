@@ -24,15 +24,15 @@
       <div id="<c:out value="${albumBarId}" default="album_bar"/>">
 		<h1>Álbuns:</h1>
 		<s:check name="X-X-usuario">
-				<a id="new_album" href="<c:url value="/groupware-workbench/album/${albumMgr.id}"/>">+ Adicionar</a>
+				<a id="new_album" href="<c:url value="/album/${albumMgr.id}"/>">+ Adicionar</a>
 		</s:check>
     <br />
 
 		<c:forEach items="${albunsByUser}" var="album">
 			<album:album album="${album}" albumMgr="${albumMgr}" />
 			<c:if test="${sessionScope.userLogin.id eq album.owner.id and album.title ne 'Favoritos'}">
-				<a id="edit_album" href="<c:url value="/groupware-workbench/album/${albumMgr.id}/edit/${album.id}"/>">Editar</a>
-				<a id="delete_album" href="<c:url value="/groupware-workbench/album/${albumMgr.id}/destroy/${album.id}"/>">Excluir</a>
+				<a id="edit_album" href="<c:url value="/album/${albumMgr.id}/edit/${album.id}"/>">Editar</a>
+				<a id="delete_album" href="<c:url value="/album/${albumMgr.id}/destroy/${album.id}"/>">Excluir</a>
 			</c:if>
 			<strong id="name" class="name_album">${album.title}</strong>
 		</c:forEach>

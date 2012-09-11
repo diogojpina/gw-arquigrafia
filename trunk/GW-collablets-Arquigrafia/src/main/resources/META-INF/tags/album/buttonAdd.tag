@@ -13,7 +13,7 @@
     <r:param type="br.org.groupwareworkbench.collablet.coord.user.User" value="${user}" />
 </r:callMethod>
 
-<form id="form1" class="cmxform" name="dados" method="POST" action="<c:url value="/groupware-workbench/album/${albumMgr.id}/add/${photo.id}" />" accept-charset="UTF-8" autocomplete="off">
+<form id="form1" class="cmxform" name="dados" method="POST" action="<c:url value="/album/${albumMgr.id}/add/${photo.id}" />" accept-charset="UTF-8" autocomplete="off">
   	
   	<div>
     	<h3>Escolha alguns &aacute;lbuns para adicionar esta foto:</h3>
