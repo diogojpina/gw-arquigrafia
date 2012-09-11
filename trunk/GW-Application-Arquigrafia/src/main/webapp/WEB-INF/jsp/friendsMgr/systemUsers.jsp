@@ -17,13 +17,13 @@
         <link rel="stylesheet" type="text/css" href="<c:url value="/css/header.css" />"/>
         <link rel="stylesheet" type="text/css" href="<c:url value="/css/know_more.css" />"/>
         <link rel="stylesheet" type="text/css" href="<c:url value="/css/forms.css" />"/>
-        <link rel="stylesheet" type="text/css" media="screen" href="<c:url value="/groupware-workbench/plugins/sds/css/smoothDivScroll.css" />"/>
-        <link rel="stylesheet" type="text/css" media="screen" href="<c:url value="/groupware-workbench/css/bay.css" />"/>
-        <link rel="stylesheet" type="text/css" media="screen" href="<c:url value="/groupware-workbench/css/footer.css" />"/>
-        <link rel="stylesheet" type="text/css" media="screen" href="<c:url value="/groupware-workbench/css/jquery.css" />"/>
-        <link rel="stylesheet" type="text/css" media="screen" href="<c:url value="/groupware-workbench/css/tagcloud.css" />"/>
-        <link rel="stylesheet" type="text/css" media="screen" href="<c:url value="/groupware-workbench/css/image_wall.css" />"/>
-        <link rel="stylesheet" type="text/css" media="screen" href="<c:url value="/groupware-workbench/css/boxy.css" />"/>
+        <link rel="stylesheet" type="text/css" media="screen" href="<c:url value="/plugins/sds/css/smoothDivScroll.css" />"/>
+        <link rel="stylesheet" type="text/css" media="screen" href="<c:url value="/css/bay.css" />"/>
+        <link rel="stylesheet" type="text/css" media="screen" href="<c:url value="/css/footer.css" />"/>
+        <link rel="stylesheet" type="text/css" media="screen" href="<c:url value="/css/jquery.css" />"/>
+        <link rel="stylesheet" type="text/css" media="screen" href="<c:url value="/css/tagcloud.css" />"/>
+        <link rel="stylesheet" type="text/css" media="screen" href="<c:url value="/css/image_wall.css" />"/>
+        <link rel="stylesheet" type="text/css" media="screen" href="<c:url value="/css/boxy.css" />"/>
         <script type="text/javascript" src="<c:url value="/js/jquery.js"/>"></script>
         <script type="text/javascript" src="<c:url value="/js/jquery-ui.js"/>"></script>
         <script type="text/javascript" src="<c:url value="/plugins/sds/js/jquery.smoothDivScroll-0.9-min.js"/>"></script>
@@ -64,7 +64,7 @@
                     <c:if test="${u.login != userLogin.login}">
                         <div style="float: left; margin: 20px auto; padding: 10px;">
                             <div class="linha">
-                            	<a href="<c:url value="/groupware-workbench/friends/${friendsMgr.id}/show/${u.id}"/>">
+                            	<a href="<c:url value="/friends/${friendsMgr.id}/show/${u.id}"/>">
                                     <c:choose>
                                         <c:when test="${empty u.photoURL}">
                                             <img class="imagem_user" src="<c:url value="/img/avatar.jpg" />" />
@@ -77,7 +77,7 @@
                             	&nbsp;
                             	<div class="coluna"> 
                                     <div class="linha">
-                                        <a class="blue_link" href="<c:url value="/groupware-workbench/friends/${friendsMgr.id}/show/${u.id}"/> ">
+                                        <a class="blue_link" href="<c:url value="/friends/${friendsMgr.id}/show/${u.id}"/> ">
                                             <c:out value="${u.name}" />
                                         </a>
                                     </div>

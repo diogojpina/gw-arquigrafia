@@ -60,7 +60,7 @@
                 <div id="top_links" class="blue_link"></div>
                 <div>
                     <span class="big_black_title">Editar Amigos</span>
-                    <a style="text-align: right;" class="blue_link" href="<c:url value="/groupware-workbench/friends/${friendsMgr.id}/show/${userLogin.id}"/>">Meu perfil</a>
+                    <a style="text-align: right;" class="blue_link" href="<c:url value="/friends/${friendsMgr.id}/show/${userLogin.id}"/>">Meu perfil</a>
                 </div>
                 <br />
                 <friends:editFriends style="width: 475px; float: right;"
