@@ -15,7 +15,7 @@
         <w:topo collabletInstance="${recommendMgr.collablet}" />
         <w:conteudoPagina titulo="Configuração de Recomendações:">
             <br />
-            <form name="dados" method="POST" action="<c:url value="/groupware-workbench/recommend/${recommendMgr.id}/updateNumRelated" />">
+            <form name="dados" method="POST" action="<c:url value="/recommend/${recommendMgr.id}/updateNumRelated" />">
                 <div class="form_1">
                     N&uacute;mero de Recomenda&ccedil;&otilde;es: &nbsp;&nbsp;
                     <input type="text" name="max" size="4" value="${numRelated}" />
@@ -24,14 +24,14 @@
             </form>
             <div class="form_1">
                 <span class="style8">
-                    <a href="<c:url value="/groupware-workbench/recommend/${recommendMgr.id}/calcRecommend" />">Recalcular os valores de similaridade</a>
+                    <a href="<c:url value="/recommend/${recommendMgr.id}/calcRecommend" />">Recalcular os valores de similaridade</a>
                 </span>
             </div>
 
-            <form name="dados" method="GET" action="<c:url value="/groupware-workbench/recommend/${recommendMgr.id}/configureMethod" />">
+            <form name="dados" method="GET" action="<c:url value="/recommend/${recommendMgr.id}/configureMethod" />">
             	<div class="form_1">
                     <span class="style8">
-                        <a href="<c:url value="/groupware-workbench/recommend/${recommendMgr.id}/configureMethod" />">
+                        <a href="<c:url value="/recommend/${recommendMgr.id}/configureMethod" />">
                             Configurar atributos do componente para as recomenda&ccedil;&otilde;es
                         </a>
                     </span>
