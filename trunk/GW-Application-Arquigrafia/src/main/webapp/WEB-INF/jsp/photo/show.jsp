@@ -19,6 +19,7 @@
 <arquigrafia:includes arquigrafiaInstance="${arquigrafiaMgr}" />
 <album:buttonAdd-script />
 <script type="text/javascript" src="<c:url value="/js/friend.js" />"></script>
+<script type="text/javascript" src="<c:url value="/js/photo.js" />"></script>
 
 </head>
 
@@ -128,6 +129,9 @@
 				<!--   FIM - USUARIO   -->
 				<!-- <h3>Equipamento:</h3>
 				<p>Lorem ipsum dolor sit amet</p> -->
+				<s:check name="X-X-admin">
+		    	<a id="edit_image" href="<c:url value="/photo/${photoMgr.id}/edit/${photo.id}" />" id="single_view_contact_add">Editar imagem</a><br />
+				</s:check>
 				<c:if test="${not empty photo.description}">
 					<h3>Descrição:</h3>
 					<p><c:out value="${photo.description}"/></p>
