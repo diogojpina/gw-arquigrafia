@@ -49,7 +49,7 @@
                                         $(document).ready(function() {
                                             $("#bt_mod_<c:out value="${extcol.id}" />").click(function() {
                                                 $.post(
-                                                    '<c:out value="${pageContext.request.contextPath}" />/groupware-workbench/manager/<c:out value="${manager.id}" />/update/<c:out value="${extcol.componentTypeName}" />',
+                                                    '<c:out value="${pageContext.request.contextPath}" />/manager/<c:out value="${manager.id}" />/update/<c:out value="${extcol.componentTypeName}" />',
                                                     $('#comp_<c:out value="${extcol.id }" />').serialize(),
                                                     function(data) {
                                                         $("#status").text('O Collablet <c:out value="${extcol.componentTypeName}" /> foi modificado.');
@@ -73,7 +73,7 @@
                         header: "h3",
                         change: function(event, ui) {
                             var text = ui.newHeader.children("a").attr("href");
-                            $.get('<c:out value="${pageContext.request.contextPath}" />/groupware-workbench/manager/<c:out value="${manager.id}" />/showInstances/' + text,
+                            $.get('<c:out value="${pageContext.request.contextPath}" />/manager/<c:out value="${manager.id}" />/showInstances/' + text,
                                 function(data) {
                                     $("#instances").html(data);
                                 }
@@ -115,11 +115,11 @@
             $(document).ready(function() {
                 $("#canvas_tabs").hide();
                 $("#c_tabs-1").load(
-                    '<c:out value="${pageContext.request.contextPath}" />/groupware-workbench/manager/<c:out value="${manager.id}" />/sub_canvas',
+                    '<c:out value="${pageContext.request.contextPath}" />/manager/<c:out value="${manager.id}" />/sub_canvas',
                     function(data) {
                         var selected = $("#instance-link-1").attr("href");
                         $.get(
-                            '<c:out value="${pageContext.request.contextPath}" />/groupware-workbench/manager/<c:out value="${manager.id}" />/showInstances/' + selected,
+                            '<c:out value="${pageContext.request.contextPath}" />/manager/<c:out value="${manager.id}" />/showInstances/' + selected,
                             function(data) {
                                 $("#instances").html(data);
                             }
@@ -127,7 +127,7 @@
                         pageResize(); // TODO: Verificar se deveria estar dentro do callback do $.get.
                     }
                 );
-                //$("#c_tabs-2").load('<c:out value="${pageContext.request.contextPath}" />/groupware-workbench/manager/<c:out value="${manager.id}" />/dep_canvas');
+                //$("#c_tabs-2").load('<c:out value="${pageContext.request.contextPath}" />/manager/<c:out value="${manager.id}" />/dep_canvas');
                 $('#status_dialog').dialog({
                     autoOpen: false,
                     modal: true,

@@ -66,12 +66,12 @@
         <script type="text/javascript">
             $(document).ready(function() {
                 $("#main_content").load(
-                    '<c:out value="${pageContext.request.contextPath}" />/groupware-workbench/manager/<c:out value="${manager.id}" />/main'
+                    '<c:out value="${pageContext.request.contextPath}" />/manager/<c:out value="${manager.id}" />/main'
                 );
             });
 
             function onMoved(id, canvasId, pos_x, pos_y) {
-                $.post('<c:out value="${pageContext.request.contextPath}" />/groupware-workbench/manager/<c:out value="${manager.id}" />/set-position/' + id + '/on-canvas/' + canvasId + '/' + pos_x + '/' + pos_y);
+                $.post('<c:out value="${pageContext.request.contextPath}" />/manager/<c:out value="${manager.id}" />/set-position/' + id + '/on-canvas/' + canvasId + '/' + pos_x + '/' + pos_y);
             }
 
             function handleWire(args, callback) {
@@ -103,7 +103,7 @@
                 handleWire(args, function(source, target) {
                     var sourceId = $(source.parentEl).attr("id");
                     var targetId = $(target.parentEl).attr("id");
-                    $.post('<c:out value="${pageContext.request.contextPath}" />/groupware-workbench/manager/<c:out value="${manager.id}" />/subordinate/' + targetId + '/to/' + sourceId,
+                    $.post('<c:out value="${pageContext.request.contextPath}" />/manager/<c:out value="${manager.id}" />/subordinate/' + targetId + '/to/' + sourceId,
                         function(data) {
                             $("#status").text($(source.parentEl).attr("title") + " subordina " + $(target.parentEl).attr("title"));
                         }
@@ -115,7 +115,7 @@
                 handleWire(args, function(source, target) {
                     var sourceId = $(source.parentEl).attr("id");
                     var targetId = $(target.parentEl).attr("id");
-                    $.post('<c:out value="${pageContext.request.contextPath}" />/groupware-workbench/manager/<c:out value="${manager.id}" />/unsubordinate/' + targetId + '/from/' + sourceId,
+                    $.post('<c:out value="${pageContext.request.contextPath}" />/manager/<c:out value="${manager.id}" />/unsubordinate/' + targetId + '/from/' + sourceId,
                         function(data) {
                             $("#status").text($(source.parentEl).attr("title") + " não mais subordina " + $(target.parentEl).attr("title"));
                         }
@@ -127,7 +127,7 @@
                 handleWire(args, function(source, target) {
                     var sourceId = $(source.parentEl).attr("id");
                     var targetId = $(target.parentEl).attr("id");
-                    $.post('<c:out value="${pageContext.request.contextPath}" />/groupware-workbench/manager/<c:out value="${manager.id}" />/add-dependency/' + targetId + '/of/' + sourceId,
+                    $.post('<c:out value="${pageContext.request.contextPath}" />/manager/<c:out value="${manager.id}" />/add-dependency/' + targetId + '/of/' + sourceId,
                         function(data) {
                             $("#status").text($(source.parentEl).attr("title") + " é dependência de " + $(target.parentEl).attr("title"));
                         }
@@ -139,7 +139,7 @@
                 handleWire(args, function(source, target) {
                     var sourceId = $(source.parentEl).attr("id");
                     var targetId = $(target.parentEl).attr("id");
-                    $.post('<c:out value="${pageContext.request.contextPath}" />/groupware-workbench/manager/<c:out value="${manager.id}" />/remove-dependency/' + targetId + '/of/' + sourceId,
+                    $.post('<c:out value="${pageContext.request.contextPath}" />/manager/<c:out value="${manager.id}" />/remove-dependency/' + targetId + '/of/' + sourceId,
                         function(data) {
                             $("#status").text($(source.parentEl).attr("title") + " não mais é dependência de " + $(target.parentEl).attr("title"));
                         }
@@ -150,7 +150,7 @@
             function remove(numModel, name, type) {
                 $("#inst_details" + numModel).html("");
                 $("#inst_details" + numModel).css("height", "0px");
-                $.post('<c:out value="${pageContext.request.contextPath}" />/groupware-workbench/manager/<c:out value="${manager.id}" />/disable/' + name + '/' + type,
+                $.post('<c:out value="${pageContext.request.contextPath}" />/manager/<c:out value="${manager.id}" />/disable/' + name + '/' + type,
                     function(data) {}
                 );
             }

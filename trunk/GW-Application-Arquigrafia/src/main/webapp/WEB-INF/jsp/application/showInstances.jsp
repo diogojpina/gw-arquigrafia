@@ -55,13 +55,13 @@
                     $("#local_canvas1").html("");
                     <c:forEach var="instance" items="${extCollablet.collablets}">
                         $.get(
-                            '<c:out value="${pageContext.request.contextPath}" />/groupware-workbench/manager/<c:out value="${manager.id}" />/get-position/<c:out value="${instance.id}" />/on-canvas/<c:out value="${extCollablet.subordinations.id}" />',
+                            '<c:out value="${pageContext.request.contextPath}" />/manager/<c:out value="${manager.id}" />/get-position/<c:out value="${instance.id}" />/on-canvas/<c:out value="${extCollablet.subordinations.id}" />',
                             function(data) {
                                 $("#dummy_pos").html(data);
                                 var x = $('#coord_x_<c:out value="${instance.id}" />').val();
                                 var y = $('#coord_y_<c:out value="${instance.id}" />').val();
                                 $.get(
-                                    '<c:out value="${pageContext.request.contextPath}" />/groupware-workbench/manager/<c:out value="${manager.id}" />/get-relation/<c:out value="${instance.id}" />/on-canvas/<c:out value="${extCollablet.subordinations.id}" />',
+                                    '<c:out value="${pageContext.request.contextPath}" />/manager/<c:out value="${manager.id}" />/get-relation/<c:out value="${instance.id}" />/on-canvas/<c:out value="${extCollablet.subordinations.id}" />',
                                     function(data) {
                                         $("#dummy_rel").html(data);
                                         var subSetters = new Array("subordina");
@@ -95,7 +95,7 @@
                     $("#local_canvas0").html("");
                     /*<c:forEach var="instance" items="${extCollablet.collablets}">
                         $.get(
-                            '<c:out value="${pageContext.request.contextPath}" />/groupware-workbench/manager/<c:out value="${manager.id}" />/get-position/<c:out value="${instance.id}" />/on-canvas/<c:out value="${extCollablet.dependencies.id}" />',
+                            '<c:out value="${pageContext.request.contextPath}" />/manager/<c:out value="${manager.id}" />/get-position/<c:out value="${instance.id}" />/on-canvas/<c:out value="${extCollablet.dependencies.id}" />',
                             function(data) {
                                 $("#dummy_pos").html(data);
                                 var x = $('#coord_x_<c:out value="${instance.id}" />').val();
@@ -111,7 +111,7 @@
                                     type: 1
                                 });
                                 $.get(
-                                    '<c:out value="${pageContext.request.contextPath}" />/groupware-workbench/manager/<c:out value="${manager.id}" />/get-relation/<c:out value="${instance.id}" />/on-canvas/<c:out value="${extCollablet.dependencies.id}" />',
+                                    '<c:out value="${pageContext.request.contextPath}" />/manager/<c:out value="${manager.id}" />/get-relation/<c:out value="${instance.id}" />/on-canvas/<c:out value="${extCollablet.dependencies.id}" />',
                                     function(data) {
                                         $("#dummy_rel").html(data);
                                         var from = $('#rel_from_<c:out value="${instance.id}" />').val();
@@ -142,7 +142,7 @@
                             addInstance($('#instance_name_<c:out value="${extCollablet.componentTypeName}" />').val(), '<c:out value="${extCollablet.componentTypeName}" />', $('#instance_description_<c:out value="${extCollablet.componentTypeName}" />').val());
                             formData = $('#instance_form_<c:out value="${extCollablet.componentTypeName}" />').serialize();
                             $.post(
-                                '<c:out value="${pageContext.request.contextPath}" />/groupware-workbench/manager/<c:out value="${manager.id}" />/addInstance',
+                                '<c:out value="${pageContext.request.contextPath}" />/manager/<c:out value="${manager.id}" />/addInstance',
                                 formData,
                                 function(data) {
                                     $('#instance_form_<c:out value="${extCollablet.componentTypeName}" />').clearForm();
