@@ -16,7 +16,7 @@
         <w:conteudoPagina titulo="Configuração dos atributos da ferramenta:">
             <br />
 
-            <form method="POST" action="<c:url value="/groupware-workbench/recommend/${recommendMgr.id}/updateMethodsEnable" />">
+            <form method="POST" action="<c:url value="/recommend/${recommendMgr.id}/updateMethodsEnable" />">
                 <c:forEach items="${classes}" var="clazz">
                     <div>
                         <p>Nome da classe: <c:out value="${clazz.name}" /></p>
