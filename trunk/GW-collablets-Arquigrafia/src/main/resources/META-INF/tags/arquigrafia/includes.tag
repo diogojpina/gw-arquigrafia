@@ -39,7 +39,7 @@
 			var part = "perfil";
 			$('#mask').fadeIn('fast');
 			$('#form_window').fadeIn('slow');
-			$('#registration').load('<c:url value="/groupware-workbench/profile/${profileMgr.id}/edit/${userLogin.id}"/>');	
+			$('#registration').load('<c:url value="/profile/${profileMgr.id}/edit/${userLogin.id}"/>');	
 			form_window_loaded = true;
 		});
 		
@@ -47,7 +47,7 @@
 			var part = "perfil";
 			$('#mask').fadeIn('fast');
 			$('#form_window').fadeIn('slow');
-			$('#registration').load('<c:url value="/groupware-workbench/users/${userMgr.id}/edit/${userLogin.id}"/>');	
+			$('#registration').load('<c:url value="/users/${userMgr.id}/edit/${userLogin.id}"/>');	
 			form_window_loaded = true;
 		});
 
@@ -55,7 +55,7 @@
 			var part = "perfil";
 			$('#mask').fadeIn('fast');
 			$('#form_window').fadeIn('slow');
-			$('#registration').load('<c:url value="/groupware-workbench/users/${userMgr.id}/edit/${userLogin.id}/password"/>');	
+			$('#registration').load('<c:url value="/users/${userMgr.id}/edit/${userLogin.id}/password"/>');	
 			form_window_loaded = true;
 		});
 		

@@ -6,7 +6,7 @@ $(document).ready(function(){
 		var part = "perfil";
 		$('#mask').fadeIn('fast');
 		$('#form_window').fadeIn('slow');
-		$('#registration').load('/GW-Application-Arquigrafia/groupware-workbench/user/edit/2/'+part+'');	
+		$('#registration').load('/GW-Application-Arquigrafia/user/edit/2/'+part+'');	
 		form_window_loaded = true;
 	});
 
@@ -14,7 +14,7 @@ $(document).ready(function(){
 		var part = "formacao";
 		$('#mask').fadeIn('fast');
 		$('#form_window').fadeIn('slow');
-		$('#registration').load('/GW-Application-Arquigrafia/groupware-workbench/user/edit/2/'+part+'');	
+		$('#registration').load('/GW-Application-Arquigrafia/user/edit/2/'+part+'');	
 		form_window_loaded = true;
 	});
 
@@ -22,7 +22,7 @@ $(document).ready(function(){
 		var part = "localizacao";
 		$('#mask').fadeIn('fast');
 		$('#form_window').fadeIn('slow');
-		$('#registration').load('/GW-Application-Arquigrafia/groupware-workbench/user/edit/2/'+part+'');	
+		$('#registration').load('/GW-Application-Arquigrafia/user/edit/2/'+part+'');	
 		form_window_loaded = true;
 	});
 
@@ -30,7 +30,7 @@ $(document).ready(function(){
 		var part = "contato";
 		$('#mask').fadeIn('fast');
 		$('#form_window').fadeIn('slow');
-		$('#registration').load('/GW-Application-Arquigrafia/groupware-workbench/user/edit/2/'+part+'');	
+		$('#registration').load('/GW-Application-Arquigrafia/user/edit/2/'+part+'');	
 		form_window_loaded = true;
 	});
 	

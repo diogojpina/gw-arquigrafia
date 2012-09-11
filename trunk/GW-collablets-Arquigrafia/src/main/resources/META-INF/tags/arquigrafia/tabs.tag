@@ -4,9 +4,9 @@
 <%@ taglib prefix="p" uri="http://www.groupwareworkbench.org.br/widgets/photomanager" %>
 
 <%@ attribute name="arquigrafiaInstance" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.arquigrafia.main.ArquigrafiaMgrInstance" %>
-<%@ attribute name="counterMgr" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.collablet.coord.counter.CounterMgrInstance" %>
-<%@ attribute name="photoMgr" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.arquigrafia.photo.PhotoMgrInstance" %>
-<%@ attribute name="commentMgr" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.collablet.communic.comment.CommentMgrInstance" %>
+<%@ attribute name="counterMgr" required="false" rtexprvalue="true" type="br.org.groupwareworkbench.collablet.coord.counter.CounterMgrInstance" %>
+<%@ attribute name="photoMgr" required="false" rtexprvalue="true" type="br.org.groupwareworkbench.arquigrafia.photo.PhotoMgrInstance" %>
+<%@ attribute name="commentMgr" required="false" rtexprvalue="true" type="br.org.groupwareworkbench.collablet.communic.comment.CommentMgrInstance" %>
 
 	  <!--   BARRA DE ABAS   -->
 	  <ul class="tabs">
