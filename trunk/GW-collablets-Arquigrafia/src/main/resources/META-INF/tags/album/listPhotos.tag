@@ -15,6 +15,7 @@
 					<img src="<c:url value="/photo/img-crop/${item.id}"/>" width="170" height="117"/>
 				</a>
 				<c:if test="${sessionScope.userLogin.id eq album.owner.id}">
+					<a href="<c:url value="/album/${album.id}/delete/${item.id}"/>" class="album_image_delete_button"></a>
 					<a href="<c:url value="/groupware-workbench/album/${album.id}/delete/${item.id}/list/${sessionScope.userLogin.id}"/>" class="album_image_delete_button"></a>
 				</c:if>
 		   </div>
