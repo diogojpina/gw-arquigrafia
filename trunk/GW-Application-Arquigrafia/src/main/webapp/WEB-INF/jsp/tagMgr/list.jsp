@@ -67,7 +67,7 @@
                 tabela.addCelulaElemento(celula);
             }
         </script>
-        <w:tabela baseUrl="/groupware-workbench/tags"
+        <w:tabela baseUrl="/tags"
                   msgDelete="Tem certeza que deseja remover a tag?"
                   target="tabela-tags"
                   titles="${coll:asList1('Nome')}"
