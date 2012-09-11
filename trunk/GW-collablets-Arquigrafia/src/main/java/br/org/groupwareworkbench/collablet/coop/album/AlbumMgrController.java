@@ -56,7 +56,7 @@ public class AlbumMgrController {
     }
     
     @Get
-    @Path(value = "/groupware-workbench/album/{albumMgr}/list/{idUser}")
+    @Path(value = "/album/{albumMgr}/list/{idUser}")
     public void list(AlbumMgrInstance albumMgr, Long idUser) {
         User user = User.findById(idUser);
         List<Album> albumList = albumMgr.listByUser(user);
@@ -68,6 +68,9 @@ public class AlbumMgrController {
     }
 
     @Get
+    @Path(value = "/album/{albumMgr}/default/{idAlbum}")
+    public void listByAlbum(AlbumMgrInstance albumMgr, Long idAlbum) {
+        final User user = (User) request.getSession().getAttribute("userLogin");
     @Path(value = "/groupware-workbench/album/{albumMgr}/show/{idAlbum}/list/{idUser}")
     public void listByAlbum(AlbumMgrInstance albumMgr, Long idAlbum, Long idUser) {
         User user = User.findById(idUser);
@@ -78,12 +81,12 @@ public class AlbumMgrController {
         .include("album", album)
         .include("user", user)
         .forwardTo("/WEB-INF/jsp/albumMgr/list.jsp");
-//        result.use(Results.representation()).from(albunList).serialize();
+        result.use(Results.representation()).from(albunList).serialize();
     }
     
     
     @Get
-    @Path(value = "/groupware-workbench/album/{albumMgr}/destroy/{idAlbum}")
+    @Path(value = "/album/{albumMgr}/destroy/{idAlbum}")
     public void destroy(AlbumMgrInstance albumMgr, Long idAlbum) {
         final Album album = Album.findById(idAlbum);
         final User user = (User) request.getSession().getAttribute("userLogin");
@@ -99,7 +102,7 @@ public class AlbumMgrController {
     }
     
     @Get
-    @Path(value = "/groupware-workbench/album/{albumMgr}/listPhotos/{idAlbum}")
+    @Path(value = "/album/{albumMgr}/listPhotos/{idAlbum}")
     public void listPhotos(AlbumMgrInstance albumMgr, Long idAlbum) {
         Album album = Album.findById(idAlbum);
         result.include("album", album);
@@ -108,8 +111,8 @@ public class AlbumMgrController {
 
     @Get
     @Path({
-        "/groupware-workbench/album/{albumMgr}/{idAlbum}",
-        "/groupware-workbench/album/{albumMgr}/create"
+        "/album/{albumMgr}/{idAlbum}",
+        "/album/{albumMgr}/create"
     })
     public void retrieve(AlbumMgrInstance albumMgr, Long idAlbum) {
         Album album = Album.findById(idAlbum);
@@ -118,13 +121,13 @@ public class AlbumMgrController {
     }
 
     @Get
-    @Path("/groupware-workbench/album/{albumMgr}")
+    @Path("/album/{albumMgr}")
     public void newAlbum(AlbumMgrInstance albumMgr) {
         addIncludes(albumMgr);
     }
     
     @Post
-    @Path(value = "/groupware-workbench/album/{albumMgr}/save")
+    @Path(value = "/album/{albumMgr}/save")
     public void save(AlbumMgrInstance albumMgr, final Album album) {
         User user = (User) request.getSession().getAttribute("userLogin");
 
@@ -136,7 +139,7 @@ public class AlbumMgrController {
     }
 
     @Put
-    @Path(value = "/groupware-workbench/album/{albumMgr}/save")
+    @Path(value = "/album/{albumMgr}/save")
     public void update(AlbumMgrInstance albumMgr, Album album) {
         User user = (User) request.getSession().getAttribute("userLogin");
         validate(albumMgr, album, user);
@@ -156,7 +159,7 @@ public class AlbumMgrController {
     }
 
     @Get
-    @Path("/groupware-workbench/album/{albumMgr}/edit/{idAlbum}")
+    @Path("/album/{albumMgr}/edit/{idAlbum}")
     public void edit(AlbumMgrInstance albumMgr, Long idAlbum) {
         Album album = Album.findById(idAlbum);
         result.include("album", album);
@@ -164,14 +167,14 @@ public class AlbumMgrController {
     }
     
     @Get
-    @Path(value = "/groupware-workbench/album/{albumMgr}/add/{photo.id}")
+    @Path(value = "/album/{albumMgr}/add/{photo.id}")
     public void addToAlbum(AlbumMgrInstance albumMgr, Photo photo) {
         result.include("photo", Photo.findById(photo.getId()));
         addIncludes(albumMgr);
     }
 
     @Post
-    @Path(value = "/groupware-workbench/album/{albumMgr}/add/{idObject}")
+    @Path(value = "/album/{albumMgr}/add/{idObject}")
     public void addToAlbum(AlbumMgrInstance albumMgr, List<Long> albums, Long idObject) {
         User user = (User) request.getSession().getAttribute("userLogin");
         albumMgr.updateGenericReferencesOf(user, albums, idObject);
@@ -179,12 +182,12 @@ public class AlbumMgrController {
     }
 
     @Get
-    @Path(value = "/groupware-workbench/album/{idAlbum}/delete/{idObject}/list/{idUser}")
-    public void deleteToAlbum(Long idAlbum, Long idObject, Long idUser) {
+    @Path(value = "/album/{idAlbum}/delete/{idObject}")
+    public void deleteToAlbum(Long idAlbum, Long idObject) {
         Album album = Album.findById(idAlbum);
         AlbumMgrInstance albumMgr = (AlbumMgrInstance) album.getCollablet().getBusinessObject();
         albumMgr.deleteGenericReference(album, idObject);
-        result.use(logic()).redirectTo(AlbumMgrController.class).listByAlbum(albumMgr, idAlbum, idUser);
+        result.use(logic()).redirectTo(AlbumMgrController.class).listByAlbum(albumMgr, idAlbum);
     }
 
     private void addIncludes(AlbumMgrInstance albumMgr) {
