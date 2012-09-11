@@ -10,7 +10,7 @@
         <link rel="shortcut icon" type="image/x-icon" href="<c:url value="/images/favicon.ico" />"/>
     </head>
     <body>
-        <form name="uploadForm" method="post" enctype="multipart/form-data" action="<c:url value="/groupware-workbench/${collabletInstance.id}/doUpload" />">
+        <form name="uploadForm" method="post" enctype="multipart/form-data" action="<c:url value="/${collabletInstance.id}/doUpload" />">
             File:
             <input type="file" name="fileInput" />
             <br />
