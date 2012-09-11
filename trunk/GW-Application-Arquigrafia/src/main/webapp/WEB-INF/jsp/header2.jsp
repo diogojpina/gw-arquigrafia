@@ -11,17 +11,18 @@
 	<div id="header_top_right">
 		<div id="user_top_links">
 			<a
-				href="${pageContext.request.contextPath}/groupware-workbench/friends/${friendsMgr.id}/show/${userLogin.id}"
+				href="${pageContext.request.contextPath}
+-workbench/friends/${friendsMgr.id}/show/${userLogin.id}"
 				class="black_link"><c:out value="${sessionScope.userLogin.name}" />
 			</a> &nbsp;&nbsp; <a
-				href="<c:url value="/groupware-workbench/users/${userMgr.id}/logout" />"
+				href="<c:url value="/users/${userMgr.id}/logout" />"
 				class="gray_link">sair</a>
 		</div>
 		<div id="suggestions">
 			<a
-				href="${pageContext.request.contextPath}/groupware-workbench/users/${userMgr.id}/suggest"
+				href="${pageContext.request.contextPath}/users/${userMgr.id}/suggest"
 				class="white_link">Sugest&otilde;es e Cr&iacute;ticas</a><br /> <a
-				href="${pageContext.request.contextPath}/groupware-workbench/users/${userMgr.id}/report"
+				href="${pageContext.request.contextPath}/users/${userMgr.id}/report"
 				class="white_link">Reportar Problema</a>
 		</div>
 		<div id="user_bottom_links">
@@ -30,11 +31,11 @@
 					onclick="return showPhotoUpload();"> <img
 					src="${pageContext.request.contextPath}/images/icon/upload.png" />
 					Enviar Imagem</a> <a class="user_bottom_icon_links"
-					href="${pageContext.request.contextPath}/groupware-workbench/friends/${friendsMgr.id}/show/${userLogin.id}"
+					href="${pageContext.request.contextPath}/friends/${friendsMgr.id}/show/${userLogin.id}"
 					onclick=""> <img
 					src="${pageContext.request.contextPath}/images/icon/meuPerfil.png" />
 					Meu perfil</a> <a class="user_bottom_icon_links"
-					href="${pageContext.request.contextPath}/groupware-workbench/album/${albumMgr.id}"><img
+					href="${pageContext.request.contextPath}/album/${albumMgr.id}"><img
 					src="${pageContext.request.contextPath}/images/icon/meuArquigrafia.png" />
 					Meu Arquigrafia</a>
 			</div>
@@ -72,13 +73,13 @@
         </script>
 		<a href="#" onclick="return showPhotoUpload();">Enviar Imagem</a>
 		&nbsp;|&nbsp; <a
-			href="${pageContext.request.contextPath}/groupware-workbench/friends/${friendsMgr.id}/system_users">Usu&aacute;rios
+			href="${pageContext.request.contextPath}/friends/${friendsMgr.id}/system_users">Usu&aacute;rios
 			do sistema</a>
 		<!-- TODO: solução temporária, aqui deve ser usado o papel e não o nome do usuário -->
 		<c:if test="${sessionScope.userLogin.name == 'Administrador'}">  
             &nbsp;|&nbsp;
             <a
-				href="${pageContext.request.contextPath}/groupware-workbench/users/${userMgr.id}/list">Gerenciar
+				href="${pageContext.request.contextPath}/users/${userMgr.id}/list">Gerenciar
 				usu&aacute;rios</a>
             &nbsp;|&nbsp;            
             
@@ -86,7 +87,7 @@
 			Collection<Collablet> collabletCollection = Collablet.listAllInstances(FlagMgrInstance.class);
 			for (final Collablet collablet : collabletCollection)
 			{
-				final String url = request.getContextPath() + "/groupware-workbench/flags/" + collablet.getId() + "/list";
+				final String url = request.getContextPath() + "/flags/" + collablet.getId() + "/list";
 			%>
 			<a
 				href="<%= url %>"><%= collablet.getDescription() %></a>
@@ -95,15 +96,15 @@
 			}
 			%>
 			<a
-				href="${pageContext.request.contextPath}/groupware-workbench/manager/${manager.id}">Gerenciar
+				href="${pageContext.request.contextPath}/manager/${manager.id}">Gerenciar
 				aplica&ccedil;&atilde;o</a>
             &nbsp;|&nbsp;
             <a
-				href="${pageContext.request.contextPath}/groupware-workbench/tracker/${tracker.id}">Localizador
+				href="${pageContext.request.contextPath}/tracker/${tracker.id}">Localizador
 				de Usuários</a>
             &nbsp;|&nbsp;
             <a
-				href="${pageContext.request.contextPath}/groupware-workbench/repository/${componentRepository.id}">Repositório
+				href="${pageContext.request.contextPath}/repository/${componentRepository.id}">Repositório
 				Android</a>
 		</c:if>
 	</div>
