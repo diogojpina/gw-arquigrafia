@@ -52,17 +52,17 @@
       <s:check name="X-X-usuario">
         <!--   ÁREA DO USUARIO   -->
         <div id="loggin_area">
-        <a href="<c:url value="/groupware-workbench/friends/11/show/${sessionScope.userLogin.id}" />" id="user_name">
+        <a href="<c:url value="/friends/11/show/${sessionScope.userLogin.id}" />" id="user_name">
         	<img src="<c:url value="/img/avatar.jpg" />" width="50" height="50" class="user_photo_thumbnail" />
         </a>
         <a href="<c:url value="/users/8/logout" />" id="logout">Sair</a><br />
 		 <ul id="logged_menu">
         	   <!-- <li><a href="#" id="messages" title="Você tem 19 mensagens">11</a></li>  -->
-			   <li> <a href="<c:url value="/groupware-workbench/album/15/list/${sessionScope.userLogin.id}" />" id="users" title="Meu Arquigrafia">&nbsp;</a></li>
+			   <li> <a href="<c:url value="/album/15/list/${sessionScope.userLogin.id}" />" id="users" title="Meu Arquigrafia">&nbsp;</a></li>
 			   <!-- <li><a href="#" id="comunities" title="Comunidades">&nbsp;</a></li> -->
 			   <li><a href="#" name="modal" id="upload" title="Enviar uma imagem">&nbsp;</a></li>
       	  </ul>
-          <a href="<c:url value="/groupware-workbench/friends/11/show/${sessionScope.userLogin.id}" />" id="user_name">${sessionScope.userLogin.name}</a>
+          <a href="<c:url value="/friends/11/show/${sessionScope.userLogin.id}" />" id="user_name">${sessionScope.userLogin.name}</a>
         </div>
         <!--   FIM - ÁREA DO USUARIO   -->      
       </s:check>         
