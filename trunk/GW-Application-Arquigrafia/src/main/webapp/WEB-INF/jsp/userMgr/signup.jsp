@@ -6,6 +6,10 @@
 <h2>Cadastro</h2>
 	<p>Faça seu cadastro para poder compartilhar imagens no Arquigrafia.<br />
   	<small>* Todos os campos a seguir são obrigatórios.</small></p>
+	<form id="cadastroForm" method="post" name="cadastroForm" action='<c:url value="/users/${userMgr.id}/save"  />' onsubmit="return checkCheckBox();">
+	<form id="signup" method="post" name="cadastroForm" action='<c:url value="/groupware-workbench/users/${userMgr.id}/save"  />' onsubmit="return checkCheckBox();">
+	<form id="signup" method="post" name="cadastroForm" action='<c:url value="/groupware-workbench/users/${userMgr.id}/save"  />' onsubmit="return checkCheckBox();">
+	<form id="signup" method="post" name="cadastroForm" action='<c:url value="/groupware-workbench/users/${userMgr.id}/save"  />' onsubmit="return checkCheckBox();">
 	<form id="signup" method="post" name="cadastroForm" action='<c:url value="/groupware-workbench/users/${userMgr.id}/save"  />' onsubmit="return checkCheckBox();">
 	<p>
 		<input type="hidden" id="url" name="url" value="/" />
