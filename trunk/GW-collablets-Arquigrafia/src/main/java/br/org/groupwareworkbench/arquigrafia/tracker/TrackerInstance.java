@@ -34,8 +34,8 @@ import br.org.groupwareworkbench.core.framework.annotations.ComponentInfo;
 import br.org.groupwareworkbench.core.framework.annotations.DefaultProperty;
 
 @ComponentInfo(version = "0.1", 
-        configurationURL = "/groupware-workbench/tracker/{trackerInstance}",
-        retrieveURL = "/groupware-workbench/tracker/{trackerInstance}/list/{lat}/{lng}/{range}",
+        configurationURL = "/tracker/{trackerInstance}",
+        retrieveURL = "/tracker/{trackerInstance}/list/{lat}/{lng}/{range}",
         defaultProperties = {
                 @DefaultProperty(name = "defaultLatitude", defaultValue = "-23.558764"),
                 @DefaultProperty(name = "defaultLongitude", defaultValue = "-46.731850"),

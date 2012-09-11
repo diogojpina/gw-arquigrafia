@@ -32,8 +32,8 @@ import br.org.groupwareworkbench.core.framework.annotations.ComponentInfo;
 
 @ComponentInfo(
         version = "0.1",
-        configurationURL = "/groupware-workbench/album/{albumMgr}",
-        retrieveURL = "/groupware-workbench/album/{albumMgr}/{idAlbum}"
+        configurationURL = "/album/{albumMgr}",
+        retrieveURL = "/album/{albumMgr}/{idAlbum}"
 )
 public class AlbumMgrInstance extends AbstractBusiness {
     public static String albumCoverPath="/GW-Application-Arquigrafia/img/album_icon.png";

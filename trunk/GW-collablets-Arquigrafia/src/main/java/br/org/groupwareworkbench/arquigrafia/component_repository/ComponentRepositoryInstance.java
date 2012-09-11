@@ -36,8 +36,8 @@ import br.org.groupwareworkbench.core.framework.android.Component;
 import br.org.groupwareworkbench.core.framework.annotations.ComponentInfo;
 
 @ComponentInfo(version = "0.1", 
-        configurationURL = "/groupware-workbench/repository/{componentRepository}",
-        retrieveURL = "/groupware-workbench/repository/{componentRepository}")
+        configurationURL = "/repository/{componentRepository}",
+        retrieveURL = "/repository/{componentRepository}")
 public class ComponentRepositoryInstance extends AbstractBusiness{
 
     public ComponentRepositoryInstance(Collablet collablet) {

@@ -119,7 +119,7 @@ public class ComponentRepositoryController {
 	}
 	
 	@Get
-	@Path("/groupware-workbench/repository/{componentRepositoryInstance}")
+	@Path("/repository/{componentRepositoryInstance}")
 	public List<Component> list(ComponentRepositoryInstance componentRepositoryInstance){
 	    addIncludes(componentRepositoryInstance);
 	    
@@ -127,14 +127,14 @@ public class ComponentRepositoryController {
 	}
 	
 	@Get
-	@Path("/groupware-workbench/repository/{componentRepositoryInstance}/new")
+	@Path("/repository/{componentRepositoryInstance}/new")
 	public void form(ComponentRepositoryInstance componentRepositoryInstance){
 	    addIncludes(componentRepositoryInstance);
 		/*Go to new.jsp */
 	}
 	
 	@Post
-	@Path("/groupware-workbench/repository/{componentRepositoryInstance}/new")
+	@Path("/repository/{componentRepositoryInstance}/new")
 	//If you wan't to insert a new file programatically, use componentController.insert(repository, component, new ComponentFile(File)); 
 	public void insert(ComponentRepositoryInstance componentRepositoryInstance, final Component component, final UploadedFile componentUploadedFile){
 		addIncludes(componentRepositoryInstance);
@@ -153,7 +153,7 @@ public class ComponentRepositoryController {
 	}
 
 	@Delete
-	@Path("/groupware-workbench/repository/{componentRepositoryInstance}/{component.id}")
+	@Path("/repository/{componentRepositoryInstance}/{component.id}")
 	public void delete(ComponentRepositoryInstance componentRepositoryInstance, final Component component){
 		File componentFile = new File(AndroidApplication.getAndroidApplication().getComponentInstallFolder() + "/" + componentRepositoryInstance.find(component).getMd5hash() + ".apk");
 		componentFile.delete();
@@ -163,7 +163,7 @@ public class ComponentRepositoryController {
 	}
 	
 	@Get
-	@Path("/groupware-workbench/repository/{componentRepositoryInstance}/{component.id}/download")
+	@Path("/repository/{componentRepositoryInstance}/{component.id}/download")
 	public Download download(ComponentRepositoryInstance componentRepositoryInstance, final Component component){
 		Component componentComplete = componentRepositoryInstance.find(component.getId());
 		File componentFile = new File(AndroidApplication.getAndroidApplication().getComponentInstallFolder() + "/" + componentComplete.getMd5hash() + ".apk");
@@ -172,7 +172,7 @@ public class ComponentRepositoryController {
 	}
 	
 	@Get
-	@Path("/groupware-workbench/repository/{componentRepositoryInstance}/{component.md5hash}/downloadByMd5hash")
+	@Path("/repository/{componentRepositoryInstance}/{component.md5hash}/downloadByMd5hash")
 	public Download downloadByHash(ComponentRepositoryInstance componentRepositoryInstance, final Component component){
 		return download(componentRepositoryInstance, componentRepositoryInstance.findByMd5hash(component.getMd5hash())); 
 	}

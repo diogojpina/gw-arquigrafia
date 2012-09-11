@@ -58,7 +58,7 @@ public class TrackerController {
     }
 
     @Get
-    @Path("/groupware-workbench/tracker/{trackerInstance}")
+    @Path("/tracker/{trackerInstance}")
     public void index(TrackerInstance trackerInstance) {
         double defaultLatitude = Double.parseDouble(trackerInstance.getCollablet().getProperty("defaultLatitude"));
         double defaultLongitude = Double.parseDouble(trackerInstance.getCollablet().getProperty("defaultLongitude"));
@@ -67,7 +67,7 @@ public class TrackerController {
     }
 
     @Get
-    @Path("/groupware-workbench/tracker/{trackerInstance}/list/{lat}/{lng}/{range}")
+    @Path("/tracker/{trackerInstance}/list/{lat}/{lng}/{range}")
     public List<TrackingInfo> list(TrackerInstance trackerInstance, double lat, double lng, double range) {
         TrackRequest track = new TrackRequest();
         track.setLatitude(lat);
@@ -90,7 +90,7 @@ public class TrackerController {
     }
 
     @Post
-    @Path("/groupware-workbench/tracker/{trackerInstance}/update")
+    @Path("/tracker/{trackerInstance}/update")
     public void update(TrackingInfo trackingInfo, TrackerInstance trackerInstance) {
         if (trackingInfo == null) return;
 
