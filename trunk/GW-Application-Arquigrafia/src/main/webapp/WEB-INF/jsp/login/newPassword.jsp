@@ -3,7 +3,7 @@
 <div id="forgot_password_modal_box">
 <h2>Alterar minha senha</h2>
 <br />
-<form id="send_forgot_password" method="post" name="loginForm" action="<c:url value="/groupware-workbench/users/${userMgr.id}/password/${token}" />">
+<form id="send_forgot_password" method="post" name="loginForm" action="<c:url value="/users/${userMgr.id}/password/${token}" />">
 	<div>
 	  <label>Senha:</label>
 	  <input name="password" type="password" class="email" />

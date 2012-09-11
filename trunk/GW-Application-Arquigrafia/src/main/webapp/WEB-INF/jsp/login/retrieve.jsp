@@ -68,7 +68,7 @@
     <!--   FIM - MODAL   -->
   </div>
   <!--   FIM - CONTAINER   -->
-  <input type="hidden" id="url" value="<c:url value="/groupware-workbench/users/${userMgr.id}/password/${token}/new"/>"/>
+  <input type="hidden" id="url" value="<c:url value="/users/${userMgr.id}/password/${token}/new"/>"/>
 	  
 </body>
 </html>

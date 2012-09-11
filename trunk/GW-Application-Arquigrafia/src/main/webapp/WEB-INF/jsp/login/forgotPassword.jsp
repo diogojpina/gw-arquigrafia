@@ -5,7 +5,7 @@
 	<h2>Esqueci minha senha</h2>
 	<p>Não se preocupe! Digite seu e-mail e nós enviaremos instruções de redefinição de senha.</p>
 	<br />
-	<form id="send_forgot_password" method="post" name="loginForm" action="<c:url value="/groupware-workbench/users/${userMgr.id}/password" />">
+	<form id="send_forgot_password" method="post" name="loginForm" action="<c:url value="/users/${userMgr.id}/password" />">
 		<div>
 			<label>E-mail:</label> 
 			<input name="email" type="text" class="email" /> <br /> 
