@@ -51,7 +51,7 @@
         <arq:header2 photoMgr="${photoMgr}" />
         <w:conteudoPagina titulo="Papel">
             <br />
-            <form name="dados" method="POST" action='<c:url value="/groupware-workbench/roles/${roleMgr.id}" />' accept-charset="UTF-8">
+            <form name="dados" method="POST" action='<c:url value="/roles/${roleMgr.id}" />' accept-charset="UTF-8">
                 <input type="hidden" name="role.id" value="<c:out value="${role.id}" />" />
                 <input type="hidden" name="role.idInstance" value="<c:out value="${roleMgr.id}" />" />
                 <div class="form_1" id="role_retrieve_f1">
