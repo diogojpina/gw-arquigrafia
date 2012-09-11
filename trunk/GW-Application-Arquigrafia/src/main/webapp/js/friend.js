@@ -38,11 +38,11 @@ $(function(){
 
 
 //function acceptFriend(id) {
-//    var url = "${pageContext.request.contextPath}/groupware-workbench/friends/${friendsMgr.id}/acceptRequest/" + id;
+//    var url = "${pageContext.request.contextPath}/friends/${friendsMgr.id}/acceptRequest/" + id;
 //$.post(url <c:if test="${afterAcceptFunction != null}">, ${afterAcceptFunction}</c:if>);
 //}
 //
 //function rejectFriend(id) {
-//    var url = "${pageContext.request.contextPath}/groupware-workbench/friends/${friendsMgr.id}/rejectRequest/" + id;
+//    var url = "${pageContext.request.contextPath}/friends/${friendsMgr.id}/rejectRequest/" + id;
 //$.post(url <c:if test="${afterRejectFunction != null}">, ${afterRejectFunction}</c:if>);
 //}
