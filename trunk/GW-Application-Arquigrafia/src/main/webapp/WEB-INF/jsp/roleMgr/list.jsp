@@ -49,8 +49,8 @@
             });
         </script>
 
-        <w:tabela baseUrl="/groupware-workbench/roles"
-                  createUrl="/groupware-workbench/roles/${roleMgr.id}/create"
+        <w:tabela baseUrl="/roles"
+                  createUrl="/roles/${roleMgr.id}/create"
                   msgAdd="Adicionar Papel"
                   msgDelete="Tem certeza que deseja remover este papel?"
                   target="tabela-roles"
