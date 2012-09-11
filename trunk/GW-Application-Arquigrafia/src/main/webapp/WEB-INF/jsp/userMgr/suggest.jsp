@@ -73,7 +73,7 @@
         <div id="wrap">
             <arq:header2 photoMgr="${photoMgr}" />
             <div id="corpo" class="default_div">
-                <form id="form1" class="cmxform" name="formulario" method="POST" action="<c:url value="/groupware-workbench/user/${userMgr.id}/sendEmail/${userLogin.id}" />" accept-charset="UTF-8" onSubmit="return validaForm()" autocomplete="off">
+                <form id="form1" class="cmxform" name="formulario" method="POST" action="<c:url value="/user/${userMgr.id}/sendEmail/${userLogin.id}" />" accept-charset="UTF-8" onSubmit="return validaForm()" autocomplete="off">
                     <div id="info" class="default_info">
                         <span class="tituloPrincipal">Sugest&otilde;es e Cr&iacute;ticas:</span>
                         <ul class="field_line_f1">

@@ -48,8 +48,8 @@
                 });
             });
         </script>	    
-        <w:tabela baseUrl="/groupware-workbench/users"
-              createUrl="/groupware-workbench/users/${userMgr.id}/create"
+        <w:tabela baseUrl="/users"
+              createUrl="/users/${userMgr.id}/create"
               msgAdd="Adicionar novo usuário"
               msgDelete="Tem certeza que deseja remover o usuário?"
               target="tabela-users"

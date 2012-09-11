@@ -4,9 +4,9 @@
 <h2>Editar Usuário</h2>
 <br />
 	<small>* Todos os campos a seguir são obrigatórios.</small></p>
-	<form id="form1" class="cmxform" name="dados" method="POST" action="<c:url value="/groupware-workbench/users/${userMgr.id}/saveWithUrl" />" accept-charset="UTF-8" autocomplete="off">
+	<form id="form1" class="cmxform" name="dados" method="POST" action="<c:url value="/users/${userMgr.id}/saveWithUrl" />" accept-charset="UTF-8" autocomplete="off">
 		<input type="hidden" name="user.id" value="<c:out value="${user.id}" />" />
-       	<input type="hidden" id="url" name="url" value="/groupware-workbench/friends/${friendsMgr.id}/show/${userLogin.id}" />
+       	<input type="hidden" id="url" name="url" value="/friends/${friendsMgr.id}/show/${userLogin.id}" />
        	<input type="hidden" id="part" name="part" value="<c:out value="${part}" />" />
        	<div>
        	<h3>Dados do usuário</h3>

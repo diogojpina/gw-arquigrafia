@@ -32,7 +32,7 @@
                 </c:forEach>
             </ul>
 
-            <form id="form1" class="cmxform" name="dados" method="POST" action="<c:url value="/groupware-workbench/users/${userMgr.id}/save" />" accept-charset="UTF-8" autocomplete="off">
+            <form id="form1" class="cmxform" name="dados" method="POST" action="<c:url value="/users/${userMgr.id}/save" />" accept-charset="UTF-8" autocomplete="off">
                 <div class="form_1" id="user_retrieve_form">
                     <ul class="field_line_f1">
                         <li class="label_f1"><span>Login:</span></li>
@@ -66,7 +66,7 @@
             </form>
             <div class="barra_botoes">
                 <span class="login_link">
-                    <a href="<c:url value="/groupware-workbench/users/${userMgr.id}/login" />">Voltar</a>
+                    <a href="<c:url value="/users/${userMgr.id}/login" />">Voltar</a>
                     <%-- <w:voltar collabletInstance="${photoMgr.collablet}" /> --%>
                 </span>
             </div>
