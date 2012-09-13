@@ -57,7 +57,7 @@
                 </c:forEach>
             </ul>
 
-            <form id="dados" class="cmxform" name="dados" method="POST" action="<c:url value="/groupware-workbench/categories/${categoryMgr.id}" />" accept-charset="UTF-8">
+            <form id="dados" class="cmxform" name="dados" method="POST" action="<c:url value="/categories/${categoryMgr.id}" />" accept-charset="UTF-8">
                 <input type="hidden" name="category.id" value="<c:out value="${category.id}" />" />
                 <br/>
                 Nome: <input type="text" name="category.name" value="${category.name}" />
