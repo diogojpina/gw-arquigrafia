@@ -119,17 +119,14 @@
 						id="single_view_owner_name"><a href="<c:url value="/friends/11/show/${user.id}" />" id="name">
 						${user.name}
 						</a></span>
-<<<<<<< .mine
 						<br /> 
 						<!-- <s:check name="X-X-usuario"> 
 							<a href="<c:url value="/friends/11/sendRequest/${user.id}" />" id="single_view_contact_add">+ Adicionar contato</a><br />
 						</s:check>  -->
-=======
 						<br />
 						<s:check name="X-X-usuario">
 							<friends:sendRequest friendsMgr="${friendsMgr}" viewer="${userLogin}" viewed="${user}" />
 						</s:check> 
->>>>>>> .r693
 				</c:forEach>
 				</div>
 				<!--   FIM - USUARIO   -->

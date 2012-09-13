@@ -319,7 +319,7 @@ a.search_image:hover { opacity: 0.6; filter:alpha(opacity=60); }
 
 
 /* --- PÁGINAS INTERNAS --- */
-#sub_content_avaliation { float:left; width:470px; line-height:19px; }
+#sub_content_avaliation { float:left; width:330px; line-height:19px; }
 #sub_content { width:650px; float:left;}
 
 /* THE PROJECT */
@@ -332,7 +332,7 @@ a#printer_icon { float:left; width:24px; height:25px; background:url(../img/icon
 a#printer_icon:hover{ background-position:-713px -33px; }
 
 /* SIDEBAR */
-#sidebar_avaliation { width:470px; float:right; }
+#sidebar_avaliation { width:600px; float:right; }
 #sidebar { float:right; width:290px; line-height:19px; }
 #sidebar br { clear:both; }
 #sidebar p { margin: 3px 0 10px 0; }
@@ -435,7 +435,7 @@ input#comment_button:hover { background-position:-262px -170px;}
 
 /* SINGLE VIEW - AVALIATION */
 #avaliation_box { width:470px; }
-#avaliation_box p { display:block; width:470px; float:left; }
+#avaliation_box p { display:block; width:330px; float:left; }
 #avaliation_form{ text-align:left; }
 #avaliation_form input { margin-top:18px;}
 #avaliation_form input#clean { background:url(../img/icons_sprite.png) -694px -145px; width:52px; height:21px; }

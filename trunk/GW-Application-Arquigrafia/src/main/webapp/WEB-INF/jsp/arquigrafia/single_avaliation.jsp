@@ -34,9 +34,7 @@
        <div id="sub_content_avaliation">
         <h2 class="common_title">Avaliação</h2>
         <p>Como você avaliaria a arquitetura apresentada na imagem ao lado? <br /> 
-        Há um predomínio de elementos horizontais ou verticais, e em que proporção? <br /> 
-        Deslize os marcadores até encontrar a posição ou os percentuais que correspondam à sua interpretação da arquitetura visível na imagem para cada par de qualidades.<br /> 
-		Salve a sua resposta e, se tiver curiosidade, veja como outros usuários avaliaram esta mesma imagem.</p>
+       </p>
 		
 		
 		<!--   BOX DE AVALIAÃÃO   -->
