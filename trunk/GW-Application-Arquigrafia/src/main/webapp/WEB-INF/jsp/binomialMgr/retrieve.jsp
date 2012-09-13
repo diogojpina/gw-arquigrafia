@@ -49,7 +49,7 @@
     <body>
         <arq:header2 photoMgr="${photoMgr}" />
         <w:conteudoPagina titulo="Bin&ocirc;mios">
-            <form method="post" action="<c:url value="/groupware-workbench/binomials/${binomialMgr.id}" />" accept-charset="UTF-8">
+            <form method="post" action="<c:url value="/binomials/${binomialMgr.id}" />" accept-charset="UTF-8">
                 <input type="hidden" name="binomial.id" value="<c:out value="${binomial.id}" />" />
 
                 <div class="form_1">
