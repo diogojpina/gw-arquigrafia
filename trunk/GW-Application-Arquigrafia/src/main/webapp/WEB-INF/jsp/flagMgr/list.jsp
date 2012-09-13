@@ -15,7 +15,7 @@
 						--%>  
 						
 						<w:tabela
-							baseUrl="/groupware-workbench/flags" target="${flagMgr.collablet.name}"
+							baseUrl="/flags" target="${flagMgr.collablet.name}"
 							titles="${coll:asList4('Entity', 'First flagged', 'Most recently flagged', 'Total')}"
 							columns="${coll:asList4('entity', 'firstFlagged', 'lastFlagged', 'count')}"
 							elements="${flagSummaryMap}" />
@@ -28,7 +28,7 @@
 				</c:if>
 			
 <%--
-			<w:tabela baseUrl="/groupware-workbench/flags"
+			<w:tabela baseUrl="/flags"
 				target="flagsummary-table"
 				titles="${coll:asList4('Entity', 'First flagged', 'Most recently flagged', 'Total')}"
 				columns="${coll:asList4('entity', 'firstFlagged', 'lastFlagged', 'count')}"
@@ -41,7 +41,7 @@
 			</div>
  
 
-			<w:tabela baseUrl="/groupware-workbench/flags" target="tabela-flags"
+			<w:tabela baseUrl="/flags" target="tabela-flags"
 				titles="${coll:asList3('Id', 'Entity', 'Data')}"
 				columns="${coll:asList3('id', 'target', 'flagDate')}"
 				elements="${flagList}" />
