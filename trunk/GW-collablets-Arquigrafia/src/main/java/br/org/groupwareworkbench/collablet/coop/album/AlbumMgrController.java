@@ -71,6 +71,7 @@ public class AlbumMgrController {
     @Path(value = "/album/{albumMgr}/default/{idAlbum}")
     public void listByAlbum(AlbumMgrInstance albumMgr, Long idAlbum) {
         final User user = (User) request.getSession().getAttribute("userLogin");
+    }
     @Path(value = "/groupware-workbench/album/{albumMgr}/show/{idAlbum}/list/{idUser}")
     public void listByAlbum(AlbumMgrInstance albumMgr, Long idAlbum, Long idUser) {
         User user = User.findById(idUser);
