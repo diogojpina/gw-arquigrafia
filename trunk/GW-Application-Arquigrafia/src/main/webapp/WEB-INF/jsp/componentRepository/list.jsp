@@ -38,7 +38,7 @@
             <arq:header2 photoMgr="${photoMgr}" />
             <div class="default_div">
                 <h1>Componentes do Reposit&oacute;rio</h1>
-                <a href="<c:url value="/groupware-workbench/repository/${componentRepository.id}/new" />">Cadastrar novo componente</a>
+                <a href="<c:url value="/repository/${componentRepository.id}/new" />">Cadastrar novo componente</a>
                 <table border="1">
                     <tr>
                         <th>Nome</th>
@@ -60,13 +60,13 @@
                                 <td><c:out value="${cmp.size}" /></td>
                                 <td><c:out value="${cmp.insertionDate}" /></td>
                                 <td>
-                                    <form method="post" action="<c:url value="/groupware-workbench/repository/${componentRepository.id}/${cmp.id}" />">
+                                    <form method="post" action="<c:url value="/repository/${componentRepository.id}/${cmp.id}" />">
                                         <input type="hidden" name="_method" value="DELETE" />
                                         <input type="submit" value="Deletar" />
                                     </form>
                                 </td>
                                 <td>
-                                    <form method="get" action="<c:url value="/groupware-workbench/repository/${componentRepository.id}/${cmp.id}/download" />">
+                                    <form method="get" action="<c:url value="/repository/${componentRepository.id}/${cmp.id}/download" />">
                                         <input type="submit" value="Baixar" />
                                     </form>
                                 </td>
