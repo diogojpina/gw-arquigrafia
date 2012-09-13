@@ -19,7 +19,6 @@
 <arquigrafia:includes arquigrafiaInstance="${arquigrafiaMgr}" />
 <album:buttonAdd-script />
 <script type="text/javascript" src="<c:url value="/js/friend.js" />"></script>
-<script type="text/javascript" src="<c:url value="/js/photo.js" />"></script>
 
 </head>
 
@@ -29,7 +28,7 @@
 
 		<!--   CABEZALHO   -->
 		<arquigrafia:header arquigrafiaInstance="${arquigrafiaMgr}" />
-		<!--   MEIO DO SITE - ÁREA DE NAVEGAÇÃO   -->
+		<!--   MEIO DO SITE - ÁREA DE NAVEGAÇ?Ã?O   -->
 		<div id="content">
 			<!--   COLUNA ESQUERDA   -->
 			<div id="sub_content">
@@ -82,7 +81,7 @@
 							<!-- <li><a href="#" title="Adicione aos seus favoritos" id="add_favourite"></a></li>
 							<li><a href="#" title="Denuncie esta foto" id="denounce"></a></li>-->
 							<li><a href="<c:url value="/18/photo_avaliation/${photo.id}" />" title="Avalie a foto" id="eyedroppper"></a></li>
-							<li><a href="<c:url value="/groupware-workbench/album/${albumMgr.id}/add/${photo.id}" />" title="Adicione ao seu album" id="plus"></a></li>  
+							<li><a href="<c:url value="/album/${albumMgr.id}/add/${photo.id}" />" title="Adicione ao seu album" id="plus"></a></li>  
 							<li><a href="<c:url value="/photo/img-original/${photo.id}" />" title="Faça o download" id="download" target="_blank"></a></li>
 							<c:forEach items="${photo.users}" var="user">
 								<s:owner userName="${user.login}">
@@ -117,21 +116,25 @@
 				<c:forEach items="${photo.users}" var="user">
 					<img src="<c:url value="/img/avatar.jpg" />" name="Homer"
 						id="single_view_user_thumbnail" /> <span
-						id="single_view_owner_name"><a href="<c:url value="/groupware-workbench/friends/11/show/${user.id}" />" id="name">
+						id="single_view_owner_name"><a href="<c:url value="/friends/11/show/${user.id}" />" id="name">
 						${user.name}
 						</a></span>
+<<<<<<< .mine
+						<br /> 
+						<!-- <s:check name="X-X-usuario"> 
+							<a href="<c:url value="/friends/11/sendRequest/${user.id}" />" id="single_view_contact_add">+ Adicionar contato</a><br />
+						</s:check>  -->
+=======
 						<br />
 						<s:check name="X-X-usuario">
 							<friends:sendRequest friendsMgr="${friendsMgr}" viewer="${userLogin}" viewed="${user}" />
 						</s:check> 
+>>>>>>> .r693
 				</c:forEach>
 				</div>
 				<!--   FIM - USUARIO   -->
 				<!-- <h3>Equipamento:</h3>
 				<p>Lorem ipsum dolor sit amet</p> -->
-				<s:check name="X-X-admin">
-		    	<a id="edit_image" href="<c:url value="/photo/${photoMgr.id}/edit/${photo.id}" />" id="single_view_contact_add">Editar imagem</a><br />
-				</s:check>
 				<c:if test="${not empty photo.description}">
 					<h3>Descrição:</h3>
 					<p><c:out value="${photo.description}"/></p>
