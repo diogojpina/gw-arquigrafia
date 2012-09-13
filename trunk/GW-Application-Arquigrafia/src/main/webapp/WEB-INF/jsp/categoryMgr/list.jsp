@@ -49,8 +49,8 @@
             });
         </script>
 
-        <w:tabela baseUrl="/groupware-workbench/categories"
-                  createUrl="/groupware-workbench/categories/${categoryMgr.id}/create"
+        <w:tabela baseUrl="/categories"
+                  createUrl="/categories/${categoryMgr.id}/create"
                   msgAdd="Adicionar nova categoria"
                   msgDelete="Tem certeza que deseja remover a categoria?"
                   target="tabela-categoria"
