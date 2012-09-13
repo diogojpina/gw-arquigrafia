@@ -50,8 +50,8 @@
             });
         </script>
         
-        <w:tabela baseUrl="/groupware-workbench/binomials"
-                  createUrl="/groupware-workbench/binomials/${binomialMgr.id}/create"
+        <w:tabela baseUrl="/binomials"
+                  createUrl="/binomials/${binomialMgr.id}/create"
                   msgAdd="Adicionar novo binômio"
                   msgDelete="Tem certeza que deseja remover o binômio?"
                   target="tabela-binomials"
