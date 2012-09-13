@@ -3,11 +3,17 @@
 <%@ taglib prefix="coll" uri="http://www.groupwareworkbench.org.br/widgets/collections" %>
 
 <h2>Editar perfil</h2>
+
+<form id="form1" class="cmxform" name="dados" method="POST"
+	action="<c:url value="/profile/${profileMgr.id}/save" />"
+	accept-charset="UTF-8" autocomplete="off">
+	<input type="hidden" name="user.id" value='<c:out value="${user.id}" />' />
 <p>
 <small>* Todos os campos a seguir são obrigatórios.</small><p/>
 
-<form id="form1" class="cmxform" name="dados" method="POST" action="<c:url value="/groupware-workbench/profile/${profileMgr.id}/save" />" accept-charset="UTF-8" autocomplete="off">
+<form id="form1" class="cmxform" name="dados" method="POST" action="<c:url value="/profile/${profileMgr.id}/save" />" accept-charset="UTF-8" autocomplete="off">
 	<input type="hidden" name="_method" value="put" />
+
 	<input type="hidden" name="profile.id" value='<c:out value="${profile.id}" />' />
 	<input type="hidden" name="profile.birthday" value='<c:out value="${profile.birthday}" />' />
 	<input type="hidden" name="profile.nativeLanguage" value='<c:out value="${profile.nativeLanguage}" />' /> 
