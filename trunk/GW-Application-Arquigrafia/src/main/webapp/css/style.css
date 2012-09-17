@@ -462,7 +462,7 @@ ul#avaliation_list li .bloco{ width:430px; background:url(../img/icons_sprite.pn
 .ui-slider-horizontal .ui-state-default:active,
 .ui-slider-horizontal .ui-state-default:focus{background-position:-753px -34px !important; outline:none; margin-top:-12px; } */
 
-.ui-slider { width: 200px; height: 25px; position: relative; background-repeat: no-repeat; background-position: center center; }
+.ui-slider { width: 200px; height: 5px; position: relative; background-repeat: no-repeat; background-position: center center; }
 .ui-slider-handle { margin: -11px 0 0 -5px; position: absolute; z-index: 1; height: 15px; width: 10px; 	background: url("../img/icons_sprite.png") repeat scroll -755px -5px transparent;  }
 .ui-slider-handle:hover, .ui-slider-handle:active { margin: -4px 0 0 -5px; background: url("../img/icons_sprite.png") repeat scroll -755px -38px transparent;  }
 .ui-slider-handle-active { border: 1px dotted black;  }

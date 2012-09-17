@@ -39,7 +39,7 @@
 		
 		<!--   BOX DE AVALIAÃÃO   -->
 		<div id="avaliation_box">
-	      <p>Avalie a imagem conforme os pares de qualidades opostas abaixo e ao terminar clique no botão Salvar para registrar a sua interpretação e ver a avaliação de outros usuários. </p>
+	      <p>Avalie a imagem conforme os pares de qualidades opostas abaixo e ao terminar clique no botão Salvar.</p>
           <!--   FORMULÃRIO DE AVALIAÃÃO   -->
           <form name="tags" method="post" enctype="multipart/form-data"
 			action="<c:url value="/photo/${photo.id}" />">
