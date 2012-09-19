@@ -53,7 +53,16 @@
         <!--   ÁREA DO USUARIO   -->
         <div id="loggin_area">
         <a href="<c:url value="/friends/11/show/${sessionScope.userLogin.id}" />" id="user_name">
-        	<img src="<c:url value="/img/avatar.jpg" />" width="50" height="50" class="user_photo_thumbnail" />
+        
+        	<c:choose>
+				<c:when test="${empty userLogin.photoURL}">
+					<img name="Homer" id="profile_photo" src="<c:url value="/img/avatar.jpg" />" width="50" height="50" class="user_photo_thumbnail"/>
+				</c:when>
+				<c:otherwise>
+					<img name="Homer" id="profile_photo" src="<c:url value="${userLogin.photoURL}" />" width="50" height="50" class="user_photo_thumbnail"/>
+				</c:otherwise>
+			</c:choose>
+        	
         </a>
         <a href="<c:url value="/users/8/logout" />" id="logout">Sair</a><br />
 		 <ul id="logged_menu">

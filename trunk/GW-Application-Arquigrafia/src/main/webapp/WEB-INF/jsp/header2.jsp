@@ -32,8 +32,17 @@
 					src="${pageContext.request.contextPath}/images/icon/upload.png" />
 					Enviar Imagem</a> <a class="user_bottom_icon_links"
 					href="${pageContext.request.contextPath}/friends/${friendsMgr.id}/show/${userLogin.id}"
-					onclick=""> <img
-					src="${pageContext.request.contextPath}/images/icon/meuPerfil.png" />
+					onclick="">
+					
+					<c:choose>
+						<c:when test="${empty userLogin.photoURL}">
+							<img name="Homer" id="profile_photo" src="<c:url value="/img/avatar.jpg" />" />
+						</c:when>
+						<c:otherwise>
+							<img name="Homer" id="profile_photo" src="<c:url value="${userLogin.photoURL}" />" />
+						</c:otherwise>
+					</c:choose>
+					
 					Meu perfil</a> <a class="user_bottom_icon_links"
 					href="${pageContext.request.contextPath}/album/${albumMgr.id}"><img
 					src="${pageContext.request.contextPath}/images/icon/meuArquigrafia.png" />

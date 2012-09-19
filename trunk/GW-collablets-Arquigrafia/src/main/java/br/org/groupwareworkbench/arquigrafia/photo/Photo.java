@@ -58,11 +58,13 @@ import br.org.groupwareworkbench.core.bd.ObjectDAO;
 import br.org.groupwareworkbench.core.bd.QueryBuilder;
 import br.org.groupwareworkbench.core.framework.Collablet;
 import br.org.groupwareworkbench.core.graphics.BatchImageProcessor;
+import br.org.groupwareworkbench.core.graphics.GraphicalResource;
+import br.org.groupwareworkbench.core.graphics.GraphicalResourceSuffix;
 import br.org.groupwareworkbench.core.util.Pagination;
 
 
 @Entity
-public class Photo implements Serializable {
+public class Photo implements Serializable, GraphicalResource {
 
     //FIXME Extract this enum to top level (not inside of a class) and move it to the license package.
     public enum AllowModifications {  
@@ -275,44 +277,9 @@ public class Photo implements Serializable {
 
     public void saveImage(InputStream foto) throws RuntimeException {
         
-        String imagesDirName = getInstance().getDirImages();
-        if(imagesDirName.endsWith(File.separator))
-            imagesDirName = imagesDirName.substring(0, imagesDirName.length() - File.separator.length());
-        File imagesDir = new File(imagesDirName);
-        if(!imagesDir.exists()) {
-            System.out.println("Images dir ("  + imagesDirName + ") does not exist. Trying to create it and all nonexistent parents...");
-            imagesDir.mkdirs();
-            System.out.println("Directory \"" + imagesDirName + "\" created successfully.");
-        } else if(!imagesDir.isDirectory()) {
-            System.out.println("WTH!? I cannot save images inside of something that is not a directory: " + imagesDirName);
-        }
-        
-        String originalFileExtension = "";
-        if(nomeArquivo.contains("."))
-            originalFileExtension = nomeArquivo.substring(nomeArquivo.lastIndexOf(".") + 1, nomeArquivo.length());
-        String originalFileName = imagesDirName + File.separator + this.id + ORIGINAL_FILE_SUFFIX + "." + originalFileExtension;
-        
-        System.out.println("Processing this received file: " + this.nomeArquivo);
-        System.out.println("File extension: " + originalFileExtension);
-        System.out.println("Saving the original image as " + originalFileName);
-        
         try {
-            File originalCopy = new File(originalFileName);
-            FileOutputStream fos = new FileOutputStream(originalCopy);
-            byte[] buffer;
-            while(foto.available()>0) {
-                // Using a buffer at most 100kB in size.
-                buffer = new byte[Math.min(foto.available(), 1024*100)];
-                foto.read(buffer);
-                fos.write(buffer);
-                fos.flush();
-            }
-            
-            fos.close();
-            foto.close();
-            
-            BatchImageProcessor bip = new BatchImageProcessor(originalCopy, imagesDir, ORIGINAL_FILE_SUFFIX);
-            bip.convert(originalFileName, this.id);
+        
+            this.getInstance().getGraphicalResourceManager().saveGraphicaResource(foto, this);
             
             // Creating a string containing the list of image owners
             String owners = "";
@@ -324,7 +291,7 @@ public class Photo implements Serializable {
             }
             
             // Adding metadata to the image set
-            Exiv2 imw = new Exiv2(originalFileExtension, this.id, imagesDirName);
+            Exiv2 imw = new Exiv2(this.getOriginalFileExtension() , this.id, this.getInstance().getDirImages() );
             imw.setAuthor(this.workAuthor);
             imw.setArtist(this.workAuthor, owners);
             imw.setCopyRight(this.imageAuthor, new CreativeCommons_3_0(this.allowCommercialUses, this.allowModifications));
@@ -791,6 +758,31 @@ public class Photo implements Serializable {
 
     public static Photo findByTombo(String tombo) {
         return QueryBuilder.query(Photo.class).with("tombo", tombo).with("deleted", false).find();
+    }
+    
+    @Override
+    public String getReferenceIdAsString() {
+        return this.id.toString();
+    }
+
+    @Override
+    public User getUploader() {
+        return this.users.get(0);
+    }
+
+    @Override
+    public String getUploadedFileName() {
+        return this.nomeArquivo;
+    }
+
+    @Override
+    public String getOriginalFileExtension() {
+        
+        if(nomeArquivo.contains(".")) {
+            return nomeArquivo.substring(nomeArquivo.lastIndexOf("."), nomeArquivo.length());
+        }
+        
+        return GraphicalResourceSuffix.DEFAULT_EXTENSION;
     }
 
     

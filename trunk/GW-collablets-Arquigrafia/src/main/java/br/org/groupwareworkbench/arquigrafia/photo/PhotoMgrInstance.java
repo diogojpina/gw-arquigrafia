@@ -32,14 +32,20 @@ import br.org.groupwareworkbench.core.framework.Collablet;
 import br.org.groupwareworkbench.core.framework.annotations.ComponentInfo;
 import br.org.groupwareworkbench.core.framework.annotations.DefaultProperty;
 import br.org.groupwareworkbench.core.framework.annotations.RequiredProperty;
+import br.org.groupwareworkbench.core.graphics.GraphicalResourceManager;
 
 import com.google.common.collect.Maps;
+
+    
 
 @ComponentInfo(version = "0.1", configurationURL = "/photo/{photoMgr}/index", retrieveURL = "/photo/{id}", defaultProperties = {
         @DefaultProperty(name = "cropPrefix", defaultValue = "crop_"),
         @DefaultProperty(name = "thumbPrefix", defaultValue = "thumb_"),
         @DefaultProperty(name = "mostraPrefix", defaultValue = "mostra_")}, requiredProperties = {@RequiredProperty(name = "dirImages")})
 public class PhotoMgrInstance extends AbstractBusiness {
+
+    private GraphicalResourceManager graphicalResourceManager = null;
+    
     public PhotoMgrInstance(Collablet collablet) {
         super(collablet);
     }
@@ -149,6 +155,13 @@ public class PhotoMgrInstance extends AbstractBusiness {
         }
 
         return result;
+    }
+    
+    public GraphicalResourceManager getGraphicalResourceManager() {
+        if ( this.graphicalResourceManager == null ) {
+            this.graphicalResourceManager = new GraphicalResourceManager(this.getDirImages());
+        }
+        return this.graphicalResourceManager;
     }
 
 }
