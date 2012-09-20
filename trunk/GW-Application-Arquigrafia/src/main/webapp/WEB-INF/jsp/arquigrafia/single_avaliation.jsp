@@ -32,14 +32,17 @@
       <!--   COLUNA ESQUERDA   -->
       
        <div id="sub_content_avaliation">
-        <h2 class="common_title">Avaliação</h2>
-        <p>Como você avaliaria a arquitetura apresentada na imagem ao lado? <br /> 
+       
+       <div id="text_Over">
+       <h2 class="common_title">Avaliação</h2>
+        <p>Como você avaliaria esta arquitetura apresentada na imagem ao lado? <br /> 
        </p>
+		</div>
 		
 		
 		<!--   BOX DE AVALIAÃÃO   -->
 		<div id="avaliation_box">
-	      <p>Avalie a imagem conforme os pares de qualidades opostas abaixo e ao terminar clique no botão Salvar.</p>
+	      
           <!--   FORMULÃRIO DE AVALIAÃÃO   -->
           <form name="tags" method="post" enctype="multipart/form-data"
 			action="<c:url value="/photo/${photo.id}" />">
@@ -86,11 +89,19 @@
                             <div id="binomialsUser">
                                 <binomial:userAverage entity="${photo}" manager="${binomialMgr}" user="${sessionScope.userLogin}" name="userBin"
                                         labelClass="binLabelClass" valueClass="binValueClass" wrapClass="binWrapClass" />
+                                     
+                                     
+                            </div>
+                             
+                        </div>
+                        <div id="text_Under">
+                                <p>Ao terminar clique no botão Salvar.<br /> </p>
+                                </div>
+                                                        
                                 <div id="binomialSubmit">
                                     <input type="submit" name="saveBinomial" value="" />
                                 </div>
-                            </div>
-                        </div>
+                        
          </form>
          <!--   FIM - FORMULÃRIO DE AVALIAÃÃO   -->
 			

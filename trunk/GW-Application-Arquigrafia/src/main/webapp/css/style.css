@@ -319,7 +319,7 @@ a.search_image:hover { opacity: 0.6; filter:alpha(opacity=60); }
 
 
 /* --- PÁGINAS INTERNAS --- */
-#sub_content_avaliation { float:left; width:330px; line-height:19px; }
+#sub_content_avaliation { float:left; width:300px; line-height:19px; }
 #sub_content { width:650px; float:left;}
 
 /* THE PROJECT */
@@ -509,7 +509,7 @@ ul#avaliation_list li .bloco{ width:430px; background:url(../img/icons_sprite.pn
 #binomialsWrap {
 	float: left;
 	padding-right: 0px;
-	width: 100%;
+	width: 70%;
 	overflow: scroll;
 	overflow-x: hidden;
 	overflow-y: auto;
@@ -520,8 +520,28 @@ ul#avaliation_list li .bloco{ width:430px; background:url(../img/icons_sprite.pn
 	clear: both;
 }
 
+#text_Over {
+	float: left;
+	padding-right: 0px;
+	width: 80%;
+	overflow: scroll;
+	overflow-x: hidden;
+	overflow-y: auto;
+	color:#A6A6A6;
+}
+
+#text_Under {
+	float: left;
+	padding-right: 0px;
+	width: 50%;
+	overflow: scroll;
+	overflow-x: hidden;
+	overflow-y: auto;
+	color:#A6A6A6;
+}
+
 #binomialSubmit input {
-    width: 58px;
+    width: 65px;
     height: 20px;
     background: url("../img/icons_sprite.png") repeat scroll -84px -238px transparent;
     cursor: pointer;
