@@ -30,33 +30,17 @@
     <!--   MEIO DO SITE - ÁREA DE NAVEGAÇÃO   -->
     <div id="content">
       <!--   COLUNA ESQUERDA   -->
-      <div id="sub_content">
-        <!--   PAINEL DE VISUALIZAÃÃO - SINGLE   -->
-				<div id="single_view_block">
-					<!--   NOME / STATUS DA FOTO   -->
-					<div id="single_view_header">
-						<h1><c:out value="${photo.name}"/>    	</h1>
-						<ul id="single_view_image_rating" class="right">
-							<li id="graph" ></li>
-							<li><small><counter:showCounter
-												manager="${counterMgr}" entity="${photo}"
-												viewer="${sessionScope.userLogin}" increment="true"
-												wrapClass="counter_show" />
-									</small></li>
-						</ul>
-					</div>
-					<!--   FIM - NOME / STATUS DA FOTO   -->
-					<!--   FOTO   -->
-					<%--img src="img/photos/8806.jpg" class="single_view_image" width="600" height="410" alt="" title="" /--%>
-					<p:show clazz="single_view_image"
-						 foto="${photo}"
-						photoMgr="${photoMgr}" />
-
-					<hr />
-				</div>
-		<!--   BOX DE AVALIAÃÃO   -->
+      <div id="sub_content_avaliation">
+      
+      <div id="text_Over">
+      <h2 class="common_title">Avaliação</h2>
+        <p>Como você avaliaria esta arquitetura apresentada na imagem ao lado? <br /> 
+		<p>Esta é a média das avaliações desta imagem. </p> 
+		</div>
+		
+				<!--   BOX DE AVALIAÃÃO   -->
 		<div id="avaliation_box">
-	      <p>Esta é a média das avaliações desta imagem. </p> 
+	      
           <!--   FORMULÃRIO DE AVALIAÃÃO   -->
           <form name="tags" method="post" enctype="multipart/form-data"
 			action="<c:url value="/photo/${photo.id}" />">
@@ -123,28 +107,52 @@
 		 </script>
 		 --%>
 	   </div>
-       <!--   FIM - BOX DE AVALIAÃÃO   -->
+       <!--   FIM - BOX DE AVALIAÃÃO   -->    
+        
       </div>
+      
+      
+       
       <!--   FIM - COLUNA ESQUERDA   -->
       <!--   COLUNA LATERAL - DIREITA   -->
-      <div id="sidebar">
-		<h2 class="common_title">Avaliação</h2>
-        <p>Como você avaliaria a arquitetura apresentada na imagem ao lado? <br /> 
-        Há um predomínio de elementos horizontais ou verticais, e em que proporção? <br /> 
-        Deslize os marcadores até encontrar a posição ou os percentuais que correspondam à sua interpretação da arquitetura visível na imagem para cada par de qualidades.<br /> 
-		Salve a sua resposta e, se tiver curiosidade, veja como outros usuários avaliaram esta mesma imagem.</p>
-		
-		<h3>Faça sua Avaliação:</h3>
+      <div id="sidebar_avaliation">
+       <!--   PAINEL DE VISUALIZAÃÃO - SINGLE   -->
+				<div id="single_view_block">
+					<!--   NOME / STATUS DA FOTO   -->
+					<div id="single_view_header">
+						<h1><c:out value="${photo.name}"/>    	</h1>
+						<ul id="single_view_image_rating" class="right">
+							<li id="graph" ></li>
+							<li><small><counter:showCounter
+												manager="${counterMgr}" entity="${photo}"
+												viewer="${sessionScope.userLogin}" increment="true"
+												wrapClass="counter_show" />
+									</small></li>
+						</ul>
+					</div>
+					<!--   FIM - NOME / STATUS DA FOTO   -->
+					<!--   FOTO   -->
+					<%--img src="img/photos/8806.jpg" class="single_view_image" width="600" height="410" alt="" title="" /--%>
+					<p:show clazz="single_view_image"
+						 foto="${photo}"
+						photoMgr="${photoMgr}" />
+
+					<hr />
+				</div>
+				
+				<h3>Faça sua Avaliação:</h3>
 				<p>Avalie esta imagem de acordo com seus aspectos, compare
 					também sua avaliação com as do outros usuários.</p>
 				<a href="<c:url value="/${arquigrafiaMgr.id}/photo_avaliation/${photo.id}" />"
 					title="Avalie a foto" id="evaluate_button"></a>
         <!--<p>Nós te preparamos um vídeo que mostra o passo a passo da avaliação. Clique no botão abaixo para assistí­-lo:</p>
         <a href="#" id="watch_button"></a> -->
+        
+
       </div>
+      
       <!--   FIM - COLUNA LATERAL - DIREITA   -->
-    </div>
-    <!--   FIM - MEIO DO SITE   -->
+      <!--   FIM - MEIO DO SITE   -->
     <!--   FUNDO DO SITE   -->
     <div id="footer">
 	  <!--   BARRA DE ABAS   -->

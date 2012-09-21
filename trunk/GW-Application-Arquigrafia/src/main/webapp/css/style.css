@@ -523,7 +523,7 @@ ul#avaliation_list li .bloco{ width:430px; background:url(../img/icons_sprite.pn
 #text_Over {
 	float: left;
 	padding-right: 0px;
-	width: 80%;
+	width: 75%;
 	overflow: scroll;
 	overflow-x: hidden;
 	overflow-y: auto;
