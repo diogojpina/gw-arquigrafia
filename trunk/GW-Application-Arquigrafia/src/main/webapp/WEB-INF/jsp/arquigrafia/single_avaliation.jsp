@@ -97,11 +97,12 @@
                         <div id="text_Under">
                                 <p>Ao terminar clique no botão Salvar.<br /> </p>
                                 </div>
-                                                        
-                                <div id="binomialSubmit">
-                                    <input type="submit" name="saveBinomial" value="" />
-                                </div>
-                        
+                           
+                           	<div id="binomialSubmit">
+                                   <input type="submit" name="saveBinomial" value="" />
+                          	</div>    
+                </div>
+                       
          </form>
          <!--   FIM - FORMULÃRIO DE AVALIAÃÃO   -->
 			
@@ -116,11 +117,12 @@
 			$("#slider_6").slider({ value:50, min: 0, max: 100, step: 10 });
 		 </script>
 		 --%>
-	   </div>
+		 
+								
+                        
        <!--   FIM - BOX DE AVALIAÃÃO   -->
-		
-		
-		
+
+                        
 		
       </div>
       

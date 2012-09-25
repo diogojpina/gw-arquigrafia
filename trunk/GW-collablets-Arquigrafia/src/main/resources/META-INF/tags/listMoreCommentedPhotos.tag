@@ -11,9 +11,9 @@
 	</r:callMethod>
 	<c:forEach var="foto" items="${photos}">
 			<c:if test="${foto.deleted == false}">
-				<a class="footer_image" rel="linkimage"
-					href="<c:url value="/photo/${foto.id}"/>">
-					<img src="<c:url value="/photo/img-thumb/${foto.id}"/>?_log=no" />
+				<a  class="footer_image" rel="linkimage"
+					href="<c:url value="/photo/${foto.id}"/>" title="${foto.name}">
+					<img  src="<c:url value="/photo/img-thumb/${foto.id}"/>?_log=no" />
 				</a>
 			</c:if>
 	</c:forEach>

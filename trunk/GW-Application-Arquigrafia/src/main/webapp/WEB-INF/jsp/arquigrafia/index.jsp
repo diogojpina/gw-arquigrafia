@@ -25,7 +25,10 @@
     <!--   MEIO DO SITE - ÁREA DE NAVEGAÇÃO   -->
     <div id="content">
       <!--   PAINEL DE IMAGENS - GALERIA - CARROSSEL   -->
-      <arquigrafia:randomWall photoMgr="${photoMgr}" columns="3" amount="15" />
+      	<arquigrafia:randomWall photoMgr="${photoMgr}" columns="3" amount="15" />
+ 		
+ 		
+ 
       <!--   FIM - PAINEL DE IMAGENS  -->
 
       <!--   ÁREA DE TAGS   -->

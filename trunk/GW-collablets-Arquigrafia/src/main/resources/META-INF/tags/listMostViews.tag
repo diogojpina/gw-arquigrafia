@@ -13,7 +13,7 @@
 	<c:forEach var="foto" items="${greaters}" varStatus="counter">
 			<c:if test="${foto.deleted == false}">
 				<a rel="linkimage" class="footer_image"
-					href="<c:url value="/photo/${foto.id}"/>">
+					href="<c:url value="/photo/${foto.id}"/>" title="${foto.name}" >
 					<img src="<c:url value="/photo/img-thumb/${foto.id}"/>?_log=no" />
 				</a>
 			</c:if>

@@ -11,7 +11,7 @@
         
 <c:forEach var="photo" items="${photos}">
      	<c:if test="${!photo.deleted}">
-	        <a class="foto" rel="linkimage" href="<c:url value="/photo/${photo.id}"/>" class="search_image">
+	        <a class="foto" rel="linkimage" href="<c:url value="/photo/${photo.id}"/>" class="search_image" title="${photo.name}">
 	            <img src="<c:url value="/photo/img-thumb/${photo.id}"/>?_log=no"  alt="<c:out value="${photo.name}" />" />
 	        </a>
 		</c:if>

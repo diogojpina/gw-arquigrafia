@@ -6,5 +6,5 @@
 <%@ attribute name="clazz" required="false" rtexprvalue="true" type="java.lang.String" %>
 <%@ attribute name="style" required="false" rtexprvalue="true" type="java.lang.String" %>
 
-<img class="${clazz}" style="${style}" src="<c:url value="/photo/img-show/${foto.id}"/>?_log=no" onload="initialize()" />
+<img alt="${foto.name}" class="${clazz}" style="${style}" src="<c:url value="/photo/img-show/${foto.id}"/>?_log=no" onload="initialize()" />
  <!-- alt="<c:out value="${}" />"  --> 

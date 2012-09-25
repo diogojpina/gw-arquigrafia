@@ -415,7 +415,7 @@ span.twitter:hover { background-position:-63px -145px;}
 #ccicons { display:block; margin: 10px 0 0 0; width:88px;}
 a#evaluate_button { float:left; background:url(../img/icons_sprite.png) -339px -145px; width:59px; height:20px; }
 a#evaluate_button:hover { background-position:-339px -170px;}
-a#evaluation_average { float:left; background:url(../img/icons_sprite.png) -401px -145px; width:140px; height:20px; margin: 0 0 0 10px;}
+a#evaluation_average { float:left; background:url(../img/icons_sprite.png) -401px -145px; width:140px; height:20px; margin: 0 0 0 0px;}
 a#evaluation_average:hover { background-position:-401px -170px;}
 .single_view_map { margin:5px 0;}
 
@@ -550,7 +550,7 @@ ul#avaliation_list li .bloco{ width:430px; background:url(../img/icons_sprite.pn
 	font-size: 11px;
 	font-weight: bold;
 	color: #fff;
-	margin-left: 200px;
+	margin-left: 0px;
 }
 
 #binomialSubmit input:hover {

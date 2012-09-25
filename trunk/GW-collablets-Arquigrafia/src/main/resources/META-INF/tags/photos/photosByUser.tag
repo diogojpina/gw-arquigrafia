@@ -12,8 +12,8 @@
 	</r:callMethod>
 	<c:forEach var="foto" items="${photos}">
 			<a class="search_image" 
-				href="<c:url value="/photo/${foto.id}"/>"> <img
-				src="<c:url value="/photo/img-thumb/${foto.id}"/>?_log=no" />
+				href="<c:url value="/photo/${foto.id}"/>"> 
+				<img src="<c:url value="/photo/img-thumb/${foto.id}"/>?_log=no" />
 			</a>
 	</c:forEach>
 </c:if>
