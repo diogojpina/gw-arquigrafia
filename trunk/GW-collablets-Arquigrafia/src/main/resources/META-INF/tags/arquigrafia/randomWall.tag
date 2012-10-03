@@ -9,6 +9,7 @@ uri="http://www.groupwareworkbench.org.br/taglibs/reflection"%>
 type="java.lang.Integer" %>
 <%@ attribute name="columns" required="false" rtexprvalue="false"
 type="java.lang.Integer" %>
+
 <c:if test="${photoMgr.collablet.enabled}">
        <r:callMethod methodName="listRandomPhotos" instance="${photoMgr}"
 var="photos" >

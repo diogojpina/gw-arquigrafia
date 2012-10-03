@@ -653,3 +653,14 @@ input#login_white_button:hover { background-position:-160px -258px; }
 #login_google_icon { display:block; width:130px; height:22px; background:url(../img/icons_sprite.png) -522px -237px; margin: 10px 0 0 84px; clear:left; float:left;}
 #login_google_icon:hover { background:url(../img/icons_sprite.png) -522px -260px;}
 #login_modal_box div{ float:left; display:block; width:300px; text-align:justify;}
+
+/* IMAGE TOOLTIP */
+.tooltip {
+    display:none;
+    background:transparent url(../img/tooltip.png);
+    font-size:12px;
+    height:70px;
+    width:160px;
+    padding:25px;
+    color:#eee;
+  }

@@ -27,6 +27,8 @@
 <!-- JS - Font size increment and decrement -->
 <script type="text/javascript" src="<c:url value="/js/font_increment.js" />"></script>
 
+<script type="text/javascript" src="<c:url value="/js/jquery.tools.min.js" />"></script>
+
 <!-- Google Maps API -->
 <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=true"></script>
 
@@ -34,6 +36,8 @@
 	form_window_loaded = false;
 
 	$(document).ready(function(){
+		
+		$(".image img[title]").tooltip();
 
 		$('#edit_perfil_button').click(function(){
 			var part = "perfil";
