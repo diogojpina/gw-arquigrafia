@@ -77,6 +77,14 @@
 			form_window_loaded = true;
 		});
 		
+		$('.profile_photo_edit').click(function(e){
+			$('#mask').fadeIn('fast');
+			$('#form_window').fadeIn('slow');
+			$('#registration').load('<c:url value="/profile/${profileMgr.id}/uploadphotoprofile"/>');	
+			form_window_loaded = true;
+			e.preventDefault();
+		});
+		
 		$('#upload_bar').click(function(){
 			$('#mask').fadeIn('fast');
 			$('#form_window').fadeIn('slow');
