@@ -85,9 +85,30 @@ public class PhotoMgrInstance extends AbstractBusiness {
         }
         return results;
     }
+    
+    public boolean hasResults(Map<String, List<Photo>> search) {
+        for (String term : search.keySet()) {
+            if (!search.get(term).isEmpty()) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     public List<Photo> searchForAttributeOfThePhoto(String term, String q, int page, int perPage) {
         return Photo.findByAttribute(getCollablet(), term, q, page, perPage);
+    }
+
+    public Map<String, Long> countsPhotosSearchByAttribute(String term) {
+        Map<String, Long> results = Maps.newHashMap();
+        for (String attr : SearchTerm.getNames()) {
+            results.put(attr, Photo.countByAttribute(getCollablet(), attr, term));
+        }
+        return results;
+    }
+    
+    public Long countPhotosSearchByAttribute(String term, String search) {
+        return Photo.countByAttribute(getCollablet(), term, search);
     }
 
 
@@ -163,5 +184,7 @@ public class PhotoMgrInstance extends AbstractBusiness {
         }
         return this.graphicalResourceManager;
     }
+
+
 
 }

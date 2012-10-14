@@ -26,9 +26,13 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -50,6 +54,7 @@ import br.com.caelum.vraptor.view.Results;
 import br.org.groupwareworkbench.arquigrafia.ImportImages;
 import br.org.groupwareworkbench.collablet.communic.tag.Tag;
 import br.org.groupwareworkbench.collablet.coord.user.User;
+import br.org.groupwareworkbench.collablet.util.EncoderParam;
 import br.org.groupwareworkbench.core.framework.Collablet;
 import br.org.groupwareworkbench.core.framework.WidgetInfo;
 import br.org.groupwareworkbench.core.routing.GroupwareInitController;
@@ -117,7 +122,7 @@ public class PhotoController {
     }
 
     @Get
-    @Path(value = "/photo/img-show/{idPhoto}")
+    @Path(value = {"/photo/img-show/{idPhoto}", "/photo/img-show/{idPhoto}.jpeg"})
     public Download imgShow(long idPhoto) {
         Photo photo = Photo.findById(idPhoto);
         if (photo == null|| photo.getDeleted() ) {
@@ -292,7 +297,7 @@ public class PhotoController {
         result.use(Results.logic()).forwardTo(PhotoController.class).busca(photoMgr);
     }
 
-    @Post
+    @Get @Post
     @Path(value = "/photo/{photoMgr}/search")
     public void buscaFoto(PhotoMgrInstance photoMgr, final String q, int page, int perPage) {
         validate(photoMgr, q);
@@ -300,7 +305,12 @@ public class PhotoController {
         if (tag != null) {
             result.include("tag", tag).include("photosByTag", tag.getAssignments(8));
         }
-        result.include("photos", photoMgr.searchForAttributesOfThePhoto(q, page, perPage)).include("searchTerm", q);
+        Map<String, List<Photo>> photos = photoMgr.searchForAttributesOfThePhoto(q, page, perPage);
+        
+        result.include("photos", photos)
+                .include("results", photoMgr.hasResults(photos))
+                .include("searchTerm", q);
+        
         addIncludes(photoMgr);
         result.use(logic()).forwardTo(PhotoController.class).busca(photoMgr);
     }
@@ -314,12 +324,39 @@ public class PhotoController {
     
     @Get
     @Path("/photos/{photoMgr}/search/term")
-    public void searchPhotosByAttribute(PhotoMgrInstance photoMgr, String term, String q, int page, int perPage) {
+    public void searchByAttribute(PhotoMgrInstance photoMgr, String term, String q, int page, int perPage) {
         List<Photo> results = photoMgr.searchForAttributeOfThePhoto(term, q, page, perPage);
         result.include("photos", results);
         addIncludes(photoMgr);
     }
 
+    @Get
+    @Path("/photos/{photoMgr}/show/search/term")
+    public void showSearchByAttribute(PhotoMgrInstance photoMgr, String term, String q, int page, int perPage) {
+        String search = EncoderParam.decode(q);
+        List<Photo> results = photoMgr.searchForAttributeOfThePhoto(term, search, page, perPage);
+        result.include("photos", results).include("term", term).include("searchTerm", search);
+        addIncludes(photoMgr);
+    }
+
+    @Get
+    @Path("/photos/{photoMgr}/counts/search/term")
+    public void countsPhotosSearchByAttribute(PhotoMgrInstance photoMgr, String term) {
+        String q = EncoderParam.decode(term);
+        Map<String, Long> results = photoMgr.countsPhotosSearchByAttribute(q);
+        result.use(Results.json()).from(results).serialize();
+    }
+
+    @Get
+    @Path("/photos/{photoMgr}/count/search/term")
+    public void countPhotosSearchByAttribute(PhotoMgrInstance photoMgr, String term, String q) {
+        String search = EncoderParam.decode(q);
+        System.out.println(search);
+        Long count = photoMgr.countPhotosSearchByAttribute(term, search);
+        result.use(Results.json()).withoutRoot().from(count).serialize();
+    }
+
+    
     @Post
     @Path(value = "/photo/{photoMgr}/buscaA")
     public void buscaFotoAvancada(String nome, String descricao, String lugar, Date date, PhotoMgrInstance photoMgr) {

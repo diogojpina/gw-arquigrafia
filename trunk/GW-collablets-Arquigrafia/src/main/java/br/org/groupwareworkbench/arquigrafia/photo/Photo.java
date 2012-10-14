@@ -420,6 +420,28 @@ public class Photo implements Serializable, GraphicalResource {
     private static void check(String value) {
         if (value.equals("")) value = "!$%--6**24";        
     }
+    
+    public static Long countByAttribute(Collablet collablet, String fieldName, String value) {
+        if (SearchTerm.contains(fieldName)) {
+            check(value);
+            String queryString = 
+                    "select count(*) from Photo p where p.deleted = false AND p.collablet =:collablet AND (" + "upper(p." + fieldName + ") like :nom1 "
+                            + "OR upper(p." + fieldName + ") like :nom2 " + "OR upper(p." + fieldName + ") like :nom4 "
+                            + "OR upper(p." + fieldName + ") like :nom3 ) order by dataUpload DESC";
+            
+            EntityManager em = EntityManagerProvider.getEntityManager();
+            Query query = em.createQuery(queryString);
+    
+            return (Long) query.setParameter("collablet", collablet)
+                        .setParameter("nom1", "%" + value.toUpperCase() + "%")
+                        .setParameter("nom2", value.toUpperCase() + "%")
+                        .setParameter("nom3", "%" + value.toUpperCase())
+                        .setParameter("nom4", value.toUpperCase())
+                        .getSingleResult();
+        }
+        return 0l;
+    }
+
 
     public static List<Photo> busca(Collablet collablet, String name, String city, String description, Date date) {
 
@@ -785,7 +807,6 @@ public class Photo implements Serializable, GraphicalResource {
         return GraphicalResourceSuffix.DEFAULT_EXTENSION;
     }
 
-    
 //    public void setAllowModifications(AllowModifications allowModifications) {
 //        this.allowModifications = allowModifications;
 //    }
