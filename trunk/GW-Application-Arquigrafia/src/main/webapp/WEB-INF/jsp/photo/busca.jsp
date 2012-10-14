@@ -16,6 +16,7 @@
 <arquigrafia:includes arquigrafiaInstance="${arquigrafiaMgr}" />
 
 <script type="text/javascript" src="<c:url value="/js/pagination.js" />"></script>
+<script type="text/javascript" src="<c:url value="/js/search.js" />"></script>
 
 </head>
 
@@ -43,15 +44,14 @@
              </span>
              <br />
  --%>         
- 
-<%--  							<c:if test="${not empty searchTerm}">
-		             <span id="resultTerm">Voc&ecirc; buscou: <c:out value="${searchTerm}" />. </span>
+  							<c:if test="${empty photosByTag and results eq false}">
+		             <span id="resultTerm">Nenhuma imagem encontrada </span>
 		             <br />             
-                <a href='<c:url value="/tags/${tagMgr.id}/${searchTerm}"/>' >Imagens com a tag <c:out value="${searchTerm}" /></a>
              </c:if>
- --%>         </div>
+          </div>
          <br />
          <div id="search_scroll">
+         		<input id="context_path" type="hidden" value="${pageContext.request.contextPath}"/>	
              <p:listSearch photos="${photos}" photoInstance="${photoMgr}" lineClass="search_line"/>
          </div>
 
