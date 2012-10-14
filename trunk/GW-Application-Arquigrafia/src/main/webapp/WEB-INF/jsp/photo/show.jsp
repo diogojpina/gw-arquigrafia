@@ -10,6 +10,7 @@
 <%@ taglib prefix="counter" uri="http://www.groupwareworkbench.org.br/widgets/counter" %>
 <%@ taglib prefix="friends" uri="http://www.groupwareworkbench.org.br/widgets/friends" %>
 <%@ taglib prefix="s" uri="http://www.groupwareworkbench.org.br/widgets/security" %>
+<%@ taglib prefix="util" uri="http://www.groupwareworkbench.org.br/widgets/util"%>
 
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
@@ -17,8 +18,55 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Arquigrafia - <c:out value="${photo.name}"/></title>
 <arquigrafia:includes arquigrafiaInstance="${arquigrafiaMgr}" />
+<link rel="stylesheet" type="text/css" media="screen" href="<c:url value="/css/jquery.fancybox.css" />" />
+
 <album:buttonAdd-script />
 <script type="text/javascript" src="<c:url value="/js/friend.js" />"></script>
+<script type="text/javascript" src="<c:url value="/js/jquery.fancybox.pack.js" />"></script>
+
+<script>
+  jQuery(document).ready(function($) {
+      $('.fancybox').fancybox({
+		  	
+    	  beforeShow: function () {
+            	$.fancybox.wrap.bind("contextmenu", function (e) {
+                    return false; 
+            	});
+        },
+				
+        afterLoad : function() {
+							var download = $('#single_view_image_buttons');
+		         	if (download.size() === 0) {
+								this.title = '<a id="download_login_link" href="#">Faça o login para fazer o download</a>';
+							} else {
+								var buttons = $("#single_view_buttons_box").clone(),
+										social_network_buttons = buttons.find("#single_view_social_network_buttons");
+								
+								social_network_buttons.remove();
+								this.title = '' + buttons.html();
+							}
+
+				},
+
+        scrolling: 'no', 
+        minWidth: 800,
+      });
+      
+      $('#download_login_link').live('click', function(e){
+    	  $.fancybox.close(true);
+				$('#mask').fadeIn('fast');
+				$('#form_window').fadeIn('slow');
+				$('#registration').load('<c:url value="/users/8/login"/>');	
+    	  e.preventDefault();
+      });
+      
+      $('#plus').live('click', function(e) {
+    	  $.fancybox.close(true);
+      });
+  });
+
+</script>
+
 
 </head>
 
@@ -147,11 +195,17 @@
 				<c:if test="${not empty photo.dataCriacaoFormatada}">
 					<h3>Data da Imagem:</h3>
 					<p><c:out value="${photo.dataCriacaoFormatada}"/></p>
-				</c:if>		
+				</c:if>
+						
 				<c:if test="${not empty photo.workAuthor}">
 					<h3>Autor da Obra:</h3>
-					<p><c:out value="${photo.workAuthor}"/></p>
-				</c:if>		
+					<p>
+						<a href="<c:url value="/photos/${photoMgr.id}/show/search/term?q=${util:encode(photo.workAuthor)}&term=workAuthor&page=1&perPage=8"/>">
+							<c:out value="${photo.workAuthor}"/>
+						</a>
+					</p>
+				</c:if>
+						
 				<c:if test="${not empty photo.formattedWorkdate}">
 					<h3>Data da Obra:</h3>
 					<p><c:out value="${photo.formattedWorkdate}"/></p>
@@ -167,14 +221,23 @@
 				<h3>Endereço:</h3>
 					<p>
 						<c:if test="${not empty photo.street}">
-							<c:out value="${photo.street}"/>, 
+							<a href="<c:url value="/photos/${photoMgr.id}/show/search/term?q=${util:encode(photo.street)}&term=street&page=1&perPage=8"/>">
+								<c:out value="${photo.street}"/>, 
+							</a>
+						
 						</c:if>
 						<c:if test="${not empty photo.district}">
-							<c:out value="${photo.district}"/>
+							<a href="<c:url value="/photos/${photoMgr.id}/show/search/term?q=${util:encode(photo.district)}&term=district&page=1&perPage=8"/>">
+								<c:out value="${photo.district}"/>
+							</a>
+						
 						<br />
 						</c:if>
 						<c:if test="${not empty photo.city}">
+						<a href="<c:url value="/photos/${photoMgr.id}/show/search/term?q=${util:encode(photo.city)}&term=city&page=1&perPage=8"/>">
 							<c:out value="${photo.city}"/> - 
+						</a>
+						
 						</c:if>	
 						<c:if test="${not empty photo.state}">
 							<c:out value="${photo.state}"/> , 
