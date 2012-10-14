@@ -1,6 +1,7 @@
 <%@ tag body-content="empty" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="s" uri="http://www.groupwareworkbench.org.br/widgets/security" %>
+<%@ taglib prefix="util" uri="http://www.groupwareworkbench.org.br/widgets/util"%>
 
 <%@ attribute name="arquigrafiaInstance" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.arquigrafia.main.ArquigrafiaMgrInstance" %>
 
@@ -23,7 +24,7 @@
         <!--   MENU DE BUSCA   -->
         <form id="search_buttons_area" action="<c:url value="/photo/7/search" />" method="post" accept-charset="UTF-8">
           <!--   BARRA DE BUSCA   -->
-          <input type="text" class="search_bar" name="q" />
+          <input type="text" class="search_bar" id="search_bar" name="q" value="${searchTerm}"/>
 
           <input type="hidden" value="8" name="perPage" />
           <!--   BOTÃO DA BARRA DE BUSCA   -->

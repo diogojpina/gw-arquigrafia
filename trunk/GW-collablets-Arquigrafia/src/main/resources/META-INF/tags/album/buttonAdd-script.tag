@@ -4,7 +4,7 @@
 
 $(function(){
 	
-	$('#plus').click(function(e){
+	$('#plus').live('click', function(e){
 		e.preventDefault();
 		$('#mask').fadeIn('fast');
 		$('#form_window').fadeIn('slow');

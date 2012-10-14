@@ -6,5 +6,5 @@
 <%@ attribute name="clazz" required="false" rtexprvalue="true" type="java.lang.String" %>
 <%@ attribute name="style" required="false" rtexprvalue="true" type="java.lang.String" %>
 
-<img alt="${foto.name}" class="${clazz}" style="${style}" src="<c:url value="/photo/img-show/${foto.id}"/>?_log=no" onload="initialize()" />
+<a class="fancybox" href="<c:url value="/photo/img-show/${foto.id}.jpeg"/>" title="${foto.name}" ><img class="${clazz}" style="${style}" src="<c:url value="/photo/img-show/${foto.id}"/>.jpeg" onload="initialize()" /></a>
  <!-- alt="<c:out value="${}" />"  --> 
