@@ -353,7 +353,7 @@ a#printer_icon:hover{ background-position:-713px -33px; }
 .single_view_image { margin: 15px 0; }
 
 /*usuário*/
-#single_view_user_thumbnail { width:28px; height:28px; float:left; margin-right:10px;}
+#single_view_user_thumbnail {float:left; margin-right:10px; width:48px; height:48px;}
 #single_view_owner_name { margin-bottom:3px; font-size: 20px; line-height: 28px;}
 #name { color:#CB9833;}
 #single_view_contact_add, #single_view_message_open, #single_view_message_close { font-size:11px; }
@@ -424,7 +424,7 @@ a#evaluation_average:hover { background-position:-401px -170px;}
 #comments_block { margin:20px 0 ;}
 .single_comment_block { width:650px; margin: 15px 0 25px; overflow:hidden;}
 #comments_block h2 { border-bottom:solid 1px #333; margin-bottom:10px; font-size:20px;}
-img.user_thumbnail{ float:left; margin-right:10px;} 
+img.user_thumbnail{ float:left; margin-right:10px; width:48px; height:48px;} 
 span.comment_time { font-size:10px; color:#7B7D7F; font-style:italic;}
 span.comment_text { float:right; width:590px; min-height:40px; }
 span.comment_text p{ margin:3px 0;}
@@ -577,7 +577,8 @@ ul#avaliation_list li span.right{ text-align:left; padding-left:10px; }
 #left_sidebar ul { list-style:none; margin: 5px 0 10px 0; display:block; float:left; width:200px; height:auto;}
 #left_sidebar h3 { font-size:12px; font-weight:bold; display:block; margin:20px 0 5px 0; width:200px; height:12px; line-height:12px; float:left; border-bottom:solid 1px #7B7D7F;}
 #small { font-size:10px;}
-#profile_photo { display:block; width:105px; height:130px;}
+#profile_photo { display:block; width:48px; height:48px;}
+#profile_photo_edite { display:block; width:113px; height:113px;}
 #invitation { width:200px; height:auto; overflow:hidden; float:left;}
 #friend_contact { width:200px; height:30px; overflow:hidden; line-height:12px; margin:5px 0; float:left;}
 #friend_contact #small { line-height:18px}

@@ -120,7 +120,8 @@
 				<div id="single_view_block">
 					<!--   NOME / STATUS DA FOTO   -->
 					<div id="single_view_header">
-						<h1><c:out value="${photo.name}"/>    	</h1>
+						<h1><a href="<c:url value="/photo/${photo.id}" />" id="name">
+						<c:out value="${photo.name}"/></a>    	</h1>
 						<ul id="single_view_image_rating" class="right">
 							<li id="graph" ></li>
 							<li><small><counter:showCounter
