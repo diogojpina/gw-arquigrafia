@@ -6,6 +6,24 @@
   	form.cmxform label.error { display: none; }	
   </style>
 <script type="text/javascript" src="<c:url value="/js/upload-validation.js" />"></script>
+<script>
+    $(function() {
+        
+        $('#state').change(function(){
+					var state = $(this).attr('value'),
+							select_city = $("#city");
+
+					$.getJSON('${pageContext.request.contextPath}/js/state/brazil.json', function(response) {
+					    var cities = $.map(response['Brasil'][state], function(city) {
+					        return '<option value="' + city + '">' + city + '</option>';
+					    }).join('');
+					    select_city.removeAttr('disabled');
+					    select_city.empty().append(cities);
+					});
+       });
+    });
+</script>
+
 <form id="upload_form" name="dados" method="POST" action="<c:url value="/photo/${photoMgr.id}/registra" />" enctype="multipart/form-data">
 	<input type="hidden" name="user.id" value="${user.id}">
 	<input type="hidden" name="photoRegister.id" value="">
@@ -40,13 +58,9 @@
 	  <label>Autor da imagem:</label>
 	  <input name="photoRegister.imageAuthor" type="text" class="text" />
 	  <br />
-	  <label class="left_form_label_column" >Cidade:</label>
-	  <input name="photoRegister.city" type="text" class="text" />
-	  <label>Data da imagem:</label>
-	  <input name="imagedate" type="text" class="text" id="imagedate" />
-	  <br />
+
 	  <label class="left_form_label_column">Estado:</label>
-	  <select name="photoRegister.state" class="input_content">
+	  <select name="photoRegister.state" id="state" class="input_content">
 	  	<option selected="" value="" >Escolha o Estado</option>
 	    <option value="AC">Acre</option>
 		<option value="AL">Alagoas</option>
@@ -76,6 +90,17 @@
 	    <option value="SP">São Paulo</option>
 	    <option value="TO">Tocantins</option>
 	  </select>
+
+
+	  <label>Data da imagem:</label>
+	  <input name="imagedate" type="text" class="text" id="imagedate" />
+	  <br />
+	  
+	  <label class="left_form_label_column" >Cidade:</label>
+	  <select name="photoRegister.city" id="city" class="input_content" disabled="disabled">
+	  		<option selected="" value="" >Escolha uma cidade</option>
+	  </select>
+	  
 	  <label>País:</label>
 	  <select name="photoRegister.country" class="input_content">
 		<option value="Afeganistão">Afeganistão</option>
