@@ -9,6 +9,7 @@
 <%@ taglib prefix="comment" uri="http://www.groupwareworkbench.org.br/widgets/comment"%>
 <%@ taglib prefix="counter" uri="http://www.groupwareworkbench.org.br/widgets/counter" %>
 <%@ taglib prefix="friends" uri="http://www.groupwareworkbench.org.br/widgets/friends" %>
+<%@ taglib prefix="binomial" uri="http://www.groupwareworkbench.org.br/widgets/binomial" %>
 <%@ taglib prefix="s" uri="http://www.groupwareworkbench.org.br/widgets/security" %>
 <%@ taglib prefix="util" uri="http://www.groupwareworkbench.org.br/widgets/util"%>
 
@@ -23,6 +24,8 @@
 <album:buttonAdd-script />
 <script type="text/javascript" src="<c:url value="/js/friend.js" />"></script>
 <script type="text/javascript" src="<c:url value="/js/jquery.fancybox.pack.js" />"></script>
+<script type="text/javascript" src="<c:url value="/js/jquery.xdomainajax.js" />"></script>
+
 
 <script>
   jQuery(document).ready(function($) {
@@ -90,7 +93,7 @@
 							<li><small><counter:showCounter
 												manager="${counterMgr}" entity="${photo}"
 												viewer="${sessionScope.userLogin}" increment="true"
-												wrapClass="counter_show" />
+												wrapClass="counter_show" /> e <binomial:count binomialMgr="${binomialMgr}" entity="${photo}"/>
 									</small></li>
               <li id="comments"></li>
               <li>

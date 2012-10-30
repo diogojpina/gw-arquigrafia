@@ -143,7 +143,7 @@
 							<li><small><counter:showCounter
 												manager="${counterMgr}" entity="${photo}"
 												viewer="${sessionScope.userLogin}" increment="true"
-												wrapClass="counter_show" />
+												wrapClass="counter_show" /> e <binomial:count binomialMgr="${binomialMgr}" entity="${photo}"/>
 									</small></li>
 						</ul>
 					</div>
