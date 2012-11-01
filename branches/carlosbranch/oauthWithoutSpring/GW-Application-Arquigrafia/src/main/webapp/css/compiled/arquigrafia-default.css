@@ -1,9 +1,0 @@
-/* This files includes automatically all css files that should be included in a default page */
-@import "../reset.css";      /* reset all styles */
-@import "../arq-common.css"; /* common classes for arquigraia, i.e. text and links formating */
-@import "../header.css";     /* header specific styles */ 
-@import "../forms.css";      /* default forms */
-@import "../bay.css";        /* styles for bay slide-up  slide-down effect */
-@import "../tagcloud.css";   /* tagcloud, originally present at the footer */
-@import "../footer.css";     /* footer specific */
-@import "../jquery.css";     /* stuff for jquery */
