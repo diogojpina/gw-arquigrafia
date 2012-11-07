@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<collablet>
+    <ComponentClass>br.org.groupware_workbench.collablet.faq.internal.FaqMgrComponent</ComponentClass>
+    <collablet-description>
+        <collablet-name>FAQ 01</collablet-name>
+        <collablet-description>Frequently Asked Project</collablet-description>
+        <subordinate-collablets />
+    </collablet-description>
+    <specific-configuration />
+    <collabElements>
+        <collabElement id="br.org.groupware_workbench.collabElement.coord.UserMgr" receiveFromParent="false">
+            <user>
+                <login>user01</login>
+                <password>111</password>
+                <name>Usuario01</name>
+            </user>
+            <user>
+                <login>user02</login>
+                <password>222</password>
+                <name>Usuario02</name>
+            </user>
+        </collabElement>
+        <collabElement id="br.org.groupware_workbench.collabElement.communic.TagMgr" receiveFromParent="true" />
+        <collabElement id="br.org.groupware_workbench.collabElement.coord.RoleMgr" receiveFromParent="false">
+            <role name="Administrador" defaultAssignment="false">
+                <entity entity="br.org.groupware_workbench.collabElement.coord.userMgr.api.User" param="admin" />
+            </role>
+            <role name="User" defaultAssignment="true">
+                <entity entity="br.org.groupware_workbench.collabElement.coord.userMgr.api.User" param="user01" />
+            </role>
+            <role name="Revisor" defaultAssignment="false" />
+        </collabElement>
+        <collabElement id="br.org.groupware_workbench.collabElement.coord.ProfileMgr" />
+        <collabElement id="br.org.groupware_workbench.collabElement.coord.CollabletMgr" />
+    </collabElements>
+</collablet>

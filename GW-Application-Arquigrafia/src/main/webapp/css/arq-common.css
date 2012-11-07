@@ -1,0 +1,98 @@
+@charset "utf-8";
+/* CSS Document */
+.blue_link {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #000D80;
+}
+.black_link {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #000;
+	font-weight: bold;
+	text-decoration: none;
+}
+.gray_link {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #5E5E5F;
+	font-weight: bold;
+	text-decoration: none;
+}
+.gray_link2 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #B8C7CF;
+}
+.big_black_title {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	font-weight: bold;
+	color: #333333;
+}
+.white_link {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #fff;
+	font-weight: bold;
+}
+
+.orange_link {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #FFCCAC;
+	text-decoration: none;
+}
+.option_on {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #fff;
+	cursor: pointer;
+}
+.fat_separator {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #ccc;
+	font-weight: bold;
+	padding-left: 4px;
+	padding-right: 4px;
+}
+.option_off {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #ccc;
+	cursor: pointer;
+}
+.big_white_title {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	font-weight: bold;
+	color: #FFF;
+}
+.big_blue_title {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	font-weight: bold;
+	color: #6A8A9B;
+}
+.mid_blue_title {
+	color: #6A8A9A;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+}
+.small_blue_title {
+	color: #6A8A9B;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+}
+.mid_blue_text {
+	color: #6A8A9B;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
+.mid_black_text {
+	color: #000000;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
