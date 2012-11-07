@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src/main/java"/>
+	<classpathentry kind="src" path="src/main/resources"/>
+	<classpathentry kind="src" path="src/test/java"/>
+	<classpathentry kind="src" path="src/test/integration"/>
+	<classpathentry kind="src" path="src/test/resources"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/GW-PhotoManager"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/GW-collablet"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/GW-collabElement"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/GW-commons-widgets"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/GW-core"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/GW-Libs"/>
+	<classpathentry kind="output" path="build/classes"/>
+</classpath>
