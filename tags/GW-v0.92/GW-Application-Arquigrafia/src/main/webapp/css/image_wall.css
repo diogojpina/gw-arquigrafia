@@ -1,0 +1,16 @@
+@charset "utf-8";
+/* CSS Document */
+/*Ainda nao sei onde e usado*/
+.wallBackground {
+	height: 508px;
+	background-color: #FFF;
+}
+.wallImage {
+	margin-bottom:2px;
+	margin-right:2px;
+}
+.imageColumn {
+	float: left;
+}
+.image_placeholder {
+}

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<collablet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="CollabletDescriptor.xsd">
+
+    <ComponentClass>br.org.groupwareworkbench.collablet.communic.comment.CommentMgrComponent</ComponentClass>
+
+    <collablet-description>
+        <collablet-name>CommentMgr</collablet-name>
+        <collablet-description>Gerenciar Comentários</collablet-description>
+    </collablet-description>
+</collablet>

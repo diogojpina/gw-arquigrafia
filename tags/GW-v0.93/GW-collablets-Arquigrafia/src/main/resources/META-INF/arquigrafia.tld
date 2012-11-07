@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taglib version="2.1" xmlns="http://java.sun.com/xml/ns/javaee" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd">
+
+    <tlib-version>1.0</tlib-version>
+    <short-name>arquigrafiaWidgets</short-name>
+    <uri>http://www.groupwareworkbench.org.br/widgets/arquigrafia</uri>
+    <tag-file>
+        <name>header</name>
+        <path>/META-INF/tags/arquigrafia/header.tag</path>
+    </tag-file>
+    <tag-file>
+        <name>footer</name>
+        <path>/META-INF/tags/arquigrafia/footer.tag</path>
+    </tag-file>
+    <tag-file>
+        <name>includes</name>
+        <path>/META-INF/tags/arquigrafia/includes.tag</path>
+    </tag-file>
+        <tag-file>
+        <name>tabs</name>
+        <path>/META-INF/tags/arquigrafia/tabs.tag</path>
+    </tag-file> 
+    <tag-file>
+        <name>tagcloud</name>
+        <path>/META-INF/tags/arquigrafia/tagcloud.tag</path>
+    </tag-file>
+    <tag-file>
+        <name>wall</name>
+        <path>/META-INF/tags/arquigrafia/wall.tag</path>
+    </tag-file> 
+    <tag-file>
+        <name>randomWall</name>
+        <path>/META-INF/tags/arquigrafia/randomWall.tag</path>
+    </tag-file>
+</taglib>
