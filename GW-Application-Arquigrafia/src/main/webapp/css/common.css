@@ -1,0 +1,257 @@
+@charset "utf-8";
+/* CSS Document */
+/* ///// LEGACY CSS ////////////////////////////////////// */
+
+/* /////////////////////////////////////////////////////// */
+/* ////////////////    FUNDO   /////////////////////////// */
+/* /////////////////////////////////////////////////////// */
+body {
+	scrollbar-base-color: #f0f0f0;
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	background-attachment: scroll;
+	/*background-image: url(../images/BG_LISTRADO.gif);*/
+	background-repeat: repeat;
+}
+
+/* /////////////////////////////////////////////////////// */
+/* ////////////////    TEXTO   /////////////////////////// */
+/* /////////////////////////////////////////////////////// */
+table, tr, td, th {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #585858;
+	font-weight: normal;
+	text-align: left;
+}
+
+th {
+	font-weight: bold;
+}
+
+td, th {
+	padding: 3px;
+}
+
+.style1 {
+	color: #999999;
+}
+
+.style6 {
+	font-size: 11px;
+	font-weight: bold;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.textoBranco, .textoBrancoP {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #FFFFFF;
+	font-weight: normal;
+}
+
+.textoBranco {
+	text-align: left;
+}
+
+.tituloPrincipal {
+	font-family: "Times New Roman", Arial, serif;
+	font-size: 23px;
+	font-weight: bold;
+	background-attachment: fixed;
+	background-image: url(../images/icon/setaG.gif);
+	background-repeat: no-repeat;
+	background-position: left center;
+	letter-spacing: 7px;
+	text-indent: 23px;
+	font-variant: normal;
+	font-style: normal;
+	line-height: normal;
+	height: 30px;
+	color: #2A6A96;
+	text-align: left;
+}
+
+.subTitulo {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	background-attachment: fixed;
+	background-image: url(../images/icon/setaRedonda.gif);
+	background-repeat: no-repeat;
+	background-position: 10px;
+	text-indent: 0px;
+	font-variant: normal;
+	font-style: italic;
+	line-height: normal;
+	height: 18px;
+	text-transform: none;
+	text-align: left;
+	color: #585858;
+	vertical-align: baseline;
+}
+
+.alerta {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	background-attachment: fixed;
+	background-image: url(../images/icon/alerta.jpg);
+	background-repeat: no-repeat;
+	background-position: 10px;
+	text-indent: 37px;
+	font-variant: normal;
+	font-style: italic;
+	line-height: normal;
+	height: 18px;
+	text-transform: none;
+	text-align: left;
+	color: #9F9B00;
+	background-color: #FFFFB8;
+	vertical-align: baseline;
+}
+
+.paginacao {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #FFFFFF;
+	background-color: #585858;
+	height: 16px;
+	width: 30px;
+	border-top-width: 2px;
+	border-right-width: 2px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-top-color: #585858;
+	border-right-color: #333333;
+	border-bottom-color: #FFFFFF;
+	border-left-color: #585858;
+	text-align: center;
+}
+
+.tabela {
+	width: 100%;
+	background-color: #F8F8F8;
+	cursor: auto;
+	vertical-align: top;
+	border-top-width: 12px;
+	border-right-width: 15px;
+	border-bottom-width: 5px;
+	border-left-width: 15px;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-top-color: #ECECEC;
+	border-right-color: #FFFFFF;
+	border-bottom-color: #FFFFFF;
+	border-left-color: #FFFFFF;
+	background-image: url(../images/bg/bgTabelaPrincipal.jpg);
+	background-repeat: repeat-x;
+	background-attachment: fixed;
+	text-align: left;
+}
+
+.box {
+	height: 17px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #333333;
+}
+
+/* /////////////////////////////////////////////////////// */
+/* /////////////////    FORM   /////////////////////////// */
+/* /////////////////////////////////////////////////////// */
+
+.barra_botoes {
+	text-align: center;
+}
+
+.botao {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #FFFFFF;
+	background-color: #D6101A;
+	border: 1px solid #585858;
+}
+
+.barra_botoes.botao {
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+select {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #FFFFFF;
+	background-color: #585858;
+	border: 1px solid #585858;
+}
+
+/* /////////////////////////////////////////////////////// */
+/* ////////////////    LINKS   /////////////////////////// */
+/* /////////////////////////////////////////////////////// */
+
+.linkAmarelo, .linkAmareloP,
+.linkVerde, .linkVerdeP,
+.linkVermelho, .linkVermelhoP,
+.linkAzul, .linkAzulP {
+	font-family: arial, Helvetica, sans-serif;
+}
+
+.linkAmarelo, a.linkAmarelo:link, a.linkAmarelo:visited, a.linkAmarelo:hover,
+.linkAmareloP, a.linkAmareloP:link, a.linkAmareloP:visited, a.linkAmareloP:hover {
+	color: #FFFF00;
+}
+
+.linkVerde, a.linkVerde:link, a.linkVerde:visited, a.linkVerde:hover,
+.linkVerdeP, a.linkVerdeP:link, a.linkVerdeP:visited, a.linkVerdeP:hover {
+	color: #00DD00;
+}
+
+.linkVermelho, a.linkVermelho:link, a.linkVermelho:visited, a.linkVermelho:hover,
+.linkVermelhoP, a.linkVermelhoP:link, a.linkVermelhoP:visited, a.linkVermelhoP:hover {
+	color: #D6101A;
+}
+
+.linkAzul, a.linkAzul:link, a.linkAzul:visited, a.linkAzul:hover,
+.linAzulP, a.linkAzulP:link, a.linkAzulP:visited, a.linkAzulP:hover {
+	color: #5858FF;
+}
+
+.linkAmarelo, .linkVerde, .linkVermelho, .linkAzul {
+	font-size: 16px;
+}
+
+.linkAmareloP, .linkVerdeP, .linkVermelhoP, .linkAzulP {
+	font-size: 12px;
+}
+
+.linkTeste, a.linkTeste:link a.linkTeste:visited, a.linkTeste:hover {
+	font-family: arial, Helvetica, sans-serif;
+	font-size: 15px;
+	color: #000000;
+	text-decoration: none;
+}
+
+a {
+	font-family: arial, Helvetica, sans-serif;
+	font-size: 14px;
+	color: red;
+	text-decoration: underline;
+	background-position: center;
+}
+
+.tabelaBgAzul {
+	background-color: #014E82;
+	background-image: url(../images/bg/tabelaBgAzul.jpg);
+	background-position: bottom;
+	background-repeat: repeat-x;
+	padding: 20px;
+}
