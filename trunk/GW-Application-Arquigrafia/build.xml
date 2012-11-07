@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!--
+    This ant script controls the building of the GW-Application-Arquigrafia project.
+    See the web-worker.xml script for the runnable targets.
+
+    Authors: Victoriano Alfonso Phocco Diaz
+             Victor Williams Stafusa da Silva
+-->
+<project basedir="." default="rebuild-all" name="GW-Application-Arquigrafia">
+
+    <!--
+        Since the location of the web-worker.xml depends on the host configuration,
+        try some possible configurations to discover which one applies.
+    -->
+    <property file="../GW-Libs/worker-single-workspace-with-projects.config" />
+    <property file="../../GroupwareWorkbench/GW-Libs/worker-single-workspace-with-trunks.config" />
+    <property file="../../../GroupwareWorkbench/workspace/GW-Libs/worker-multiple-workspaces.config" />
+    <fail unless="GW.location" message="Could not find the GW-Libs!" />
+
+    <!-- Suppresses some targets in web-worker.xml. -->
+    <property name="no-verify" value="true" />
+    <property name="no-javadoc" value="true" />
+    <property name="no-test" value="true" />
+
+    <!-- Includes all the reusable things which does the real work. -->
+    <import file="${GW-Libs.location}/web-worker.xml" />
+
+    <!-- Tells where is the web.xml. -->
+    <property name="src.webxml" value="${src.dir}/main/webapp/WEB-INF/web.xml" />
+
+    <!-- Define the dependencies. -->
+    <property name="dependency.1.GW-core.location" value="${GW.location}/GW-core" />
+    <property name="dependency.2.GW-commons-widgets.location" value="${GW.location}/GW-commons-widgets" />
+    <property name="dependency.3.GW-collabElement.location" value="${GW.location}/GW-collabElement" />
+    <property name="dependency.4.GW-collablet.location" value="${GW.location}/GW-collablet" />
+    <property name="dependency.5.GW-collablets-Arquigrafia.location" value="../GW-collablets-Arquigrafia" />
+    <property name="dependency.6.GW-tests.test" value="${GW.location}/GW-tests" />
+
+</project>

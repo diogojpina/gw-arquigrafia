@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/GW-Application-Arquigrafia">
+<Resource 
+    name="jdbc/Arquigrafia-DS"
+    auth="Container"
+    driverClassName="com.mysql.jdbc.Driver"
+    maxActive="20" 
+    maxIdle="10" 
+    maxWait="-1"
+    username="groupwareUser"
+    password="102938"
+    type="javax.sql.DataSource"
+    url="jdbc:mysql://localhost:3306/groupware_workbench_arquigrafia?autoReconnect=true" />
+</Context>
