@@ -44,7 +44,7 @@
 				<c:choose>
 					<c:when test="${friend.id == userLogin.id}">
 						<a href="<c:url value="/profile/${profileMgr.id}/uploadphotoprofile" />">
-							<img name="Homer" id="profile_photo_edit" class ="profile_photo_edit" src="<c:url value="/img/avatar.jpg" />" />
+							<img name="Homer" id="profile_photo_edit" class="profile_photo_edit" src="<c:url value="/img/avatar.jpg" />" />
 						</a>
 					</c:when>
 					<c:otherwise>
@@ -57,11 +57,11 @@
 				<c:choose>
 					<c:when test="${friend.id == userLogin.id}">
 						<a href="<c:url value="/profile/${profileMgr.id}/uploadphotoprofile" />">
-					<img name="Homer" id="profile_photo" class ="profile_photo_edit" src="<c:url value="${friend.photoURL}" />" />
+					<img name="Homer" id="profile_photo_edit" class="profile_photo_edit" src="<c:url value="${friend.photoURL}" />" />
 						</a>
 					</c:when>
 					<c:otherwise>
-					<img name="Homer" id="profile_photo" src="<c:url value="${friend.photoURL}" />" />
+					<img name="Homer" id="profile_photo_edit" src="<c:url value="${friend.photoURL}" />" />
 					</c:otherwise>
 					</c:choose>
 				</c:otherwise>

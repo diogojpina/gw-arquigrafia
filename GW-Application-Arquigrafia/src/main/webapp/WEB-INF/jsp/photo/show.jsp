@@ -165,9 +165,17 @@
 				<!--   USUARIO   -->
 				<div id="single_user">
 				<c:forEach items="${photo.users}" var="user">
-					<img src="<c:url value="/img/avatar.jpg" />" name="Homer"
-						id="single_view_user_thumbnail" /> <span
-						id="single_view_owner_name"><a href="<c:url value="/friends/11/show/${user.id}" />" id="name">
+					
+		        	<c:choose>
+						<c:when test="${empty user.photoURL}">
+							<img id="single_view_user_thumbnail" src="<c:url value="/img/avatar.jpg" />" />
+						</c:when>
+						<c:otherwise>
+							<img id="single_view_user_thumbnail"  src="<c:url value="${user.photoURL}" />" />
+						</c:otherwise>
+					</c:choose>
+					
+					<span id="single_view_owner_name"><a href="<c:url value="/friends/11/show/${user.id}" />" id="name">
 						${user.name}
 						</a></span>
 						<br /> 

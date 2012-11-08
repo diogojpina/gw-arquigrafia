@@ -113,7 +113,7 @@ a#complete_search:hover { background-position:-367px -32px; }
 /* --- PÁGINA INICIAL --- */
 
 /* lightbox - criar uma conta */
-#form_window {width: 600px; background: #fff; position:absolute; top: 40%; left:50%; margin: -240px 0 0 -340px; padding: 35px; -moz-border-radius: 7px; border-radius: 7px; display:none; } /* position: absolute; */
+#form_window {width: 600px; background: #fff; position:fixed; top: 40%; left:50%; margin: -240px 0 0 -340px; padding: 35px; -moz-border-radius: 7px; border-radius: 7px; display:none; } /* position: absolute; */
 #form_window label {width: 100px; display: inline-block; color: #777; text-align: right; vertical-align:top; line-height:27px;}
 #form_window textarea {border:solid 1px #EEEEEE; padding: 3px; margin: 2px 0 2px 5px; font-size:11px;}
 #form_window input {border: solid 1px #eee; padding: 3px; margin: 2px 0 2px 5px;}
@@ -353,7 +353,7 @@ a#printer_icon:hover{ background-position:-713px -33px; }
 .single_view_image { margin: 15px 0; }
 
 /*usuário*/
-#single_view_user_thumbnail {float:left; margin-right:10px; width:48px; height:48px;}
+#single_view_user_thumbnail {float:left; margin-right:10px; width:48px;}
 #single_view_owner_name { margin-bottom:3px; font-size: 20px; line-height: 28px;}
 #name { color:#CB9833;}
 #single_view_contact_add, #single_view_message_open, #single_view_message_close { font-size:11px; }
@@ -577,8 +577,8 @@ ul#avaliation_list li span.right{ text-align:left; padding-left:10px; }
 #left_sidebar ul { list-style:none; margin: 5px 0 10px 0; display:block; float:left; width:200px; height:auto;}
 #left_sidebar h3 { font-size:12px; font-weight:bold; display:block; margin:20px 0 5px 0; width:200px; height:12px; line-height:12px; float:left; border-bottom:solid 1px #7B7D7F;}
 #small { font-size:10px;}
-#profile_photo { display:block; width:48px; height:48px;}
-#profile_photo_edite { display:block; width:113px; height:113px;}
+#profile_photo { display:block; height:48px;}
+#profile_photo_edit { display:block; width:198px;}
 #invitation { width:200px; height:auto; overflow:hidden; float:left;}
 #friend_contact { width:200px; height:30px; overflow:hidden; line-height:12px; margin:5px 0; float:left;}
 #friend_contact #small { line-height:18px}
