@@ -57,10 +57,10 @@
         
         	<c:choose>
 				<c:when test="${empty userLogin.photoURL}">
-					<img name="Homer" id="profile_photo" src="<c:url value="/img/avatar.jpg" />" width="50" height="50" class="user_photo_thumbnail"/>
+					<img id="profile_photo" src="<c:url value="/img/avatar.jpg" />" width="50" height="50" class="user_photo_thumbnail"/>
 				</c:when>
 				<c:otherwise>
-					<img name="Homer" id="profile_photo" src="<c:url value="${userLogin.photoURL}" />" width="50" height="50" class="user_photo_thumbnail"/>
+					<img id="profile_photo" src="<c:url value="${userLogin.photoURL}" />" class="user_photo_thumbnail"/>
 				</c:otherwise>
 			</c:choose>
         	

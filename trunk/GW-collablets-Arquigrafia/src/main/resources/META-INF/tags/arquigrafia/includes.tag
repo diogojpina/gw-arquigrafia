@@ -37,7 +37,7 @@
 
 	$(document).ready(function(){
 		
-		$(".image img[title]").tooltip();
+		//$(".image img[title]").tooltip();
 
 		$('#edit_perfil_button').click(function(){
 			var part = "perfil";
