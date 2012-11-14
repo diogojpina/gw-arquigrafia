@@ -6,7 +6,9 @@
 <%@ attribute name="tagMgr" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.collablet.communic.tag.TagMgrInstance" %>
 
 <c:set var="tags" value="${tagMgr.listByFrequency}" />
-<c:set var="nValue" value="${tag:normalizedAssignments(10, tags)}" />
+
+<%-- <c:set var="nValue" value="${tag:normalizedAssignments(10, tags)}" /> --%>
+
 <c:set var="count" value="0" />
 <!--   ÁREA DE TAGS   -->
 <div class="tags_cloud">
