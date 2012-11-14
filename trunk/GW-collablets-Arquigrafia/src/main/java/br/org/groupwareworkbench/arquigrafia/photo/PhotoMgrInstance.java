@@ -116,9 +116,8 @@ public class PhotoMgrInstance extends AbstractBusiness {
         return Photo.list(getCollablet());
     }
 
-    public Integer countAllPhotos() {
-        List<Photo> list = Photo.list(getCollablet());
-        return list.size();
+    public Long countAllPhotos() {
+        return Photo.count();
     }
 
     public List<Photo> listPhotoByPageAndOrder(int pageSize, int pageNumber) {

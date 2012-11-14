@@ -758,7 +758,7 @@ public class Photo implements Serializable, GraphicalResource {
     }
 
     public static Photo next(Photo photo) {
-        Long lastPhoto = count(), currentPhoto = photo.getId();
+        Long lastPhoto = countAll(), currentPhoto = photo.getId();
         Photo nextPhoto = null;
         while (currentPhoto < lastPhoto) {
             currentPhoto = currentPhoto + 1;
@@ -771,13 +771,20 @@ public class Photo implements Serializable, GraphicalResource {
     }
 
     
-    public static Long count() {
+    public static Long countAll() {
         EntityManager em = EntityManagerProvider.getEntityManager();
         Query query = em.createQuery("select count(*) from Photo p");
 
         return (Long) query.getSingleResult();
     }
 
+    public static Long count() {
+        EntityManager em = EntityManagerProvider.getEntityManager();
+        Query query = em.createQuery("select count(*) from Photo p where p.deleted = :status");
+
+        return (Long) query.setParameter("status", false).getSingleResult();
+    }
+    
     public static Photo findByTombo(String tombo) {
         return QueryBuilder.query(Photo.class).with("tombo", tombo).with("deleted", false).find();
     }
