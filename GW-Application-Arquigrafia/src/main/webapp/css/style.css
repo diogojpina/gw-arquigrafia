@@ -595,7 +595,7 @@ ul#avaliation_list li span.right{ text-align:left; padding-left:10px; }
 .profile_block_link { display:block; float:right; height:23px; padding:2px 0 0 0; line-height:23px;}
 #profile_box { width:250px; height:150px; overflow:hidden; float:left; margin:10px 0 10px 0;}
 a#friend_photo { margin:1px}
-#friend_photo { display:block; width:48px; height:48px; float:left;}
+#friend_photo { display:block; height:48px; float:left;}
 #communities_list { list-style:none;}
 #gallery_box { width:120px; height:48px; float:left; overflow:hidden; line-height:12px; margin: 0 5px 10px 0; font-size:11px;}
 #user_box { width:60px; height:60px; float:left; overflow:hidden; line-height:12px; margin: 0 5px 10px 0; font-size:11px;}
