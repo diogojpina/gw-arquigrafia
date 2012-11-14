@@ -424,7 +424,7 @@ a#evaluation_average:hover { background-position:-401px -170px;}
 #comments_block { margin:20px 0 ;}
 .single_comment_block { width:650px; margin: 15px 0 25px; overflow:hidden;}
 #comments_block h2 { border-bottom:solid 1px #333; margin-bottom:10px; font-size:20px;}
-img.user_thumbnail{ float:left; margin-right:10px; width:48px; height:48px;} 
+img.user_thumbnail{ float:left; margin-right:10px; margin-top:5px; width:48px;} 
 span.comment_time { font-size:10px; color:#7B7D7F; font-style:italic;}
 span.comment_text { float:right; width:590px; min-height:40px; }
 span.comment_text p{ margin:3px 0;}
