@@ -4,10 +4,10 @@ import br.org.groupwareworkbench.arquigrafia.photo.Photo;
 
 public class CreativeCommons_3_0 {
     
-    private Photo.AllowCommercialUses allowCommercialUses;
-    private Photo.AllowModifications allowModifications;
+    private final Photo.AllowCommercialUses allowCommercialUses;
+    private final Photo.AllowModifications allowModifications;
     
-    public CreativeCommons_3_0(Photo.AllowCommercialUses allowCommercialUses, Photo.AllowModifications allowModifications) {
+    public CreativeCommons_3_0(final Photo.AllowCommercialUses allowCommercialUses, final Photo.AllowModifications allowModifications) {
         this.allowCommercialUses = allowCommercialUses;
         this.allowModifications = allowModifications;
     }
