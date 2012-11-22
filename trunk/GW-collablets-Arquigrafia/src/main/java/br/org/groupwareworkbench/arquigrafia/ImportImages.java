@@ -21,16 +21,17 @@ import br.org.groupwareworkbench.arquigrafia.photo.Photo.AllowModifications;
 import br.org.groupwareworkbench.collablet.communic.tag.Tag;
 import br.org.groupwareworkbench.collablet.coord.user.User;
 import br.org.groupwareworkbench.collablet.coord.user.User.AccountType;
+import br.org.groupwareworkbench.core.date.ISO8601;
+import br.org.groupwareworkbench.core.date.ISO8601ViolationException;
 import br.org.groupwareworkbench.core.framework.Collablet;
 
 import com.ibm.icu.text.SimpleDateFormat;
-import com.ibm.icu.util.Calendar;
 
 public class ImportImages {
 
     public static final int BUFFER_SIZE = 1024;
     
-    public static final String reportSuccessMessage = "End of report - Magic number: 8490283492384235832432435344839547\n";
+    public static final String reportSuccessMessage = "End of report - Magic number: 34793824710238213265489543932033346583\n";
     
     public static final String CONTENT_BOOLEAN = "boolean";
     public static final String CONTENT_CURRENCY = "currency";
@@ -48,7 +49,10 @@ public class ImportImages {
             String dirName = "/home/gw/imports/";
             
             File dir = new File(dirName);
-            if(!dir.isDirectory()) {
+            if (!dir.exists()) {
+                throw new IllegalArgumentException(dirName + " does not exist. Giving up."); 
+            }
+            if (!dir.isDirectory()) {
                 throw new IllegalArgumentException(dirName + " is not a directory. Giving up."); 
             }
             
@@ -60,26 +64,45 @@ public class ImportImages {
             BufferedOutputStream bos;
             PrintStream ps;
             
-//            if (outputToStdout) {
-//                fos = null;
-//                bos = null;
-//                ps = System.err;
-//            } else {
-                fos = new FileOutputStream(new File(String.format("import_report_%s.txt", date)));
-                bos = new BufferedOutputStream(fos, BUFFER_SIZE);
-                ps = new PrintStream(bos);
-//            }
+            File reportDir = new File("/home/gw/importReports");
+            if (!reportDir.exists()) {
+                reportDir.mkdir();
+            }
+            fos = new FileOutputStream(new File(String.format("/home/gw/importReports/import_report_%s.txt", date)));
+            bos = new BufferedOutputStream(fos, BUFFER_SIZE);
+            ps = new PrintStream(bos);
             
-            for(File odsFile : odsFiles) {
+            ps.println(String.format("Import report (%s) - Automatically generated.", date));
+            
+            Collablet userMgr = Collablet.findByName("userMgr");
+            User user = User.findByLogin("acervofau", userMgr, AccountType.NATIVE);
+            if (user==null) {
+                throw new Exception("User acervofau does not exist!!!! Cannot import any image. Please make sure this user exists before trying to import images.");
+            }
+
+
+            for (File odsFile : odsFiles) {
                 try {
-                    ps.println(String.format("Import report (%s) - Automatically generated.", date));
+                    ps.println();
+                    ps.println(String.format("########################################################### FILE %s", odsFile.getAbsolutePath()));
                     FileInputStream fis = new FileInputStream(odsFile);
+                    
+                    // Creates the OK file
+                    {
+                        String okFileName = odsFile.getCanonicalPath().substring(0, odsFile.getCanonicalPath().lastIndexOf('.')) + ".ok";
+                        File okFile = new File(okFileName);
+                        if(okFile.exists()) {
+                            ps.println();
+                            ps.println("\t!!!!! WARNING: OK file exists. Skipping this spreadsheet. !!!!!!!!");
+                            continue;
+                        }
+                        okFile.createNewFile();
+                    }
                     
                     SpreadsheetDocument document = SpreadsheetDocument.loadDocument(fis);
                     Table sheet = document.getSheetByIndex(0);
                     
                     Collablet tagMgr = Collablet.findByName("tagMgr");
-                    Collablet userMgr = Collablet.findByName("userMgr");
                     Collablet photoMgr = Collablet.findByName("photoMgr");
                     
                     /*
@@ -97,24 +120,38 @@ public class ImportImages {
                         System.out.println(System.currentTimeMillis() + ": Importing row " + i);
                         try {
                             
-                            Photo photo = new Photo();
-                            
-                            User user = User.findByLogin("acervofau", userMgr, AccountType.NATIVE);
-                            if (user==null) {
-                                throw new Exception("User acervofau does not exist. Cannot import any image. Please make sure this user exists before trying to import images.");
-                            }
-                            
-                            photo.assignUser(user);
-                            
                             // A - 0 - Tombo
                             int tombo = intValue(sheet, ps, 0, i);
                             
+                            ps.println();
+                            ps.println(String.format("========================== %d (row %d)", tombo, i));
+                            ps.println();
+                            
+                            Photo photo = Photo.findByTombo(Integer.toString(tombo));
+                            boolean newPhoto;
+                            if (photo==null) {
+                                ps.println("\tCREATING");
+                                photo = new Photo();
+                                newPhoto = true;
+                            } else {
+                                ps.println("\tUPDATING");
+                                newPhoto = false;
+                            }
+                            
+                            ps.println();
+                            
+                            photo.assignUser(user);
+                            
                             String fileName = tombo + ".jpg";
                             // Checking if the file exists. If it doesn't, give it up right now.
-                            File imageFile = new File(dirName + "/" + fileName);
-                            if(!imageFile.exists()) {
-                                System.out.println("File " + imageFile + " does not exist. Giving up.");
-                                continue;
+                            File imageFile = new File(odsFile.getParentFile().getCanonicalPath() + "/" + fileName);
+                            if (!imageFile.exists()) {
+                                if (newPhoto) {
+                                    ps.println(String.format("\tFATAL: File %s NOT FOUND. Giving up importing %d.", imageFile, tombo));
+                                    continue;
+                                }
+                                // else
+                                ps.print(String.format("\tINFO: File %s NOT FOUND, but that is OK since we are just updating an image.", imageFile, tombo));
                             }
                             photo.setNomeArquivo(fileName);
                             photo.setTombo(Integer.toString(tombo));
@@ -161,13 +198,12 @@ public class ImportImages {
                                 } catch (InvalidCellContents e) {
                                     
                                 }
-                                if(d.trim().equalsIgnoreCase("null")) {
-                                    photo.setDataCriacao(null);
-                                } else {
-                                    Calendar c = Calendar.getInstance();
-                                    c.set(Calendar.YEAR, intValue(sheet, ps, 10, i));
-                                    Date dataDaImagem = c.getTime();
-                                    photo.setDataCriacao(dataDaImagem);
+                                if(! d.trim().equalsIgnoreCase("null")) {
+                                    try {
+                                        photo.setDataCriacao(new ISO8601(d));
+                                    } catch (ISO8601ViolationException e) {
+                                        ps.println(String.format("\tWARNING: String \"%s\" (cell %c%d) is not a valid ISO8601, so I will not set data da obra.", d, 'A' + 10, i));
+                                    }
                                 }
                             }
                             
@@ -181,24 +217,27 @@ public class ImportImages {
                             
                             // M - 12 - Data da Obra
                             {
-                                Calendar c = Calendar.getInstance();
-                                c.set(Calendar.YEAR, intValue(sheet, ps, 12, i));
-                                Date dataDaObra = c.getTime();
-                                photo.setWorkdate(dataDaObra.toString());
+                                String dataObra = stringValue(sheet, ps, 12, i, true);
+                                try {
+                                    photo.setWorkdate(new ISO8601(dataObra));
+                                } catch (ISO8601ViolationException e) {
+                                    ps.println(String.format("\tWARNING: String \"%s\" (cell %c%d) is not a valid ISO8601, so I will not set data da obra.", dataObra, 'A' + 12, i));
+                                }
                             }
                             
                             // N - 13 - Licença
                             String licenca = stringValue(sheet, ps, 13, i, true).trim();
                             if(licenca.equals("")) {
-                                ps.println(String.format("Copyright data not found at row %d.", i));
+                                ps.println(String.format("\tFATAL: Copyright data not found at row %d.", i));
                                 throw new InvalidCellContents();
                             }
                             if(!licenca.contains("-")) {
-                                ps.println(String.format("Invalid copyright data at row %d: %s. This cell should have a hyphen character.", i, licenca));
+                                ps.println(String.format("\tFATAL: Invalid copyright data at row %d: %s. This cell should have a hyphen character.", i, licenca));
                                 throw new InvalidCellContents();
                             }
                             try {
-                                AllowCommercialUses allowCommercialUses = AllowCommercialUses.valueOf(licenca.substring(0, licenca.indexOf('-')).toUpperCase().trim());
+                                AllowCommercialUses.valueOf("");
+                                AllowCommercialUses allowCommercialUses = AllowCommercialUses.valueOf( licenca.substring(0, licenca.indexOf('-')).toUpperCase().trim());
                                 AllowModifications allowModifications = AllowModifications.valueOf(licenca.substring(licenca.indexOf('-') + 1, licenca.length()).toUpperCase().trim());
                                 photo.setAllowCommercialUses(allowCommercialUses);
                                 photo.setAllowModifications(allowModifications);
@@ -207,7 +246,7 @@ public class ImportImages {
                                  * (which means there was a problem parsing a string to an enumeration
                                  * value in the Enumeration.valueOf method), we abort the import of this row.
                                  */
-                                ps.println(String.format("Error reading copyright data. This is the data from the spreadsheet: \"%s\" and this is the exception message: \"%s\"", licenca, e.getMessage()));
+                                ps.println(String.format("\tFATAL: Error reading copyright data. This is the data from the spreadsheet: \"%s\" and this is the exception message: \"%s\"", licenca, e.getMessage()));
                                 throw new InvalidCellContents();
                             }
                             
@@ -226,27 +265,32 @@ public class ImportImages {
                             
                             // S - 18 - Observações
                             String observacoes = stringValue(sheet, ps, 18, i, true);
+                            photo.setAditionalImageComments(observacoes);
                             // TODO: where to put this?
                             
                             // T - 19 - Data de Catalogação
-                            Date dataDeCatalogacao = dateValue(sheet, ps, 19, i);
-                            photo.setCataloguingTime(dataDeCatalogacao);
+                            String dataCatalogacao = stringValue(sheet, ps, 19, i, false);
+                            try {
+                                photo.setCataloguingTime(new ISO8601(dataCatalogacao));
+                            } catch (ISO8601ViolationException e) {
+                                ps.println(String.format("\tWARNING: String \"%s\" (cell %c%d) is not a valid ISO8601, so I will not set data de catalogacao.", dataCatalogacao, 'A' + 19, i));
+                            }
                             
-                            ps.println(String.format("[ %s - row %d ] :: tombo = %d - nome = %s - pais = %s (data catalogacao = %s)", odsFile.getCanonicalPath(), i, tombo, nome, pais, dataDeCatalogacao));
-                            
+                            ps.println("\tINFO: Saving data to database:");
                             ps.flush();
-                            
-                            System.out.println(System.currentTimeMillis() + ": Finished gathering data. Will save the photo object now...");
-                            
+
                             photo.setCollablet(photoMgr);
                             photo.save();
-                            photo.saveImage(new FileInputStream(imageFile));
+                            if (imageFile.exists()) {
+                                photo.saveImage(new FileInputStream(imageFile));
+                            }
                             
-                            // TODO We should write to the report on this line and we should add the image ID.  
+                            ps.println(String.format("\t\t       Nome = %s", nome));
+                            ps.println(String.format("\t\t       Pais = %s", pais));
+                            ps.println(String.format("\t\tD. Catalog. = %s", dataCatalogacao));
+                            ps.println(String.format("\t\t   Image ID = %d", photo.getId()));
                             
-                            System.out.println(System.currentTimeMillis() + ": Photo object saved. Will save tags now...");
-                            
-// TAGS
+                            System.out.println("\tPhoto object saved. Will save tags now...");
                             String tags = tagsMateriais + "," + tagsElementos + "," + tagsTipologia;
                             while (tags.contains(",")) {
                                 String tagName = tags.substring(0, tags.indexOf(','));
@@ -264,22 +308,28 @@ public class ImportImages {
                                 tags = tags.substring(tags.indexOf(',') + 1);
                             }
                             
-                            System.out.println(System.currentTimeMillis() + ": Tags saved.");
+                            System.out.println("\tTags saved.");
+                            ps.println();
+                            ps.println("\t#### SUCCESS #### (:P)");
+                            ps.flush();
                         } catch (InvalidCellContents e) {
                         }
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
                 } finally {
-//                    if (!outputToStdout) {
-                        ps.print(reportSuccessMessage);
-                        ps.flush();
-                        bos.flush();
-                        fos.flush();
-                        ps.close();
-                        bos.close();
-                        fos.close();
-//                    }
+                    ps.println();
+                    ps.println();
+                    ps.println("###########################################################");
+                    ps.println("###########################################################");
+                    ps.println(reportSuccessMessage);
+                    ps.println();
+                    ps.flush();
+                    bos.flush();
+                    fos.flush();
+                    ps.close();
+                    bos.close();
+                    fos.close();
                 }
             }
                 
@@ -296,17 +346,17 @@ public class ImportImages {
     public String stringValue(Table sheet, PrintStream ps, int columnNumber, int rowNumber, boolean logError) throws InvalidCellContents {
         Row row = sheet.getRowByIndex(rowNumber-1);
         Cell cell = row.getCellByIndex(columnNumber);
-        if(cell==null)
+        if (cell==null) {
             return "";
-        //System.err.println("s==============>" + columnNumber + ":" + cell.getStringValue());
+        }
         if (cell.getValueType()==null) {
             return "";
         }
-        if (cell.getValueType().equals(CONTENT_STRING)) {
+        if (cell.getValueType().equals(CONTENT_FLOAT) || cell.getValueType().equals(CONTENT_STRING)) {
             return cell.getStringValue();
         }
-        if(logError) {
-            ps.println(String.format("Wrong data format in cell %c%d. Could not import row %d. This is the format: %s", 'A' + columnNumber, rowNumber, rowNumber, cell.getValueType()));
+        if (logError) {
+            ps.println(String.format("\tFATAL: Wrong data format in cell %c%d. Could not import row %d. The format is \"%s\", but should be \"string\".", 'A' + columnNumber, rowNumber, rowNumber, cell.getValueType()));
         }
         throw new InvalidCellContents();
     }
@@ -314,32 +364,32 @@ public class ImportImages {
     public int intValue(Table sheet, PrintStream ps, int columnNumber, int rowNumber) throws InvalidCellContents {
         Row row = sheet.getRowByIndex(rowNumber-1);
         Cell cell = row.getCellByIndex(columnNumber);
-        if(cell==null)
+        if (cell==null) {
             return 0;
-        //System.err.println("i==============>" + columnNumber + ":" + cell.getStringValue());
+        }
         if (cell.getValueType()==null) {
             return 0;
         }
         if (cell.getValueType().equals(CONTENT_FLOAT)) {
             return cell.getDoubleValue().intValue();
         }
-        ps.println(String.format("Wrong data format in cell %c%d. Could not import row %d. This is the format: %s", 'A' + columnNumber, rowNumber, rowNumber, cell.getValueType()));
+        ps.println(String.format("\tFATAL: Wrong data format in cell %c%d. Could not import row %d. The format is \"%s\", but should be \"int\".", 'A' + columnNumber, rowNumber, rowNumber, cell.getValueType()));
         throw new InvalidCellContents();
     }
     
     public Date dateValue(Table sheet, PrintStream ps, int columnNumber, int rowNumber) throws InvalidCellContents {
         Row row = sheet.getRowByIndex(rowNumber-1);
         Cell cell = row.getCellByIndex(columnNumber);
-        if(cell==null)
+        if (cell==null) {
             return null;
-        //System.err.println("d==============>" + columnNumber + ":" + cell.getStringValue());
+        }
         if (cell.getValueType()==null) {
             return null;
         }
         if (cell.getValueType().equals(CONTENT_DATE)) {
             return cell.getDateValue().getTime();
         }
-        ps.println(String.format("Wrong data format in cell %c%d. Could not import row %d. This is the format: %s", 'A' + columnNumber, rowNumber, rowNumber, cell.getValueType()));
+        ps.println(String.format("\tFATAL: Wrong data format in cell %c%d. Could not import row %d. The format is \"%s\", but shoud be \"date\".", 'A' + columnNumber, rowNumber, rowNumber, cell.getValueType()));
         throw new InvalidCellContents();
     }
     

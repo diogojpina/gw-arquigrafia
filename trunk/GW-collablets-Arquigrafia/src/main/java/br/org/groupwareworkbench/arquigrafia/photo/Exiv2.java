@@ -168,12 +168,18 @@ public class Exiv2 {
                 System.out.println("Problem running exiv2. Exit value: " + exitValue);
                 System.out.println("This is the command we've tried to execute: " + Arrays.toString(cmdArray));
                 System.out.println("This is the base dir: " + imagesDirName);
-                System.out.println("-------------------------");
                 InputStream os = p.getInputStream();
                 byte[] buffer = new byte[os.available()];
                 os.read(buffer);
                 System.out.println("-------------------------");
                 System.out.println(new String(buffer));
+                System.out.println("-------------------------");
+                System.out.println("Stack trace:");
+                
+                StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
+                for(StackTraceElement e: stackTrace) {
+                    System.out.println("    " + e);
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();

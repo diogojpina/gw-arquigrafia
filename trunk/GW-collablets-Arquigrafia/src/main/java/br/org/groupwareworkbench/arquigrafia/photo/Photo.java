@@ -33,6 +33,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
@@ -49,6 +51,8 @@ import javax.persistence.Transient;
 import javax.persistence.TypedQuery;
 
 import org.apache.log4j.Logger;
+import org.hibernate.annotations.TypeDef;
+import org.hibernate.annotations.TypeDefs;
 
 import br.com.caelum.vraptor.interceptor.download.FileDownload;
 import br.org.groupwareworkbench.arquigrafia.license.CreativeCommons_3_0;
@@ -56,6 +60,9 @@ import br.org.groupwareworkbench.collablet.coord.user.User;
 import br.org.groupwareworkbench.core.bd.EntityManagerProvider;
 import br.org.groupwareworkbench.core.bd.ObjectDAO;
 import br.org.groupwareworkbench.core.bd.QueryBuilder;
+import br.org.groupwareworkbench.core.date.ISO8601;
+import br.org.groupwareworkbench.core.date.jpa.ISO8601Type;
+import br.org.groupwareworkbench.core.date.translation.ISO8601TranslatorFactory;
 import br.org.groupwareworkbench.core.framework.Collablet;
 import br.org.groupwareworkbench.core.graphics.BatchImageProcessor;
 import br.org.groupwareworkbench.core.graphics.GraphicalResource;
@@ -64,8 +71,21 @@ import br.org.groupwareworkbench.core.util.Pagination;
 
 
 @Entity
+@Access(AccessType.FIELD)
+@TypeDefs(@TypeDef(
+        name = "iso8601",
+        defaultForType = ISO8601.class,
+        typeClass = ISO8601Type.class
+     )
+)
 public class Photo implements Serializable, GraphicalResource {
 
+    ////////////////////////////////////////
+    //
+    // NON-STATIC SECTION
+    //
+    ////////////////////////////////////////
+    
     //FIXME Extract this enum to top level (not inside of a class) and move it to the license package.
     public enum AllowModifications {  
         YES("Sim",""),
@@ -119,16 +139,6 @@ public class Photo implements Serializable, GraphicalResource {
         
     } 
     
-    private static final long serialVersionUID = -4757949223957140519L;
-    private static final Integer DEFAULT_PHOTOS_COUNT = 5;
-    public static final String ORIGINAL_FILE_SUFFIX = "_original";
-    public static final String VIEW_FILE_SUFFIX = "_view";
-    public static final String PANEL_FILE_SUFFIX = "_panel";
-    public static final String THUMB_FILE_SUFFIX = "_thumb";
-    public static final String[] ADDITIONAL_FILE_SUFIXES = new String[] {VIEW_FILE_SUFFIX, PANEL_FILE_SUFFIX, THUMB_FILE_SUFFIX};
-    public static final String DEFAULT_EXTENSION = "jpg";
-    private static final ObjectDAO<Photo, Long> DAO = new ObjectDAO<Photo, Long>(Photo.class);
-
     @Transient
     private final Logger log = Logger.getLogger(Photo.class);
 
@@ -147,8 +157,9 @@ public class Photo implements Serializable, GraphicalResource {
     @Column(name = "nome_arquivo", unique = false, nullable = false)
     private String nomeArquivo;
 
-    @Temporal(TemporalType.DATE)
-    private Date dataCriacao;
+//    @Temporal(TemporalType.DATE)
+//    private Date dataCriacao;
+    private ISO8601 dataCriacao;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataUpload;
@@ -158,7 +169,8 @@ public class Photo implements Serializable, GraphicalResource {
     private String country;
     private String district;
     private String workAuthor;
-    private String workdate;
+//    private String workdate;
+    private ISO8601 workdate;
     private String street;
     private String description;
     private String collection;
@@ -174,8 +186,9 @@ public class Photo implements Serializable, GraphicalResource {
     @Enumerated(EnumType.STRING)
     private AllowCommercialUses allowCommercialUses;
     
-    @Temporal(TemporalType.DATE)
-    private Date cataloguingTime;
+//    @Temporal(TemporalType.DATE)
+//    private Date cataloguingTime;
+    private ISO8601 cataloguingTime;
 
     // FIXME: ManyToMany!? Por quê? Aliás, esta lista não é usada nunca!
     @ManyToMany
@@ -189,16 +202,14 @@ public class Photo implements Serializable, GraphicalResource {
     }
 
     public void assignUser(User user) {
-        users.add(user);
+        if(!users.contains(user)) {
+            users.add(user);
+        }
     }
 
     public void deassignUser(User user) {
         users.remove(user);
     }
-
-    /*
-     * public static void deleteAll(Collablet collablet) { DAO.query().with("collablet", collablet).delete(); }
-     */
 
     public void delete() {
         DAO.delete(this);
@@ -211,15 +222,6 @@ public class Photo implements Serializable, GraphicalResource {
 
     public void update() {
         DAO.update(this);
-    }
-
-    public static List<Photo> list(Collablet collablet) {
-        // TODO Not fully tested.
-        Map<String, Object> fields = new HashMap<String, Object>();
-        fields.put("collablet", collablet);
-        fields.put("deleted", false);
-//        return DAO.listByField("collablet", collablet);
-        return DAO.listByFields(fields);
     }
 
     private PhotoMgrInstance getInstance() {
@@ -240,7 +242,6 @@ public class Photo implements Serializable, GraphicalResource {
     }
 
     public FileDownload downloadImgThumb() {
-        //return makeDownload(getInstance().getThumbPrefix());
         return makeDownload("_thumb." + DEFAULT_EXTENSION);
     }
 
@@ -333,6 +334,290 @@ public class Photo implements Serializable, GraphicalResource {
 //        }
 //    }
 
+    public String getNomeArquivo() {
+        return nomeArquivo;
+    }
+
+    public void setNomeArquivo(String nomeArquivo) {
+        this.nomeArquivo = nomeArquivo;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Photo)) return false;
+        Photo other = (Photo) o;
+        return (id == null ? other.id == null : id.equals(other.id)) &&
+                (name == null ? other.name == null : name.equals(other.name));
+    }
+
+    @Override
+    public int hashCode() {
+        return (id == null ? 0 : id.hashCode()) ^ (name == null ? 0 : name.hashCode());
+    }
+    
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public ISO8601 getDataCriacao() {
+        return dataCriacao;
+    }
+
+    public String getDataCriacaoFormatada() {
+        try {
+            if (dataCriacao == null) return null;
+            return ISO8601TranslatorFactory.buildTranslator().translateAndCapitalize(dataCriacao);
+        } catch (Exception e) {
+            return "";
+        }
+    }
+
+    public void setDataCriacao(ISO8601 dataCriacao) {
+        this.dataCriacao = dataCriacao;
+    }
+
+    public Date getDataUpload() {
+        return dataUpload == null ? null : (Date) dataUpload.clone();
+    }
+
+    public void setDataUpload(Date dataUpload) {
+        this.dataUpload = dataUpload == null ? null : (Date) dataUpload.clone();
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Collablet getCollablet() {
+        return collablet;
+    }
+
+    public void setCollablet(Collablet collablet) {
+        this.collablet = collablet;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String estate) {
+        this.state = estate;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+    
+    public String getDistrict() {
+        return district;
+    }
+
+    public void setDistrict(String district) {
+        this.district = district;
+    }
+
+    public String getWorkAuthor() {
+        return workAuthor;
+    }
+
+    public void setWorkAuthor(String workAuthor) {
+        this.workAuthor = workAuthor;
+    }
+
+    public ISO8601 getWorkdate() {
+        return workdate;
+    }
+
+    public void setWorkdate(ISO8601 workdate) {
+        this.workdate = workdate;
+    }
+
+    public String getFormattedWorkdate() {
+        try {
+            if (workdate == null) return null;
+            return ISO8601TranslatorFactory.buildTranslator().translate(workdate);
+        } catch (Exception e) {
+            return "";
+        }
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+    
+    public List<User> getUsers() {
+        return users;
+    }
+    
+    public String getCollection() {
+        return collection;
+    }
+
+    public void setCollection(String collection) {
+        this.collection = collection;
+    }
+
+    public String getImageAuthor() {
+        return imageAuthor;
+    }
+
+    public void setImageAuthor(String imageAuthor) {
+        this.imageAuthor = imageAuthor;
+    }
+
+    public String getAditionalImageComments() {
+        return aditionalImageComments;
+    }
+
+    public void setAditionalImageComments(String aditionalImageComments) {
+        this.aditionalImageComments = aditionalImageComments;
+    }
+
+    public String getCharacterization() {
+        return characterization;
+    }
+
+    public void setCharacterization(String characterization) {
+        this.characterization = characterization;
+    }
+
+    public String getTombo() {
+        return tombo;
+    }
+
+    public void setTombo(String tombo) {
+        this.tombo = tombo;
+    }
+
+    public boolean getDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
+    }
+
+    public ISO8601 getCataloguingTime() {
+        return cataloguingTime;
+    }
+
+    public void setCataloguingTime(ISO8601 cataloguingTime) {
+        this.cataloguingTime = cataloguingTime;
+    }
+
+    public String getFormattedCataloguingTime() {
+        try {
+            if (cataloguingTime == null) return null;
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            return sdf.format(cataloguingTime);
+        } catch (Exception e) {
+            return "";
+        }
+    }    
+    
+    public AllowModifications getAllowModifications() {
+        return allowModifications;
+    }
+
+    public void setAllowModifications(AllowModifications allowModifications) {
+        this.allowModifications = allowModifications;
+    }
+
+    public AllowCommercialUses getAllowCommercialUses() {
+        return allowCommercialUses;
+    }
+
+    public void setAllowCommercialUses(AllowCommercialUses allowCommercialUses) {
+        this.allowCommercialUses = allowCommercialUses;
+    }
+    
+    @Override
+    public String getReferenceIdAsString() {
+        return this.id.toString();
+    }
+
+    @Override
+    public User getUploader() {
+        return this.users.get(0);
+    }
+
+    @Override
+    public String getUploadedFileName() {
+        return this.nomeArquivo;
+    }
+
+    @Override
+    public String getOriginalFileExtension() {
+        
+        if(nomeArquivo.contains(".") && nomeArquivo.lastIndexOf(".") + 1 < nomeArquivo.length()) {
+            return nomeArquivo.substring(nomeArquivo.lastIndexOf(".") + 1, nomeArquivo.length());
+        }
+        
+        return GraphicalResourceSuffix.DEFAULT_EXTENSION;
+    }
+    
+    ////////////////////////////////////////
+    //
+    // STATIC SECTION
+    //
+    ////////////////////////////////////////
+    
+    private static final long serialVersionUID = -4757949223957140519L;
+    private static final Integer DEFAULT_PHOTOS_COUNT = 5;
+    public static final String ORIGINAL_FILE_SUFFIX = "_original";
+    public static final String VIEW_FILE_SUFFIX = "_view";
+    public static final String PANEL_FILE_SUFFIX = "_panel";
+    public static final String THUMB_FILE_SUFFIX = "_thumb";
+    public static final String[] ADDITIONAL_FILE_SUFIXES = new String[] {VIEW_FILE_SUFFIX, PANEL_FILE_SUFFIX, THUMB_FILE_SUFFIX};
+    public static final String DEFAULT_EXTENSION = "jpg";
+    private static final ObjectDAO<Photo, Long> DAO = new ObjectDAO<Photo, Long>(Photo.class);
+
+    /*
+     * public static void deleteAll(Collablet collablet) { DAO.query().with("collablet", collablet).delete(); }
+     */
+
+    public static List<Photo> list(Collablet collablet) {
+        // TODO Not fully tested.
+        Map<String, Object> fields = new HashMap<String, Object>();
+        fields.put("collablet", collablet);
+        fields.put("deleted", false);
+//        return DAO.listByField("collablet", collablet);
+        return DAO.listByFields(fields);
+    }
+
     public static Photo findPhotoByUser(User user, long id) {
         if (user == null) throw new IllegalArgumentException();
 
@@ -343,6 +628,7 @@ public class Photo implements Serializable, GraphicalResource {
         query.setParameter("user", user);
         return query.getResultList().get(0);
     }
+
 
     public static List<Photo> listPhotoByUserPageAndOrder(Collablet collablet, User user, int pageSize, int pageNumber) {
         System.out.println("CP5");
@@ -418,6 +704,7 @@ public class Photo implements Serializable, GraphicalResource {
     }
 
     private static void check(String value) {
+        // FIXME The following line and the code that calls this method need serious review. The following assignment is simply nonsensical.
         if (value.equals("")) value = "!$%--6**24";        
     }
     
@@ -441,7 +728,6 @@ public class Photo implements Serializable, GraphicalResource {
         }
         return 0l;
     }
-
 
     public static List<Photo> busca(Collablet collablet, String name, String city, String description, Date date) {
 
@@ -495,221 +781,6 @@ public class Photo implements Serializable, GraphicalResource {
     public static Photo findByPhotoNotDeleted(long id) {
         return QueryBuilder.query(Photo.class).with("id", id).with("deleted", false).find();
     }
-
-    public String getNomeArquivo() {
-        return nomeArquivo;
-    }
-
-    public void setNomeArquivo(String nomeArquivo) {
-        this.nomeArquivo = nomeArquivo;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (!(o instanceof Photo)) return false;
-        Photo other = (Photo) o;
-        return (id == null ? other.id == null : id.equals(other.id)) &&
-                (name == null ? other.name == null : name.equals(other.name));
-    }
-
-    @Override
-    public int hashCode() {
-        return (id == null ? 0 : id.hashCode()) ^ (name == null ? 0 : name.hashCode());
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Date getDataCriacao() {
-        return dataCriacao == null ? null : (Date) dataCriacao.clone();
-    }
-
-    public String getDataCriacaoFormatada() {
-        try {
-            if (dataCriacao == null) return null;
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-            return sdf.format(dataCriacao);
-        } catch (Exception e) {
-            return "";
-        } 
-    }
-
-    public void setDataCriacao(Date dataCriacao) {
-        this.dataCriacao = dataCriacao == null ? null : (Date) dataCriacao.clone();
-    }
-
-    public Date getDataUpload() {
-        return dataUpload == null ? null : (Date) dataUpload.clone();
-    }
-
-    public void setDataUpload(Date dataUpload) {
-        this.dataUpload = dataUpload == null ? null : (Date) dataUpload.clone();
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Collablet getCollablet() {
-        return collablet;
-    }
-
-    public void setCollablet(Collablet collablet) {
-        this.collablet = collablet;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String estate) {
-        this.state = estate;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-    
-    public String getDistrict() {
-        return district;
-    }
-
-    public void setDistrict(String district) {
-        this.district = district;
-    }
-
-    public String getWorkAuthor() {
-        return workAuthor;
-    }
-
-    public void setWorkAuthor(String workAuthor) {
-        this.workAuthor = workAuthor;
-    }
-
-    public String getWorkdate() {
-        return workdate;
-    }
-
-    public void setWorkdate(String workdate) {
-        this.workdate = workdate;
-    }
-
-    public String getFormattedWorkdate() {
-        try {
-            if (workdate == null) return null;
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-            return sdf.format(workdate);
-        } catch (Exception e) {
-            return "";
-        }
-    }
-
-    public String getStreet() {
-        return street;
-    }
-
-    public void setStreet(String street) {
-        this.street = street;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-    
-    public List<User> getUsers() {
-        return users;
-    }
-    
-    public String getCollection() {
-        return collection;
-    }
-
-    public void setCollection(String collection) {
-        this.collection = collection;
-    }
-
-    public String getImageAuthor() {
-        return imageAuthor;
-    }
-
-    public void setImageAuthor(String imageAuthor) {
-        this.imageAuthor = imageAuthor;
-    }
-
-    public String getAditionalImageComments() {
-        return aditionalImageComments;
-    }
-
-    public void setAditionalImageComments(String aditionalImageComments) {
-        this.aditionalImageComments = aditionalImageComments;
-    }
-
-    public String getCharacterization() {
-        return characterization;
-    }
-
-    public void setCharacterization(String characterization) {
-        this.characterization = characterization;
-    }
-
-    public String getTombo() {
-        return tombo;
-    }
-
-    public void setTombo(String tombo) {
-        this.tombo = tombo;
-    }
-
-    public boolean getDeleted() {
-        return deleted;
-    }
-
-    public void setDeleted(boolean deleted) {
-        this.deleted = deleted;
-    }
-
-    public Date getCataloguingTime() {
-        return cataloguingTime;
-    }
-
-    public void setCataloguingTime(Date cataloguingTime) {
-        this.cataloguingTime = cataloguingTime;
-    }
-
-    public String getFormattedCataloguingTime() {
-        try {
-            if (cataloguingTime == null) return null;
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-            return sdf.format(cataloguingTime);
-        } catch (Exception e) {
-            return "";
-        }
-    }    
     
     public static List<Photo> listLastPhotos(Collablet collablet, Integer amount) {
         if (collablet == null) throw new IllegalArgumentException("Collablet is required.");
@@ -720,22 +791,6 @@ public class Photo implements Serializable, GraphicalResource {
 
         return DAO.query().with("collablet", collablet).with("deleted", false).maxResults(localCount).list("id DESC");
 
-    }
-
-    public AllowModifications getAllowModifications() {
-        return allowModifications;
-    }
-
-    public void setAllowModifications(AllowModifications allowModifications) {
-        this.allowModifications = allowModifications;
-    }
-
-    public AllowCommercialUses getAllowCommercialUses() {
-        return allowCommercialUses;
-    }
-
-    public void setAllowCommercialUses(AllowCommercialUses allowCommercialUses) {
-        this.allowCommercialUses = allowCommercialUses;
     }
 
     public static Photo previous(Photo photo) {
@@ -770,7 +825,6 @@ public class Photo implements Serializable, GraphicalResource {
         return nextPhoto;
     }
 
-    
     public static Long countAll() {
         EntityManager em = EntityManagerProvider.getEntityManager();
         Query query = em.createQuery("select count(*) from Photo p");
@@ -788,45 +842,4 @@ public class Photo implements Serializable, GraphicalResource {
     public static Photo findByTombo(String tombo) {
         return QueryBuilder.query(Photo.class).with("tombo", tombo).with("deleted", false).find();
     }
-    
-    @Override
-    public String getReferenceIdAsString() {
-        return this.id.toString();
-    }
-
-    @Override
-    public User getUploader() {
-        return this.users.get(0);
-    }
-
-    @Override
-    public String getUploadedFileName() {
-        return this.nomeArquivo;
-    }
-
-    @Override
-    public String getOriginalFileExtension() {
-        
-        if(nomeArquivo.contains(".")) {
-            return nomeArquivo.substring(nomeArquivo.lastIndexOf("."), nomeArquivo.length());
-        }
-        
-        return GraphicalResourceSuffix.DEFAULT_EXTENSION;
-    }
-
-//    public void setAllowModifications(AllowModifications allowModifications) {
-//        this.allowModifications = allowModifications;
-//    }
-//
-//    public AllowModifications getAllowModifications() {
-//        return allowModifications;
-//    }
-//
-//    public void setAllowCommercialUses(AllowCommercialUses allowCommercialUses) {
-//        this.allowCommercialUses = allowCommercialUses;
-//    }
-//
-//    public AllowCommercialUses getAllowCommercialUses() {
-//        return allowCommercialUses;
-//    }
 }

@@ -96,7 +96,6 @@
                 <input type="text" id="datepicker" name="photoRegister.dataCriacao" />
             </span>
         </div>
-        <!-- AAMM HERE:1 -->
     </fieldset>
     
     <fieldset>

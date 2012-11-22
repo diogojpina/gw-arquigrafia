@@ -55,6 +55,7 @@ import br.org.groupwareworkbench.arquigrafia.ImportImages;
 import br.org.groupwareworkbench.collablet.communic.tag.Tag;
 import br.org.groupwareworkbench.collablet.coord.user.User;
 import br.org.groupwareworkbench.collablet.util.EncoderParam;
+import br.org.groupwareworkbench.core.date.ISO8601;
 import br.org.groupwareworkbench.core.framework.Collablet;
 import br.org.groupwareworkbench.core.framework.WidgetInfo;
 import br.org.groupwareworkbench.core.routing.GroupwareInitController;
@@ -419,6 +420,8 @@ public class PhotoController {
         System.out.println("autor obra => " + photoRegister.getWorkAuthor());
         System.out.println("autor imagem => " + photoRegister.getImageAuthor());
         System.out.println("data obra => " + photoRegister.getWorkdate());
+        System.out.println("data de criacao da imagem => " + photoRegister.getDataCriacao());
+        System.out.println("data de catalogacao => " + photoRegister.getCataloguingTime());
         System.out.println("rua => " + photoRegister.getStreet());
         System.out.println("descricao => " + photoRegister.getDescription());
 
