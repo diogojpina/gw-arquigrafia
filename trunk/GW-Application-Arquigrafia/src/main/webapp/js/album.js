@@ -34,14 +34,5 @@ $(function(){
 	$('#delete_album').live('click', function(e){
 		return confirm('Tem certeza que deseja deletar o álbum?');
 	});
-	
-	$('.album_image_box').live({
-			mouseover: function(){
-				$('.album_image_delete_button').fadeIn('fast');
-			},
-			mouseout: function(){
-				$('.album_image_delete_button').fadeOut('fast');
-			}
-	});
 
 });

@@ -66,6 +66,19 @@ public class AlbumMgrController {
         addIncludes(albumMgr);
         result.use(Results.representation()).from(albumList).serialize();
     }
+    
+    @Get
+    @Path(value = "/album/{albumMgr}/list/{idUser}/{albumId}")
+    public void list(AlbumMgrInstance albumMgr, Long idUser, Long albumId) {
+        User user = User.findById(idUser);
+        List<Album> albumList = albumMgr.listByUser(user);
+        Album album = Album.findById(albumId);
+        result.include("albumList", albumList);
+        result.include("album", album);
+        result.include("user", user);
+        addIncludes(albumMgr);
+        result.use(Results.representation()).from(albumList).serialize();
+    }
 
     @Get
     @Path(value = "/album/{albumMgr}/default/{idAlbum}")
@@ -185,10 +198,13 @@ public class AlbumMgrController {
     @Get
     @Path(value = "/album/{idAlbum}/delete/{idObject}")
     public void deleteToAlbum(Long idAlbum, Long idObject) {
+        User user = (User) request.getSession().getAttribute("userLogin");
         Album album = Album.findById(idAlbum);
         AlbumMgrInstance albumMgr = (AlbumMgrInstance) album.getCollablet().getBusinessObject();
         albumMgr.deleteGenericReference(album, idObject);
-        result.use(logic()).redirectTo(AlbumMgrController.class).listByAlbum(albumMgr, idAlbum);
+        
+        result.use(logic()).redirectTo(AlbumMgrController.class).list(albumMgr, user.getId() , idAlbum);
+        
     }
 
     private void addIncludes(AlbumMgrInstance albumMgr) {
