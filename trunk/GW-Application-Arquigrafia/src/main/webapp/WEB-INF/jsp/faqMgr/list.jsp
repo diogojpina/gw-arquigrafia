@@ -50,8 +50,8 @@
       <!--   COLUNA DIREITA   -->
       <div id="sidebar">
         <h2>Ainda precisando de Ajuda?</h2>
-		<h3>Contate nossa equipe</h3>
-        <p>Esta é a versão beta do Arquigrafia, ela ainda pode conter erros, caso tenha alguma dificuldade ou problemas ao usar o Arquigrafia escreva para gente <a href="mailto:arquigrafiabrasil@gmail.com " target="_blank">arquigrafiabrasil@gmail.com</a>.</p>
+		<h3>Entre em contato com nossa equipe</h3>
+        <p> Esta é uma versão beta do Arquigrafia e ainda pode conter erros. Caso tenha alguma dificuldade ou perceba problemas na navegação escreva para: <a href="mailto:arquigrafiabrasil@gmail.com " target="_blank">arquigrafiabrasil@gmail.com</a>.</p>
       </div>
       <!--   FIM - COLUNA DIREITA   -->
     </div>
