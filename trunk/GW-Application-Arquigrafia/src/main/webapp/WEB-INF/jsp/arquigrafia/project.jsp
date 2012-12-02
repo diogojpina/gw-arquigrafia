@@ -76,19 +76,19 @@
 		<h3>Colaboradores</h3>
 		<ul>
 			<li><small><a href="http://lattes.cnpq.br/2342739419247924" target="_blank">Prof. Dr. Fábio Kon - IMEUSP</a></small></li>
-			<li><small><a href="#" target="_blank">Prof. Dr. Julio Roberto Katinsky - FAUUSP</a></small></li>
-			<li><small><a href="#" target="_blank">Prof. Dr. Luiz Américo de Souza Munari - FAUUSP</a></small></li>
-			<li><small><a href="#" target="_blank">Prof. Dr. Abílio Guerra e equipe VITRUVIUS</a></small></li>
-			<li><small><a href="#" target="_blank">Profa. Dra. Roberta Lima Gomes - Informática UFES</a></small></li>
-			<li><small><a href="#" target="_blank">Prof. Dr. Magnos Martinello - Informática UFES</a></small></li>
-			<li><small><a href="#" target="_blank">Prof. Dr. Juliano Maranhão - FDUSP</a></small></li>
-			<li><small><a href="#" target="_blank">Dina Uliana - Diretora biblioteca FAUUSP</a></small></li>
+			<li><small><a href="http://lattes.cnpq.br/4574831233204082" target="_blank">Prof. Dr. Julio Roberto Katinsky - FAUUSP</a></small></li>
+			<li><small><a href="http://lattes.cnpq.br/3841951853755817" target="_blank">Prof. Dr. Luiz Américo de Souza Munari - FAUUSP</a></small></li>
+			<li><small><a href="http://lattes.cnpq.br/5218253515771817" target="_blank">Prof. Dr. Abílio Guerra e equipe VITRUVIUS</a></small></li>
+			<li><small><a href="http://lattes.cnpq.br/6695382764766281" target="_blank">Profa. Dra. Roberta Lima Gomes - Informática UFES</a></small></li>
+			<li><small><a href="http://lattes.cnpq.br/7471111924336519" target="_blank">Prof. Dr. Magnos Martinello - Informática UFES</a></small></li>
+			<li><small><a href="http://lattes.cnpq.br/3498148304153540" target="_blank">Prof. Dr. Juliano Maranhão - FDUSP</a></small></li>
+			<li><small><a href="http://www.usp.br/fau/fau/secoes/biblio/index.htm" target="_blank">Dina Uliana - Diretora biblioteca FAUUSP</a></small></li>
 			<li><small><a href="http://lattes.cnpq.br/4131992141506749" target="_blank">Eliana de Azevedo Marques - Biblioteca FAUUSP</a></small></li>
-			<li><small><a href="#" target="_blank">Elizabete da Cruz Neves - Biblioteca FAUUSP</a></small></li>
-			<li><small><a href="#" target="_blank">Rejane Alves - Biblioteca FAUUSP</a></small></li>
-			<li><small><a href="#" target="_blank">Prof. Dr. Cristiano Mascaro - Consultor de fotografia</a></small></li>
-			<li><small><a href="#" target="_blank">Arq. Nelson Kon - Consultor de fotografia</a></small></li>
-			<li><small><a href="#" target="_blank">Arq. Rodrigo Luiz Minot Gutierrez - SENAC / UNIUBE</a></small></li>
+			<li><small><a href="http://lattes.cnpq.br/7542993440465891" target="_blank">Elizabete da Cruz Neves - Biblioteca FAUUSP</a></small></li>
+			<li><small><a href="http://www.usp.br/fau/fau/secoes/biblio/index.html" target="_blank">Rejane Alves - Biblioteca FAUUSP</a></small></li>
+			<li><small><a href="http://www.cristianomascaro.com.br/" target="_blank">Prof. Dr. Cristiano Mascaro - Consultor de fotografia</a></small></li>
+			<li><small><a href="http://www2.nelsonkon.com.br/" target="_blank">Arq. Nelson Kon - Consultor de fotografia</a></small></li>
+			<li><small><a href="http://lattes.cnpq.br/9781300883115022" target="_blank">Arq. Rodrigo Luiz Minot Gutierrez - SENAC / UNIUBE</a></small></li>
 		</ul>
 		
 		<h3>Alunos participantes</h3>
@@ -108,7 +108,7 @@
 			<li><small><a href="http://lattes.cnpq.br/8004254725476493" target="_blank">Ruth Cuiá Troncarelli - Graduanda FAUUSP</a></small></li>
 			<li><small><a href="http://lattes.cnpq.br/7968062612895669" target="_blank">Ilka Apocalypse Jóia Paulini - Graduanda FAUUSP</a></small></li>
 			<li><small><a href="http://lattes.cnpq.br/3715644973427707" target="_blank">Bhakta Krpa das Santos - Graduando FAUUSP</a></small></li>
-			<li><small><a href="#" target="_blank">Guilherme A. Nogueira Cesar - Graduando FAUUSP</a></small></li>
+			<li><small><a href="http://lattes.cnpq.br/5529848738416350" target="_blank">Guilherme A. Nogueira Cesar - Graduando FAUUSP</a></small></li>
 			<li><small><a href="#" target="_blank">Rodrigo Ciorciari Salandim - Graduando EACHUSP</a></small></li>
 			<li><small><a href="#" target="_blank">Bruna Sellin Trevelin - Graduanda Direito USP</a></small></li>
 			<li><small><a href="http://lattes.cnpq.br/1387924249101546" target="_blank">Enzo Toshio S. L. de Mello - FITO</a></small></li>
@@ -116,10 +116,18 @@
 		
 		<h3>Parceiros de desenvolvimento</h3>
 		<ul>
-			<li><small><a href="http://www.bench.com.br/" target="_blank">Jean Pierre Chamouton - Benchmark Design Total </small></li>
-			<li><small><a href="http://www.brzcomunicacao.com.br/" target="_blank">Pedro Emilio Guglielmo - BRZ Comunicação</small></li>
-			<li><small><a href="http://www.brzcomunicacao.com.br/" target="_blank">Tiago Ortlieb - BRZ Comunicação</small></li>
-			<li><small><a href="http://www.wikimedia.org/" target="_blank">Alexandre Hannud Abdo - Wikimedia</small></li>						
+			<li><small><a href="http://www.bench.com.br/" target="_blank">Jean Pierre Chamouton - Benchmark Design Total</a></small></li>
+			<li><small><a href="http://www.brzcomunicacao.com.br/" target="_blank">Pedro Emilio Guglielmo - BRZ Comunicação</a></small></li>
+			<li><small><a href="http://www.brzcomunicacao.com.br/" target="_blank">Tiago Ortlieb - BRZ Comunicação</a></small></li>
+			<li><small><a href="http://www.wikimedia.org/" target="_blank">Alexandre Hannud Abdo - Wikimedia</a></small></li>						
+			<li><small><a href="#" target="_blank">Ana Clara Souza Santana - Graduanda FAUUSP</a></small></li>
+			<li><small><a href="#" target="_blank">Amanda Stenghel - Graduanda FAUUSP</a></small></li>
+			<li><small><a href="#" target="_blank">Giuliano Magnelli - Graduando FAUUSP</a></small></li>
+			<li><small><a href="#" target="_blank">Kevin Ritschel - Graduando FAUUSP</a></small></li>						
+			
+		
+		
+		
 		</ul>
       </div>
       <!--   FIM - COLUNA DIREITA   -->
