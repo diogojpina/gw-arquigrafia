@@ -201,7 +201,12 @@
 				</c:if>
 				<c:if test="${not empty photo.imageAuthor}">
 					<h3>Autor da Imagem:</h3>
-					<p><c:out value="${photo.imageAuthor}"/></p>
+					<p>
+						<a href="<c:url value="/photos/${photoMgr.id}/show/search/term?q=${util:encode(photo.imageAuthor)}&term=imageAuthor&page=1&perPage=8"/>">
+							<c:out value="${photo.imageAuthor}"/>
+						</a>
+					</p>
+					
 				</c:if>
 				<c:if test="${not empty photo.dataCriacaoFormatada}">
 					<h3>Data da Imagem:</h3>
