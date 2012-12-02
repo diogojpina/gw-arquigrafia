@@ -26,8 +26,10 @@
       <!--   COLUNA ESQUERDA   -->
       <div id="sub_content">
         <!--   CONTEÚDO SOBRE O PROJETO   -->
-        <h1>Ajuda -  Perguntas e respostas frequentes</h1>
-        <a href="#"  id="printer_icon"></a>
+       <h1 id="project_title">Ajuda - Perguntas e Respostas mais frequentes</h1>
+        <div id="project_text_tools">
+	        <a href="#"  title="Imprimir" id="printer_icon"></a>
+        </div>
         <!--   TEXTO DO PROJETO   -->
         <div id="project_text">
         <br />
