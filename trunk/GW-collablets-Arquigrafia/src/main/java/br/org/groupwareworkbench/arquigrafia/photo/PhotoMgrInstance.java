@@ -96,7 +96,10 @@ public class PhotoMgrInstance extends AbstractBusiness {
     }
 
     public List<Photo> searchForAttributeOfThePhoto(String term, String q, int page, int perPage) {
-        return Photo.findByAttribute(getCollablet(), term, q, page, perPage);
+        SearchTerm.getNames().add("imageAuthor");
+        List<Photo> photos = Photo.findByAttribute(getCollablet(), term, q, page, perPage);
+        SearchTerm.getNames().remove("imageAuthor");
+        return photos;
     }
 
     public Map<String, Long> countsPhotosSearchByAttribute(String term) {
