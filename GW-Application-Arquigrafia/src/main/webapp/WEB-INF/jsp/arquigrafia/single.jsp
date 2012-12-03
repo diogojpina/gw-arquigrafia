@@ -66,7 +66,7 @@
 					<ul id="single_view_image_buttons">
 						<li><a href="#" title="Adicione aos seus favoritos"
 							id="add_favourite"></a></li>
-						<li><a href="#" title="Adicione ao seu album" id="plus"></a></li>
+						<li><a href="#" title="Adicione a sua Coleção" id="plus"></a></li>
 						<li><a href="#" title="Avalie a foto" id="eyedroppper"></a></li>
 						<li><a href="#" title="Denuncie esta foto" id="denounce"></a></li>
 						<li><a
