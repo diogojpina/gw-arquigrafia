@@ -396,34 +396,8 @@ public class ImportImages {
     public void recursiveSearchODS(ArrayList<File> list, File dir) {
         for (File file : dir.listFiles()) {
             String path = file.getAbsolutePath();
-            System.out.println("Checking " + path);
             if (file.isFile() && path.toLowerCase().endsWith(".ods")) {
-                String reportName = path.substring(0, path.length() - 3) + "report";
-                File report = new File(reportName);
-                if (!report.exists()) {
-                    list.add(file);
-                } else {
-                    // Checking if the report reached the end.
-                    try {
-                        FileInputStream fis = new FileInputStream(report);
-                        if (fis.available() > reportSuccessMessage.length() - 1) {
-                            fis.skip(fis.available() - reportSuccessMessage.length() - 1);
-                            byte[] b = new byte[reportSuccessMessage.length()];
-                            fis.read(b);
-                            if (!new String(b).equals(reportSuccessMessage)) {
-                                list.add(file);
-                            }
-                        } else {
-                            list.add(file);
-                        }
-                    } catch (FileNotFoundException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    } catch (IOException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    }
-                }
+                list.add(file);
             }
             if(file.isDirectory()) {
                 recursiveSearchODS(list, file);
