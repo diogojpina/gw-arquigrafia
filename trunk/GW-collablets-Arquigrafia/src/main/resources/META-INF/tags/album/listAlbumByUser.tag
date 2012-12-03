@@ -22,7 +22,7 @@
 			<input id="context_path" type="hidden" value="${pageContext.request.contextPath}"/>
 			
       <div id="<c:out value="${albumBarId}" default="album_bar"/>">
-		<h1>Álbuns:</h1>
+		<h1>Galeria:</h1>
 		<s:check name="X-X-usuario">
 				<a id="new_album" href="<c:url value="/album/${albumMgr.id}"/>">+ Adicionar</a>
 		</s:check>

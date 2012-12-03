@@ -10,7 +10,7 @@
 </r:callMethod>
 
 
-     <h2 id="profile_block_title">Minhas&nbsp;galerias</h2>
+     <h2 id="profile_block_title">Minhas&nbsp;Coleções</h2>
      
      <a href="<c:url value="/album/15/list/${user.id}" />" id="small" class="profile_block_link">Ver todas</a>
 	<div id="profile_box">
