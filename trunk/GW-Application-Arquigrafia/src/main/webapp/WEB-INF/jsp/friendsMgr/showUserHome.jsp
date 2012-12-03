@@ -52,6 +52,9 @@
 			<!--   BARRA LATERAL - ESQUERDA   -->
 			<div id="left_sidebar">
 
+				<p>Para alterar sua foto de usuário
+						  clique sobre imagem abaixo.
+				</p>
 				<c:choose>
 					<c:when test="${empty friend.photoURL}">
 						<c:choose>
