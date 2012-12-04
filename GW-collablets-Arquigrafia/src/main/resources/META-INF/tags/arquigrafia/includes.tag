@@ -85,6 +85,8 @@
 			e.preventDefault();
 		});
 		
+
+		
 		$('#upload_bar').click(function(){
 			$('#mask').fadeIn('fast');
 			$('#form_window').fadeIn('slow');
