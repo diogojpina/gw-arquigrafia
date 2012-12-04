@@ -52,22 +52,23 @@
 			<!--   BARRA LATERAL - ESQUERDA   -->
 			<div id="left_sidebar">
 
-				<p>Para alterar sua foto de usuário
-						  clique sobre a imagem abaixo.
-				</p>
 				<c:choose>
 					<c:when test="${empty friend.photoURL}">
 						<c:choose>
 							<c:when test="${friend.id == userLogin.id}">
-								<a
+								<a title="Para alterar sua foto de usuário clique sobre a imagem"
 									href="<c:url value="/profile/${profileMgr.id}/uploadphotoprofile" />">
 									<img name="Homer" id="profile_photo_edit"
-									class="profile_photo_edit"
+									class="profile_photo_edit" 
+									alt="Para alterar sua foto de usuário clique sobre a imagem"
 									src="<c:url value="/img/avatar.jpg" />" />
+									
 								</a>
 							</c:when>
 							<c:otherwise>
-								<img name="Homer" id="profile_photo"
+								<img name="Homer" id="profile_photo" 
+								title="Para alterar sua foto de usuário clique sobre a imagem"
+								 alt="Para alterar sua foto de usuário clique sobre a imagem"
 									src="<c:url value="/img/avatar.jpg" />" />
 							</c:otherwise>
 						</c:choose>
@@ -76,15 +77,18 @@
 
 						<c:choose>
 							<c:when test="${friend.id == userLogin.id}">
-								<a
+								<a  title="Para alterar sua foto de usuário clique sobre a imagem"
 									href="<c:url value="/profile/${profileMgr.id}/uploadphotoprofile" />">
 									<img name="Homer" id="profile_photo_edit"
-									class="profile_photo_edit"
+									class="profile_photo_edit" 
+									alt="Para alterar sua foto de usuário clique sobre a imagem"
 									src="<c:url value="${friend.photoURL}" />" />
 								</a>
 							</c:when>
 							<c:otherwise>
-								<img name="Homer" id="profile_photo_edit"
+								<img name="Homer" id="profile_photo_edit" 
+								title="Para alterar sua foto de usuário clique sobre a imagem"
+								 alt="Para alterar sua foto de usuário clique sobre a imagem"
 									src="<c:url value="${friend.photoURL}" />" />
 							</c:otherwise>
 						</c:choose>
