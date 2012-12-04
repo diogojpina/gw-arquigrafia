@@ -53,7 +53,7 @@
 			<div id="left_sidebar">
 
 				<p>Para alterar sua foto de usuário
-						  clique sobre imagem abaixo.
+						  clique sobre a imagem abaixo.
 				</p>
 				<c:choose>
 					<c:when test="${empty friend.photoURL}">
@@ -90,6 +90,11 @@
 						</c:choose>
 					</c:otherwise>
 				</c:choose>
+
+								<a
+								id="profile_photo_edit" class="profile_photo_edit"	href="<c:url value="/profile/${profileMgr.id}/uploadphotoprofile" />">
+								Editar foto
+								</a>
 
 				<!-- <a href="#" id="small">Trocar fotografia</a> -->
 				<c:if test="${friend.id == userLogin.id}">

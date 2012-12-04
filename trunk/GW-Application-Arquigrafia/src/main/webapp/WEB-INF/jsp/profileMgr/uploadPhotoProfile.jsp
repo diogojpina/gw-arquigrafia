@@ -14,7 +14,7 @@
             File:
             <input type="file" name="foto" />
             <br />
-            <input type="submit" name="Submit" value="send" />
+            <input class="submit cursor" type="submit" value="" name="enviar">
         </form>
     </body>
 </html>
