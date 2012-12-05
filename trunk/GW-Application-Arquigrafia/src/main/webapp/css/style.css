@@ -349,10 +349,10 @@ a#printer_icon:hover{ background-position:-713px -33px; }
 #single_view_block { text-align:center; margin-bottom:5px; }
 #single_view_block h1{ text-align:left; }
 #single_view_header { overflow:hidden; border-bottom:solid #333 1px; line-height:25px; }
-#single_view_header h1 { display:block; float:left; overflow:hidden; width:530px; }
+#single_view_header h1 { display:block; float:left; overflow:hidden; width:415px; }
 .single_view_image { margin: 15px 0; }
+#name_photo_h1  {float:left; width:200px;}
 
-/*usuário*/
 #single_view_user_thumbnail {float:left; margin-right:10px; width:48px;}
 #single_view_owner_name { margin-bottom:3px; font-size: 20px; line-height: 28px;}
 #name { color:#CB9833;}
