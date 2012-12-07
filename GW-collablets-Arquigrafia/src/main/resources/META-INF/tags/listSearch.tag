@@ -43,6 +43,7 @@
 					<fmt:message key="${photo.key}"/> ${searchTerm}
 					<c:if test="${fn:length(photo.value) >= 8 }">
 						<a id="${photo.key}" href="<c:url value="/photos/${photoInstance.id}/search/term?q=${util:encode(searchTerm)}&term=${util:encode(photo.key)}&perPage=8"/>" class="load_photos" data-count="0" data-page="2"></a>
+						 <img alt="${photo.entity.name}" src="<c:url value="/photo/img-thumb/${photo.entity.id}"/>?_log=no" />
 					</c:if>						
 				  <hr/>
 				  
@@ -50,7 +51,7 @@
     					
 					    <div class="${lineClass}" style="float: left">
 					        <a  class="search_image" rel="linkimage" href="<c:url value="/photo/${p.id}"/>" title="${p.name}">
-					            <img alt="${p.name}" src="<c:url value="/photo/img-thumb/${p.id}"/>?_log=no" />
+					        <img alt="${photo.entity.name}" src="<c:url value="/photo/img-thumb/${photo.entity.id}"/>?_log=no" />
 					        </a>
 					    </div>
 			  </c:forEach>
