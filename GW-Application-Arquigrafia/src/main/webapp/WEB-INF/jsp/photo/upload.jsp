@@ -93,7 +93,7 @@
 
 
 	  <label>Data da imagem:</label>
-	  <input name="photoRegister.dataCriacao" type="text" class="text" id="imagedate" />
+	  <input name="imagedate" type="text" class="text" id="imagedate" />
 	  <br />
 	  
 	  <label class="left_form_label_column" >Cidade:</label>
@@ -151,6 +151,7 @@
 		<option value="Finlândia">Finlândia</option>
 		<option value="França">França</option>
 		<option value="Gabão">Gabão</option>
+		<option value="Gaza Strip">Gaza Strip</option>
 		<option value="Ghana">Ghana</option>
 		<option value="Gibraltar">Gibraltar</option>
 		<option value="Granada">Granada</option>
@@ -204,7 +205,6 @@
 		<option value="México">México</option>
 		<option value="Moçambique">Moçambique</option>
 		<option value="Mônaco">Mônaco</option>
-		<option value="Moldavia">Moldavia</option>
 		<option value="Mongólia">Mongólia</option>
 		<option value="Namíbia">Namíbia</option>
 		<option value="Nepal">Nepal</option>
@@ -214,14 +214,12 @@
 		<option value="Noruega">Noruega</option>
 		<option value="Nova Zelândia">Nova Zelândia</option>
 		<option value="Omã">Omã</option>
-		<option value="Palestina">Palestina</option>
 		<option value="Panamá">Panamá</option>
 		<option value="Paquistão">Paquistão</option>
 		<option value="Paraguai">Paraguai</option>
 		<option value="Peru">Peru</option>
 		<option value="Polinésia Francesa">Polinésia Francesa</option>
 		<option value="Polônia">Polônia</option>
-		<option value="Porto Rico">Porto Rico</option>
 		<option value="Portugal">Portugal</option>
 		<option value="Qatar">Qatar</option>
 		<option value="Quênia">Quênia</option>
@@ -237,7 +235,6 @@
 		<option value="Síria">Síria</option>
 		<option value="Spiemich">Spiemich</option>
 		<option value="Sudão">Sudão</option>
-		<option value="Sudão do Sul">Sudão do Sul</option>
 		<option value="Suécia">Suécia</option>
 		<option value="Suiça">Suiça</option>
 		<option value="Suriname">Suriname</option>
@@ -253,6 +250,7 @@
 		<option value="Uruguai">Uruguai</option>
 		<option value="Vanuatu">Vanuatu</option>
 		<option value="Wallis e Fortuna">Wallis e Fortuna</option>
+		<option value="West Bank">West Bank</option>
 		<option value="Yémen">Yémen</option>
 		<option value="Zaire">Zaire</option>
 		<option value="Zimbabwe">Zimbabwe</option>

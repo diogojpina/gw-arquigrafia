@@ -4,7 +4,11 @@ $(document).ready(function() {
 	var validationDateName = "dateBR";
 	jQuery.validator.addMethod(validationDateName, 
 		function(value, element) {
-		    if(value.length!=10) return false;
+			if(value.length==0) {
+				return true;
+			} else if(value.length!=10) {
+				return false;
+			}
 		    var date        = value;
 		    var day         = date.substr(0,2);
 		    var bar1     	= date.substr(2,1);
@@ -35,12 +39,11 @@ $(document).ready(function() {
 			terms:{
 				required: "Por favor, aceite nossos termos"
 			},
-			imagedate: {
-				dateBR: "Informe uma data válida (dd/mm/yyyy)"
-			},
-			'photoRegister.workdate': {
-				dateBR: "Informe uma data válida (dd/mm/yyyy)"
-			}
+			
+			imagedate: "Informe uma data válida (dd/mm/yyyy)",
+			
+			'photoRegister.workdate': "Informe uma data válida (dd/mm/yyyy)",
+			
 		}
 	});
 });
