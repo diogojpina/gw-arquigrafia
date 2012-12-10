@@ -17,13 +17,13 @@
 					<a class="load_photos_by_tag" href='<c:url value="/tags/${tag.id}" />' >Ver todas as imagens</a>		
 				
 				<hr/>
-
+					
 				<c:forEach var="photo" items="${photosByTag}">
 							     	<c:if test="${!photo.entity.deleted}">
 		
 										    <div class="${lineClass}" style="float: left">
-										        	<a class="foto" rel="linkimage" href="<c:url value="/photo/${photo.id}"/>" class="search_image" title="${photo.name}">
-										          <%--  <img src="<c:url value="/photo/img-thumb/${photo.id}"/>?_log=no"  alt="<c:out value="${photo.name}" />" />  --%>
+										        <a  class="search_image" rel="linkimage" href="<c:url value="/photo/${photo.entity.id}"/>">
+										            <img alt="${photo.entity.name}" src="<c:url value="/photo/img-thumb/${photo.entity.id}"/>?_log=no" />
 										        </a>
 										    </div>
 				
@@ -43,7 +43,6 @@
 					<fmt:message key="${photo.key}"/> ${searchTerm}
 					<c:if test="${fn:length(photo.value) >= 8 }">
 						<a id="${photo.key}" href="<c:url value="/photos/${photoInstance.id}/search/term?q=${util:encode(searchTerm)}&term=${util:encode(photo.key)}&perPage=8"/>" class="load_photos" data-count="0" data-page="2"></a>
-						
 					</c:if>						
 				  <hr/>
 				  
@@ -51,7 +50,7 @@
     					
 					    <div class="${lineClass}" style="float: left">
 					        <a  class="search_image" rel="linkimage" href="<c:url value="/photo/${p.id}"/>" title="${p.name}">
-					        
+					            <img alt="${p.name}" src="<c:url value="/photo/img-thumb/${p.id}"/>?_log=no" />
 					        </a>
 					    </div>
 			  </c:forEach>
