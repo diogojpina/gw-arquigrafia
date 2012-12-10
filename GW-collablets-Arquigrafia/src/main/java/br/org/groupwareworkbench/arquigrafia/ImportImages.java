@@ -120,14 +120,18 @@ public class ImportImages {
                         System.out.println(System.currentTimeMillis() + ": Importing row " + i);
                         try {
                             
+                            ps.println();
+                            ps.println(String.format("========================== (row %d)", i));
+                            ps.println();
+                            
                             // A - 0 - Tombo
-                            int tombo = intValue(sheet, ps, 0, i);
+                            String tombo = stringValue(sheet, ps, 0, i, true).trim();
                             
                             ps.println();
-                            ps.println(String.format("========================== %d (row %d)", tombo, i));
+                            ps.println(String.format("\tTombo: %s", tombo));
                             ps.println();
                             
-                            Photo photo = Photo.findByTombo(Integer.toString(tombo));
+                            Photo photo = Photo.findByTombo(tombo);
                             boolean newPhoto;
                             if (photo==null) {
                                 ps.println("\tCREATING");
@@ -154,7 +158,7 @@ public class ImportImages {
                                 ps.print(String.format("\tINFO: File %s NOT FOUND, but that is OK since we are just updating an image.", imageFile, tombo));
                             }
                             photo.setNomeArquivo(fileName);
-                            photo.setTombo(Integer.toString(tombo));
+                            photo.setTombo(tombo);
                             
                             // B - 1 - Caracterização
                             
@@ -236,7 +240,6 @@ public class ImportImages {
                                 throw new InvalidCellContents();
                             }
                             try {
-                                AllowCommercialUses.valueOf("");
                                 AllowCommercialUses allowCommercialUses = AllowCommercialUses.valueOf( licenca.substring(0, licenca.indexOf('-')).toUpperCase().trim());
                                 AllowModifications allowModifications = AllowModifications.valueOf(licenca.substring(licenca.indexOf('-') + 1, licenca.length()).toUpperCase().trim());
                                 photo.setAllowCommercialUses(allowCommercialUses);
@@ -311,8 +314,12 @@ public class ImportImages {
                             System.out.println("\tTags saved.");
                             ps.println();
                             ps.println("\t#### SUCCESS #### (:P)");
-                            ps.flush();
                         } catch (InvalidCellContents e) {
+                            ps.println("\tInvalid cell contents: " + e.getLocalizedMessage());
+                        } catch (Exception e) {
+                            ps.println("\tUnknown exception: " + e.getLocalizedMessage());
+                        } finally {
+                            ps.flush();
                         }
                     }
                 } catch (IOException e) {
