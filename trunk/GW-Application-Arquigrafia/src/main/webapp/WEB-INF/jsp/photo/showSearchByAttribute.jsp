@@ -58,7 +58,7 @@
 						<a id="${term}"
 							href="<c:url value="/photos/${photoMgr.id}/search/term?q=${util:encode(q)}&term=${term}&perPage=8"/>"
 							class="load_photos" data-count="0" data-page="2"></a>
-							<img alt="${photo.name}" src="<c:url value="/photo/img-thumb/${photo.id}"/>?_log=no" />
+							
 						<hr />
 
 						<c:forEach var="photo" items="${photos}">
@@ -70,7 +70,6 @@
 										alt="${photo.name}"
 										src="<c:url value="/photo/img-thumb/${photo.id}"/>?_log=no" />
 									</a>
-									<img alt="${photo.entity.name}" src="<c:url value="/photo/img-thumb/${photo.entity.id}"/>?_log=no" />
 								</div>
 
 							</c:if>
