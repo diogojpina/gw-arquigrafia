@@ -100,7 +100,7 @@
 								Editar foto
 								</a>
 
-				<!-- <a href="#" id="small">Trocar fotografia</a> -->
+<%-- 				<!-- <a href="#" id="small">Trocar fotografia</a> -->
 				<c:if test="${friend.id == userLogin.id}">
 					<friends:friendsRequests style="width: 475px;" user="${userLogin}"
 						friendsMgr="${friendsMgr}"
@@ -108,7 +108,7 @@
 						afterAcceptFunction="refreshFriendsPage"
 						friendsHeader="friends_header" />
 				</c:if>
-
+ --%>
 				<!-- rodrigo -->
 				<s:check name="X-X-usuario">
 					<c:if test="${friend.id == userLogin.id}">
