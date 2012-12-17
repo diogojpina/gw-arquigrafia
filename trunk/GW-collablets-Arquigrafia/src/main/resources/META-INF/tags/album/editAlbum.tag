@@ -15,7 +15,7 @@
 		 </c:if>
   	
   	<div>
-    	<h3>Dados do galeria</h3>
+    	<h3>Dados da Coleção</h3>
   		<p>
 			<label>Título*:</label>
     		<input type="text" class="required" name="album.title" value="<c:out value="${album.title}" />"/>
