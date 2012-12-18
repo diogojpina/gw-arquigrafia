@@ -10,11 +10,15 @@
         <link rel="shortcut icon" type="image/x-icon" href="<c:url value="/images/favicon.ico" />"/>
     </head>
     <body>
+
         <form name="uploadForm" method="post" enctype="multipart/form-data" action="<c:url value="/profile/${profileMgr.id}/uploadphotoprofile" />">
-            File:
+           	<h2>Sua Foto</h2>
+     		<p>
+           	Arquivo:
             <input type="file" name="foto" />
             <br />
             <input class="submit cursor" type="submit" value="" name="enviar">
+     		 <p/>    
         </form>
     </body>
 </html>
