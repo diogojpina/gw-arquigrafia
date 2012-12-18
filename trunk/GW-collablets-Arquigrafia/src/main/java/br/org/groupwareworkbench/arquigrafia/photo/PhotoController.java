@@ -318,7 +318,7 @@ public class PhotoController {
 
     private void validate(PhotoMgrInstance photoMgr, final String q) {
         validator.checking(new Validations() {{
-            that(q.length() > 2, "length", "search.length");
+            that(q.length() > 0, "length", "search.length");
         }});
         validator.onErrorForwardTo(this).busca(photoMgr);
     }
