@@ -22,7 +22,7 @@
 							     	<c:if test="${!photo.entity.deleted}">
 		
 										    <div class="${lineClass}" style="float: left">
-										        <a  class="search_image" rel="linkimage" href="<c:url value="/photo/${photo.entity.id}"/>">
+										        <a  class="search_image" title="${photo.entity.name}" rel="linkimage" href="<c:url value="/photo/${photo.entity.id}"/>">
 										            <img alt="${photo.entity.name}" src="<c:url value="/photo/img-thumb/${photo.entity.id}"/>?_log=no" />
 										        </a>
 										    </div>
@@ -50,8 +50,9 @@
     					
 					    <div class="${lineClass}" style="float: left">
 					        <a  class="search_image" rel="linkimage" href="<c:url value="/photo/${p.id}"/>" title="${p.name}">
-					            <img alt="${p.name}" src="<c:url value="/photo/img-thumb/${p.id}"/>?_log=no" />
+					            <img src="<c:url value="/photo/img-thumb/${p.id}"/>?_log=no" />
 					        </a>
+					        
 					    </div>
 			  </c:forEach>
 				  <br/><br/>
