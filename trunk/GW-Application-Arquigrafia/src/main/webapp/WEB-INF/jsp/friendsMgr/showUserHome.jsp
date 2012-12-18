@@ -94,11 +94,12 @@
 						</c:choose>
 					</c:otherwise>
 				</c:choose>
-
-								<a
-								id="profile_photo_edit" class="profile_photo_edit"	href="<c:url value="/profile/${profileMgr.id}/uploadphotoprofile" />">
-								Editar foto
-								</a>
+				
+				<c:if test="${friend.id == userLogin.id}">
+						<a id="profile_photo_edit" class="profile_photo_edit"	href="<c:url value="/profile/${profileMgr.id}/uploadphotoprofile" />">
+							Editar foto
+						</a>
+				</c:if>
 
 <%-- 				<!-- <a href="#" id="small">Trocar fotografia</a> -->
 				<c:if test="${friend.id == userLogin.id}">
