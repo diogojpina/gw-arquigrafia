@@ -11,7 +11,7 @@
        	<h3>Dados do usuário</h3>
        		<p>
 				<label>Login*:</label>
-     				<input type="text" class="required" name="user.login" value="<c:out value="${user.login}" />" />
+     				<input type="text" disabled="disabled" class="required" name="user.login" value="<c:out value="${user.login}" />" />
      			<br />
      			<label>E-mail*:</label>
      				<input type="text" class="required email" name="user.email" value="<c:out value="${user.email}" />" id="email" /></li>
