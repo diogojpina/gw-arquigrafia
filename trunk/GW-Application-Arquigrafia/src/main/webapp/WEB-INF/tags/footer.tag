@@ -68,6 +68,9 @@
             <div style="float: left; width: 11%; margin-top: 20px;">
                 <a href="http://ccsl.ime.usp.br/" target="_blanck"><img src="${pageContext.request.contextPath}/images/ccsl.png" alt="CCSL" style="height: 84px" /></a>
             </div>
+            <div style="float: left; width: 11%; margin-top: 20px;">
+                <a href="http://winweb.redealuno.usp.br/quapa/" target="_blanck"><img src="${pageContext.request.contextPath}/images/quapa.png" alt="QUAPÁ"  /></a>
+            </div>
             <div style="float: left; width: 10%; margin-top: 20px;">
                  Sob a licença de: <br/>
                  <a href="http://creativecommons.org/licenses/by/3.0/br/" target="_blanck"><img src="${pageContext.request.contextPath}/images/creative_commons.jpg" style="height: 55px" alt="Creative Commons"/></a>
