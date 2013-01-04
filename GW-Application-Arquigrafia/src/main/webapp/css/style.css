@@ -23,7 +23,7 @@ hr{ border:none; height:1px; background:#333; }
 
 .left{float:left;}
 .right{ float:right; }
-img.left{ margin-right:15px; }
+img.left{ margin-right:15px; margin-bottom: 10px; }
 img.right{ margin-left:15px; }
 
 /* mascara para janelas popups */
@@ -287,8 +287,8 @@ a.footer_image { display:block; margin:4px; float:left; border:none; width:105px
 
 /*créditos*/
 #credits { padding-top:5px; text-align:center; }
-#credits ul {margin: 5px auto; display:block; height:30px; width:930px;}
-#credits ul li { display:inline-block; margin:0 16px; float:left; }
+#credits ul {margin: 5px auto; display:block; height:30px; width:1030px;}
+#credits ul li { display:inline-block; margin:0 15px; float:left; }
 #credits ul li a { display:block; height:30px; }
 #credits ul li a#usp { background:url(../img/icons_sprite.png) -100px -110px; width:40px;}
 #credits ul li a#fapesp { background:url(../img/icons_sprite.png) -327px -109px; width:74px;}
@@ -298,6 +298,7 @@ a.footer_image { display:block; margin:4px; float:left; border:none; width:105px
 #credits ul li a#ime { background:url(../img/icons_sprite.png) -210px -109px; width:27px; }
 #credits ul li a#eca { background:url(../img/icons_sprite.png) -410px -109px; width:40px; }
 #credits ul li a#ccsl { background:url(../img/icons_sprite.png) -541px -109px; width:67px; }
+#credits ul li a#quapa { background:url(../img/icons_sprite.png) -715px -109px; width:55px; }
 #credits ul li a#vitruvius { background:url(../img/icons_sprite.png) -3px -109px; width:81px; }
 #credits ul li a#benchmark { background:url(../img/icons_sprite.png) -673px -109px; width:34px;}
 #credits ul li a#brz { background:url(../img/icons_sprite.png) -619px -109px; width:41px; }
@@ -328,7 +329,7 @@ a.search_image:hover { opacity: 0.6; filter:alpha(opacity=60); }
 .res-font, .inc-font { float:left; display:block; line-height:25px; margin:0 10px 0 0;}
 #project_title { float:left;}
 #project_text {	float:left; width:610px; background:#FFF; text-align:justify; padding:0 20px; margin:10px 0 40px 0;}
-a#printer_icon { float:left; width:24px; height:25px; background:url(../img/icons_sprite.png)  -713px 0; margin:0 0 0 10px;}
+a#printer_icon { float:left; width:24px; height:25px; background:url(../img/icons_sprite.png)  -713px 0px; margin:0 0 0 10px;}
 a#printer_icon:hover{ background-position:-713px -33px; }
 
 /* SIDEBAR */
