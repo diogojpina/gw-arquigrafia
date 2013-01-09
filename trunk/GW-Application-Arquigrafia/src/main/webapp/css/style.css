@@ -69,13 +69,13 @@ ul#top_menu_items li a#contact:hover{ background-position: -778px -116px; }
 ul#logged_menu { height:25px; margin:37px 0 2px 0; }
 ul#logged_menu li{ display:inline-block; margin-left:7px; width:24px; height:25px; zoom:1; }
 ul#logged_menu li a#messages,
-ul#logged_menu li a#users,
+ul#logged_menu li a#users { display:block; width:34px; height:30px;}
 ul#logged_menu li a#comunities,
 ul#logged_menu li a#upload{ display:block; width:24px; height:25px; }
 ul#logged_menu li a#messages{ background:url(../img/icons_sprite.png) -297px 0px; font-size:9px; text-align:center; line-height:23px; color:#000; }
 ul#logged_menu li a#messages:hover{ background-position: -297px -32px; color:white; }
-ul#logged_menu li a#users{ background:url(../img/icons_sprite.png) -229px -2px; }
-ul#logged_menu li a#users:hover{ background-position:-229px -34px; }
+ul#logged_menu li a#users{ background:url(../img/icons_sprite.png) -229px 0px; }
+ul#logged_menu li a#users:hover{ background-position:-229px -31px; }
 ul#logged_menu li a#comunities{ background:url(../img/icons_sprite.png) -262px -2px; }
 ul#logged_menu li a#comunities:hover{ background-position:-262px -34px; }
 ul#logged_menu li a#upload{ background:url(../img/icons_sprite.png) -400px -2px; }
@@ -373,15 +373,15 @@ a#printer_icon:hover{ background-position:-713px -33px; }
 #single_view_image_buttons { width:175px; margin: 0 auto;}
 #single_view_image_buttons li { margin: 0 5px; float:left;}
 #add_favourite,
-#plus,
+#plus { display:block; width:34px; height:33px;}
 #eyedroppper,
 #denounce,
 #download { display:block; width:24px; height:25px;}
 a#add_favourite { background:url(../img/icons_sprite.png) -575px 0;}
 a#add_favourite:hover{ background-position:-575px -33px;}
-a#plus { background:url(../img/icons_sprite.png) -471px 0;
+a#plus { background:url(../img/icons_sprite.png) -463px 0;
 padding-top: 4px;}
-a#plus:hover { background-position:-471px -33px;}
+a#plus:hover { background-position:-463px -39px;}
 a#eyedroppper { background:url(../img/icons_sprite.png) -436px 0;}
 a#eyedroppper:hover { background-position:-436px -33px;}
 a#denounce { background:url(../img/icons_sprite.png) -540px 0;}
