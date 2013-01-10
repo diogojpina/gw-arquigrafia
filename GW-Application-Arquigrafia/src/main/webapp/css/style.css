@@ -74,12 +74,12 @@ ul#logged_menu li a#comunities,
 ul#logged_menu li a#upload{ display:block; width:24px; height:25px; }
 ul#logged_menu li a#messages{ background:url(../img/icons_sprite.png) -297px 0px; font-size:9px; text-align:center; line-height:23px; color:#000; }
 ul#logged_menu li a#messages:hover{ background-position: -297px -32px; color:white; }
-ul#logged_menu li a#users{ background:url(../img/icons_sprite.png) -229px 0px; }
+ul#logged_menu li a#users{ background:url(../img/icons_sprite.png) -229px 0px; margin-top:-4px;}
 ul#logged_menu li a#users:hover{ background-position:-229px -31px; }
 ul#logged_menu li a#comunities{ background:url(../img/icons_sprite.png) -262px -2px; }
 ul#logged_menu li a#comunities:hover{ background-position:-262px -34px; }
-ul#logged_menu li a#upload{ background:url(../img/icons_sprite.png) -400px -2px; }
-ul#logged_menu li a#upload:hover{ background-position:-400px -34px; }
+ul#logged_menu li a#upload{ background:url(../img/icons_sprite.png) -400px 0px; }
+ul#logged_menu li a#upload:hover{ background-position:-400px -33px; }
 
 a#user_name { margin-left:8px; font-size:12px; line-height:24px; }
 a#logout { float:right; margin-top:18px; font-size:11px; }
@@ -373,7 +373,7 @@ a#printer_icon:hover{ background-position:-713px -33px; }
 #single_view_image_buttons { width:175px; margin: 0 auto;}
 #single_view_image_buttons li { margin: 0 5px; float:left;}
 #add_favourite,
-#plus { display:block; width:34px; height:33px;}
+#plus { display:block; width:34px; height:33px; margin-top:-3px;}
 #eyedroppper,
 #denounce,
 #download { display:block; width:24px; height:25px;}
