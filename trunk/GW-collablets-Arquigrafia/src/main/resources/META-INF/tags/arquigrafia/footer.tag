@@ -17,6 +17,7 @@
 		  <li><a href="http://www.ime.usp.br/" title="IME" id="ime" target="_blank"></a></li>
 		  <li><a href="http://www.eca.usp.br/" title="ECA" id="eca" target="_blank"></a></li>
 		  <li><a href="http://ccsl.ime.usp.br/" title="CCSL" id="ccsl" target="_blank"></a></li>
+		  <li><a href="http://winweb.redealuno.usp.br/quapa/" title="QUAPÁ" id="quapa" target="_blank"></a></li>
 		  <li><a href="http://www.vitruvius.com.br/" title="Vitruvius" id="vitruvius" target="_blank"></a></li>
 		  <li><a href="http://www.bench.com.br/" title="Benchmark" id="benchmark" target="_blank"></a></li>
 		  <li><a href="http://www.brzcomunicacao.com.br/" title="BRZ" id="brz" target="_blank"></a></li>	
