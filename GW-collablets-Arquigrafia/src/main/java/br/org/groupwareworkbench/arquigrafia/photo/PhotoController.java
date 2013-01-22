@@ -649,7 +649,15 @@ public class PhotoController {
         List<Photo> photos = photoMgr.listPhotoByUserPageAndOrder(user, pageSize, pageNumber);
         result.use(Results.json()).from(photos).serialize();
     }
+    
+    @Get
+    @Path("/photos/{photoMgr}/amount/{amount}")
+    public void list(PhotoMgrInstance photoMgr, Integer amount) {
+        List<Photo> photos = photoMgr.listRandomPhotos(amount);
+        result.use(Results.json()).withoutRoot().from(photos).serialize();
+    }
 
+    
     @Get
     @Path("/photo/import")
     public void importPhotos() {
