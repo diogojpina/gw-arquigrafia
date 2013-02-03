@@ -1,7 +1,7 @@
 
 $(document).ready(function() {
 	
-	$("#signup").validate({
+	$("#send_forgot_password").validate({
 		rules: {
 			"terms": {
 				required: true
