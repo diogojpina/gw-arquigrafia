@@ -20,30 +20,4 @@
 	</form>
 </div>
 
-
-<script type="text/javascript">
-
-$(function() {
-	
-	function success(message) {
- 			$('#forgot_password_modal_box').empty().append(message);
-	}
-	
-	$('#send_forgot_password').submit(function(e){
-		e.preventDefault();
- 		$.post(this.action, $(this).serialize(), success, 'json')
-		
- 		.error(function(validation) {
-				var messages = $.parseJSON(validation.responseText),
-						validations = '';
-				jQuery.each(messages.errors, function(index, item){
-					validations += item.message;
-				});			
-				$('#validation_error').empty().append(validations);
- 		 });
- 	});
-	
-	
-});
-
-</script>
+<script type="text/javascript" src="<c:url value="/js/login.js" />"></script>	
