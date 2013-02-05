@@ -120,7 +120,7 @@ a#complete_search:hover { background-position:-367px -32px; }
 #form_window select {margin:3px;}
 #form_window input.text {width: 123px;}
 #form_window .date {width: 29px;}
-#form_window a.close {float:right; width:58px; height:20px; background:url(../img/icons_sprite.png) -160px -195px; }
+#form_window a.close {float:right; width:20px; height:20px; background:url(../img/icons_sprite.png) -160px -195px; }
 #form_window a.close:hover { background-position:-160px -216px; }
 #form_window .email, #form_window .website { width: 123px;}
 #form_window input.submit { background:url(../img/icons_sprite.png) -222px -195px; height:20px; width:54px; padding:0; margin:0; border:none; float: right;}
@@ -136,7 +136,7 @@ a#creative_commons{ background:url(../img/icons_sprite.png) no-repeat 110px -240
 #form_window_welcome select {margin:3px;}
 #form_window_welcome input.text {width: 123px;}
 #form_window_welcome .date {width: 29px;}
-#form_window_welcome a.close {float:right; width:58px; height:20px; background:url(../img/icons_sprite.png) -160px -195px; }
+#form_window_welcome a.close {float:right; width:20px; height:20px; background:url(../img/icons_sprite.png) -160px -195px; }
 #form_window_welcome a.close:hover { background-position:-160px -216px; }
 #form_window_welcome .email, #form_window .website { width: 123px;}
 #form_window_welcome input.submit { background:url(../img/icons_sprite.png) -222px -195px; height:20px; width:54px; padding:0; margin:0; border:none;}
@@ -376,11 +376,10 @@ a#printer_icon:hover{ background-position:-713px -33px; }
 #plus { display:block; width:34px; height:33px; margin-top:-3px;}
 #eyedroppper,
 #denounce,
-#download { display:block; width:24px; height:25px;}
+#download { display:block; width:24px; height:25px; margin-left: 4px;}
 a#add_favourite { background:url(../img/icons_sprite.png) -575px 0;}
 a#add_favourite:hover{ background-position:-575px -33px;}
-a#plus { background:url(../img/icons_sprite.png) -463px 0;
-padding-top: 4px;}
+a#plus { background:url(../img/icons_sprite.png) -463px 0; padding-top: 4px;}
 a#plus:hover { background-position:-463px -39px;}
 a#eyedroppper { background:url(../img/icons_sprite.png) -436px 0;}
 a#eyedroppper:hover { background-position:-436px -33px;}
@@ -388,7 +387,7 @@ a#denounce { background:url(../img/icons_sprite.png) -540px 0;}
 a#denounce:hover { background-position:-540px -33px;}
 a#download { background:url(../img/icons_sprite.png) -505px 0;}
 a#download:hover { background-position:-505px -33px;}
-#delete { display:block; width:24px; height:25px;}
+#delete { display:block; width:24px; height:25px; margin-left: 4px;}
 a#delete { background:url(../img/icons_sprite.png) -776px -145px;}
 a#delete:hover { background-position:-776px -177px;}
 
@@ -598,10 +597,10 @@ ul#avaliation_list li span.right{ text-align:left; padding-left:10px; }
 a#friend_photo { margin:1px}
 #friend_photo { display:block; height:48px; float:left;}
 #communities_list { list-style:none;}
-#gallery_box { width:120px; height:48px; float:left; overflow:hidden; line-height:12px; margin: 0 5px 10px 0; font-size:11px;}
+#gallery_box { width:120px; height:auto; float:left; overflow:hidden; line-height:12px; margin: 0 5px 10px 0; font-size:11px;}
 #user_box { width:60px; height:60px; float:left; overflow:hidden; line-height:12px; margin: 0 5px 10px 0; font-size:11px;}
 a#gallery_photo { margin: 0 5px 0 0;}
-#gallery_photo { display:block; width:48px; height:48px; float:left;}
+#gallery_photo { display:block; width:48px; height:32px; float:left;}
 #right_sidebar { float:right; color:#7B7D7F; font-size:12px; width:250px; line-height:19px;}
 #added_images_bar { clear:both; height:auto; margin:50px 0; width:100%; overflow:hidden; float:left;}
 #added_images_bar h3 { border-bottom:1px solid #7B7D7F; margin:0 0 5px 0;}
@@ -614,10 +613,10 @@ a#gallery_photo { margin: 0 5px 0 0;}
 #album_bar .image { float:left; margin: 7px 7px !important;}
 .album_image_box { float:left; margin: 7px 0 7px 4px !important;}
 .album_image_box .image { margin:0px !important; float:left;}
-.album_image_box { height:117px; width:180px}
+.album_image_box { height:79px; width:128px}
 #new_album, .name_album { display:block; float:right; margin:0 16px 0 0; line-height:19px;}
 #edit_album, #delete_album { display:inline-block; float:right; margin:0 17px 0 0;}
-.album_image_delete_button { float:left; height:20px; width:20px; background:url("../img/excluir.png"); margin:0 0 0 -10px; z-index:9999;}
+.album_image_delete_button { float:right; height:20px; width:20px; background:url("../img/excluir.png"); margin:20 0 0 -10px; z-index:9999;}
 .album_image_delete_button:hover { background:url("../img/excluir-hover.png");}
 
 
