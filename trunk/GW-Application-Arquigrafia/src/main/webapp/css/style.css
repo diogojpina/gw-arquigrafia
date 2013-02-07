@@ -239,6 +239,7 @@ a#creative_commons{ background:url(../img/icons_sprite.png) no-repeat 110px -240
 
 a.image { display:block; width:170px; height:117px; margin:16px 7px; }
 
+
 /* tags */
 .tags_cloud {text-align:center; margin: 0 0; }
 .tags_cloud:after{ content:"."; display:block; height:0; font-size:0; clear:both; visibility:hidden; }
@@ -387,7 +388,7 @@ a#denounce { background:url(../img/icons_sprite.png) -540px 0;}
 a#denounce:hover { background-position:-540px -33px;}
 a#download { background:url(../img/icons_sprite.png) -505px 0;}
 a#download:hover { background-position:-505px -33px;}
-#delete { display:block; width:24px; height:25px; margin-left: 4px;}
+#delete { display:block; width:24px; height:25px; margin-left: 1px;}
 a#delete { background:url(../img/icons_sprite.png) -776px -145px;}
 a#delete:hover { background-position:-776px -177px;}
 
@@ -618,6 +619,8 @@ a#gallery_photo { margin: 0 5px 0 0;}
 #edit_album, #delete_album { display:inline-block; float:right; margin:0 17px 0 0;}
 .album_image_delete_button { float:right; height:20px; width:20px; background:url("../img/excluir.png"); margin:20 0 0 -10px; z-index:9999;}
 .album_image_delete_button:hover { background:url("../img/excluir-hover.png");}
+
+a.paste { display:block; width:115px; height:79px; margin:30px 7px 30px; }
 
 
 /* IMAGE UPLOAD - MODAL */
