@@ -133,6 +133,12 @@
             <description>Gerenciar tags</description>
             <name>tagMgr</name>
         </collablet>
+        
+<!--        	<collablet> -->
+<!--             <business>br.org.groupwareworkbench.collablet.communic.update.UpdateMgrInstance</business> -->
+<!--             <description>Updates</description> -->
+<!--             <name>updateMgr</name> -->
+<!--         </collablet> -->
 
         <!--<collablet>
             <business>br.org.groupwareworkbench.collablet.communic.upload.UploadMgrInstance</business>
