@@ -120,7 +120,7 @@ a#complete_search:hover { background-position:-367px -32px; }
 #form_window select {margin:3px;}
 #form_window input.text {width: 123px;}
 #form_window .date {width: 29px;}
-#form_window a.close {float:right; width:20px; height:20px; background:url(../img/icons_sprite.png) -160px -195px; }
+#form_window a.close {float:right; width:21px; height:21px; background:url(../img/icons_sprite.png) -160px -195px; }
 #form_window a.close:hover { background-position:-160px -216px; }
 #form_window .email, #form_window .website { width: 123px;}
 #form_window input.submit { background:url(../img/icons_sprite.png) -222px -195px; height:20px; width:54px; padding:0; margin:0; border:none; float: right;}
