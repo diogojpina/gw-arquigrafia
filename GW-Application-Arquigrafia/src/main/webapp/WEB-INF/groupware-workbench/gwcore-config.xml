@@ -171,7 +171,7 @@
             <description>Gerenciar perfis</description>
             <name>profileMgr</name>
             <properties>
-                <property key="dirImages" value="/home/gw/imagesprofile/" /> 
+                <property key="dirImages" value="imagesprofile/" /> 
                 <!--
                     No linux se não usa absolute path assume-se $HOME como prefixo, ou seja "images/" ficará "$HOME/images"
                     se tiver permissões esta pasta é criada automaticamente pelo componente.
@@ -204,7 +204,7 @@
             <description>Registro de fotografias</description>
             <name>photoMgr</name>
             <properties>
-                <property key="dirImages" value="/home/gw/imagesArquigrafia/" /> 
+                <property key="dirImages" value="images/" /> 
                 <!--
                     No linux se não usa absolute path assume-se $HOME como prefixo, ou seja "images/" ficará "$HOME/images"
                     se tiver permissões esta pasta é criada automaticamente pelo componente.
@@ -328,7 +328,7 @@
 		<subordination parent="arquigrafiaMgr" child="componentRepository" />
 		<subordination parent="arquigrafiaMgr" child="counterMgr" />
 		<subordination parent="arquigrafiaMgr" child="photoMgr" />	
-		<subordination parent="arquigrafiaMgr" child="mailMgrInstance" />	
+		<subordination parent="arquigrafiaMgr" child="mailMgrInstance" />
     </collablets-subordinations>
 
     <collablets-dependencies>
@@ -352,7 +352,6 @@
         <dependency from="commentMgr2" to="arquigrafiaMgr" />
         <dependency from="counterMgr" to="arquigrafiaMgr" />
         
-        <dependency from="roleMgr" to="userMgr" />
         <dependency from="profileMgr" to="userMgr" />
         <dependency from="commentMgr2" to="friendsMgr" />
         <dependency from="commentMgr" to="photoMgr" />

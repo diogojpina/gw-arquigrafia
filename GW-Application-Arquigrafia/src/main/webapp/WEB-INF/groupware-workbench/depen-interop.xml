@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<frameworkDescriptor>
+	
+	
+	<dependencies-to-add>
+        <dependency from="roleMgr" to="userMgr" />
+        <dependency from="externalAccountMgr" to="userMgr" />
+        <dependency from="activityMgr" to="userMgr" />
+         <dependency from="activityMgr" to="externalAccountMgr" />
+	</dependencies-to-add>
+	
+	
+	
+</frameworkDescriptor>
