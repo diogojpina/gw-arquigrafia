@@ -74,7 +74,7 @@ public class PopulateInitialDatabase {
 
         User guest = new User();
         guest.setLogin("guest");
-        guest.setEmail("");
+        guest.setEmail("guest@website.com");
         guest.setName("Visitante");
         guest.setPassword("");
         guest.setCollablet(user);

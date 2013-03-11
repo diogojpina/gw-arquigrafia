@@ -43,6 +43,7 @@ import br.org.groupwareworkbench.collablet.communic.tag.TagMgrInstance;
 import br.org.groupwareworkbench.collablet.coord.user.User;
 import br.org.groupwareworkbench.core.framework.Collablet;
 import br.org.groupwareworkbench.core.framework.WidgetInfo;
+import br.org.groupwareworkbench.core.routing.Auth;
 
 @RequestScoped
 @Resource

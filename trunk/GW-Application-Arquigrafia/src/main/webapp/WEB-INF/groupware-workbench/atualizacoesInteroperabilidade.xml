@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<frameworkDescriptor>
+	<collablets-to-add>
+        <collablet>
+			<business>br.org.groupwareworkbench.collablet.coord.addFriends.ExternalAccountMgrInstance</business>
+			<description>Gerenciar contas externas</description>
+			<name>externalAccountMgr</name>
+		</collablet>
+		<collablet>
+			<business>br.org.groupwareworkbench.collablet.communic.activityFeed.ActivityMgrInstance</business>
+			<description>Activities</description>
+			<name>activityMgr</name>
+		</collablet>
+	</collablets-to-add>
+	
+	<!-- dependencies-to-add>
+        <dependency from="roleMgr" to="userMgr" />
+        <dependency from="externalAccountMgr" to="userMgr" />
+        <dependency from="activityMgr" to="userMgr" />
+         <dependency from="activityMgr" to="externalAccountMgr" />
+	</dependencies-to-add>
+	
+	<subordinations-to-add>
+        <subordination parent="userMgr" child="externalAccountMgr" />
+        <subordination parent="arquigrafiaMgr" child="activityMgr" />	
+    </subordinations-to-add-->
+	
+</frameworkDescriptor>

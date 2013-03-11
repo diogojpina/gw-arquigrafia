@@ -9,6 +9,7 @@
 		<project>GW-Libs</project>
 		<project>GW-collablets-Arquigrafia</project>
 		<project>GW-collablets</project>
+		<project>GW-Interoperability</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
