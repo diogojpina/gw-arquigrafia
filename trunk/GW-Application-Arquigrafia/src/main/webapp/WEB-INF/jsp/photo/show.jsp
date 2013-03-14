@@ -24,52 +24,7 @@
 <album:buttonAdd-script />
 <script type="text/javascript" src="<c:url value="/js/friend.js" />"></script>
 <script type="text/javascript" src="<c:url value="/js/jquery.fancybox.pack.js" />"></script>
-<script type="text/javascript" src="<c:url value="/js/jquery.xdomainajax.js" />"></script>
-
-
-<script>
-  jQuery(document).ready(function($) {
-      $('.fancybox').fancybox({
-		  	
-    	  beforeShow: function () {
-            	$.fancybox.wrap.bind("contextmenu", function (e) {
-                    return false; 
-            	});
-        },
-				
-        afterLoad : function() {
-							var download = $('#single_view_image_buttons');
-		         	if (download.size() === 0) {
-								this.title = '<a id="download_login_link" href="#">Faça o login para fazer o download</a>';
-							} else {
-								var buttons = $("#single_view_buttons_box").clone(),
-										social_network_buttons = buttons.find("#single_view_social_network_buttons");
-								
-								social_network_buttons.remove();
-								this.title = '' + buttons.html();
-							}
-
-				},
-
-        scrolling: 'no', 
-        minWidth: 800,
-      });
-      
-      $('#download_login_link').live('click', function(e){
-    	  $.fancybox.close(true);
-				$('#mask').fadeIn('fast');
-				$('#form_window').fadeIn('slow');
-				$('#registration').load('<c:url value="/users/8/login"/>');	
-    	  e.preventDefault();
-      });
-      
-      $('#plus').live('click', function(e) {
-    	  $.fancybox.close(true);
-      });
-  });
-
-</script>
-
+<script type="text/javascript" src="<c:url value="/js/photo.js" />"></script>
 
 </head>
 
