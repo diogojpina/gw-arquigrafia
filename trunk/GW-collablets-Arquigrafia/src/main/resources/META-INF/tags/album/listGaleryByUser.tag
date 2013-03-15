@@ -10,18 +10,16 @@
 </r:callMethod>
 
 
-     <h2 id="profile_block_title">Minhas&nbsp;Coleções</h2>
+     <h2 id="profile_block_title">Minhas&nbsp;galerias</h2>
      
      <a href="<c:url value="/album/15/list/${user.id}" />" id="small" class="profile_block_link">Ver todas</a>
 	<div id="profile_box">
 		<c:forEach items="${albunsByUser}" var="album">
 	     	<div id="gallery_box">
-	        	<a href="${pageContext.request.contextPath}/album/${albumMgr.id}/default/${album.id}" id="gallery_photo">
 	        	<a href="${pageContext.request.contextPath}/groupware-workbench/album/${albumMgr.id}/show/${album.id}/list/${user.id}" id="gallery_photo">
          	    	<img src="<c:url value="/img/album_icon-1.png" />" id="gallery_photo" />
 	       		</a>
 	        		
-	         	<a href="${pageContext.request.contextPath}/album/${albumMgr.id}/default/${album.id}" id="name"><c:out value="${album.title}" /></a>
 	         	<a href="${pageContext.request.contextPath}/groupware-workbench/album/${albumMgr.id}/show/${album.id}/list/${user.id}" id="name"><c:out value="${album.title}" /></a>
 	         	<br />
 	         	<span id="small">${fn:length(album.objects)} foto(s)</span>
