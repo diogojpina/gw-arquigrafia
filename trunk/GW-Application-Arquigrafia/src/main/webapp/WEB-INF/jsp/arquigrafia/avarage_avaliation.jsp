@@ -34,7 +34,6 @@
       
       <div id="text_Over">
       <h2 class="common_title">Avaliação</h2>
-        <p>Como você avaliaria esta arquitetura apresentada na imagem ao lado? <br /> 
 		<p>Esta é a média das avaliações desta imagem. </p> 
 		</div>
 		
