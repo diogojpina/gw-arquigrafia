@@ -21,10 +21,10 @@
 <arquigrafia:includes arquigrafiaInstance="${arquigrafiaMgr}" />
 <link rel="stylesheet" type="text/css" media="screen" href="<c:url value="/css/jquery.fancybox.css" />" />
 
-<album:buttonAdd-script />
 <script type="text/javascript" src="<c:url value="/js/friend.js" />"></script>
 <script type="text/javascript" src="<c:url value="/js/jquery.fancybox.pack.js" />"></script>
 <script type="text/javascript" src="<c:url value="/js/photo.js" />"></script>
+<script type="text/javascript" src="<c:url value="/js/album.js" />"></script>
 
 </head>
 
