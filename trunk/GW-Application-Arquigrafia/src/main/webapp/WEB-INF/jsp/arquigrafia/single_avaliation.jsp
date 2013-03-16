@@ -45,7 +45,7 @@
 	      
           <!--   FORMULÃRIO DE AVALIAÃÃO   -->
           <form name="tags" method="post" enctype="multipart/form-data"
-			action="<c:url value="/photo/${photo.id}" />">
+			action="<c:url value="/${arquigrafiaMgr.id}/photo/${photo.id}/avaliation" />">
           <%--
             <input type="reset" id="clean" class="cursor" value="" />
             <input type="submit" id="avaliate" class="cursor" value="" />
