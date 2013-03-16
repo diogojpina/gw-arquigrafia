@@ -90,6 +90,9 @@
 	      <c:if test="${not empty erros}">
 	      	<c:out value="${erros}" />
 	      </c:if>
+	      <c:if test="${not empty message}">
+	      	<c:out value="${message}" />
+	      </c:if>
       </div>   
       <script type="text/javascript" src="js/message_delivery.js"></script>
       <!--   TESTE DE FUNCIONAMENTO DA FUNÇÃO   -->
