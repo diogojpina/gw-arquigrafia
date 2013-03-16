@@ -7,7 +7,10 @@
 <h2>${message}</h2>
 <br />
 <small>* Todos os campos a seguir são obrigatórios.</small></p>
-<form id="form1" class="cmxform" name="dados" method="POST" action="<c:url value="/album/${albumMgr.id}/save" />" accept-charset="UTF-8" autocomplete="off">
+
+
+
+<form id="send_forgot_password" class="cmxform" name="dados" method="POST" action="<c:url value="/album/${albumMgr.id}/save"/><c:if test="${json eq true }">?_format=json</c:if>" accept-charset="UTF-8" autocomplete="off">
   	
 		 <c:if test="${not empty album.id}">
 		   <input type="hidden" name="album.id" value="${album.id}"/>
@@ -24,6 +27,10 @@
 				<input type="text" class="required" name="album.description" value="<c:out value="${album.description}" />"/>
   		</p>
 	</div>
+
+	  <div id="validation_error" class="message_delivery_generic" >
+	  </div>   
+
 
 	<div>
 		<input name="enviar" type="submit" class="submit cursor" value="" />
