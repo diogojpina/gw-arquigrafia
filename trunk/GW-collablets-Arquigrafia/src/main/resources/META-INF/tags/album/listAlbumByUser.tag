@@ -32,7 +32,7 @@
 			<div style="text-align: center;">
 				<album:album album="${album}" albumMgr="${albumMgr}" />
 				<span class="name_album">
-				<strong id="name" ><a href="${pageContext.request.contextPath}/album/${albumMgr.id}/listPhotos/${album.id}" class="paste">${album.title}</a></strong>
+				<strong id="name" >${album.title}</strong>
 				<c:if test="${sessionScope.userLogin.id eq album.owner.id and album.title ne 'Favoritos'}">
 					<a id="edit_album" href="<c:url value="/album/${albumMgr.id}/edit/${album.id}"/>">Editar</a>
 					<a id="delete_album" href="<c:url value="/album/${albumMgr.id}/destroy/${album.id}"/>">Excluir</a>
