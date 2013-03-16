@@ -21,6 +21,7 @@
 package br.org.groupwareworkbench.arquigrafia.main;
 
 import java.util.List;
+import java.util.ResourceBundle;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -57,7 +58,8 @@ public class ArquigrafiaController {
     private final HttpSession session;
     private final RequestInfo requestInfo;
     private final HttpServletRequest request;
-
+    private ResourceBundle bundle;
+    
     public ArquigrafiaController(Result result, Validator validator, WidgetInfo info, HttpSession session,
             RequestInfo requestInfo, HttpServletRequest request) {
         this.result = result;
@@ -66,6 +68,7 @@ public class ArquigrafiaController {
         this.session = session;
         this.requestInfo = requestInfo;
         this.request = request;
+        this.bundle = ResourceBundle.getBundle("messages");
     }
 
     @Get
@@ -141,12 +144,23 @@ public class ArquigrafiaController {
         addIncludes(arquigrafiaInstance);
     }
 
+    @Post
+    @Path("/{arquigrafiaInstance}/photo/{idPhoto}/avaliation")
+    public void saveAvaliation(ArquigrafiaMgrInstance arquigrafiaInstance, long idPhoto) {
+        Photo photo = Photo.findById(idPhoto);
+        PhotoMgrInstance photoMgr = (PhotoMgrInstance) photo.getCollablet().getBusinessObject();
+        photoMgr.getCollablet().processWidgets(info, photo);
+        result.redirectTo(this).avarage_avaliation(arquigrafiaInstance, idPhoto);
+    }
+
+    
     @Get
     @Path(value = "/{arquigrafiaInstance}/photo_avaliation_avarage/{idPhoto}")
     public void avarage_avaliation(ArquigrafiaMgrInstance arquigrafiaInstance, Long idPhoto) {
         Photo foto = Photo.findById(idPhoto);
-        result.include("photo", foto);
-        result.include("arquigrafiaMgr", arquigrafiaInstance);
+        result.include("photo", foto)
+        .include("arquigrafiaMgr", arquigrafiaInstance)
+        .include("message", bundle.getString("photo.avaliation.avarage.message"));
         addIncludes(arquigrafiaInstance);
     }
     
