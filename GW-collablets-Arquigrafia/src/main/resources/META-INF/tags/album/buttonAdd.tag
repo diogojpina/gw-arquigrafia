@@ -26,8 +26,14 @@
   		</p>
 		</div>
 
+
 		<div>
 			<input name="enviar" type="submit" class="submit cursor" value="" />
 		</div>
+
+  	<div>
+			<a id="new_album_image" href="<c:url value="/album/new/${albumMgr.id}.json"/>">+ Criar uma nova coleção</a>
+		</div>
+
 
 </form>

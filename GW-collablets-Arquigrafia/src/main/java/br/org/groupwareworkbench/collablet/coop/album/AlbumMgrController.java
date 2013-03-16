@@ -23,6 +23,7 @@ package br.org.groupwareworkbench.collablet.coop.album;
 import static br.com.caelum.vraptor.view.Results.logic;
 
 import java.util.List;
+import java.util.ResourceBundle;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -33,6 +34,7 @@ import br.com.caelum.vraptor.Put;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.Validator;
+import br.com.caelum.vraptor.core.RequestInfo;
 import br.com.caelum.vraptor.ioc.RequestScoped;
 import br.com.caelum.vraptor.validator.Validations;
 import br.com.caelum.vraptor.view.Results;
@@ -48,11 +50,15 @@ public class AlbumMgrController {
     private final Result result;
     private final HttpServletRequest request;
     private final Validator validator;
+    private final RequestInfo requestInfo;
+    private ResourceBundle bundle;
 
-    public AlbumMgrController(Result result, HttpServletRequest request, Validator validator) {
+    public AlbumMgrController(Result result, HttpServletRequest request, Validator validator, RequestInfo requestInfo) {
         this.request = request;
         this.result = result;
         this.validator = validator;
+        this.requestInfo = requestInfo;
+        this.bundle = ResourceBundle.getBundle("messages");
     }
     
     @Get
@@ -139,24 +145,42 @@ public class AlbumMgrController {
     public void newAlbum(AlbumMgrInstance albumMgr) {
         addIncludes(albumMgr);
     }
+
+    @Get
+    @Path("/album/new/{albumMgr}.json")
+    public void newAddAlbum(AlbumMgrInstance albumMgr) {
+        newAlbum(albumMgr);
+        result.include("json", true).forwardTo("/WEB-INF/jsp/albumMgr/newAlbum.jsp");
+    }
     
     @Post
     @Path(value = "/album/{albumMgr}/save")
     public void save(AlbumMgrInstance albumMgr, final Album album) {
         User user = (User) request.getSession().getAttribute("userLogin");
 
-        validate(albumMgr, album, user);
+        respondWithValidation(albumMgr, album, user);
         
         album.setOwner(user);
         albumMgr.save(album);
-        result.use(logic()).redirectTo(AlbumMgrController.class).list(albumMgr, user.getId());
+        respondWith(albumMgr, user.getId());
     }
 
+    public void respondWith(AlbumMgrInstance albumMgr, Long idUser) {
+
+        if ("json".equals(requestInfo.getRequest().getParameter("_format"))) {
+            result.use(Results.json()).withoutRoot().from(bundle.getString("user.registered")).serialize();
+        } else {
+            result.use(logic()).redirectTo(AlbumMgrController.class).list(albumMgr, idUser);
+        }
+        
+    }
+
+    
     @Put
     @Path(value = "/album/{albumMgr}/save")
     public void update(AlbumMgrInstance albumMgr, Album album) {
         User user = (User) request.getSession().getAttribute("userLogin");
-        validate(albumMgr, album, user);
+        respondWithValidation(albumMgr, album, user);
         Album albumFound = Album.findById(album.getId());
         albumFound.setTitle(album.getTitle());
         albumFound.setDescription(album.getDescription());
@@ -164,14 +188,24 @@ public class AlbumMgrController {
         result.use(logic()).redirectTo(AlbumMgrController.class).list(albumMgr, user.getId());
     }
 
-    private void validate(AlbumMgrInstance albumMgr, final Album album, User user) {
-        validator.checking(new Validations() {{
-            that(!album.getTitle().isEmpty(), "title", "album.title.not.empty");
-        }});
+
+    public void respondWithValidation(AlbumMgrInstance albumMgr, final Album album, User user) {
+
+        if ("json".equals(requestInfo.getRequest().getParameter("_format"))) {
+            validator.checking(new Validations() {{
+                that(!album.getTitle().isEmpty(), "title", bundle.getString("album.title.not.empty"));
+            }});
+            validator.onErrorSendBadRequest();
+        } else {
+            validator.checking(new Validations() {{
+                that(!album.getTitle().isEmpty(), "title", "album.title.not.empty");
+            }});
+            validator.onErrorUse(logic()).redirectTo(AlbumMgrController.class).list(albumMgr, user.getId());
+        }
         
-        validator.onErrorUse(logic()).redirectTo(AlbumMgrController.class).list(albumMgr, user.getId());
     }
 
+    
     @Get
     @Path("/album/{albumMgr}/edit/{idAlbum}")
     public void edit(AlbumMgrInstance albumMgr, Long idAlbum) {
