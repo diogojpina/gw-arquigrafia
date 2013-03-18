@@ -16,11 +16,11 @@
   <br/>
   <div>
   	<a href="<c:url value="/groupware-workbench/externalaccount/${externalAccountMgr.id}/${userMgr.id}/${roleMgr.id}/loginFacebookAuth?auth=s"/>">
-		<img src="<c:url value="/img/redesSociais/facebook.jpeg"/>" alt="Loggin with facebook"/></a><br/><br/>
+		<img src="<c:url value="/img/redesSociais/facebook2.jpeg"/>" alt="Conectar com o facebook"/></a><br/><br/>
   	<a href="<c:url value="/groupware-workbench/externalaccount/${externalAccountMgr.id}/${userMgr.id}/${roleMgr.id}/TwitterApi"/>">
-  		<img src=" <c:url value="/img/redesSociais/twitter-signin.png"/>" alt="Loggin with twitter"/></a><br/><br/>
+  		<img src=" <c:url value="/img/redesSociais/twitter-signin2.png"/>" alt="Conectar com o facebook"/></a><br/><br/>
   	<a href="<c:url value="/groupware-workbench/externalaccount/${externalAccountMgr.id}/${userMgr.id}/${roleMgr.id}/loginOrkutAuth"/>">
-  		<img src="<c:url value="/img/redesSociais/google.png"/>" alt="Loggin with orkut"/></a><br/>
+  		<img src="<c:url value="/img/redesSociais/google2.png"/>" alt="Conectar com o facebook"/></a><br/>
   </div>
   
   
