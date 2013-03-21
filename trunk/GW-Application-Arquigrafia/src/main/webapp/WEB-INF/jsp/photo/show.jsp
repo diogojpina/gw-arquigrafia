@@ -66,16 +66,7 @@
 						photoMgr="${photoMgr}" />
 
 					<hr />
-				</div>
-				
-				<c:if test="${not empty previousPhoto}">
-					<a href="<c:url value="/photo/${previousPhoto.id}"/>">Anterior</a>
-				</c:if>
-
-				<c:if test="${not empty nextPhoto}">
-					<a href="<c:url value="/photo/${nextPhoto.id}"/>">Próximo</a>
-				</c:if>
-				
+				</div>				
 				
 				<!--   BOX DE BOTOES DA IMAGEM   -->
 				<div id="single_view_buttons_box">
