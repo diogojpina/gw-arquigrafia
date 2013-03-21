@@ -12,33 +12,32 @@
   <label>Senha:</label>
   <input name="user.password" type="password" class="text" />
   <br />
+  <br />
+    <a id="forgot_password" href="<c:url value="/users/${userMgr.id}/forgotPassword"/>" >Esqueceu sua senha?</a>
+  <br />
   
   <br/>
-  <div>
-  	<a href="<c:url value="/groupware-workbench/externalaccount/${externalAccountMgr.id}/${userMgr.id}/${roleMgr.id}/loginFacebookAuth?auth=s"/>">
-		<img src="<c:url value="/img/redesSociais/facebook2.jpeg"/>" alt="Conectar com o facebook"/></a><br/><br/>
-  	<a href="<c:url value="/groupware-workbench/externalaccount/${externalAccountMgr.id}/${userMgr.id}/${roleMgr.id}/TwitterApi"/>">
-  		<img src=" <c:url value="/img/redesSociais/twitter-signin2.png"/>" alt="Conectar com o facebook"/></a><br/><br/>
-  	<a href="<c:url value="/groupware-workbench/externalaccount/${externalAccountMgr.id}/${userMgr.id}/${roleMgr.id}/loginOrkutAuth"/>">
-  		<img src="<c:url value="/img/redesSociais/google2.png"/>" alt="Conectar com o facebook"/></a><br/>
-  </div>
+
   
   
 </div>
 <div>
-  Ainda não e usuário do arquigrafia?
+  Ainda não é usuário do arquigrafia?
+  <br />Pois então não perca tempo, <a href="#" name="Cadastre-se">cadastre-se</a> e comece a publicar e compartilhar fotos no site.
   <br />
-  Envie um email para <a href="mailto:arquigrafiabrasil@gmail.com " target="_blank">arquigrafiabrasil@gmail.com</a> e assim que possível convidaremos você para participar.
-  <!-- Não possui cadastro, pois então não perca tempo, <a href="#" name="Cadastre-se">cadastre-se</a> e comece a publicar e compartilhar fotos no site.
+  <br />Ou conecte-se com:</
   <br />
-  <br />
-  Ou então, faça seu login pelo <a href="#" name="Facebook">facebook</a>, <a href="#" name="Twitter">twitter</a> ou <a href="#" name="Twitter">Google</a>.
-  <br />
-  <a href="#" name="Facebook" id="login_facebook_icon"></a>
-  <a href="#" name="Twitter" id="login_twitter_icon"></a><br />
-  <a href="#" name="Google" id="login_google_icon"></a>  -->
-  <br/><br/>
-  <a id="forgot_password" href="<c:url value="/users/${userMgr.id}/forgotPassword"/>" >Esqueceu sua senha?</a>
+  <br />  
+    <div>
+      <br />
+  	<a href="<c:url value="/groupware-workbench/externalaccount/${externalAccountMgr.id}/${userMgr.id}/${roleMgr.id}/loginFacebookAuth?auth=s"/>">
+		<img src="<c:url value="/img/redesSociais/face-signin.png"/>" alt="Conectar com o facebook"/></a><br/><br/>
+  	<a href="<c:url value="/groupware-workbench/externalaccount/${externalAccountMgr.id}/${userMgr.id}/${roleMgr.id}/TwitterApi"/>">
+  		<img src=" <c:url value="/img/redesSociais/twitter-signin.png"/>" alt="Conectar com o facebook"/></a><br/><br/>
+  	<a href="<c:url value="/groupware-workbench/externalaccount/${externalAccountMgr.id}/${userMgr.id}/${roleMgr.id}/loginOrkutAuth"/>">
+  		<img src="<c:url value="/img/redesSociais/google-signin.png"/>" alt="Conectar com o facebook"/></a><br/>
+  </div>
+
 </div>
 <input name="enviar" type="submit" value="" id="login_white_button" />
 </form>
