@@ -114,7 +114,7 @@ a#complete_search:hover { background-position:-367px -32px; }
 
 /* lightbox - criar uma conta */
 #form_window {width: 600px; background: #fff; position:fixed; top: 40%; left:50%; margin: -240px 0 0 -340px; padding: 35px; -moz-border-radius: 7px; border-radius: 7px; display:none; } /* position: absolute; */
-#form_window label {width: 100px; display: inline-block; color: #777; text-align: right; vertical-align:top; line-height:27px;}
+#form_window label {width: 100px; display: inline-block; color: #777; text-align: left; vertical-align:top; line-height:27px;}
 #form_window textarea {border:solid 1px #EEEEEE; padding: 3px; margin: 2px 0 2px 5px; font-size:11px;}
 #form_window input {border: solid 1px #eee; padding: 3px; margin: 2px 0 2px 5px;}
 #form_window select {margin:3px;}
