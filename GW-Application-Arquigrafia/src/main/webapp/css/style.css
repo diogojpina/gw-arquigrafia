@@ -59,7 +59,7 @@ ul#top_menu_items li a#contact:hover{ background-position: -778px -116px; }
 /* registro e login - OFF */
 #loggin_area { min-width:200px; float:right; margin-right:16px; }
 #loggin_area a#login_button { height:20px; width:56px; float:right; background:url(../img/icons_sprite.png) -87px -145px; margin:60px 6px 0; }
-#loggin_area a#login_button:hover { background-position:-87px -169px; }
+#loggin_area a#login_button:hover { background-position:-87px -170px; }
 #loggin_area a#registration_button { height:20px; width:110px; float:right; background:url(../img/icons_sprite.png) -146px -145px; margin:60px 6px 0; }
 #loggin_area a#registration_button:hover { background-position:-146px -170px; }
 #login_registration_bar { float:right; margin:60px 25px 0 0; }
