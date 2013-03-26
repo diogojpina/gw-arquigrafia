@@ -359,7 +359,7 @@ public class ImportImages {
         if (cell.getValueType()==null) {
             return "";
         }
-        if (cell.getValueType().equals(CONTENT_FLOAT) || cell.getValueType().equals(CONTENT_STRING)) {
+        if (cell.getValueType().equals(CONTENT_FLOAT) || cell.getValueType().equals(CONTENT_STRING) || cell.getValueType().equals(CONTENT_DATE)) {
             return cell.getStringValue();
         }
         if (logError) {
