@@ -541,6 +541,20 @@ ul#avaliation_list li .bloco{ width:430px; background:url(../img/icons_sprite.pn
 	color:#A6A6A6;
 }
 
+#text_Bottom {
+	float: left;
+	padding-right: 0px;
+	width: 75%;	
+	margin-top: 5%;
+	margin-bottom: 5%;
+	overflow: scroll;
+	overflow-x: hidden;
+	overflow-y: auto;
+	color:#A6A6A6;
+	text-align:justify;
+	text-justify:inter-word;
+}
+
 #binomialSubmit input {
     width: 65px;
     height: 20px;

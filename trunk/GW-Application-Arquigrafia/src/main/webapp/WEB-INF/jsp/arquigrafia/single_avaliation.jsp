@@ -122,7 +122,13 @@
                         
        <!--   FIM - BOX DE AVALIAÃÃO   -->
 
-                        
+			<br />
+			<h3>Compare as avaliações:</h3>
+			<p>Compare sua avaliação com as do outros usuários.</p>
+			<a href="<c:url value="/18/photo_avaliation_avarage/${photo.id}" />" title="Média das avaliações da foto" id="evaluation_average"></a>
+	     <!--<p>Nós te preparamos um vídeo que mostra o passo a passo da avaliação. Clique no botão abaixo para assistí­-lo:</p>
+	     <a href="#" id="watch_button"></a> -->
+	                        
 		
       </div>
       
@@ -154,14 +160,7 @@
 						 foto="${photo}"
 						photoMgr="${photoMgr}" />
 
-					<hr />
 				</div>
-				
-				<h3>Compare as avaliações:</h3>
-				<p>Compare sua avaliação com as do outros usuários.</p>
-					<a href="<c:url value="/18/photo_avaliation_avarage/${photo.id}" />" title="Média das avaliações da foto" id="evaluation_average"></a>
-        <!--<p>Nós te preparamos um vídeo que mostra o passo a passo da avaliação. Clique no botão abaixo para assistí­-lo:</p>
-        <a href="#" id="watch_button"></a> -->
 		
       </div>
       
