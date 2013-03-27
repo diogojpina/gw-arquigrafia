@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<frameworkDescriptor>
+	
+	
+	<dependencies-to-add>      
+         <dependency from="photoMgr" to="faqMgr" />
+         <dependency from="counterMgr" to="faqMgr" />
+         <dependency from="commentMgr" to="faqMgr" />
+	</dependencies-to-add>
+	
+	
+	
+</frameworkDescriptor>
