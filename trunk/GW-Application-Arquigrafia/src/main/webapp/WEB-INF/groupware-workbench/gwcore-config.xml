@@ -194,7 +194,8 @@
                 <property key="emailAdmin" value="arquigrafiabrasil@gmail.com" /> 
                 <property key="passwdAdmin" value="4rquigr4fi4" />
                 <!-- property key="hostURL" value="http://valinhos.ime.usp.br:51080" /-->
-                <property key="hostURL" value="http://localhost:8080" />
+                <!--  <property key="hostURL" value="http://localhost:8080" />  -->
+                <property key="hostURL" value="http://arquigrafia.org.br/" />
                 <property key="appName" value="GW-Application-Arquigrafia" /> 
             </properties>    
         </collablet>
