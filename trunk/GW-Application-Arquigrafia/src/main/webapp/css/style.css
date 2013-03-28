@@ -113,7 +113,7 @@ a#complete_search:hover { background-position:-367px -32px; }
 /* --- PÁGINA INICIAL --- */
 
 /* lightbox - criar uma conta */
-#form_window {width: 600px; background: #fff; position:fixed; top: 40%; left:50%; margin: -240px 0 0 -340px; padding: 35px; -moz-border-radius: 7px; border-radius: 7px; display:none; } /* position: absolute; */
+#form_window {width: 600px; background: #fff; position:fixed; top: 40%; left:50%; margin: -240px 0 0 -340px; padding: 35px; -moz-border-radius: 2px; border-radius: 2px; display:none; } /* position: absolute; */
 #form_window label {width: 100px; display: inline-block; color: #777; text-align: left; vertical-align:top; line-height:27px;}
 #form_window textarea {border:solid 1px #EEEEEE; padding: 3px; margin: 2px 0 2px 5px; font-size:11px;}
 #form_window input {border: solid 1px #eee; padding: 3px; margin: 2px 0 2px 5px;}
@@ -288,13 +288,14 @@ a.footer_image { display:block; margin:4px; float:left; border:none; width:105px
 
 /*créditos*/
 #credits { padding-top:5px; text-align:center; }
-#credits ul {margin: 5px auto; display:block; height:30px; width:1030px;}
+#credits ul {margin: -5px auto; display:block; height:30px; width:1060px;}
 #credits ul li { display:inline-block; margin:0 15px; float:left; }
 #credits ul li a { display:block; height:30px; }
 #credits ul li a#usp { background:url(../img/icons_sprite.png) -100px -110px; width:40px;}
 #credits ul li a#fapesp { background:url(../img/icons_sprite.png) -327px -109px; width:74px;}
 #credits ul li a#rnp { background:url(../img/icons_sprite.png) -151px -109px; width:47px; }
 #credits ul li a#cnpq { background:url(../img/icons_sprite.png) -467px -107px; width:63px; }
+#credits ul li a#chancela { background:url(../img/icons_sprite.png) -562px -195px; width:30px; }
 #credits ul li a#fau { background:url(../img/icons_sprite.png) -252px -109px; width:63px; }
 #credits ul li a#ime { background:url(../img/icons_sprite.png) -210px -109px; width:27px; }
 #credits ul li a#eca { background:url(../img/icons_sprite.png) -410px -109px; width:40px; }
