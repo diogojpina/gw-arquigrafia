@@ -43,6 +43,9 @@
             <div style="float: left; width: 14%; margin-top: 20px;">
                 <a href="http://www.cnpq.br/" target="_blanck"><img src="${pageContext.request.contextPath}/images/cnpq_logo.gif" alt="CNPq" /></a>
             </div>
+            <div style="float: left; width: 14%; margin-top: 20px;">
+                <a href="http:///" target="_blanck"><img src="${pageContext.request.contextPath}/images/chancela.png" alt="Chancela" style="width: 30px" /></a>
+            </div>
             <div style="float: left; width: 11%; margin-top: 20px;">
                 <a href="http://www.usp.br/" target="_blanck"><img src="${pageContext.request.contextPath}/images/usp_logo.png" alt="USP" /></a>
             </div>
