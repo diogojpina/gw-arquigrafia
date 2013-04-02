@@ -11,7 +11,6 @@
         <link rel="shortcut icon" type="image/x-icon" href="<c:url value="/images/favicon.ico" />"/>
     </head>
     <body>
-    	<s:check name="X-X-admin">
 	        <form name="uploadForm" method="post" enctype="multipart/form-data" action="<c:url value="/config/update" />">
 		        <label>Arquivo:</label>
 		        <select name="fileName" class="input_content">
@@ -22,6 +21,5 @@
 	            <input type="submit" name="Submit" value="send" />
 	        </form>
 	        <a href="<c:url value="/config/upload" />">Enviar arquivo xml de configuração</a>
-        </s:check>
     </body>
 </html>
