@@ -573,6 +573,20 @@ ul#avaliation_list li .bloco{ width:430px; background:url(../img/icons_sprite.pn
 	background: url("../img/icons_sprite.png") repeat scroll -84px -259px transparent;
 }
 
+a#evaluation_cancel {
+	background: url(../img/icons_sprite.png) -694px -193px;
+	width: 65px;
+	height: 20px;
+	cursor: pointer;
+	position: absolute;
+	margin-top: -20px;
+	margin-left: 150px;
+}
+
+a#evaluation_cancel:hover {
+	background-position: -694px -215px;
+}
+
 .left_avaliation_value{
 	width: auto;
 	float: left;
