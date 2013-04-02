@@ -1,26 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="src/main/java"/>
-	<classpathentry kind="src" path="src/main/resources"/>
-	<classpathentry kind="src" path="src/test/java"/>
-	<classpathentry kind="src" path="src/test/integration"/>
-	<classpathentry kind="src" path="src/test/resources"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/GW-commons-widgets"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/GW-core"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/GW-Libs"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/GW-collablets-Arquigrafia"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/GW-collablets"/>
-	<classpathentry kind="lib" path="/GW-Libs/lib/imgscalr-lib-4.2.jar"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/GW-Interoperability"/>
-	<classpathentry kind="lib" path="/GW-Libs/lib/log4j-1.2.15.jar"/>
-	<classpathentry kind="lib" path="/GW-Libs/lib/odfdom-java-0.8.8-incubating.jar"/>
-	<classpathentry kind="lib" path="/GW-Libs/lib/simple-odf-0.7-incubating.jar"/>
-	<classpathentry kind="lib" path="/GW-Libs/lib/xercesImpl.jar"/>
-	<classpathentry kind="lib" path="/GW-Libs/lib/xml-apis.jar"/>
-	<classpathentry kind="lib" path="/GW-Libs/lib/xslt-runner-task-1.2.1-incubating.jar"/>
-	<classpathentry kind="output" path="build/classes"/>
+        <classpathentry kind="src" path="src/main/java"/>
+        <classpathentry kind="src" path="src/main/resources"/>
+        <classpathentry kind="src" path="src/test/java"/>
+        <classpathentry kind="src" path="src/test/integration"/>
+        <classpathentry kind="src" path="src/test/resources"/>
+        <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+        <classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+        <classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+        <classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
+        <classpathentry combineaccessrules="false" kind="src" path="/GW-commons-widgets"/>
+        <classpathentry combineaccessrules="false" kind="src" path="/GW-core"/>
+        <classpathentry combineaccessrules="false" kind="src" path="/GW-Libs"/>
+        <classpathentry combineaccessrules="false" kind="src" path="/GW-collablets-Arquigrafia"/>
+        <classpathentry combineaccessrules="false" kind="src" path="/GW-collablets"/>
+        <classpathentry kind="lib" path="/GW-Libs/lib/odf/odfdom-java-0.8.8-incubating.jar"/>
+        <classpathentry kind="lib" path="/GW-Libs/lib/odf/simple-odf-0.7-incubating.jar"/>
+        <classpathentry kind="lib" path="/GW-Libs/lib/odf/xercesImpl.jar"/>
+        <classpathentry kind="lib" path="/GW-Libs/lib/odf/xml-apis.jar"/>
+        <classpathentry kind="lib" path="/GW-Libs/lib/odf/xslt-runner-task-1.2.1-incubating.jar"/>
+        <classpathentry kind="lib" path="/GW-Libs/lib/imgscalr-lib-4.2.jar"/>
+        <classpathentry combineaccessrules="false" kind="src" path="/GW-Interoperability"/>
+        <classpathentry kind="output" path="build/classes"/>
 </classpath>
