@@ -13,7 +13,7 @@
 		  <li><a href="http://www.fapesp.br/" title="FAPESP" id="fapesp" target="_blank"></a></li>
 		  <li><a href="http://www.rnp.br/" title="RNP" id="rnp" target="_blank"></a></li>
 		  <li><a href="http://www.cnpq.br/" title="CNPQ" id="cnpq" target="_blank"></a></li>
-		  <li><a href="http:///" title="Este projeto" id="Chancela" target="_blank"></a></li>
+		  <li><a href="#" title="Este projeto" id="chancela" target="_blank"></a></li>
 		  <li><a href="http://www.usp.br/fau/" title="FAU" id="fau" target="_blank"></a></li>
 		  <li><a href="http://www.ime.usp.br/" title="IME" id="ime" target="_blank"></a></li>
 		  <li><a href="http://www.eca.usp.br/" title="ECA" id="eca" target="_blank"></a></li>
