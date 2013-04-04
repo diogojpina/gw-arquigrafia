@@ -101,7 +101,7 @@
                            	<div id="binomialSubmit">
                                    <input type="submit" name="saveBinomial" value="" />
                           	</div>
-							<a href="<c:url value="/18/photo_avaliation_avarage/${photo.id}" />" title="Cancelar" id="evaluation_cancel"></a>
+							<a href="<c:url value="/photo/${photo.id}" />" title="Cancelar" id="evaluation_cancel"></a>
                 </div>
                        
          </form>
