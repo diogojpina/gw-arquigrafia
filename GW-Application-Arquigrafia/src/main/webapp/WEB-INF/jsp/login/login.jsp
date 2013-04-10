@@ -23,7 +23,7 @@
 </div>
 <div>
   Ainda não é usuário do arquigrafia?
-  <br />Pois então não perca tempo, <a href="#" name="Cadastre-se">cadastre-se</a> e comece a publicar e compartilhar fotos no site.
+  <br />Pois então não perca tempo, <a id="registration_user" href="<c:url value="/users/8/signup"/>" >cadastre-se</a> e comece a publicar e compartilhar fotos no site.
   <br />
   <br />Ou conecte-se com:</
   <br />
