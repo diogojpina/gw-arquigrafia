@@ -117,6 +117,17 @@
 			$('#registration').load(this.href);	
 		});
 
+		
+		$('#registration_user').live("click", function(e){
+			e.preventDefault();
+			$('#mask').fadeOut('fast');
+			$('#form_window').fadeOut('slow');
+			$('#mask').fadeIn('fast');
+			$('#form_window').fadeIn('slow');
+			$('#registration').load(this.href);	
+		});
+
+		
 		$('#comment_login_link').click(function(){
 			$('#mask').fadeIn('fast');
 			$('#form_window').fadeIn('slow');
