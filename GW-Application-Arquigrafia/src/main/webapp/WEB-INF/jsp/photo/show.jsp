@@ -77,6 +77,7 @@
 						<ul id="single_view_image_buttons">
 							<!-- <li><a href="#" title="Adicione aos seus favoritos" id="add_favourite"></a></li>
 							<li><a href="#" title="Denuncie esta foto" id="denounce"></a></li>-->
+						    <li><a href="<c:url value="/photo/${photoMgr.id}/edit/${photo.id}" />" title="Editar informações" id="eyedroppper"></a></li>						
 							<li><a href="<c:url value="/18/photo_avaliation/${photo.id}" />" title="Avalie a foto" id="eyedroppper"></a></li>
 							<li><a href="<c:url value="/album/${albumMgr.id}/add/${photo.id}" />" title="Adicione a sua galeria" id="plus"></a></li>  
 							<li><a href="<c:url value="/photo/img-original/${photo.id}" />" title="Faça o download" id="download" target="_blank"></a></li>
