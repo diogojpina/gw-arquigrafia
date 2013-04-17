@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<frameworkDescriptor>
+	<subordinations-to-add>
+		<subordination parent="arquigrafiaMgr" child="flagMgr" />
+    </subordinations-to-add>
+</frameworkDescriptor>

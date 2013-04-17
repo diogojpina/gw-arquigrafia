@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<frameworkDescriptor>
+	
+	
+	<dependencies-to-add>
+        <dependency from="flagMgr" to="arquigrafiaMgr" />
+        <dependency from="flagMgr" to="photoMgr" />
+	</dependencies-to-add>
+	
+	
+	
+</frameworkDescriptor>
