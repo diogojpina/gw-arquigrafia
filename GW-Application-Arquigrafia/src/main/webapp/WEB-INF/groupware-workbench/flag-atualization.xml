@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<frameworkDescriptor>
+   <collablets-to-add>
+      <business>br.org.groupwareworkbench.collablet.coop.flag.FlagMgrInstance</business>
+            <description>Flag de denúncia</description>
+            <name>flagMgr</name>
+            <properties>
+                <property key="flaggedEntityClassName" value="br.org.groupwareworkbench.arquigrafia.photo.photo" /> 
+            </properties>
+    </collablets-to-add>
+</frameworkDescriptor>
