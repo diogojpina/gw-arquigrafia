@@ -58,8 +58,9 @@ form.cmxform label.error {
 					
 			
     				var select_state = $("#state");
+    				select_state.empty();
     				if (selectedState == "" ){
-					    select_state.empty().append('<option selected="selected" value="" >Escolha o Estado</option>');
+					    select_state.append('<option selected="selected" value="" >Escolha o Estado</option>');
     				}
 					$.getJSON('${pageContext.request.contextPath}/js/states.json', function(response) {
 					    var states = $.map(response['states'], function(states) {
@@ -73,17 +74,26 @@ form.cmxform label.error {
 					
 					var select_city = $("#city");
 					var selectedCity = "${photoRegister.city}";
+					
+					select_city.empty();
+					
+					if (selectedCity == "") {
+						select_city.append('<option selected="" value="">Escolha uma cidade</option>');
+					}
 
-					$.getJSON('${pageContext.request.contextPath}/js/state/brazil.json', function(response) {
-					    var cities = $.map(response['Brasil'][selectedState], function(city) {
-					    	if( city == selectedCity)
-					        	return '<option value="' + city + '" selected = "selected">' + city + '</option>';
-					       	else
-					       		return '<option value="' + city + '">' + city + '</option>';
-				        	
-					    }).join('');
-					    select_city.empty().append(cities);
-					});
+					if (selectedState != "") {
+						$.getJSON('${pageContext.request.contextPath}/js/state/brazil.json', function(response) {
+						    var cities = $.map(response['Brasil'][selectedState], function(city) {
+						    	if( city == selectedCity)
+						        	return '<option value="' + city + '" selected = "selected">' + city + '</option>';
+						       	else
+						       		return '<option value="' + city + '">' + city + '</option>';
+					        	
+						    }).join('');
+						    select_city.removeAttr('disabled');
+						    select_city.empty().append(cities);
+						});
+					}
 	});
 	
 </script>
@@ -116,8 +126,7 @@ form.cmxform label.error {
 				
 				<label
 				class="left_form_label_column">Cidade:</label> <select
-				name="photoRegister.city" id="city" class="input_content">
-				<option selected="" value="">Escolha uma cidade</option>
+				name="photoRegister.city" id="city" class="input_content" disabled="disabled">
 			</select> 
 			
 			<label>País:</label> 
