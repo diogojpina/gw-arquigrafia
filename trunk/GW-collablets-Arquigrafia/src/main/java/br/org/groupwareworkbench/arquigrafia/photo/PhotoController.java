@@ -530,6 +530,8 @@ public class PhotoController {
         photo.setName(photoRegister.getName());
         photo.setImageAuthor(photoRegister.getImageAuthor());
         photo.setCity(photoRegister.getCity());
+        photo.setState(photoRegister.getState());
+        photo.setCountry(photoRegister.getCountry());
         photo.setDataCriacao(photoRegister.getDataCriacao());
         photo.setDistrict(photoRegister.getDistrict());
         photo.setWorkAuthor(photoRegister.getWorkAuthor());

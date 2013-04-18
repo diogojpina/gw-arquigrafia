@@ -56,7 +56,6 @@ form.cmxform label.error {
 					var selectedState;
 					selectedState = "${photoRegister.state}";
 					
-			
     				var select_state = $("#state");
     				select_state.empty();
     				if (selectedState == "" ){
@@ -91,7 +90,7 @@ form.cmxform label.error {
 					        	
 						    }).join('');
 						    select_city.removeAttr('disabled');
-						    select_city.empty().append(cities);
+						    select_city.append(cities);
 						});
 					}
 	});
