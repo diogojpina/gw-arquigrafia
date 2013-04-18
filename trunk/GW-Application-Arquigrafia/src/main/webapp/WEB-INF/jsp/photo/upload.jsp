@@ -80,7 +80,7 @@
 </script>
 
 	  <label>Data da imagem:</label>
-	  <input name="imagedate" type="text" class="text" id="imagedate" />
+	  <input name="photoRegister.dataCriacao" type="text" class="text" id="imagedate" />
 	  <br />
 	  
 	  <label class="left_form_label_column" >Cidade:</label>
