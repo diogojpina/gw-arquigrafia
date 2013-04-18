@@ -14,6 +14,24 @@ form.cmxform label.error {
 <script type="text/javascript"
 	src="<c:url value="/js/upload-validation.js" />"></script>
 <script>
+    $(function() {
+        
+        $('#state').change(function(){
+					var state = $(this).attr('value'),
+							select_city = $("#city");
+
+					$.getJSON('${pageContext.request.contextPath}/js/state/brazil.json', function(response) {
+					    var cities = $.map(response['Brasil'][state], function(city) {
+					        return '<option value="' + city + '">' + city + '</option>';
+					    }).join('');
+					    select_city.empty().append(cities);
+					});
+       });
+    });
+</script>
+
+
+<script>
 	$(function() {
 					var selectedCountry;
 					selectedCountry = "${photoRegister.country}";
@@ -37,17 +55,34 @@ form.cmxform label.error {
 	$(function() {
 					var selectedState;
 					selectedState = "${photoRegister.state}";
+					
 			
     				var select_state = $("#state");
-    				
+    				if (selectedState == "" ){
+					    select_state.empty().append('<option selected="selected" value="" >Escolha o Estado</option>');
+    				}
 					$.getJSON('${pageContext.request.contextPath}/js/states.json', function(response) {
 					    var states = $.map(response['states'], function(states) {
-					    	if( states == selectedState)
-					    		return '<option value="' + states + '" selected = "selected">' + states + '</option>';
+					    	if( states.sigla == selectedState)
+					    		return '<option value="' + states.sigla + '" selected = "selected">' + states.nome + '</option>';
 					    	else
-					    	return '<option value="' + states + '">' + states + '</option>';
+					    	return '<option value="' + states.sigla + '">' + states.nome + '</option>';
 					    }).join('');
-					    select_state.empty().append(states);
+					    select_state.append(states);
+					});
+					
+					var select_city = $("#city");
+					var selectedCity = "${photoRegister.city}";
+
+					$.getJSON('${pageContext.request.contextPath}/js/state/brazil.json', function(response) {
+					    var cities = $.map(response['Brasil'][selectedState], function(city) {
+					    	if( city == selectedCity)
+					        	return '<option value="' + city + '" selected = "selected">' + city + '</option>';
+					       	else
+					       		return '<option value="' + city + '">' + city + '</option>';
+				        	
+					    }).join('');
+					    select_city.empty().append(cities);
 					});
 	});
 	
@@ -81,8 +116,7 @@ form.cmxform label.error {
 				
 				<label
 				class="left_form_label_column">Cidade:</label> <select
-				name="photoRegister.city" id="city" class="input_content"
-				disabled="disabled">
+				name="photoRegister.city" id="city" class="input_content">
 				<option selected="" value="">Escolha uma cidade</option>
 			</select> 
 			
