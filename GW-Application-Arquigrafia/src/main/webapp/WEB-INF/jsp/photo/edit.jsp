@@ -120,7 +120,7 @@ form.cmxform label.error {
 			</select> 
 			
 			<label>Data da imagem:</label> <input name="imagedate" type="text"
-				class="text" id="imagedate" value="<c:out value="${photoRegister.dataUpload}"/>"/> 
+				class="text" id="imagedate" value="<c:out value="${photoRegister.dataCriacao}"/>"/> 
 				<br /> 
 				
 				<label
