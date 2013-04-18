@@ -17,7 +17,6 @@ form.cmxform label.error {
 	$(function() {
 					var selectedCountry;
 					selectedCountry = "${photoRegister.country}";
-					console.log(selectedCountry);
 			
     				var select_countries = $("#countries");
     				
@@ -29,6 +28,26 @@ form.cmxform label.error {
 					    	return '<option value="' + countries + '">' + countries + '</option>';
 					    }).join('');
 					    select_countries.empty().append(countries);
+					});
+	});
+	
+</script>
+
+<script>
+	$(function() {
+					var selectedState;
+					selectedState = "${photoRegister.state}";
+			
+    				var select_state = $("#state");
+    				
+					$.getJSON('${pageContext.request.contextPath}/js/states.json', function(response) {
+					    var states = $.map(response['states'], function(states) {
+					    	if( states == selectedState)
+					    		return '<option value="' + states + '" selected = "selected">' + states + '</option>';
+					    	else
+					    	return '<option value="' + states + '">' + states + '</option>';
+					    }).join('');
+					    select_state.empty().append(states);
 					});
 	});
 	
@@ -54,34 +73,6 @@ form.cmxform label.error {
 			
 			<label class="left_form_label_column">Estado:</label>
 			<select name="photoRegister.state" id="state" class="input_content">
-				<option selected="" value="">Escolha o Estado</option>
-				<option value="AC">Acre</option>
-				<option value="AL">Alagoas</option>
-				<option value="AM">Amazonas</option>
-				<option value="AP">Amapá</option>
-				<option value="BA">Bahia</option>
-				<option value="CE">Ceará</option>
-				<option value="DF">Distrito Federal</option>
-				<option value="ES">Espirito Santo</option>
-				<option value="GO">Goiás</option>
-				<option value="MA">Maranhão</option>
-				<option value="MG">Minas Gerais</option>
-				<option value="MS">Mato Grosso do Sul</option>
-				<option value="MT">Mato Grosso</option>
-				<option value="PA">Pará</option>
-				<option value="PB">Paraíba</option>
-				<option value="PE">Pernambuco</option>
-				<option value="PI">Piauí</option>
-				<option value="PR">Paraná</option>
-				<option value="RJ">Rio de Janeiro</option>
-				<option value="RN">Rio Grande do Norte</option>
-				<option value="RO">Rondônia</option>
-				<option value="RR">Roraima</option>
-				<option value="RS">Rio Grande do Sul</option>
-				<option value="SC">Santa Catarina</option>
-				<option value="SE">Sergipe</option>
-				<option value="SP">São Paulo</option>
-				<option value="TO">Tocantins</option>
 			</select> 
 			
 			<label>Data da imagem:</label> <input name="imagedate" type="text"
