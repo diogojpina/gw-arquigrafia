@@ -6,6 +6,8 @@
   	form.cmxform label.error { display: none; }	
   </style>
 <script type="text/javascript" src="<c:url value="/js/upload-validation.js" />"></script>
+	
+
 <script>
     $(function() {
         
@@ -23,38 +25,6 @@
        });
     });
 </script>
-
-<script>
-	$(function() {
-    				var select_countries = $("#countries");
-    				
-					$.getJSON('${pageContext.request.contextPath}/js/countries.json', function(response) {
-					    var countries = $.map(response['countries'], function(countries) {
-					    	if( countries == "Brasil")
-					    		return '<option value="' + countries + '" selected = "selected">' + countries + '</option>';
-					    	else
-					    	return '<option value="' + countries + '">' + countries + '</option>';
-					    }).join('');
-					    select_countries.empty().append(countries);
-					});
-	});
-	
-</script>
-
-<script>
-	$(function() {			
-    				var select_state = $("#state");
-    				
-					$.getJSON('${pageContext.request.contextPath}/js/states.json', function(response) {
-					    var states = $.map(response['states'], function(states) {
-					    	return '<option value="' + states + '">' + states + '</option>';
-					    }).join('');
-					    select_state.empty().append(states);
-					});
-	});
-	
-</script>
-
 <form id="upload_form" name="dados" method="POST" action="<c:url value="/photo/${photoMgr.id}/registra" />" enctype="multipart/form-data">
 	<input type="hidden" name="user.id" value="${user.id}">
 	<input type="hidden" name="photoRegister.id" value="">
@@ -92,9 +62,22 @@
 
 	  <label class="left_form_label_column">Estado:</label>
 	  <select name="photoRegister.state" id="state" class="input_content">
-	  	<option selected="" value="" >Escolha o Estado</option>
 	  </select>
 
+<script>
+	$(function() {			
+    				var select_state = $("#state");
+    				
+					$.getJSON('${pageContext.request.contextPath}/js/states.json', function(response) {
+					    var states = $.map(response['states'], function(states) {
+					    	return '<option value="' + states.sigla + '">' + states.nome + '</option>';
+					    }).join('');
+					    
+					    select_state.empty().append('<option selected="" value="" >Escolha o Estado</option>');
+					    select_state.append(states);
+					});
+	});
+</script>
 
 	  <label>Data da imagem:</label>
 	  <input name="imagedate" type="text" class="text" id="imagedate" />
@@ -108,7 +91,21 @@
 	  <label>País:</label>
 	  <select name="photoRegister.country" class="input_content" id="countries">
 	  </select>
-	  
+<script>
+	$(function() {
+    				var select_countries = $("#countries");
+    				
+					$.getJSON('${pageContext.request.contextPath}/js/countries.json', function(response) {
+					    var countries = $.map(response['countries'], function(countries) {
+					    	if( countries == "Brasil")
+					    		return '<option value="' + countries + '" selected = "selected">' + countries + '</option>';
+					    	else
+					    	return '<option value="' + countries + '">' + countries + '</option>';
+					    }).join('');
+					    select_countries.empty().append(countries);
+					});
+	});
+</script>	  
 	  <br />
 	  <label class="left_form_label_column">Bairro:</label>
 	  <input name="photoRegister.district" type="text" class="text" />
