@@ -33,8 +33,9 @@ public class ArquigrafiaOdsReader {
             List<ArquigrafiaImageMetadata> imageMetadatas = new ArrayList<ArquigrafiaImageMetadata>(); 
             SpreadsheetDocument currentDocument = SpreadsheetDocument.loadDocument(new FileInputStream(sourceFile));
             int sheetCount = currentDocument.getSheetCount();
+            String resourcePath = sourceFile.getParentFile().getAbsolutePath();
             for ( int sheetId = 0; sheetId < sheetCount ; sheetId++ ) {
-                imageMetadatas.addAll( getImageMetadatasFromSheet( currentDocument.getSheetByIndex( sheetId ) ) );
+                imageMetadatas.addAll( getImageMetadatasFromSheet( currentDocument.getSheetByIndex( sheetId ), resourcePath) );
             }
             currentDocument.close();
             return imageMetadatas;
@@ -45,7 +46,7 @@ public class ArquigrafiaOdsReader {
 
     }
 
-    private Collection<? extends ArquigrafiaImageMetadata> getImageMetadatasFromSheet(Table selectedSheet) {
+    private Collection<? extends ArquigrafiaImageMetadata> getImageMetadatasFromSheet(Table selectedSheet, String resourcePath) {
 
         List<ArquigrafiaImageMetadata> sheetImageMetadatas = new ArrayList<ArquigrafiaImageMetadata>();
         int rowCount = selectedSheet.getRowCount();
@@ -53,7 +54,7 @@ public class ArquigrafiaOdsReader {
         //first row is header
         for ( int rowIndexAfterReader = 1; rowIndexAfterReader < rowCount && isReadind; rowIndexAfterReader++ ) {
             
-            ArquigrafiaImageMetadata imageMetadataFromRow = getImageMetadataFromRow( selectedSheet.getCellRangeByPosition(0, rowIndexAfterReader, ArquigrafiaImageMetadataOdsIndexes.values().length, rowIndexAfterReader) );
+            ArquigrafiaImageMetadata imageMetadataFromRow = getImageMetadataFromRow( selectedSheet.getCellRangeByPosition(0, rowIndexAfterReader, ArquigrafiaImageMetadataOdsIndexes.values().length, rowIndexAfterReader), resourcePath );
             if ( imageMetadataFromRow != null ) {
                 sheetImageMetadatas.add(imageMetadataFromRow);
             }
@@ -67,7 +68,7 @@ public class ArquigrafiaOdsReader {
         
     }
 
-    private ArquigrafiaImageMetadata getImageMetadataFromRow(CellRange selectedCellRange) {
+    private ArquigrafiaImageMetadata getImageMetadataFromRow(CellRange selectedCellRange, String resourcePath) {
         
         
         Cell selectedCell = selectedCellRange.getCellByPosition( ArquigrafiaImageMetadataOdsIndexes.TOMBO.getColumnIndex() , 0);
@@ -76,7 +77,7 @@ public class ArquigrafiaOdsReader {
             
             
             String[] arrayRowValues = mapRowValuesToArray(selectedCellRange); 
-            ArquigrafiaImageMetadata metadata = ArquigrafiaImageMetadata.fromRow(arrayRowValues);
+            ArquigrafiaImageMetadata metadata = ArquigrafiaImageMetadata.fromRow(resourcePath, arrayRowValues);
             return metadata;
             
         }

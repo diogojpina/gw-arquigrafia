@@ -1,25 +1,28 @@
 package br.org.groupwareworkbench.arquigrafia.imports;
 
+import java.io.File;
 import java.lang.reflect.Field;
 
 public class ArquigrafiaImageMetadata {
 
-    public static ArquigrafiaImageMetadata fromRow(String[] arrayRowValues) {
+    public static ArquigrafiaImageMetadata fromRow(String resourcepath, String[] arrayRowValues) {
         
         ArquigrafiaImageMetadata arquigrafiaMetadataImage = new ArquigrafiaImageMetadata();
-        Field[] existentMetadataEntries = ArquigrafiaImageMetadata.class.getDeclaredFields();
-        for ( Field selectedEntry : existentMetadataEntries ) {
+        
+        for (ArquigrafiaImageMetadataOdsIndexes index : ArquigrafiaImageMetadataOdsIndexes.values()){
             try {
-                ArquigrafiaImageMetadataOdsIndexes selectedIndex = ArquigrafiaImageMetadataOdsIndexes.valueOf(selectedEntry.getName());
-                selectedEntry.set(arquigrafiaMetadataImage, arrayRowValues[selectedIndex.getColumnIndex()] );
+                Field fieldFromIndex = ArquigrafiaImageMetadata.class.getDeclaredField(index.name());
+                fieldFromIndex.set(arquigrafiaMetadataImage, arrayRowValues[index.getColumnIndex()] );
             }
             catch (Exception ex) {
-                System.out.println(String.format("%s on field %s", "Error setting value on image metadata instance.", selectedEntry.getName() ) );
+                System.out.println(String.format("%s on field %s", "Error setting value on image metadata instance.", index.getTitle() ) );
                 ex.printStackTrace();
             }
         }
-        return arquigrafiaMetadataImage;
         
+        arquigrafiaMetadataImage.resourcePath = resourcepath;
+        
+        return arquigrafiaMetadataImage;
     }
     
     public String TOMBO = "";
@@ -43,5 +46,12 @@ public class ArquigrafiaImageMetadata {
     public String OBSERVACOES = "";
     public String DATA_TOMBO = "";
     public String DATA_CATALOGACAO = "";
+    public String resourcePath;
+    
+    public File getImageFile() {
+        File newTeste = new File(resourcePath);
+        File imageFile = new File(newTeste, String.format("%s.jpg", this.TOMBO));
+        return imageFile;
+    }
 
 }
