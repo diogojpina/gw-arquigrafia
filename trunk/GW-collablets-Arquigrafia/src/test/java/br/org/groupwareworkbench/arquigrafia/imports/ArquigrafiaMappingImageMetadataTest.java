@@ -6,7 +6,7 @@ import java.util.Arrays;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-public class ArquigrafiaImageMetadataTest {
+public class ArquigrafiaMappingImageMetadataTest {
 
     @Test
     public void test() {
@@ -15,7 +15,7 @@ public class ArquigrafiaImageMetadataTest {
         for (ArquigrafiaImageMetadataOdsIndexes index : ArquigrafiaImageMetadataOdsIndexes.values()) {
             arrayValues[index.getColumnIndex()] = index.getTitle();
         }
-        ArquigrafiaImageMetadata created = ArquigrafiaImageMetadata.fromRow(arrayValues);
+        ArquigrafiaImageMetadata created = ArquigrafiaImageMetadata.fromRow("./", arrayValues);
         try {
             for (ArquigrafiaImageMetadataOdsIndexes index : ArquigrafiaImageMetadataOdsIndexes.values()) {
 
