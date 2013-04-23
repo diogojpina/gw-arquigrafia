@@ -114,52 +114,52 @@ form.cmxform label.error {
 				class="text" value="<c:out value="${photoRegister.imageAuthor}"/>" /> 
 				
 				<br /> 
-			
-			<label class="left_form_label_column">Estado:</label>
-			<select name="photoRegister.state" id="state" class="input_content">
-			</select> 
-			
-			<label>Data da imagem:</label> <input name="imagedate" type="text"
-				class="text" id="imagedate" value="<c:out value="${photoRegister.dataCriacao}"/>"/> 
-				<br /> 
-				
-				<label
-				class="left_form_label_column">Cidade:</label> <select
-				name="photoRegister.city" id="city" class="input_content" disabled="disabled">
-			</select> 
-			
-			<label>País:</label> 
+			<label class="left_form_label_column">País:</label> 
 			
 			<select name="photoRegister.country" id="countries" value="photoRegister.country"
 				class="input_content">
 
 			</select>
 			
+			<label class="right_form_label_column">Estado:</label>
+			<select name="photoRegister.state" id="state" class="input_content">
+			</select> 
 			
-			<label class="left_form_label_column">Bairro:</label> <input
+<!--			<label>Data da imagem:</label> <input name="imagedate" type="text"
+				class="text" id="imagedate" value="<c:out value="${photoRegister.dataCriacao}"/>"/> 
+				<br /> 
+	-->			
+				<label class="left_form_label_column">Cidade:</label> <select
+				name="photoRegister.city" id="city" class="input_content" disabled="disabled">
+			</select> 
+			
+						
+			
+			<label class="right_form_label_column">Bairro:</label> <input
 				name="photoRegister.district" type="text" class="text" value="<c:out value="${photoRegister.district}"/>"/>
-				
-				 <label>Autor
-				da obra:</label> <input name="photoRegister.workAuthor" type="text"
-				class="text" value="<c:out value="${photoRegister.workAuthor}"/>"/> <br /> 
 				
 				<label class="left_form_label_column">Logradouro:</label>
 			<input name="photoRegister.street" type="text" class="text" value="<c:out value="${photoRegister.street}"/>"/>
 			
-			 <label>Data
+				 <label class="right_form_label_column">Autor
+				da obra:</label> <input name="photoRegister.workAuthor" type="text"
+				class="text" value="<c:out value="${photoRegister.workAuthor}"/>"/> 
+				
+		<!-- 	 <label>Data
 				da obra:</label> <input name="photoRegister	.workdate" type="text"
-				class="text" id="workdate" value="<c:out value="${photoRegister.workdate}"/>" /> <br /> <label
+				class="text" id="workdate" value="<c:out value="${photoRegister.workdate}"/>" /> -->
+				 <br /> <label
 				class="left_form_label_column">Tags:</label>
 			<!-- <textarea name="tags" class="text"></textarea> -->
 			<!-- <tag:scriptTags />
 	  <tag:selectTags tagMgr="${tagMgr}" /> -->
 			<tag:setTags tagMgr="${tagMgr}" entity="${photo}" />
 
-			<label>Descrição:</label>
+			<label class="right_form_label_column" >Descrição:</label>
 			<textarea name="photoRegister.description" class="input_content"><c:out value="${photoRegister.description}" /></textarea>
 			<br />
 		</p>
-		<p>
+		<!-- <p>
 		Publicar minha obra, com as seguintes permissões:
 		</p>
 		<p class="creative_commons_form" id="creative_commons_left_form">
@@ -184,7 +184,7 @@ form.cmxform label.error {
 				<br />
 			</c:forEach>
 		</p>
-
+ -->
 		<p>
 			<input name="enviar" type="submit" class="submit cursor" value="" />
 		</p>
