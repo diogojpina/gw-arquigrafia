@@ -526,19 +526,20 @@ public class PhotoController {
         result.use(Results.logic()).redirectTo(PhotoController.class).show(photo.getId());
     }
 
+    //TODO: Verificar como serÃ¡ tratada as datas no ISO8601.
     private void attributesToUpdate(Photo photoRegister, Photo photo) {
         photo.setName(photoRegister.getName());
         photo.setImageAuthor(photoRegister.getImageAuthor());
         photo.setCity(photoRegister.getCity());
         photo.setState(photoRegister.getState());
         photo.setCountry(photoRegister.getCountry());
-        photo.setDataCriacao(photoRegister.getDataCriacao());
+        //photo.setDataCriacao(photoRegister.getDataCriacao());
         photo.setDistrict(photoRegister.getDistrict());
         photo.setWorkAuthor(photoRegister.getWorkAuthor());
         photo.setStreet(photoRegister.getStreet());
-        photo.setWorkdate(photoRegister.getWorkdate());
+        //photo.setWorkdate(photoRegister.getWorkdate());
         photo.setCataloguingTime(photoRegister.getCataloguingTime());
-        photo.setTombo(photoRegister.getTombo());
+        //photo.setTombo(photoRegister.getTombo());
         photo.setAditionalImageComments(photoRegister.getAditionalImageComments());
         photo.setDescription(photoRegister.getDescription());
     }
