@@ -24,43 +24,49 @@ public class MetaDataToPhotoMapper {
     File metaDataFile;
     PrintStream logPrintStream;
 
-    public MetaDataToPhotoMapper(File metaDataFile) throws FileNotFoundException  {
+    public MetaDataToPhotoMapper(File metaDataFile) throws FileNotFoundException {
         this.metaDataFile = metaDataFile;
         this.logPrintStream = new PrintStream(getFileLog());
     }
-    
+
     public MetaDataToPhotoMapper(File metaDataFile, PrintStream logPrintStream) {
         this.metaDataFile = metaDataFile;
         this.logPrintStream = logPrintStream;
     }
 
-    public void doMapper(User user) throws IOException {
+    public void doMapper(User user) {
 
         this.logPrintStream.println(String.format("Reading metadata from %s.", metaDataFile.getAbsolutePath()));
         if (!alreadyProcessed()) {
-            this.logPrintStream.println(String.format("File %s already imported, skipping file.", metaDataFile.getAbsolutePath()));
-        }
-        else {
-            getFileLog().createNewFile();
-            ArquigrafiaOdsReader imagesMetadataReader = new ArquigrafiaOdsReader(metaDataFile);
-            Collection<ArquigrafiaImageMetadata> metadataImages = imagesMetadataReader.read();
-            Collablet photoMgr = Collablet.findByName("photoMgr");
-            Map<String, List<Tag>> mappedTags = mapTags(metadataImages);
-            for (ArquigrafiaImageMetadata metadata : metadataImages) {
+            this.logPrintStream.println(String.format("File %s already imported, skipping file.",
+                    metaDataFile.getAbsolutePath()));
+        } else {
+            try {
+                getFileLog().createNewFile();
+                ArquigrafiaOdsReader imagesMetadataReader = new ArquigrafiaOdsReader(metaDataFile);
+                Collection<ArquigrafiaImageMetadata> metadataImages = imagesMetadataReader.read();
+                Collablet photoMgr = Collablet.findByName("photoMgr");
+                Map<String, List<Tag>> mappedTags = mapTags(metadataImages);
+                for (ArquigrafiaImageMetadata metadata : metadataImages) {
 
-                try {
-                    Photo mappedPhoto = mapPhoto(metadata, user, photoMgr);
-                    for (Tag selectedTag : mappedTags.get(mappedPhoto.getTombo())) {
-                        selectedTag.assign(mappedPhoto);
+                    try {
+                        Photo mappedPhoto = mapPhoto(metadata, user, photoMgr);
+                        for (Tag selectedTag : mappedTags.get(mappedPhoto.getTombo())) {
+                            selectedTag.assign(mappedPhoto);
+                        }
+                        mappedPhoto.saveImage(new FileInputStream(metadata.getImageFile()));
+                        log(metadata, "Image imported sucessefully.");
+                    } catch (Exception ex) {
+                        log(metadata, ex.getMessage());
                     }
-                    mappedPhoto.saveImage(new FileInputStream(metadata.getImageFile()));
-                    log(metadata, "Image imported sucessefully.");
-                } catch (Exception ex) {
-                    log(metadata, ex.getMessage());
+                    
                 }
+            } catch (Exception ex) {
+                System.out.println(String.format("Error reading file %s.", this.metaDataFile.getAbsolutePath()));
+                ex.printStackTrace();
             }
         }
-        
+        this.logPrintStream.close();
 
     }
 
@@ -190,10 +196,10 @@ public class MetaDataToPhotoMapper {
     public void log(ArquigrafiaImageMetadata metadataImage, String message) {
         this.logPrintStream.println(String.format("Log imagem tombo n. %s:\n %s ", metadataImage.TOMBO, message));
     }
-    
+
     public File getFileLog() {
         File parent = this.metaDataFile.getParentFile();
-        File log = new File(parent, String.format("%s%s" , this.metaDataFile.getName(),".log") );
+        File log = new File(parent, String.format("%s%s", this.metaDataFile.getName(), ".log"));
         return log;
     }
 
