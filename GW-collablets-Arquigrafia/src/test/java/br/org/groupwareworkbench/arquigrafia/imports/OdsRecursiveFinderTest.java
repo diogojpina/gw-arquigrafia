@@ -11,7 +11,7 @@ public class OdsRecursiveFinderTest {
     @Test
     public void test() {
 
-        File baseDir = new File("/home/gw/imports/");
+        File baseDir = new File("./");
         System.out.println(baseDir.getAbsolutePath());
         OdsRecursiveFinder ods = new OdsRecursiveFinder();
         ods.find(baseDir);
