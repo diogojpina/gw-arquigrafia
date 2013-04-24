@@ -24,11 +24,9 @@ import static br.com.caelum.vraptor.view.Results.logic;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
-import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -51,11 +49,12 @@ import br.com.caelum.vraptor.ioc.RequestScoped;
 import br.com.caelum.vraptor.validator.ValidationMessage;
 import br.com.caelum.vraptor.validator.Validations;
 import br.com.caelum.vraptor.view.Results;
-import br.org.groupwareworkbench.arquigrafia.ImportImages;
+import br.org.groupwareworkbench.arquigrafia.imports.MetaDataToPhotoMapper;
+import br.org.groupwareworkbench.arquigrafia.imports.OdsRecursiveFinder;
 import br.org.groupwareworkbench.collablet.communic.tag.Tag;
 import br.org.groupwareworkbench.collablet.coord.user.User;
+import br.org.groupwareworkbench.collablet.coord.user.User.AccountType;
 import br.org.groupwareworkbench.collablet.util.EncoderParam;
-import br.org.groupwareworkbench.core.date.ISO8601;
 import br.org.groupwareworkbench.core.framework.Collablet;
 import br.org.groupwareworkbench.core.framework.WidgetInfo;
 import br.org.groupwareworkbench.core.routing.GroupwareInitController;
@@ -74,7 +73,8 @@ public class PhotoController {
     public static final String MSG_FALHA_NO_UPLOAD = "Falha ao fazer o upload da imagem.";
     public static final String MSG_IMAGEM_INVALIDA = "O arquivo não foi reconhecido como uma imagem válida.";
     public static final String MSG_ENTIDADE_INVALIDA = "Não é uma entidade válida.";
-    public static final String MSG_SUCCESS = "A foto foi salva com sucesso. Envie outra foto ou clique em fechar para voltar à pagina inicial.";
+    public static final String MSG_SUCCESS =
+            "A foto foi salva com sucesso. Envie outra foto ou clique em fechar para voltar à pagina inicial.";
 
     private final Result result;
     private final WidgetInfo info;
@@ -105,28 +105,28 @@ public class PhotoController {
         result.include("allowModificationsList", Photo.AllowModifications.values());
         result.include("allowCommercialUsesList", Photo.AllowCommercialUses.values());
         result.include("photo", p);
-        
+
         addIncludes(photoMgr);
     }
-    
+
     @Get
     @Path(value = "/photo/img-thumb/{idPhoto}")
     public Download imgThumb(long idPhoto) {
         Photo photo = Photo.findById(idPhoto);
-        
-        if (photo == null|| photo.getDeleted() ) {
+
+        if (photo == null || photo.getDeleted()) {
             this.photoNotFound(photo);
             return null;
         }
         return photo.downloadImgThumb();
-        
+
     }
 
     @Get
     @Path(value = {"/photo/img-show/{idPhoto}", "/photo/img-show/{idPhoto}.jpeg"})
     public Download imgShow(long idPhoto) {
         Photo photo = Photo.findById(idPhoto);
-        if (photo == null|| photo.getDeleted() ) {
+        if (photo == null || photo.getDeleted()) {
             this.photoNotFound(photo);
             return null;
         }
@@ -137,7 +137,7 @@ public class PhotoController {
     @Path(value = "/photo/img-crop/{idPhoto}")
     public Download imgCrop(long idPhoto) {
         Photo photo = Photo.findById(idPhoto);
-        if (photo == null|| photo.getDeleted() ) {
+        if (photo == null || photo.getDeleted()) {
             this.photoNotFound(photo);
             return null;
         }
@@ -148,36 +148,36 @@ public class PhotoController {
     @Path(value = "/photo/img-original/{idPhoto}")
     public Download imgOriginal(long idPhoto) {
         Photo photo = Photo.findById(idPhoto);
-        if (photo == null|| photo.getDeleted() ) {
+        if (photo == null || photo.getDeleted()) {
             this.photoNotFound(photo);
             return null;
         }
         return photo.downloadImgOriginal();
     }
 
-//    @Get
-//    @Path(value = "/photo/delete/{idPhoto}")
-//    public void imgDelete(long idPhoto) {
-//        Photo photo = Photo.findById(idPhoto);
-//        if (photo == null) {
-//            result.notFound();
-//        } else {
-//            /* TODO review the design of the field users in Photo.
-//             * Now we are getting an array of users, but we just
-//             * need a single user. At follows we assume that there
-//             * is always at least one user and that the first
-//             * user is the photo's owner.
-//             */
-//            
-//            if(SecurityUtil.checkOwnership(session, photo.getUsers().get(0).getLogin())) {
-//                photo.setDeleted(true);
-//                photo.save();
-//            } else {
-//                System.out.println("Someone tried to delete a photo that he does not own.");
-//            }
-//            result.redirectTo("/");
-//        }
-//    }
+    // @Get
+    // @Path(value = "/photo/delete/{idPhoto}")
+    // public void imgDelete(long idPhoto) {
+    // Photo photo = Photo.findById(idPhoto);
+    // if (photo == null) {
+    // result.notFound();
+    // } else {
+    // /* TODO review the design of the field users in Photo.
+    // * Now we are getting an array of users, but we just
+    // * need a single user. At follows we assume that there
+    // * is always at least one user and that the first
+    // * user is the photo's owner.
+    // */
+    //
+    // if(SecurityUtil.checkOwnership(session, photo.getUsers().get(0).getLogin())) {
+    // photo.setDeleted(true);
+    // photo.save();
+    // } else {
+    // System.out.println("Someone tried to delete a photo that he does not own.");
+    // }
+    // result.redirectTo("/");
+    // }
+    // }
 
     private void addIncludes(PhotoMgrInstance photoMgr) {
         result.include(photoMgr.getCollablet().getName(), photoMgr);
@@ -204,24 +204,23 @@ public class PhotoController {
         TimeLog log = new TimeLog("CP");
         User user = (User) session.getAttribute("userLogin");
 
-        if (photo == null|| photo.getDeleted() ) {
+        if (photo == null || photo.getDeleted()) {
             this.photoNotFound(photo);
             return;
-            
-        }        
-        
+
+        }
+
         User userPhoto = photo.getUsers().get(0);
-                
+
         log.log("4");
-        if (userPhoto.getId().compareTo(user.getId()) == 0){
-            
+        if (userPhoto.getId().compareTo(user.getId()) == 0) {
+
             result.include("usuarioCriador", "sim");
             log.log("5");
         }
-        
-        result.include("previousPhoto", Photo.previous(photo))
-              .include("nextPhoto", Photo.next(photo));
-        
+
+        result.include("previousPhoto", Photo.previous(photo)).include("nextPhoto", Photo.next(photo));
+
         result.include("idPhoto", photo.getId());
         log.log("6");
         result.include("photo", photo);
@@ -235,24 +234,21 @@ public class PhotoController {
         result.use(Results.representation()).from(photo).serialize();
         log.log("11");
     }
-    
 
-    
-    
     @Get
     @Path(value = "/photo/{idPhoto}/evaluate")
     public void evaluate(long idPhoto) {
         User user = (User) session.getAttribute("userLogin");
         Photo photo = Photo.findById(idPhoto);
         User userPhoto = photo.getUsers().get(0);
-        
-        if (photo == null|| photo.getDeleted() ) {
+
+        if (photo == null || photo.getDeleted()) {
             this.photoNotFound(photo);
         }
-        if (userPhoto.getId().compareTo(user.getId()) == 0){
+        if (userPhoto.getId().compareTo(user.getId()) == 0) {
             result.include("usuarioCriador", "sim");
-        } 
-            
+        }
+
         result.include("idPhoto", idPhoto);
         result.include("photo", photo);
         PhotoMgrInstance photoMgr = (PhotoMgrInstance) photo.getCollablet().getBusinessObject();
@@ -260,7 +256,7 @@ public class PhotoController {
         photoMgr.getCollablet().processWidgets(info, photo);
         result.use(Results.representation()).from(photo).serialize();
     }
-    
+
     @SuppressWarnings("unchecked")
     @Get
     @Path(value = "/photo/{photoMgr}/list")
@@ -298,7 +294,8 @@ public class PhotoController {
         result.use(Results.logic()).forwardTo(PhotoController.class).busca(photoMgr);
     }
 
-    @Get @Post
+    @Get
+    @Post
     @Path(value = "/photo/{photoMgr}/search")
     public void buscaFoto(PhotoMgrInstance photoMgr, final String q, int page, int perPage) {
         validate(photoMgr, q);
@@ -307,22 +304,22 @@ public class PhotoController {
             result.include("tag", tag).include("photosByTag", tag.getAssignments(8));
         }
         Map<String, List<Photo>> photos = photoMgr.searchForAttributesOfThePhoto(q, page, perPage);
-        
-        result.include("photos", photos)
-                .include("results", photoMgr.hasResults(photos))
-                .include("searchTerm", q);
-        
+
+        result.include("photos", photos).include("results", photoMgr.hasResults(photos)).include("searchTerm", q);
+
         addIncludes(photoMgr);
         result.use(logic()).forwardTo(PhotoController.class).busca(photoMgr);
     }
 
     private void validate(PhotoMgrInstance photoMgr, final String q) {
-        validator.checking(new Validations() {{
-            that(q.length() > 0, "length", "search.length");
-        }});
+        validator.checking(new Validations() {
+            {
+                that(q.length() > 0, "length", "search.length");
+            }
+        });
         validator.onErrorForwardTo(this).busca(photoMgr);
     }
-    
+
     @Get
     @Path("/photos/{photoMgr}/search/term")
     public void searchByAttribute(PhotoMgrInstance photoMgr, String term, String q, int page, int perPage) {
@@ -357,7 +354,6 @@ public class PhotoController {
         result.use(Results.json()).withoutRoot().from(count).serialize();
     }
 
-    
     @Post
     @Path(value = "/photo/{photoMgr}/buscaA")
     public void buscaFotoAvancada(String nome, String descricao, String lugar, Date date, PhotoMgrInstance photoMgr) {
@@ -408,7 +404,7 @@ public class PhotoController {
 
     @Post
     @Path(value = "/photo/{photoMgr}/registra")
-    public void save(Photo photoRegister, UploadedFile foto, PhotoMgrInstance photoMgr ) {
+    public void save(Photo photoRegister, UploadedFile foto, PhotoMgrInstance photoMgr) {
 
         System.out.println("nome => " + photoRegister.getName());
         System.out.println("AllowCommercialUses => " + photoRegister.getAllowCommercialUses());
@@ -425,16 +421,15 @@ public class PhotoController {
         System.out.println("rua => " + photoRegister.getStreet());
         System.out.println("descricao => " + photoRegister.getDescription());
 
-        if(foto!=null)
-            System.out.println("file name => " + foto.getFileName());
-        
+        if (foto != null) System.out.println("file name => " + foto.getFileName());
+
         photoRegister.setNomeArquivo(foto == null ? null : foto.getFileName());
         result.include("photoRegister", photoRegister);
 
         if (foto == null) {
             validator.add(new ValidationMessage(MSG_IMAGEM_OBRIGATORIA, "Erro"));
             validator.onErrorUse(Results.logic()).redirectTo(GroupwareInitController.class).init();
-            //redirectTo(PhotoController.class).registra(photoMgr, photoRegister);
+            // redirectTo(PhotoController.class).registra(photoMgr, photoRegister);
             return;
         }
 
@@ -454,7 +449,7 @@ public class PhotoController {
         } catch (RuntimeException e) {
             validator.add(new ValidationMessage(e.getMessage(), "Erro"));
             validator.onErrorUse(Results.logic()).redirectTo(GroupwareInitController.class).init();
-            //redirectTo(PhotoController.class).registra(photoMgr, photoRegister);
+            // redirectTo(PhotoController.class).registra(photoMgr, photoRegister);
             return;
         }
 
@@ -477,16 +472,16 @@ public class PhotoController {
             validator.add(new ValidationMessage("Imagem adicionada com sucesso.", "Upload finalizado"));
             validator.onErrorUse(Results.logic()).redirectTo(GroupwareInitController.class).init();
             result.use(logic()).redirectTo(GroupwareInitController.class).init();
-            //result.use(Results.logic()).redirectTo(PhotoController.class).registra(photoMgr, new Photo());
+            // result.use(Results.logic()).redirectTo(PhotoController.class).registra(photoMgr, new Photo());
         }
     }
 
     @Get
     @Path(value = "/photo/{photoMgr}/edit/{idPhoto}")
     public void edit(PhotoMgrInstance photoMgr, final long idPhoto) {
-        
+
         Photo photo = Photo.findById(idPhoto);
-        if (photo == null|| photo.getDeleted() ) {
+        if (photo == null || photo.getDeleted()) {
             this.photoNotFound(photo);
             return;
         }
@@ -498,27 +493,26 @@ public class PhotoController {
         addIncludes(photoMgr);
         result.use(Results.representation()).from(photo).serialize();
     }
-    
+
     @Put
     @Path(value = "/photo/{photoMgr}/update")
     public void update(Photo photoRegister, PhotoMgrInstance photoMgr, User userOwn) {
         Photo photo = Photo.findById(photoRegister.getId());
-        
-        
-        if (photo == null|| photo.getDeleted() ) {
+
+        if (photo == null || photo.getDeleted()) {
             this.photoNotFound(photo);
             return;
         }
-        
+
         User user = (User) session.getAttribute("userLogin");
-                
+
         if (user != null) {
             photo.assignUser(userOwn);
             photo.assignUser(user);
         }
-        
+
         attributesToUpdate(photoRegister, photo);
-        
+
         photoMgr.update(photo);
         photoMgr.getCollablet().processWidgets(info, photo);
         addIncludes(photoMgr);
@@ -543,44 +537,43 @@ public class PhotoController {
         photo.setAditionalImageComments(photoRegister.getAditionalImageComments());
         photo.setDescription(photoRegister.getDescription());
     }
-    
+
     @Get
     @Post
     @Path(value = "/photo/delete/{idPhoto}")
     public void deletePhoto(long idPhoto) {
-        
+
         Photo photo = Photo.findById(idPhoto);
-        if (photo == null|| photo.getDeleted() ) {
+        if (photo == null || photo.getDeleted()) {
             this.photoNotFound(photo);
             return;
         }
-        
-        /* TODO review the design of the field users in Photo.
-         * Now we are getting an array of users, but we just
-         * need a single user. At follows we assume that there
-         * is always at least one user and that the first
-         * user is the photo's owner.
+
+        /*
+         * TODO review the design of the field users in Photo. Now we are getting an array of users, but we just need a
+         * single user. At follows we assume that there is always at least one user and that the first user is the
+         * photo's owner.
          */
-        
-        if(SecurityUtil.checkOwnership(session, photo.getUsers().get(0).getLogin())) {
+
+        if (SecurityUtil.checkOwnership(session, photo.getUsers().get(0).getLogin())) {
             photo.setDeleted(true);
             photo.save();
         } else {
             System.out.println("Someone tried to delete a photo that he does not own.");
         }
         result.redirectTo("/");
-        
+
         // Previous implementation, that actually removed the Photos from the database.
-//        Photo photo = Photo.findById(idPhoto);
-//        if (photo == null) {
-//            validator.add(new ValidationMessage(MSG_ENTIDADE_INVALIDA, "Erro"));
-//            return;
-//        }
-//        photo.delete();
+        // Photo photo = Photo.findById(idPhoto);
+        // if (photo == null) {
+        // validator.add(new ValidationMessage(MSG_ENTIDADE_INVALIDA, "Erro"));
+        // return;
+        // }
+        // photo.delete();
         PhotoMgrInstance photoMgr = (PhotoMgrInstance) photo.getCollablet().getBusinessObject();
         addIncludes(photoMgr);
     }
-    
+
     @Get
     @Path(value = "/photo/{photoMgr}/registra_multiplos/{os}/{dir}")
     public void registraMultiplos(String os, String dir, PhotoMgrInstance photoMgr) {
@@ -624,7 +617,7 @@ public class PhotoController {
     @Path(value = "/photo/{idPhoto}")
     public void delete(long idPhoto) {
         Photo photo = Photo.findById(idPhoto);
-        if (photo == null|| photo.getDeleted() ) {
+        if (photo == null || photo.getDeleted()) {
             validator.add(new ValidationMessage(MSG_ENTIDADE_INVALIDA, "Erro"));
             return;
         }
@@ -652,7 +645,7 @@ public class PhotoController {
         List<Photo> photos = photoMgr.listPhotoByUserPageAndOrder(user, pageSize, pageNumber);
         result.use(Results.json()).from(photos).serialize();
     }
-    
+
     @Get
     @Path("/photos/{photoMgr}/amount/{amount}")
     public void list(PhotoMgrInstance photoMgr, Integer amount) {
@@ -660,29 +653,46 @@ public class PhotoController {
         result.use(Results.json()).withoutRoot().from(photos).serialize();
     }
 
-    
     @Get
     @Path("/photo/import")
     public void importPhotos() {
+
         try {
-            ImportImages i = new ImportImages();
-            i.run();
+
+            String userName =  "acervofau";
+            String basePath = "/home/gw/imports/acervofau";
+            importImages(userName, basePath);
+            
+            userName =  "acervoquapa";
+            basePath = "/home/gw/imports/acervoquapa";
+            importImages(userName, basePath);
+            
+
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         System.out.println("IMPORT PHOTOS");
     }
-    
+
+    private void importImages(String userName, String basePath) throws IOException, FileNotFoundException {
+        Collablet userMgr = Collablet.findByName("userMgr");
+        User fauUser = User.findByLogin(userName, userMgr, AccountType.NATIVE);
+        OdsRecursiveFinder odsRecursiveFinder = new OdsRecursiveFinder();
+        odsRecursiveFinder.find(new File(basePath));
+        for (File odsFile : odsRecursiveFinder.getResults()) {
+            new MetaDataToPhotoMapper(odsFile).doMapper(fauUser);
+        }
+    }
+
     private void photoNotFound(Photo photo) {
-        
-        if ( photo != null ) {
+
+        if (photo != null) {
             PhotoMgrInstance photoMgr = (PhotoMgrInstance) photo.getCollablet().getBusinessObject();
             addIncludes(photoMgr);
         }
-                
+
         result.notFound();
         return;
     }
-    
+
 }
