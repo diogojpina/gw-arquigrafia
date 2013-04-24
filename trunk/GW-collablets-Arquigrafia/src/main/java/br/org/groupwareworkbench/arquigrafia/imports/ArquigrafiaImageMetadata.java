@@ -46,11 +46,16 @@ public class ArquigrafiaImageMetadata {
     public String OBSERVACOES = "";
     public String DATA_TOMBO = "";
     public String DATA_CATALOGACAO = "";
+    
     public String resourcePath;
+    
+    public String getFileName() {
+        return String.format("%s.jpg", this.TOMBO);
+    }
     
     public File getImageFile() {
         File newTeste = new File(resourcePath);
-        File imageFile = new File(newTeste, String.format("%s.jpg", this.TOMBO));
+        File imageFile = new File(newTeste, getFileName());
         return imageFile;
     }
 
