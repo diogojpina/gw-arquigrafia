@@ -24,7 +24,6 @@ public class ArquigrafiaOdsReader {
 
     public Collection<ArquigrafiaImageMetadata> read() {
         return getImageMetadatasFromFile(odsTestResourceFile);
-
     }
 
     private List<ArquigrafiaImageMetadata> getImageMetadatasFromFile(File sourceFile) {
@@ -56,6 +55,7 @@ public class ArquigrafiaOdsReader {
             
             ArquigrafiaImageMetadata imageMetadataFromRow = getImageMetadataFromRow( selectedSheet.getCellRangeByPosition(0, rowIndexAfterReader, ArquigrafiaImageMetadataOdsIndexes.values().length, rowIndexAfterReader), resourcePath );
             if ( imageMetadataFromRow != null ) {
+                imageMetadataFromRow.removeJpgExtensionFromTombo();
                 sheetImageMetadatas.add(imageMetadataFromRow);
             }
             else {
@@ -69,7 +69,6 @@ public class ArquigrafiaOdsReader {
     }
 
     private ArquigrafiaImageMetadata getImageMetadataFromRow(CellRange selectedCellRange, String resourcePath) {
-        
         
         Cell selectedCell = selectedCellRange.getCellByPosition( ArquigrafiaImageMetadataOdsIndexes.TOMBO.getColumnIndex() , 0);
         String tombo = selectedCell.getStringValue();

@@ -58,5 +58,11 @@ public class ArquigrafiaImageMetadata {
         File imageFile = new File(newTeste, getFileName());
         return imageFile;
     }
+    
+    public void removeJpgExtensionFromTombo() {
+        if ( TOMBO.toLowerCase().endsWith(".jpg") ) {
+            TOMBO = TOMBO.replace(".jpg", "");
+        }
+    }
 
 }
