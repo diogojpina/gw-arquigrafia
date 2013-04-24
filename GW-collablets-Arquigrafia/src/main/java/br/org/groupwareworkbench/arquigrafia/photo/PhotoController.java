@@ -520,20 +520,20 @@ public class PhotoController {
         result.use(Results.logic()).redirectTo(PhotoController.class).show(photo.getId());
     }
 
-    //TODO: Verificar como serÃ¡ tratada as datas no ISO8601.
+    // TODO: Verificar como serÃ¡ tratada as datas no ISO8601.
     private void attributesToUpdate(Photo photoRegister, Photo photo) {
         photo.setName(photoRegister.getName());
         photo.setImageAuthor(photoRegister.getImageAuthor());
         photo.setCity(photoRegister.getCity());
         photo.setState(photoRegister.getState());
         photo.setCountry(photoRegister.getCountry());
-        //photo.setDataCriacao(photoRegister.getDataCriacao());
+        // photo.setDataCriacao(photoRegister.getDataCriacao());
         photo.setDistrict(photoRegister.getDistrict());
         photo.setWorkAuthor(photoRegister.getWorkAuthor());
         photo.setStreet(photoRegister.getStreet());
-        //photo.setWorkdate(photoRegister.getWorkdate());
+        // photo.setWorkdate(photoRegister.getWorkdate());
         photo.setCataloguingTime(photoRegister.getCataloguingTime());
-        //photo.setTombo(photoRegister.getTombo());
+        // photo.setTombo(photoRegister.getTombo());
         photo.setAditionalImageComments(photoRegister.getAditionalImageComments());
         photo.setDescription(photoRegister.getDescription());
     }
@@ -657,30 +657,27 @@ public class PhotoController {
     @Path("/photo/import")
     public void importPhotos() {
 
-        try {
+        String userName = "acervofau";
+        String basePath = "/home/gw/imports/acervofau";
+        importImages(userName, basePath);
 
-            String userName =  "acervofau";
-            String basePath = "/home/gw/imports/acervofau";
-            importImages(userName, basePath);
-            
-            userName =  "acervoquapa";
-            basePath = "/home/gw/imports/acervoquapa";
-            importImages(userName, basePath);
-            
+        userName = "acervoquapa";
+        basePath = "/home/gw/imports/acervoquapa";
+        importImages(userName, basePath);
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        System.out.println("IMPORT PHOTOS");
     }
 
-    private void importImages(String userName, String basePath) throws IOException, FileNotFoundException {
+    private void importImages(String userName, String basePath) {
         Collablet userMgr = Collablet.findByName("userMgr");
         User fauUser = User.findByLogin(userName, userMgr, AccountType.NATIVE);
         OdsRecursiveFinder odsRecursiveFinder = new OdsRecursiveFinder();
         odsRecursiveFinder.find(new File(basePath));
         for (File odsFile : odsRecursiveFinder.getResults()) {
-            new MetaDataToPhotoMapper(odsFile).doMapper(fauUser);
+            try {
+                new MetaDataToPhotoMapper(odsFile).doMapper(fauUser);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
