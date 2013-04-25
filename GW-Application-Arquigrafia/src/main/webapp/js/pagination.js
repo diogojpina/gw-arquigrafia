@@ -17,9 +17,10 @@ function return_photos(load_photos){
 			count = $load_photos.data('count') - 8;
 	$load_photos.text('Aguarde, carregando...');
 	$(list).append(load);
+	console.log("sasasa");
+	console.log(count);
 
 	$.get(load_photos.href, {page: page}, function(photos){
-		console.log(photos);
 	  if (isFinite(photos)) {
 		  $load_photos.remove();
 	  } else {
