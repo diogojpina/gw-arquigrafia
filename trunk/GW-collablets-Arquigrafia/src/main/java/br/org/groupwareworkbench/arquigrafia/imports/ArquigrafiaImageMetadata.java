@@ -2,6 +2,7 @@ package br.org.groupwareworkbench.arquigrafia.imports;
 
 import java.io.File;
 import java.lang.reflect.Field;
+import java.util.Arrays;
 
 public class ArquigrafiaImageMetadata {
 
@@ -63,6 +64,11 @@ public class ArquigrafiaImageMetadata {
         if ( TOMBO.toLowerCase().endsWith(".jpg") ) {
             TOMBO = TOMBO.replace(".jpg", "");
         }
+    }
+    
+    @Override
+    public String toString() {
+        return TOMBO;
     }
 
 }
