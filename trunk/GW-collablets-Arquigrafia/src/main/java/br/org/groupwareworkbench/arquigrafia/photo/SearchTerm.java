@@ -13,6 +13,7 @@ public final class SearchTerm {
         names.add("district");
         names.add("street");
         names.add("workAuthor");
+        names.add("imageAuthor");
     }
     
     public static boolean contains(String term) {

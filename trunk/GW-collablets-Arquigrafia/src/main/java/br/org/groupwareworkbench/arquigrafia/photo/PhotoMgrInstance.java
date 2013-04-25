@@ -81,6 +81,7 @@ public class PhotoMgrInstance extends AbstractBusiness {
     public Map<String, List<Photo>> searchForAttributesOfThePhoto(String term, int page, int perPage) {
         Map<String, List<Photo>> results = Maps.newHashMap();
         for (String attr : SearchTerm.getNames()) {
+            System.out.println(attr);
             results.put(attr, Photo.findByAttribute(getCollablet(), attr, term, page, perPage));
         }
         return results;
