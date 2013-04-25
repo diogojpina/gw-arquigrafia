@@ -7,7 +7,6 @@ import br.com.caelum.vraptor.ioc.ApplicationScoped;
 import br.com.caelum.vraptor.ioc.Component;
 
 @Component
-@ApplicationScoped
 public final class search {
     
     
