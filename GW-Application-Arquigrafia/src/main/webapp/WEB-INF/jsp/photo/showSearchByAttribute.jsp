@@ -56,7 +56,7 @@
 					<div class="list_photos">
 						<fmt:message key="${term}"/> ${searchTerm}
 						<a id="${term}"
-							href="<c:url value="/photos/${photoMgr.id}/search/term?q=${util:encode(q)}&term=${term}&perPage=8"/>"
+							href="<c:url value="/photos/${photoMgr.id}/search/term?q=${util:encode(searchTerm)}&term=${term}&perPage=8"/>"
 							class="load_photos" data-count="0" data-page="2"></a>
 							
 						<hr />
