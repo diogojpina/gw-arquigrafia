@@ -1,12 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page isErrorPage="true"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.io.*,java.util.*,javax.mail.*"%>
 <%@ page import="javax.mail.internet.*,javax.activation.*"%>
 <%@ page import="javax.servlet.http.*,javax.servlet.*"%>
-
-
 
 <%
 	String result;
@@ -21,6 +18,43 @@
 	props.put("mail.smtp.host", "smtp.gmail.com");
 	props.put("mail.smtp.port", "587");
 
+	String errorMessageSubject = "Mensagem automática de erro - ";
+	String errorMessageMessage = "Mensagem automática de erro gerada pelo arquigrafia. ";
+	
+	try {
+		StringWriter sw = new StringWriter();
+		exception.printStackTrace(new PrintWriter(sw));
+		String stacktrace = sw.toString();
+		
+		errorMessageSubject += exception.getCause();
+		errorMessageMessage += "";
+		errorMessageMessage += "\n\n  O código do erro é : ";
+		errorMessageMessage += request.getAttribute("javax.servlet.error.status_code");
+		errorMessageMessage += "\n\n  O id do usuário logado é: ";
+		errorMessageMessage += session.getAttribute("userLoginId");
+		errorMessageMessage += "\n\n  O nome do usuário logado é: ";
+		errorMessageMessage += session.getAttribute("userLoginName");
+		errorMessageMessage += "\n\n  A aplicação está no servidor: ";
+		errorMessageMessage += request.getServerName();
+		errorMessageMessage += "\n\n  A pagina requisitada no momento do erro é: ";
+		errorMessageMessage += request.getAttribute("javax.servlet.error.request_uri");
+		errorMessageMessage += "\n\n  A classe que gerou a excessão é: ";
+		errorMessageMessage += exception.getClass();
+		errorMessageMessage += "\n\n  O tipo da excessão é: ";
+		errorMessageMessage += request.getAttribute("javax.servlet.error.exception_type");
+		errorMessageMessage += "\n\n  A mensagem de erro é: ";
+		errorMessageMessage += request.getAttribute("javax.servlet.error.message");
+		errorMessageMessage += "\n\n  A string da excessão é: ";
+		errorMessageMessage += exception.toString();
+		errorMessageMessage += "\n\n  A pilha de execução no momento é:"; 
+		errorMessageMessage += stacktrace;
+		errorMessageMessage += "\n\n  Atenciosamente ";
+		errorMessageMessage += "\n\n  Equipe do Arquigrafia. ";
+	} catch(Exception e) {
+		errorMessageSubject += " NÃO FOI POSSIVEL CRIAR O EMAIL CORRETAMENTE";
+		errorMessageMessage += "\n\n  NÃO FOI POSSIVEL CRIAR O EMAIL CORRETAMENTE";
+	}
+	
 	try {
 
 		Session sessions = Session.getInstance(props,
@@ -30,35 +64,6 @@
 								password);
 					}
 				});
-
-		StringWriter sw = new StringWriter();
-		exception.printStackTrace(new PrintWriter(sw));
-		String stacktrace = sw.toString();
-		
-		String errorMessageSubject = "Mensagem automática de erro - " + exception.getCause();
-		String errorMessageMessage = "Mensagem automática de erro gerada pelo arquigrafia. "
-						+ "\n\n  O código do erro é : "
-						+ request.getAttribute("javax.servlet.error.status_code")
-						+ "\n\n  O id do usuário logado é: "
-						+ session.getAttribute("userLoginId")
-						+ "\n\n  O nome do usuário logado é: "
-						+ session.getAttribute("userLoginName")
-						+ "\n\n  A aplicação está no servidor: "
-						+ request.getServerName()
-						+ "\n\n  A pagina requisitada no momento do erro é: "
-						+ request.getAttribute("javax.servlet.error.request_uri")
-						+ "\n\n  A classe que gerou a excessão é: "
-						+ exception.getClass()
-						+ "\n\n  O tipo da excessão é: "
-						+ request.getAttribute("javax.servlet.error.exception_type")
-						+ "\n\n  A mensagem de erro é: "
-						+ request.getAttribute("javax.servlet.error.message")
-						+ "\n\n  A string da excessão é: "
-						+ exception.toString()
-						+ "\n\n  A pilha de execução no momento é:" 
-						+ stacktrace
-						+ "\n\n  Atenciosamente "
-						+ "\n\n  Equipe do Arquigrafia. ";
 		
 		Message message = new MimeMessage(sessions);
 		message.setFrom(new InternetAddress(
@@ -69,9 +74,9 @@
 		message.setText(errorMessageMessage);
 		Transport.send(message);
 
-		result = "<p>Sua ajuda é muito importante para o projeto. Envie um e-mail " 
+		result = "<p>Sua ajuda é muito importante para o projeto. Caso o problema persista envie um email " 
 			+ "informando as ações executadas que causaram o erro para  "
-			+ " <a href=\"mailto:arquigrafiabrasil@gmail.com\">arquigrafiabrasil@gmail.com</a>.!!!</p>";
+			+ " <a href=\"mailto:arquigrafiabrasil@gmail.com\">arquigrafiabrasil@gmail.com</a>.</p>";
 
 	} catch (MessagingException e) {
 		//throw new RuntimeException(e);
