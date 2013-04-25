@@ -21,6 +21,7 @@ public final class search {
         names.add("street");
         names.add("imageAuthor");
         names.add("workAuthor");
+        names.add("description");
     }
     
     public boolean contains(String term) {
