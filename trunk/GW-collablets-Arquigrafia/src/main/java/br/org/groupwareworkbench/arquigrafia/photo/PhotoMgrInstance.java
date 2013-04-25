@@ -46,8 +46,11 @@ public class PhotoMgrInstance extends AbstractBusiness {
 
     private GraphicalResourceManager graphicalResourceManager = null;
     
+    private search search;
+    
     public PhotoMgrInstance(Collablet collablet) {
         super(collablet);
+        search = new search();
     }
 
     public void save(Photo photo) {
@@ -80,7 +83,7 @@ public class PhotoMgrInstance extends AbstractBusiness {
     
     public Map<String, List<Photo>> searchForAttributesOfThePhoto(String term, int page, int perPage) {
         Map<String, List<Photo>> results = Maps.newHashMap();
-        for (String attr : SearchTerm.getNames()) {
+        for (String attr : search.getNames()) {
             System.out.println(attr);
             results.put(attr, Photo.findByAttribute(getCollablet(), attr, term, page, perPage));
         }
@@ -97,15 +100,15 @@ public class PhotoMgrInstance extends AbstractBusiness {
     }
 
     public List<Photo> searchForAttributeOfThePhoto(String term, String q, int page, int perPage) {
-        SearchTerm.getNames().add("imageAuthor");
+        search.getNames().add("imageAuthor");
         List<Photo> photos = Photo.findByAttribute(getCollablet(), term, q, page, perPage);
-        SearchTerm.getNames().remove("imageAuthor");
+        search.getNames().remove("imageAuthor");
         return photos;
     }
 
     public Map<String, Long> countsPhotosSearchByAttribute(String term) {
         Map<String, Long> results = Maps.newHashMap();
-        for (String attr : SearchTerm.getNames()) {
+        for (String attr : search.getNames()) {
             results.put(attr, Photo.countByAttribute(getCollablet(), attr, term));
         }
         return results;

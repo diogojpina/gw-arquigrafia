@@ -681,7 +681,7 @@ public class Photo implements Serializable, GraphicalResource {
     
     @SuppressWarnings("unchecked")
     public static List<Photo> findByAttribute(Collablet collablet, String fieldName, String value, int page, int perPage) {
-        if (SearchTerm.contains(fieldName)) {
+        if (new search().contains(fieldName)) {
             check(value);
             Pagination pagination = new Pagination(page, perPage);
             String queryString = 
@@ -709,7 +709,7 @@ public class Photo implements Serializable, GraphicalResource {
     }
     
     public static Long countByAttribute(Collablet collablet, String fieldName, String value) {
-        if (SearchTerm.contains(fieldName) || fieldName.equals("imageAuthor")) {
+        if (new search().contains(fieldName) || fieldName.equals("imageAuthor")) {
             check(value);
             String queryString = 
                     "select count(*) from Photo p where p.deleted = false AND p.collablet =:collablet AND (" + "upper(p." + fieldName + ") like :nom1 "
