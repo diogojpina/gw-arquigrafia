@@ -349,7 +349,6 @@ public class PhotoController {
     @Path("/photos/{photoMgr}/count/search/term")
     public void countPhotosSearchByAttribute(PhotoMgrInstance photoMgr, String term, String q) {
         String search = EncoderParam.decode(q);
-        System.out.println(search);
         Long count = photoMgr.countPhotosSearchByAttribute(term, search);
         result.use(Results.json()).withoutRoot().from(count).serialize();
     }

@@ -12,6 +12,9 @@
 <%@ attribute name="locationClass" required="false" rtexprvalue="false" type="java.lang.String" %>
 <%@ attribute name="lineClass" required="false" rtexprvalue="false" type="java.lang.String" %>
 
+<script type="text/javascript" src="<c:url value="/js/searchByAttribute.js" />"></script>
+
+
 <%--
     TODO: Evitar inserir <div> que nao fecham de forma obvia pois dependem de analise sensivel ao contexto para
     garantir que sao bem formadas.

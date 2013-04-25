@@ -709,7 +709,7 @@ public class Photo implements Serializable, GraphicalResource {
     }
     
     public static Long countByAttribute(Collablet collablet, String fieldName, String value) {
-        if (SearchTerm.contains(fieldName)) {
+        if (SearchTerm.contains(fieldName) || fieldName.equals("imageAuthor")) {
             check(value);
             String queryString = 
                     "select count(*) from Photo p where p.deleted = false AND p.collablet =:collablet AND (" + "upper(p." + fieldName + ") like :nom1 "
