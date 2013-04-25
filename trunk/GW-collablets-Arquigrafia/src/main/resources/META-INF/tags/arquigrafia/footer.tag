@@ -1,7 +1,7 @@
 <%@ tag body-content="empty" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="r" uri="http://www.groupwareworkbench.org.br/taglibs/reflection" %>
-
+<%@ taglib prefix="util" uri="http://www.groupwareworkbench.org.br/widgets/util"%>
 <%@ attribute name="arquigrafiaInstance" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.arquigrafia.main.ArquigrafiaMgrInstance" %>
 
 
@@ -13,7 +13,7 @@
 		  <li><a href="http://www.fapesp.br/" title="FAPESP" id="fapesp" target="_blank"></a></li>
 		  <li><a href="http://www.rnp.br/" title="RNP" id="rnp" target="_blank"></a></li>
 		  <li><a href="http://www.cnpq.br/" title="CNPQ" id="cnpq" target="_blank"></a></li>
-		  <li><a href="#" title="Este projeto" id="chancela" target="_blank"></a></li>
+		  <li><a href="<c:url value="/18/chancela"/>" title="chancela" id="chancela" target="_blank"></a></li>
 		  <li><a href="http://www.usp.br/fau/" title="FAU" id="fau" target="_blank"></a></li>
 		  <li><a href="http://www.ime.usp.br/" title="IME" id="ime" target="_blank"></a></li>
 		  <li><a href="http://www.eca.usp.br/" title="ECA" id="eca" target="_blank"></a></li>
