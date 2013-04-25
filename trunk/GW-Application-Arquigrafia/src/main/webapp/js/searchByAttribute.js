@@ -8,6 +8,7 @@ $(function(){
 	
 	$.get(url, {q: search, term: term}, function(count) {
 		console.log(count);
+		console.log("sasasallalalal");
 		if (count > 8) {
 			$('#'+term).data("count", count-8).text('Ver mais imagens');
 		}
