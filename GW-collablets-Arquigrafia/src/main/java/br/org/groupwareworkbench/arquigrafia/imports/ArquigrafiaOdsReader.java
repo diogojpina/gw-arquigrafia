@@ -34,6 +34,7 @@ public class ArquigrafiaOdsReader {
             int sheetCount = currentDocument.getSheetCount();
             String resourcePath = sourceFile.getParentFile().getAbsolutePath();
             for ( int sheetId = 0; sheetId < sheetCount ; sheetId++ ) {
+                System.out.println("Lendo a planilha "+sheetId+" de "+sheetCount);
                 imageMetadatas.addAll( getImageMetadatasFromSheet( currentDocument.getSheetByIndex( sheetId ), resourcePath) );
             }
             currentDocument.close();
@@ -51,9 +52,10 @@ public class ArquigrafiaOdsReader {
         int rowCount = selectedSheet.getRowCount();
         boolean isReadind = true;
         //first row is header
-        for ( int rowIndexAfterReader = 1; rowIndexAfterReader < rowCount && isReadind; rowIndexAfterReader++ ) {
+        for ( int rowIndexAfterHeader = 1; rowIndexAfterHeader < rowCount && isReadind; rowIndexAfterHeader++ ) {
             
-            ArquigrafiaImageMetadata imageMetadataFromRow = getImageMetadataFromRow( selectedSheet.getCellRangeByPosition(0, rowIndexAfterReader, ArquigrafiaImageMetadataOdsIndexes.values().length, rowIndexAfterReader), resourcePath );
+            Cell[] cells = getRowCells(selectedSheet, rowIndexAfterHeader);
+            ArquigrafiaImageMetadata imageMetadataFromRow = getImageMetadataFromRow(cells, resourcePath );
             if ( imageMetadataFromRow != null ) {
                 imageMetadataFromRow.removeJpgExtensionFromTombo();
                 sheetImageMetadatas.add(imageMetadataFromRow);
@@ -68,14 +70,21 @@ public class ArquigrafiaOdsReader {
         
     }
 
-    private ArquigrafiaImageMetadata getImageMetadataFromRow(CellRange selectedCellRange, String resourcePath) {
+    private Cell[] getRowCells(Table selectedSheet, int rowIndexAfterHeader) {
+        Cell[] cells = new Cell[ArquigrafiaImageMetadataOdsIndexes.values().length];
+        for ( int i = 0; i < cells.length; i++ ) {
+            cells[i] = selectedSheet.getCellByPosition(i, rowIndexAfterHeader);
+        }
+        return cells;
+    }
+
+    private ArquigrafiaImageMetadata getImageMetadataFromRow(Cell[] cells, String resourcePath) {
         
-        Cell selectedCell = selectedCellRange.getCellByPosition( ArquigrafiaImageMetadataOdsIndexes.TOMBO.getColumnIndex() , 0);
+        Cell selectedCell = cells[ArquigrafiaImageMetadataOdsIndexes.TOMBO.getColumnIndex()];
         String tombo = selectedCell.getStringValue();
         if ( tombo != null && !tombo.trim().isEmpty() ) {
             
-            
-            String[] arrayRowValues = mapRowValuesToArray(selectedCellRange); 
+            String[] arrayRowValues = mapRowValuesToArray(cells); 
             ArquigrafiaImageMetadata metadata = ArquigrafiaImageMetadata.fromRow(resourcePath, arrayRowValues);
             return metadata;
             
@@ -84,10 +93,10 @@ public class ArquigrafiaOdsReader {
         return null;
     }
 
-    private String[] mapRowValuesToArray(CellRange selectedCellRange) {
+    private String[] mapRowValuesToArray(Cell[] cells) {
         String [] values = new String[ArquigrafiaImageMetadataOdsIndexes.values().length];
         for ( ArquigrafiaImageMetadataOdsIndexes index : ArquigrafiaImageMetadataOdsIndexes.values() ) {
-            values[index.getColumnIndex()] = selectedCellRange.getCellByPosition( index.getColumnIndex() , 0).getStringValue();
+            values[index.getColumnIndex()] = cells[index.getColumnIndex()].getStringValue();
         }
         return values;
     }
