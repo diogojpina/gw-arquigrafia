@@ -12,7 +12,6 @@
 <%@ attribute name="locationClass" required="false" rtexprvalue="false" type="java.lang.String" %>
 <%@ attribute name="lineClass" required="false" rtexprvalue="false" type="java.lang.String" %>
 
-<script type="text/javascript" src="<c:url value="/js/searchByAttribute.js" />"></script>
 
 
 <%--
