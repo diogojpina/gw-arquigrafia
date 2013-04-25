@@ -668,12 +668,15 @@ public class PhotoController {
 
     private void importImages(String userName, String basePath) {
         Collablet userMgr = Collablet.findByName("userMgr");
-        User fauUser = User.findByLogin(userName, userMgr, AccountType.NATIVE);
+        User importUser = User.findByLogin(userName, userMgr, AccountType.NATIVE);
+        if ( importUser == null ) {
+            throw new RuntimeException(String.format("Cannot found user %s to import images.", userName));
+        }
         OdsRecursiveFinder odsRecursiveFinder = new OdsRecursiveFinder();
         odsRecursiveFinder.find(new File(basePath));
         for (File odsFile : odsRecursiveFinder.getResults()) {
             try {
-                new MetaDataToPhotoMapper(odsFile).doMapper(fauUser);
+                new MetaDataToPhotoMapper(odsFile).doMapper(importUser);
             } catch (Exception e) {
                 e.printStackTrace();
             }
