@@ -85,6 +85,8 @@
 
 
 
+
+		</div>
 			<!--   FIM - MEIO DO SITE   -->
 			<!--   FUNDO DO SITE   -->
 			<div id="footer">
@@ -97,8 +99,6 @@
 				<!--   CRÉDITOS - LOGOS   -->
 				<arquigrafia:footer arquigrafiaInstance="${arquigrafiaMgr}" />
 			</div>
-
-		</div>
 		<!--   FIM - FUNDO DO SITE   -->
 		<!--   MODAL   -->
 		<div id="mask"></div>

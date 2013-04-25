@@ -59,6 +59,8 @@
 
              <!--   FIM - MEIO DO SITE   -->
     <!--   FUNDO DO SITE   -->
+    
+    </div>
     <div id="footer">
 	  <!--   BARRA DE ABAS   -->
 	  <arquigrafia:tabs counterMgr="${counterMgr}" photoMgr="${photoMgr}" commentMgr="${commentMgr}" arquigrafiaInstance="${arquigrafiaMgr}" />
@@ -67,8 +69,6 @@
 	  
 	  <!--   CRÉDITOS - LOGOS   -->
       <arquigrafia:footer arquigrafiaInstance="${arquigrafiaMgr}" />
-    </div>
-    
     </div>
     <!--   FIM - FUNDO DO SITE   -->
     <!--   MODAL   -->
