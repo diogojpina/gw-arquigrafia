@@ -26,7 +26,7 @@ public class MetaDataToPhotoMapper {
 
     public MetaDataToPhotoMapper(File metaDataFile) throws FileNotFoundException {
         this.metaDataFile = metaDataFile;
-        this.logPrintStream = new PrintStream(getFileLog());
+        this.logPrintStream = new PrintStream(System.out);
     }
 
     public MetaDataToPhotoMapper(File metaDataFile, PrintStream logPrintStream) {
@@ -37,12 +37,13 @@ public class MetaDataToPhotoMapper {
     public void doMapper(User user) {
 
         this.logPrintStream.println(String.format("Reading metadata from %s.", metaDataFile.getAbsolutePath()));
-        if (!alreadyProcessed()) {
+        if (alreadyProcessed()) {
             this.logPrintStream.println(String.format("File %s already imported, skipping file.",
                     metaDataFile.getAbsolutePath()));
         } else {
             try {
                 getFileLog().createNewFile();
+                this.logPrintStream = new PrintStream(getFileLog());
                 ArquigrafiaOdsReader imagesMetadataReader = new ArquigrafiaOdsReader(metaDataFile);
                 Collection<ArquigrafiaImageMetadata> metadataImages = imagesMetadataReader.read();
                 Collablet photoMgr = Collablet.findByName("photoMgr");
