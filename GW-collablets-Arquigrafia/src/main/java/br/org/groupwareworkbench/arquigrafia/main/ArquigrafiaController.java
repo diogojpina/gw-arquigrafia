@@ -88,6 +88,16 @@ public class ArquigrafiaController {
         addIncludes(arquigrafiaInstance);
     }
     
+
+    @Get
+    @Path(value = "/{arquigrafiaInstance}/chancela")
+    public void chancela(ArquigrafiaMgrInstance arquigrafiaInstance) {
+        result.include("arquigrafiaMgr", arquigrafiaInstance);
+        addIncludes(arquigrafiaInstance);
+    }
+    
+    
+    
     @Get
     @Path(value = "/{arquigrafiaInstance}/projectMore")
     public void project_more(ArquigrafiaMgrInstance arquigrafiaInstance) {
