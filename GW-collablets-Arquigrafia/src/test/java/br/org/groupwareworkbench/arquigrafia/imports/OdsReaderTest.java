@@ -25,6 +25,9 @@ public class OdsReaderTest {
         ArquigrafiaOdsReader imagesMetadataReader = setupArquigrafiaOdsFileReader(filePath);
         Collection<ArquigrafiaImageMetadata> metadataImages = imagesMetadataReader.read();
         assertTrue(!metadataImages.isEmpty() );
+        for ( ArquigrafiaImageMetadata selectedmetadata : metadataImages ) {
+            assertFalse(selectedmetadata.toString().isEmpty() );
+        }
         System.out.println(String.format("Ods File %s has %d entries.", filePath ,metadataImages.size()));
     }
 
