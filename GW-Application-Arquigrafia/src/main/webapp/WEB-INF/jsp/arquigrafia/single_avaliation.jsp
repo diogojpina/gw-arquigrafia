@@ -97,11 +97,11 @@
                         <div id="text_Under">
                                 <p>Ao terminar clique no botão Salvar.<br /> </p>
                                 </div>
-                           
                            	<div id="binomialSubmit">
                                    <input type="submit" name="saveBinomial" value="" />
                           	</div>
 							<a href="<c:url value="/photo/${photo.id}" />" title="Cancelar" id="evaluation_cancel"></a>
+                           
                 </div>
                        
          </form>

@@ -520,6 +520,7 @@ ul#avaliation_list li .bloco{ width:430px; background:url(../img/icons_sprite.pn
 
 #binomialSubmit {
 	clear: both;
+	margin-left: 145px;
 }
 
 #text_Over {
@@ -580,7 +581,7 @@ a#evaluation_cancel {
 	cursor: pointer;
 	position: absolute;
 	margin-top: -20px;
-	margin-left: 150px;
+	margin-left: 0px;
 }
 
 a#evaluation_cancel:hover {

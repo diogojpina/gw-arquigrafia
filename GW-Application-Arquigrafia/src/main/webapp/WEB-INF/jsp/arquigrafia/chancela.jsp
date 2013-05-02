@@ -38,7 +38,7 @@
           <h2>Arquigrafia recebe chancela do Ministério da Cultura</h2>
 
 		  <p>O projeto Arquigrafia recebeu do Ministério da Cultura, por meio da Secretaria de Políticas Culturais, a chancela de experiências de Cartografia Colaborativas em 19 de fevereiro de 2013. Tal reconhecimento foi motivo de muito orgulho para toda equipe.</p>
-          <img class="left" src="<c:url value="/img/chancela.jpg" />" width="600px" height="auto"  alt="Texto alternativo da foto" title="Título da foto" />
+          <img class="left" src="<c:url value="/img/chancela.jpg" />" width="600px" height="auto"  alt="Chancela do Ministério da Cultura" title="Chancela do Ministério da Cultura" />
  		</div>
         <!--   FIM - TEXTO DO PROJETO   -->
       </div>
@@ -106,7 +106,7 @@
 		</ul>
       </div>
        <!--   FIM - COLUNA DIREITA -->   
-   
+   </div>
     <!--   FIM - MEIO DO SITE-->
     <!--   FUNDO DO SITE   -->
     <div id="footer">
