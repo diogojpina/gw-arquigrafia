@@ -1,21 +1,22 @@
 package br.org.groupwareworkbench.arquigrafia.imports;
 
 import java.io.File;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 public class OdsRecursiveFinder {
 
-    Set<File> results;
+    Map<String,File> results;
 
     public OdsRecursiveFinder() {
-        this.results = new HashSet<File>();
+        this.results = new HashMap<String,File>();
     }
 
     public void find(File dir) {
         for (File file : dir.listFiles()) {
             if (file.isFile() && file.getName().endsWith(".ods")) {
-                results.add(file);
+                results.put(file.getName(),file);
             }
             if (file.isDirectory()) {
                 find(file);
@@ -23,8 +24,8 @@ public class OdsRecursiveFinder {
         }
     }
 
-    public Set<File> getResults() {
-        return results;
+    public Collection<File> getResults() {
+        return results.values();
     }
 
 }
