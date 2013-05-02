@@ -98,5 +98,7 @@
       <!--   TESTE DE FUNCIONAMENTO DA FUNÇÃO   -->
       
     </div>
+ 		<input id="context_path" type="hidden" value="${pageContext.request.contextPath}"/>	
+    
     <!--   FIM - CABEÇALHO   -->
 
