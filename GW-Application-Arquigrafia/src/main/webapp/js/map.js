@@ -5,7 +5,8 @@
 	Maps.init = function () {
 		
 		Maps.type = "GET",
-		Maps.url = "/GW-Application-Arquigrafia/photos/7/amount/100",
+		context = $('#context_path').val(),
+		Maps.url = context.concat("/photos/7/amount/100"),
 		Maps.dataType = "json";
 		Maps.contentType = "application/json";
 
@@ -24,6 +25,8 @@
 		Maps.infowindow = new google.maps.InfoWindow({});
 		
 		Maps.term = '';
+		
+		console.log(Maps.url);
 		
 		Maps.setup();
 
