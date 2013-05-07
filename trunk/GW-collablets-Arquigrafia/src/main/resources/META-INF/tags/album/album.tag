@@ -4,5 +4,5 @@
 <%@ attribute name="albumMgr" required="true" rtexprvalue="true" type="br.org.groupwareworkbench.collablet.coop.album.AlbumMgrInstance" %>
 
 <a href="${pageContext.request.contextPath}/album/${albumMgr.id}/listPhotos/${album.id}" class="paste">
-	<img src="<c:out value="${pageContext.request.contextPath}/img/album_icon-1.png" default="${pageContext.request.contextPath}/img/album_icon-1.png"/>" alt="<c:out value="${album.title}" />"/>
+	<img class="folder" src="<c:out value="${pageContext.request.contextPath}/img/album_icon-1.png" default="${pageContext.request.contextPath}/img/album_icon-1.png"/>" alt="<c:out value="${album.title}" />"/>
 </a>

@@ -698,3 +698,11 @@ input#login_white_button:hover { background-position:-160px -258px; }
     padding:25px;
     color:#eee;
   }
+  
+.owner_photo {
+	height: 70px;
+}
+
+.folder {
+	height: 35px;
+}
