@@ -21,7 +21,6 @@
 package br.org.groupwareworkbench.arquigrafia.photo;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
@@ -51,8 +50,26 @@ import javax.persistence.Transient;
 import javax.persistence.TypedQuery;
 
 import org.apache.log4j.Logger;
+import org.apache.solr.analysis.BrazilianStemFilterFactory;
+import org.apache.solr.analysis.LowerCaseFilterFactory;
+import org.apache.solr.analysis.MappingCharFilterFactory;
+import org.apache.solr.analysis.SnowballPorterFilterFactory;
+import org.apache.solr.analysis.StandardTokenizerFactory;
+import org.apache.solr.analysis.StopFilterFactory;
 import org.hibernate.annotations.TypeDef;
 import org.hibernate.annotations.TypeDefs;
+import org.hibernate.search.annotations.Analyzer;
+import org.hibernate.search.annotations.AnalyzerDef;
+import org.hibernate.search.annotations.CharFilterDef;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Index;
+import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.IndexedEmbedded;
+import org.hibernate.search.annotations.Parameter;
+import org.hibernate.search.annotations.Store;
+import org.hibernate.search.annotations.TokenFilterDef;
+import org.hibernate.search.annotations.TokenizerDef;
+import org.hibernate.search.jpa.FullTextEntityManager;
 
 import br.com.caelum.vraptor.interceptor.download.FileDownload;
 import br.org.groupwareworkbench.arquigrafia.license.CreativeCommons_3_0;
@@ -64,7 +81,6 @@ import br.org.groupwareworkbench.core.date.ISO8601;
 import br.org.groupwareworkbench.core.date.jpa.ISO8601Type;
 import br.org.groupwareworkbench.core.date.translation.ISO8601TranslatorFactory;
 import br.org.groupwareworkbench.core.framework.Collablet;
-import br.org.groupwareworkbench.core.graphics.BatchImageProcessor;
 import br.org.groupwareworkbench.core.graphics.GraphicalResource;
 import br.org.groupwareworkbench.core.graphics.GraphicalResourceSuffix;
 import br.org.groupwareworkbench.core.util.Pagination;
@@ -77,6 +93,38 @@ import br.org.groupwareworkbench.core.util.Pagination;
         defaultForType = ISO8601.class,
         typeClass = ISO8601Type.class
      )
+)
+
+@Indexed
+@AnalyzerDef(name = "customanalyzer",
+        charFilters = {
+                @CharFilterDef(factory = MappingCharFilterFactory.class, params = {
+                    @Parameter(name = "mapping", value = "mapping-chars.properties")
+                })
+        },
+        
+        tokenizer = @TokenizerDef(factory = StandardTokenizerFactory.class),
+            filters = {
+                
+                @TokenFilterDef(factory = LowerCaseFilterFactory.class),
+                
+                @TokenFilterDef(factory = SnowballPorterFilterFactory.class, params = {
+                        @Parameter(name = "language", value = "English"),
+                }),
+                
+                @TokenFilterDef(factory = BrazilianStemFilterFactory.class),
+
+                @TokenFilterDef(factory = StopFilterFactory.class, params = {
+                    @Parameter(name="words", value= "stoplist.properties" ),
+                    @Parameter(name="ignoreCase", value="true")
+                }),
+
+                @TokenFilterDef(factory = SnowballPorterFilterFactory.class, params = {
+                    @Parameter(name = "language", value = "Portuguese")
+                }),
+                
+           }
+
 )
 public class Photo implements Serializable, GraphicalResource {
 
@@ -147,11 +195,14 @@ public class Photo implements Serializable, GraphicalResource {
     private Long id;
 
     @ManyToOne
+    @IndexedEmbedded
     private Collablet collablet;
 
     private transient PhotoMgrInstance instance;
 
     @Column(name = "name", unique = false, nullable = false)
+    @Field(index = Index.TOKENIZED, store = Store.NO)
+    @Analyzer(definition = "customanalyzer")
     private String name;
 
     @Column(name = "nome_arquivo", unique = false, nullable = false)
@@ -164,21 +215,46 @@ public class Photo implements Serializable, GraphicalResource {
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataUpload;
 
-    private String city;
     private String state;
     private String country;
+
+    @Field(index = Index.TOKENIZED, store = Store.NO)
+    @Analyzer(definition = "customanalyzer")
+    private String city;
+    
+    @Field(index = Index.TOKENIZED, store = Store.NO)
+    @Analyzer(definition = "customanalyzer")
     private String district;
+    
+    @Field(index = Index.TOKENIZED, store = Store.NO)
+    @Analyzer(definition = "customanalyzer")
     private String workAuthor;
-//    private String workdate;
-    private ISO8601 workdate;
+
+    @Field(index = Index.TOKENIZED, store = Store.NO)
+    @Analyzer(definition = "customanalyzer")
     private String street;
+    
+    @Field(index = Index.TOKENIZED, store = Store.NO)
+    @Analyzer(definition = "customanalyzer")
     private String description;
-    private String collection;
+
+    @Analyzer(definition = "customanalyzer")
+    @Field(index = Index.TOKENIZED, store = Store.NO)
     private String imageAuthor;
+
+    @Field(index = Index.UN_TOKENIZED, store = Store.NO)
+    private boolean deleted;
+
+    //    private String workdate;
+    private ISO8601 workdate;
+
+    
+    private String collection;
+    
+
     private String aditionalImageComments;
     private String characterization;
     private String tombo;
-    private boolean deleted;
     
     @Enumerated(EnumType.STRING)
     private AllowModifications allowModifications;
@@ -680,55 +756,112 @@ public class Photo implements Serializable, GraphicalResource {
     }
     
     @SuppressWarnings("unchecked")
-    public static List<Photo> findByAttribute(Collablet collablet, String fieldName, String value, int page, int perPage) {
-        if (new search().contains(fieldName)) {
-            check(value);
-            Pagination pagination = new Pagination(page, perPage);
-            String queryString = 
-                    "select p from Photo p where p.deleted = false AND p.collablet =:collablet AND (" + "upper(p." + fieldName + ") like :nom1 "
-                            + "OR upper(p." + fieldName + ") like :nom2 " + "OR upper(p." + fieldName + ") like :nom4 "
-                            + "OR upper(p." + fieldName + ") like :nom3 ) order by dataUpload DESC";
-            
+    public static List<Photo> findByAttribute(Collablet collablet, String term, String value, Pagination pagination) {
+        
+        if (Search.contains(term)) {
+
             EntityManager em = EntityManagerProvider.getEntityManager();
-            Query query = em.createQuery(queryString);
-    
-            return query.setParameter("collablet", collablet)
-                        .setParameter("nom1", "%" + value.toUpperCase() + "%")
-                        .setParameter("nom2", value.toUpperCase() + "%")
-                        .setParameter("nom3", "%" + value.toUpperCase())
-                        .setParameter("nom4", value.toUpperCase())
-                        .setFirstResult(pagination.firstResult()).setMaxResults(pagination.getPerPage())
-                        .getResultList();
+            FullTextEntityManager fullTextEntityManager = org.hibernate.search.jpa.Search.getFullTextEntityManager(em);
+            
+            org.hibernate.search.query.dsl.QueryBuilder builder = fullTextEntityManager.getSearchFactory().buildQueryBuilder().forEntity(Photo.class).get();
+            
+            org.apache.lucene.search.Query termQuery = builder
+                                                    .keyword()
+                                                    .onFields(term)
+                                                    .matching(value.toUpperCase().trim())
+                                                    .createQuery();
+
+            org.apache.lucene.search.Query deletedQuery = builder
+                                                            .keyword()
+                                                            .onFields("deleted")
+                                                            .matching("false")
+                                                            .createQuery();
+
+            org.apache.lucene.search.Query collabletQuery = builder
+                    .keyword()
+                    .onFields("collablet.id")
+                    .matching(collablet.getId())
+                    .createQuery();
+
+            org.apache.lucene.search.Query query = builder
+                                                       .bool()
+                                                       .must(termQuery)
+                                                       .must(deletedQuery)
+                                                       .must(collabletQuery)
+                                                       .createQuery();
+
+            
+            Query hibQuery = fullTextEntityManager.createFullTextQuery(query, Photo.class, Collablet.class);
+
+            return hibQuery
+                    .setFirstResult(pagination.firstResult()).setMaxResults(pagination.getPerPage())
+                    .getResultList();
         }
         return null;
     }
-
-    private static void check(String value) {
-        // FIXME The following line and the code that calls this method need serious review. The following assignment is simply nonsensical.
-        if (value.equals("")) value = "!$%--6**24";        
-    }
     
     public static Long countByAttribute(Collablet collablet, String fieldName, String value) {
-        if (new search().contains(fieldName)) {
-            check(value);
-            String queryString = 
-                    "select count(*) from Photo p where p.deleted = false AND p.collablet =:collablet AND (" + "upper(p." + fieldName + ") like :nom1 "
-                            + "OR upper(p." + fieldName + ") like :nom2 " + "OR upper(p." + fieldName + ") like :nom4 "
-                            + "OR upper(p." + fieldName + ") like :nom3 ) order by dataUpload DESC";
+        if (Search.contains(fieldName)) {
             
             EntityManager em = EntityManagerProvider.getEntityManager();
-            Query query = em.createQuery(queryString);
-    
-            return (Long) query.setParameter("collablet", collablet)
-                        .setParameter("nom1", "%" + value.toUpperCase() + "%")
-                        .setParameter("nom2", value.toUpperCase() + "%")
-                        .setParameter("nom3", "%" + value.toUpperCase())
-                        .setParameter("nom4", value.toUpperCase())
-                        .getSingleResult();
+            FullTextEntityManager fullTextEntityManager = org.hibernate.search.jpa.Search.getFullTextEntityManager(em);
+            
+            org.hibernate.search.query.dsl.QueryBuilder builder = fullTextEntityManager.getSearchFactory().buildQueryBuilder().forEntity(Photo.class).get();
+            
+            org.apache.lucene.search.Query terms = builder
+                                                    .keyword()
+                                                    .onFields(fieldName)
+                                                    .matching(value.toUpperCase().trim())
+                                                    .createQuery();
+
+            org.apache.lucene.search.Query paramDelete = builder
+                                                            .keyword()
+                                                            .onFields("deleted")
+                                                            .matching("false")
+                                                            .createQuery();
+
+            org.apache.lucene.search.Query paramCollablet = builder
+                    .keyword()
+                    .onFields("collablet.id")
+                    .matching(collablet.getId())
+                    .createQuery();
+
+            org.apache.lucene.search.Query query = builder
+                                                       .bool()
+                                                       .must(terms)
+                                                       .must(paramDelete)
+                                                       .must(paramCollablet)
+                                                       .createQuery();
+
+            
+            org.hibernate.search.jpa.FullTextQuery fullTextQuery = fullTextEntityManager.createFullTextQuery(query, Photo.class);
+
+            return (long) fullTextQuery.getResultSize();
         }
         return 0l;
     }
 
+    
+//    if (Search.contains(fieldName)) {
+//        check(value);
+//        String queryString = 
+//                "select count(*) from Photo p where p.deleted = false AND p.collablet =:collablet AND (" + "upper(p." + fieldName + ") like :nom1 "
+//                        + "OR upper(p." + fieldName + ") like :nom2 " + "OR upper(p." + fieldName + ") like :nom4 "
+//                        + "OR upper(p." + fieldName + ") like :nom3 ) order by dataUpload DESC";
+//        
+//        EntityManager em = EntityManagerProvider.getEntityManager();
+//        Query query = em.createQuery(queryString);
+//        String newValue = value.toUpperCase().trim();
+//        return (Long) query.setParameter("collablet", collablet)
+//                    .setParameter("nom1", "%" + newValue + "%")
+//                    .setParameter("nom2", newValue + "%")
+//                    .setParameter("nom3", "%" + newValue)
+//                    .setParameter("nom4", newValue)
+//                    .getSingleResult();
+//    }
+//    return 0l;
+
+    
     public static List<Photo> busca(Collablet collablet, String name, String city, String description, Date date) {
 
         if (collablet == null) throw new IllegalArgumentException();
@@ -842,4 +975,5 @@ public class Photo implements Serializable, GraphicalResource {
     public static Photo findByTombo(String tombo) {
         return QueryBuilder.query(Photo.class).with("tombo", tombo).with("deleted", false).find();
     }
+
 }

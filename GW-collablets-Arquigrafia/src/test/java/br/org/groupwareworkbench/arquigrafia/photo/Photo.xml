@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<dataset>
+
+	<Photo  deleted="0" nome_arquivo="photoc1" name="Museu Rodin, Palacete das Artes" city="Salvador" district="da Graça" 
+							street="Rua da Graça" imageAuthor="" workAuthor="Brasil Arquitetura" description="nova imagem"  collablet_id="7"/>
+							
+	<Photo deleted="0" nome_arquivo="photo 2" name="Casa GL" city="São Paulo" district="Morumbi" 
+							street="Rua Gália" imageAuthor="AGUIAR, Andrea Augusta de" workAuthor="LONGO, Eduardo" 
+							description="Detalhe da Casa GL"  collablet_id="7"/>
+							
+	<Photo deleted="0" nome_arquivo="photo" name="Edifício Cinderela" city="São Paulo" district="Higienópolis" 
+							street="Rua Maranhão, 163" imageAuthor="Ruth Cuiá Troncarelli" workAuthor="João Artacho Jurado" 
+							description="Vista do Edifício Cinderela"  collablet_id="7"/>
+							
+	<Photo  deleted="0" nome_arquivo="photo" name="Hotel Tropical Tambaú" city="João Pessoa" district="Tambaú" 
+							street="Avenida Almirante Tamandaré, 229" imageAuthor="MELLO, Eduardo Augusto Kneese de" workAuthor="BERNARDES, Sérgio Wladmir" 
+							description="Piscina do Hotel Tropical Tambaú"  collablet_id="7"/>
+
+	<Photo  deleted="0" nome_arquivo="photo" name="Hotel Tropical Tambaú 2" city="João Pessoa" district="Tambaú" 
+							street="Avenida Almirante Tamandaré, 229" imageAuthor="MELLO, Eduardo Augusto Kneese de" workAuthor="BERNARDES, Sérgio Wladmir" 
+							description="Piscina do Hotel Tropical Tambaú"  collablet_id="7"/>
+
+	<Photo  deleted="0" nome_arquivo="photo" name="Hotel Tropical Tambaú 3" city="João Pessoa" district="Tambaú" 
+							street="Avenida Almirante Tamandaré, 229" imageAuthor="Eduardo Augusto Kneese de MELLO" workAuthor="BERNARDES, Sérgio Wladmir" 
+							description="Piscina do Hotel Tropical Tambaú"  collablet_id="7"/>
+							
+	<Photo  deleted="0" nome_arquivo="photo" name="Conjunto Residencial Parque Guinle" city="Rio de Janeiro" district="Laranjeiras" 
+							street="Rua Gago Coutinho, s/n" imageAuthor="FAU" workAuthor="COSTA, Lúcio Marçal Ferreira Ribeiro de Lima e" 
+							description="nova imagem"  collablet_id="7"/>
+							
+	<Photo  deleted="0" nome_arquivo="photo" name="Estação ferroviária de Ribeirão Preto" city="Ribeirão Preto" district="Vila Mariana" 
+							street="Avenida Mogiana, 2037" imageAuthor="" workAuthor="Osvaldo Arthur Bratke" 
+							description="nova imagem"  collablet_id="7"/>
+
+	<Photo  deleted="0" nome_arquivo="photo" name="Edifício Cinderela" city="Sao" district="Higienópolis" 
+							street="Rua Maranhão, 163" imageAuthor="Ruth Cuiá Troncarelli" workAuthor="João Artacho Jurado" 
+							description="Vista do Edifício Cinderela"  collablet_id="7"/>
+
+</dataset>

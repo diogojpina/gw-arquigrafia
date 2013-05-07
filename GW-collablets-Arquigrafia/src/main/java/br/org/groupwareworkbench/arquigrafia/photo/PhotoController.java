@@ -24,7 +24,6 @@ import static br.com.caelum.vraptor.view.Results.logic;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
@@ -54,11 +53,12 @@ import br.org.groupwareworkbench.arquigrafia.imports.OdsRecursiveFinder;
 import br.org.groupwareworkbench.collablet.communic.tag.Tag;
 import br.org.groupwareworkbench.collablet.coord.user.User;
 import br.org.groupwareworkbench.collablet.coord.user.User.AccountType;
-import br.org.groupwareworkbench.collablet.util.EncoderParam;
 import br.org.groupwareworkbench.core.framework.Collablet;
 import br.org.groupwareworkbench.core.framework.WidgetInfo;
 import br.org.groupwareworkbench.core.routing.GroupwareInitController;
 import br.org.groupwareworkbench.core.security.util.SecurityUtil;
+import br.org.groupwareworkbench.core.util.WrapperEncoderParam;
+import br.org.groupwareworkbench.core.util.Pagination;
 import br.org.groupwareworkbench.core.util.debug.TimeLog;
 
 @RequestScoped
@@ -294,19 +294,21 @@ public class PhotoController {
         result.use(Results.logic()).forwardTo(PhotoController.class).busca(photoMgr);
     }
 
-    @Get
     @Post
     @Path(value = "/photo/{photoMgr}/search")
-    public void buscaFoto(PhotoMgrInstance photoMgr, final String q, int page, int perPage) {
+    public void search(PhotoMgrInstance photoMgr, final String q, int page, int perPage) {
+        
         validate(photoMgr, q);
-        Tag tag = Tag.findByName(q, photoMgr.getCollablet().getDependency("tagMgr"));
-        if (tag != null) {
-            result.include("tag", tag).include("photosByTag", tag.getAssignments(8));
-        }
-        Map<String, List<Photo>> photos = photoMgr.searchForAttributesOfThePhoto(q, page, perPage);
+        
+        Pagination pagination = new Pagination(page, perPage);
 
-        result.include("photos", photos).include("results", photoMgr.hasResults(photos)).include("searchTerm", q);
+        List<Tag> tags = Tag.searchByName(q, photoMgr.getCollablet().getDependency("tagMgr"));
 
+        List<User> people = User.searchByName(q, new Collablet(8l, "userMgr"), pagination);
+        
+        Map<String, List<Photo>> photos = photoMgr.searchForAttributesOfThePhoto(q, pagination);
+        
+        result.include("tags", tags).include("people", people).include("photos", photos).include("results", photoMgr.hasResults(photos)).include("searchTerm", q);
         addIncludes(photoMgr);
         result.use(logic()).forwardTo(PhotoController.class).busca(photoMgr);
     }
@@ -331,7 +333,7 @@ public class PhotoController {
     @Get
     @Path("/photos/{photoMgr}/show/search/term")
     public void showSearchByAttribute(PhotoMgrInstance photoMgr, String term, String q, int page, int perPage) {
-        String search = EncoderParam.decode(q);
+        String search = WrapperEncoderParam.decode(q);
         List<Photo> results = photoMgr.searchForAttributeOfThePhoto(term, search, page, perPage);
         result.include("photos", results).include("term", term).include("searchTerm", search);
         addIncludes(photoMgr);
@@ -340,15 +342,15 @@ public class PhotoController {
     @Get
     @Path("/photos/{photoMgr}/counts/search/term")
     public void countsPhotosSearchByAttribute(PhotoMgrInstance photoMgr, String term) {
-        String q = EncoderParam.decode(term);
+        String q = WrapperEncoderParam.decode(term);
         Map<String, Long> results = photoMgr.countsPhotosSearchByAttribute(q);
-        result.use(Results.json()).from(results).serialize();
+        result.use(Results.json()).withoutRoot().from(results).serialize();
     }
 
     @Get
     @Path("/photos/{photoMgr}/count/search/term")
     public void countPhotosSearchByAttribute(PhotoMgrInstance photoMgr, String term, String q) {
-        String search = EncoderParam.decode(q);
+        String search = WrapperEncoderParam.decode(q);
         Long count = photoMgr.countPhotosSearchByAttribute(term, search);
         result.use(Results.json()).withoutRoot().from(count).serialize();
     }

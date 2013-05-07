@@ -33,6 +33,7 @@ import br.org.groupwareworkbench.core.framework.annotations.ComponentInfo;
 import br.org.groupwareworkbench.core.framework.annotations.DefaultProperty;
 import br.org.groupwareworkbench.core.framework.annotations.RequiredProperty;
 import br.org.groupwareworkbench.core.graphics.GraphicalResourceManager;
+import br.org.groupwareworkbench.core.util.Pagination;
 
 import com.google.common.collect.Maps;
 
@@ -46,11 +47,8 @@ public class PhotoMgrInstance extends AbstractBusiness {
 
     private GraphicalResourceManager graphicalResourceManager = null;
     
-    private search search;
-    
     public PhotoMgrInstance(Collablet collablet) {
         super(collablet);
-        search = new search();
     }
 
     public void save(Photo photo) {
@@ -81,11 +79,11 @@ public class PhotoMgrInstance extends AbstractBusiness {
         return photos;
     }
     
-    public Map<String, List<Photo>> searchForAttributesOfThePhoto(String term, int page, int perPage) {
+    public Map<String, List<Photo>> searchForAttributesOfThePhoto(String value, Pagination pagination) {
         Map<String, List<Photo>> results = Maps.newHashMap();
-        for (String attr : search.getNames()) {
-            System.out.println(attr);
-            results.put(attr, Photo.findByAttribute(getCollablet(), attr, term, page, perPage));
+
+        for (String term : Search.getNames()) {
+            results.put(term, Photo.findByAttribute(getCollablet(), term, value, pagination));
         }
         return results;
     }
@@ -100,13 +98,14 @@ public class PhotoMgrInstance extends AbstractBusiness {
     }
 
     public List<Photo> searchForAttributeOfThePhoto(String term, String q, int page, int perPage) {
-        List<Photo> photos = Photo.findByAttribute(getCollablet(), term, q, page, perPage);
+        Pagination pagination = new Pagination(page, perPage);
+        List<Photo> photos = Photo.findByAttribute(getCollablet(), term, q, pagination);
         return photos;
     }
 
     public Map<String, Long> countsPhotosSearchByAttribute(String term) {
         Map<String, Long> results = Maps.newHashMap();
-        for (String attr : search.getNames()) {
+        for (String attr : Search.getNames()) {
             results.put(attr, Photo.countByAttribute(getCollablet(), attr, term));
         }
         return results;
@@ -188,7 +187,5 @@ public class PhotoMgrInstance extends AbstractBusiness {
         }
         return this.graphicalResourceManager;
     }
-
-
 
 }
