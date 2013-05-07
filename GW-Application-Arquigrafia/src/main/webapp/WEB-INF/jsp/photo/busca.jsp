@@ -17,7 +17,9 @@
 
 <script type="text/javascript" src="<c:url value="/js/pagination.js" />"></script>
 <script type="text/javascript" src="<c:url value="/js/search.js" />"></script>
-
+<%-- <script type="text/javascript" src="<c:url value="/js/module.min.js" />"></script>
+<script type="text/javascript" src="<c:url value="/js/s.js" />"></script>
+ --%>
 </head>
 
 <body>
@@ -44,7 +46,7 @@
              </span>
              <br />
  --%>         
-  							<c:if test="${empty photosByTag and results eq false}">
+  							<c:if test="${empty tags and empty people and results eq false}">
 		             <span id="resultTerm">Nenhuma imagem encontrada </span>
 		             <br />             
              </c:if>
