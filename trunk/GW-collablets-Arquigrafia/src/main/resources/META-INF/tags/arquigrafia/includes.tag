@@ -135,13 +135,14 @@
 			form_window_loaded = true;
 		});
 
-		$('#eyedroppper').click(function(e){
+		$('#edit_photo').click(function(e){
 			e.preventDefault();
 			$('#mask').fadeIn('fast');
 			$('#form_window').fadeIn('slow');
 			$('#registration').load(this.href);	
 			form_window_loaded = true;
 		});
+		
 		$('#footer_login_link').click(function(){
 			$('#mask').fadeIn('fast');
 			$('#form_window').fadeIn('slow');
