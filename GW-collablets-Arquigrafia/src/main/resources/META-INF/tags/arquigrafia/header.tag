@@ -94,7 +94,6 @@
 	      	<c:out value="${message}" />
 	      </c:if>
       </div>   
-      <script type="text/javascript" src="js/message_delivery.js"></script>
       <!--   TESTE DE FUNCIONAMENTO DA FUNÇÃO   -->
       
     </div>
