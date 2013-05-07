@@ -3,10 +3,9 @@
 <project basedir="." default="export" name="GW-Application-Arquigrafia">
 
 <!--sobreescreve o target antes de inicializar-->
-    <target name="--before-init">       
-        <ant antfile="../GW-collablets-Arquigrafia/build.xml" target="export" inheritAll="false"/>
-    </target>
-    
+    <target name="--before-init">
+    	<ant antfile="../GW-collablets-Arquigrafia/build.xml" target="export" inheritAll="false"/>
+    </target>    
 <!--    importa as properties do projeto-->
     <property file="./build.properties"/>
 <!--    importa o arquivo que realiza as builds-->
