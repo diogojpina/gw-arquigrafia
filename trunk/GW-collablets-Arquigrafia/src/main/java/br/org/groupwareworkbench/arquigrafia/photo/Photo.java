@@ -109,7 +109,7 @@ import br.org.groupwareworkbench.core.util.Pagination;
                 @TokenFilterDef(factory = LowerCaseFilterFactory.class),
                 
                 @TokenFilterDef(factory = SnowballPorterFilterFactory.class, params = {
-                        @Parameter(name = "language", value = "English"),
+                        @Parameter(name = "language", value = "English")
                 }),
                 
                 @TokenFilterDef(factory = BrazilianStemFilterFactory.class),
@@ -121,7 +121,7 @@ import br.org.groupwareworkbench.core.util.Pagination;
 
                 @TokenFilterDef(factory = SnowballPorterFilterFactory.class, params = {
                     @Parameter(name = "language", value = "Portuguese")
-                }),
+                })
                 
            }
 
