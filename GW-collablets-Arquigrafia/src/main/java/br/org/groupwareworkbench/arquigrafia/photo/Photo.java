@@ -976,4 +976,5 @@ public class Photo implements Serializable, GraphicalResource {
         return QueryBuilder.query(Photo.class).with("tombo", tombo).with("deleted", false).find();
     }
 
+
 }

@@ -27,6 +27,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -50,6 +51,7 @@ import br.com.caelum.vraptor.validator.Validations;
 import br.com.caelum.vraptor.view.Results;
 import br.org.groupwareworkbench.arquigrafia.imports.MetaDataToPhotoMapper;
 import br.org.groupwareworkbench.arquigrafia.imports.OdsRecursiveFinder;
+import br.org.groupwareworkbench.arquigrafia.imports.PhotoImporter;
 import br.org.groupwareworkbench.collablet.communic.tag.Tag;
 import br.org.groupwareworkbench.collablet.coord.user.User;
 import br.org.groupwareworkbench.collablet.coord.user.User.AccountType;
@@ -297,18 +299,19 @@ public class PhotoController {
     @Post
     @Path(value = "/photo/{photoMgr}/search")
     public void search(PhotoMgrInstance photoMgr, final String q, int page, int perPage) {
-        
+
         validate(photoMgr, q);
-        
+
         Pagination pagination = new Pagination(page, perPage);
 
         List<Tag> tags = Tag.searchByName(q, photoMgr.getCollablet().getDependency("tagMgr"));
 
         List<User> people = User.searchByName(q, new Collablet(8l, "userMgr"), pagination);
-        
+
         Map<String, List<Photo>> photos = photoMgr.searchForAttributesOfThePhoto(q, pagination);
-        
-        result.include("tags", tags).include("people", people).include("photos", photos).include("results", photoMgr.hasResults(photos)).include("searchTerm", q);
+
+        result.include("tags", tags).include("people", people).include("photos", photos)
+                .include("results", photoMgr.hasResults(photos)).include("searchTerm", q);
         addIncludes(photoMgr);
         result.use(logic()).forwardTo(PhotoController.class).busca(photoMgr);
     }
@@ -660,29 +663,12 @@ public class PhotoController {
 
         String userName = "acervofau";
         String basePath = "/home/gw/imports/acervofau";
-        importImages(userName, basePath);
+        new PhotoImporter(userName, basePath).importImages();
 
         userName = "acervoquapa";
         basePath = "/home/gw/imports/acervoquapa";
-        importImages(userName, basePath);
+        new PhotoImporter(userName, basePath).importImages();
 
-    }
-
-    private void importImages(String userName, String basePath) {
-        Collablet userMgr = Collablet.findByName("userMgr");
-        User importUser = User.findByLogin(userName, userMgr, AccountType.NATIVE);
-        if ( importUser == null ) {
-            throw new RuntimeException(String.format("Cannot found user %s to import images.", userName));
-        }
-        OdsRecursiveFinder odsRecursiveFinder = new OdsRecursiveFinder();
-        odsRecursiveFinder.find(new File(basePath));
-        for (File odsFile : odsRecursiveFinder.getResults()) {
-            try {
-                new MetaDataToPhotoMapper(odsFile).doMapper(importUser);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
     }
 
     private void photoNotFound(Photo photo) {
