@@ -31,15 +31,18 @@ import java.util.List;
 import javax.persistence.CollectionTable;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Query;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import br.org.groupwareworkbench.collablet.coord.user.User;
+import br.org.groupwareworkbench.core.bd.EntityManagerProvider;
 import br.org.groupwareworkbench.core.bd.GenericReference;
 import br.org.groupwareworkbench.core.bd.ObjectDAO;
 import br.org.groupwareworkbench.core.framework.Collablet;
@@ -209,5 +212,12 @@ public class Album implements Serializable {
 
     public String getUrlCover() {
         return urlCover;
+    }
+
+    public static Long countAll() {
+        EntityManager em = EntityManagerProvider.getEntityManager();
+        Query query = em.createQuery("select count(*) from Album a");
+
+        return (Long) query.getSingleResult();
     }
 }

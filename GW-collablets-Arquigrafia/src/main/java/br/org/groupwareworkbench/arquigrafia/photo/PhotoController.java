@@ -670,6 +670,26 @@ public class PhotoController {
         new PhotoImporter(userName, basePath).importImages();
 
     }
+    
+    @Get
+    @Path("/statistics")
+    public void statistics() {
+        Collablet photoMgr = Collablet.findByName("photoMgr");
+        Collablet tagMgr = Collablet.findByName("tagMgr");
+        Collablet commentMgr = Collablet.findByName("commentMgr");
+        Collablet userMgr = Collablet.findByName("userMgr");
+        Collablet binomialMgr = Collablet.findByName("binomialMgr");
+        Collablet albumMgr = Collablet.findByName("albumMgr");
+        Collablet arquigrafiaMgr = Collablet.findByName("arquigrafiaMgr");
+
+        result.include("photoMgr", photoMgr);
+        result.include("tagMgr", tagMgr);
+        result.include("commentMgr", commentMgr);
+        result.include("userMgr", userMgr);
+        result.include("binomialMgr", binomialMgr);
+        result.include("albumMgr", albumMgr);
+        result.include("arquigrafiaMgr", arquigrafiaMgr);
+    }
 
     private void photoNotFound(Photo photo) {
 

@@ -18,10 +18,14 @@
         <name>includes</name>
         <path>/META-INF/tags/arquigrafia/includes.tag</path>
     </tag-file>
-        <tag-file>
-        <name>tabs</name>
-        <path>/META-INF/tags/arquigrafia/tabs.tag</path>
-    </tag-file> 
+	<tag-file>
+		<name>tabs</name>
+		<path>/META-INF/tags/arquigrafia/tabs.tag</path>
+	</tag-file>
+	<tag-file>
+		<name>statistics</name>
+		<path>/META-INF/tags/arquigrafia/statistics.tag</path>
+	</tag-file>  
     <tag-file>
         <name>tagcloud</name>
         <path>/META-INF/tags/arquigrafia/tagcloud.tag</path>

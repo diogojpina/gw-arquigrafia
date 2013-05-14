@@ -121,6 +121,9 @@ public class AlbumMgrInstance extends AbstractBusiness {
         album.update();
     }
     
+    public Long countAllAlbums() {
+        return Album.countAll();
+    }
     
 }
 
