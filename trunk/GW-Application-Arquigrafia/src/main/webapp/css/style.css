@@ -343,7 +343,7 @@ a#printer_icon:hover{ background-position:-713px -33px; }
 #sidebar h2 { font-weight:normal; font-size:20px; color:#CB9833; }
 #sidebar h3 { margin-top:10px; line-height:12px; }
 #sidebar #single_user { margin-top:0px; }
-
+#edit_photo { text-align:right; color:#7B7D7F; font-size:12px; width:300px; line-height:19px; border-bottom:solid 1px #7B7D7F;}
 
 
 

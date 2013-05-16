@@ -213,6 +213,11 @@
 							<c:out value="${photo.country}"/>
 						</c:if> 
 					</p>
+				<div id="edit_photo">
+					<h3></h3>
+					<a href="<c:url value="/photo/${photoMgr.id}/edit/${photo.id}" />" title="Editar informações" id="edit_image">Editar</a>
+					<br/>
+				</div>
 				<h3>Localização:</h3>
 					<div id="map_canvas" class="single_view_map" style="width:300px; height:200px;"></div>
 				<s:check name="X-X-usuario">			
