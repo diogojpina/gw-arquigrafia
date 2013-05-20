@@ -1,12 +1,10 @@
 package br.org.groupwareworkbench.arquigrafia.imports;
 
+import static org.junit.Assert.assertEquals;
+
 import java.io.File;
-import java.io.FileNotFoundException;
 
 import org.junit.Test;
-
-import sun.org.mozilla.javascript.ImporterTopLevel;
-import static org.junit.Assert.*;
 
 public class MetadataToPhotoMapperTest {
 

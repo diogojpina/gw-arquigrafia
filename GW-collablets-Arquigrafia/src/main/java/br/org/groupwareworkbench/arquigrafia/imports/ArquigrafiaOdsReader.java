@@ -2,17 +2,14 @@ package br.org.groupwareworkbench.arquigrafia.imports;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
-import org.hibernate.envers.tools.ArraysTools;
-import org.hibernate.mapping.Array;
 import org.odftoolkit.simple.SpreadsheetDocument;
 import org.odftoolkit.simple.table.Cell;
-import org.odftoolkit.simple.table.CellRange;
 import org.odftoolkit.simple.table.Table;
+
+import com.google.common.collect.ImmutableMap;
 
 public class ArquigrafiaOdsReader {
 
@@ -22,20 +19,20 @@ public class ArquigrafiaOdsReader {
         this.odsTestResourceFile = odsTestResourceFile;
     }
 
-    public Collection<ArquigrafiaImageMetadata> read() {
+    public Map<String, ArquigrafiaImageMetadata> read() {
         return getImageMetadatasFromFile(odsTestResourceFile);
     }
 
-    private List<ArquigrafiaImageMetadata> getImageMetadatasFromFile(File sourceFile) {
+    private Map<String, ArquigrafiaImageMetadata> getImageMetadatasFromFile(File sourceFile) {
         try {
 
-            List<ArquigrafiaImageMetadata> imageMetadatas = new ArrayList<ArquigrafiaImageMetadata>(); 
+            Map<String, ArquigrafiaImageMetadata> imageMetadatas = new HashMap<String, ArquigrafiaImageMetadata>(); 
             SpreadsheetDocument currentDocument = SpreadsheetDocument.loadDocument(new FileInputStream(sourceFile));
             int sheetCount = currentDocument.getSheetCount();
             String resourcePath = sourceFile.getParentFile().getAbsolutePath();
             for ( int sheetId = 0; sheetId < sheetCount ; sheetId++ ) {
                 System.out.println("Lendo a planilha "+sheetId+" de "+sheetCount);
-                imageMetadatas.addAll( getImageMetadatasFromSheet( currentDocument.getSheetByIndex( sheetId ), resourcePath) );
+                imageMetadatas.putAll( getImageMetadatasFromSheet( currentDocument.getSheetByIndex( sheetId ), resourcePath) );
             }
             currentDocument.close();
             return imageMetadatas;
@@ -46,9 +43,9 @@ public class ArquigrafiaOdsReader {
 
     }
 
-    private Collection<? extends ArquigrafiaImageMetadata> getImageMetadatasFromSheet(Table selectedSheet, String resourcePath) {
+    private Map<String, ? extends ArquigrafiaImageMetadata> getImageMetadatasFromSheet(Table selectedSheet, String resourcePath) {
 
-        List<ArquigrafiaImageMetadata> sheetImageMetadatas = new ArrayList<ArquigrafiaImageMetadata>();
+        Map<String, ArquigrafiaImageMetadata> sheetImageMetadatas = new HashMap<String, ArquigrafiaImageMetadata>();
         int rowCount = selectedSheet.getRowCount();
         boolean isReadind = true;
         //first row is header
@@ -58,7 +55,7 @@ public class ArquigrafiaOdsReader {
             ArquigrafiaImageMetadata imageMetadataFromRow = getImageMetadataFromRow(cells, resourcePath );
             if ( imageMetadataFromRow != null ) {
                 imageMetadataFromRow.removeJpgExtensionFromTombo();
-                sheetImageMetadatas.add(imageMetadataFromRow);
+                sheetImageMetadatas.put(imageMetadataFromRow.TOMBO, imageMetadataFromRow);
             }
             else {
                 isReadind = false;

@@ -37,4 +37,15 @@
 							street="Rua Maranhão, 163" imageAuthor="Ruth Cuiá Troncarelli" workAuthor="João Artacho Jurado" 
 							description="Vista do Edifício Cinderela"  collablet_id="7"/>
 
+	<Photo_gw_collab_User  />
+
+	<gw_collab_Tag  />
+
+	<gw_collab_Tag_Assignments  />
+
+
+	
+
+
+
 </dataset>

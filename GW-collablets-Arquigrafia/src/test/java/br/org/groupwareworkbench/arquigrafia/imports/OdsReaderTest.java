@@ -1,10 +1,12 @@
 package br.org.groupwareworkbench.arquigrafia.imports;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import java.io.File;
-import java.util.Collection;
+import java.util.Map;
 
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 public class OdsReaderTest {
 
@@ -23,9 +25,9 @@ public class OdsReaderTest {
 
     private void testForFile(String filePath) {
         ArquigrafiaOdsReader imagesMetadataReader = setupArquigrafiaOdsFileReader(filePath);
-        Collection<ArquigrafiaImageMetadata> metadataImages = imagesMetadataReader.read();
+        Map<String, ArquigrafiaImageMetadata> metadataImages = imagesMetadataReader.read();
         assertTrue(!metadataImages.isEmpty() );
-        for ( ArquigrafiaImageMetadata selectedmetadata : metadataImages ) {
+        for ( ArquigrafiaImageMetadata selectedmetadata : metadataImages.values() ) {
             assertFalse(selectedmetadata.toString().isEmpty() );
         }
         System.out.println(String.format("Ods File %s has %d entries.", filePath ,metadataImages.size()));
