@@ -1,20 +1,13 @@
 package br.org.groupwareworkbench.arquigrafia.imports;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import br.org.groupwareworkbench.arquigrafia.InvalidCellContents;
 import br.org.groupwareworkbench.arquigrafia.photo.Photo;
-import br.org.groupwareworkbench.collablet.communic.tag.Tag;
-import br.org.groupwareworkbench.collablet.coord.user.User;
 import br.org.groupwareworkbench.core.date.ISO8601;
 import br.org.groupwareworkbench.core.date.ISO8601ViolationException;
 import br.org.groupwareworkbench.core.framework.Collablet;
@@ -27,9 +20,9 @@ public class MetaDataToPhotoMapper {
         this.logger = logger;
     }
 
-    public Collection<ArquigrafiaImageMetadata> getMetadaFromFile(File metaDataFile) {
+    public Map<String, ArquigrafiaImageMetadata> getMetadaFromFile(File metaDataFile) {
         ArquigrafiaOdsReader imagesMetadataReader = new ArquigrafiaOdsReader(metaDataFile);
-        Collection<ArquigrafiaImageMetadata> metadataImages = imagesMetadataReader.read();
+        Map<String, ArquigrafiaImageMetadata> metadataImages = imagesMetadataReader.read();
         return metadataImages;
     }
 

@@ -2,7 +2,6 @@ package br.org.groupwareworkbench.arquigrafia.imports;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -10,45 +9,55 @@ import java.util.Map;
 
 import br.org.groupwareworkbench.arquigrafia.photo.Photo;
 import br.org.groupwareworkbench.collablet.communic.tag.Tag;
+import br.org.groupwareworkbench.collablet.communic.tag.TagMgrInstance;
 import br.org.groupwareworkbench.collablet.coord.user.User;
 import br.org.groupwareworkbench.collablet.coord.user.User.AccountType;
 import br.org.groupwareworkbench.core.framework.Collablet;
 
 public class PhotoImporter {
 
-    String userName;
-    String basePath;
-    User importUser;
-    File baseDir;
+    private User importUser;
+    private File baseDir;
+    private Photo image;
+    private Collection<File> odsFilesToRead;
+    private Collablet photoMgr = Collablet.findByName("photoMgr");
+    private Collablet tagMgr = Collablet.findByName("tagMgr");
+
     
     public PhotoImporter(String userName, String basePath) {
-        this.basePath = basePath;
-        this.userName = userName;
+        defineImportUser(userName);
+        defineBaseDir(basePath);
+        this.odsFilesToRead = getOdsFilesFromBaseDir();
+    }
+
+
+    private void defineImportUser(String userName) {
         Collablet userMgr = Collablet.findByName("userMgr");
         importUser = User.findByLogin(userName, userMgr, AccountType.NATIVE);
         if (importUser == null) {
             throw new RuntimeException(String.format("Cannot found user %s to import images.", userName));
         }
+    }
+
+    private void defineBaseDir(String basePath) {
         baseDir = new File(basePath);
         if (!baseDir.exists()) {
             throw new RuntimeException(String.format("Cannot found directory %s to import images.", basePath));
         }
     }
     
-    public void importImages() {
-        
-        Collection<File> odsFilesToRead = getOdsFilesFromBaseDir(baseDir);
-        if (odsFilesToRead.isEmpty()) {
-            throw new RuntimeException(String.format("Cannot found any ods file in %s to import images.", basePath));
-        }
-        
-        Collablet photoMgr = Collablet.findByName("photoMgr");
-        Collablet tagMgr = Collablet.findByName("tagMgr");
-        importPhotosFromOdsFileWithUser(odsFilesToRead, photoMgr, tagMgr);
-
+    public Collection<File> getOdsFilesFromBaseDir() {
+        OdsRecursiveFinder odsRecursiveFinder = new OdsRecursiveFinder();
+        odsRecursiveFinder.find(this.baseDir);
+        return odsRecursiveFinder.getResults();
     }
 
-    private void importPhotosFromOdsFileWithUser(Collection<File> odsFilesToRead, Collablet photoMgr, Collablet tagMgr) {
+    public void buildImportImages() {
+
+        if (odsFilesToRead.isEmpty()) {
+            throw new RuntimeException(String.format("Cannot found any ods file in %s to import images.", baseDir));
+        }
+        
         for (File odsFile : odsFilesToRead) {
             try {
                 ImportLogger logger = new ImportLogger(odsFile);
@@ -56,20 +65,10 @@ public class PhotoImporter {
                     System.out.println( String.format("File %s already imported, skipping file.",odsFile.getAbsolutePath()) );
                 }                
                 else {
-                    
                     System.out.println(String.format("Reading metadata from %s.", odsFile.getAbsolutePath()));
                     logger.startFileLog();
-                    MetaDataToPhotoMapper mapper = new MetaDataToPhotoMapper(logger);
-                    Collection<ArquigrafiaImageMetadata> metadataImages = mapper.getMetadaFromFile(odsFile);
-                    Map<String, List<Tag>> mappedTags = new OdsMetadataToTagImporter().mapTags(metadataImages, tagMgr);
-                    saveTags(mappedTags, tagMgr);
-                    Collection<Photo> mappedPhotos = new MetaDataToPhotoMapper(logger).getPhotosFromMetadata(metadataImages, photoMgr);
-                    assignPhotosToUser(mappedPhotos, importUser);
-                    savePhotos(mappedPhotos);
-                    saveImage( logger, metadataImages, mappedPhotos );
-                    assignPhotosToTags( mappedPhotos, mappedTags );
+                    Collection<Photo> mappedPhotos = importProcess(odsFile, logger);
                     logger.finishFileLog(mappedPhotos.size());
-                    
                 }
                 
             } catch (Exception e) {
@@ -77,82 +76,71 @@ public class PhotoImporter {
                 e.printStackTrace();
             }
         }
+
     }
     
-    private void saveImage(ImportLogger logger , Collection<ArquigrafiaImageMetadata> metadataImages, Collection<Photo> mappedPhotos) {
+    private Collection<Photo> importProcess(File odsFile, ImportLogger logger) {
+
+        MetaDataToPhotoMapper mapper = new MetaDataToPhotoMapper(logger);
+        Map<String, ArquigrafiaImageMetadata> metadataImages = mapper.getMetadaFromFile(odsFile);
+        Map<String, List<Tag>> mappedTags = new OdsMetadataToTagImporter().mapTags(metadataImages.values(), tagMgr);
+        Collection<Photo> mappedPhotos = new MetaDataToPhotoMapper(logger).getPhotosFromMetadata(metadataImages.values(), photoMgr);
         
-        HashMap<String, ArquigrafiaImageMetadata> metadaImagesHash = new HashMap<String, ArquigrafiaImageMetadata>();
-        for ( ArquigrafiaImageMetadata selectedMeta : metadataImages ) {
-            metadaImagesHash.put( selectedMeta.TOMBO , selectedMeta);
-        }
         for ( Photo photo : mappedPhotos ) {
-            try {
-            photo.saveImage( new FileInputStream( metadaImagesHash.get( photo.getTombo() ).getImageFile() ) );
-            }
-            catch (Exception ex) {
-                logger.log(metadaImagesHash.get( photo.getTombo() ), ex.getMessage());
-            }
-        }
-        
-    }
+            List<Tag> tomboTags = mappedTags.get(photo.getTombo());
+            ArquigrafiaImageMetadata metadata = metadataImages.get(photo.getTombo());
 
-    private void assignPhotosToTags(Collection<Photo> mappedPhotos, Map<String, List<Tag>> mappedTags) {
-        for ( Photo selectedPhoto : mappedPhotos ) {
-            assignPhotoToTags(selectedPhoto, mappedTags.get( selectedPhoto.getTombo() ));
+             with(photo);
+             assignPhotoToUser();
+             savePhoto();
+             saveTags(tomboTags);
+             saveImage(metadata, logger);
         }
-    }
-
-    private void assignPhotoToTags(Photo selectedPhoto, List<Tag> list) {
-        for ( Tag selectTag : list ) {
-            selectTag.assign(selectedPhoto);
-        }
-    }
-
-    private void assignPhotosToUser(Collection<Photo> mappedPhotos, User importUser) {
-        for ( Photo selected : mappedPhotos ) {
-            selected.assignUser(importUser);
-        }
-    }
-
-    private void savePhotos(Collection<Photo> mappedPhotos) {
-        for ( Photo selected : mappedPhotos ) {
-            Photo existent = Photo.findByTombo( selected.getTombo() );
-            if ( existent == null ) {
-                selected.save();
-            }
-        }
-    }
-
-    private void saveTags(Map<String, List<Tag>> mappedTags, Collablet tagMgr) {
-        
-        Map<String, Tag> tagCacheMap = new HashMap<String, Tag>(); 
-        for ( String tombo : mappedTags.keySet() ) {
-            
-            List<Tag> savedTags = new ArrayList<Tag>();
-            List<Tag> tomboTags = mappedTags.get(tombo);
-            for ( Tag selectedTomboTag : tomboTags ) {
-                if ( tagCacheMap.containsKey(selectedTomboTag.getName()) ) {
-                    savedTags.add(tagCacheMap.get(selectedTomboTag.getName()));
-                }
-                else {
-                    Tag existent = Tag.findByName(selectedTomboTag.getName(), tagMgr);
-                    if ( existent == null ) {
-                        selectedTomboTag.save();
-                        existent = selectedTomboTag;
-                    }
-                    savedTags.add(existent);
-                    tagCacheMap.put( existent.getName() , existent);
-                }
-            }
-            
-        }
-        
-    }
-
-    private Collection<File> getOdsFilesFromBaseDir(File baseDir) {
-        OdsRecursiveFinder odsRecursiveFinder = new OdsRecursiveFinder();
-        odsRecursiveFinder.find(baseDir);
-        return odsRecursiveFinder.getResults();
+        return mappedPhotos;
     }
     
+    public void with(Photo photo) {
+        this.image = photo;
+    }
+
+    public void assignPhotoToUser() {
+        this.image.assignUser(this.importUser);
+    }
+
+    public void savePhoto() {
+        Photo existent = Photo.findByTombo( image.getTombo() );
+        if ( existent == null ) {
+            image.save();
+        }
+    }
+
+    public void saveTags(List<Tag> mappedTags) {
+        
+        TagMgrInstance tagManager = (TagMgrInstance) tagMgr.getBusinessObject();
+        Map<String, Tag> tagCacheMap = new HashMap<String, Tag>();
+        
+        for ( Tag selectedTomboTag : mappedTags ) {
+            if (!tagCacheMap.containsKey(selectedTomboTag.getName()) ) {
+                Tag existent = Tag.findByName(selectedTomboTag.getName(), tagMgr);
+                if ( existent == null ) {
+                    existent = selectedTomboTag;
+                } 
+                tagManager.saveWidgets(existent.getName(), image);
+                tagCacheMap.put( existent.getName() , existent);
+            }
+        }
+        
+    }    
+
+    public void saveImage(ArquigrafiaImageMetadata metadataImage, ImportLogger logger) {
+        
+        try {
+            image.saveImage( new FileInputStream( metadataImage.getImageFile() ) );
+        }
+        catch (Exception ex) {
+            logger.log(metadataImage, ex.getMessage());
+        }
+        
+    }
+
 }

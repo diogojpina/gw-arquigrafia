@@ -27,7 +27,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -49,18 +48,15 @@ import br.com.caelum.vraptor.ioc.RequestScoped;
 import br.com.caelum.vraptor.validator.ValidationMessage;
 import br.com.caelum.vraptor.validator.Validations;
 import br.com.caelum.vraptor.view.Results;
-import br.org.groupwareworkbench.arquigrafia.imports.MetaDataToPhotoMapper;
-import br.org.groupwareworkbench.arquigrafia.imports.OdsRecursiveFinder;
 import br.org.groupwareworkbench.arquigrafia.imports.PhotoImporter;
 import br.org.groupwareworkbench.collablet.communic.tag.Tag;
 import br.org.groupwareworkbench.collablet.coord.user.User;
-import br.org.groupwareworkbench.collablet.coord.user.User.AccountType;
 import br.org.groupwareworkbench.core.framework.Collablet;
 import br.org.groupwareworkbench.core.framework.WidgetInfo;
 import br.org.groupwareworkbench.core.routing.GroupwareInitController;
 import br.org.groupwareworkbench.core.security.util.SecurityUtil;
-import br.org.groupwareworkbench.core.util.WrapperEncoderParam;
 import br.org.groupwareworkbench.core.util.Pagination;
+import br.org.groupwareworkbench.core.util.WrapperEncoderParam;
 import br.org.groupwareworkbench.core.util.debug.TimeLog;
 
 @RequestScoped
@@ -663,11 +659,13 @@ public class PhotoController {
 
         String userName = "acervofau";
         String basePath = "/home/gw/imports/acervofau";
-        new PhotoImporter(userName, basePath).importImages();
+        new PhotoImporter(userName, basePath).buildImportImages();
+
 
         userName = "acervoquapa";
         basePath = "/home/gw/imports/acervoquapa";
-        new PhotoImporter(userName, basePath).importImages();
+        new PhotoImporter(userName, basePath).buildImportImages();
+
 
     }
     
