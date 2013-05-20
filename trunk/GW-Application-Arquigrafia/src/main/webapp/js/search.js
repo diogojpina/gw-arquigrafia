@@ -1,59 +1,59 @@
 
 
-
-	var Search = {};
-
-	Search.init = function () { 
-		Search.context_path = $('#context_path').val(),
-		Search.urlCountPhotos = Search.context_path.concat('/photos/7/counts/search/term'),
-		Search.urlCountPeople = Search.context_path.concat('/users/count/search'),
-		Search.q = encodeURIComponent($('#search_bar').val());
-		
-		Search.countPhotosSearchByAttribute();
-		Search.countPeopleSearchByName();
-		
-	};
+Module("GW.Arquigrafia.Search", function(Search) {
 	
-	Search.countPhotosSearchByAttribute = function() {
-		$.get(Search.urlCountPhotos, {term: Search.q}, function(results) {
-			
-			for ( var index in results) {
-				var count = results[index][1],
-					selector = '#'.concat(results[index][0]);
-				console.log(count);
-				if (count > 8) {
-					$(selector).data("count", count-8).text('Ver mais imagens');
-				}
-				
-			}
-		});
-		
-	};
-
-	Search.countPeopleSearchByName = function() {
-		$.get(Search.urlCountPeople, {q: Search.q}, function(count) {
-			if (count > 8) {
-				$("#people").data("count", count-8).text('Ver mais imagens');
-			}
-		});
-	};
-
-	$(document).ready(Search.init);
+  Search.fn.initialize = function(contextPath, q, perPage) {
+	this.contextPath = contextPath;
+	this.q = q;		
+	this.perPage = perPage || 8;
+  };
 	
-//$(function(){
-//	var context_path = $('#context_path').val(),
-//	    url = context_path.concat('/photos/7/counts/search/term'),
-//	    q = encodeURIComponent($('#search_bar').val());
-//	
-//	$.get(url, {term: q}, function(results) {
-//		
-//		for ( var index in results) {
-//			var count = results[index][1],
-//				selector = '#'.concat(results[index][0]);
-//			if (count > 8) {
-//				$(selector).data("count", count-8).text('Ver mais imagens');
-//			}
-//			
-//		}
-//	});
-//});
+  Search.fn.linkForTerms = function(url) {
+	
+	$.get(this.contextPath + url, {term: this.q}, $.proxy(resultForTerms, this));
+	
+  };
+  
+  function resultForTerms(results) {
+	  for ( var index in results) {
+	    var count = results[index][1],
+		    selector = '#'.concat(results[index][0]);
+		  
+		pagination.call(this, count, $(selector));
+	  }
+  }
+
+  Search.fn.link = function(url, selector) {
+	var self = this;
+	
+	$.get(this.contextPath + url, {q: this.q}, function(count){
+	  pagination.call(self, count, selector);
+	});
+  };
+      
+  function pagination(count, selector) {
+    if (count > this.perPage) {
+	  selector.data("count", count-this.perPage).text('Ver mais imagens');
+    }
+  };
+
+});
+
+$(function(){
+	
+  var contextPath = $('#context_path').val(),
+	  q = encodeURIComponent($('#search_bar').val());
+
+  var search = new GW.Arquigrafia.Search(contextPath, q);
+  
+  search.linkForTerms('/photos/7/counts/search/term');
+  search.link('/users/count/search', $("#people"));
+  
+});
+	
+
+
+
+
+
+
