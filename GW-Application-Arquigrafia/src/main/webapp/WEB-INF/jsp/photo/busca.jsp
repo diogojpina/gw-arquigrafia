@@ -16,10 +16,9 @@
 <arquigrafia:includes arquigrafiaInstance="${arquigrafiaMgr}" />
 
 <script type="text/javascript" src="<c:url value="/js/pagination.js" />"></script>
+<script type="text/javascript" src="<c:url value="/js/module.min.js" />"></script>
 <script type="text/javascript" src="<c:url value="/js/search.js" />"></script>
-<%-- <script type="text/javascript" src="<c:url value="/js/module.min.js" />"></script>
-<script type="text/javascript" src="<c:url value="/js/s.js" />"></script>
- --%>
+
 </head>
 
 <body>
