@@ -448,6 +448,8 @@ public class Photo implements Serializable, GraphicalResource {
     }
 
     public String getDataCriacaoISO8601ToDate() {
+        if (dataCriacao == null)
+            return null;
         return getISO8601ToDate(dataCriacao);
     }
 
@@ -534,12 +536,15 @@ public class Photo implements Serializable, GraphicalResource {
 
     
     public String getWorkdateISO8601ToDate() {
+        if (workdate == null)
+            return null;
+        
         return getISO8601ToDate(workdate);
     }
 
-    private String getISO8601ToDate(ISO8601 workdate) {
-        String day = String.valueOf(workdate.getDay());
-        String month = String.valueOf(workdate.getMonth());
+    private String getISO8601ToDate(ISO8601 workdate) {             
+        String day = String.valueOf(String.format("%02d", workdate.getDay()));
+        String month = String.valueOf(String.format("%02d", workdate.getMonth()));
         String year = String.valueOf(workdate.getYear());
 
         return day + month + year;
@@ -985,6 +990,28 @@ public class Photo implements Serializable, GraphicalResource {
         return (Long) query.getSingleResult();
     }
 
+    public static Long lastMonthCount() {
+        Calendar today = new GregorianCalendar();
+        today.add(Calendar.MONTH, -1);
+        return countAfterDate(today);        
+    }
+    
+    public static Long lastWeekCount() {
+        Calendar today = new GregorianCalendar();
+        today.add(Calendar.WEEK_OF_YEAR, -1);
+        return countAfterDate(today);        
+    }
+    
+    private static Long countAfterDate(Calendar today) {
+        Date date = today.getTime();
+        
+        EntityManager em = EntityManagerProvider.getEntityManager();
+        Query query = em.createQuery("select count(*) from Photo p where p.deleted = :status and " +
+                "p.dataUpload >= :date");
+        
+        return (Long) query.setParameter("date", date).setParameter("status", false).getSingleResult();
+    }
+    
     public static Long count() {
         EntityManager em = EntityManagerProvider.getEntityManager();
         Query query = em.createQuery("select count(*) from Photo p where p.deleted = :status");
@@ -996,25 +1023,4 @@ public class Photo implements Serializable, GraphicalResource {
         return QueryBuilder.query(Photo.class).with("tombo", tombo).with("deleted", false).find();
     }
 
-    public static Long lastMonthCount() {
-        Calendar today = new GregorianCalendar();
-        today.add(Calendar.MONTH, -1);
-        return countAfterDate(today);        
-    }
-
-    public static Long lastWeekCount() {
-        Calendar today = new GregorianCalendar();
-        today.add(Calendar.WEEK_OF_YEAR, -1);
-        return countAfterDate(today);        
-    }
-
-    private static Long countAfterDate(Calendar today) {
-        Date date = today.getTime();
-        
-        EntityManager em = EntityManagerProvider.getEntityManager();
-        Query query = em.createQuery("select count(*) from Photo p where p.deleted = :status and " +
-                "p.dataUpload >= :date");
-
-        return (Long) query.setParameter("date", date).setParameter("status", false).getSingleResult();
-    }
 }

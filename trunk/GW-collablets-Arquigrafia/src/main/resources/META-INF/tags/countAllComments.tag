@@ -11,7 +11,7 @@
 	<r:callMethod methodName="countLastMonthComments" instance="${commentMgr}" var="countLM" />
 	<r:callMethod methodName="countLastWeekComments" instance="${commentMgr}" var="countLW" />
 
-	<p id="image_counter">O Arquigrafia conta com um total de <c:out value="${count}"/> comentários,
+	<p class="counter">O Arquigrafia conta com um total de <c:out value="${count}"/> comentários,
 	sendo <c:out value="${countLM}"/> comentários novos no último mês e <c:out value="${countLW}"/>
 	na última semana.</p>
 </c:if>
