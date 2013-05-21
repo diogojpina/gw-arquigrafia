@@ -71,6 +71,8 @@ import org.hibernate.search.annotations.TokenFilterDef;
 import org.hibernate.search.annotations.TokenizerDef;
 import org.hibernate.search.jpa.FullTextEntityManager;
 
+import com.ibm.icu.text.DateFormat;
+
 import br.com.caelum.vraptor.interceptor.download.FileDownload;
 import br.org.groupwareworkbench.arquigrafia.license.CreativeCommons_3_0;
 import br.org.groupwareworkbench.collablet.coord.user.User;
@@ -444,6 +446,10 @@ public class Photo implements Serializable, GraphicalResource {
         return dataCriacao;
     }
 
+    public String getDataCriacaoISO8601ToDate() {
+        return getISO8601ToDate(dataCriacao);
+    }
+
     public String getDataCriacaoFormatada() {
         try {
             if (dataCriacao == null) return null;
@@ -525,6 +531,19 @@ public class Photo implements Serializable, GraphicalResource {
         return workdate;
     }
 
+    
+    public String getWorkdateISO8601ToDate() {
+        return getISO8601ToDate(workdate);
+    }
+
+    private String getISO8601ToDate(ISO8601 workdate) {
+        String day = String.valueOf(workdate.getDay());
+        String month = String.valueOf(workdate.getMonth());
+        String year = String.valueOf(workdate.getYear());
+
+        return day + month + year;
+    }
+    
     public void setWorkdate(ISO8601 workdate) {
         this.workdate = workdate;
     }

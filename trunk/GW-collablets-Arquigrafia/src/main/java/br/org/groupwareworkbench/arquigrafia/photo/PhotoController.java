@@ -486,9 +486,9 @@ public class PhotoController {
             return;
         }
         Collablet collablet = photo.getCollablet();
-        result.include("photoRegister", photo);
-        result.include("userOwn", photo.getUsers().get(0));
-        result.include("photoMgr", photoMgr);
+        result.include("photoRegister", photo)
+            .include("userOwn", photo.getUsers().get(0))
+            .include("photoMgr", photoMgr);
         collablet.includeDependencies(result);
         addIncludes(photoMgr);
         result.use(Results.representation()).from(photo).serialize();
@@ -527,11 +527,11 @@ public class PhotoController {
         photo.setCity(photoRegister.getCity());
         photo.setState(photoRegister.getState());
         photo.setCountry(photoRegister.getCountry());
-        // photo.setDataCriacao(photoRegister.getDataCriacao());
+        photo.setDataCriacao(photoRegister.getDataCriacao());
         photo.setDistrict(photoRegister.getDistrict());
         photo.setWorkAuthor(photoRegister.getWorkAuthor());
         photo.setStreet(photoRegister.getStreet());
-        // photo.setWorkdate(photoRegister.getWorkdate());
+        photo.setWorkdate(photoRegister.getWorkdate());
         photo.setCataloguingTime(photoRegister.getCataloguingTime());
         // photo.setTombo(photoRegister.getTombo());
         photo.setAditionalImageComments(photoRegister.getAditionalImageComments());
