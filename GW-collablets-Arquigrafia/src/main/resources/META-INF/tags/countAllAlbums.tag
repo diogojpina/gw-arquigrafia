@@ -11,7 +11,7 @@
 	<r:callMethod methodName="countLastMonthAlbums" instance="${albumMgr}" var="countLM" />
 	<r:callMethod methodName="countLastWeekAlbums" instance="${albumMgr}" var="countLW" />
 	
-	<p id="image_counter">O Arquigrafia conta com um total de <c:out value="${count}"/> coleções,
+	<p class="counter">O Arquigrafia conta com um total de <c:out value="${count}"/> coleções,
 	sendo <c:out value="${countLM}"/> coleções novas no último mês e <c:out value="${countLW}"/>
 	na última semana.</p>
 </c:if>

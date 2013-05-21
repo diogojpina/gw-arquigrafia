@@ -24,14 +24,19 @@
 
 		<!--   CABEÇALHO   -->
 		<arquigrafia:header arquigrafiaInstance="${arquigrafiaMgr}" />
+		
+		<div id="single_view_statistics">
+			<h1>Estatísticas</h1>
+		</div>
 
 		<arquigrafia:statistics photoMgr="${photoMgr}"
 			commentMgr="${commentMgr}" tagMgr="${tagMgr}" userMgr="${userMgr}"
 			albumMgr="${albumMgr}" binomialMgr="${binomialMgr}" />
 
 		<div id="footer">
-			<!--   BARRA DE ABAS   -->
-			<!--   FIM - BARRA DE IMAGENS - (RODAPÉ)   -->
+		  <!--   BARRA DE ABAS   -->
+		  <arquigrafia:tabs counterMgr="${counterMgr}" photoMgr="${photoMgr}" commentMgr="${commentMgr}" arquigrafiaInstance="${arquigrafiaMgr}" />
+		  <!--   FIM - BARRA DE IMAGENS - (RODAPÉ)   -->
 
 
 			<!--   CRÉDITOS - LOGOS   -->

@@ -8,5 +8,5 @@
 
 <c:if test="${tagMgr.collablet.enabled}">
 	<r:callMethod methodName="countAllTags" instance="${tagMgr}" var="count" />
-	<p id="image_counter">O Arquigrafia conta com um total de <c:out value="${count}"/> tags.</p>
+	<p class="counter">O Arquigrafia conta com um total de <c:out value="${count}"/> tags.</p>
 </c:if>

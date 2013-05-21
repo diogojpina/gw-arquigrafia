@@ -8,5 +8,5 @@
 
 <c:if test="${binomialMgr.collablet.enabled}">
 	<r:callMethod methodName="countAllEvaluations" instance="${binomialMgr}" var="count" />
-	<p id="image_counter">O Arquigrafia conta com um total de <c:out value="${count}"/> avaliações.</p>
+	<p class="counter">O Arquigrafia conta com um total de <c:out value="${count}"/> avaliações.</p>
 </c:if>

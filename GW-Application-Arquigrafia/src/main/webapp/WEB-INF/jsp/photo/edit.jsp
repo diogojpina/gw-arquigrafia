@@ -166,6 +166,7 @@ form.cmxform label.error {
 			<textarea name="photoRegister.description" class="input_content"><c:out value="${photoRegister.description}" /></textarea>
 			<br />
 		</p>
+     	<p class="reminder">* Separe as tags por vírgulas.</p>
 		<!-- <p>
 		Publicar minha obra, com as seguintes permissões:
 		</p>
