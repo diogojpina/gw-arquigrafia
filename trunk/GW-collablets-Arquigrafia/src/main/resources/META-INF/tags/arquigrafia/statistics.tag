@@ -7,20 +7,20 @@
 
 <%@ attribute name="photoMgr" required="false" rtexprvalue="true"
 	type="br.org.groupwareworkbench.arquigrafia.photo.PhotoMgrInstance"%>
-<%@ attribute name="commentMgr" required="false" rtexprvalue="true"
-	type="br.org.groupwareworkbench.collablet.communic.comment.CommentMgrInstance"%>
 <%@ attribute name="tagMgr" required="false" rtexprvalue="true"
 	type="br.org.groupwareworkbench.collablet.communic.tag.TagMgrInstance"%>
+<%@ attribute name="commentMgr" required="false" rtexprvalue="true"
+	type="br.org.groupwareworkbench.collablet.communic.comment.CommentMgrInstance"%>
 <%@ attribute name="userMgr" required="false" rtexprvalue="true"
 	type="br.org.groupwareworkbench.collablet.coord.user.UserMgrInstance"%>
-<%@ attribute name="albumMgr" required="false" rtexprvalue="true"
-	type="br.org.groupwareworkbench.collablet.coop.album.AlbumMgrInstance"%>
 <%@ attribute name="binomialMgr" required="false" rtexprvalue="true"
 	type="br.org.groupwareworkbench.collablet.coop.binomial.BinomialMgrInstance"%>
+<%@ attribute name="albumMgr" required="false" rtexprvalue="true"
+	type="br.org.groupwareworkbench.collablet.coop.album.AlbumMgrInstance"%>
 
 <p:countAllTags tagMgr="${tagMgr}" />
-<p:countAllComments commentMgr="${commentMgr}" />
-<p:countAllUsers userMgr="${userMgr}" />
-<p:countAllAlbums albumMgr="${albumMgr}" />
 <p:countAllEvaluations binomialMgr="${binomialMgr}" />
+<p:countAllComments commentMgr="${commentMgr}" />
+<p:countAllAlbums albumMgr="${albumMgr}" />
+<p:countAllUsers userMgr="${userMgr}" />
 <p:countAllPhotos photoMgr="${photoMgr}" />

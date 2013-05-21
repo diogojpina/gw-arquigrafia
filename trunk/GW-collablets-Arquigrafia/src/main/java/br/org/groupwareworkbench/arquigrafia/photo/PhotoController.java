@@ -668,6 +668,17 @@ public class PhotoController {
 
 
     }
+
+    private void photoNotFound(Photo photo) {
+
+        if (photo != null) {
+            PhotoMgrInstance photoMgr = (PhotoMgrInstance) photo.getCollablet().getBusinessObject();
+            addIncludes(photoMgr);
+        }
+
+        result.notFound();
+        return;
+    }
     
     @Get
     @Path("/statistics")
@@ -688,16 +699,4 @@ public class PhotoController {
         result.include("albumMgr", albumMgr);
         result.include("arquigrafiaMgr", arquigrafiaMgr);
     }
-
-    private void photoNotFound(Photo photo) {
-
-        if (photo != null) {
-            PhotoMgrInstance photoMgr = (PhotoMgrInstance) photo.getCollablet().getBusinessObject();
-            addIncludes(photoMgr);
-        }
-
-        result.notFound();
-        return;
-    }
-
 }

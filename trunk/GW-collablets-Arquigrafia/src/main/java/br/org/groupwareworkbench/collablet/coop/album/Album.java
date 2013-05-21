@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.persistence.CollectionTable;
@@ -80,12 +81,12 @@ public class Album implements Serializable {
     private List<GenericReference> objects = new ArrayList<GenericReference>();
 
     public Album() {
+        this.setCreationDate(Calendar.getInstance().getTime());
     }
 
     /* Operations */
 
     public void save() {
-        this.setCreationDate(Calendar.getInstance().getTime());
         DAO.save(this);
     }
 
@@ -219,5 +220,26 @@ public class Album implements Serializable {
         Query query = em.createQuery("select count(*) from Album a");
 
         return (Long) query.getSingleResult();
+    }
+    
+    public static Long lastMonthCount() {
+        Calendar today = new GregorianCalendar();
+        today.add(Calendar.MONTH, -1);
+        return countAfterDate(today);        
+    }
+
+    public static Long lastWeekCount() {
+        Calendar today = new GregorianCalendar();
+        today.add(Calendar.WEEK_OF_YEAR, -1);
+        return countAfterDate(today);        
+    }
+
+    private static Long countAfterDate(Calendar today) {
+        Date date = today.getTime();
+        
+        EntityManager em = EntityManagerProvider.getEntityManager();
+        Query query = em.createQuery("select count(*) from Album a where a.creationDate >= :date");
+
+        return (Long) query.setParameter("date", date).getSingleResult();
     }
 }

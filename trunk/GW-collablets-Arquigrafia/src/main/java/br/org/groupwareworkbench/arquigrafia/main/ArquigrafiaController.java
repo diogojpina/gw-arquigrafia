@@ -183,6 +183,12 @@ public class ArquigrafiaController {
         addIncludes(arquigrafiaInstance);
     }
     
+    @Get
+    @Path("/{arquigrafiaInstance}/statistics")
+    public void statistics(ArquigrafiaMgrInstance arquigrafiaInstance) {
+        addIncludes(arquigrafiaInstance);
+    }
+    
     @Post
     @Path(value = "/photo/busca")
     public void doSearch(String busca, ArquigrafiaMgrInstance arquigrafiaInstance, PhotoMgrInstance photoMgr, TagMgrInstance tagInstance) {

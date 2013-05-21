@@ -123,6 +123,14 @@ public class PhotoMgrInstance extends AbstractBusiness {
     public Long countAllPhotos() {
         return Photo.count();
     }
+    
+    public Long countLastMonthPhotos() {
+        return Photo.lastMonthCount();
+    }
+    
+    public Long countLastWeekPhotos() {
+        return Photo.lastWeekCount();
+    }        
 
     public List<Photo> listPhotoByPageAndOrder(int pageSize, int pageNumber) {
         return Photo.listPhotoByPageAndOrder(getCollablet(), pageSize, pageNumber);
