@@ -127,7 +127,7 @@
 	  <textarea name="photoRegister.description" class="input_content"></textarea>
 	  <br />
 	  </p>
-	  <p class="reminder">* Separe as tags por vírgulas.</p>
+      <p class="reminder"><small>* Separe as tags por vírgulas.</small></p>
 	  <p> 
 	  	 <input name="terms" type="checkbox" value="read" id="creative_commons_text_checkbox" /> Sou o autor da imagem ou possuo permissão expressa do autor para disponibilizá-la no Arquigrafia. 
 	  	 <br />

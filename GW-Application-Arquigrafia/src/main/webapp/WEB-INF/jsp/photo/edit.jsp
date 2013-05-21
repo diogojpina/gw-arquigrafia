@@ -101,7 +101,6 @@ form.cmxform label.error {
 	<input type="hidden" name="_method" value="put" /> <input type="hidden"
 		name="user.id" value="${user.id}"> <input type="hidden"
 		name="photoRegister.id" value="${photoRegister.id}"> <br />
-	<br /> <small>Todos os campos com * são obrigatórios.</small>
 	</p>
 
 	<div id="upload_form" action="#" method="get">
@@ -166,7 +165,7 @@ form.cmxform label.error {
 			<textarea name="photoRegister.description" class="input_content"><c:out value="${photoRegister.description}" /></textarea>
 			<br />
 		</p>
-     	<p class="reminder">* Separe as tags por vírgulas.</p>
+     	<p class="reminder"><small>* Separe as tags por vírgulas.</small></p>
 		<!-- <p>
 		Publicar minha obra, com as seguintes permissões:
 		</p>
