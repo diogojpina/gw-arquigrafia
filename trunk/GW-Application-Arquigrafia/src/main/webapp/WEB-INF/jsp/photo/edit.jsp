@@ -114,42 +114,49 @@ form.cmxform label.error {
 				class="text" value="<c:out value="${photoRegister.imageAuthor}"/>" /> 
 				
 				<br /> 
-			<label class="left_form_label_column">País:</label> 
-			
-			<select name="photoRegister.country" id="countries" value="photoRegister.country"
-				class="input_content">
 
-			</select>
-			
-			<label class="right_form_label_column">Estado:</label>
+			<label class="left_form_label_column">Estado:</label>
 			<select name="photoRegister.state" id="state" class="input_content">
 			</select> 
-			
-<!--			<label>Data da imagem:</label> <input name="imagedate" type="text"
-				class="text" id="imagedate" value="<c:out value="${photoRegister.dataCriacao}"/>"/> 
+
+			<label class="right_form_label_column">Data da imagem:</label> <input name="photoRegister.dataCriacao" type="text"
+				class="text" id="imagedate" value="<c:out value="${photoRegister.dataCriacaoISO8601ToDate}"/>"/> 
 				<br /> 
-	-->			
-				<label class="left_form_label_column">Cidade:</label> <select
+
+			<label class="left_form_label_column">Cidade:</label> <select
 				name="photoRegister.city" id="city" class="input_content" disabled="disabled">
 			</select> 
 			
-						
+			<label class="right_form_label_column">País:</label> 
+			<select name="photoRegister.country" id="countries" value="photoRegister.country"
+				class="input_content">
+			</select>
 			
-			<label class="right_form_label_column">Bairro:</label> <input
+			<br />
+			
+			<label class="left_form_label_column">Bairro:</label> <input
 				name="photoRegister.district" type="text" class="text" value="<c:out value="${photoRegister.district}"/>"/>
-				
-				<label class="left_form_label_column">Logradouro:</label>
-			<input name="photoRegister.street" type="text" class="text" value="<c:out value="${photoRegister.street}"/>"/>
 			
-				 <label class="right_form_label_column">Autor
+			
+			 <label class="right_form_label_column">Autor
 				da obra:</label> <input name="photoRegister.workAuthor" type="text"
 				class="text" value="<c:out value="${photoRegister.workAuthor}"/>"/> 
+			
+			<br />
+		
+				<label class="left_form_label_column">Logradouro:</label>
+				<input name="photoRegister.street" type="text" class="text" value="<c:out value="${photoRegister.street}"/>"/>
+		
+			
+			<label class="right_form_label_column">Data da obra:</label> 
+			<input name="photoRegister.workdate" type="text"
+				class="text" id="workdate" value="<c:out value="${photoRegister.workdateISO8601ToDate}"/>" />
+				 <br />
 				
-		<!-- 	 <label>Data
-				da obra:</label> <input name="photoRegister	.workdate" type="text"
-				class="text" id="workdate" value="<c:out value="${photoRegister.workdate}"/>" /> -->
-				 <br /> <label
-				class="left_form_label_column">Tags:</label>
+						
+				
+				
+				 <label class="left_form_label_column">Tags:</label>
 			<!-- <textarea name="tags" class="text"></textarea> -->
 			<!-- <tag:scriptTags />
 	  <tag:selectTags tagMgr="${tagMgr}" /> -->
