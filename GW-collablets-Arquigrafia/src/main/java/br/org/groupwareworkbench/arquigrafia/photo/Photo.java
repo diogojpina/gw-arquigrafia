@@ -27,6 +27,7 @@ import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -991,9 +992,29 @@ public class Photo implements Serializable, GraphicalResource {
         return (Long) query.setParameter("status", false).getSingleResult();
     }
     
-    public static Photo findByTombo(String tombo) {
+    public static Photo findByTombo(String tombo) {        
         return QueryBuilder.query(Photo.class).with("tombo", tombo).with("deleted", false).find();
     }
 
+    public static Long lastMonthCount() {
+        Calendar today = new GregorianCalendar();
+        today.add(Calendar.MONTH, -1);
+        return countAfterDate(today);        
+    }
 
+    public static Long lastWeekCount() {
+        Calendar today = new GregorianCalendar();
+        today.add(Calendar.WEEK_OF_YEAR, -1);
+        return countAfterDate(today);        
+    }
+
+    private static Long countAfterDate(Calendar today) {
+        Date date = today.getTime();
+        
+        EntityManager em = EntityManagerProvider.getEntityManager();
+        Query query = em.createQuery("select count(*) from Photo p where p.deleted = :status and " +
+                "p.dataUpload >= :date");
+
+        return (Long) query.setParameter("date", date).setParameter("status", false).getSingleResult();
+    }
 }

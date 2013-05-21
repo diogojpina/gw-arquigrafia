@@ -125,5 +125,12 @@ public class AlbumMgrInstance extends AbstractBusiness {
         return Album.countAll();
     }
     
+    public Long countLastMonthAlbums() {
+        return Album.lastMonthCount();
+    }
+    
+    public Long countLastWeekAlbums() {
+        return Album.lastWeekCount();
+    }
 }
 

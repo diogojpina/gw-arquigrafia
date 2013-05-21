@@ -8,5 +8,10 @@
 
 <c:if test="${userMgr.collablet.enabled}">
 	<r:callMethod methodName="countAllUsers" instance="${userMgr}" var="count" />
-	<p id="image_counter">O Arquigrafia conta com um total de <c:out value="${count}"/> usuários.</p>
+	<r:callMethod methodName="countLastMonthUsers" instance="${userMgr}" var="countLM" />
+	<r:callMethod methodName="countLastWeekUsers" instance="${userMgr}" var="countLW" />	
+	
+	<p id="image_counter">O Arquigrafia conta com um total de <c:out value="${count}"/> usuários,
+	sendo <c:out value="${countLM}"/> usuários novos no último mês e <c:out value="${countLW}"/>
+	na última semana.</p>
 </c:if>

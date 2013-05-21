@@ -8,5 +8,10 @@
 
 <c:if test="${photoMgr.collablet.enabled}">
 	<r:callMethod methodName="countAllPhotos" instance="${photoMgr}" var="count" />
-	<p id="image_counter">O Arquigrafia conta com um total de <c:out value="${count}"/> imagens. <s:n-check name="X-X-usuario"> <a href="#" id="footer_login_link" >  Faça o login e compartilhe também suas imagens. </a></s:n-check></p>
+	<r:callMethod methodName="countLastMonthPhotos" instance="${photoMgr}" var="countLM" />
+	<r:callMethod methodName="countLastWeekPhotos" instance="${photoMgr}" var="countLW" />	
+	
+	<p id="image_counter">O Arquigrafia conta com um total de <c:out value="${count}"/> fotos,
+	sendo <c:out value="${countLM}"/> fotos novas no último mês e <c:out value="${countLW}"/>
+	na última semana.</p>
 </c:if>

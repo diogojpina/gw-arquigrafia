@@ -26,8 +26,8 @@
 		<arquigrafia:header arquigrafiaInstance="${arquigrafiaMgr}" />
 
 		<arquigrafia:statistics photoMgr="${photoMgr}"
-			commentMgr="${commentMgr}" tagMgr="${tagMgr}" userMgr="{$userMgr}"
-			albumMgr="{albumMgr}" binomialMgr="{binomialMgr}" />
+			commentMgr="${commentMgr}" tagMgr="${tagMgr}" userMgr="${userMgr}"
+			albumMgr="${albumMgr}" binomialMgr="${binomialMgr}" />
 
 		<div id="footer">
 			<!--   BARRA DE ABAS   -->
