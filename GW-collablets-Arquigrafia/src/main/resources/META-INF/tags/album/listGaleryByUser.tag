@@ -22,7 +22,7 @@
 	        		
 	         	<a href="${pageContext.request.contextPath}/groupware-workbench/album/${albumMgr.id}/show/${album.id}/list/${user.id}" id="name"><c:out value="${album.title}" /></a>
 	         	<br />
-	         	<span id="small">${fn:length(album.objects)} foto(s)</span>
+	         	<span id="small">${fn:length(album.currentObjects)} foto(s)</span>
 			</div>
 		</c:forEach>          	
 	</div>
