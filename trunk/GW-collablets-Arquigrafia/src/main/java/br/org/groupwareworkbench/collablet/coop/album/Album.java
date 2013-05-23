@@ -42,6 +42,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import br.org.groupwareworkbench.arquigrafia.photo.Photo;
 import br.org.groupwareworkbench.collablet.coord.user.User;
 import br.org.groupwareworkbench.core.bd.EntityManagerProvider;
 import br.org.groupwareworkbench.core.bd.GenericReference;
@@ -175,6 +176,16 @@ public class Album implements Serializable {
         List<Object> result = new ArrayList<Object>(objects.size());
         for (GenericReference gr : this.objects) {
             result.add(gr.getEntity());
+        }
+        return Collections.unmodifiableList(result);
+    }
+    
+    public List<Object> getCurrentObjects() {
+        List<Object> result = new ArrayList<Object>(objects.size());
+        for (GenericReference gr : this.objects) {
+            Photo p = (Photo) gr.getEntity();
+            if (!p.getDeleted())
+                result.add(gr.getEntity());
         }
         return Collections.unmodifiableList(result);
     }
