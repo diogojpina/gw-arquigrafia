@@ -90,10 +90,18 @@ public class PhotoImporter {
             List<Tag> tomboTags = mappedTags.get(photo.getTombo());
             ArquigrafiaImageMetadata metadata = metadataImages.get(photo.getTombo());
 
+            logger.log("Beginnig import for photo: " + photo.getTombo());
+
              with(photo);
              assignPhotoToUser();
+
+             logger.log("save photo with id: " + photo.getTombo());
              savePhoto();
+             
+             logger.log("save tags: " + photo.getTombo());
              saveTags(tomboTags);
+             
+             logger.log("Save image with id: " + photo.getTombo());
              saveImage(metadata, logger);
         }
         return mappedPhotos;

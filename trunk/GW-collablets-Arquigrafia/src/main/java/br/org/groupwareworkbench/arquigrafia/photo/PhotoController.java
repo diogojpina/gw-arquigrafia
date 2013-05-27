@@ -656,17 +656,25 @@ public class PhotoController {
     @Get
     @Path("/photo/import")
     public void importPhotos() {
-
         String userName = "acervofau";
         String basePath = "/home/gw/imports/acervofau";
-        new PhotoImporter(userName, basePath).buildImportImages();
-
+        importPhotosFor(userName, basePath);
 
         userName = "acervoquapa";
         basePath = "/home/gw/imports/acervoquapa";
-        new PhotoImporter(userName, basePath).buildImportImages();
+        importPhotosFor(userName, basePath);
+        
+        validator.onErrorUse(Results.logic()).redirectTo(GroupwareInitController.class).init();
+        result.use(logic()).redirectTo(GroupwareInitController.class).init();
+    }
 
-
+    private void importPhotosFor(String userName, String basePath) {
+        try {
+            new PhotoImporter(userName, basePath).buildImportImages();
+        } catch (Exception e) {
+            validator.add(new ValidationMessage("Erro ao importar imagens do usuário:" + userName, "Erro na importação."));
+            e.printStackTrace();
+        }
     }
 
     private void photoNotFound(Photo photo) {
