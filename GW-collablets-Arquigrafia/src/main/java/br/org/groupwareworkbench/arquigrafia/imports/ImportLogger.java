@@ -32,9 +32,14 @@ public class ImportLogger {
     }
     
     public void log(ArquigrafiaImageMetadata metadataImage, String message) {
-        this.logPrintStream.println(String.format("Log imagem tombo n. %s:\n %s ", metadataImage.TOMBO, message));
+        log(String.format("Log imagem tombo n. %s:\n %s ", metadataImage.TOMBO, message));
     }
 
+    public void log(String message) {
+        this.logPrintStream.println(message);
+    }
+
+    
     public File getFileLog() {
         File parent = this.metaDataFile.getParentFile();
         File log = new File(parent, String.format("%s%s", this.metaDataFile.getName(), ".log"));
