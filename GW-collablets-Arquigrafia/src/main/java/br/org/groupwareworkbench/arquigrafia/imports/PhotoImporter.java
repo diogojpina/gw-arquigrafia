@@ -11,7 +11,6 @@ import javax.persistence.EntityManager;
 
 import br.org.groupwareworkbench.arquigrafia.photo.Photo;
 import br.org.groupwareworkbench.collablet.communic.tag.Tag;
-import br.org.groupwareworkbench.collablet.communic.tag.TagMgrInstance;
 import br.org.groupwareworkbench.collablet.coord.user.User;
 import br.org.groupwareworkbench.collablet.coord.user.User.AccountType;
 import br.org.groupwareworkbench.core.bd.EntityManagerProvider;
