@@ -7,11 +7,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.persistence.EntityManager;
+
 import br.org.groupwareworkbench.arquigrafia.photo.Photo;
 import br.org.groupwareworkbench.collablet.communic.tag.Tag;
 import br.org.groupwareworkbench.collablet.communic.tag.TagMgrInstance;
 import br.org.groupwareworkbench.collablet.coord.user.User;
 import br.org.groupwareworkbench.collablet.coord.user.User.AccountType;
+import br.org.groupwareworkbench.core.bd.EntityManagerProvider;
 import br.org.groupwareworkbench.core.framework.Collablet;
 
 public class PhotoImporter {
@@ -90,18 +93,18 @@ public class PhotoImporter {
             List<Tag> tomboTags = mappedTags.get(photo.getTombo());
             ArquigrafiaImageMetadata metadata = metadataImages.get(photo.getTombo());
 
-            logger.log("Beginnig import for photo: " + photo.getTombo());
+            logger.log("Beginnig import for photo with tombo: " + photo.getTombo());
 
              with(photo);
              assignPhotoToUser();
 
-             logger.log("save photo with id: " + photo.getTombo());
+             logger.log("save photo with tombo: " + photo.getTombo());
              savePhoto();
              
-             logger.log("save tags: " + photo.getTombo());
+             logger.log("save tags: " + tomboTags);
              saveTags(tomboTags);
              
-             logger.log("Save image with id: " + photo.getTombo());
+             logger.log("Save image with tombo: " + photo.getTombo());
              saveImage(metadata, logger);
         }
         return mappedPhotos;
@@ -116,15 +119,19 @@ public class PhotoImporter {
     }
 
     public void savePhoto() {
-        Photo existent = Photo.findByTombo( image.getTombo() );
+        final Photo existent = Photo.findByTombo( image.getTombo() );
+        EntityManager entityManager = EntityManagerProvider.getEntityManager();
         if ( existent == null ) {
-            image.save();
+            entityManager.persist(image);
+        } else {
+            entityManager.merge(image);
         }
-    }
+            
+            
+     }
 
     public void saveTags(List<Tag> mappedTags) {
         
-        TagMgrInstance tagManager = (TagMgrInstance) tagMgr.getBusinessObject();
         Map<String, Tag> tagCacheMap = new HashMap<String, Tag>();
         
         for ( Tag selectedTomboTag : mappedTags ) {
@@ -132,13 +139,32 @@ public class PhotoImporter {
                 Tag existent = Tag.findByName(selectedTomboTag.getName(), tagMgr);
                 if ( existent == null ) {
                     existent = selectedTomboTag;
-                } 
-                tagManager.saveWidgets(existent.getName(), image);
+                    addAndAssignTag(existent, image);
+                } else {
+                    if (!existent.contains(image)) {
+                        addAndAssignTag(existent, image);
+                    } 
+                }
+                
                 tagCacheMap.put( existent.getName() , existent);
             }
         }
         
     }    
+    
+    private void addAndAssignTag(Tag tag, Object image) {
+        String name = tag.getName();
+        Tag t = Tag.findByName(name, tagMgr);
+
+        if (t == null) {
+            t = new Tag();
+            t.setName(name);
+            t.setCollablet(tagMgr);
+        }
+        t.increase();
+        t.assign(image);
+        t.save();
+    }
 
     public void saveImage(ArquigrafiaImageMetadata metadataImage, ImportLogger logger) {
         
