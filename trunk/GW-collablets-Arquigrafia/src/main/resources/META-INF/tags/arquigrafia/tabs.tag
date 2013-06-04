@@ -62,5 +62,4 @@
 	  </div>
 	  <!--   FIM - BARRA DE IMAGENS - (RODAPÉ)   -->
 	  
-	   <p:countAllPhotos photoMgr="${photoMgr}" />
-	   <p class="counter"><s:n-check name="X-X-usuario"> <a href="#" id="footer_login_link" >  Faça o login e compartilhe também suas imagens. </a></s:n-check></p>
+	   <p:countAllPhotosTab photoMgr="${photoMgr}" />
