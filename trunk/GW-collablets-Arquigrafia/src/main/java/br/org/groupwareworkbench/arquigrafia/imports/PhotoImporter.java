@@ -118,15 +118,7 @@ public class PhotoImporter {
     }
 
     public void savePhoto() {
-        final Photo existent = Photo.findByTombo( image.getTombo() );
-        EntityManager entityManager = EntityManagerProvider.getEntityManager();
-        if ( existent == null ) {
-            entityManager.persist(image);
-        } else {
-            entityManager.merge(image);
-        }
-            
-            
+        image.save();
      }
 
     public void saveTags(List<Tag> mappedTags) {
