@@ -656,6 +656,7 @@ public class PhotoController {
     @Get
     @Path("/photo/import")
     public void importPhotos() {
+        
         String userName = "acervofau";
         String basePath = "/home/gw/imports/acervofau";
         importPhotosFor(userName, basePath);
