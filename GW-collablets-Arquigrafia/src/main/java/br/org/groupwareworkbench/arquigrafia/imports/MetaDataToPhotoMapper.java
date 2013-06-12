@@ -55,6 +55,7 @@ public class MetaDataToPhotoMapper {
 
     public void metadataToPhoto(ArquigrafiaImageMetadata selectedMetaData, Photo photo) throws InvalidCellContents {
         // TODO tests
+        System.out.println(selectedMetaData.getImageFile().getAbsolutePath());
         if (!selectedMetaData.getImageFile().exists()) {
             throw new InvalidCellContents(String.format("Image file %s not found.", selectedMetaData.getImageFile()
                     .getAbsolutePath()));
