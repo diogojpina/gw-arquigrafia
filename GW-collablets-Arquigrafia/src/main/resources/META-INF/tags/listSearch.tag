@@ -15,7 +15,7 @@
 <c:if test="${not empty people}">
 		
 					<div class="list_photos">
-								Pessoa(s) com nome: ${searchTerm}
+								${fn:length(people)} pessoa(s) com nome: ${searchTerm}
 
 <%-- 								<c:out value="${stringVariable}"/>
  --%>
@@ -46,7 +46,7 @@
 		<c:forEach var="tag" items="${tags}">
 				<c:if test="${tag.size > 0 }">
 					<div class="list_photos">
-								Imagens com a tag: ${tag.name}
+								${tag.size} imagen(s) com a tag: ${tag.name}
 								<c:out value="${stringVariable}"/>
 								<a class="load_photos_by_tag" href='<c:url value="/tags/${tag.id}" />' >Ver todas as imagens</a>		
 							
@@ -75,7 +75,7 @@
 
 			<c:if test="${fn:length(photo.value) >= 1 }">
 	    	<div class="list_photos">
-	    		
+	    		${fn:length(photo.value)}
 					<fmt:message key="${photo.key}"/> ${searchTerm}
 					<c:if test="${fn:length(photo.value) >= 8 }">
 						<a  id="${photo.key}" href="<c:url value="/photos/${photoInstance.id}/search/term?q=${util:encode(searchTerm)}&term=${util:encode(photo.key)}&perPage=8"/>" class="load_photos" data-count="0" data-page="2" style="color: #A6A6A6"></a>
