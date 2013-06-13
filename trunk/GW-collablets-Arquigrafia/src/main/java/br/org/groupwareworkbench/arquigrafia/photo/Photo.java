@@ -72,8 +72,6 @@ import org.hibernate.search.annotations.TokenFilterDef;
 import org.hibernate.search.annotations.TokenizerDef;
 import org.hibernate.search.jpa.FullTextEntityManager;
 
-import com.ibm.icu.text.DateFormat;
-
 import br.com.caelum.vraptor.interceptor.download.FileDownload;
 import br.org.groupwareworkbench.arquigrafia.license.CreativeCommons_3_0;
 import br.org.groupwareworkbench.collablet.coord.user.User;
@@ -88,108 +86,88 @@ import br.org.groupwareworkbench.core.graphics.GraphicalResource;
 import br.org.groupwareworkbench.core.graphics.GraphicalResourceSuffix;
 import br.org.groupwareworkbench.core.util.Pagination;
 
-
 @Entity
 @Access(AccessType.FIELD)
-@TypeDefs(@TypeDef(
-        name = "iso8601",
-        defaultForType = ISO8601.class,
-        typeClass = ISO8601Type.class
-     )
-)
-
+@TypeDefs(@TypeDef(name = "iso8601", defaultForType = ISO8601.class, typeClass = ISO8601Type.class))
 @Indexed
-@AnalyzerDef(name = "customanalyzer",
-        charFilters = {
-                @CharFilterDef(factory = MappingCharFilterFactory.class, params = {
-                    @Parameter(name = "mapping", value = "mapping-chars.properties")
-                })
-        },
-        
-        tokenizer = @TokenizerDef(factory = StandardTokenizerFactory.class),
-            filters = {
-                
-                @TokenFilterDef(factory = LowerCaseFilterFactory.class),
-                
-                @TokenFilterDef(factory = SnowballPorterFilterFactory.class, params = {
-                        @Parameter(name = "language", value = "English")
-                }),
-                
-                @TokenFilterDef(factory = BrazilianStemFilterFactory.class),
+@AnalyzerDef(name = "customanalyzer", charFilters = {@CharFilterDef(factory = MappingCharFilterFactory.class, params = {@Parameter(name = "mapping", value = "mapping-chars.properties")})},
 
-                @TokenFilterDef(factory = StopFilterFactory.class, params = {
-                    @Parameter(name="words", value= "stoplist.properties" ),
-                    @Parameter(name="ignoreCase", value="true")
-                }),
+tokenizer = @TokenizerDef(factory = StandardTokenizerFactory.class), filters = {
 
-                @TokenFilterDef(factory = SnowballPorterFilterFactory.class, params = {
-                    @Parameter(name = "language", value = "Portuguese")
-                })
-                
-           }
+        @TokenFilterDef(factory = LowerCaseFilterFactory.class),
+
+        @TokenFilterDef(factory = SnowballPorterFilterFactory.class, params = {@Parameter(name = "language", value = "English")}),
+
+        @TokenFilterDef(factory = BrazilianStemFilterFactory.class),
+
+        @TokenFilterDef(factory = StopFilterFactory.class, params = {
+                @Parameter(name = "words", value = "stoplist.properties"),
+                @Parameter(name = "ignoreCase", value = "true")}),
+
+        @TokenFilterDef(factory = SnowballPorterFilterFactory.class, params = {@Parameter(name = "language", value = "Portuguese")})
+
+}
 
 )
 public class Photo implements Serializable, GraphicalResource {
 
-    ////////////////////////////////////////
+    // //////////////////////////////////////
     //
     // NON-STATIC SECTION
     //
-    ////////////////////////////////////////
-    
-    //FIXME Extract this enum to top level (not inside of a class) and move it to the license package.
-    public enum AllowModifications {  
-        YES("Sim",""),
-        YES_SA("Sim, contanto que os outros compartilhem de forma semelhante", "-sa"), 
-        NO("Não", "-nd");  
-      
+    // //////////////////////////////////////
+
+    // FIXME Extract this enum to top level (not inside of a class) and move it to the license package.
+    public enum AllowModifications {
+        YES("Sim", ""), YES_SA("Sim, contanto que os outros compartilhem de forma semelhante", "-sa"), NO("Não", "-nd");
+
         private final String name;
         private final String abrev;
-      
-        AllowModifications(String name, String abrev) {  
+
+        AllowModifications(String name, String abrev) {
             this.name = name;
             this.abrev = abrev;
-        }  
-      
-        public String getName() {  
-            return name;  
         }
-        
+
+        public String getName() {
+            return name;
+        }
+
         public String getAbrev() {
             return abrev;
         }
 
-        public AllowModifications getDefault(){
+        public AllowModifications getDefault() {
             return YES;
         }
-        
-    } 
-    
-    public enum AllowCommercialUses {  
-        YES("Sim",""), NO("Não","-nc");  
-      
-        private final String name; 
+
+    }
+
+    public enum AllowCommercialUses {
+        YES("Sim", ""), NO("Não", "-nc");
+
+        private final String name;
         private final String abrev;
-      
-        AllowCommercialUses(String name, String abrev) {  
-            this.name = name;  
+
+        AllowCommercialUses(String name, String abrev) {
+            this.name = name;
             this.abrev = abrev;
-        }  
+        }
 
         public String getAbrev() {
             return abrev;
         }
-        
-        public String getName() {  
-            return name;  
-        }  
-        
-        public AllowCommercialUses getDefault(){
+
+        public String getName() {
+            return name;
+        }
+
+        public AllowCommercialUses getDefault() {
             return YES;
         }
-        
-    } 
-    
+
+    }
+
     @Transient
     private final Logger log = Logger.getLogger(Photo.class);
 
@@ -211,8 +189,8 @@ public class Photo implements Serializable, GraphicalResource {
     @Column(name = "nome_arquivo", unique = false, nullable = false)
     private String nomeArquivo;
 
-//    @Temporal(TemporalType.DATE)
-//    private Date dataCriacao;
+    // @Temporal(TemporalType.DATE)
+    // private Date dataCriacao;
     private ISO8601 dataCriacao;
 
     @Temporal(TemporalType.TIMESTAMP)
@@ -224,11 +202,11 @@ public class Photo implements Serializable, GraphicalResource {
     @Field(index = Index.TOKENIZED, store = Store.NO)
     @Analyzer(definition = "customanalyzer")
     private String city;
-    
+
     @Field(index = Index.TOKENIZED, store = Store.NO)
     @Analyzer(definition = "customanalyzer")
     private String district;
-    
+
     @Field(index = Index.TOKENIZED, store = Store.NO)
     @Analyzer(definition = "customanalyzer")
     private String workAuthor;
@@ -236,7 +214,7 @@ public class Photo implements Serializable, GraphicalResource {
     @Field(index = Index.TOKENIZED, store = Store.NO)
     @Analyzer(definition = "customanalyzer")
     private String street;
-    
+
     @Field(index = Index.TOKENIZED, store = Store.NO)
     @Analyzer(definition = "customanalyzer")
     private String description;
@@ -248,25 +226,24 @@ public class Photo implements Serializable, GraphicalResource {
     @Field(index = Index.UN_TOKENIZED, store = Store.NO)
     private boolean deleted;
 
-    //    private String workdate;
+    // private String workdate;
     private ISO8601 workdate;
 
-    
     private String collection;
-    
 
     private String aditionalImageComments;
     private String characterization;
     private String tombo;
-    
+
     @Enumerated(EnumType.STRING)
     private AllowModifications allowModifications;
-    
+
     @Enumerated(EnumType.STRING)
     private AllowCommercialUses allowCommercialUses;
-    
-//    @Temporal(TemporalType.DATE)
-//    private Date cataloguingTime;
+
+    // FIXME: NULL em todas as fotos, poderia ser deletada
+    // @Temporal(TemporalType.DATE)
+    // private Date cataloguingTime;
     private ISO8601 cataloguingTime;
 
     // FIXME: ManyToMany!? Por quê? Aliás, esta lista não é usada nunca!
@@ -281,7 +258,7 @@ public class Photo implements Serializable, GraphicalResource {
     }
 
     public void assignUser(User user) {
-        if(!users.contains(user)) {
+        if (!users.contains(user)) {
             users.add(user);
         }
     }
@@ -334,7 +311,7 @@ public class Photo implements Serializable, GraphicalResource {
 
     public FileDownload downloadImgOriginal() {
         String fileExtension = "";
-        if(nomeArquivo.contains("."))
+        if (nomeArquivo.contains("."))
             fileExtension = nomeArquivo.substring(nomeArquivo.lastIndexOf("."), nomeArquivo.length());
         return makeDownload(ORIGINAL_FILE_SUFFIX + fileExtension);
     }
@@ -356,62 +333,63 @@ public class Photo implements Serializable, GraphicalResource {
     }
 
     public void saveImage(InputStream foto) throws RuntimeException {
-        
+
         try {
-        
+
             this.getInstance().getGraphicalResourceManager().saveGraphicaResource(foto, this);
-            
+
             // Creating a string containing the list of image owners
             String owners = "";
             for (User user : users) {
                 owners += user.getName() + ", ";
             }
             if (users.size() > 0) {
-                owners = owners.substring(0, owners.length()-2);
+                owners = owners.substring(0, owners.length() - 2);
             }
-            
+
             // Adding metadata to the image set
-            Exiv2 imw = new Exiv2(this.getOriginalFileExtension() , this.id, this.getInstance().getDirImages() );
+            Exiv2 imw = new Exiv2(this.getOriginalFileExtension(), this.id, this.getInstance().getDirImages());
             imw.setAuthor(this.workAuthor);
             imw.setArtist(this.workAuthor, owners);
-            imw.setCopyRight(this.imageAuthor, new CreativeCommons_3_0(this.allowCommercialUses, this.allowModifications));
+            imw.setCopyRight(this.imageAuthor, new CreativeCommons_3_0(this.allowCommercialUses,
+                    this.allowModifications));
             imw.setDescription(this.description);
             imw.setUserComment(this.aditionalImageComments);
-            
+
         } catch (IOException e) {
             log.error("Error reading image stream", e);
             throw new RuntimeException(PhotoController.MSG_FALHA_NO_UPLOAD, e);
         }
     }
 
-//    private void saveImage(BufferedImage input, String prefix, String path) throws IOException {
-//        File photoDirectory = new File(path);
-//
-//        if (!photoDirectory.exists()) {
-//            photoDirectory.mkdir();
-//        } else if (photoDirectory.exists() && photoDirectory.isFile()) {
-//            photoDirectory.delete();
-//            photoDirectory.mkdir();
-//        }
-//
-//        Iterator<ImageWriter> iter = ImageIO.getImageWritersByFormatName("JPG");
-//        if (iter.hasNext()) {
-//            ImageWriter writer = iter.next();
-//            ImageWriteParam iwp = writer.getDefaultWriteParam();
-//            iwp.setCompressionMode(ImageWriteParam.MODE_EXPLICIT);
-//            iwp.setCompressionQuality(0.95f);
-//            File outFile = new File(path + File.separator + prefix + id);
-//            FileImageOutputStream output = null;
-//            try {
-//                output = new FileImageOutputStream(outFile);
-//                writer.setOutput(output);
-//                IIOImage image = new IIOImage(input, null, null);
-//                writer.write(null, image, iwp);
-//            } finally {
-//                if (output != null) output.close();
-//            }
-//        }
-//    }
+    // private void saveImage(BufferedImage input, String prefix, String path) throws IOException {
+    // File photoDirectory = new File(path);
+    //
+    // if (!photoDirectory.exists()) {
+    // photoDirectory.mkdir();
+    // } else if (photoDirectory.exists() && photoDirectory.isFile()) {
+    // photoDirectory.delete();
+    // photoDirectory.mkdir();
+    // }
+    //
+    // Iterator<ImageWriter> iter = ImageIO.getImageWritersByFormatName("JPG");
+    // if (iter.hasNext()) {
+    // ImageWriter writer = iter.next();
+    // ImageWriteParam iwp = writer.getDefaultWriteParam();
+    // iwp.setCompressionMode(ImageWriteParam.MODE_EXPLICIT);
+    // iwp.setCompressionQuality(0.95f);
+    // File outFile = new File(path + File.separator + prefix + id);
+    // FileImageOutputStream output = null;
+    // try {
+    // output = new FileImageOutputStream(outFile);
+    // writer.setOutput(output);
+    // IIOImage image = new IIOImage(input, null, null);
+    // writer.write(null, image, iwp);
+    // } finally {
+    // if (output != null) output.close();
+    // }
+    // }
+    // }
 
     public String getNomeArquivo() {
         return nomeArquivo;
@@ -433,7 +411,6 @@ public class Photo implements Serializable, GraphicalResource {
     public int hashCode() {
         return (id == null ? 0 : id.hashCode()) ^ (name == null ? 0 : name.hashCode());
     }
-    
 
     public String getName() {
         return name;
@@ -448,18 +425,21 @@ public class Photo implements Serializable, GraphicalResource {
     }
 
     public String getDataCriacaoISO8601ToDate() {
-        if (dataCriacao == null)
-            return null;
+        if (dataCriacao == null) return null;
         return getISO8601ToDate(dataCriacao);
     }
 
-    public String getDataCriacaoFormatada() {
+    public String getDataFormatada(ISO8601 date) {
         try {
-            if (dataCriacao == null) return null;
-            return ISO8601TranslatorFactory.buildTranslator().translateAndCapitalize(dataCriacao);
+            if (date == null) return null;
+            return ISO8601TranslatorFactory.buildTranslator().translateAndCapitalize(date);
         } catch (Exception e) {
             return "";
         }
+    }
+
+    public String getDataCriacaoFormatada() {
+        return getDataFormatada(dataCriacao);
     }
 
     public void setDataCriacao(ISO8601 dataCriacao) {
@@ -513,7 +493,7 @@ public class Photo implements Serializable, GraphicalResource {
     public void setCountry(String country) {
         this.country = country;
     }
-    
+
     public String getDistrict() {
         return district;
     }
@@ -534,33 +514,26 @@ public class Photo implements Serializable, GraphicalResource {
         return workdate;
     }
 
-    
     public String getWorkdateISO8601ToDate() {
-        if (workdate == null)
-            return null;
-        
+        if (workdate == null) return null;
+
         return getISO8601ToDate(workdate);
     }
 
-    private String getISO8601ToDate(ISO8601 workdate) {             
-        String day = String.valueOf(String.format("%02d", workdate.getDay()));
-        String month = String.valueOf(String.format("%02d", workdate.getMonth()));
-        String year = String.valueOf(workdate.getYear());
+    private String getISO8601ToDate(ISO8601 date) {
+        String day = String.valueOf(String.format("%02d", date.getDay()));
+        String month = String.valueOf(String.format("%02d", date.getMonth()));
+        String year = String.valueOf(date.getYear());
 
         return day + month + year;
     }
-    
+
     public void setWorkdate(ISO8601 workdate) {
         this.workdate = workdate;
     }
 
     public String getFormattedWorkdate() {
-        try {
-            if (workdate == null) return null;
-            return ISO8601TranslatorFactory.buildTranslator().translate(workdate);
-        } catch (Exception e) {
-            return "";
-        }
+        return getDataFormatada(workdate); 
     }
 
     public String getStreet() {
@@ -578,11 +551,11 @@ public class Photo implements Serializable, GraphicalResource {
     public void setDescription(String description) {
         this.description = description;
     }
-    
+
     public List<User> getUsers() {
         return users;
     }
-    
+
     public String getCollection() {
         return collection;
     }
@@ -647,8 +620,15 @@ public class Photo implements Serializable, GraphicalResource {
         } catch (Exception e) {
             return "";
         }
-    }    
+    }
     
+    public String getDataUploadFormatada() {
+        ISO8601 isoDate = new ISO8601(dataUpload);
+        String dataFormatada = getDataFormatada(isoDate);
+        dataFormatada = dataFormatada.substring(0, dataFormatada.indexOf(","));
+        return dataFormatada;
+    }
+
     public AllowModifications getAllowModifications() {
         return allowModifications;
     }
@@ -664,7 +644,7 @@ public class Photo implements Serializable, GraphicalResource {
     public void setAllowCommercialUses(AllowCommercialUses allowCommercialUses) {
         this.allowCommercialUses = allowCommercialUses;
     }
-    
+
     @Override
     public String getReferenceIdAsString() {
         return this.id.toString();
@@ -682,27 +662,28 @@ public class Photo implements Serializable, GraphicalResource {
 
     @Override
     public String getOriginalFileExtension() {
-        
-        if(nomeArquivo.contains(".") && nomeArquivo.lastIndexOf(".") + 1 < nomeArquivo.length()) {
+
+        if (nomeArquivo.contains(".") && nomeArquivo.lastIndexOf(".") + 1 < nomeArquivo.length()) {
             return nomeArquivo.substring(nomeArquivo.lastIndexOf(".") + 1, nomeArquivo.length());
         }
-        
+
         return GraphicalResourceSuffix.DEFAULT_EXTENSION;
     }
-    
-    ////////////////////////////////////////
+
+    // //////////////////////////////////////
     //
     // STATIC SECTION
     //
-    ////////////////////////////////////////
-    
+    // //////////////////////////////////////
+
     private static final long serialVersionUID = -4757949223957140519L;
     private static final Integer DEFAULT_PHOTOS_COUNT = 5;
     public static final String ORIGINAL_FILE_SUFFIX = "_original";
     public static final String VIEW_FILE_SUFFIX = "_view";
     public static final String PANEL_FILE_SUFFIX = "_panel";
     public static final String THUMB_FILE_SUFFIX = "_thumb";
-    public static final String[] ADDITIONAL_FILE_SUFIXES = new String[] {VIEW_FILE_SUFFIX, PANEL_FILE_SUFFIX, THUMB_FILE_SUFFIX};
+    public static final String[] ADDITIONAL_FILE_SUFIXES = new String[] {VIEW_FILE_SUFFIX, PANEL_FILE_SUFFIX,
+            THUMB_FILE_SUFFIX};
     public static final String DEFAULT_EXTENSION = "jpg";
     private static final ObjectDAO<Photo, Long> DAO = new ObjectDAO<Photo, Long>(Photo.class);
 
@@ -715,21 +696,21 @@ public class Photo implements Serializable, GraphicalResource {
         Map<String, Object> fields = new HashMap<String, Object>();
         fields.put("collablet", collablet);
         fields.put("deleted", false);
-//        return DAO.listByField("collablet", collablet);
+        // return DAO.listByField("collablet", collablet);
         return DAO.listByFields(fields);
     }
 
     public static Photo findPhotoByUser(User user, long id) {
         if (user == null) throw new IllegalArgumentException();
 
-        String queryString = "SELECT p FROM Photo p JOIN p.users AS u WHERE u = :user AND p.id=id AND p.deleted = false";
+        String queryString =
+                "SELECT p FROM Photo p JOIN p.users AS u WHERE u = :user AND p.id=id AND p.deleted = false";
         EntityManager em = EntityManagerProvider.getEntityManager();
         TypedQuery<Photo> query = em.createQuery(queryString, Photo.class);
         query.setParameter("id", id);
         query.setParameter("user", user);
         return query.getResultList().get(0);
     }
-
 
     public static List<Photo> listPhotoByUserPageAndOrder(Collablet collablet, User user, int pageSize, int pageNumber) {
         System.out.println("CP5");
@@ -751,142 +732,113 @@ public class Photo implements Serializable, GraphicalResource {
     }
 
     public static List<Photo> listPhotosByUser(Collablet collablet, User user) {
-        
 
-            if (collablet == null) throw new IllegalArgumentException();
-            if (user == null) throw new IllegalArgumentException();
+        if (collablet == null) throw new IllegalArgumentException();
+        if (user == null) throw new IllegalArgumentException();
 
-            String queryString =
-                    "SELECT p FROM Photo p JOIN p.users AS u WHERE p.deleted = false AND p.collablet = :collablet AND u = :user ORDER BY p.dataUpload DESC";
-            EntityManager em = EntityManagerProvider.getEntityManager();
-            TypedQuery<Photo> query = em.createQuery(queryString, Photo.class);
-            query.setParameter("collablet", collablet);
-            query.setParameter("user", user);
-            return query.getResultList();
+        String queryString =
+                "SELECT p FROM Photo p JOIN p.users AS u WHERE p.deleted = false AND p.collablet = :collablet AND u = :user ORDER BY p.dataUpload DESC";
+        EntityManager em = EntityManagerProvider.getEntityManager();
+        TypedQuery<Photo> query = em.createQuery(queryString, Photo.class);
+        query.setParameter("collablet", collablet);
+        query.setParameter("user", user);
+        return query.getResultList();
 
-
-//      if (collablet == null) throw new IllegalArgumentException();
-//        if (user == null) throw new IllegalArgumentException();
-//        return DAO.query().with("collablet", collablet).with("deleted", false).with("user", user).list();
+        // if (collablet == null) throw new IllegalArgumentException();
+        // if (user == null) throw new IllegalArgumentException();
+        // return DAO.query().with("collablet", collablet).with("deleted", false).with("user", user).list();
     }
-    
+
     public static List<Photo> listPhotoByPageAndOrder(Collablet collablet, int pageSize, int pageNumber) {
         System.out.println("CP4");
         if (collablet == null) throw new IllegalArgumentException();
 
         int firstElement = pageNumber * pageSize;
 
-        return QueryBuilder.query(Photo.class).with("collablet", collablet).with("deleted", false).firstResult(firstElement)
-                .maxResults(pageSize).list("dataUpload DESC");
+        return QueryBuilder.query(Photo.class).with("collablet", collablet).with("deleted", false)
+                .firstResult(firstElement).maxResults(pageSize).list("dataUpload DESC");
     }
-    
+
     @SuppressWarnings("unchecked")
     public static List<Photo> findByAttribute(Collablet collablet, String term, String value, Pagination pagination) {
-        
+
         if (Search.contains(term)) {
 
             EntityManager em = EntityManagerProvider.getEntityManager();
             FullTextEntityManager fullTextEntityManager = org.hibernate.search.jpa.Search.getFullTextEntityManager(em);
-            
-            org.hibernate.search.query.dsl.QueryBuilder builder = fullTextEntityManager.getSearchFactory().buildQueryBuilder().forEntity(Photo.class).get();
-            
-            org.apache.lucene.search.Query termQuery = builder
-                                                    .keyword()
-                                                    .onFields(term)
-                                                    .matching(value.toUpperCase().trim())
-                                                    .createQuery();
 
-            org.apache.lucene.search.Query deletedQuery = builder
-                                                            .keyword()
-                                                            .onFields("deleted")
-                                                            .matching("false")
-                                                            .createQuery();
+            org.hibernate.search.query.dsl.QueryBuilder builder =
+                    fullTextEntityManager.getSearchFactory().buildQueryBuilder().forEntity(Photo.class).get();
 
-            org.apache.lucene.search.Query collabletQuery = builder
-                    .keyword()
-                    .onFields("collablet.id")
-                    .matching(collablet.getId())
-                    .createQuery();
+            org.apache.lucene.search.Query termQuery =
+                    builder.keyword().onFields(term).matching(value.toUpperCase().trim()).createQuery();
 
-            org.apache.lucene.search.Query query = builder
-                                                       .bool()
-                                                       .must(termQuery)
-                                                       .must(deletedQuery)
-                                                       .must(collabletQuery)
-                                                       .createQuery();
+            org.apache.lucene.search.Query deletedQuery =
+                    builder.keyword().onFields("deleted").matching("false").createQuery();
 
-            
+            org.apache.lucene.search.Query collabletQuery =
+                    builder.keyword().onFields("collablet.id").matching(collablet.getId()).createQuery();
+
+            org.apache.lucene.search.Query query =
+                    builder.bool().must(termQuery).must(deletedQuery).must(collabletQuery).createQuery();
+
             Query hibQuery = fullTextEntityManager.createFullTextQuery(query, Photo.class, Collablet.class);
 
-            return hibQuery
-                    .setFirstResult(pagination.firstResult()).setMaxResults(pagination.getPerPage())
+            return hibQuery.setFirstResult(pagination.firstResult()).setMaxResults(pagination.getPerPage())
                     .getResultList();
         }
         return null;
     }
-    
+
     public static Long countByAttribute(Collablet collablet, String fieldName, String value) {
         if (Search.contains(fieldName)) {
-            
+
             EntityManager em = EntityManagerProvider.getEntityManager();
             FullTextEntityManager fullTextEntityManager = org.hibernate.search.jpa.Search.getFullTextEntityManager(em);
-            
-            org.hibernate.search.query.dsl.QueryBuilder builder = fullTextEntityManager.getSearchFactory().buildQueryBuilder().forEntity(Photo.class).get();
-            
-            org.apache.lucene.search.Query terms = builder
-                                                    .keyword()
-                                                    .onFields(fieldName)
-                                                    .matching(value.toUpperCase().trim())
-                                                    .createQuery();
 
-            org.apache.lucene.search.Query paramDelete = builder
-                                                            .keyword()
-                                                            .onFields("deleted")
-                                                            .matching("false")
-                                                            .createQuery();
+            org.hibernate.search.query.dsl.QueryBuilder builder =
+                    fullTextEntityManager.getSearchFactory().buildQueryBuilder().forEntity(Photo.class).get();
 
-            org.apache.lucene.search.Query paramCollablet = builder
-                    .keyword()
-                    .onFields("collablet.id")
-                    .matching(collablet.getId())
-                    .createQuery();
+            org.apache.lucene.search.Query terms =
+                    builder.keyword().onFields(fieldName).matching(value.toUpperCase().trim()).createQuery();
 
-            org.apache.lucene.search.Query query = builder
-                                                       .bool()
-                                                       .must(terms)
-                                                       .must(paramDelete)
-                                                       .must(paramCollablet)
-                                                       .createQuery();
+            org.apache.lucene.search.Query paramDelete =
+                    builder.keyword().onFields("deleted").matching("false").createQuery();
 
-            
-            org.hibernate.search.jpa.FullTextQuery fullTextQuery = fullTextEntityManager.createFullTextQuery(query, Photo.class);
+            org.apache.lucene.search.Query paramCollablet =
+                    builder.keyword().onFields("collablet.id").matching(collablet.getId()).createQuery();
+
+            org.apache.lucene.search.Query query =
+                    builder.bool().must(terms).must(paramDelete).must(paramCollablet).createQuery();
+
+            org.hibernate.search.jpa.FullTextQuery fullTextQuery =
+                    fullTextEntityManager.createFullTextQuery(query, Photo.class);
 
             return (long) fullTextQuery.getResultSize();
         }
         return 0l;
     }
 
-    
-//    if (Search.contains(fieldName)) {
-//        check(value);
-//        String queryString = 
-//                "select count(*) from Photo p where p.deleted = false AND p.collablet =:collablet AND (" + "upper(p." + fieldName + ") like :nom1 "
-//                        + "OR upper(p." + fieldName + ") like :nom2 " + "OR upper(p." + fieldName + ") like :nom4 "
-//                        + "OR upper(p." + fieldName + ") like :nom3 ) order by dataUpload DESC";
-//        
-//        EntityManager em = EntityManagerProvider.getEntityManager();
-//        Query query = em.createQuery(queryString);
-//        String newValue = value.toUpperCase().trim();
-//        return (Long) query.setParameter("collablet", collablet)
-//                    .setParameter("nom1", "%" + newValue + "%")
-//                    .setParameter("nom2", newValue + "%")
-//                    .setParameter("nom3", "%" + newValue)
-//                    .setParameter("nom4", newValue)
-//                    .getSingleResult();
-//    }
-//    return 0l;
+    // if (Search.contains(fieldName)) {
+    // check(value);
+    // String queryString =
+    // "select count(*) from Photo p where p.deleted = false AND p.collablet =:collablet AND (" + "upper(p." + fieldName
+    // + ") like :nom1 "
+    // + "OR upper(p." + fieldName + ") like :nom2 " + "OR upper(p." + fieldName + ") like :nom4 "
+    // + "OR upper(p." + fieldName + ") like :nom3 ) order by dataUpload DESC";
+    //
+    // EntityManager em = EntityManagerProvider.getEntityManager();
+    // Query query = em.createQuery(queryString);
+    // String newValue = value.toUpperCase().trim();
+    // return (Long) query.setParameter("collablet", collablet)
+    // .setParameter("nom1", "%" + newValue + "%")
+    // .setParameter("nom2", newValue + "%")
+    // .setParameter("nom3", "%" + newValue)
+    // .setParameter("nom4", newValue)
+    // .getSingleResult();
+    // }
+    // return 0l;
 
-    
     public static List<Photo> busca(Collablet collablet, String name, String city, String description, Date date) {
 
         if (collablet == null) throw new IllegalArgumentException();
@@ -894,9 +846,9 @@ public class Photo implements Serializable, GraphicalResource {
         if (description.equals("")) description = "!$%--6**24";
         if (city.equals("")) city = "!$%--6**24";
         String queryString =
-                "SELECT p FROM Photo p WHERE p.deleted = false AND p.collablet =:collablet AND (" + "(upper(p.name) like :nom1 "
-                        + "OR upper(p.name) like :nom2 " + "OR upper(p.name) like :nom4 "
-                        + "OR upper(p.name) like :nom3 )" +
+                "SELECT p FROM Photo p WHERE p.deleted = false AND p.collablet =:collablet AND ("
+                        + "(upper(p.name) like :nom1 " + "OR upper(p.name) like :nom2 "
+                        + "OR upper(p.name) like :nom4 " + "OR upper(p.name) like :nom3 )" +
 
                         "OR (" +
 
@@ -905,9 +857,8 @@ public class Photo implements Serializable, GraphicalResource {
 
                         "OR (" +
 
-                        "upper(p.city) like :cid1 " + "OR upper(p.city) like :cid2 "
-                        + "OR upper(p.city) like :cid4 " + "OR upper(p.city) like :cid3 )" + "OR "
-                        + "p.dataCriacao = :dataCriacao )";
+                        "upper(p.city) like :cid1 " + "OR upper(p.city) like :cid2 " + "OR upper(p.city) like :cid4 "
+                        + "OR upper(p.city) like :cid3 )" + "OR " + "p.dataCriacao = :dataCriacao )";
 
         EntityManager em = EntityManagerProvider.getEntityManager();
         TypedQuery<Photo> query = em.createQuery(queryString, Photo.class);
@@ -939,7 +890,7 @@ public class Photo implements Serializable, GraphicalResource {
     public static Photo findByPhotoNotDeleted(long id) {
         return QueryBuilder.query(Photo.class).with("id", id).with("deleted", false).find();
     }
-    
+
     public static List<Photo> listLastPhotos(Collablet collablet, Integer amount) {
         if (collablet == null) throw new IllegalArgumentException("Collablet is required.");
         Integer localCount = amount;
@@ -961,7 +912,7 @@ public class Photo implements Serializable, GraphicalResource {
                 return previousPhoto;
             }
         }
-        
+
         return previousPhoto;
     }
 
@@ -993,33 +944,33 @@ public class Photo implements Serializable, GraphicalResource {
     public static Long lastMonthCount() {
         Calendar today = new GregorianCalendar();
         today.add(Calendar.MONTH, -1);
-        return countAfterDate(today);        
+        return countAfterDate(today);
     }
-    
+
     public static Long lastWeekCount() {
         Calendar today = new GregorianCalendar();
         today.add(Calendar.WEEK_OF_YEAR, -1);
-        return countAfterDate(today);        
+        return countAfterDate(today);
     }
-    
+
     private static Long countAfterDate(Calendar today) {
         Date date = today.getTime();
-        
+
         EntityManager em = EntityManagerProvider.getEntityManager();
-        Query query = em.createQuery("select count(*) from Photo p where p.deleted = :status and " +
-                "p.dataUpload >= :date");
-        
+        Query query =
+                em.createQuery("select count(*) from Photo p where p.deleted = :status and " + "p.dataUpload >= :date");
+
         return (Long) query.setParameter("date", date).setParameter("status", false).getSingleResult();
     }
-    
+
     public static Long count() {
         EntityManager em = EntityManagerProvider.getEntityManager();
         Query query = em.createQuery("select count(*) from Photo p where p.deleted = :status");
 
         return (Long) query.setParameter("status", false).getSingleResult();
     }
-    
-    public static Photo findByTombo(String tombo) {        
+
+    public static Photo findByTombo(String tombo) {
         return QueryBuilder.query(Photo.class).with("tombo", tombo).with("deleted", false).find();
     }
 
