@@ -159,6 +159,10 @@
 					</p>
 					
 				</c:if>
+				<c:if test="${not empty photo.dataUploadFormatada}">
+					<h3>Data de Upload:</h3>
+					<p><c:out value="${photo.dataUploadFormatada}"/></p>
+				</c:if>
 				<c:if test="${not empty photo.dataCriacaoFormatada}">
 					<h3>Data da Imagem:</h3>
 					<p><c:out value="${photo.dataCriacaoFormatada}"/></p>
