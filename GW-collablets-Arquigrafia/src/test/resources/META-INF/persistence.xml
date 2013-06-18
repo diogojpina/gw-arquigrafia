@@ -10,8 +10,14 @@
     <class>br.org.groupwareworkbench.core.security.model.PermissionDeclaration</class>
     <class>br.org.groupwareworkbench.collablet.communic.tag.Tag</class>
     <properties>
-    
-            <property name="hibernate.connection.username" value="groupwareUser" />
+          <property name="javax.persistence.jdbc.driver" value="org.hsqldb.jdbcDriver"/>
+     	  <property name="javax.persistence.jdbc.url" value="jdbc:hsqldb:mem:testdb"/>
+      	  <property name="javax.persistence.jdbc.user" value="sa"/>
+          <property name="javax.persistence.jdbc.password" value=""/>
+          <property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect"/>
+          <property name="hibernate.hbm2ddl.auto" value="update"/>
+<!--     
+        <property name="hibernate.connection.username" value="groupwareUser" />
         <property name="hibernate.connection.password" value="102938" />
         <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
         <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/groupware_workbench_arquigrafia_test?autoReconnect=true" />
@@ -26,7 +32,7 @@
 		<property name="hibernate.search.default.directory_provider" value="filesystem"></property>
 
 		<property name="hibernate.search.default.indexBase" value="/Users/laeciofreitas/indexes"></property>
-    
+ -->   
     
     </properties>
   </persistence-unit>
