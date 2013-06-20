@@ -189,8 +189,6 @@ public class Photo implements Serializable, GraphicalResource {
     @Column(name = "nome_arquivo", unique = false, nullable = false)
     private String nomeArquivo;
 
-    // @Temporal(TemporalType.DATE)
-    // private Date dataCriacao;
     private ISO8601 dataCriacao;
 
     @Temporal(TemporalType.TIMESTAMP)
@@ -226,7 +224,6 @@ public class Photo implements Serializable, GraphicalResource {
     @Field(index = Index.UN_TOKENIZED, store = Store.NO)
     private boolean deleted;
 
-    // private String workdate;
     private ISO8601 workdate;
 
     private String collection;
@@ -361,35 +358,6 @@ public class Photo implements Serializable, GraphicalResource {
             throw new RuntimeException(PhotoController.MSG_FALHA_NO_UPLOAD, e);
         }
     }
-
-    // private void saveImage(BufferedImage input, String prefix, String path) throws IOException {
-    // File photoDirectory = new File(path);
-    //
-    // if (!photoDirectory.exists()) {
-    // photoDirectory.mkdir();
-    // } else if (photoDirectory.exists() && photoDirectory.isFile()) {
-    // photoDirectory.delete();
-    // photoDirectory.mkdir();
-    // }
-    //
-    // Iterator<ImageWriter> iter = ImageIO.getImageWritersByFormatName("JPG");
-    // if (iter.hasNext()) {
-    // ImageWriter writer = iter.next();
-    // ImageWriteParam iwp = writer.getDefaultWriteParam();
-    // iwp.setCompressionMode(ImageWriteParam.MODE_EXPLICIT);
-    // iwp.setCompressionQuality(0.95f);
-    // File outFile = new File(path + File.separator + prefix + id);
-    // FileImageOutputStream output = null;
-    // try {
-    // output = new FileImageOutputStream(outFile);
-    // writer.setOutput(output);
-    // IIOImage image = new IIOImage(input, null, null);
-    // writer.write(null, image, iwp);
-    // } finally {
-    // if (output != null) output.close();
-    // }
-    // }
-    // }
 
     public String getNomeArquivo() {
         return nomeArquivo;
@@ -744,9 +712,6 @@ public class Photo implements Serializable, GraphicalResource {
         query.setParameter("user", user);
         return query.getResultList();
 
-        // if (collablet == null) throw new IllegalArgumentException();
-        // if (user == null) throw new IllegalArgumentException();
-        // return DAO.query().with("collablet", collablet).with("deleted", false).with("user", user).list();
     }
 
     public static List<Photo> listPhotoByPageAndOrder(Collablet collablet, int pageSize, int pageNumber) {
@@ -818,26 +783,6 @@ public class Photo implements Serializable, GraphicalResource {
         }
         return 0l;
     }
-
-    // if (Search.contains(fieldName)) {
-    // check(value);
-    // String queryString =
-    // "select count(*) from Photo p where p.deleted = false AND p.collablet =:collablet AND (" + "upper(p." + fieldName
-    // + ") like :nom1 "
-    // + "OR upper(p." + fieldName + ") like :nom2 " + "OR upper(p." + fieldName + ") like :nom4 "
-    // + "OR upper(p." + fieldName + ") like :nom3 ) order by dataUpload DESC";
-    //
-    // EntityManager em = EntityManagerProvider.getEntityManager();
-    // Query query = em.createQuery(queryString);
-    // String newValue = value.toUpperCase().trim();
-    // return (Long) query.setParameter("collablet", collablet)
-    // .setParameter("nom1", "%" + newValue + "%")
-    // .setParameter("nom2", newValue + "%")
-    // .setParameter("nom3", "%" + newValue)
-    // .setParameter("nom4", newValue)
-    // .getSingleResult();
-    // }
-    // return 0l;
 
     public static List<Photo> busca(Collablet collablet, String name, String city, String description, Date date) {
 
