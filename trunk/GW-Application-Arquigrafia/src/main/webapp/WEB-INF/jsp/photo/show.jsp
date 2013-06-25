@@ -153,7 +153,7 @@
 				<c:if test="${not empty photo.imageAuthor}">
 					<h3>Autor da Imagem:</h3>
 					<p>
-						<a href="<c:url value="/photos/${photoMgr.id}/show/search/term?q=${util:encode(photo.imageAuthor)}&term=imageAuthor&page=1&perPage=8"/>">
+						<a href="<c:url value="/photos/${photoMgr.id}/show/search/term?q=${util:encode(photo.imageAuthor)}&term=imageAuthor&page=1&perPage=32"/>">
 							<c:out value="${photo.imageAuthor}"/>
 						</a>
 					</p>
@@ -171,7 +171,7 @@
 				<c:if test="${not empty photo.workAuthor}">
 					<h3>Autor da Obra:</h3>
 					<p>
-						<a href="<c:url value="/photos/${photoMgr.id}/show/search/term?q=${util:encode(photo.workAuthor)}&term=workAuthor&page=1&perPage=8"/>">
+						<a href="<c:url value="/photos/${photoMgr.id}/show/search/term?q=${util:encode(photo.workAuthor)}&term=workAuthor&page=1&perPage=32"/>">
 							<c:out value="${photo.workAuthor}"/>
 						</a>
 					</p>
@@ -192,20 +192,20 @@
 				<h3>Endereço:</h3>
 					<p>
 						<c:if test="${not empty photo.street}">
-							<a href="<c:url value="/photos/${photoMgr.id}/show/search/term?q=${util:encode(photo.street)}&term=street&page=1&perPage=8"/>">
+							<a href="<c:url value="/photos/${photoMgr.id}/show/search/term?q=${util:encode(photo.street)}&term=street&page=1&perPage=24"/>">
 								<c:out value="${photo.street}"/>, 
 							</a>
 						
 						</c:if>
 						<c:if test="${not empty photo.district}">
-							<a href="<c:url value="/photos/${photoMgr.id}/show/search/term?q=${util:encode(photo.district)}&term=district&page=1&perPage=8"/>">
+							<a href="<c:url value="/photos/${photoMgr.id}/show/search/term?q=${util:encode(photo.district)}&term=district&page=1&perPage=24"/>">
 								<c:out value="${photo.district}"/>
 							</a>
 						
 						<br />
 						</c:if>
 						<c:if test="${not empty photo.city}">
-						<a href="<c:url value="/photos/${photoMgr.id}/show/search/term?q=${util:encode(photo.city)}&term=city&page=1&perPage=8"/>">
+						<a href="<c:url value="/photos/${photoMgr.id}/show/search/term?q=${util:encode(photo.city)}&term=city&page=1&perPage=24"/>">
 							<c:out value="${photo.city}"/> - 
 						</a>
 						
