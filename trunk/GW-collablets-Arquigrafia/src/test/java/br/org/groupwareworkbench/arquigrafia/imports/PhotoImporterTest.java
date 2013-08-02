@@ -21,15 +21,18 @@ import br.org.groupwareworkbench.core.bd.EntityManagerProvider;
 import br.org.groupwareworkbench.core.framework.Collablet;
 
 public class PhotoImporterTest {
+    
     private static final String DATASET_PHOTO = "/br/org/groupwareworkbench/arquigrafia/photo/Photo.xml";
+    private static final String DATASET_COLLABLET = "/br/org/groupwareworkbench/arquigrafia/photo/Collablet.xml";
 
     private PhotoImporter importer;
+    
     private String userName = "acervofau";
     private static final String basePath = "./src/test/resources/br/org/groupwareworkbench/arquigrafia/imports/tests";
+    
     private DBUnitHelper dbUnitHelper = new DBUnitHelper();
 
     private Collablet tagMgr;
-
     private Collablet photoMgr;
 
     @BeforeClass
@@ -39,20 +42,29 @@ public class PhotoImporterTest {
 
     @Before
     public void setUp() throws InterruptedException {
-
+        
+        dbUnitHelper.deleteAll(DATASET_COLLABLET);
+        dbUnitHelper.insert(DATASET_COLLABLET);
+        
         EntityManager manager = JPAHelper.currentEntityManager();
         EntityManagerProvider.setEntityManager(manager);
-        tagMgr = new Collablet(19l, "tagMgr");
-        photoMgr = new Collablet(7l, "photoMgr");
+        
+        tagMgr = Collablet.findByName("tagMgr");
+        photoMgr = Collablet.findByName("photoMgr");
+        
         importer = new PhotoImporter(userName, basePath);
 
     }
 
     @After
     public void tearDown() {
+        
         String path = basePath + File.separator + "2013-12-05-Andrea Augusta de Aguiar.ods.log";
         new File(path).delete();
+        
         dbUnitHelper.deleteAll(DATASET_PHOTO);
+        dbUnitHelper.deleteAll(DATASET_COLLABLET);
+        
         JPAHelper.close();
     }
 
@@ -61,6 +73,7 @@ public class PhotoImporterTest {
     public void shouldImportPhotosWithTags() {
         
         importer.buildImportImages();
+        
         assertEquals(new Long(10), Photo.countAll());
         assertEquals(new Long(32), Tag.countAll());
         assertPhotosWithTags();

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<dataset>
+
+
+	<Collablet id="8" componentClassName="br.org.groupwareworkbench.collablet.coord.user.UserMgrInstance"
+							description="Gerenciar usuários" enabled="1" name="userMgr"/>
+
+	<Collablet id="19" componentClassName="br.org.groupwareworkbench.collablet.communic.tag.TagMgrInstance"
+							description="Gerenciar tags" enabled="1" name="tagMgr"/>
+
+
+	<gw_collab_User login="acervofau" email="acervofau" name="acervofau" statusToken="0" type="0" collablet_id="8"/>
+
+
+	<gw_collab_Album />
+
+</dataset>

@@ -2,6 +2,17 @@
 
 <dataset>
 
+	<Collablet id="7" componentClassName="br.org.groupwareworkbench.arquigrafia.photo.PhotoMgrInstance"
+							description="Registro de fotografias" enabled="1" name="photoMgr"/>
+
+	<Collablet id="8" componentClassName="br.org.groupwareworkbench.collablet.coord.user.UserMgrInstance"
+							description="Gerenciar usuários" enabled="1" name="userMgr"/>
+
+	<gw_collab_Album />
+
+	<gw_collab_User />
+
+
 	<Photo  deleted="0" nome_arquivo="photoc1" name="Museu Rodin, Palacete das Artes" city="Salvador" district="da Graça" 
 							street="Rua da Graça" imageAuthor="" workAuthor="Brasil Arquitetura" description="nova imagem"  collablet_id="7"/>
 							
@@ -36,12 +47,6 @@
 	<Photo  deleted="0" nome_arquivo="photo" name="Edifício Cinderela" city="Sao" district="Higienópolis" 
 							street="Rua Maranhão, 163" imageAuthor="Ruth Cuiá Troncarelli" workAuthor="João Artacho Jurado" 
 							description="Vista do Edifício Cinderela"  collablet_id="7"/>
-
-	<Photo_gw_collab_User  />
-
-	<gw_collab_Tag  />
-
-	<gw_collab_Tag_Assignments  />
 
 
 	
