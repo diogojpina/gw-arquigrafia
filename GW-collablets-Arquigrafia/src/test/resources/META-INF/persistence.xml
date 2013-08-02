@@ -9,6 +9,7 @@
     <class>br.org.groupwareworkbench.core.framework.CollabletProperty</class>
     <class>br.org.groupwareworkbench.core.security.model.PermissionDeclaration</class>
     <class>br.org.groupwareworkbench.collablet.communic.tag.Tag</class>
+    <class>br.org.groupwareworkbench.tests.Fruit</class>
     <properties>
           <property name="javax.persistence.jdbc.driver" value="org.hsqldb.jdbcDriver"/>
      	  <property name="javax.persistence.jdbc.url" value="jdbc:hsqldb:mem:testdb"/>
@@ -16,6 +17,8 @@
           <property name="javax.persistence.jdbc.password" value=""/>
           <property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect"/>
           <property name="hibernate.hbm2ddl.auto" value="update"/>
+          <property name="hibernate.show_sql" value="true"/>
+          <property name="hibernate.format_sql" value="true"/>
 <!--     
         <property name="hibernate.connection.username" value="groupwareUser" />
         <property name="hibernate.connection.password" value="102938" />

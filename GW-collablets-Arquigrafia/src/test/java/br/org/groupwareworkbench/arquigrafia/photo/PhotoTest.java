@@ -1,58 +1,47 @@
 package br.org.groupwareworkbench.arquigrafia.photo;
 
+import static junit.framework.Assert.assertEquals;
+
 import java.util.List;
 
 import javax.persistence.EntityManager;
 
-import static junit.framework.Assert.*;
-
 import org.hibernate.search.jpa.FullTextEntityManager;
-import org.jstryker.database.DBUnitHelper;
-import org.jstryker.database.JPAHelper;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
-import br.org.groupwareworkbench.core.bd.EntityManagerProvider;
 import br.org.groupwareworkbench.core.framework.Collablet;
 import br.org.groupwareworkbench.core.util.Pagination;
+import br.org.groupwareworkbench.tests.DatabaseTester;
 
 public class PhotoTest {
-
-    private static final String DATASET_PHOTO = "/br/org/groupwareworkbench/arquigrafia/photo/Photo.xml";
-
-    private DBUnitHelper dbUnitHelper = new DBUnitHelper();
 
     private Collablet collablet;
     
     private Pagination pagination;
     
-
-    @BeforeClass
-    public static void beforeClass() {
-        JPAHelper.entityManagerFactory("TestUnit");
-    }
-
+    private PhotoBuilder builder;
 
     @Before
     public void setUp() throws InterruptedException {
-        dbUnitHelper.insert(DATASET_PHOTO);
 
-        EntityManager manager = JPAHelper.currentEntityManager();
-        EntityManagerProvider.setEntityManager(manager);
+        DatabaseTester db = new DatabaseTester();
+        EntityManager manager =  db.getEntityManager();
+        
+        builder = new PhotoBuilder().create();
+        
         FullTextEntityManager fullTextEntityManager = org.hibernate.search.jpa.Search.getFullTextEntityManager(manager);
         fullTextEntityManager.createIndexer().startAndWait();
-
-        collablet = new Collablet(7l, "photoMgr");
+        
+        collablet = builder.getCollablet();
         pagination = new Pagination(1, 10);
 
     }
 
     @After
     public void tearDown() {
-        JPAHelper.close();
-        dbUnitHelper.deleteAll(DATASET_PHOTO);
+        builder.destroy();
     }
 
     @Test
@@ -84,17 +73,6 @@ public class PhotoTest {
         assertEquals(4, images.size());
         assertEquals("MELLO, Eduardo Augusto Kneese de", image.getImageAuthor());
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
 }

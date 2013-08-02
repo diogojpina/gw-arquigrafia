@@ -25,6 +25,7 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
+import java.util.UUID;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceException;
@@ -66,7 +67,7 @@ public class AlbumTest {
         fh3 = new Fruit();
         fh3.setName("grape");
         
-        c = new Collablet("Cool Collablet");
+        c = new Collablet("Cool Collablet" + UUID.randomUUID());
     }
 
     private void setUpPersistence() {
