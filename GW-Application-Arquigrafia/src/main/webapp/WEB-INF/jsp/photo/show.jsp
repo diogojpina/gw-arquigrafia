@@ -135,7 +135,7 @@
 						</s:check>  -->
 						<br />
 						<s:check name="X-X-usuario">
-							<friends:sendRequest friendsMgr="${friendsMgr}" viewer="${userLogin}" viewed="${user}" />
+							<friends:follow friendsMgr="${friendsMgr}" viewer="${userLogin}" viewed="${user}" />
 						</s:check> 
 				</c:forEach>
 				</div>

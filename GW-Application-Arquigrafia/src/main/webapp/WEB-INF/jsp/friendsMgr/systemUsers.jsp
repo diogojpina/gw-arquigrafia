@@ -82,7 +82,7 @@
                                         </a>
                                     </div>
                                     <div class="linha">
-                                        <friends:sendRequest friendsMgr="${friendsMgr}" viewer="${userLogin}" viewed="${u}" afterRequestFunction="aviso" />
+                                        <friends:follow friendsMgr="${friendsMgr}" viewer="${userLogin}" viewed="${u}" afterRequestFunction="aviso" />
                                     </div>
                                 </div>
                             </div>

@@ -124,7 +124,7 @@
 					</c:if>
 
 
-					<friends:sendRequest friendsMgr="${friendsMgr}"
+					<friends:follow friendsMgr="${friendsMgr}"
 						viewer="${userLogin}" viewed="${friend}" />
 				</s:check>
 
