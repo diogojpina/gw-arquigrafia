@@ -178,13 +178,13 @@ public class Exiv2 {
                 
                 StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
                 for(StackTraceElement e: stackTrace) {
-                    System.out.println("    " + e);
+                    //System.out.println("    " + e);
                 }
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
     }
     

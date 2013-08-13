@@ -25,7 +25,29 @@ public class MetaDataToPhotoMapper {
         Map<String, ArquigrafiaImageMetadata> metadataImages = imagesMetadataReader.read();
         return metadataImages;
     }
-
+    
+    /**
+     * Devolve um collection de Photo que foram obtidas do Metadata.
+     * Importante: nao procura a Photo no BD (como faz getPhotosFromMetadata)
+     * @param metaDatas
+     * @param photoMgr
+     * @return
+     */
+    public Collection<Photo> getPhotosFromMetadataNotBD(Collection<ArquigrafiaImageMetadata> metaDatas, Collablet photoMgr) {
+        List<Photo> mappedPhotos = new ArrayList<Photo>();
+        for (ArquigrafiaImageMetadata selected : metaDatas) {
+            try {
+                Photo photo = new Photo();
+                metadataToPhoto(selected, photo);
+                photo.setCollablet(photoMgr);
+                mappedPhotos.add(photo);
+            } catch (InvalidCellContents ex) {
+                this.logger.log(selected, ex.getMessage());
+            }
+        }
+        return mappedPhotos;
+    }
+    
     public Collection<Photo> getPhotosFromMetadata(Collection<ArquigrafiaImageMetadata> metaDatas, Collablet photoMgr) {
         List<Photo> mappedPhotos = new ArrayList<Photo>();
         for (ArquigrafiaImageMetadata selected : metaDatas) {

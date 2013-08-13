@@ -62,6 +62,7 @@ public class ArquigrafiaImageMetadata {
     
     public void removeJpgExtensionFromTombo() {
         if ( TOMBO.toLowerCase().endsWith(".jpg") ) {
+            TOMBO = TOMBO.replace(".JPG", "");
             TOMBO = TOMBO.replace(".jpg", "");
         }
     }
