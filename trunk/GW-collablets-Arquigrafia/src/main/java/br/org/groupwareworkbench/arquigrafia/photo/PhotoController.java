@@ -30,6 +30,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import javax.servlet.http.HttpSession;
 
@@ -49,6 +50,8 @@ import br.com.caelum.vraptor.validator.ValidationMessage;
 import br.com.caelum.vraptor.validator.Validations;
 import br.com.caelum.vraptor.view.Results;
 import br.org.groupwareworkbench.arquigrafia.imports.PhotoImporter;
+import br.org.groupwareworkbench.arquigrafia.imports.PhotoReviewImport;
+import br.org.groupwareworkbench.arquigrafia.imports.PhotoUpdateImport;
 import br.org.groupwareworkbench.collablet.communic.tag.Tag;
 import br.org.groupwareworkbench.collablet.coord.user.User;
 import br.org.groupwareworkbench.core.framework.Collablet;
@@ -79,6 +82,8 @@ public class PhotoController {
     private final Validator validator;
     private final HttpSession session;
     private final RequestInfo requestInfo;
+    
+    private static Random rnd = new Random();
 
     public PhotoController(Result result, Validator validator, WidgetInfo info, HttpSession session,
             RequestInfo requestInfo) {
@@ -652,29 +657,257 @@ public class PhotoController {
         List<Photo> photos = photoMgr.listRandomPhotos(amount);
         result.use(Results.json()).withoutRoot().from(photos).serialize();
     }
+    
+    @Get
+    @Path("/photo/updateimportworkfau")
+    public void updateImportWorkPhotosFau() {
+        
+        boolean reset = false;
+        User user = null;
+        try{
+            System.out.println("Entrando UPDATE FAU: " + new Date());
+            user = (User) session.getAttribute("userLogin");
+            if (user != null && user.getLogin().equals("acervoreview")) {
+                session.setMaxInactiveInterval(60*60*7); // necessario para manter a conexao quando houver um redirecionamento.
+                    
+                String userName = "acervofau";
+                //String basePath = "C:\\imports\\acervofau";
+                String basePath = "/work/imports/acervofau";
+                reset = updatePhotosFor(userName, basePath);
+            } else {
+                System.out.println("nao eh usuario ACERVO FAU !!: "  + user.getLogin());
+            }
+        } catch (Exception e) {
+            System.out.println("Erro ao captar usuario");
+        }
+        
+        
+        System.out.println("\nno reset update fau!! " + new Date() + "\n");
+        validator.onErrorUse(Results.logic()).redirectTo(GroupwareInitController.class).init();
+        result.use(logic()).redirectTo(GroupwareInitController.class).init();
+    }
+    
+    @Get
+    @Path("/photo/updateimportworkquapa")
+    public void updateImportWorkPhotosQuapa() {
+        
+        boolean reset = false;
+        User user = null;
+        try{
+            System.out.println("Entrando UPDATE Quapa: " + new Date());
+            user = (User) session.getAttribute("userLogin");
+            if (user != null && user.getLogin().equals("acervoreview")) {
+                session.setMaxInactiveInterval(60*60*7); // necessario para manter a conexao quando houver um redirecionamento.
+                    
+                String userName = "acervoquapa";
+                //basePath = "C:\\imports\\acervoquapa";
+                String basePath = "/work/imports/acervoquapa";
+                reset = updatePhotosFor(userName, basePath);
+                
+            } else {
+                System.out.println("nao eh usuario ACERVO FAU !!: "  + user.getLogin());
+            }
+        } catch (Exception e) {
+            System.out.println("Erro ao captar usuario");
+        }
+        
+        
+        System.out.println("\nno reset update quapa !! " + new Date() + "\n");
+        validator.onErrorUse(Results.logic()).redirectTo(GroupwareInitController.class).init();
+        result.use(logic()).redirectTo(GroupwareInitController.class).init();
+    }
+    
+    private boolean updatePhotosFor(String userName, String basePath) {
+        try {
+            return new PhotoUpdateImport(userName, basePath).updateImportedImages();
+        } catch (Exception e) {
+            validator.add(new ValidationMessage("Erro ao atualizar imagens importadas do usuário:" + userName, "Erro na importação."));
+            e.printStackTrace();
+            return false;
+        }
+    }
+    
+    @Get
+    @Path("/photo/reviewimportwork")
+    public void reviewImportWorkPhotos() {
+        
+        boolean reset = false;
+        User user = null;
+        try{
+            System.out.println("Entrando REVIEW: " + new Date());
+            user = (User) session.getAttribute("userLogin");
+            if (user != null && user.getLogin().equals("acervoreview")) {
+                session.setMaxInactiveInterval(60*60*7); // necessario para manter a conexao quando houver um redirecionamento.
+                    
+                String userName = "acervofau";
+                //String basePath = "C:\\imports\\acervofau";
+                String basePath = "/work/imports/acervofau";
+                reset = reviewPhotosFor(userName, basePath);
+                //reset = rnd.nextBoolean();
+                //System.out.println("WAIting...");
+                //Thread.sleep(21000);
+                if (! reset) {
+                    userName = "acervoquapa";
+                    //basePath = "C:\\imports\\acervoquapa";
+                    basePath = "/work/imports/acervoquapa";
+                    reset = reviewPhotosFor(userName, basePath);
+                    //reset = rnd.nextBoolean();
+                }
+            } else {
+                System.out.println("nao eh usuario ACERVO FAU !!: "  + user.getLogin());
+            }
+        } catch (Exception e) {
+            System.out.println("Erro ao captar usuario");
+        }
+        
+        
+        if (reset) {
+            User userNow = (User) session.getAttribute("userLogin");
+            if (userNow != null)
+                System.out.println("RESET NOW REDIR TO PHOTO IMPORT user: " + userNow.getLogin() + " " + new Date());
+            else
+                System.out.println("RESET NOW redir TO PHOTO IMPORT user now null " + new Date());
+                
+            if (user != null)
+                session.setAttribute("userLogin", user);
+            
+            //validator.onErrorUse(Results.logic()).redirectTo(GroupwareInitController.class).init();
+            //result.forwardTo("/photo/import");
+            result.redirectTo("/photo/reviewimportwork");
+        } else {
+            System.out.println("\nno reset !! " + new Date() + "\n");
+            validator.onErrorUse(Results.logic()).redirectTo(GroupwareInitController.class).init();
+            result.use(logic()).redirectTo(GroupwareInitController.class).init();
+        }
+    }
+    
+    @Get
+    @Path("/photo/reviewimport")
+    public void reviewImportPhotos() {
+        
+        boolean reset = false;
+        User user = null;
+        try{
+            System.out.println("Entrando REVIEW: " + new Date());
+            user = (User) session.getAttribute("userLogin");
+            if (user != null && user.getLogin().equals("acervoreview")) {
+                session.setMaxInactiveInterval(60*60*7); // necessario para manter a conexao quando houver um redirecionamento.
+                    
+                String userName = "acervofau";
+                //String basePath = "C:\\imports\\acervofau";
+                String basePath = "/home/gw/imports/acervofau";
+                reset = reviewPhotosFor(userName, basePath);
+                //reset = rnd.nextBoolean();
+                //System.out.println("WAIting...");
+                //Thread.sleep(21000);
+                if (! reset) {
+                    userName = "acervoquapa";
+                    //basePath = "C:\\imports\\acervoquapa";
+                    basePath = "/home/gw/imports/acervoquapa";
+                    reset = reviewPhotosFor(userName, basePath);
+                    //reset = rnd.nextBoolean();
+                }
+            } else {
+                System.out.println("nao eh usuario ACERVO FAU !!: "  + user.getLogin());
+            }
+        } catch (Exception e) {
+            System.out.println("Erro ao captar usuario");
+        }
+        
+        
+        if (reset) {
+            User userNow = (User) session.getAttribute("userLogin");
+            if (userNow != null)
+                System.out.println("RESET NOW REDIR TO PHOTO IMPORT user: " + userNow.getLogin() + " " + new Date());
+            else
+                System.out.println("RESET NOW redir TO PHOTO IMPORT user now null " + new Date());
+                
+            if (user != null)
+                session.setAttribute("userLogin", user);
+            
+            //validator.onErrorUse(Results.logic()).redirectTo(GroupwareInitController.class).init();
+            //result.forwardTo("/photo/import");
+            result.redirectTo("/photo/reviewimport");
+        } else {
+            System.out.println("\nno reset !! " + new Date() + "\n");
+            validator.onErrorUse(Results.logic()).redirectTo(GroupwareInitController.class).init();
+            result.use(logic()).redirectTo(GroupwareInitController.class).init();
+        }
+    }
+    
+    private boolean reviewPhotosFor(String userName, String basePath) {
+        try {
+            return new PhotoReviewImport(userName, basePath).reviewImportedImages();
+        } catch (Exception e) {
+            validator.add(new ValidationMessage("Erro ao importar imagens do usuário:" + userName, "Erro na importação."));
+            e.printStackTrace();
+            return false;
+        }
+    }
 
     @Get
     @Path("/photo/import")
     public void importPhotos() {
         
-        String userName = "acervofau";
-        String basePath = "/home/gw/imports/acervofau";
-        importPhotosFor(userName, basePath);
-
-        userName = "acervoquapa";
-        basePath = "/home/gw/imports/acervoquapa";
-        importPhotosFor(userName, basePath);
+        boolean reset = false;
+        User user = null;
+        try{
+            System.out.println("Entrando IMPORT: " + new Date());
+            user = (User) session.getAttribute("userLogin");
+            if (user != null && user.getLogin().equals("acervoreview")) {
+                session.setMaxInactiveInterval(60*60*7); // necessario para manter a conexao quando houver um redirecionamento.
+                    
+                String userName = "acervofau";
+                //String basePath = "C:\\imports\\acervofau";
+                //String basePath = "/home/gw/imports/acervofau";
+                String basePath = "/work/imports/acervofau";
+                reset = importPhotosFor(userName, basePath);
+                //reset = rnd.nextBoolean();
+                //System.out.println("WAIting...");
+                //Thread.sleep(21000);
+                if (! reset) {
+                    userName = "acervoquapa";
+                    //basePath = "C:\\imports\\acervoquapa";
+                    //basePath = "/home/gw/imports/acervoquapa";
+                    basePath = "/work/imports/acervoquapa";
+                    reset = importPhotosFor(userName, basePath);
+                    //reset = rnd.nextBoolean();
+                }
+            } else {
+                System.out.println("nao eh usuario ACERVO FAU !!: "  + user.getLogin());
+            }
+        } catch (Exception e) {
+            System.out.println("Erro ao captar usuario");
+        }
         
-        validator.onErrorUse(Results.logic()).redirectTo(GroupwareInitController.class).init();
-        result.use(logic()).redirectTo(GroupwareInitController.class).init();
+        
+        if (reset) {
+            User userNow = (User) session.getAttribute("userLogin");
+            if (userNow != null)
+                System.out.println("RESET NOW REDIR TO PHOTO IMPORT user: " + userNow.getLogin() + " " + new Date());
+            else
+                System.out.println("RESET NOW redir TO PHOTO IMPORT user now null " + new Date());
+                
+            if (user != null)
+                session.setAttribute("userLogin", user);
+            
+            //validator.onErrorUse(Results.logic()).redirectTo(GroupwareInitController.class).init();
+            //result.forwardTo("/photo/import");
+            result.redirectTo("/photo/import");
+        } else {
+            System.out.println("\nno reset !! " + new Date() + "\n");
+            validator.onErrorUse(Results.logic()).redirectTo(GroupwareInitController.class).init();
+            result.use(logic()).redirectTo(GroupwareInitController.class).init();
+        }
     }
 
-    private void importPhotosFor(String userName, String basePath) {
+    private boolean importPhotosFor(String userName, String basePath) {
         try {
-            new PhotoImporter(userName, basePath).buildImportImages();
+            return new PhotoImporter(userName, basePath).buildImportImages();
         } catch (Exception e) {
             validator.add(new ValidationMessage("Erro ao importar imagens do usuário:" + userName, "Erro na importação."));
             e.printStackTrace();
+            return false;
         }
     }
 
