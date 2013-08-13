@@ -90,7 +90,7 @@ public class PhotoMgrInstance extends AbstractBusiness {
     
     public boolean hasResults(Map<String, List<Photo>> search) {
         for (String term : search.keySet()) {
-            if (!search.get(term).isEmpty()) {
+            if (search.get(term) != null && !search.get(term).isEmpty()) {
                 return true;
             }
         }

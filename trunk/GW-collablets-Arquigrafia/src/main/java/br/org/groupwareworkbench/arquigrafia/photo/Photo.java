@@ -728,29 +728,33 @@ public class Photo implements Serializable, GraphicalResource {
     public static List<Photo> findByAttribute(Collablet collablet, String term, String value, Pagination pagination) {
 
         if (Search.contains(term)) {
+            try {
+                EntityManager em = EntityManagerProvider.getEntityManager();
+                FullTextEntityManager fullTextEntityManager = org.hibernate.search.jpa.Search.getFullTextEntityManager(em);
+    
+                org.hibernate.search.query.dsl.QueryBuilder builder =
+                        fullTextEntityManager.getSearchFactory().buildQueryBuilder().forEntity(Photo.class).get();
+    
+                org.apache.lucene.search.Query termQuery =
+                        builder.keyword().onFields(term).matching(value.toUpperCase().trim()).createQuery();
+    
+                org.apache.lucene.search.Query deletedQuery =
+                        builder.keyword().onFields("deleted").matching("false").createQuery();
+    
+                org.apache.lucene.search.Query collabletQuery =
+                        builder.keyword().onFields("collablet.id").matching(collablet.getId()).createQuery();
+    
+                org.apache.lucene.search.Query query =
+                        builder.bool().must(termQuery).must(deletedQuery).must(collabletQuery).createQuery();
+    
+                Query hibQuery = fullTextEntityManager.createFullTextQuery(query, Photo.class, Collablet.class);
+    
+                return hibQuery.setFirstResult(pagination.firstResult()).setMaxResults(pagination.getPerPage())
+                        .getResultList();
+            } catch(org.hibernate.search.SearchException se) {
+                return null;
+            }
 
-            EntityManager em = EntityManagerProvider.getEntityManager();
-            FullTextEntityManager fullTextEntityManager = org.hibernate.search.jpa.Search.getFullTextEntityManager(em);
-
-            org.hibernate.search.query.dsl.QueryBuilder builder =
-                    fullTextEntityManager.getSearchFactory().buildQueryBuilder().forEntity(Photo.class).get();
-
-            org.apache.lucene.search.Query termQuery =
-                    builder.keyword().onFields(term).matching(value.toUpperCase().trim()).createQuery();
-
-            org.apache.lucene.search.Query deletedQuery =
-                    builder.keyword().onFields("deleted").matching("false").createQuery();
-
-            org.apache.lucene.search.Query collabletQuery =
-                    builder.keyword().onFields("collablet.id").matching(collablet.getId()).createQuery();
-
-            org.apache.lucene.search.Query query =
-                    builder.bool().must(termQuery).must(deletedQuery).must(collabletQuery).createQuery();
-
-            Query hibQuery = fullTextEntityManager.createFullTextQuery(query, Photo.class, Collablet.class);
-
-            return hibQuery.setFirstResult(pagination.firstResult()).setMaxResults(pagination.getPerPage())
-                    .getResultList();
         }
         return null;
     }
