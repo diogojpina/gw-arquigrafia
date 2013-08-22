@@ -341,7 +341,8 @@
 		var city = "<c:out value="${photo.city}"/>";
 		var state = "<c:out value="${photo.state}"/>";
 		var country = "<c:out value="${photo.country}"/>";
-		var address = street + "," + city + "-" + state + "," + country;
+		var address = street + "," + district + "," + city + "-" + state + "," + country;
+		console.log(address);
 		
 		geocoder = new google.maps.Geocoder();
 		
