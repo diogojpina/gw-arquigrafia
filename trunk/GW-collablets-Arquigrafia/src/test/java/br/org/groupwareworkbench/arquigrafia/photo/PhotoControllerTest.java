@@ -96,7 +96,7 @@ public class PhotoControllerTest {
         WidgetInfo widgetInfo = new WidgetInfo(request, converters);
         HttpSession session = mock(HttpSession.class);
         RequestInfo requestInfo = mock(RequestInfo.class);
-        controller = new PhotoController(result, new MockValidator(), widgetInfo, session, requestInfo);
+        controller = new PhotoController(result, new MockValidator(), widgetInfo, session, requestInfo, new SearchOverall(result));
 
         em.getTransaction().begin();
         collablet = new Collablet("photoMgr" + UUID.randomUUID());

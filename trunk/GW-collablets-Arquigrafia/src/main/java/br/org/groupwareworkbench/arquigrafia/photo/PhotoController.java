@@ -82,16 +82,18 @@ public class PhotoController {
     private final Validator validator;
     private final HttpSession session;
     private final RequestInfo requestInfo;
+    private final SearchOverall search;
     
     private static Random rnd = new Random();
 
     public PhotoController(Result result, Validator validator, WidgetInfo info, HttpSession session,
-            RequestInfo requestInfo) {
+            RequestInfo requestInfo, SearchOverall search) {
         this.result = result;
         this.validator = validator;
         this.info = info;
         this.session = session;
         this.requestInfo = requestInfo;
+        this.search = search;
     }
 
     @Get
@@ -302,18 +304,7 @@ public class PhotoController {
     public void search(PhotoMgrInstance photoMgr, final String q, int page, int perPage) {
 
         validate(photoMgr, q);
-
-        Pagination pagination = new Pagination(page, perPage);
-
-        List<Tag> tags = Tag.searchByName(q, photoMgr.getCollablet().getDependency("tagMgr"));
-
-        List<User> people = User.searchByName(q, new Collablet(8l, "userMgr"), pagination);
-
-        Map<String, List<Photo>> photos = photoMgr.searchForAttributesOfThePhoto(q, pagination);
-
-        result.include("tags", tags).include("people", people).include("photos", photos)
-                .include("results", photoMgr.hasResults(photos)).include("searchTerm", q);
-        addIncludes(photoMgr);
+        search.all(photoMgr, q, new Pagination(page, perPage));
         result.use(logic()).forwardTo(PhotoController.class).busca(photoMgr);
     }
 
@@ -335,7 +326,15 @@ public class PhotoController {
     }
 
     @Get
-    @Path("/photos/{photoMgr}/show/search/term")
+    @Path("/photos/{photoMgr}/counts/search/term")
+    public void countsPhotosSearchByAttribute(PhotoMgrInstance photoMgr, String term) {
+        String q = WrapperEncoderParam.decode(term);
+        Map<String, Long> results = photoMgr.countsPhotosSearchByAttribute(q);
+        result.use(Results.json()).withoutRoot().from(results).serialize();
+    }
+
+    @Get
+    @Path("/photos/{photoMgr}/show/search/term") 
     public void showSearchByAttribute(PhotoMgrInstance photoMgr, String term, String q, int page, int perPage) {
         String search = WrapperEncoderParam.decode(q);
         List<Photo> results = photoMgr.searchForAttributeOfThePhoto(term, search, page, perPage);
@@ -343,13 +342,6 @@ public class PhotoController {
         addIncludes(photoMgr);
     }
 
-    @Get
-    @Path("/photos/{photoMgr}/counts/search/term")
-    public void countsPhotosSearchByAttribute(PhotoMgrInstance photoMgr, String term) {
-        String q = WrapperEncoderParam.decode(term);
-        Map<String, Long> results = photoMgr.countsPhotosSearchByAttribute(q);
-        result.use(Results.json()).withoutRoot().from(results).serialize();
-    }
 
     @Get
     @Path("/photos/{photoMgr}/count/search/term")
