@@ -86,6 +86,9 @@ import br.org.groupwareworkbench.core.graphics.GraphicalResource;
 import br.org.groupwareworkbench.core.graphics.GraphicalResourceSuffix;
 import br.org.groupwareworkbench.core.util.Pagination;
 
+import com.google.common.collect.Maps;
+import com.sun.tools.example.debug.gui.SearchPath;
+
 @Entity
 @Access(AccessType.FIELD)
 @TypeDefs(@TypeDef(name = "iso8601", defaultForType = ISO8601.class, typeClass = ISO8601Type.class))
@@ -724,66 +727,67 @@ public class Photo implements Serializable, GraphicalResource {
                 .firstResult(firstElement).maxResults(pageSize).list("dataUpload DESC");
     }
 
-    @SuppressWarnings("unchecked")
-    public static List<Photo> findByAttribute(Collablet collablet, String term, String value, Pagination pagination) {
+//    @SuppressWarnings("unchecked")
+//    public static List<Photo> findByAttribute(Collablet collablet, String term, String value, Pagination pagination) {
+//
+//        if (Search.contains(term)) {
+//            try {
+//                EntityManager em = EntityManagerProvider.getEntityManager();
+//                FullTextEntityManager fullTextEntityManager = org.hibernate.search.jpa.Search.getFullTextEntityManager(em);
+//    
+//                org.hibernate.search.query.dsl.QueryBuilder builder =
+//                        fullTextEntityManager.getSearchFactory().buildQueryBuilder().forEntity(Photo.class).get();
+//    
+//                org.apache.lucene.search.Query termQuery =
+//                        builder.keyword().onFields(term).matching(value.toUpperCase().trim()).createQuery();
+//    
+//                org.apache.lucene.search.Query deletedQuery =
+//                        builder.keyword().onFields("deleted").matching("false").createQuery();
+//    
+//                org.apache.lucene.search.Query collabletQuery =
+//                        builder.keyword().onFields("collablet.id").matching(collablet.getId()).createQuery();
+//    
+//                org.apache.lucene.search.Query query =
+//                        builder.bool().must(termQuery).must(deletedQuery).must(collabletQuery).createQuery();
+//    
+//                Query hibQuery = fullTextEntityManager.createFullTextQuery(query, Photo.class, Collablet.class);
+//    
+//                return hibQuery.setFirstResult(pagination.firstResult()).setMaxResults(pagination.getPerPage())
+//                        .getResultList();
+//            } catch(org.hibernate.search.SearchException se) {
+//                return null;
+//            }
+//
+//        }
+//        return null;
+//    }
+
+    
+    @SuppressWarnings("serial")
+    public static List<Photo> findByAttribute(final Collablet collablet, final String term, final String value, Pagination pagination) {
 
         if (Search.contains(term)) {
-            try {
-                EntityManager em = EntityManagerProvider.getEntityManager();
-                FullTextEntityManager fullTextEntityManager = org.hibernate.search.jpa.Search.getFullTextEntityManager(em);
-    
-                org.hibernate.search.query.dsl.QueryBuilder builder =
-                        fullTextEntityManager.getSearchFactory().buildQueryBuilder().forEntity(Photo.class).get();
-    
-                org.apache.lucene.search.Query termQuery =
-                        builder.keyword().onFields(term).matching(value.toUpperCase().trim()).createQuery();
-    
-                org.apache.lucene.search.Query deletedQuery =
-                        builder.keyword().onFields("deleted").matching("false").createQuery();
-    
-                org.apache.lucene.search.Query collabletQuery =
-                        builder.keyword().onFields("collablet.id").matching(collablet.getId()).createQuery();
-    
-                org.apache.lucene.search.Query query =
-                        builder.bool().must(termQuery).must(deletedQuery).must(collabletQuery).createQuery();
-    
-                Query hibQuery = fullTextEntityManager.createFullTextQuery(query, Photo.class, Collablet.class);
-    
-                return hibQuery.setFirstResult(pagination.firstResult()).setMaxResults(pagination.getPerPage())
-                        .getResultList();
-            } catch(org.hibernate.search.SearchException se) {
-                return null;
-            }
+                
+            return new PhotoSearch().findBy(new HashMap<String, Object>() {{
+                put("deleted", "false");
+                put("collablet.id", collablet.getId());
+                put(term, value.toUpperCase().trim());
+            }}, pagination);
 
         }
         return null;
     }
 
-    public static Long countByAttribute(Collablet collablet, String fieldName, String value) {
+    
+    @SuppressWarnings("serial")
+    public static Long countByAttribute(final Collablet collablet, final String fieldName, final String value) {
+
         if (Search.contains(fieldName)) {
-
-            EntityManager em = EntityManagerProvider.getEntityManager();
-            FullTextEntityManager fullTextEntityManager = org.hibernate.search.jpa.Search.getFullTextEntityManager(em);
-
-            org.hibernate.search.query.dsl.QueryBuilder builder =
-                    fullTextEntityManager.getSearchFactory().buildQueryBuilder().forEntity(Photo.class).get();
-
-            org.apache.lucene.search.Query terms =
-                    builder.keyword().onFields(fieldName).matching(value.toUpperCase().trim()).createQuery();
-
-            org.apache.lucene.search.Query paramDelete =
-                    builder.keyword().onFields("deleted").matching("false").createQuery();
-
-            org.apache.lucene.search.Query paramCollablet =
-                    builder.keyword().onFields("collablet.id").matching(collablet.getId()).createQuery();
-
-            org.apache.lucene.search.Query query =
-                    builder.bool().must(terms).must(paramDelete).must(paramCollablet).createQuery();
-
-            org.hibernate.search.jpa.FullTextQuery fullTextQuery =
-                    fullTextEntityManager.createFullTextQuery(query, Photo.class);
-
-            return (long) fullTextQuery.getResultSize();
+            return (long) new PhotoSearch().countBy(new HashMap<String, Object>() {{
+                put("deleted", "false");
+                put("collablet.id", collablet.getId());
+                put(fieldName, value.toUpperCase().trim());
+            }});
         }
         return 0l;
     }
