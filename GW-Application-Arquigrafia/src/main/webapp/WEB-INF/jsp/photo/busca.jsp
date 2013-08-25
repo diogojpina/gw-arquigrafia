@@ -44,10 +44,16 @@
              </span>
              <br />
  --%>         
-  							<c:if test="${empty tags and empty people and results eq false}">
+  							<c:if test="${empty tags and empty people and results eq false and empty messageForStopword}">
 		             <span id="resultTerm">Nenhuma imagem encontrada </span>
 		             <br />             
-             </c:if>
+	             </c:if>
+
+  							<c:if test="${not empty messageForStopword}">
+		             <span id="resultTerm">${messageForStopword }</span>
+		             <br />             
+  	           </c:if>
+	
           </div>
          <br />
          <div id="search_scroll">

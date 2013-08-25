@@ -18,7 +18,8 @@ Module("GW.Arquigrafia.Search", function(Search) {
 	  for ( var index in results) {
 	    var count = results[index][1],
 		    selector = '#'.concat(results[index][0]);
-		  
+		console.log("<<><><><><><><>");
+		console.log(count);
 		pagination.call(this, count, $(selector));
 	  }
   }
