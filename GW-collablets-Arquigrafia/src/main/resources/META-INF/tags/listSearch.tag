@@ -78,7 +78,7 @@
 	    		${fn:length(photo.value)}
 					<fmt:message key="${photo.key}"/> ${searchTerm}
 					<c:if test="${fn:length(photo.value) >= 8 }">
-						<a  id="${photo.key}" href="<c:url value="/photos/${photoInstance.id}/search/term?q=${util:encode(searchTerm)}&term=${util:encode(photo.key)}&perPage=32"/>" class="load_photos" data-count="0" data-page="2" style="color: #A6A6A6"></a>
+						<a  id="${photo.key}" href="<c:url value="/photos/${photoInstance.id}/search/term?q=${util:encode(searchTerm)}&term=${util:encode(photo.key)}&perPage=8"/>" class="load_photos" data-count="0" data-page="2" style="color: #A6A6A6"></a>
 					</c:if>						
 				  <hr/>
 				  
