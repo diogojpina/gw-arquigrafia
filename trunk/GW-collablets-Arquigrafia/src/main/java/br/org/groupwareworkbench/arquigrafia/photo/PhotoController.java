@@ -31,6 +31,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.ResourceBundle;
 
 import javax.servlet.http.HttpSession;
 
@@ -52,7 +53,12 @@ import br.com.caelum.vraptor.view.Results;
 import br.org.groupwareworkbench.arquigrafia.imports.PhotoImporter;
 import br.org.groupwareworkbench.arquigrafia.imports.PhotoReviewImport;
 import br.org.groupwareworkbench.arquigrafia.imports.PhotoUpdateImport;
+import br.org.groupwareworkbench.collablet.communic.comment.Comment;
+import br.org.groupwareworkbench.collablet.communic.comment.CommentMgrInstance;
 import br.org.groupwareworkbench.collablet.communic.tag.Tag;
+import br.org.groupwareworkbench.collablet.communic.tag.TagMgrInstance;
+import br.org.groupwareworkbench.collablet.coop.binomial.BinomialEvaluation;
+import br.org.groupwareworkbench.collablet.coop.binomial.BinomialMgrInstance;
 import br.org.groupwareworkbench.collablet.coord.user.User;
 import br.org.groupwareworkbench.core.framework.Collablet;
 import br.org.groupwareworkbench.core.framework.WidgetInfo;
@@ -83,6 +89,7 @@ public class PhotoController {
     private final HttpSession session;
     private final RequestInfo requestInfo;
     private final SearchOverall search;
+    private ResourceBundle bundle;
     
     private static Random rnd = new Random();
 
@@ -94,6 +101,7 @@ public class PhotoController {
         this.session = session;
         this.requestInfo = requestInfo;
         this.search = search;
+        this.bundle = ResourceBundle.getBundle("messages");
     }
 
     @Get
@@ -932,5 +940,65 @@ public class PhotoController {
         result.include("binomialMgr", binomialMgr);
         result.include("albumMgr", albumMgr);
         result.include("arquigrafiaMgr", arquigrafiaMgr);
+    }
+
+    @Path("/comments/{commentMgr}/photo/{photo.id}")
+    public void comments(CommentMgrInstance commentMgr, Photo photo) {
+        final Photo photoExpected = Photo.findById(photo.getId());
+        
+        validate(photoExpected);
+
+        List<Comment> comments = Comment.listByObject(commentMgr.getCollablet(), photoExpected);
+
+        result.use(Results.representation())
+                .from(comments, "comments")
+                .include("user")
+                .exclude("postDate", "user.login", "user.encryptedPassword", "user.type", "user.id", "user.email", "user.photoURL", "user.statusToken")
+                .serialize();
+    }
+
+    
+    @Path("/tags/{tagMgr}/photo/{photo.id}")
+    public void tags(TagMgrInstance tagMgr, Photo photo) {
+        Photo photoExpected = Photo.findById(photo.getId());
+
+        validate(photoExpected);
+        
+        List<Tag> tags = Tag.listByObject(tagMgr.getCollablet(), photoExpected);
+        
+        result.use(Results.representation()).from(tags, "tags").serialize();
+    }
+
+    @Path("/evaluations/{binomialMgr}/photo/{photo.id}")
+    public void evaluations(BinomialMgrInstance binomialMgr, Photo photo) {
+        Photo photoExpected = Photo.findById(photo.getId());
+
+        validate(photoExpected);
+        
+        List<BinomialEvaluation> evaluations = binomialMgr.generalAverage(photoExpected);
+        
+        result.use(Results.representation())
+                .from(evaluations, "avarage")
+                .include("binomial")
+                .exclude("binomial.id", "binomial.firstDescription", "binomial.secondDescription", "binomial.firstLink", "binomial.secondLink", "binomial.defaultValue")
+                .serialize();
+    }
+
+    @Path("/evaluations/amount/{binomialMgr}/photo/{photo.id}")
+    public void amountEvaluations(BinomialMgrInstance binomialMgr, Photo photo) {
+        Photo photoExpected = Photo.findById(photo.getId());
+        
+        validate(photoExpected);
+        
+        long amount = BinomialEvaluation.amountOfObjects(binomialMgr.getCollablet(), photoExpected);
+        
+        result.use(Results.json()).withoutRoot().from(amount).serialize();
+    }
+
+    private void validate(final Photo photoExpected) {
+        validator.checking(new Validations() {{
+            that(photoExpected != null, "notFound", bundle.getString("photo.notFound"));
+        }});
+        validator.onErrorSendBadRequest();
     }
 }
