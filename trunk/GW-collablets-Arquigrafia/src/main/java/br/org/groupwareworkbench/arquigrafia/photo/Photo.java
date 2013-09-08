@@ -87,7 +87,6 @@ import br.org.groupwareworkbench.core.graphics.GraphicalResourceSuffix;
 import br.org.groupwareworkbench.core.util.Pagination;
 
 import com.google.common.collect.Maps;
-import com.sun.tools.example.debug.gui.SearchPath;
 
 @Entity
 @Access(AccessType.FIELD)

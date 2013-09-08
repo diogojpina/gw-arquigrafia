@@ -26,8 +26,11 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.Normalizer;
+import java.text.Normalizer.Form;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -50,6 +53,7 @@ import br.com.caelum.vraptor.ioc.RequestScoped;
 import br.com.caelum.vraptor.validator.ValidationMessage;
 import br.com.caelum.vraptor.validator.Validations;
 import br.com.caelum.vraptor.view.Results;
+import br.org.groupwareworkbench.arquigrafia.imports.ImportLogger;
 import br.org.groupwareworkbench.arquigrafia.imports.PhotoImporter;
 import br.org.groupwareworkbench.arquigrafia.imports.PhotoReviewImport;
 import br.org.groupwareworkbench.arquigrafia.imports.PhotoUpdateImport;
@@ -1000,5 +1004,146 @@ public class PhotoController {
             that(photoExpected != null, "notFound", bundle.getString("photo.notFound"));
         }});
         validator.onErrorSendBadRequest();
+    }
+    
+    @Get
+    @Path(value = "/photo/deleteadmin/{idPhoto}")
+    public void deletePhotoAdmin(long idPhoto) {
+        User user = null;
+        Photo photo = null;
+        try {
+            user = (User) session.getAttribute("userLogin");
+            if (user != null && user.getLogin().equals("acervoreview")) {
+                photo = Photo.findById(idPhoto);
+                if (photo == null || photo.getDeleted()) {
+                    this.photoNotFound(photo);
+                    return;
+                }
+                photo.setDeleted(true);
+                photo.save();
+                
+            } else {
+                System.out.println("Someone tried to delete a photo that he does not acervoreview.");
+            }
+        } catch (Exception e) {
+            System.out.println("[PhotoController] deleteAdmin exception:" + idPhoto + " exc: " + e);
+        }
+        result.redirectTo("/");
+
+        if (photo != null) {
+            PhotoMgrInstance photoMgr = (PhotoMgrInstance) photo.getCollablet().getBusinessObject();
+            addIncludes(photoMgr);
+        }
+    }
+    
+    @Get
+    @Path(value = "/photo/alignall")
+    public void alignAll() {
+        Tag tagIni = Tag.findById(1);
+        if (tagIni != null) {
+            try {
+                File baseDir = new File("/work/aligns/");
+                List<Tag> list = Tag.list(tagIni.getCollablet());
+                if (list != null) {
+                    System.out.println("[Photocontr] Lista de tags total: " + list.size());
+                    Hashtable<String, String> hashTags = new Hashtable<String, String>();
+                    Hashtable<String, Long> hashTagsId = new Hashtable<String, Long>();
+                    for (int i = 0; i < list.size(); i++) {
+                        Tag tag = list.get(i);
+                        
+                        File fileTagLog = new File(baseDir, "tag" + tag.getId());
+                        if (fileTagLog.exists()) {
+                            System.out.println("O arquivo tag" + tag.getId() + " (" + tag.getName() + ") ja existe");
+                        } else {
+                            ImportLogger logger = new ImportLogger(fileTagLog);
+                            logger.startFileLog();
+                            logger.log("# START ALIGN from:" + "====================== " + new Date());
+                            logger.log("# TAGNAME " + tag.getName() );
+                            String normTag = normalizeName(tag.getName());
+                            if (hashTags.get(normTag) != null) {
+                                System.out.println("[Photocontr] Tag Repetida ERRO: " + normTag + " vs " + hashTags.get(normTag));
+                                logger.log("# TAGEXISTE " + normTag + " (" + tag.getId() +  ") vs " + hashTags.get(normTag) + " (" + hashTagsId.get(normTag) + ")");
+                            } else {
+                                hashTags.put(normTag, tag.getName());
+                                hashTagsId.put(normTag, tag.getId());
+                            }
+                            
+                            List<Long> refs = tag.getRawPks(tagIni.getCollablet());
+                            if (refs == null) {
+                                System.out.println("[Photocontr] RAW TAGS VEIO NULO: " + tag.getId() + " " + tag.getName());
+                            } else {
+                                // armazena lista no filesystem.
+                                //System.out.println("[Photocontr]Tag comeco (" + i + "): " + tag.getName() + " cll: " + tag.getCollablet().getId() + " com: " + refs.size());
+                                //tagIni.deassignAllRaw();
+                                //tagIni = Tag.findById(1);
+                                //System.out.println("Tag dessAll: " + tag.getName() + " cll: " + tagIni.getCollablet().getId() + " com: " + refs.size());
+                                int contaRefs = 0;
+                                int contaDel = 0;
+                                int contaNul = 0;
+                                int contaAdd = 0;
+                                int contaExp = 0;
+                                for (Long pk : refs) {
+                                    try {
+                                        Photo findById = Photo.findById(pk.longValue());
+                                        if (findById == null) {
+                                            System.out.println("[Photocontr] Foto eh nula !! com pk = " + pk);
+                                            contaNul++;
+                                            logger.log("# nula " + pk.longValue());
+                                        } else {
+                                            if (findById.getDeleted()) {
+                                                //System.out.println("[Photocontr] Foto eh deleted !! com pk = " + pk);
+                                                logger.log("del " + pk.longValue());
+                                                contaDel++;
+                                            } else {
+                                                logger.log("add " + pk.longValue());
+                                                contaAdd++;
+                                            }
+                                        }
+                                        contaRefs++;
+                                        //tagIni.assign(gr.getEntity());
+                                    } catch (Exception e) {
+                                        contaExp++;
+                                        System.out.println("[Photocontr] Problema tag:" + tag.getName() + " de long pk com: " + e);
+                                    } 
+                                }
+                                if (contaNul > 0) {
+                                    System.out.println(
+                                        "--> [Photocontr]Tag (" + tag.getId() + "): " + tag.getName() + " cll: " + tag.getCollablet().getId() + 
+                                        " com: " + refs.size() + " A:" + contaAdd + " D:" + contaDel + " N:" + contaNul + " EX:" + contaExp);
+                                } else {
+                                    System.out.println(
+                                        "[Photocontr]Tag (" + tag.getId() + "): " + tag.getName() + " cll: " + tag.getCollablet().getId() + 
+                                        " com: " + refs.size() + " A:" + contaAdd + " D:" + contaDel + " N:" + contaNul + " EX:" + contaExp);
+                                }
+                                if (contaRefs != refs.size()) {
+                                    System.out.println("[Photocontr] Contador de referencias diferentes !");
+                                }
+                            }
+                            logger.finishFileLog(1);
+                        }
+                    }
+                } else {
+                    System.out.println("[Photocontr] Lista de tags nul NAO PODE");
+                }
+                
+                
+            } catch (Exception e) {
+                System.out.println("[Photocontr] Problema de alinhamento com: " + e);
+            }
+        }
+        
+        
+        System.out.println("\nno saindo alignall !! " + new Date() + "\n");
+        result.use(logic()).redirectTo(GroupwareInitController.class).init();
+    }
+    
+    private String normalizeName(String name) 
+    {
+        String nam = name.toLowerCase();
+        try {
+            return Normalizer.normalize(nam, Form.NFD).replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
+        } catch (Exception e) {
+            return nam;
+        }
     }
 }
