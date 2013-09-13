@@ -155,9 +155,26 @@ public class PhotoMgrInstance extends AbstractBusiness {
     public List<Photo> listPhotoByUserPageAndOrder(User user, int pageSize, int pageNumber) {
         return Photo.listPhotoByUserPageAndOrder(getCollablet(), user, pageSize, pageNumber);
     }
+    
+    public List<Photo> listPhotoByUserPageAndOrder(User user, Long pageSize, Long pageNumber) {
+        return this.listPhotoByUserPageAndOrder(user, pageSize.intValue(), pageNumber.intValue());
+    }
 
     public List<Photo> listPhotosByUser(User user) {
         return Photo.listPhotosByUser(getCollablet(), user);
+    }
+    
+    public Long countPhotosByUser(User user) {
+        return Photo.countPhotosByUser(getCollablet(), user);
+    }
+    
+    public Long photoPaginateCountByUser(Long countByPage, User user) {
+        Long countPhotosByUser = countPhotosByUser(user);
+        int pageCount = (countPhotosByUser.intValue() / countByPage.intValue());
+        if ( (countPhotosByUser % countByPage) > 0 ) {
+            pageCount++;
+        }
+        return Integer.valueOf(pageCount).longValue();
     }
     
     public List<Photo> listLastPhotos(Integer amount) {
