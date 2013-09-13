@@ -9,29 +9,27 @@
 	type="java.lang.Long"%>
 <%@ attribute name="photosPerPage" required="true" rtexprvalue="true"
 	type="java.lang.Long"%>
-
+<%@ attribute name="linkToPage" required="true" rtexprvalue="true"
+	type="java.lang.String"%>
 
 <c:if test="${photoMgr.collablet.enabled}">
-
-<c:choose>
-    <c:when test="${(not empty photoPageNumber) && (photoPageNumber >= 0)}">
-       <r:callMethod methodName="listPhotoByUserPageAndOrder" instance="${photoMgr}" var="photos" >
-    	<r:param type="br.org.groupwareworkbench.collablet.coord.user.User" value="${user}" />
+	<r:callMethod methodName="photoPaginateCountByUser" instance="${photoMgr}" var="counter" >
     	<r:param type="java.lang.Long" value="${photosPerPage}"/>
-    	<r:param type="java.lang.Long" value="${photoPageNumber}"/>
-	</r:callMethod>
-    </c:when>
-    <c:otherwise>
-        <r:callMethod methodName="listPhotoByUserPageAndOrder" instance="${photoMgr}" var="photos" >
     	<r:param type="br.org.groupwareworkbench.collablet.coord.user.User" value="${user}" />
-    	<r:param type="java.lang.Long" value="${photosPerPage}" />
-    	<r:param type="java.lang.Long" value="${0}" />
 	</r:callMethod>
-    </c:otherwise>
-</c:choose>
-	<c:forEach var="foto" items="${photos}">
-			<a class="search_image" href="<c:url value="/photo/${foto.id}"/>"> 
-				<img src="<c:url value="/photo/img-thumb/${foto.id}"/>?_log=no" />
-			</a>
-	</c:forEach>
+	<c:if test="${counter > 1}">
+		<ul>
+			<c:forEach begin="0" end="${counter-1}" var="i">
+				<item>
+					<c:if test="${(not empty photoPageNumber) && (photoPageNumber == i)}">
+						<span class="selectedPageOnPhotoPagination">
+					</c:if>
+					<a href='<c:url value="${linkToPage}${i}"/>'>${i+1}</a>
+					<c:if test="${(not empty photoPageNumber) && (photoPageNumber == i)}">
+						</span>
+					</c:if>
+				</item>  
+			</c:forEach>
+		</ul>
+	</c:if>
 </c:if>

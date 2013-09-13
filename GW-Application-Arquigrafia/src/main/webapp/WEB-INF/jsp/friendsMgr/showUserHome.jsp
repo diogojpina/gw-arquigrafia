@@ -233,11 +233,17 @@
 
 			<div id="comments_block"></div>
 
-
 			<div id="added_images_bar">
 				<h3>Minhas imagens:</h3>
-				<p:photosByUser photoMgr="${photoMgr}" user="${friend}" />
+				<div>
+					<p:paginateByUser photoMgr="${photoMgr}" user="${friend}" photoPageNumber="${photoPageNumber}" photosPerPage="64" 
+						linkToPage="/friends/${friendsMgr.id}/show/${friend.id}?toRequestAttribute_photoPageNumber="/>
+				</div>
+				<div>
+					<p:photosByUser photoMgr="${photoMgr}" user="${friend}" photoPageNumber="${photoPageNumber}" photosPerPage="64"/>
+				</div>				
 			</div>
+			
 		</div>
 		<!--   FUNDO DO SITE   -->
 		<div id="footer">

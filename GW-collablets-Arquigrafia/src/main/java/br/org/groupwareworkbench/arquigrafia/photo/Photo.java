@@ -503,7 +503,7 @@ public class Photo implements Serializable, GraphicalResource {
     }
 
     public String getFormattedWorkdate() {
-        return getDataFormatada(workdate); 
+        return getDataFormatada(workdate);
     }
 
     public String getStreet() {
@@ -591,7 +591,7 @@ public class Photo implements Serializable, GraphicalResource {
             return "";
         }
     }
-    
+
     public String getDataUploadFormatada() {
         ISO8601 isoDate = new ISO8601(dataUpload);
         String dataFormatada = getDataFormatada(isoDate);
@@ -699,6 +699,21 @@ public class Photo implements Serializable, GraphicalResource {
         query.setParameter("collablet", collablet);
         query.setParameter("user", user);
         return query.getResultList();
+    }
+
+    public static Long countPhotosByUser(Collablet collablet, User user) {
+        if (collablet == null) throw new IllegalArgumentException();
+        if (user == null) throw new IllegalArgumentException();
+        
+        EntityManager em = EntityManagerProvider.getEntityManager();
+        Query query = em.createQuery("select count(*) from Photo p JOIN p.users AS u " +
+        		"WHERE p.deleted = false " +
+        		"AND p.collablet = :collablet " +
+        		"AND u = :user " +
+        		"ORDER BY p.dataUpload DESC");
+        query.setParameter("collablet", collablet);
+        query.setParameter("user", user);
+        return (Long) query.getSingleResult();
     }
 
     public static List<Photo> listPhotosByUser(Collablet collablet, User user) {

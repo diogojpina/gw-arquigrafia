@@ -83,6 +83,10 @@
 		<path>/META-INF/tags/photos/photosByUser.tag</path>
 	</tag-file>
 	<tag-file>
+		<name>paginateByUser</name>
+		<path>/META-INF/tags/photos/photosPaginateByUser.tag</path>
+	</tag-file>
+	<tag-file>
 		<name>countAllTags</name>
 		<path>/META-INF/tags/countAllTags.tag</path>
 	</tag-file>
