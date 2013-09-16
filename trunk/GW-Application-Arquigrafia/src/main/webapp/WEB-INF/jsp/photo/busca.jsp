@@ -17,6 +17,7 @@
 <script type="text/javascript" src="<c:url value="/js/pagination.js" />"></script>
 <script type="text/javascript" src="<c:url value="/js/module.min.js" />"></script>
 <script type="text/javascript" src="<c:url value="/js/search.js" />"></script>
+<script type="text/javascript" src="<c:url value="/js/analytics.js" />"></script>
 
 </head>
 
@@ -88,5 +89,8 @@
     <!--   FIM - MODAL   -->
   </div>
   <!--   FIM - CONTAINER   -->
+	<script type="text/html" id="analytics">
+		${searchTerm}
+	</script>  
 </body>
 </html>
