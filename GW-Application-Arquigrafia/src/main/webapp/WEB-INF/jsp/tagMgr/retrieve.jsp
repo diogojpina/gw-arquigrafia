@@ -10,9 +10,10 @@
 
 
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Arquigrafia - Seu universo de imagens de arquitetura</title>
-<arquigrafia:includes arquigrafiaInstance="${arquigrafiaMgr}" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Arquigrafia - Seu universo de imagens de arquitetura</title>
+	<arquigrafia:includes arquigrafiaInstance="${arquigrafiaMgr}" />
+	<script type="text/javascript" src="<c:url value="/js/analytics.js" />"></script>
 
 </head>
 
@@ -66,5 +67,9 @@
     <!--   FIM - MODAL   -->
   </div>
   <!--   FIM - CONTAINER   -->
+  <script type="text/html" id="analytics">
+		tag com nome ${tag.name}
+	</script>  
+  
 </body>
 </html>         
