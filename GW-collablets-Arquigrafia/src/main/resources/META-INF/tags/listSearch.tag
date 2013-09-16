@@ -46,7 +46,7 @@
 		<c:forEach var="tag" items="${tags}">
 				<c:if test="${tag.size > 0 }">
 					<div class="list_photos">
-								${tag.size} imagen(s) com a tag: ${tag.name}
+								${tag.size} imagen(s) com a tag: <span class="name_tag">${tag.name}</span>
 								<c:out value="${stringVariable}"/>
 								<a class="load_photos_by_tag" href='<c:url value="/tags/${tag.id}" />' >Ver todas as imagens</a>		
 							
