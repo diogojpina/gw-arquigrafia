@@ -1,10 +1,16 @@
 package br.org.groupwareworkbench.arquigrafia.photo;
 
+import java.util.List;
+import java.util.Map;
+
+import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.Validator;
 import br.com.caelum.vraptor.core.RequestInfo;
+import br.com.caelum.vraptor.view.Results;
+import br.org.groupwareworkbench.core.util.Pagination;
 
 @Resource
 public class SearchController {
@@ -30,6 +36,19 @@ public class SearchController {
     public void analytics(String q) {
         analytics.save(q);
     }
+    
+    @Get
+    @Path(value = "/photo/{photoMgr}/search/all")
+    public void search(PhotoMgrInstance photoMgr, final String q) {
+
+        List<Photo> photos = photoMgr.searchForAttributeOfThePhoto("name", q, 1, 20);
+
+        result.use(Results.representation())
+            .from(photos, "photos")
+            .exclude("id", "nomeArquivo", "dataUpload", "deleted")
+            .serialize();
+    }
+
 
 //    @SuppressWarnings("unchecked")
 //    @Get
