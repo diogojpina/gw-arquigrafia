@@ -45,7 +45,7 @@ public class SearchController {
 
         result.use(Results.representation())
             .from(photos, "photos")
-            .exclude("id", "nomeArquivo", "dataUpload", "deleted")
+            .exclude("nomeArquivo", "dataUpload", "deleted")
             .serialize();
     }
 
