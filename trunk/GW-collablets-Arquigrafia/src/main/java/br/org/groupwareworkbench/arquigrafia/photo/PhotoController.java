@@ -413,7 +413,7 @@ public class PhotoController {
 
     @Post
     @Path(value = "/photo/{photoMgr}/registra")
-    public void save(Photo photoRegister, UploadedFile foto, PhotoMgrInstance photoMgr) {
+    public void save(Photo photoRegister, final UploadedFile foto, PhotoMgrInstance photoMgr) {
 
         System.out.println("nome => " + photoRegister.getName());
         System.out.println("AllowCommercialUses => " + photoRegister.getAllowCommercialUses());
@@ -435,19 +435,21 @@ public class PhotoController {
         photoRegister.setNomeArquivo(foto == null ? null : foto.getFileName());
         result.include("photoRegister", photoRegister);
 
-        if (foto == null) {
-            validator.add(new ValidationMessage(MSG_IMAGEM_OBRIGATORIA, "Erro"));
-            validator.onErrorUse(Results.logic()).redirectTo(GroupwareInitController.class).init();
-            // redirectTo(PhotoController.class).registra(photoMgr, photoRegister);
-            return;
-        }
+//        if (foto == null) {
+//            validator.add(new ValidationMessage(MSG_IMAGEM_OBRIGATORIA, "Erro"));
+//            validator.onErrorUse(Results.logic()).redirectTo(GroupwareInitController.class).init();
+//            // redirectTo(PhotoController.class).registra(photoMgr, photoRegister);
+//            return;
+//        }
 
-        User user = null;
-        try {
-            user = (User) session.getAttribute("userLogin");
-        } catch (Exception e) {
-        }
-
+        final User user = (User) session.getAttribute("userLogin");
+        
+        validator.checking(new Validations() {{
+            that(!user.getName().equals("Visitante"), "user.login", "user.is.not.valid");
+            that(foto != null, "erro", "photo.not.attached");
+        }});
+        validator.onErrorUse(Results.logic()).redirectTo(GroupwareInitController.class).init();
+        
         if (user != null) {
             photoRegister.assignUser(user);
         }
