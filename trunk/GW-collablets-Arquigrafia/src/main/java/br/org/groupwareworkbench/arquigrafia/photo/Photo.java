@@ -72,6 +72,7 @@ import org.hibernate.search.annotations.TokenFilterDef;
 import org.hibernate.search.annotations.TokenizerDef;
 import org.hibernate.search.jpa.FullTextEntityManager;
 
+import br.com.caelum.vraptor.interceptor.download.Download;
 import br.com.caelum.vraptor.interceptor.download.FileDownload;
 import br.org.groupwareworkbench.arquigrafia.license.CreativeCommons_3_0;
 import br.org.groupwareworkbench.collablet.coord.user.User;
@@ -302,6 +303,15 @@ public class Photo implements Serializable, GraphicalResource {
 
     public FileDownload downloadImgCrop() {
         return makeDownload("_panel." + DEFAULT_EXTENSION);
+    }
+
+    public Download downloadImgCropForHome() {
+        return makeDownload("_crop." + DEFAULT_EXTENSION);
+    }
+
+    public boolean isNotImgCropForHome() {
+        File file = makeImg("_crop." + DEFAULT_EXTENSION);
+        return !file.exists();
     }
 
     public FileDownload downloadImgShow() {
@@ -940,5 +950,6 @@ public class Photo implements Serializable, GraphicalResource {
     public static Photo findByTombo(String tombo) {
         return QueryBuilder.query(Photo.class).with("tombo", tombo).with("deleted", false).find();
     }
+
 
 }
