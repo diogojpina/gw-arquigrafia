@@ -106,7 +106,7 @@ public class CropQualityImageTransform {
                                 Integer.parseInt(output.substring(output.indexOf('x') + 1, output.indexOf('+')));
 
                         tl.log("Retrieving properties of " + file.getAbsolutePath());
-
+                        BatchImageProcessor.copyFile(file.getAbsolutePath(), cropName);
                         {
                             double xScale = ((double) width) / ((double) originalWidth);
                             double yScale = ((double) height) / ((double) originalHeight);
