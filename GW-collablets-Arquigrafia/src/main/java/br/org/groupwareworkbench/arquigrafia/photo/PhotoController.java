@@ -141,30 +141,30 @@ public class PhotoController {
 
     @Get
     @Path(value = {"/photo/img-show/{idPhoto}", "/photo/img-show/{idPhoto}.jpeg"})
-    public Download imgShow(long idPhoto, String width) {
+    public Download imgShow(long idPhoto) {
         Photo photo = Photo.findById(idPhoto);
         if (photo == null || photo.getDeleted()) {
             this.photoNotFound(photo);
             return null;
         }
-        
-        
-        if (width == null || width.isEmpty() || photo.isNotImgCropForHome()) {
-            return photo.downloadImgShow();
-        }
-        
-        return photo.downloadImgCropForHome();
+                
+        return photo.downloadImgShow();
     }
 
     @Get
     @Path(value = "/photo/img-crop/{idPhoto}")
-    public Download imgCrop(long idPhoto) {
+    public Download imgCrop(long idPhoto, String width) {
         Photo photo = Photo.findById(idPhoto);
         if (photo == null || photo.getDeleted()) {
             this.photoNotFound(photo);
             return null;
         }
-        return photo.downloadImgCrop();
+        
+        if (width == null || width.isEmpty() || photo.isNotImgCropForHome()) {
+            return photo.downloadImgCrop();
+        }
+        
+        return photo.downloadImgCropForHome();
     }
 
     @Get
